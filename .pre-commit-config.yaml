@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: biome-format
+        name: biome format
+        entry: npm run format
+        language: system
+        pass_filenames: false
+      - id: biome-check
+        name: biome check
+        entry: npm run check
+        language: system
+        pass_filenames: false
