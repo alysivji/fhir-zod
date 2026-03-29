@@ -4,24 +4,24 @@ import * as z from "zod";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Coding = z.object({
+export const Duration = z.object({
 	_code: z.lazy(() => Element).optional(),
-	_display: z.lazy(() => Element).optional(),
+	_comparator: z.lazy(() => Element).optional(),
 	_id: z.lazy(() => Element).optional(),
 	_system: z.lazy(() => Element).optional(),
-	_userSelected: z.lazy(() => Element).optional(),
-	_version: z.lazy(() => Element).optional(),
+	_unit: z.lazy(() => Element).optional(),
+	_value: z.lazy(() => Element).optional(),
 	code: z
 		.string()
 		.regex(/[^\s]+([\s]?[^\s]+)*/)
 		.optional(),
-	display: z.string().optional(),
+	comparator: z.enum(["<", "<=", ">=", ">"]).optional(),
 	extension: z
 		.lazy(() => Extension)
 		.array()
 		.optional(),
 	id: z.string().optional(),
 	system: z.string().optional(),
-	userSelected: z.boolean().optional(),
-	version: z.string().optional(),
+	unit: z.string().optional(),
+	value: z.number().optional(),
 });

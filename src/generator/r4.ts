@@ -1,6 +1,11 @@
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import {
+	mkdirSync,
+	readFileSync,
+	readdirSync,
+	writeFileSync,
+} from "node:fs";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 type SpecManifest = {
@@ -14,9 +19,11 @@ type SpecManifest = {
 
 type JsonSchema = {
 	allOf?: JsonSchema[];
+	anyOf?: JsonSchema[];
 	$ref?: string;
 	type?: string;
 	enum?: string[];
+	oneOf?: JsonSchema[];
 	pattern?: string;
 	properties?: Record<string, JsonSchema>;
 	required?: string[];
@@ -27,7 +34,7 @@ type JsonSchema = {
 type LoadedDefinition = {
 	name: string;
 	schema: JsonSchema;
-	structureDefinitionPath: string | null;
+	sourceStem: string;
 };
 
 type GenerationResult = {
@@ -41,8 +48,8 @@ type BuiltFile = {
 
 type EmitContext = {
 	definitions: Map<string, LoadedDefinition>;
+	definitionSources: Map<string, string>;
 	packageRoot: string;
-	targetNames: Set<string>;
 };
 
 type EmittedProperty = {
@@ -72,15 +79,60 @@ function loadManifest(version: "r4"): SpecManifest {
 	return JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest;
 }
 
+function buildDefinitionSources(packageRoot: string): Map<string, string> {
+	const openApiDir = join(packageRoot, "openapi");
+	const definitionSources = new Map<string, string>();
+
+	for (const filename of readdirSync(openApiDir)) {
+		if (!filename.endsWith(".schema.json")) {
+			continue;
+		}
+
+		const sourceStem = basename(filename, ".schema.json");
+		const document = JSON.parse(
+			readFileSync(join(openApiDir, filename), "utf8"),
+		) as {
+			definitions?: Record<string, JsonSchema>;
+		};
+
+		for (const definitionName of Object.keys(document.definitions ?? {})) {
+			const existing = definitionSources.get(definitionName);
+			const nextScore = scoreDefinitionSource(definitionName, sourceStem);
+			const existingScore = existing
+				? scoreDefinitionSource(definitionName, existing)
+				: -1;
+
+			if (!existing || nextScore >= existingScore) {
+				definitionSources.set(definitionName, sourceStem);
+			}
+		}
+	}
+
+	return definitionSources;
+}
+
+function scoreDefinitionSource(definitionName: string, sourceStem: string): number {
+	if (sourceStem === definitionName) {
+		return 3;
+	}
+
+	if (definitionName.startsWith(`${sourceStem}_`)) {
+		return 2;
+	}
+
+	if (sourceStem === "fhir") {
+		return 0;
+	}
+
+	return 1;
+}
+
 function loadOpenApiDefinition(
 	packageRoot: string,
 	name: string,
+	sourceStem: string,
 ): LoadedDefinition {
-	const openApiPath = join(packageRoot, "openapi", `${name}.schema.json`);
-	const structureDefinitionPath = join(
-		packageRoot,
-		`StructureDefinition-${name}.json`,
-	);
+	const openApiPath = join(packageRoot, "openapi", `${sourceStem}.schema.json`);
 	const document = JSON.parse(readFileSync(openApiPath, "utf8")) as {
 		definitions: Record<string, JsonSchema>;
 	};
@@ -94,31 +146,41 @@ function loadOpenApiDefinition(
 	return {
 		name,
 		schema,
-		structureDefinitionPath,
+		sourceStem,
 	};
 }
 
-function collectDefinitions(
-	packageRoot: string,
-): Map<string, LoadedDefinition> {
-	return new Map(
-		targetNames.map((name) => [name, loadOpenApiDefinition(packageRoot, name)]),
-	);
-}
+function resolveRefTarget(
+	ref: string,
+	currentSourceStem: string,
+): { name: string; sourceStem: string } {
+	const localMatch = /^#\/definitions\/([^/]+)$/.exec(ref);
 
-function resolveRefName(ref: string): string {
-	const match = /\/definitions\/([^/]+)$/.exec(ref);
+	if (localMatch) {
+		return {
+			name: localMatch[1],
+			sourceStem: currentSourceStem,
+		};
+	}
 
-	if (!match) {
+	const externalMatch = /^([^#]+)#\/definitions\/([^/]+)$/.exec(ref);
+
+	if (!externalMatch) {
 		throw new Error(`Unsupported $ref format: ${ref}`);
 	}
 
-	return match[1];
+	const rawSourceStem = externalMatch[1].replace(/\.schema\.json$/, "");
+
+	return {
+		name: externalMatch[2],
+		sourceStem: rawSourceStem,
+	};
 }
 
 function flattenSchema(
 	name: string,
 	context: EmitContext,
+	sourceStem?: string,
 	seen = new Set<string>(),
 ): JsonSchema[] {
 	if (seen.has(name)) {
@@ -127,19 +189,33 @@ function flattenSchema(
 
 	seen.add(name);
 
-	const loaded = getDefinition(name, context);
+	const loaded = getDefinition(name, context, sourceStem);
 
-	return flattenSchemaParts(loaded.schema, context, seen);
+	return flattenSchemaParts(loaded.schema, context, loaded.sourceStem, seen);
 }
 
-function getDefinition(name: string, context: EmitContext): LoadedDefinition {
+function getDefinition(
+	name: string,
+	context: EmitContext,
+	sourceStem?: string,
+): LoadedDefinition {
 	const existing = context.definitions.get(name);
 
 	if (existing) {
 		return existing;
 	}
 
-	const loaded = loadOpenApiDefinition(context.packageRoot, name);
+	const resolvedSourceStem = sourceStem ?? context.definitionSources.get(name);
+
+	if (!resolvedSourceStem) {
+		throw new Error(`Unable to locate OpenAPI definition "${name}".`);
+	}
+
+	const loaded = loadOpenApiDefinition(
+		context.packageRoot,
+		name,
+		resolvedSourceStem,
+	);
 	context.definitions.set(name, loaded);
 	return loaded;
 }
@@ -147,69 +223,51 @@ function getDefinition(name: string, context: EmitContext): LoadedDefinition {
 function flattenSchemaParts(
 	schema: JsonSchema,
 	context: EmitContext,
+	currentSourceStem: string,
 	seen: Set<string>,
 ): JsonSchema[] {
 	if (schema.allOf) {
 		return schema.allOf.flatMap((part) => {
 			if (part.$ref) {
-				return flattenSchema(resolveRefName(part.$ref), context, seen);
+				const refTarget = resolveRefTarget(part.$ref, currentSourceStem);
+				return flattenSchema(
+					refTarget.name,
+					context,
+					refTarget.sourceStem,
+					seen,
+				);
 			}
 
-			return flattenSchemaParts(part, context, seen);
+			return flattenSchemaParts(part, context, currentSourceStem, seen);
 		});
 	}
 
 	if (schema.$ref) {
-		return flattenSchema(resolveRefName(schema.$ref), context, seen);
+		const refTarget = resolveRefTarget(schema.$ref, currentSourceStem);
+		return flattenSchema(refTarget.name, context, refTarget.sourceStem, seen);
 	}
 
 	return [schema];
 }
 
-function canEmitSchema(schema: JsonSchema, context: EmitContext): boolean {
-	if (schema.$ref) {
-		return context.targetNames.has(resolveRefName(schema.$ref));
-	}
-
-	if (schema.allOf) {
-		return schema.allOf.every((part) => canEmitSchema(part, context));
-	}
-
-	if (schema.enum && schema.type === "string") {
-		return true;
-	}
-
-	if (schema.type === "array") {
-		return schema.items ? canEmitSchema(schema.items, context) : false;
-	}
-
-	return (
-		schema.type === "boolean" ||
-		schema.type === "number" ||
-		schema.type === "string"
-	);
-}
-
 function emitSchemaExpression(
 	schema: JsonSchema,
 	context: EmitContext,
+	currentSourceStem: string,
 ): string {
 	if (schema.$ref) {
-		return resolveRefName(schema.$ref);
+		const refTarget = resolveRefTarget(schema.$ref, currentSourceStem);
+
+		if (refTarget.name === "ResourceList") {
+			return "z.unknown()";
+		}
+
+		getDefinition(refTarget.name, context, refTarget.sourceStem);
+		return `z.lazy(() => ${refTarget.name})`;
 	}
 
 	if (schema.allOf) {
-		const supportedParts = schema.allOf.filter((part) =>
-			canEmitSchema(part, context),
-		);
-
-		if (supportedParts.length !== 1) {
-			throw new Error(
-				`Expected a single supported allOf branch, received ${supportedParts.length}.`,
-			);
-		}
-
-		return emitSchemaExpression(supportedParts[0], context);
+		return "z.unknown()";
 	}
 
 	if (schema.enum && schema.type === "string") {
@@ -218,10 +276,10 @@ function emitSchemaExpression(
 
 	if (schema.type === "array") {
 		if (!schema.items) {
-			throw new Error("Array schema is missing items.");
+			return "z.unknown().array()";
 		}
 
-		return `${emitSchemaExpression(schema.items, context)}.array()`;
+		return `${emitSchemaExpression(schema.items, context, currentSourceStem)}.array()`;
 	}
 
 	if (schema.type === "boolean") {
@@ -240,11 +298,117 @@ function emitSchemaExpression(
 		return "z.string()";
 	}
 
-	throw new Error(`Unsupported schema node: ${JSON.stringify(schema)}`);
+	return "z.unknown()";
+}
+
+function collectReferencedDefinitions(
+	schema: JsonSchema,
+	context: EmitContext,
+	currentSourceStem: string,
+	seen = new Set<string>(),
+): void {
+	if (schema.$ref) {
+		const refTarget = resolveRefTarget(schema.$ref, currentSourceStem);
+
+		if (refTarget.name === "ResourceList" || seen.has(refTarget.name)) {
+			return;
+		}
+
+		seen.add(refTarget.name);
+		const loaded = getDefinition(refTarget.name, context, refTarget.sourceStem);
+		collectReferencedDefinitions(loaded.schema, context, loaded.sourceStem, seen);
+		return;
+	}
+
+	for (const part of schema.allOf ?? []) {
+		collectReferencedDefinitions(part, context, currentSourceStem, seen);
+	}
+
+	for (const part of schema.anyOf ?? []) {
+		collectReferencedDefinitions(part, context, currentSourceStem, seen);
+	}
+
+	for (const part of schema.oneOf ?? []) {
+		collectReferencedDefinitions(part, context, currentSourceStem, seen);
+	}
+
+	if (schema.items) {
+		collectReferencedDefinitions(schema.items, context, currentSourceStem, seen);
+	}
+
+	for (const property of Object.values(schema.properties ?? {})) {
+		collectReferencedDefinitions(property, context, currentSourceStem, seen);
+	}
+}
+
+function collectImports(
+	schema: JsonSchema,
+	currentName: string,
+	currentSourceStem: string,
+	imports: Set<string>,
+): void {
+	if (schema.$ref) {
+		const refTarget = resolveRefTarget(schema.$ref, currentSourceStem);
+
+		if (refTarget.name !== "ResourceList" && refTarget.name !== currentName) {
+			imports.add(refTarget.name);
+		}
+
+		return;
+	}
+
+	for (const part of schema.allOf ?? []) {
+		collectImports(part, currentName, currentSourceStem, imports);
+	}
+
+	for (const part of schema.anyOf ?? []) {
+		collectImports(part, currentName, currentSourceStem, imports);
+	}
+
+	for (const part of schema.oneOf ?? []) {
+		collectImports(part, currentName, currentSourceStem, imports);
+	}
+
+	if (schema.items) {
+		collectImports(schema.items, currentName, currentSourceStem, imports);
+	}
+
+	for (const property of Object.values(schema.properties ?? {})) {
+		collectImports(property, currentName, currentSourceStem, imports);
+	}
 }
 
 function emitDefinition(name: string, context: EmitContext): EmittedDefinition {
-	const parts = flattenSchema(name, context);
+	const loaded = getDefinition(name, context);
+	const directExpression = emitDirectDefinitionExpression(loaded, context);
+
+	if (directExpression) {
+		const imports = new Set<string>();
+		collectImports(loaded.schema, name, loaded.sourceStem, imports);
+		const importLines = [
+			'import * as z from "zod";',
+			...[...imports].sort().map((importName) => {
+				return `import { ${importName} } from "./${importName}";`;
+			}),
+		];
+		const content = [
+			"// Generated by scripts/generate.ts.",
+			"// Source: HL7 FHIR R4 OpenAPI schema from the pinned spec manifest.",
+			...importLines,
+			"",
+			`export const ${name} = ${directExpression};`,
+			"",
+		].join("\n");
+
+		return {
+			name,
+			content,
+			imports: [...imports].sort(),
+			omittedProperties: [],
+		};
+	}
+
+	const parts = flattenSchema(name, context, loaded.sourceStem);
 	const propertyMap = new Map<string, JsonSchema>();
 	const required = new Set<string>();
 
@@ -261,31 +425,18 @@ function emitDefinition(name: string, context: EmitContext): EmittedDefinition {
 	}
 
 	const emittedProperties: EmittedProperty[] = [];
-	const omittedProperties: string[] = [];
 	const imports = new Set<string>();
 
 	for (const [fieldName, fieldSchema] of [...propertyMap.entries()].sort(
 		([a], [b]) => a.localeCompare(b),
 	)) {
-		if (!canEmitSchema(fieldSchema, context)) {
-			omittedProperties.push(fieldName);
-			continue;
-		}
+		const expression = emitSchemaExpression(
+			fieldSchema,
+			context,
+			loaded.sourceStem,
+		);
 
-		const expression = emitSchemaExpression(fieldSchema, context);
-		const refName = fieldSchema.$ref ? resolveRefName(fieldSchema.$ref) : null;
-		const itemRefName =
-			fieldSchema.type === "array" && fieldSchema.items?.$ref
-				? resolveRefName(fieldSchema.items.$ref)
-				: null;
-
-		if (refName && refName !== name) {
-			imports.add(refName);
-		}
-
-		if (itemRefName && itemRefName !== name) {
-			imports.add(itemRefName);
-		}
+		collectImports(fieldSchema, name, loaded.sourceStem, imports);
 
 		emittedProperties.push({
 			name: fieldName,
@@ -299,12 +450,6 @@ function emitDefinition(name: string, context: EmitContext): EmittedDefinition {
 		"// Generated by scripts/generate.ts.",
 		"// Source: HL7 FHIR R4 OpenAPI schema from the pinned spec manifest.",
 	];
-
-	if (omittedProperties.length > 0) {
-		headerLines.push(
-			`// Omitted unresolved properties for this initial slice: ${omittedProperties.join(", ")}.`,
-		);
-	}
 
 	const importLines = [
 		'import * as z from "zod";',
@@ -329,8 +474,21 @@ function emitDefinition(name: string, context: EmitContext): EmittedDefinition {
 		name,
 		content,
 		imports: [...imports].sort(),
-		omittedProperties,
+		omittedProperties: [],
 	};
+}
+
+function emitDirectDefinitionExpression(
+	loaded: LoadedDefinition,
+	context: EmitContext,
+): string | null {
+	const schema = loaded.schema;
+
+	if (schema.properties || schema.allOf) {
+		return null;
+	}
+
+	return emitSchemaExpression(schema, context, loaded.sourceStem);
 }
 
 function writeFileIfChanged(path: string, content: string): void {
@@ -395,16 +553,20 @@ export function buildR4Files(): BuiltFile[] {
 	const manifest = loadManifest("r4");
 	const packageRoot = resolve(repoRoot, manifest.packageRoot);
 	const outputDir = join(repoRoot, "src", "r4");
-	const definitions = collectDefinitions(packageRoot);
 	const context: EmitContext = {
-		definitions,
+		definitions: new Map(),
+		definitionSources: buildDefinitionSources(packageRoot),
 		packageRoot,
-		targetNames: new Set(targetNames),
 	};
 
 	mkdirSync(outputDir, { recursive: true });
 
-	const emittedDefinitions = targetNames
+	for (const name of targetNames) {
+		const loaded = getDefinition(name, context);
+		collectReferencedDefinitions(loaded.schema, context, loaded.sourceStem);
+	}
+
+	const emittedDefinitions = [...context.definitions.keys()]
 		.map((name) => emitDefinition(name, context))
 		.sort((a, b) => a.name.localeCompare(b.name));
 

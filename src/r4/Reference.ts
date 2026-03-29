@@ -3,25 +3,18 @@
 import * as z from "zod";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
+import { Identifier } from "./Identifier";
 
-export const Coding = z.object({
-	_code: z.lazy(() => Element).optional(),
+export const Reference = z.object({
 	_display: z.lazy(() => Element).optional(),
 	_id: z.lazy(() => Element).optional(),
-	_system: z.lazy(() => Element).optional(),
-	_userSelected: z.lazy(() => Element).optional(),
-	_version: z.lazy(() => Element).optional(),
-	code: z
-		.string()
-		.regex(/[^\s]+([\s]?[^\s]+)*/)
-		.optional(),
+	_reference: z.lazy(() => Element).optional(),
 	display: z.string().optional(),
 	extension: z
 		.lazy(() => Extension)
 		.array()
 		.optional(),
 	id: z.string().optional(),
-	system: z.string().optional(),
-	userSelected: z.boolean().optional(),
-	version: z.string().optional(),
+	identifier: z.lazy(() => Identifier).optional(),
+	reference: z.string().optional(),
 });
