@@ -1,0 +1,8 @@
+{
+	"fhirVersion": "4.0.1",
+	"packageName": "hl7.fhir.r4.core",
+	"packageVersion": "4.0.1",
+	"sourceUrl": "https://packages2.fhir.org/packages/hl7.fhir.r4.core/4.0.1",
+	"packageRoot": ".context/spec-cache/r4/package",
+	"structureDefinitionGlob": ".context/spec-cache/r4/package/StructureDefinition-*.json"
+}

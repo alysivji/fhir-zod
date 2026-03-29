@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help install build test coverage lint format check generate
+.PHONY: help install build test coverage lint format check fetch-spec generate
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_.-]+:.*## / {printf "  %-12s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -25,6 +25,9 @@ format: ## Format files with Biome
 
 check: ## Run Biome checks
 	npm run check
+
+fetch-spec: ## Download pinned FHIR spec inputs into .context
+	npm run fetch-spec
 
 generate: ## Run the generator entrypoint
 	npm run generate

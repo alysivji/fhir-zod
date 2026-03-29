@@ -63,6 +63,7 @@ make help
 make build
 make check
 make coverage
+make fetch-spec
 make test
 make generate
 ```
@@ -73,6 +74,8 @@ Equivalent npm scripts:
 npm run build
 npm run check
 npm run format
+npm run fetch-spec
+npm run fetch-spec -- r4b
 npm run lint
 npm run coverage
 npm test

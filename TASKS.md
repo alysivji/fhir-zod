@@ -44,12 +44,12 @@ Track the work needed to align the repository with the current README.
 
 ## Spec Inputs
 
-- [ ] Decide how official HL7 artifacts will be stored under `src/spec`
+- [x] Decide how official HL7 artifacts will be stored under `src/spec`
 - [ ] Add initial raw FHIR spec files for STU3
 - [ ] Add initial raw FHIR spec files for R4
 - [ ] Add initial raw FHIR spec files for R4B
 - [ ] Add initial raw FHIR spec files for R5
-- [ ] Document expected spec file layout
+- [x] Document expected spec file layout
 
 ## Generator
 
@@ -85,7 +85,7 @@ Track the work needed to align the repository with the current README.
 ## Documentation
 
 - [ ] Keep README examples aligned with generated output
-- [ ] Document how to refresh spec files
+- [x] Document how to refresh spec files
 - [ ] Document how to run the generator
 - [ ] Document expectations around generated vs handwritten files
 
