@@ -36,6 +36,7 @@
 		"build": "tsdown",
 		"check": "biome check .",
 		"coverage": "vitest run --coverage",
+		"fetch-examples": "node scripts/fetch-examples.ts",
 		"fetch-spec": "node scripts/fetch-spec.ts",
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
