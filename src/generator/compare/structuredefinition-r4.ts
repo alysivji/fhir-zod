@@ -1,0 +1,590 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import type {
+	BindingMetadata,
+	InvariantMetadata,
+	NormalizedDefinition,
+	NormalizedProperty,
+} from "./model.ts";
+import {
+	choiceSuffixForType,
+	definitionNameToFhirPath,
+	fhirPathToDefinitionName,
+	fhirPrimitiveTypes,
+	isPrimitiveType,
+	normalizeTargetProfiles,
+	r4TargetNames,
+	sortProperties,
+} from "./model.ts";
+
+type SpecManifest = {
+	fhirVersion: string;
+	packageName: string;
+	packageRoot: string;
+	packageVersion: string;
+	sourceUrl: string;
+	structureDefinitionGlob: string;
+};
+
+type StructureDefinition = {
+	abstract?: boolean;
+	baseDefinition?: string;
+	description?: string;
+	kind?: string;
+	name: string;
+	resourceType: "StructureDefinition";
+	snapshot?: {
+		element?: StructureElement[];
+	};
+	type: string;
+};
+
+type StructureElement = {
+	binding?: {
+		strength?: string;
+		valueSet?: string;
+		valueSetReference?: {
+			reference?: string;
+		};
+		valueSetUri?: string;
+	};
+	constraint?: StructureConstraint[];
+	definition?: string;
+	id: string;
+	max: string;
+	min: number;
+	path: string;
+	short?: string;
+	type?: StructureType[];
+};
+
+type StructureType = {
+	code: string;
+	extension?: StructureTypeExtension[];
+	profile?: string | string[];
+	targetProfile?: string | string[];
+};
+
+type StructureTypeExtension = {
+	url: string;
+	valueString?: string;
+	valueUrl?: string;
+};
+
+type StructureConstraint = {
+	expression?: string;
+	human?: string;
+	key?: string;
+	severity?: string;
+};
+
+export type StructureDefinitionBuildResult = {
+	definitions: Map<string, NormalizedDefinition>;
+	primitivePatterns: Map<string, string>;
+};
+
+const moduleDir = dirname(fileURLToPath(import.meta.url));
+const repoRoot = resolve(moduleDir, "../../..");
+const fhirPathPrimitiveByCode = new Map<string, string>([
+	["http://hl7.org/fhirpath/System.Boolean", "boolean"],
+	["http://hl7.org/fhirpath/System.Date", "date"],
+	["http://hl7.org/fhirpath/System.DateTime", "dateTime"],
+	["http://hl7.org/fhirpath/System.Decimal", "decimal"],
+	["http://hl7.org/fhirpath/System.Integer", "integer"],
+	["http://hl7.org/fhirpath/System.String", "string"],
+	["http://hl7.org/fhirpath/System.Time", "time"],
+]);
+
+export function buildStructureDefinitionR4Definitions(
+	scopeNames: Iterable<string> = r4TargetNames,
+): StructureDefinitionBuildResult {
+	const manifest = loadManifest("r4");
+	const packageRoot = resolve(repoRoot, manifest.packageRoot);
+	const index = loadStructureDefinitionIndex(packageRoot);
+	const primitivePatterns = loadPrimitivePatterns(index);
+	const normalized = new Map<string, NormalizedDefinition>();
+	const desiredNames = new Set(scopeNames);
+
+	for (const name of [...desiredNames].sort((left, right) =>
+		left.localeCompare(right),
+	)) {
+		const definition = buildDefinitionByName(name, desiredNames, index);
+
+		if (!definition) {
+			continue;
+		}
+
+		normalized.set(name, definition);
+	}
+
+	return {
+		definitions: normalized,
+		primitivePatterns,
+	};
+}
+
+function loadManifest(version: "r4"): SpecManifest {
+	const manifestPath = join(repoRoot, "src", "spec", version, "manifest.json");
+	return JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest;
+}
+
+function loadStructureDefinitionIndex(
+	packageRoot: string,
+): Map<string, StructureDefinition> {
+	const index = new Map<string, StructureDefinition>();
+
+	for (const filename of readdirSync(packageRoot)) {
+		if (
+			!filename.startsWith("StructureDefinition-") ||
+			!filename.endsWith(".json")
+		) {
+			continue;
+		}
+
+		const definition = JSON.parse(
+			readFileSync(join(packageRoot, filename), "utf8"),
+		) as StructureDefinition;
+
+		index.set(definition.name, definition);
+	}
+
+	return index;
+}
+
+function loadPrimitivePatterns(
+	index: Map<string, StructureDefinition>,
+): Map<string, string> {
+	const patterns = new Map<string, string>();
+
+	for (const type of fhirPrimitiveTypes) {
+		const definition = index.get(type);
+		const elements = definition?.snapshot?.element ?? [];
+		const valueElement = elements.find(
+			(element) => element.path === `${type}.value`,
+		);
+		const pattern = valueElement?.type
+			?.flatMap((entry) => entry.extension ?? [])
+			.find(
+				(extension) =>
+					extension.url === "http://hl7.org/fhir/StructureDefinition/regex",
+			)?.valueString;
+
+		if (pattern) {
+			patterns.set(type, pattern);
+		}
+	}
+
+	return patterns;
+}
+
+function buildDefinitionByName(
+	name: string,
+	scopeNames: Set<string>,
+	index: Map<string, StructureDefinition>,
+): NormalizedDefinition | null {
+	if (name.includes("_")) {
+		return buildSyntheticDefinition(name, scopeNames, index);
+	}
+
+	return buildRootDefinition(name, scopeNames, index);
+}
+
+function buildRootDefinition(
+	name: string,
+	scopeNames: Set<string>,
+	index: Map<string, StructureDefinition>,
+): NormalizedDefinition | null {
+	const definition = index.get(name);
+
+	if (!definition) {
+		return null;
+	}
+
+	const elements = definition.snapshot?.element ?? [];
+	const notes: string[] = [];
+	const properties: NormalizedProperty[] = [];
+	const resourceTypeLiteral =
+		definition.kind === "resource" && !definition.abstract
+			? definition.type
+			: null;
+
+	if (resourceTypeLiteral) {
+		properties.push({
+			binding: null,
+			choiceGroup: null,
+			choiceVariant: null,
+			description: `This is a ${resourceTypeLiteral} resource.`,
+			fhirPath: `${definition.type}.resourceType`,
+			invariants: [],
+			isArray: false,
+			jsonName: "resourceType",
+			max: "1",
+			min: 1,
+			primitiveType: null,
+			required: true,
+			targetProfiles: [],
+			typeRef: null,
+		});
+	}
+
+	for (const element of directChildElements(elements, definition.type)) {
+		properties.push(
+			...normalizeElementProperties(element, elements, scopeNames, notes),
+		);
+	}
+
+	return {
+		baseName: lastPathSegment(definition.baseDefinition),
+		description:
+			definition.description ??
+			elements.find((element) => element.path === definition.type)
+				?.definition ??
+			null,
+		kind: mapDefinitionKind(definition),
+		name,
+		notes,
+		properties: sortProperties(properties),
+		resourceTypeLiteral,
+	};
+}
+
+function buildSyntheticDefinition(
+	name: string,
+	scopeNames: Set<string>,
+	index: Map<string, StructureDefinition>,
+): NormalizedDefinition | null {
+	const fhirPath = definitionNameToFhirPath(name);
+	const rootName = fhirPath.split(".")[0];
+	const definition = index.get(rootName);
+
+	if (!definition) {
+		return null;
+	}
+
+	const elements = definition.snapshot?.element ?? [];
+	const rootElement = elements.find((element) => element.path === fhirPath);
+
+	if (!rootElement) {
+		return null;
+	}
+
+	const notes: string[] = [];
+	const properties = directChildElements(elements, fhirPath).flatMap(
+		(element) =>
+			normalizeElementProperties(element, elements, scopeNames, notes),
+	);
+
+	return {
+		baseName: inferSyntheticBaseName(rootElement, elements),
+		description:
+			rootElement.definition ??
+			rootElement.short ??
+			definition.description ??
+			null,
+		kind: "backbone",
+		name,
+		notes,
+		properties: sortProperties(properties),
+		resourceTypeLiteral: null,
+	};
+}
+
+function directChildElements(
+	elements: StructureElement[],
+	prefixPath: string,
+): StructureElement[] {
+	const prefix = `${prefixPath}.`;
+	const depth = prefixPath.split(".").length + 1;
+
+	return elements
+		.filter(
+			(element) =>
+				element.path.startsWith(prefix) &&
+				element.path.split(".").length === depth,
+		)
+		.sort((left, right) => left.path.localeCompare(right.path));
+}
+
+function mapDefinitionKind(
+	definition: StructureDefinition,
+): NormalizedDefinition["kind"] {
+	if (definition.kind === "resource") {
+		return "resource";
+	}
+
+	if (definition.kind === "primitive-type") {
+		return "primitive";
+	}
+
+	return "complex-type";
+}
+
+function inferSyntheticBaseName(
+	element: StructureElement,
+	elements: StructureElement[],
+): string | null {
+	const normalizedType = normalizeStructureType(
+		element,
+		element.type?.[0],
+		elements,
+	);
+
+	return normalizedType.typeRef ?? normalizedType.primitiveType ?? null;
+}
+
+function normalizeElementProperties(
+	element: StructureElement,
+	elements: StructureElement[],
+	scopeNames: Set<string>,
+	notes: string[],
+): NormalizedProperty[] {
+	const segment = lastPathSegment(element.path) ?? element.path;
+
+	if (segment.includes("[x]")) {
+		return normalizeChoiceElementProperties(
+			element,
+			elements,
+			scopeNames,
+			notes,
+			segment,
+		);
+	}
+
+	const properties: NormalizedProperty[] = [];
+	const normalizedType = normalizeStructureType(
+		element,
+		element.type?.[0],
+		elements,
+	);
+	const description = element.definition ?? element.short ?? null;
+
+	if (normalizedType.typeRef && !scopeNames.has(normalizedType.typeRef)) {
+		notes.push(
+			`${element.path} references ${normalizedType.typeRef}, which is outside the comparison scope.`,
+		);
+	}
+
+	properties.push({
+		binding: normalizeBinding(element.binding),
+		choiceGroup: null,
+		choiceVariant: null,
+		description,
+		fhirPath: element.path,
+		invariants: normalizeInvariants(element.constraint),
+		isArray: element.max === "*",
+		jsonName: segment,
+		max: element.max,
+		min: element.min,
+		primitiveType: normalizedType.primitiveType,
+		required: element.min > 0,
+		targetProfiles: normalizedType.targetProfiles,
+		typeRef: normalizedType.typeRef,
+	});
+
+	if (normalizedType.primitiveType) {
+		properties.push(buildPrimitiveCompanionProperty(segment, element.path));
+	}
+
+	return properties;
+}
+
+function normalizeChoiceElementProperties(
+	element: StructureElement,
+	elements: StructureElement[],
+	scopeNames: Set<string>,
+	notes: string[],
+	segment: string,
+): NormalizedProperty[] {
+	const baseSegment = segment.replace("[x]", "");
+	const description = element.definition ?? element.short ?? null;
+	const properties: NormalizedProperty[] = [];
+
+	for (const type of element.type ?? []) {
+		const normalizedType = normalizeStructureType(element, type, elements);
+		const choiceVariant =
+			normalizedType.primitiveType ??
+			normalizedType.typeRef ??
+			normalizeTypeCode(type.code);
+		const jsonName = `${baseSegment}${choiceSuffixForType(choiceVariant)}`;
+
+		if (normalizedType.typeRef && !scopeNames.has(normalizedType.typeRef)) {
+			notes.push(
+				`${element.path} references ${normalizedType.typeRef}, which is outside the comparison scope.`,
+			);
+		}
+
+		properties.push({
+			binding: normalizeBinding(element.binding),
+			choiceGroup: segment,
+			choiceVariant,
+			description,
+			fhirPath: element.path,
+			invariants: normalizeInvariants(element.constraint),
+			isArray: element.max === "*",
+			jsonName,
+			max: element.max,
+			min: element.min,
+			primitiveType: normalizedType.primitiveType,
+			required: element.min > 0,
+			targetProfiles: normalizedType.targetProfiles,
+			typeRef: normalizedType.typeRef,
+		});
+
+		if (normalizedType.primitiveType) {
+			properties.push(
+				buildPrimitiveCompanionProperty(
+					jsonName,
+					element.path,
+					segment,
+					choiceVariant,
+				),
+			);
+		}
+	}
+
+	return properties;
+}
+
+function buildPrimitiveCompanionProperty(
+	jsonName: string,
+	fhirPath: string,
+	choiceGroup?: string,
+	choiceVariant?: string,
+): NormalizedProperty {
+	return {
+		binding: null,
+		choiceGroup: choiceGroup ?? null,
+		choiceVariant: choiceVariant ?? null,
+		description: `Extensions for ${jsonName}`,
+		fhirPath,
+		invariants: [],
+		isArray: false,
+		jsonName: `_${jsonName}`,
+		max: "1",
+		min: 0,
+		primitiveType: null,
+		required: false,
+		targetProfiles: [],
+		typeRef: "Element",
+	};
+}
+
+function normalizeStructureType(
+	element: StructureElement,
+	type: StructureType | undefined,
+	elements: StructureElement[],
+): {
+	primitiveType: string | null;
+	targetProfiles: string[];
+	typeRef: string | null;
+} {
+	if (!type) {
+		return {
+			primitiveType: null,
+			targetProfiles: [],
+			typeRef: hasNestedChildren(elements, element.path)
+				? fhirPathToDefinitionName(element.path)
+				: null,
+		};
+	}
+
+	const normalizedCode = normalizeTypeCode(type.code);
+	const extensionType =
+		type.extension?.find(
+			(entry) =>
+				entry.url ===
+				"http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type",
+		)?.valueUrl ?? null;
+	let primitiveType: string | null = null;
+
+	if (isPrimitiveType(normalizedCode)) {
+		primitiveType = normalizedCode;
+	} else if (normalizedCode.startsWith("http://hl7.org/fhirpath/System.")) {
+		primitiveType =
+			extensionType ?? fhirPathPrimitiveByCode.get(normalizedCode) ?? null;
+	}
+
+	if (primitiveType === "string" && lastPathSegment(element.path) === "id") {
+		primitiveType = "id";
+	}
+
+	if (primitiveType) {
+		return {
+			primitiveType,
+			targetProfiles: [],
+			typeRef: null,
+		};
+	}
+
+	if (
+		(normalizedCode === "BackboneElement" || normalizedCode === "Element") &&
+		hasNestedChildren(elements, element.path)
+	) {
+		return {
+			primitiveType: null,
+			targetProfiles: normalizeTargetProfiles(type.targetProfile),
+			typeRef: fhirPathToDefinitionName(element.path),
+		};
+	}
+
+	return {
+		primitiveType: null,
+		targetProfiles: normalizeTargetProfiles(type.targetProfile),
+		typeRef: normalizedCode,
+	};
+}
+
+function normalizeTypeCode(code: string): string {
+	return code;
+}
+
+function hasNestedChildren(
+	elements: StructureElement[],
+	prefixPath: string,
+): boolean {
+	return elements.some((element) => element.path.startsWith(`${prefixPath}.`));
+}
+
+function normalizeBinding(
+	binding: StructureElement["binding"],
+): BindingMetadata | null {
+	if (!binding?.strength) {
+		return null;
+	}
+
+	return {
+		strength: binding.strength,
+		valueSet:
+			binding.valueSet ??
+			binding.valueSetUri ??
+			binding.valueSetReference?.reference ??
+			null,
+	};
+}
+
+function normalizeInvariants(
+	constraints: StructureConstraint[] | undefined,
+): InvariantMetadata[] {
+	return (constraints ?? [])
+		.map((constraint) => ({
+			expression: constraint.expression ?? null,
+			human: constraint.human ?? "",
+			key: constraint.key ?? "",
+			severity: constraint.severity ?? "",
+		}))
+		.filter((constraint) => constraint.key.length > 0)
+		.sort((left, right) => left.key.localeCompare(right.key));
+}
+
+function lastPathSegment(path: string | undefined): string | null {
+	if (!path) {
+		return null;
+	}
+
+	const segments = path.split("/");
+	const lastSlash = segments[segments.length - 1] ?? "";
+	const pathSegments = lastSlash.split(".");
+
+	return pathSegments[pathSegments.length - 1] ?? null;
+}

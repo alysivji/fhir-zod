@@ -17,90 +17,94 @@ import { Patient_Contact } from "./Patient_Contact";
 import { Patient_Link } from "./Patient_Link";
 import { Reference } from "./Reference";
 
-export const Patient = z.object({
-  _active: z.lazy(() => Element).optional(),
-  _birthDate: z.lazy(() => Element).optional(),
-  _deceasedBoolean: z.lazy(() => Element).optional(),
-  _deceasedDateTime: z.lazy(() => Element).optional(),
-  _gender: z.lazy(() => Element).optional(),
-  _id: z.lazy(() => Element).optional(),
-  _implicitRules: z.lazy(() => Element).optional(),
-  _language: z.lazy(() => Element).optional(),
-  _multipleBirthBoolean: z.lazy(() => Element).optional(),
-  _multipleBirthInteger: z.lazy(() => Element).optional(),
-  active: z.boolean().optional(),
-  address: z
-    .lazy(() => Address)
-    .array()
-    .optional(),
-  animal: z.lazy(() => Patient_Animal).optional(),
-  birthDate: z
-    .string()
-    .regex(/-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?/)
-    .optional(),
-  communication: z
-    .lazy(() => Patient_Communication)
-    .array()
-    .optional(),
-  contact: z
-    .lazy(() => Patient_Contact)
-    .array()
-    .optional(),
-  contained: z.unknown().array().optional(),
-  deceasedBoolean: z.boolean().optional(),
-  deceasedDateTime: z
-    .string()
-    .regex(
-      /-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?/,
-    )
-    .optional(),
-  extension: z
-    .lazy(() => Extension)
-    .array()
-    .optional(),
-  gender: z.enum(["male", "female", "other", "unknown"]).optional(),
-  generalPractitioner: z
-    .lazy(() => Reference)
-    .array()
-    .optional(),
-  id: z
-    .string()
-    .regex(/[A-Za-z0-9\-.]{1,64}/)
-    .optional(),
-  identifier: z
-    .lazy(() => Identifier)
-    .array()
-    .optional(),
-  implicitRules: z.string().optional(),
-  language: z
-    .string()
-    .regex(/[^\s]+([\s]?[^\s]+)*/)
-    .optional(),
-  link: z
-    .lazy(() => Patient_Link)
-    .array()
-    .optional(),
-  managingOrganization: z.lazy(() => Reference).optional(),
-  maritalStatus: z.lazy(() => CodeableConcept).optional(),
-  meta: z.lazy(() => Meta).optional(),
-  modifierExtension: z
-    .lazy(() => Extension)
-    .array()
-    .optional(),
-  multipleBirthBoolean: z.boolean().optional(),
-  multipleBirthInteger: z.number().optional(),
-  name: z
-    .lazy(() => HumanName)
-    .array()
-    .optional(),
-  photo: z
-    .lazy(() => Attachment)
-    .array()
-    .optional(),
-  resourceType: z.enum(["Patient"]),
-  telecom: z
-    .lazy(() => ContactPoint)
-    .array()
-    .optional(),
-  text: z.lazy(() => Narrative).optional(),
-}).strict();
+export const Patient = z
+  .object({
+    _active: z.lazy(() => Element).optional(),
+    _birthDate: z.lazy(() => Element).optional(),
+    _deceasedBoolean: z.lazy(() => Element).optional(),
+    _deceasedDateTime: z.lazy(() => Element).optional(),
+    _gender: z.lazy(() => Element).optional(),
+    _id: z.lazy(() => Element).optional(),
+    _implicitRules: z.lazy(() => Element).optional(),
+    _language: z.lazy(() => Element).optional(),
+    _multipleBirthBoolean: z.lazy(() => Element).optional(),
+    _multipleBirthInteger: z.lazy(() => Element).optional(),
+    active: z.boolean().optional(),
+    address: z
+      .lazy(() => Address)
+      .array()
+      .optional(),
+    animal: z.lazy(() => Patient_Animal).optional(),
+    birthDate: z
+      .string()
+      .regex(/-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?/)
+      .optional(),
+    communication: z
+      .lazy(() => Patient_Communication)
+      .array()
+      .optional(),
+    contact: z
+      .lazy(() => Patient_Contact)
+      .array()
+      .optional(),
+    contained: z.unknown().array().optional(),
+    deceasedBoolean: z.boolean().optional(),
+    deceasedDateTime: z
+      .string()
+      .regex(
+        /-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?/,
+      )
+      .optional(),
+    extension: z
+      .lazy(() => Extension)
+      .array()
+      .optional(),
+    gender: z.enum(["male", "female", "other", "unknown"]).optional(),
+    generalPractitioner: z
+      .lazy(() => Reference)
+      .array()
+      .optional(),
+    id: z
+      .string()
+      .regex(/[A-Za-z0-9\-.]{1,64}/)
+      .optional(),
+    identifier: z
+      .lazy(() => Identifier)
+      .array()
+      .optional(),
+    implicitRules: z.string().optional(),
+    language: z
+      .string()
+      .regex(/[^\s]+([\s]?[^\s]+)*/)
+      .optional(),
+    link: z
+      .lazy(() => Patient_Link)
+      .array()
+      .optional(),
+    managingOrganization: z.lazy(() => Reference).optional(),
+    maritalStatus: z.lazy(() => CodeableConcept).optional(),
+    meta: z.lazy(() => Meta).optional(),
+    modifierExtension: z
+      .lazy(() => Extension)
+      .array()
+      .optional(),
+    // can only have 1 of multipleBirthBoolean and multipleBirthInteger
+    multipleBirthBoolean: z.boolean().optional(),
+    // this is an integer
+    multipleBirthInteger: z.number().optional(),
+    name: z
+      .lazy(() => HumanName)
+      .array()
+      .optional(),
+    photo: z
+      .lazy(() => Attachment)
+      .array()
+      .optional(),
+    resourceType: z.enum(["Patient"]),
+    telecom: z
+      .lazy(() => ContactPoint)
+      .array()
+      .optional(),
+    text: z.lazy(() => Narrative).optional(),
+  })
+  .strict();

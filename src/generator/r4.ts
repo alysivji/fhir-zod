@@ -1,10 +1,5 @@
 import { execFileSync } from "node:child_process";
-import {
-	mkdirSync,
-	readFileSync,
-	readdirSync,
-	writeFileSync,
-} from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -111,7 +106,10 @@ function buildDefinitionSources(packageRoot: string): Map<string, string> {
 	return definitionSources;
 }
 
-function scoreDefinitionSource(definitionName: string, sourceStem: string): number {
+function scoreDefinitionSource(
+	definitionName: string,
+	sourceStem: string,
+): number {
 	if (sourceStem === definitionName) {
 		return 3;
 	}
@@ -316,7 +314,12 @@ function collectReferencedDefinitions(
 
 		seen.add(refTarget.name);
 		const loaded = getDefinition(refTarget.name, context, refTarget.sourceStem);
-		collectReferencedDefinitions(loaded.schema, context, loaded.sourceStem, seen);
+		collectReferencedDefinitions(
+			loaded.schema,
+			context,
+			loaded.sourceStem,
+			seen,
+		);
 		return;
 	}
 
@@ -333,7 +336,12 @@ function collectReferencedDefinitions(
 	}
 
 	if (schema.items) {
-		collectReferencedDefinitions(schema.items, context, currentSourceStem, seen);
+		collectReferencedDefinitions(
+			schema.items,
+			context,
+			currentSourceStem,
+			seen,
+		);
 	}
 
 	for (const property of Object.values(schema.properties ?? {})) {

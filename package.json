@@ -35,11 +35,13 @@
 	"scripts": {
 		"build": "tsdown",
 		"check": "biome check .",
+		"compare:r4": "node scripts/compare-r4.ts",
 		"coverage": "vitest run --coverage",
 		"fetch-examples": "node scripts/fetch-examples.ts",
 		"fetch-spec": "node scripts/fetch-spec.ts",
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
+		"generate:r4:sd": "node scripts/generate-r4-structuredefinition.ts",
 		"lint": "biome lint .",
 		"test": "vitest run"
 	},
