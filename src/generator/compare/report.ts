@@ -119,6 +119,7 @@ export function compareR4(): CompareR4Result {
 	const reportDir = resolve(repoRoot, ".context", "reports");
 	const generatedFiles = writeNormalizedZodDefinitions({
 		definitions: structureDefinitionResult.definitions,
+		generatedBy: "scripts/compare-r4.ts",
 		outputDir,
 		primitivePatterns: structureDefinitionResult.primitivePatterns,
 	});

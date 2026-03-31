@@ -4,7 +4,7 @@ import {
 	compareR4,
 	type DefinitionComparison,
 } from "../src/generator/compare/report.ts";
-import { generateR4StructureDefinition } from "../src/generator/r4-structuredefinition.ts";
+import { generateR4 } from "../src/generator/r4.ts";
 
 let comparison = compareR4();
 
@@ -43,16 +43,14 @@ describe("R4 comparison spike", () => {
 	});
 
 	it("writes the StructureDefinition R4 generator output into src", () => {
-		const result = generateR4StructureDefinition();
+		const result = generateR4();
 
 		expect(
-			result.files.some((file) =>
-				file.endsWith("/src/r4-structuredefinition/Patient.ts"),
-			),
+			result.files.some((file) => file.endsWith("/src/r4/Patient.ts")),
 		).toBe(true);
 		expect(
 			existsSync(
-				"/Users/alysivji/conductor/workspaces/fhir-zod/geneva/src/r4-structuredefinition/Patient.ts",
+				"/Users/alysivji/conductor/workspaces/fhir-zod/geneva/src/r4/Patient.ts",
 			),
 		).toBe(true);
 	});

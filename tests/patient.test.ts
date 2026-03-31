@@ -68,4 +68,17 @@ describe("Patient", () => {
 			}),
 		).toThrow();
 	});
+
+	it("rejects the OpenAPI-only top-level animal field", () => {
+		expect(() =>
+			Patient.parse({
+				animal: {
+					species: {
+						text: "dog",
+					},
+				},
+				resourceType: "Patient",
+			}),
+		).toThrow();
+	});
 });
