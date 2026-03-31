@@ -4,16 +4,16 @@ import { fileURLToPath } from "node:url";
 import {
 	buildRuntimeSchemas,
 	writeNormalizedZodDefinitions,
-} from "./emit-zod.ts";
+} from "../emit/zod.ts";
 import type {
 	BindingMetadata,
 	InvariantMetadata,
 	NormalizedDefinition,
 	NormalizedProperty,
-} from "./model.ts";
-import { sortDefinitions } from "./model.ts";
-import { buildOpenApiR4Definitions } from "./openapi-r4.ts";
-import { buildStructureDefinitionR4Definitions } from "./structuredefinition-r4.ts";
+} from "../model.ts";
+import { sortDefinitions } from "../model.ts";
+import { buildOpenApiR4Definitions } from "../sources/openapi-r4.ts";
+import { buildStructureDefinitionR4Definitions } from "../sources/structuredefinition-r4.ts";
 
 type RequiredDiff = {
 	openApi: boolean | null;

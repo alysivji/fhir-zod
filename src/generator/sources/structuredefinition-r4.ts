@@ -6,7 +6,7 @@ import type {
 	InvariantMetadata,
 	NormalizedDefinition,
 	NormalizedProperty,
-} from "./model.ts";
+} from "../model.ts";
 import {
 	choiceSuffixForType,
 	definitionNameToFhirPath,
@@ -16,7 +16,7 @@ import {
 	normalizeTargetProfiles,
 	r4TargetNames,
 	sortProperties,
-} from "./model.ts";
+} from "../model.ts";
 
 type SpecManifest = {
 	fhirVersion: string;

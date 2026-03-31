@@ -8,9 +8,9 @@ import {
 } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import * as z from "zod";
+import type { NormalizedDefinition } from "../model.ts";
+import { primitiveRuntimeKind, sortDefinitions } from "../model.ts";
 import { repoRoot } from "../shared.ts";
-import type { NormalizedDefinition } from "./model.ts";
-import { primitiveRuntimeKind, sortDefinitions } from "./model.ts";
 
 type BuiltFile = {
 	content: string;

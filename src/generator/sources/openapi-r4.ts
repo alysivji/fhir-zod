@@ -1,14 +1,14 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import type { NormalizedDefinition, NormalizedProperty } from "./model.ts";
+import type { NormalizedDefinition, NormalizedProperty } from "../model.ts";
 import {
 	definitionNameToFhirPath,
 	inferChoiceMetadata,
 	normalizeDefinitionName,
 	r4TargetNames,
 	sortProperties,
-} from "./model.ts";
+} from "../model.ts";
 
 type SpecManifest = {
 	fhirVersion: string;
