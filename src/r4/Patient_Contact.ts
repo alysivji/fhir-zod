@@ -19,10 +19,7 @@ export const Patient_Contact = z
 			.lazy(() => Extension)
 			.array()
 			.optional(),
-		gender: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		gender: z.enum(["female", "male", "other", "unknown"]).optional(),
 		id: z
 			.string()
 			.regex(/[A-Za-z0-9\-.]{1,64}/)

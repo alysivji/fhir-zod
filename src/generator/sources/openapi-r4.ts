@@ -429,6 +429,7 @@ function normalizeProperty(options: {
 		choiceGroup: metadata.choiceGroup,
 		choiceVariant: metadata.choiceVariant,
 		description: options.schema.description ?? null,
+		enumValues: null,
 		fhirPath: `${definitionPath}.${metadata.fhirSegment}`,
 		invariants: [],
 		isArray: typeInfo.isArray,

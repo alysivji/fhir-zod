@@ -98,6 +98,7 @@ export type NormalizedProperty = {
 	choiceGroup: string | null;
 	choiceVariant: string | null;
 	description: string | null;
+	enumValues: string[] | null;
 	fhirPath: string;
 	invariants: InvariantMetadata[];
 	isArray: boolean;

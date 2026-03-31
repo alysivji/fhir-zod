@@ -45,6 +45,15 @@ export const TriggerDefinition = z
 			.optional(),
 		timingReference: z.lazy(() => Reference).optional(),
 		timingTiming: z.lazy(() => Timing).optional(),
-		type: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		type: z.enum([
+			"data-access-ended",
+			"data-accessed",
+			"data-added",
+			"data-changed",
+			"data-modified",
+			"data-removed",
+			"named-event",
+			"periodic",
+		]),
 	})
 	.strict();

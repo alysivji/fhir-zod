@@ -32,7 +32,7 @@ export const ElementDefinition_Constraint = z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		severity: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		severity: z.enum(["error", "warning"]),
 		source: z.string().regex(/\S*/).optional(),
 		xpath: z
 			.string()

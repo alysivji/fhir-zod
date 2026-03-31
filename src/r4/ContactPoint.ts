@@ -23,13 +23,9 @@ export const ContactPoint = z
 		period: z.lazy(() => Period).optional(),
 		rank: z.number().int().positive().optional(),
 		system: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
+			.enum(["email", "fax", "other", "pager", "phone", "sms", "url"])
 			.optional(),
-		use: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		use: z.enum(["home", "mobile", "old", "temp", "work"]).optional(),
 		value: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)

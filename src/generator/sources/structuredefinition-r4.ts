@@ -40,6 +40,42 @@ type StructureDefinition = {
 	type: string;
 };
 
+type ValueSet = {
+	compose?: {
+		include?: ValueSetInclude[];
+	};
+	expansion?: {
+		contains?: ValueSetExpansionContains[];
+	};
+	resourceType: "ValueSet";
+	url?: string;
+};
+
+type ValueSetInclude = {
+	concept?: ValueSetConcept[];
+	system?: string;
+};
+
+type ValueSetConcept = {
+	code?: string;
+};
+
+type ValueSetExpansionContains = {
+	code?: string;
+	contains?: ValueSetExpansionContains[];
+};
+
+type CodeSystem = {
+	concept?: CodeSystemConcept[];
+	resourceType: "CodeSystem";
+	url?: string;
+};
+
+type CodeSystemConcept = {
+	code?: string;
+	concept?: CodeSystemConcept[];
+};
+
 type StructureElement = {
 	binding?: {
 		strength?: string;
@@ -84,6 +120,11 @@ export type StructureDefinitionBuildResult = {
 	primitivePatterns: Map<string, string>;
 };
 
+type TerminologyIndex = {
+	codeSystemsByUrl: Map<string, CodeSystem>;
+	valueSetsByUrl: Map<string, ValueSet>;
+};
+
 const moduleDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(moduleDir, "../../..");
 const fhirPathPrimitiveByCode = new Map<string, string>([
@@ -102,6 +143,7 @@ export function buildStructureDefinitionR4Definitions(
 	const manifest = loadManifest("r4");
 	const packageRoot = resolve(repoRoot, manifest.packageRoot);
 	const index = loadStructureDefinitionIndex(packageRoot);
+	const terminology = loadTerminologyIndex(packageRoot);
 	const primitivePatterns = loadPrimitivePatterns(index);
 	const normalized = new Map<string, NormalizedDefinition>();
 	const desiredNames = new Set(scopeNames);
@@ -109,7 +151,12 @@ export function buildStructureDefinitionR4Definitions(
 	for (const name of [...desiredNames].sort((left, right) =>
 		left.localeCompare(right),
 	)) {
-		const definition = buildDefinitionByName(name, desiredNames, index);
+		const definition = buildDefinitionByName(
+			name,
+			desiredNames,
+			index,
+			terminology,
+		);
 
 		if (!definition) {
 			continue;
@@ -178,22 +225,52 @@ function loadPrimitivePatterns(
 	return patterns;
 }
 
+function loadTerminologyIndex(packageRoot: string): TerminologyIndex {
+	const valueSetsByUrl = new Map<string, ValueSet>();
+	const codeSystemsByUrl = new Map<string, CodeSystem>();
+
+	for (const filename of readdirSync(packageRoot)) {
+		if (!filename.endsWith(".json")) {
+			continue;
+		}
+
+		const resource = JSON.parse(
+			readFileSync(join(packageRoot, filename), "utf8"),
+		) as ValueSet | CodeSystem | StructureDefinition;
+
+		if (resource.resourceType === "ValueSet" && resource.url) {
+			valueSetsByUrl.set(resource.url, resource);
+		}
+
+		if (resource.resourceType === "CodeSystem" && resource.url) {
+			codeSystemsByUrl.set(resource.url, resource);
+		}
+	}
+
+	return {
+		codeSystemsByUrl,
+		valueSetsByUrl,
+	};
+}
+
 function buildDefinitionByName(
 	name: string,
 	scopeNames: Set<string>,
 	index: Map<string, StructureDefinition>,
+	terminology: TerminologyIndex,
 ): NormalizedDefinition | null {
 	if (name.includes("_")) {
-		return buildSyntheticDefinition(name, scopeNames, index);
+		return buildSyntheticDefinition(name, scopeNames, index, terminology);
 	}
 
-	return buildRootDefinition(name, scopeNames, index);
+	return buildRootDefinition(name, scopeNames, index, terminology);
 }
 
 function buildRootDefinition(
 	name: string,
 	scopeNames: Set<string>,
 	index: Map<string, StructureDefinition>,
+	terminology: TerminologyIndex,
 ): NormalizedDefinition | null {
 	const definition = index.get(name);
 
@@ -215,6 +292,7 @@ function buildRootDefinition(
 			choiceGroup: null,
 			choiceVariant: null,
 			description: `This is a ${resourceTypeLiteral} resource.`,
+			enumValues: null,
 			fhirPath: `${definition.type}.resourceType`,
 			invariants: [],
 			isArray: false,
@@ -230,7 +308,13 @@ function buildRootDefinition(
 
 	for (const element of directChildElements(elements, definition.type)) {
 		properties.push(
-			...normalizeElementProperties(element, elements, scopeNames, notes),
+			...normalizeElementProperties(
+				element,
+				elements,
+				scopeNames,
+				notes,
+				terminology,
+			),
 		);
 	}
 
@@ -253,6 +337,7 @@ function buildSyntheticDefinition(
 	name: string,
 	scopeNames: Set<string>,
 	index: Map<string, StructureDefinition>,
+	terminology: TerminologyIndex,
 ): NormalizedDefinition | null {
 	const fhirPath = definitionNameToFhirPath(name);
 	const rootName = fhirPath.split(".")[0];
@@ -272,7 +357,13 @@ function buildSyntheticDefinition(
 	const notes: string[] = [];
 	const properties = directChildElements(elements, fhirPath).flatMap(
 		(element) =>
-			normalizeElementProperties(element, elements, scopeNames, notes),
+			normalizeElementProperties(
+				element,
+				elements,
+				scopeNames,
+				notes,
+				terminology,
+			),
 	);
 
 	return {
@@ -338,6 +429,7 @@ function normalizeElementProperties(
 	elements: StructureElement[],
 	scopeNames: Set<string>,
 	notes: string[],
+	terminology: TerminologyIndex,
 ): NormalizedProperty[] {
 	const segment = lastPathSegment(element.path) ?? element.path;
 
@@ -347,6 +439,7 @@ function normalizeElementProperties(
 			elements,
 			scopeNames,
 			notes,
+			terminology,
 			segment,
 		);
 	}
@@ -370,6 +463,11 @@ function normalizeElementProperties(
 		choiceGroup: null,
 		choiceVariant: null,
 		description,
+		enumValues: resolveBindingEnumValues(
+			normalizeBinding(element.binding),
+			normalizedType.primitiveType,
+			terminology,
+		),
 		fhirPath: element.path,
 		invariants: normalizeInvariants(element.constraint),
 		isArray: element.max === "*",
@@ -394,6 +492,7 @@ function normalizeChoiceElementProperties(
 	elements: StructureElement[],
 	scopeNames: Set<string>,
 	notes: string[],
+	terminology: TerminologyIndex,
 	segment: string,
 ): NormalizedProperty[] {
 	const baseSegment = segment.replace("[x]", "");
@@ -419,6 +518,11 @@ function normalizeChoiceElementProperties(
 			choiceGroup: segment,
 			choiceVariant,
 			description,
+			enumValues: resolveBindingEnumValues(
+				normalizeBinding(element.binding),
+				normalizedType.primitiveType,
+				terminology,
+			),
 			fhirPath: element.path,
 			invariants: normalizeInvariants(element.constraint),
 			isArray: element.max === "*",
@@ -457,6 +561,7 @@ function buildPrimitiveCompanionProperty(
 		choiceGroup: choiceGroup ?? null,
 		choiceVariant: choiceVariant ?? null,
 		description: `Extensions for ${jsonName}`,
+		enumValues: null,
 		fhirPath,
 		invariants: [],
 		isArray: false,
@@ -561,6 +666,109 @@ function normalizeBinding(
 			binding.valueSetReference?.reference ??
 			null,
 	};
+}
+
+function resolveBindingEnumValues(
+	binding: BindingMetadata | null,
+	primitiveType: string | null,
+	terminology: TerminologyIndex,
+): string[] | null {
+	if (primitiveType !== "code" || binding?.strength !== "required") {
+		return null;
+	}
+
+	const valueSetUrl = normalizeCanonicalUrl(binding.valueSet);
+
+	if (!valueSetUrl) {
+		return null;
+	}
+
+	const valueSet = terminology.valueSetsByUrl.get(valueSetUrl);
+
+	if (!valueSet) {
+		return null;
+	}
+
+	const codes = new Set<string>();
+
+	for (const include of valueSet.compose?.include ?? []) {
+		for (const concept of include.concept ?? []) {
+			if (concept.code) {
+				codes.add(concept.code);
+			}
+		}
+
+		if (include.system) {
+			for (const code of collectCodeSystemCodes(
+				terminology.codeSystemsByUrl.get(include.system),
+			)) {
+				codes.add(code);
+			}
+		}
+	}
+
+	for (const code of collectExpansionCodes(valueSet.expansion?.contains)) {
+		codes.add(code);
+	}
+
+	return codes.size > 0
+		? [...codes].sort((left, right) => left.localeCompare(right))
+		: null;
+}
+
+function normalizeCanonicalUrl(url: string | null): string | null {
+	if (!url) {
+		return null;
+	}
+
+	const [baseUrl] = url.split("|");
+	return baseUrl ?? null;
+}
+
+function collectCodeSystemCodes(codeSystem: CodeSystem | undefined): string[] {
+	if (!codeSystem?.concept) {
+		return [];
+	}
+
+	return flattenCodeSystemConcepts(codeSystem.concept);
+}
+
+function flattenCodeSystemConcepts(concepts: CodeSystemConcept[]): string[] {
+	const codes: string[] = [];
+
+	for (const concept of concepts) {
+		if (concept.code) {
+			codes.push(concept.code);
+		}
+
+		if (concept.concept) {
+			codes.push(...flattenCodeSystemConcepts(concept.concept));
+		}
+	}
+
+	return codes;
+}
+
+function collectExpansionCodes(
+	contains: ValueSetExpansionContains[] | undefined,
+): string[] {
+	if (!contains) {
+		return [];
+	}
+
+	const codes: string[] = [];
+
+	for (const entry of contains) {
+		if (entry.code) {
+			codes.push(entry.code);
+		}
+
+		if (entry.contains) {
+			codes.push(...collectExpansionCodes(entry.contains));
+		}
+	}
+
+	return codes;
 }
 
 function normalizeInvariants(

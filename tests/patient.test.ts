@@ -81,4 +81,29 @@ describe("Patient", () => {
 			}),
 		).toThrow();
 	});
+
+	it("rejects a Patient.gender value outside the required SD binding", () => {
+		expect(() =>
+			Patient.parse({
+				gender: "nonspecific",
+				resourceType: "Patient",
+			}),
+		).toThrow();
+	});
+
+	it("rejects a Patient.link.type value outside the required SD binding", () => {
+		expect(() =>
+			Patient.parse({
+				link: [
+					{
+						other: {
+							reference: "Patient/example",
+						},
+						type: "invalid-link-type",
+					},
+				],
+				resourceType: "Patient",
+			}),
+		).toThrow();
+	});
 });

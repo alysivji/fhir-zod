@@ -13,8 +13,7 @@ export const ElementDefinition_Type = z
 		_targetProfile: z.lazy(() => Element).optional(),
 		_versioning: z.lazy(() => Element).optional(),
 		aggregation: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
+			.enum(["bundled", "contained", "referenced"])
 			.array()
 			.optional(),
 		code: z.string().regex(/\S*/),
@@ -28,9 +27,6 @@ export const ElementDefinition_Type = z
 			.optional(),
 		profile: z.string().regex(/\S*/).array().optional(),
 		targetProfile: z.string().regex(/\S*/).array().optional(),
-		versioning: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		versioning: z.enum(["either", "independent", "specific"]).optional(),
 	})
 	.strict();

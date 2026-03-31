@@ -30,16 +30,12 @@ export const Timing_Repeat = z
 		count: z.number().int().positive().optional(),
 		countMax: z.number().int().positive().optional(),
 		dayOfWeek: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
+			.enum(["fri", "mon", "sat", "sun", "thu", "tue", "wed"])
 			.array()
 			.optional(),
 		duration: z.number().optional(),
 		durationMax: z.number().optional(),
-		durationUnit: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		durationUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
 		extension: z
 			.lazy(() => Extension)
 			.array()
@@ -53,18 +49,45 @@ export const Timing_Repeat = z
 		offset: z.number().int().nonnegative().optional(),
 		period: z.number().optional(),
 		periodMax: z.number().optional(),
-		periodUnit: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		periodUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
 		timeOfDay: z
 			.string()
 			.regex(/([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?/)
 			.array()
 			.optional(),
 		when: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
+			.enum([
+				"AC",
+				"ACD",
+				"ACM",
+				"ACV",
+				"AFT",
+				"AFT.early",
+				"AFT.late",
+				"C",
+				"CD",
+				"CM",
+				"CV",
+				"EVE",
+				"EVE.early",
+				"EVE.late",
+				"HS",
+				"IC",
+				"ICD",
+				"ICM",
+				"ICV",
+				"MORN",
+				"MORN.early",
+				"MORN.late",
+				"NIGHT",
+				"NOON",
+				"PC",
+				"PCD",
+				"PCM",
+				"PCV",
+				"PHS",
+				"WAKE",
+			])
 			.array()
 			.optional(),
 	})

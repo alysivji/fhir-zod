@@ -33,7 +33,16 @@ export const RelatedArtifact = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		resource: z.string().regex(/\S*/).optional(),
-		type: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		type: z.enum([
+			"citation",
+			"composed-of",
+			"depends-on",
+			"derived-from",
+			"documentation",
+			"justification",
+			"predecessor",
+			"successor",
+		]),
 		url: z.string().regex(/\S*/).optional(),
 	})
 	.strict();

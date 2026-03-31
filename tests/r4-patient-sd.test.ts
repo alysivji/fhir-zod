@@ -126,6 +126,33 @@ describe("R4 SD-backed Patient schema", () => {
 		expect(result.success).toBe(false);
 	});
 
+	it("rejects gender outside the required ValueSet binding", () => {
+		const patientSchema = comparison.runtimeSchemas.Patient;
+		const result = patientSchema.safeParse({
+			gender: "nonspecific",
+			resourceType: "Patient",
+		});
+
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects link.type outside the required ValueSet binding", () => {
+		const patientSchema = comparison.runtimeSchemas.Patient;
+		const result = patientSchema.safeParse({
+			link: [
+				{
+					other: {
+						reference: "Patient/example",
+					},
+					type: "invalid-link-type",
+				},
+			],
+			resourceType: "Patient",
+		});
+
+		expect(result.success).toBe(false);
+	});
+
 	it("keeps Reference runtime validation generic", () => {
 		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({

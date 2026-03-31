@@ -18,6 +18,6 @@ export const Narrative = z
 			.string()
 			.regex(/[A-Za-z0-9\-.]{1,64}/)
 			.optional(),
-		status: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		status: z.enum(["additional", "empty", "extensions", "generated"]),
 	})
 	.strict();

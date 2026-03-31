@@ -47,8 +47,15 @@ export const HumanName = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		use: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
+			.enum([
+				"anonymous",
+				"maiden",
+				"nickname",
+				"official",
+				"old",
+				"temp",
+				"usual",
+			])
 			.optional(),
 	})
 	.strict();

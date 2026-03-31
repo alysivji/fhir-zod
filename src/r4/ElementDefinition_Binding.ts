@@ -22,7 +22,7 @@ export const ElementDefinition_Binding = z
 			.string()
 			.regex(/[A-Za-z0-9\-.]{1,64}/)
 			.optional(),
-		strength: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		strength: z.enum(["example", "extensible", "preferred", "required"]),
 		valueSet: z.string().regex(/\S*/).optional(),
 	})
 	.strict();

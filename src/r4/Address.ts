@@ -55,13 +55,7 @@ export const Address = z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		type: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
-		use: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		type: z.enum(["both", "physical", "postal"]).optional(),
+		use: z.enum(["billing", "home", "old", "temp", "work"]).optional(),
 	})
 	.strict();

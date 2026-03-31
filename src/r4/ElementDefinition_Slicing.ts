@@ -24,6 +24,6 @@ export const ElementDefinition_Slicing = z
 			.regex(/[A-Za-z0-9\-.]{1,64}/)
 			.optional(),
 		ordered: z.boolean().optional(),
-		rules: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		rules: z.enum(["closed", "open", "openAtEnd"]),
 	})
 	.strict();

@@ -16,10 +16,7 @@ export const Count = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		comparator: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		comparator: z.enum(["<", "<=", ">", ">="]).optional(),
 		extension: z
 			.lazy(() => Extension)
 			.array()

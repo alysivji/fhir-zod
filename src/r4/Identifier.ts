@@ -25,10 +25,7 @@ export const Identifier = z
 		period: z.lazy(() => Period).optional(),
 		system: z.string().regex(/\S*/).optional(),
 		type: z.lazy(() => CodeableConcept).optional(),
-		use: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		use: z.enum(["official", "old", "secondary", "temp", "usual"]).optional(),
 		value: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)

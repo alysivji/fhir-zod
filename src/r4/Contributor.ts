@@ -23,6 +23,6 @@ export const Contributor = z
 			.regex(/[A-Za-z0-9\-.]{1,64}/)
 			.optional(),
 		name: z.string().regex(/[ \r\n\t\S]+/),
-		type: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		type: z.enum(["author", "editor", "endorser", "reviewer"]),
 	})
 	.strict();

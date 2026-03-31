@@ -184,6 +184,10 @@ function emitBaseExpression(
 		return `z.lazy(() => ${property.typeRef})`;
 	}
 
+	if (property.enumValues) {
+		return `z.enum([${property.enumValues.map((value) => JSON.stringify(value)).join(", ")}])`;
+	}
+
 	if (property.primitiveType) {
 		return emitPrimitiveExpression(property.primitiveType, primitivePatterns);
 	}
@@ -207,6 +211,8 @@ function buildRuntimePropertySchema(
 		baseSchema = z.literal(definition.resourceTypeLiteral);
 	} else if (property.typeRef && definitions.has(property.typeRef)) {
 		baseSchema = z.lazy(() => runtimeSchemas[property.typeRef] ?? z.unknown());
+	} else if (property.enumValues) {
+		baseSchema = z.enum(property.enumValues as [string, ...string[]]);
 	} else if (property.primitiveType) {
 		baseSchema = buildPrimitiveSchema(
 			property.primitiveType,

@@ -63,10 +63,7 @@ export const Patient = z
 			.lazy(() => Extension)
 			.array()
 			.optional(),
-		gender: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		gender: z.enum(["female", "male", "other", "unknown"]).optional(),
 		generalPractitioner: z
 			.lazy(() => Reference)
 			.array()

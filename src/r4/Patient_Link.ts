@@ -22,6 +22,6 @@ export const Patient_Link = z
 			.array()
 			.optional(),
 		other: z.lazy(() => Reference),
-		type: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		type: z.enum(["refer", "replaced-by", "replaces", "seealso"]),
 	})
 	.strict();

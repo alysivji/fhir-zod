@@ -525,8 +525,7 @@ export const ElementDefinition = z
 			)
 			.optional(),
 		representation: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
+			.enum(["cdaText", "typeAttr", "xhtml", "xmlAttr", "xmlText"])
 			.array()
 			.optional(),
 		requirements: z.string().optional(),
