@@ -47,7 +47,7 @@ function validatePatientPayload(
 	return patientSchema.safeParse(input);
 }
 
-describe("R4 StructureDefinition experimental Patient schema", () => {
+describe("R4 SD-backed Patient schema", () => {
 	beforeAll(() => {
 		comparison = compareR4();
 	});

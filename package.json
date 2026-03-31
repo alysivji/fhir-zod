@@ -42,7 +42,6 @@
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
 		"generate:r4:openapi": "node scripts/generate-r4-openapi.ts",
-		"generate:r4:sd": "node scripts/generate-r4-structuredefinition.ts",
 		"lint": "biome lint .",
 		"test": "vitest run"
 	},

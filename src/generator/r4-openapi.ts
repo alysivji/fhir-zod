@@ -551,7 +551,13 @@ function toRegexLiteral(pattern: string): string {
 }
 
 function formatGeneratedFiles(files: string[]): void {
-	execFileSync("npx", ["biome", "format", "--write", ...files], {
+	const repoTrackedFiles = files.filter((file) => !file.includes("/.context/"));
+
+	if (repoTrackedFiles.length === 0) {
+		return;
+	}
+
+	execFileSync("npx", ["biome", "format", "--write", ...repoTrackedFiles], {
 		cwd: repoRoot,
 		stdio: "ignore",
 	});
@@ -560,7 +566,7 @@ function formatGeneratedFiles(files: string[]): void {
 export function buildR4OpenApiFiles(): BuiltFile[] {
 	const manifest = loadManifest("r4");
 	const packageRoot = resolve(repoRoot, manifest.packageRoot);
-	const outputDir = join(repoRoot, "src", "r4");
+	const outputDir = join(repoRoot, ".context", "generated", "r4-openapi");
 	const context: EmitContext = {
 		definitions: new Map(),
 		definitionSources: buildDefinitionSources(packageRoot),
