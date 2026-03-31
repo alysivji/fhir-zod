@@ -59,4 +59,13 @@ describe("Patient", () => {
       }),
     ).toThrow();
   });
+
+  it("rejects unknown top-level patient fields", () => {
+    expect(() =>
+      Patient.parse({
+        resourceType: "Patient",
+        unexpected: true,
+      }),
+    ).toThrow();
+  });
 });

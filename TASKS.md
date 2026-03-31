@@ -72,6 +72,7 @@ Track the work needed to align the repository with the current README.
 - [ ] Generate first real R5 schema set
 - [ ] Export generated schemas by version without mixing versions
 - [ ] Keep generated schemas Zod-first with no wrapper layer
+- [ ] Add explicit type annotations where generated schemas exceed TypeScript's serialized inferred type limit
 
 ## Testing
 
@@ -81,6 +82,8 @@ Track the work needed to align the repository with the current README.
 - [ ] Add tests for choice field constraints
 - [ ] Add version-specific test coverage
 - [ ] Add tests for generator determinism
+- [ ] Add a schema test that rejects unknown top-level Patient fields
+- [ ] Compare generated Patient fields against the official HL7 R4 Patient definition page or source schema
 
 ## Documentation
 
@@ -88,6 +91,15 @@ Track the work needed to align the repository with the current README.
 - [x] Document how to refresh spec files
 - [ ] Document how to run the generator
 - [ ] Document expectations around generated vs handwritten files
+- [ ] Document how BackboneElement behavior is represented in generated schemas
+- [ ] Carry source descriptions into generated schema fields where practical
+
+## Patient Follow-Up
+
+- [ ] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
+- [ ] Model primitive underscore fields as FHIR primitive extensions and compare the approach with `fhir.resources`
+- [ ] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
+- [ ] Remove handwritten TODO-style notes from generated or checked-in schema files
 
 ## Non-Goals
 

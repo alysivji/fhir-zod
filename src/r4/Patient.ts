@@ -17,18 +17,6 @@ import { Patient_Contact } from "./Patient_Contact";
 import { Patient_Link } from "./Patient_Link";
 import { Reference } from "./Reference";
 
-// make primitive fields (underscore ones) into extensions
-// https://fhir.hl7.org/fhir/json.html
-
-// Backbone element
-
-// Reference element (is there a way to check something else?)
-
-// make the schema be fields in here only, no extra fields
-
-// maybe read from the blah blah blah
-
-// inferred type is not gonna genreate since it's too long -- how to fix
 export const Patient = z.object({
   _active: z.lazy(() => Element).optional(),
   _birthDate: z.lazy(() => Element).optional(),
@@ -115,4 +103,4 @@ export const Patient = z.object({
     .array()
     .optional(),
   text: z.lazy(() => Narrative).optional(),
-});
+}).strict();

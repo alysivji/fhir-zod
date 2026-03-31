@@ -14,8 +14,6 @@ const fixturesDir = resolve(
 function validatePatientPayload(
 	input: unknown,
 ): { success: true } | { success: false; error: unknown } {
-	const strictPatient = Patient.strict();
-
 	if (
 		typeof input === "object" &&
 		input !== null &&
@@ -36,7 +34,7 @@ function validatePatientPayload(
 				};
 			}
 
-			const result = strictPatient.safeParse(entry.resource);
+			const result = Patient.safeParse(entry.resource);
 
 			if (!result.success) {
 				return result;
@@ -46,7 +44,7 @@ function validatePatientPayload(
 		return { success: true };
 	}
 
-	return strictPatient.safeParse(input);
+	return Patient.safeParse(input);
 }
 
 describe("Patient official R4 examples", () => {
