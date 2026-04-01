@@ -35,3 +35,5 @@ export const Patient_Link = z
 			ctx,
 		);
 	});
+
+export type Patient_Link = z.output<typeof Patient_Link>;

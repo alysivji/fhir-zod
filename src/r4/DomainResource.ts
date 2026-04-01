@@ -32,3 +32,5 @@ export const DomainResource = z
 		text: z.lazy(getNarrativeSchema).optional(),
 	})
 	.strict();
+
+export type DomainResource = z.output<typeof DomainResource>;

@@ -19,3 +19,5 @@ export const Range = z
 		low: z.lazy(getQuantitySchema).optional(),
 	})
 	.strict();
+
+export type Range = z.output<typeof Range>;

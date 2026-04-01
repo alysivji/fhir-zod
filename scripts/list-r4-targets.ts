@@ -124,7 +124,7 @@ function listTargetEntries(): TargetEntry[] {
 				type: definition.type ?? null,
 			} satisfies TargetEntry;
 		})
-		sort((left, right) => left.name.localeCompare(right.name));
+		.sort((left, right) => left.name.localeCompare(right.name));
 }
 
 const entries = listTargetEntries();

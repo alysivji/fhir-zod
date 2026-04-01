@@ -47,3 +47,5 @@ export const Patient_Contact = z
 			ctx,
 		);
 	});
+
+export type Patient_Contact = z.output<typeof Patient_Contact>;

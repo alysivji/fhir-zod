@@ -124,3 +124,5 @@ export const Patient = z
 			ctx,
 		);
 	});
+
+export type Patient = z.output<typeof Patient>;

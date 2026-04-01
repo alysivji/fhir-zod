@@ -14,3 +14,5 @@ export const Element = z
 		id: fhirId().optional(),
 	})
 	.strict();
+
+export type Element = z.output<typeof Element>;

@@ -23,3 +23,5 @@ export const ContactDetail = z
 		telecom: z.lazy(getContactPointSchema).array().optional(),
 	})
 	.strict();
+
+export type ContactDetail = z.output<typeof ContactDetail>;

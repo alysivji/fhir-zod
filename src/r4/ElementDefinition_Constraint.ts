@@ -38,3 +38,7 @@ export const ElementDefinition_Constraint = z
 			.optional(),
 	})
 	.strict();
+
+export type ElementDefinition_Constraint = z.output<
+	typeof ElementDefinition_Constraint
+>;

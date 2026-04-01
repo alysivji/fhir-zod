@@ -31,3 +31,5 @@ export const ContactPoint = z
 			.optional(),
 	})
 	.strict();
+
+export type ContactPoint = z.output<typeof ContactPoint>;

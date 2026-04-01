@@ -33,3 +33,5 @@ export const SampledData = z
 		upperLimit: z.number().optional(),
 	})
 	.strict();
+
+export type SampledData = z.output<typeof SampledData>;

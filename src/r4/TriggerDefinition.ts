@@ -70,3 +70,5 @@ export const TriggerDefinition = z
 			ctx,
 		);
 	});
+
+export type TriggerDefinition = z.output<typeof TriggerDefinition>;

@@ -58,3 +58,5 @@ export const HumanName = z
 			.optional(),
 	})
 	.strict();
+
+export type HumanName = z.output<typeof HumanName>;

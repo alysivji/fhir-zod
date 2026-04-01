@@ -25,3 +25,7 @@ export const ElementDefinition_Slicing = z
 		rules: z.enum(["closed", "open", "openAtEnd"]),
 	})
 	.strict();
+
+export type ElementDefinition_Slicing = z.output<
+	typeof ElementDefinition_Slicing
+>;

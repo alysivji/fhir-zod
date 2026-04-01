@@ -71,3 +71,5 @@ export const UsageContext = z
 			ctx,
 		);
 	});
+
+export type UsageContext = z.output<typeof UsageContext>;

@@ -34,3 +34,5 @@ export const Coding = z
 			.optional(),
 	})
 	.strict();
+
+export type Coding = z.output<typeof Coding>;

@@ -183,6 +183,8 @@ function emitDefinitionFile(
 		...emitChoiceGroupRefinement(definition),
 		"\t;",
 		"",
+		`export type ${definition.name} = z.output<typeof ${definition.name}>;`,
+		"",
 	];
 
 	return lines.join("\n");

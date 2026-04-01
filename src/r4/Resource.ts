@@ -22,3 +22,5 @@ export const Resource = z
 		meta: z.lazy(getMetaSchema).optional(),
 	})
 	.strict();
+
+export type Resource = z.output<typeof Resource>;

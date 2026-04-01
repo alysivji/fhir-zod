@@ -85,3 +85,5 @@ export const Signature = z
 			ctx,
 		);
 	});
+
+export type Signature = z.output<typeof Signature>;

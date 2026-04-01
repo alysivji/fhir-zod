@@ -58,3 +58,5 @@ export const Address = z
 		use: z.enum(["billing", "home", "old", "temp", "work"]).optional(),
 	})
 	.strict();
+
+export type Address = z.output<typeof Address>;

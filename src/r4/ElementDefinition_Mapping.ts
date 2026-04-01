@@ -29,3 +29,7 @@ export const ElementDefinition_Mapping = z
 		map: z.string().regex(/[ \r\n\t\S]+/),
 	})
 	.strict();
+
+export type ElementDefinition_Mapping = z.output<
+	typeof ElementDefinition_Mapping
+>;

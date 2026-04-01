@@ -44,3 +44,5 @@ export const Identifier = z
 			ctx,
 		);
 	});
+
+export type Identifier = z.output<typeof Identifier>;

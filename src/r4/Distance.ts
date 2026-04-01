@@ -31,3 +31,5 @@ export const Distance = z
 		value: z.number().optional(),
 	})
 	.strict();
+
+export type Distance = z.output<typeof Distance>;

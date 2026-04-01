@@ -31,3 +31,5 @@ export const Duration = z
 		value: z.number().optional(),
 	})
 	.strict();
+
+export type Duration = z.output<typeof Duration>;

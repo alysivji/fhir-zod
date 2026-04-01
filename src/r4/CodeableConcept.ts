@@ -23,3 +23,5 @@ export const CodeableConcept = z
 			.optional(),
 	})
 	.strict();
+
+export type CodeableConcept = z.output<typeof CodeableConcept>;

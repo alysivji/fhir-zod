@@ -22,3 +22,5 @@ export const Contributor = z
 		type: z.enum(["author", "editor", "endorser", "reviewer"]),
 	})
 	.strict();
+
+export type Contributor = z.output<typeof Contributor>;

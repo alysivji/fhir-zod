@@ -31,3 +31,5 @@ export const Count = z
 		value: z.number().optional(),
 	})
 	.strict();
+
+export type Count = z.output<typeof Count>;

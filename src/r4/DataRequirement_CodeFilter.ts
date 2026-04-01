@@ -30,3 +30,7 @@ export const DataRequirement_CodeFilter = z
 		valueSet: z.string().regex(/\S*/).optional(),
 	})
 	.strict();
+
+export type DataRequirement_CodeFilter = z.output<
+	typeof DataRequirement_CodeFilter
+>;

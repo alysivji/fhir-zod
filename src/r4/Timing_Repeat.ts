@@ -105,3 +105,5 @@ export const Timing_Repeat = z
 			});
 		}
 	});
+
+export type Timing_Repeat = z.output<typeof Timing_Repeat>;

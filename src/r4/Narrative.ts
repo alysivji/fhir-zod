@@ -19,3 +19,5 @@ export const Narrative = z
 		status: z.enum(["additional", "empty", "extensions", "generated"]),
 	})
 	.strict();
+
+export type Narrative = z.output<typeof Narrative>;

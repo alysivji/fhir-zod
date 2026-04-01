@@ -16,3 +16,5 @@ export const BackboneElement = z
 		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 	})
 	.strict();
+
+export type BackboneElement = z.output<typeof BackboneElement>;

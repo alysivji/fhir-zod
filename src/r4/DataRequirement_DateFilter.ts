@@ -49,3 +49,7 @@ export const DataRequirement_DateFilter = z
 			});
 		}
 	});
+
+export type DataRequirement_DateFilter = z.output<
+	typeof DataRequirement_DateFilter
+>;

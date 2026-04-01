@@ -24,3 +24,7 @@ export const ElementDefinition_Binding = z
 		valueSet: z.string().regex(/\S*/).optional(),
 	})
 	.strict();
+
+export type ElementDefinition_Binding = z.output<
+	typeof ElementDefinition_Binding
+>;

@@ -31,3 +31,5 @@ export const Age = z
 		value: z.number().optional(),
 	})
 	.strict();
+
+export type Age = z.output<typeof Age>;

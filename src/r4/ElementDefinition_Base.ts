@@ -21,3 +21,5 @@ export const ElementDefinition_Base = z
 		path: z.string().regex(/[ \r\n\t\S]+/),
 	})
 	.strict();
+
+export type ElementDefinition_Base = z.output<typeof ElementDefinition_Base>;

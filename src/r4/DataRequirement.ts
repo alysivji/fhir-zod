@@ -279,3 +279,5 @@ export const DataRequirement = z
 			ctx,
 		);
 	});
+
+export type DataRequirement = z.output<typeof DataRequirement>;

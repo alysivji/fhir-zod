@@ -27,3 +27,5 @@ export const Meta = z
 		versionId: fhirId().optional(),
 	})
 	.strict();
+
+export type Meta = z.output<typeof Meta>;

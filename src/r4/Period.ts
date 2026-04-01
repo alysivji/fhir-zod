@@ -19,3 +19,5 @@ export const Period = z
 		start: fhirDateTime().optional(),
 	})
 	.strict();
+
+export type Period = z.output<typeof Period>;

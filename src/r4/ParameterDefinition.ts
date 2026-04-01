@@ -252,3 +252,5 @@ export const ParameterDefinition = z
 		use: z.enum(["in", "out"]),
 	})
 	.strict();
+
+export type ParameterDefinition = z.output<typeof ParameterDefinition>;

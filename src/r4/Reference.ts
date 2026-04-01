@@ -30,3 +30,5 @@ export const Reference = z
 		type: z.string().regex(/\S*/).optional(),
 	})
 	.strict();
+
+export type Reference = z.output<typeof Reference>;

@@ -220,3 +220,7 @@ export const ElementDefinition_Example = z
 			});
 		}
 	});
+
+export type ElementDefinition_Example = z.output<
+	typeof ElementDefinition_Example
+>;

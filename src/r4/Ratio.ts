@@ -19,3 +19,5 @@ export const Ratio = z
 		numerator: z.lazy(getQuantitySchema).optional(),
 	})
 	.strict();
+
+export type Ratio = z.output<typeof Ratio>;

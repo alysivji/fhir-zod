@@ -24,3 +24,5 @@ export const Timing = z
 		repeat: z.lazy(getTiming_RepeatSchema).optional(),
 	})
 	.strict();
+
+export type Timing = z.output<typeof Timing>;

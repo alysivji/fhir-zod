@@ -45,7 +45,7 @@ npm install zod
 ```ts
 import { Patient } from "@fhir-zod/core/r4"
 
-Patient.parse(data)
+const patient: Patient = Patient.parse(data)
 ```
 
 ## Development

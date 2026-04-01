@@ -63,3 +63,5 @@ export const Dosage = z
 			});
 		}
 	});
+
+export type Dosage = z.output<typeof Dosage>;

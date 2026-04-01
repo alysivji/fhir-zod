@@ -46,3 +46,5 @@ export const Attachment = z
 		url: z.string().regex(/\S*/).optional(),
 	})
 	.strict();
+
+export type Attachment = z.output<typeof Attachment>;

@@ -31,3 +31,5 @@ export const Quantity = z
 		value: z.number().optional(),
 	})
 	.strict();
+
+export type Quantity = z.output<typeof Quantity>;

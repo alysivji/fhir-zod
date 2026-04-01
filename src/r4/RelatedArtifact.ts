@@ -45,3 +45,5 @@ export const RelatedArtifact = z
 		url: z.string().regex(/\S*/).optional(),
 	})
 	.strict();
+
+export type RelatedArtifact = z.output<typeof RelatedArtifact>;

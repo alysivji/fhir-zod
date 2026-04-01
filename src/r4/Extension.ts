@@ -232,3 +232,5 @@ export const Extension = z
 			});
 		}
 	});
+
+export type Extension = z.output<typeof Extension>;

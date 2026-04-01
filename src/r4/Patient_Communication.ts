@@ -21,3 +21,5 @@ export const Patient_Communication = z
 		preferred: z.boolean().optional(),
 	})
 	.strict();
+
+export type Patient_Communication = z.output<typeof Patient_Communication>;

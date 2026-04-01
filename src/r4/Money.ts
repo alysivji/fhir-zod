@@ -22,3 +22,5 @@ export const Money = z
 		value: z.number().optional(),
 	})
 	.strict();
+
+export type Money = z.output<typeof Money>;

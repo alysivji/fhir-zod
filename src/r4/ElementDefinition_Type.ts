@@ -28,3 +28,5 @@ export const ElementDefinition_Type = z
 		versioning: z.enum(["either", "independent", "specific"]).optional(),
 	})
 	.strict();
+
+export type ElementDefinition_Type = z.output<typeof ElementDefinition_Type>;

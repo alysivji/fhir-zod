@@ -54,3 +54,5 @@ export const Annotation = z
 			ctx,
 		);
 	});
+
+export type Annotation = z.output<typeof Annotation>;

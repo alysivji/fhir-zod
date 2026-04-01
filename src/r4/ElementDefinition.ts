@@ -699,3 +699,5 @@ export const ElementDefinition = z
 			});
 		}
 	});
+
+export type ElementDefinition = z.output<typeof ElementDefinition>;
