@@ -66,6 +66,7 @@ make coverage
 make fetch-spec
 make test
 make generate
+make list-r4-targets
 ```
 
 Equivalent npm scripts:
@@ -80,9 +81,43 @@ npm run lint
 npm run coverage
 npm test
 npm run generate
+npm run list:r4-targets -- --summary
 ```
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
+
+## Inspecting R4 Targets
+
+Use the R4 target listing script to inspect which `StructureDefinition` entries are:
+
+- core canonical resources
+- profile-like resource definitions
+- abstract shared base types
+- final generation targets
+
+Examples:
+
+```bash
+npm run list:r4-targets -- --summary
+npm run list:r4-targets -- --category core-resource --names-only
+npm run list:r4-targets -- --category profile-resource --names-only
+npm run list:r4-targets -- --category generation-target --names-only
+```
+
+Supported categories:
+
+- `core-resource`
+- `profile-resource`
+- `abstract-whitelist`
+- `generation-target`
+- `other`
+- `all`
+
+Supported output modes:
+
+- default JSON output
+- `--names-only`
+- `--summary`
 
 ## Design Principles
 
