@@ -7,23 +7,23 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 
-export const Signature: z.ZodType<unknown> = z
+export const Signature = z
 	.object({
-		_data: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_sigFormat: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_targetFormat: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_when: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_data: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_sigFormat: z.lazy(() => Element).optional(),
+		_targetFormat: z.lazy(() => Element).optional(),
+		_when: z.lazy(() => Element).optional(),
 		data: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		onBehalfOf: z.lazy((): z.ZodType<unknown> => Reference).optional(),
+		onBehalfOf: z.lazy(() => Reference).optional(),
 		sigFormat: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -32,8 +32,8 @@ export const Signature: z.ZodType<unknown> = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		type: z.lazy((): z.ZodType<unknown> => Coding).array(),
+		type: z.lazy(() => Coding).array(),
 		when: fhirInstant(),
-		who: z.lazy((): z.ZodType<unknown> => Reference),
+		who: z.lazy(() => Reference),
 	})
 	.strict();

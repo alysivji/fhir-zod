@@ -10,19 +10,19 @@ import { Quantity } from "./Quantity";
 import { Range } from "./Range";
 import { Reference } from "./Reference";
 
-export const UsageContext: z.ZodType<unknown> = z
+export const UsageContext = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		code: z.lazy((): z.ZodType<unknown> => Coding),
+		_id: z.lazy(() => Element).optional(),
+		code: z.lazy(() => Coding),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		valueCodeableConcept: z.lazy((): z.ZodType<unknown> => CodeableConcept),
-		valueQuantity: z.lazy((): z.ZodType<unknown> => Quantity),
-		valueRange: z.lazy((): z.ZodType<unknown> => Range),
-		valueReference: z.lazy((): z.ZodType<unknown> => Reference),
+		valueCodeableConcept: z.lazy(() => CodeableConcept),
+		valueQuantity: z.lazy(() => Quantity),
+		valueRange: z.lazy(() => Range),
+		valueReference: z.lazy(() => Reference),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

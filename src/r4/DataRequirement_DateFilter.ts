@@ -7,14 +7,14 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Period } from "./Period";
 
-export const DataRequirement_DateFilter: z.ZodType<unknown> = z
+export const DataRequirement_DateFilter = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_path: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_searchParam: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_valueDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_path: z.lazy(() => Element).optional(),
+		_searchParam: z.lazy(() => Element).optional(),
+		_valueDateTime: z.lazy(() => Element).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
@@ -27,8 +27,8 @@ export const DataRequirement_DateFilter: z.ZodType<unknown> = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		valueDateTime: fhirDateTime().optional(),
-		valueDuration: z.lazy((): z.ZodType<unknown> => Duration).optional(),
-		valuePeriod: z.lazy((): z.ZodType<unknown> => Period).optional(),
+		valueDuration: z.lazy(() => Duration).optional(),
+		valuePeriod: z.lazy(() => Period).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

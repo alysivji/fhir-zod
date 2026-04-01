@@ -9,23 +9,23 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 
-export const DataRequirement: z.ZodType<unknown> = z
+export const DataRequirement = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_limit: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_mustSupport: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_profile: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_type: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_limit: z.lazy(() => Element).optional(),
+		_mustSupport: z.lazy(() => Element).optional(),
+		_profile: z.lazy(() => Element).optional(),
+		_type: z.lazy(() => Element).optional(),
 		codeFilter: z
-			.lazy((): z.ZodType<unknown> => DataRequirement_CodeFilter)
+			.lazy(() => DataRequirement_CodeFilter)
 			.array()
 			.optional(),
 		dateFilter: z
-			.lazy((): z.ZodType<unknown> => DataRequirement_DateFilter)
+			.lazy(() => DataRequirement_DateFilter)
 			.array()
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
@@ -37,10 +37,8 @@ export const DataRequirement: z.ZodType<unknown> = z
 			.optional(),
 		profile: z.string().regex(/\S*/).array().optional(),
 		sort: z.unknown().array().optional(),
-		subjectCodeableConcept: z
-			.lazy((): z.ZodType<unknown> => CodeableConcept)
-			.optional(),
-		subjectReference: z.lazy((): z.ZodType<unknown> => Reference).optional(),
+		subjectCodeableConcept: z.lazy(() => CodeableConcept).optional(),
+		subjectReference: z.lazy(() => Reference).optional(),
 		type: z.enum([
 			"Account",
 			"ActivityDefinition",

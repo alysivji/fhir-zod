@@ -8,21 +8,21 @@ import { Extension } from "./Extension";
 import { Period } from "./Period";
 import { Reference } from "./Reference";
 
-export const Identifier: z.ZodType<unknown> = z
+export const Identifier = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_system: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_use: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_value: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		assigner: z.lazy((): z.ZodType<unknown> => Reference).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_system: z.lazy(() => Element).optional(),
+		_use: z.lazy(() => Element).optional(),
+		_value: z.lazy(() => Element).optional(),
+		assigner: z.lazy(() => Reference).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		period: z.lazy((): z.ZodType<unknown> => Period).optional(),
+		period: z.lazy(() => Period).optional(),
 		system: z.string().regex(/\S*/).optional(),
-		type: z.lazy((): z.ZodType<unknown> => CodeableConcept).optional(),
+		type: z.lazy(() => CodeableConcept).optional(),
 		use: z.enum(["official", "old", "secondary", "temp", "usual"]).optional(),
 		value: z
 			.string()

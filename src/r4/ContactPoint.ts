@@ -6,19 +6,19 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Period } from "./Period";
 
-export const ContactPoint: z.ZodType<unknown> = z
+export const ContactPoint = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_rank: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_system: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_use: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_value: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_rank: z.lazy(() => Element).optional(),
+		_system: z.lazy(() => Element).optional(),
+		_use: z.lazy(() => Element).optional(),
+		_value: z.lazy(() => Element).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		period: z.lazy((): z.ZodType<unknown> => Period).optional(),
+		period: z.lazy(() => Period).optional(),
 		rank: z.number().int().positive().optional(),
 		system: z
 			.enum(["email", "fax", "other", "pager", "phone", "sms", "url"])

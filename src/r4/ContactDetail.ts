@@ -6,12 +6,12 @@ import { ContactPoint } from "./ContactPoint";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ContactDetail: z.ZodType<unknown> = z
+export const ContactDetail = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_name: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_name: z.lazy(() => Element).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
@@ -20,7 +20,7 @@ export const ContactDetail: z.ZodType<unknown> = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		telecom: z
-			.lazy((): z.ZodType<unknown> => ContactPoint)
+			.lazy(() => ContactPoint)
 			.array()
 			.optional(),
 	})

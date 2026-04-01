@@ -6,18 +6,18 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Period } from "./Period";
 
-export const Address: z.ZodType<unknown> = z
+export const Address = z
 	.object({
-		_city: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_country: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_district: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_line: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_postalCode: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_state: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_text: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_type: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_use: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_city: z.lazy(() => Element).optional(),
+		_country: z.lazy(() => Element).optional(),
+		_district: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_line: z.lazy(() => Element).optional(),
+		_postalCode: z.lazy(() => Element).optional(),
+		_state: z.lazy(() => Element).optional(),
+		_text: z.lazy(() => Element).optional(),
+		_type: z.lazy(() => Element).optional(),
+		_use: z.lazy(() => Element).optional(),
 		city: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -31,7 +31,7 @@ export const Address: z.ZodType<unknown> = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
@@ -40,7 +40,7 @@ export const Address: z.ZodType<unknown> = z
 			.regex(/[ \r\n\t\S]+/)
 			.array()
 			.optional(),
-		period: z.lazy((): z.ZodType<unknown> => Period).optional(),
+		period: z.lazy(() => Period).optional(),
 		postalCode: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)

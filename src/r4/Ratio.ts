@@ -6,15 +6,15 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Quantity } from "./Quantity";
 
-export const Ratio: z.ZodType<unknown> = z
+export const Ratio = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		denominator: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		_id: z.lazy(() => Element).optional(),
+		denominator: z.lazy(() => Quantity).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		numerator: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		numerator: z.lazy(() => Quantity).optional(),
 	})
 	.strict();

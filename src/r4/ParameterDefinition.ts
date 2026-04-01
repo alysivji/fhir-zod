@@ -5,22 +5,22 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ParameterDefinition: z.ZodType<unknown> = z
+export const ParameterDefinition = z
 	.object({
-		_documentation: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_max: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_min: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_name: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_profile: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_type: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_use: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_documentation: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_max: z.lazy(() => Element).optional(),
+		_min: z.lazy(() => Element).optional(),
+		_name: z.lazy(() => Element).optional(),
+		_profile: z.lazy(() => Element).optional(),
+		_type: z.lazy(() => Element).optional(),
+		_use: z.lazy(() => Element).optional(),
 		documentation: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

@@ -6,15 +6,15 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Quantity } from "./Quantity";
 
-export const Range: z.ZodType<unknown> = z
+export const Range = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
-		high: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		high: z.lazy(() => Quantity).optional(),
 		id: fhirId().optional(),
-		low: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		low: z.lazy(() => Quantity).optional(),
 	})
 	.strict();

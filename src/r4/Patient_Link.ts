@@ -6,20 +6,20 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 
-export const Patient_Link: z.ZodType<unknown> = z
+export const Patient_Link = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_type: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_type: z.lazy(() => Element).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
 		modifierExtension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
-		other: z.lazy((): z.ZodType<unknown> => Reference),
+		other: z.lazy(() => Reference),
 		type: z.enum(["refer", "replaced-by", "replaces", "seealso"]),
 	})
 	.strict();

@@ -8,26 +8,26 @@ import { Extension } from "./Extension";
 import { Period } from "./Period";
 import { Range } from "./Range";
 
-export const Timing_Repeat: z.ZodType<unknown> = z
+export const Timing_Repeat = z
 	.object({
-		_count: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_countMax: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_dayOfWeek: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_duration: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_durationMax: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_durationUnit: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_frequency: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_frequencyMax: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_offset: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_period: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_periodMax: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_periodUnit: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_timeOfDay: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_when: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		boundsDuration: z.lazy((): z.ZodType<unknown> => Duration).optional(),
-		boundsPeriod: z.lazy((): z.ZodType<unknown> => Period).optional(),
-		boundsRange: z.lazy((): z.ZodType<unknown> => Range).optional(),
+		_count: z.lazy(() => Element).optional(),
+		_countMax: z.lazy(() => Element).optional(),
+		_dayOfWeek: z.lazy(() => Element).optional(),
+		_duration: z.lazy(() => Element).optional(),
+		_durationMax: z.lazy(() => Element).optional(),
+		_durationUnit: z.lazy(() => Element).optional(),
+		_frequency: z.lazy(() => Element).optional(),
+		_frequencyMax: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_offset: z.lazy(() => Element).optional(),
+		_period: z.lazy(() => Element).optional(),
+		_periodMax: z.lazy(() => Element).optional(),
+		_periodUnit: z.lazy(() => Element).optional(),
+		_timeOfDay: z.lazy(() => Element).optional(),
+		_when: z.lazy(() => Element).optional(),
+		boundsDuration: z.lazy(() => Duration).optional(),
+		boundsPeriod: z.lazy(() => Period).optional(),
+		boundsRange: z.lazy(() => Range).optional(),
 		count: z.number().int().positive().optional(),
 		countMax: z.number().int().positive().optional(),
 		dayOfWeek: z
@@ -38,7 +38,7 @@ export const Timing_Repeat: z.ZodType<unknown> = z
 		durationMax: z.number().optional(),
 		durationUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		frequency: z.number().int().positive().optional(),

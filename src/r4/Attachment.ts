@@ -5,17 +5,17 @@ import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Attachment: z.ZodType<unknown> = z
+export const Attachment = z
 	.object({
-		_contentType: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_creation: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_data: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_hash: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_language: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_size: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_title: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_url: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_contentType: z.lazy(() => Element).optional(),
+		_creation: z.lazy(() => Element).optional(),
+		_data: z.lazy(() => Element).optional(),
+		_hash: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_language: z.lazy(() => Element).optional(),
+		_size: z.lazy(() => Element).optional(),
+		_title: z.lazy(() => Element).optional(),
+		_url: z.lazy(() => Element).optional(),
 		contentType: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -26,7 +26,7 @@ export const Attachment: z.ZodType<unknown> = z
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		hash: z

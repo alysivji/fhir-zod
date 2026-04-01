@@ -18,50 +18,50 @@ import { Patient_Link } from "./Patient_Link";
 import { Reference } from "./Reference";
 import { Resource } from "./Resource";
 
-export const Patient: z.ZodType<unknown> = z
+export const Patient = z
 	.object({
-		_active: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_birthDate: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_deceasedBoolean: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_deceasedDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_gender: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_implicitRules: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_language: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_multipleBirthBoolean: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_multipleBirthInteger: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_active: z.lazy(() => Element).optional(),
+		_birthDate: z.lazy(() => Element).optional(),
+		_deceasedBoolean: z.lazy(() => Element).optional(),
+		_deceasedDateTime: z.lazy(() => Element).optional(),
+		_gender: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_implicitRules: z.lazy(() => Element).optional(),
+		_language: z.lazy(() => Element).optional(),
+		_multipleBirthBoolean: z.lazy(() => Element).optional(),
+		_multipleBirthInteger: z.lazy(() => Element).optional(),
 		active: z.boolean().optional(),
 		address: z
-			.lazy((): z.ZodType<unknown> => Address)
+			.lazy(() => Address)
 			.array()
 			.optional(),
 		birthDate: fhirDate().optional(),
 		communication: z
-			.lazy((): z.ZodType<unknown> => Patient_Communication)
+			.lazy(() => Patient_Communication)
 			.array()
 			.optional(),
 		contact: z
-			.lazy((): z.ZodType<unknown> => Patient_Contact)
+			.lazy(() => Patient_Contact)
 			.array()
 			.optional(),
 		contained: z
-			.lazy((): z.ZodType<unknown> => Resource)
+			.lazy(() => Resource)
 			.array()
 			.optional(),
 		deceasedBoolean: z.boolean().optional(),
 		deceasedDateTime: fhirDateTime().optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		gender: z.enum(["female", "male", "other", "unknown"]).optional(),
 		generalPractitioner: z
-			.lazy((): z.ZodType<unknown> => Reference)
+			.lazy(() => Reference)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
 		identifier: z
-			.lazy((): z.ZodType<unknown> => Identifier)
+			.lazy(() => Identifier)
 			.array()
 			.optional(),
 		implicitRules: z.string().regex(/\S*/).optional(),
@@ -70,34 +70,32 @@ export const Patient: z.ZodType<unknown> = z
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
 		link: z
-			.lazy((): z.ZodType<unknown> => Patient_Link)
+			.lazy(() => Patient_Link)
 			.array()
 			.optional(),
-		managingOrganization: z
-			.lazy((): z.ZodType<unknown> => Reference)
-			.optional(),
-		maritalStatus: z.lazy((): z.ZodType<unknown> => CodeableConcept).optional(),
-		meta: z.lazy((): z.ZodType<unknown> => Meta).optional(),
+		managingOrganization: z.lazy(() => Reference).optional(),
+		maritalStatus: z.lazy(() => CodeableConcept).optional(),
+		meta: z.lazy(() => Meta).optional(),
 		modifierExtension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		multipleBirthBoolean: z.boolean().optional(),
 		multipleBirthInteger: z.number().int().optional(),
 		name: z
-			.lazy((): z.ZodType<unknown> => HumanName)
+			.lazy(() => HumanName)
 			.array()
 			.optional(),
 		photo: z
-			.lazy((): z.ZodType<unknown> => Attachment)
+			.lazy(() => Attachment)
 			.array()
 			.optional(),
 		resourceType: z.literal("Patient"),
 		telecom: z
-			.lazy((): z.ZodType<unknown> => ContactPoint)
+			.lazy(() => ContactPoint)
 			.array()
 			.optional(),
-		text: z.lazy((): z.ZodType<unknown> => Narrative).optional(),
+		text: z.lazy(() => Narrative).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

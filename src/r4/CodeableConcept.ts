@@ -6,16 +6,16 @@ import { Coding } from "./Coding";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const CodeableConcept: z.ZodType<unknown> = z
+export const CodeableConcept = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_text: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_text: z.lazy(() => Element).optional(),
 		coding: z
-			.lazy((): z.ZodType<unknown> => Coding)
+			.lazy(() => Coding)
 			.array()
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

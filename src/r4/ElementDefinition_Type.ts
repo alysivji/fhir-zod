@@ -5,21 +5,21 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ElementDefinition_Type: z.ZodType<unknown> = z
+export const ElementDefinition_Type = z
 	.object({
-		_aggregation: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_code: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_profile: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_targetProfile: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_versioning: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_aggregation: z.lazy(() => Element).optional(),
+		_code: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_profile: z.lazy(() => Element).optional(),
+		_targetProfile: z.lazy(() => Element).optional(),
+		_versioning: z.lazy(() => Element).optional(),
 		aggregation: z
 			.enum(["bundled", "contained", "referenced"])
 			.array()
 			.optional(),
 		code: z.string().regex(/\S*/),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

@@ -6,28 +6,28 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Quantity } from "./Quantity";
 
-export const SampledData: z.ZodType<unknown> = z
+export const SampledData = z
 	.object({
-		_data: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_dimensions: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_factor: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_lowerLimit: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_period: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_upperLimit: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_data: z.lazy(() => Element).optional(),
+		_dimensions: z.lazy(() => Element).optional(),
+		_factor: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_lowerLimit: z.lazy(() => Element).optional(),
+		_period: z.lazy(() => Element).optional(),
+		_upperLimit: z.lazy(() => Element).optional(),
 		data: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		dimensions: z.number().int().positive(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		factor: z.number().optional(),
 		id: fhirId().optional(),
 		lowerLimit: z.number().optional(),
-		origin: z.lazy((): z.ZodType<unknown> => Quantity),
+		origin: z.lazy(() => Quantity),
 		period: z.number(),
 		upperLimit: z.number().optional(),
 	})

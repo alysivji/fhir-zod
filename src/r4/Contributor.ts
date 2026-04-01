@@ -6,17 +6,17 @@ import { ContactDetail } from "./ContactDetail";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Contributor: z.ZodType<unknown> = z
+export const Contributor = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_name: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_type: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_name: z.lazy(() => Element).optional(),
+		_type: z.lazy(() => Element).optional(),
 		contact: z
-			.lazy((): z.ZodType<unknown> => ContactDetail)
+			.lazy(() => ContactDetail)
 			.array()
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

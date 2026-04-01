@@ -5,21 +5,21 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Count: z.ZodType<unknown> = z
+export const Count = z
 	.object({
-		_code: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_comparator: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_system: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_unit: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_value: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_code: z.lazy(() => Element).optional(),
+		_comparator: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_system: z.lazy(() => Element).optional(),
+		_unit: z.lazy(() => Element).optional(),
+		_value: z.lazy(() => Element).optional(),
 		code: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
 		comparator: z.enum(["<", "<=", ">", ">="]).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

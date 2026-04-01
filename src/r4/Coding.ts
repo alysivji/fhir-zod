@@ -5,14 +5,14 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Coding: z.ZodType<unknown> = z
+export const Coding = z
 	.object({
-		_code: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_display: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_system: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_userSelected: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_version: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_code: z.lazy(() => Element).optional(),
+		_display: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_system: z.lazy(() => Element).optional(),
+		_userSelected: z.lazy(() => Element).optional(),
+		_version: z.lazy(() => Element).optional(),
 		code: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -22,7 +22,7 @@ export const Coding: z.ZodType<unknown> = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

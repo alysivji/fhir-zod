@@ -6,23 +6,23 @@ import { Attachment } from "./Attachment";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const RelatedArtifact: z.ZodType<unknown> = z
+export const RelatedArtifact = z
 	.object({
-		_citation: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_display: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_label: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_resource: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_type: z.lazy((): z.ZodType<unknown> => Element).optional(),
-		_url: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_citation: z.lazy(() => Element).optional(),
+		_display: z.lazy(() => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
+		_label: z.lazy(() => Element).optional(),
+		_resource: z.lazy(() => Element).optional(),
+		_type: z.lazy(() => Element).optional(),
+		_url: z.lazy(() => Element).optional(),
 		citation: z.string().optional(),
 		display: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		document: z.lazy((): z.ZodType<unknown> => Attachment).optional(),
+		document: z.lazy(() => Attachment).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

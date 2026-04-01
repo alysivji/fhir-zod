@@ -4,11 +4,11 @@ import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
 import { Extension } from "./Extension";
 
-export const Element: z.ZodType<unknown> = z
+export const Element = z
 	.object({
-		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy(() => Element).optional(),
 		extension: z
-			.lazy((): z.ZodType<unknown> => Extension)
+			.lazy(() => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
