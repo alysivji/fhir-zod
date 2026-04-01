@@ -4,6 +4,7 @@ import * as z from "zod";
 import {
 	fhirDate,
 	fhirDateTime,
+	fhirId,
 	fhirInstant,
 	fhirTime,
 } from "../shared/fhir-primitives";
@@ -39,7 +40,8 @@ import { Timing } from "./Timing";
 import { TriggerDefinition } from "./TriggerDefinition";
 import { UsageContext } from "./UsageContext";
 
-const extensionShape: z.ZodRawShape = {
+export const Extension = z
+	.object({
 		_id: z.lazy(() => Element).optional(),
 		_url: z.lazy(() => Element).optional(),
 		_valueBase64Binary: z.lazy(() => Element).optional(),
@@ -65,10 +67,7 @@ const extensionShape: z.ZodRawShape = {
 			.lazy(() => Extension)
 			.array()
 			.optional(),
-		id: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		id: fhirId().optional(),
 		url: z.string().regex(/\S*/),
 		valueAddress: z.lazy(() => Address).optional(),
 		valueAge: z.lazy(() => Age).optional(),
@@ -99,10 +98,7 @@ const extensionShape: z.ZodRawShape = {
 		valueDuration: z.lazy(() => Duration).optional(),
 		valueExpression: z.unknown().optional(),
 		valueHumanName: z.lazy(() => HumanName).optional(),
-		valueId: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		valueId: fhirId().optional(),
 		valueIdentifier: z.lazy(() => Identifier).optional(),
 		valueInstant: fhirInstant().optional(),
 		valueInteger: z.number().int().optional(),
@@ -140,6 +136,5 @@ const extensionShape: z.ZodRawShape = {
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
 			.optional(),
-};
-
-export const Extension = z.object(extensionShape).strict();
+	})
+	.strict();

@@ -1,12 +1,30 @@
 import { describe, expect, it } from "vitest";
 import {
+	fhirId,
 	fhirDate,
 	fhirDateTime,
 	fhirInstant,
 	fhirTime,
 } from "../src/shared/fhir-primitives.ts";
 
-describe("FHIR temporal primitives", () => {
+describe("FHIR primitives", () => {
+	describe("fhirId", () => {
+		it("accepts valid FHIR id values", () => {
+			const schema = fhirId();
+
+			expect(schema.safeParse("abc").success).toBe(true);
+			expect(schema.safeParse("Patient-123.456").success).toBe(true);
+		});
+
+		it("rejects invalid FHIR id values", () => {
+			const schema = fhirId();
+
+			expect(schema.safeParse("").success).toBe(false);
+			expect(schema.safeParse("contains space").success).toBe(false);
+			expect(schema.safeParse("x".repeat(65)).success).toBe(false);
+		});
+	});
+
 	describe("fhirDate", () => {
 		it("accepts reduced-precision FHIR date values", () => {
 			const schema = fhirDate();

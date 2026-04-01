@@ -12,6 +12,7 @@ import type { NormalizedDefinition } from "../model.ts";
 import { primitiveRuntimeKind, sortDefinitions } from "../model.ts";
 import { repoRoot } from "../shared.ts";
 import {
+	fhirId,
 	fhirDate,
 	fhirDateTime,
 	fhirInstant,
@@ -367,6 +368,8 @@ function toRegexLiteral(pattern: string): string {
 
 function primitiveHelperName(type: string | null): string | null {
 	switch (type) {
+		case "id":
+			return "fhirId";
 		case "date":
 			return "fhirDate";
 		case "dateTime":
@@ -382,6 +385,8 @@ function primitiveHelperName(type: string | null): string | null {
 
 function primitiveHelper(type: string): (() => z.ZodString) | null {
 	switch (type) {
+		case "id":
+			return fhirId;
 		case "date":
 			return fhirDate;
 		case "dateTime":

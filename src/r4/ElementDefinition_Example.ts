@@ -4,6 +4,7 @@ import * as z from "zod";
 import {
 	fhirDate,
 	fhirDateTime,
+	fhirId,
 	fhirInstant,
 	fhirTime,
 } from "../shared/fhir-primitives";
@@ -67,10 +68,7 @@ export const ElementDefinition_Example = z
 			.lazy(() => Extension)
 			.array()
 			.optional(),
-		id: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		id: fhirId().optional(),
 		label: z.string().regex(/[ \r\n\t\S]+/),
 		valueAddress: z.lazy(() => Address),
 		valueAge: z.lazy(() => Age),
@@ -95,7 +93,7 @@ export const ElementDefinition_Example = z
 		valueDuration: z.lazy(() => Duration),
 		valueExpression: z.unknown(),
 		valueHumanName: z.lazy(() => HumanName),
-		valueId: z.string().regex(/[A-Za-z0-9\-.]{1,64}/),
+		valueId: fhirId(),
 		valueIdentifier: z.lazy(() => Identifier),
 		valueInstant: fhirInstant(),
 		valueInteger: z.number().int(),

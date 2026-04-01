@@ -1,5 +1,10 @@
 import * as z from "zod";
 
+export function fhirId(): z.ZodString {
+	const fhirIdPattern = /^[A-Za-z0-9\-.]{1,64}$/;
+	return z.string().regex(fhirIdPattern);
+}
+
 export function fhirDate(): z.ZodString {
 	const fhirDatePattern =
 		/^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$/;

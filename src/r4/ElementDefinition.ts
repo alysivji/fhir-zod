@@ -4,6 +4,7 @@ import * as z from "zod";
 import {
 	fhirDate,
 	fhirDateTime,
+	fhirId,
 	fhirInstant,
 	fhirTime,
 } from "../shared/fhir-primitives";
@@ -47,7 +48,8 @@ import { Timing } from "./Timing";
 import { TriggerDefinition } from "./TriggerDefinition";
 import { UsageContext } from "./UsageContext";
 
-const elementDefinitionShape: z.ZodRawShape = {
+export const ElementDefinition = z
+	.object({
 		_alias: z.lazy(() => Element).optional(),
 		_comment: z.lazy(() => Element).optional(),
 		_condition: z.lazy(() => Element).optional(),
@@ -155,11 +157,7 @@ const elementDefinitionShape: z.ZodRawShape = {
 			.array()
 			.optional(),
 		comment: z.string().optional(),
-		condition: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.array()
-			.optional(),
+		condition: fhirId().array().optional(),
 		constraint: z
 			.lazy(() => ElementDefinition_Constraint)
 			.array()
@@ -194,10 +192,7 @@ const elementDefinitionShape: z.ZodRawShape = {
 		defaultValueDuration: z.lazy(() => Duration).optional(),
 		defaultValueExpression: z.unknown().optional(),
 		defaultValueHumanName: z.lazy(() => HumanName).optional(),
-		defaultValueId: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		defaultValueId: fhirId().optional(),
 		defaultValueIdentifier: z.lazy(() => Identifier).optional(),
 		defaultValueInstant: fhirInstant().optional(),
 		defaultValueInteger: z.number().int().optional(),
@@ -275,10 +270,7 @@ const elementDefinitionShape: z.ZodRawShape = {
 		fixedDuration: z.lazy(() => Duration).optional(),
 		fixedExpression: z.unknown().optional(),
 		fixedHumanName: z.lazy(() => HumanName).optional(),
-		fixedId: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		fixedId: fhirId().optional(),
 		fixedIdentifier: z.lazy(() => Identifier).optional(),
 		fixedInstant: fhirInstant().optional(),
 		fixedInteger: z.number().int().optional(),
@@ -316,10 +308,7 @@ const elementDefinitionShape: z.ZodRawShape = {
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
 			.optional(),
-		id: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		id: fhirId().optional(),
 		isModifier: z.boolean().optional(),
 		isModifierReason: z
 			.string()
@@ -398,10 +387,7 @@ const elementDefinitionShape: z.ZodRawShape = {
 		patternDuration: z.lazy(() => Duration).optional(),
 		patternExpression: z.unknown().optional(),
 		patternHumanName: z.lazy(() => HumanName).optional(),
-		patternId: z
-			.string()
-			.regex(/[A-Za-z0-9\-.]{1,64}/)
-			.optional(),
+		patternId: fhirId().optional(),
 		patternIdentifier: z.lazy(() => Identifier).optional(),
 		patternInstant: fhirInstant().optional(),
 		patternInteger: z.number().int().optional(),
@@ -458,6 +444,5 @@ const elementDefinitionShape: z.ZodRawShape = {
 			.lazy(() => ElementDefinition_Type)
 			.array()
 			.optional(),
-};
-
-export const ElementDefinition = z.object(elementDefinitionShape).strict();
+	})
+	.strict();
