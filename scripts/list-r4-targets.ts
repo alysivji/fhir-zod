@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { r4AbstractTargetNames } from "../src/generator/model.ts";
 
 type SpecManifest = {
 	packageRoot: string;
@@ -38,12 +39,7 @@ type CategoryFilter =
 	| "other"
 	| "profile-resource";
 
-const abstractGenerationWhitelist = new Set([
-	"BackboneElement",
-	"DomainResource",
-	"Element",
-	"Resource",
-]);
+const abstractGenerationWhitelist = new Set<string>(r4AbstractTargetNames);
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");

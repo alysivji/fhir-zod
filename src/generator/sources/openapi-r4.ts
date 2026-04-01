@@ -6,7 +6,7 @@ import {
 	definitionNameToFhirPath,
 	inferChoiceMetadata,
 	normalizeDefinitionName,
-	r4TargetNames,
+	r4GenerationTargetNames,
 	sortProperties,
 } from "../model.ts";
 
@@ -57,7 +57,7 @@ export function buildOpenApiR4Definitions(): Map<string, NormalizedDefinition> {
 		packageRoot,
 	};
 
-	for (const name of r4TargetNames) {
+	for (const name of r4GenerationTargetNames) {
 		const loaded = getDefinition(name, context);
 		collectReferencedDefinitions(loaded.schema, context, loaded.sourceStem);
 	}

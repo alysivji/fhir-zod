@@ -14,7 +14,7 @@ import {
 	fhirPrimitiveTypes,
 	isPrimitiveType,
 	normalizeTargetProfiles,
-	r4TargetNames,
+	r4GenerationTargetNames,
 	sortProperties,
 } from "../model.ts";
 
@@ -138,7 +138,7 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 ]);
 
 export function buildStructureDefinitionR4Definitions(
-	scopeNames: Iterable<string> = r4TargetNames,
+	scopeNames: Iterable<string> = r4GenerationTargetNames,
 ): StructureDefinitionBuildResult {
 	const manifest = loadManifest("r4");
 	const packageRoot = resolve(repoRoot, manifest.packageRoot);

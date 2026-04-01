@@ -76,6 +76,10 @@ Track the work needed to align the repository with the current README.
   Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
 - [ ] Teach the generator to emit named TypeScript interfaces/types for oversized schemas
   Proper fix: preserve precise `z.infer<typeof Schema>` types while keeping declaration generation stable.
+- [ ] Audit inheritance/codegen gaps for abstract schemas and cyclic dependencies
+  Current state: safe cases now emit `Base.extend({...})` for abstract types such as `Resource`, `DomainResource`, and some concrete resources.
+  Current shortfall: definitions that participate in dependency cycles still fall back to flattened one-shot schemas to avoid ESM initialization failures.
+  Follow-up direction: generate a class hierarchy/dependency diagram from Python's `fhir.resources` package and use it to define which FHIR types can participate in runtime inheritance safely and which need a different emission strategy.
 
 ## Testing
 

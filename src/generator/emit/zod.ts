@@ -119,13 +119,25 @@ function emitDefinitionFile(
 	generatedBy: string,
 	primitivePatterns: Map<string, string>,
 ): string {
+	const shouldExtend = shouldExtendDefinition(definition, definitions);
+	const directProperties = shouldExtend
+		? getDirectProperties(definition, definitions)
+		: definition.properties;
 	const imports = new Set<string>();
 	const helperImports = new Set<string>();
 	const sharedImports = new Set<string>();
 	const lazySchemaHelpers = new Set<string>();
 	const referenceConstraints = collectReferenceConstraints(definition);
+	const baseDefinition =
+		definition.baseName !== null
+			? definitions.get(definition.baseName) ?? null
+			: null;
 
-	for (const property of definition.properties) {
+	if (shouldExtend && baseDefinition && baseDefinition.name !== definition.name) {
+		imports.add(baseDefinition.name);
+	}
+
+	for (const property of directProperties) {
 		if (
 			property.typeRef &&
 			definitions.has(property.typeRef)
@@ -167,9 +179,93 @@ function emitDefinitionFile(
 			.map((name) => `import { ${name} } from "./${name}";`),
 		...emitLazySchemaHelpers(lazySchemaHelpers),
 		"",
-		`export const ${definition.name} = z`,
-		"\t.object({",
-		...definition.properties.map(
+		...emitDefinitionDeclaration(definition, definitions),
+		...emitDefinitionExpression(
+			definition,
+			directProperties,
+			definitions,
+			primitivePatterns,
+			shouldExtend,
+		),
+		...emitChoiceGroupRefinement(definition),
+		"\t;",
+		"",
+		`export type ${definition.name} = z.output<typeof ${definition.name}>;`,
+		"",
+	];
+
+	return lines.join("\n");
+}
+
+function emitDefinitionDeclaration(
+	definition: NormalizedDefinition,
+	definitions: Map<string, NormalizedDefinition>,
+): string[] {
+	if (!shouldExtendDefinition(definition, definitions)) {
+		return [`export const ${definition.name} = z`];
+	}
+
+	const baseDefinition =
+		definition.baseName !== null
+			? definitions.get(definition.baseName) ?? null
+			: null;
+
+	if (!baseDefinition || baseDefinition.name === definition.name) {
+		return [`export const ${definition.name} = z`];
+	}
+
+	return [`export const ${definition.name} = ${baseDefinition.name}`];
+}
+
+function emitDefinitionExpression(
+	definition: NormalizedDefinition,
+	directProperties: NormalizedDefinition["properties"],
+	definitions: Map<string, NormalizedDefinition>,
+	primitivePatterns: Map<string, string>,
+	shouldExtend: boolean,
+): string[] {
+	if (!shouldExtend) {
+		return [
+			"\t.object({",
+			...directProperties.map(
+				(property) =>
+					`\t\t${property.jsonName}: ${emitPropertyExpression(
+						definition,
+						property,
+						definitions,
+						primitivePatterns,
+					)},`,
+			),
+			"\t})",
+			"\t.strict()",
+		];
+	}
+
+	const baseDefinition =
+		definition.baseName !== null
+			? definitions.get(definition.baseName) ?? null
+			: null;
+
+	if (!baseDefinition || baseDefinition.name === definition.name) {
+		return [
+			"\t.object({",
+			...directProperties.map(
+				(property) =>
+					`\t\t${property.jsonName}: ${emitPropertyExpression(
+						definition,
+						property,
+						definitions,
+						primitivePatterns,
+					)},`,
+			),
+			"\t})",
+			"\t.strict()",
+		];
+	}
+
+	return [
+		"\t.extend({",
+		...directProperties.map(
 			(property) =>
 				`\t\t${property.jsonName}: ${emitPropertyExpression(
 					definition,
@@ -180,14 +276,86 @@ function emitDefinitionFile(
 		),
 		"\t})",
 		"\t.strict()",
-		...emitChoiceGroupRefinement(definition),
-		"\t;",
-		"",
-		`export type ${definition.name} = z.output<typeof ${definition.name}>;`,
-		"",
 	];
+}
 
-	return lines.join("\n");
+function shouldExtendDefinition(
+	definition: NormalizedDefinition,
+	definitions: Map<string, NormalizedDefinition>,
+): boolean {
+	if (!definition.baseName) {
+		return false;
+	}
+
+	const baseDefinition = definitions.get(definition.baseName);
+
+	if (!baseDefinition || baseDefinition.name === definition.name) {
+		return false;
+	}
+
+	return !hasDependencyPath(baseDefinition.name, definition.name, definitions);
+}
+
+function hasDependencyPath(
+	startName: string,
+	targetName: string,
+	definitions: Map<string, NormalizedDefinition>,
+	seen = new Set<string>(),
+): boolean {
+	if (startName === targetName) {
+		return true;
+	}
+
+	if (seen.has(startName)) {
+		return false;
+	}
+
+	seen.add(startName);
+	const definition = definitions.get(startName);
+
+	if (!definition) {
+		return false;
+	}
+
+	for (const property of definition.properties) {
+		if (!property.typeRef || !definitions.has(property.typeRef)) {
+			continue;
+		}
+
+		if (hasDependencyPath(property.typeRef, targetName, definitions, seen)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function getDirectProperties(
+	definition: NormalizedDefinition,
+	definitions: Map<string, NormalizedDefinition>,
+): NormalizedDefinition["properties"] {
+	const inheritedPropertyNames = new Set<string>();
+	const seen = new Set<string>();
+	let currentBaseName = definition.baseName;
+
+	while (currentBaseName && !seen.has(currentBaseName)) {
+		seen.add(currentBaseName);
+		const baseDefinition = definitions.get(currentBaseName);
+
+		if (!baseDefinition) {
+			break;
+		}
+
+		for (const property of baseDefinition.properties) {
+			inheritedPropertyNames.add(property.jsonName);
+		}
+
+		currentBaseName = baseDefinition.baseName;
+	}
+
+	return definition.properties.filter(
+		(property) => !inheritedPropertyNames.has(property.jsonName),
+	);
 }
 
 function emitPropertyExpression(
