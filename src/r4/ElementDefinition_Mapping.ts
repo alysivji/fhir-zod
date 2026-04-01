@@ -5,19 +5,19 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ElementDefinition_Mapping = z
+export const ElementDefinition_Mapping: z.ZodType<unknown> = z
 	.object({
-		_comment: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_identity: z.lazy(() => Element).optional(),
-		_language: z.lazy(() => Element).optional(),
-		_map: z.lazy(() => Element).optional(),
+		_comment: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_identity: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_language: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_map: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		comment: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

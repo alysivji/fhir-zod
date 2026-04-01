@@ -6,18 +6,18 @@ import { CodeableConcept } from "./CodeableConcept";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Patient_Communication = z
+export const Patient_Communication: z.ZodType<unknown> = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_preferred: z.lazy(() => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_preferred: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		language: z.lazy(() => CodeableConcept),
+		language: z.lazy((): z.ZodType<unknown> => CodeableConcept),
 		modifierExtension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		preferred: z.boolean().optional(),

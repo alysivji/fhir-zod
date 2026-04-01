@@ -6,19 +6,19 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 
-export const Annotation = z
+export const Annotation: z.ZodType<unknown> = z
 	.object({
-		_authorString: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_text: z.lazy(() => Element).optional(),
-		_time: z.lazy(() => Element).optional(),
-		authorReference: z.lazy(() => Reference).optional(),
+		_authorString: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_text: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_time: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		authorReference: z.lazy((): z.ZodType<unknown> => Reference).optional(),
 		authorString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

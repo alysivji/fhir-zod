@@ -5,18 +5,18 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ElementDefinition_Binding = z
+export const ElementDefinition_Binding: z.ZodType<unknown> = z
 	.object({
-		_description: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_strength: z.lazy(() => Element).optional(),
-		_valueSet: z.lazy(() => Element).optional(),
+		_description: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_strength: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_valueSet: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		description: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

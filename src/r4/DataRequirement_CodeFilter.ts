@@ -6,18 +6,18 @@ import { Coding } from "./Coding";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const DataRequirement_CodeFilter = z
+export const DataRequirement_CodeFilter: z.ZodType<unknown> = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_path: z.lazy(() => Element).optional(),
-		_searchParam: z.lazy(() => Element).optional(),
-		_valueSet: z.lazy(() => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_path: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_searchParam: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_valueSet: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		code: z
-			.lazy(() => Coding)
+			.lazy((): z.ZodType<unknown> => Coding)
 			.array()
 			.optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

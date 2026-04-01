@@ -5,14 +5,14 @@ import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const Period = z
+export const Period: z.ZodType<unknown> = z
 	.object({
-		_end: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_start: z.lazy(() => Element).optional(),
+		_end: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_start: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		end: fhirDateTime().optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

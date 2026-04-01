@@ -5,19 +5,19 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ElementDefinition_Slicing = z
+export const ElementDefinition_Slicing: z.ZodType<unknown> = z
 	.object({
-		_description: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_ordered: z.lazy(() => Element).optional(),
-		_rules: z.lazy(() => Element).optional(),
+		_description: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_ordered: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_rules: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		description: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		discriminator: z.unknown().array().optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

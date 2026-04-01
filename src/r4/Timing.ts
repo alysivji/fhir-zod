@@ -7,21 +7,21 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Timing_Repeat } from "./Timing_Repeat";
 
-export const Timing = z
+export const Timing: z.ZodType<unknown> = z
 	.object({
-		_event: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		code: z.lazy(() => CodeableConcept).optional(),
+		_event: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		code: z.lazy((): z.ZodType<unknown> => CodeableConcept).optional(),
 		event: fhirDateTime().array().optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
 		modifierExtension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
-		repeat: z.lazy(() => Timing_Repeat).optional(),
+		repeat: z.lazy((): z.ZodType<unknown> => Timing_Repeat).optional(),
 	})
 	.strict();

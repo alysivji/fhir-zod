@@ -5,14 +5,14 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
-export const ElementDefinition_Base = z
+export const ElementDefinition_Base: z.ZodType<unknown> = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_max: z.lazy(() => Element).optional(),
-		_min: z.lazy(() => Element).optional(),
-		_path: z.lazy(() => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_max: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_min: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_path: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),

@@ -9,45 +9,49 @@ import { Quantity } from "./Quantity";
 import { Ratio } from "./Ratio";
 import { Timing } from "./Timing";
 
-export const Dosage = z
+export const Dosage: z.ZodType<unknown> = z
 	.object({
-		_asNeededBoolean: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_patientInstruction: z.lazy(() => Element).optional(),
-		_sequence: z.lazy(() => Element).optional(),
-		_text: z.lazy(() => Element).optional(),
+		_asNeededBoolean: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patientInstruction: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_sequence: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_text: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		additionalInstruction: z
-			.lazy(() => CodeableConcept)
+			.lazy((): z.ZodType<unknown> => CodeableConcept)
 			.array()
 			.optional(),
 		asNeededBoolean: z.boolean().optional(),
-		asNeededCodeableConcept: z.lazy(() => CodeableConcept).optional(),
+		asNeededCodeableConcept: z
+			.lazy((): z.ZodType<unknown> => CodeableConcept)
+			.optional(),
 		doseAndRate: z.unknown().array().optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		maxDosePerAdministration: z.lazy(() => Quantity).optional(),
-		maxDosePerLifetime: z.lazy(() => Quantity).optional(),
-		maxDosePerPeriod: z.lazy(() => Ratio).optional(),
-		method: z.lazy(() => CodeableConcept).optional(),
+		maxDosePerAdministration: z
+			.lazy((): z.ZodType<unknown> => Quantity)
+			.optional(),
+		maxDosePerLifetime: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		maxDosePerPeriod: z.lazy((): z.ZodType<unknown> => Ratio).optional(),
+		method: z.lazy((): z.ZodType<unknown> => CodeableConcept).optional(),
 		modifierExtension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		patientInstruction: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		route: z.lazy(() => CodeableConcept).optional(),
+		route: z.lazy((): z.ZodType<unknown> => CodeableConcept).optional(),
 		sequence: z.number().int().optional(),
-		site: z.lazy(() => CodeableConcept).optional(),
+		site: z.lazy((): z.ZodType<unknown> => CodeableConcept).optional(),
 		text: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		timing: z.lazy(() => Timing).optional(),
+		timing: z.lazy((): z.ZodType<unknown> => Timing).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

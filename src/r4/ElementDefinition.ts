@@ -48,125 +48,139 @@ import { Timing } from "./Timing";
 import { TriggerDefinition } from "./TriggerDefinition";
 import { UsageContext } from "./UsageContext";
 
-export const ElementDefinition = z
+export const ElementDefinition: z.ZodType<unknown> = z
 	.object({
-		_alias: z.lazy(() => Element).optional(),
-		_comment: z.lazy(() => Element).optional(),
-		_condition: z.lazy(() => Element).optional(),
-		_contentReference: z.lazy(() => Element).optional(),
-		_defaultValueBase64Binary: z.lazy(() => Element).optional(),
-		_defaultValueBoolean: z.lazy(() => Element).optional(),
-		_defaultValueCanonical: z.lazy(() => Element).optional(),
-		_defaultValueCode: z.lazy(() => Element).optional(),
-		_defaultValueDate: z.lazy(() => Element).optional(),
-		_defaultValueDateTime: z.lazy(() => Element).optional(),
-		_defaultValueDecimal: z.lazy(() => Element).optional(),
-		_defaultValueId: z.lazy(() => Element).optional(),
-		_defaultValueInstant: z.lazy(() => Element).optional(),
-		_defaultValueInteger: z.lazy(() => Element).optional(),
-		_defaultValueMarkdown: z.lazy(() => Element).optional(),
-		_defaultValueOid: z.lazy(() => Element).optional(),
-		_defaultValuePositiveInt: z.lazy(() => Element).optional(),
-		_defaultValueString: z.lazy(() => Element).optional(),
-		_defaultValueTime: z.lazy(() => Element).optional(),
-		_defaultValueUnsignedInt: z.lazy(() => Element).optional(),
-		_defaultValueUri: z.lazy(() => Element).optional(),
-		_defaultValueUrl: z.lazy(() => Element).optional(),
-		_defaultValueUuid: z.lazy(() => Element).optional(),
-		_definition: z.lazy(() => Element).optional(),
-		_fixedBase64Binary: z.lazy(() => Element).optional(),
-		_fixedBoolean: z.lazy(() => Element).optional(),
-		_fixedCanonical: z.lazy(() => Element).optional(),
-		_fixedCode: z.lazy(() => Element).optional(),
-		_fixedDate: z.lazy(() => Element).optional(),
-		_fixedDateTime: z.lazy(() => Element).optional(),
-		_fixedDecimal: z.lazy(() => Element).optional(),
-		_fixedId: z.lazy(() => Element).optional(),
-		_fixedInstant: z.lazy(() => Element).optional(),
-		_fixedInteger: z.lazy(() => Element).optional(),
-		_fixedMarkdown: z.lazy(() => Element).optional(),
-		_fixedOid: z.lazy(() => Element).optional(),
-		_fixedPositiveInt: z.lazy(() => Element).optional(),
-		_fixedString: z.lazy(() => Element).optional(),
-		_fixedTime: z.lazy(() => Element).optional(),
-		_fixedUnsignedInt: z.lazy(() => Element).optional(),
-		_fixedUri: z.lazy(() => Element).optional(),
-		_fixedUrl: z.lazy(() => Element).optional(),
-		_fixedUuid: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_isModifier: z.lazy(() => Element).optional(),
-		_isModifierReason: z.lazy(() => Element).optional(),
-		_isSummary: z.lazy(() => Element).optional(),
-		_label: z.lazy(() => Element).optional(),
-		_max: z.lazy(() => Element).optional(),
-		_maxLength: z.lazy(() => Element).optional(),
-		_maxValueDate: z.lazy(() => Element).optional(),
-		_maxValueDateTime: z.lazy(() => Element).optional(),
-		_maxValueDecimal: z.lazy(() => Element).optional(),
-		_maxValueInstant: z.lazy(() => Element).optional(),
-		_maxValueInteger: z.lazy(() => Element).optional(),
-		_maxValuePositiveInt: z.lazy(() => Element).optional(),
-		_maxValueTime: z.lazy(() => Element).optional(),
-		_maxValueUnsignedInt: z.lazy(() => Element).optional(),
-		_meaningWhenMissing: z.lazy(() => Element).optional(),
-		_min: z.lazy(() => Element).optional(),
-		_minValueDate: z.lazy(() => Element).optional(),
-		_minValueDateTime: z.lazy(() => Element).optional(),
-		_minValueDecimal: z.lazy(() => Element).optional(),
-		_minValueInstant: z.lazy(() => Element).optional(),
-		_minValueInteger: z.lazy(() => Element).optional(),
-		_minValuePositiveInt: z.lazy(() => Element).optional(),
-		_minValueTime: z.lazy(() => Element).optional(),
-		_minValueUnsignedInt: z.lazy(() => Element).optional(),
-		_mustSupport: z.lazy(() => Element).optional(),
-		_orderMeaning: z.lazy(() => Element).optional(),
-		_path: z.lazy(() => Element).optional(),
-		_patternBase64Binary: z.lazy(() => Element).optional(),
-		_patternBoolean: z.lazy(() => Element).optional(),
-		_patternCanonical: z.lazy(() => Element).optional(),
-		_patternCode: z.lazy(() => Element).optional(),
-		_patternDate: z.lazy(() => Element).optional(),
-		_patternDateTime: z.lazy(() => Element).optional(),
-		_patternDecimal: z.lazy(() => Element).optional(),
-		_patternId: z.lazy(() => Element).optional(),
-		_patternInstant: z.lazy(() => Element).optional(),
-		_patternInteger: z.lazy(() => Element).optional(),
-		_patternMarkdown: z.lazy(() => Element).optional(),
-		_patternOid: z.lazy(() => Element).optional(),
-		_patternPositiveInt: z.lazy(() => Element).optional(),
-		_patternString: z.lazy(() => Element).optional(),
-		_patternTime: z.lazy(() => Element).optional(),
-		_patternUnsignedInt: z.lazy(() => Element).optional(),
-		_patternUri: z.lazy(() => Element).optional(),
-		_patternUrl: z.lazy(() => Element).optional(),
-		_patternUuid: z.lazy(() => Element).optional(),
-		_representation: z.lazy(() => Element).optional(),
-		_requirements: z.lazy(() => Element).optional(),
-		_short: z.lazy(() => Element).optional(),
-		_sliceIsConstraining: z.lazy(() => Element).optional(),
-		_sliceName: z.lazy(() => Element).optional(),
+		_alias: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_comment: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_condition: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_contentReference: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueBase64Binary: z
+			.lazy((): z.ZodType<unknown> => Element)
+			.optional(),
+		_defaultValueBoolean: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueCanonical: z
+			.lazy((): z.ZodType<unknown> => Element)
+			.optional(),
+		_defaultValueCode: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueDate: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueDecimal: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueId: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueInstant: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueInteger: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueMarkdown: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueOid: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValuePositiveInt: z
+			.lazy((): z.ZodType<unknown> => Element)
+			.optional(),
+		_defaultValueString: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueUnsignedInt: z
+			.lazy((): z.ZodType<unknown> => Element)
+			.optional(),
+		_defaultValueUri: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueUrl: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_defaultValueUuid: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_definition: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedBase64Binary: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedBoolean: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedCanonical: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedCode: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedDate: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedDecimal: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedId: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedInstant: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedInteger: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedMarkdown: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedOid: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedPositiveInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedString: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedUnsignedInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedUri: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedUrl: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_fixedUuid: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_isModifier: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_isModifierReason: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_isSummary: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_label: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_max: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxLength: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueDate: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueDecimal: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueInstant: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueInteger: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValuePositiveInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_maxValueUnsignedInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_meaningWhenMissing: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_min: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueDate: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueDecimal: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueInstant: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueInteger: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValuePositiveInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_minValueUnsignedInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_mustSupport: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_orderMeaning: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_path: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternBase64Binary: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternBoolean: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternCanonical: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternCode: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternDate: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternDateTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternDecimal: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternId: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternInstant: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternInteger: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternMarkdown: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternOid: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternPositiveInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternString: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternTime: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternUnsignedInt: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternUri: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternUrl: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_patternUuid: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_representation: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_requirements: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_short: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_sliceIsConstraining: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_sliceName: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		alias: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.array()
 			.optional(),
-		base: z.lazy(() => ElementDefinition_Base).optional(),
-		binding: z.lazy(() => ElementDefinition_Binding).optional(),
+		base: z.lazy((): z.ZodType<unknown> => ElementDefinition_Base).optional(),
+		binding: z
+			.lazy((): z.ZodType<unknown> => ElementDefinition_Binding)
+			.optional(),
 		code: z
-			.lazy(() => Coding)
+			.lazy((): z.ZodType<unknown> => Coding)
 			.array()
 			.optional(),
 		comment: z.string().optional(),
 		condition: fhirId().array().optional(),
 		constraint: z
-			.lazy(() => ElementDefinition_Constraint)
+			.lazy((): z.ZodType<unknown> => ElementDefinition_Constraint)
 			.array()
 			.optional(),
 		contentReference: z.string().regex(/\S*/).optional(),
-		defaultValueAddress: z.lazy(() => Address).optional(),
-		defaultValueAge: z.lazy(() => Age).optional(),
-		defaultValueAnnotation: z.lazy(() => Annotation).optional(),
-		defaultValueAttachment: z.lazy(() => Attachment).optional(),
+		defaultValueAddress: z.lazy((): z.ZodType<unknown> => Address).optional(),
+		defaultValueAge: z.lazy((): z.ZodType<unknown> => Age).optional(),
+		defaultValueAnnotation: z
+			.lazy((): z.ZodType<unknown> => Annotation)
+			.optional(),
+		defaultValueAttachment: z
+			.lazy((): z.ZodType<unknown> => Attachment)
+			.optional(),
 		defaultValueBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
@@ -177,55 +191,81 @@ export const ElementDefinition = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		defaultValueCodeableConcept: z.lazy(() => CodeableConcept).optional(),
-		defaultValueCoding: z.lazy(() => Coding).optional(),
-		defaultValueContactDetail: z.lazy(() => ContactDetail).optional(),
-		defaultValueContactPoint: z.lazy(() => ContactPoint).optional(),
-		defaultValueContributor: z.lazy(() => Contributor).optional(),
-		defaultValueCount: z.lazy(() => Count).optional(),
-		defaultValueDataRequirement: z.lazy(() => DataRequirement).optional(),
+		defaultValueCodeableConcept: z
+			.lazy((): z.ZodType<unknown> => CodeableConcept)
+			.optional(),
+		defaultValueCoding: z.lazy((): z.ZodType<unknown> => Coding).optional(),
+		defaultValueContactDetail: z
+			.lazy((): z.ZodType<unknown> => ContactDetail)
+			.optional(),
+		defaultValueContactPoint: z
+			.lazy((): z.ZodType<unknown> => ContactPoint)
+			.optional(),
+		defaultValueContributor: z
+			.lazy((): z.ZodType<unknown> => Contributor)
+			.optional(),
+		defaultValueCount: z.lazy((): z.ZodType<unknown> => Count).optional(),
+		defaultValueDataRequirement: z
+			.lazy((): z.ZodType<unknown> => DataRequirement)
+			.optional(),
 		defaultValueDate: fhirDate().optional(),
 		defaultValueDateTime: fhirDateTime().optional(),
 		defaultValueDecimal: z.number().optional(),
-		defaultValueDistance: z.lazy(() => Distance).optional(),
-		defaultValueDosage: z.lazy(() => Dosage).optional(),
-		defaultValueDuration: z.lazy(() => Duration).optional(),
+		defaultValueDistance: z.lazy((): z.ZodType<unknown> => Distance).optional(),
+		defaultValueDosage: z.lazy((): z.ZodType<unknown> => Dosage).optional(),
+		defaultValueDuration: z.lazy((): z.ZodType<unknown> => Duration).optional(),
 		defaultValueExpression: z.unknown().optional(),
-		defaultValueHumanName: z.lazy(() => HumanName).optional(),
+		defaultValueHumanName: z
+			.lazy((): z.ZodType<unknown> => HumanName)
+			.optional(),
 		defaultValueId: fhirId().optional(),
-		defaultValueIdentifier: z.lazy(() => Identifier).optional(),
+		defaultValueIdentifier: z
+			.lazy((): z.ZodType<unknown> => Identifier)
+			.optional(),
 		defaultValueInstant: fhirInstant().optional(),
 		defaultValueInteger: z.number().int().optional(),
 		defaultValueMarkdown: z.string().optional(),
-		defaultValueMeta: z.lazy(() => Meta).optional(),
-		defaultValueMoney: z.lazy(() => Money).optional(),
+		defaultValueMeta: z.lazy((): z.ZodType<unknown> => Meta).optional(),
+		defaultValueMoney: z.lazy((): z.ZodType<unknown> => Money).optional(),
 		defaultValueOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
 			.optional(),
 		defaultValueParameterDefinition: z
-			.lazy(() => ParameterDefinition)
+			.lazy((): z.ZodType<unknown> => ParameterDefinition)
 			.optional(),
-		defaultValuePeriod: z.lazy(() => Period).optional(),
+		defaultValuePeriod: z.lazy((): z.ZodType<unknown> => Period).optional(),
 		defaultValuePositiveInt: z.number().int().positive().optional(),
-		defaultValueQuantity: z.lazy(() => Quantity).optional(),
-		defaultValueRange: z.lazy(() => Range).optional(),
-		defaultValueRatio: z.lazy(() => Ratio).optional(),
-		defaultValueReference: z.lazy(() => Reference).optional(),
-		defaultValueRelatedArtifact: z.lazy(() => RelatedArtifact).optional(),
-		defaultValueSampledData: z.lazy(() => SampledData).optional(),
-		defaultValueSignature: z.lazy(() => Signature).optional(),
+		defaultValueQuantity: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		defaultValueRange: z.lazy((): z.ZodType<unknown> => Range).optional(),
+		defaultValueRatio: z.lazy((): z.ZodType<unknown> => Ratio).optional(),
+		defaultValueReference: z
+			.lazy((): z.ZodType<unknown> => Reference)
+			.optional(),
+		defaultValueRelatedArtifact: z
+			.lazy((): z.ZodType<unknown> => RelatedArtifact)
+			.optional(),
+		defaultValueSampledData: z
+			.lazy((): z.ZodType<unknown> => SampledData)
+			.optional(),
+		defaultValueSignature: z
+			.lazy((): z.ZodType<unknown> => Signature)
+			.optional(),
 		defaultValueString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		defaultValueTime: fhirTime().optional(),
-		defaultValueTiming: z.lazy(() => Timing).optional(),
-		defaultValueTriggerDefinition: z.lazy(() => TriggerDefinition).optional(),
+		defaultValueTiming: z.lazy((): z.ZodType<unknown> => Timing).optional(),
+		defaultValueTriggerDefinition: z
+			.lazy((): z.ZodType<unknown> => TriggerDefinition)
+			.optional(),
 		defaultValueUnsignedInt: z.number().int().nonnegative().optional(),
 		defaultValueUri: z.string().regex(/\S*/).optional(),
 		defaultValueUrl: z.string().regex(/\S*/).optional(),
-		defaultValueUsageContext: z.lazy(() => UsageContext).optional(),
+		defaultValueUsageContext: z
+			.lazy((): z.ZodType<unknown> => UsageContext)
+			.optional(),
 		defaultValueUuid: z
 			.string()
 			.regex(
@@ -234,17 +274,17 @@ export const ElementDefinition = z
 			.optional(),
 		definition: z.string().optional(),
 		example: z
-			.lazy(() => ElementDefinition_Example)
+			.lazy((): z.ZodType<unknown> => ElementDefinition_Example)
 			.array()
 			.optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
-		fixedAddress: z.lazy(() => Address).optional(),
-		fixedAge: z.lazy(() => Age).optional(),
-		fixedAnnotation: z.lazy(() => Annotation).optional(),
-		fixedAttachment: z.lazy(() => Attachment).optional(),
+		fixedAddress: z.lazy((): z.ZodType<unknown> => Address).optional(),
+		fixedAge: z.lazy((): z.ZodType<unknown> => Age).optional(),
+		fixedAnnotation: z.lazy((): z.ZodType<unknown> => Annotation).optional(),
+		fixedAttachment: z.lazy((): z.ZodType<unknown> => Attachment).optional(),
 		fixedBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
@@ -255,53 +295,69 @@ export const ElementDefinition = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		fixedCodeableConcept: z.lazy(() => CodeableConcept).optional(),
-		fixedCoding: z.lazy(() => Coding).optional(),
-		fixedContactDetail: z.lazy(() => ContactDetail).optional(),
-		fixedContactPoint: z.lazy(() => ContactPoint).optional(),
-		fixedContributor: z.lazy(() => Contributor).optional(),
-		fixedCount: z.lazy(() => Count).optional(),
-		fixedDataRequirement: z.lazy(() => DataRequirement).optional(),
+		fixedCodeableConcept: z
+			.lazy((): z.ZodType<unknown> => CodeableConcept)
+			.optional(),
+		fixedCoding: z.lazy((): z.ZodType<unknown> => Coding).optional(),
+		fixedContactDetail: z
+			.lazy((): z.ZodType<unknown> => ContactDetail)
+			.optional(),
+		fixedContactPoint: z
+			.lazy((): z.ZodType<unknown> => ContactPoint)
+			.optional(),
+		fixedContributor: z.lazy((): z.ZodType<unknown> => Contributor).optional(),
+		fixedCount: z.lazy((): z.ZodType<unknown> => Count).optional(),
+		fixedDataRequirement: z
+			.lazy((): z.ZodType<unknown> => DataRequirement)
+			.optional(),
 		fixedDate: fhirDate().optional(),
 		fixedDateTime: fhirDateTime().optional(),
 		fixedDecimal: z.number().optional(),
-		fixedDistance: z.lazy(() => Distance).optional(),
-		fixedDosage: z.lazy(() => Dosage).optional(),
-		fixedDuration: z.lazy(() => Duration).optional(),
+		fixedDistance: z.lazy((): z.ZodType<unknown> => Distance).optional(),
+		fixedDosage: z.lazy((): z.ZodType<unknown> => Dosage).optional(),
+		fixedDuration: z.lazy((): z.ZodType<unknown> => Duration).optional(),
 		fixedExpression: z.unknown().optional(),
-		fixedHumanName: z.lazy(() => HumanName).optional(),
+		fixedHumanName: z.lazy((): z.ZodType<unknown> => HumanName).optional(),
 		fixedId: fhirId().optional(),
-		fixedIdentifier: z.lazy(() => Identifier).optional(),
+		fixedIdentifier: z.lazy((): z.ZodType<unknown> => Identifier).optional(),
 		fixedInstant: fhirInstant().optional(),
 		fixedInteger: z.number().int().optional(),
 		fixedMarkdown: z.string().optional(),
-		fixedMeta: z.lazy(() => Meta).optional(),
-		fixedMoney: z.lazy(() => Money).optional(),
+		fixedMeta: z.lazy((): z.ZodType<unknown> => Meta).optional(),
+		fixedMoney: z.lazy((): z.ZodType<unknown> => Money).optional(),
 		fixedOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
 			.optional(),
-		fixedParameterDefinition: z.lazy(() => ParameterDefinition).optional(),
-		fixedPeriod: z.lazy(() => Period).optional(),
+		fixedParameterDefinition: z
+			.lazy((): z.ZodType<unknown> => ParameterDefinition)
+			.optional(),
+		fixedPeriod: z.lazy((): z.ZodType<unknown> => Period).optional(),
 		fixedPositiveInt: z.number().int().positive().optional(),
-		fixedQuantity: z.lazy(() => Quantity).optional(),
-		fixedRange: z.lazy(() => Range).optional(),
-		fixedRatio: z.lazy(() => Ratio).optional(),
-		fixedReference: z.lazy(() => Reference).optional(),
-		fixedRelatedArtifact: z.lazy(() => RelatedArtifact).optional(),
-		fixedSampledData: z.lazy(() => SampledData).optional(),
-		fixedSignature: z.lazy(() => Signature).optional(),
+		fixedQuantity: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		fixedRange: z.lazy((): z.ZodType<unknown> => Range).optional(),
+		fixedRatio: z.lazy((): z.ZodType<unknown> => Ratio).optional(),
+		fixedReference: z.lazy((): z.ZodType<unknown> => Reference).optional(),
+		fixedRelatedArtifact: z
+			.lazy((): z.ZodType<unknown> => RelatedArtifact)
+			.optional(),
+		fixedSampledData: z.lazy((): z.ZodType<unknown> => SampledData).optional(),
+		fixedSignature: z.lazy((): z.ZodType<unknown> => Signature).optional(),
 		fixedString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		fixedTime: fhirTime().optional(),
-		fixedTiming: z.lazy(() => Timing).optional(),
-		fixedTriggerDefinition: z.lazy(() => TriggerDefinition).optional(),
+		fixedTiming: z.lazy((): z.ZodType<unknown> => Timing).optional(),
+		fixedTriggerDefinition: z
+			.lazy((): z.ZodType<unknown> => TriggerDefinition)
+			.optional(),
 		fixedUnsignedInt: z.number().int().nonnegative().optional(),
 		fixedUri: z.string().regex(/\S*/).optional(),
 		fixedUrl: z.string().regex(/\S*/).optional(),
-		fixedUsageContext: z.lazy(() => UsageContext).optional(),
+		fixedUsageContext: z
+			.lazy((): z.ZodType<unknown> => UsageContext)
+			.optional(),
 		fixedUuid: z
 			.string()
 			.regex(
@@ -320,7 +376,7 @@ export const ElementDefinition = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		mapping: z
-			.lazy(() => ElementDefinition_Mapping)
+			.lazy((): z.ZodType<unknown> => ElementDefinition_Mapping)
 			.array()
 			.optional(),
 		max: z
@@ -334,7 +390,7 @@ export const ElementDefinition = z
 		maxValueInstant: fhirInstant().optional(),
 		maxValueInteger: z.number().int().optional(),
 		maxValuePositiveInt: z.number().int().positive().optional(),
-		maxValueQuantity: z.lazy(() => Quantity).optional(),
+		maxValueQuantity: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
 		maxValueTime: fhirTime().optional(),
 		maxValueUnsignedInt: z.number().int().nonnegative().optional(),
 		meaningWhenMissing: z.string().optional(),
@@ -345,11 +401,11 @@ export const ElementDefinition = z
 		minValueInstant: fhirInstant().optional(),
 		minValueInteger: z.number().int().optional(),
 		minValuePositiveInt: z.number().int().positive().optional(),
-		minValueQuantity: z.lazy(() => Quantity).optional(),
+		minValueQuantity: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
 		minValueTime: fhirTime().optional(),
 		minValueUnsignedInt: z.number().int().nonnegative().optional(),
 		modifierExtension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		mustSupport: z.boolean().optional(),
@@ -358,10 +414,10 @@ export const ElementDefinition = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		path: z.string().regex(/[ \r\n\t\S]+/),
-		patternAddress: z.lazy(() => Address).optional(),
-		patternAge: z.lazy(() => Age).optional(),
-		patternAnnotation: z.lazy(() => Annotation).optional(),
-		patternAttachment: z.lazy(() => Attachment).optional(),
+		patternAddress: z.lazy((): z.ZodType<unknown> => Address).optional(),
+		patternAge: z.lazy((): z.ZodType<unknown> => Age).optional(),
+		patternAnnotation: z.lazy((): z.ZodType<unknown> => Annotation).optional(),
+		patternAttachment: z.lazy((): z.ZodType<unknown> => Attachment).optional(),
 		patternBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
@@ -372,53 +428,73 @@ export const ElementDefinition = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		patternCodeableConcept: z.lazy(() => CodeableConcept).optional(),
-		patternCoding: z.lazy(() => Coding).optional(),
-		patternContactDetail: z.lazy(() => ContactDetail).optional(),
-		patternContactPoint: z.lazy(() => ContactPoint).optional(),
-		patternContributor: z.lazy(() => Contributor).optional(),
-		patternCount: z.lazy(() => Count).optional(),
-		patternDataRequirement: z.lazy(() => DataRequirement).optional(),
+		patternCodeableConcept: z
+			.lazy((): z.ZodType<unknown> => CodeableConcept)
+			.optional(),
+		patternCoding: z.lazy((): z.ZodType<unknown> => Coding).optional(),
+		patternContactDetail: z
+			.lazy((): z.ZodType<unknown> => ContactDetail)
+			.optional(),
+		patternContactPoint: z
+			.lazy((): z.ZodType<unknown> => ContactPoint)
+			.optional(),
+		patternContributor: z
+			.lazy((): z.ZodType<unknown> => Contributor)
+			.optional(),
+		patternCount: z.lazy((): z.ZodType<unknown> => Count).optional(),
+		patternDataRequirement: z
+			.lazy((): z.ZodType<unknown> => DataRequirement)
+			.optional(),
 		patternDate: fhirDate().optional(),
 		patternDateTime: fhirDateTime().optional(),
 		patternDecimal: z.number().optional(),
-		patternDistance: z.lazy(() => Distance).optional(),
-		patternDosage: z.lazy(() => Dosage).optional(),
-		patternDuration: z.lazy(() => Duration).optional(),
+		patternDistance: z.lazy((): z.ZodType<unknown> => Distance).optional(),
+		patternDosage: z.lazy((): z.ZodType<unknown> => Dosage).optional(),
+		patternDuration: z.lazy((): z.ZodType<unknown> => Duration).optional(),
 		patternExpression: z.unknown().optional(),
-		patternHumanName: z.lazy(() => HumanName).optional(),
+		patternHumanName: z.lazy((): z.ZodType<unknown> => HumanName).optional(),
 		patternId: fhirId().optional(),
-		patternIdentifier: z.lazy(() => Identifier).optional(),
+		patternIdentifier: z.lazy((): z.ZodType<unknown> => Identifier).optional(),
 		patternInstant: fhirInstant().optional(),
 		patternInteger: z.number().int().optional(),
 		patternMarkdown: z.string().optional(),
-		patternMeta: z.lazy(() => Meta).optional(),
-		patternMoney: z.lazy(() => Money).optional(),
+		patternMeta: z.lazy((): z.ZodType<unknown> => Meta).optional(),
+		patternMoney: z.lazy((): z.ZodType<unknown> => Money).optional(),
 		patternOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
 			.optional(),
-		patternParameterDefinition: z.lazy(() => ParameterDefinition).optional(),
-		patternPeriod: z.lazy(() => Period).optional(),
+		patternParameterDefinition: z
+			.lazy((): z.ZodType<unknown> => ParameterDefinition)
+			.optional(),
+		patternPeriod: z.lazy((): z.ZodType<unknown> => Period).optional(),
 		patternPositiveInt: z.number().int().positive().optional(),
-		patternQuantity: z.lazy(() => Quantity).optional(),
-		patternRange: z.lazy(() => Range).optional(),
-		patternRatio: z.lazy(() => Ratio).optional(),
-		patternReference: z.lazy(() => Reference).optional(),
-		patternRelatedArtifact: z.lazy(() => RelatedArtifact).optional(),
-		patternSampledData: z.lazy(() => SampledData).optional(),
-		patternSignature: z.lazy(() => Signature).optional(),
+		patternQuantity: z.lazy((): z.ZodType<unknown> => Quantity).optional(),
+		patternRange: z.lazy((): z.ZodType<unknown> => Range).optional(),
+		patternRatio: z.lazy((): z.ZodType<unknown> => Ratio).optional(),
+		patternReference: z.lazy((): z.ZodType<unknown> => Reference).optional(),
+		patternRelatedArtifact: z
+			.lazy((): z.ZodType<unknown> => RelatedArtifact)
+			.optional(),
+		patternSampledData: z
+			.lazy((): z.ZodType<unknown> => SampledData)
+			.optional(),
+		patternSignature: z.lazy((): z.ZodType<unknown> => Signature).optional(),
 		patternString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		patternTime: fhirTime().optional(),
-		patternTiming: z.lazy(() => Timing).optional(),
-		patternTriggerDefinition: z.lazy(() => TriggerDefinition).optional(),
+		patternTiming: z.lazy((): z.ZodType<unknown> => Timing).optional(),
+		patternTriggerDefinition: z
+			.lazy((): z.ZodType<unknown> => TriggerDefinition)
+			.optional(),
 		patternUnsignedInt: z.number().int().nonnegative().optional(),
 		patternUri: z.string().regex(/\S*/).optional(),
 		patternUrl: z.string().regex(/\S*/).optional(),
-		patternUsageContext: z.lazy(() => UsageContext).optional(),
+		patternUsageContext: z
+			.lazy((): z.ZodType<unknown> => UsageContext)
+			.optional(),
 		patternUuid: z
 			.string()
 			.regex(
@@ -439,9 +515,11 @@ export const ElementDefinition = z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		slicing: z.lazy(() => ElementDefinition_Slicing).optional(),
+		slicing: z
+			.lazy((): z.ZodType<unknown> => ElementDefinition_Slicing)
+			.optional(),
 		type: z
-			.lazy(() => ElementDefinition_Type)
+			.lazy((): z.ZodType<unknown> => ElementDefinition_Type)
 			.array()
 			.optional(),
 	})

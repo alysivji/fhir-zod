@@ -148,7 +148,7 @@ function emitDefinitionFile(
 			.sort((left, right) => left.localeCompare(right))
 			.map((name) => `import { ${name} } from "./${name}";`),
 		"",
-		`export const ${definition.name} = z`,
+		`export const ${definition.name}: z.ZodType<unknown> = z`,
 		"\t.object({",
 		...definition.properties.map(
 			(property) =>
@@ -207,7 +207,7 @@ function emitBaseExpression(
 	}
 
 	if (property.typeRef && definitions.has(property.typeRef)) {
-		return `z.lazy(() => ${property.typeRef})`;
+		return `z.lazy((): z.ZodType<unknown> => ${property.typeRef})`;
 	}
 
 	if (property.enumValues) {

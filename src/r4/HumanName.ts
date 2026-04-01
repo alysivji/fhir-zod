@@ -6,17 +6,17 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Period } from "./Period";
 
-export const HumanName = z
+export const HumanName: z.ZodType<unknown> = z
 	.object({
-		_family: z.lazy(() => Element).optional(),
-		_given: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_prefix: z.lazy(() => Element).optional(),
-		_suffix: z.lazy(() => Element).optional(),
-		_text: z.lazy(() => Element).optional(),
-		_use: z.lazy(() => Element).optional(),
+		_family: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_given: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_id: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_prefix: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_suffix: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_text: z.lazy((): z.ZodType<unknown> => Element).optional(),
+		_use: z.lazy((): z.ZodType<unknown> => Element).optional(),
 		extension: z
-			.lazy(() => Extension)
+			.lazy((): z.ZodType<unknown> => Extension)
 			.array()
 			.optional(),
 		family: z
@@ -29,7 +29,7 @@ export const HumanName = z
 			.array()
 			.optional(),
 		id: fhirId().optional(),
-		period: z.lazy(() => Period).optional(),
+		period: z.lazy((): z.ZodType<unknown> => Period).optional(),
 		prefix: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
