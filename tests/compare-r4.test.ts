@@ -50,9 +50,9 @@ describe("R4 comparison spike", () => {
 		expect(
 			result.files.some((file) => file.endsWith("/src/r4/Patient.ts")),
 		).toBe(true);
-		expect(
-			existsSync(resolve(process.cwd(), "src", "r4", "Patient.ts")),
-		).toBe(true);
+		expect(existsSync(resolve(process.cwd(), "src", "r4", "Patient.ts"))).toBe(
+			true,
+		);
 	});
 
 	it("keeps the legacy OpenAPI generator out of src/r4", () => {

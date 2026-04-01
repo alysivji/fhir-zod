@@ -13,16 +13,16 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24"
           cache: npm
 
       - name: Restore spec cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .local/spec-cache
           key: spec-cache-${{ runner.os }}-${{ hashFiles('src/spec/**/*.json', 'scripts/fetch-spec.ts') }}
