@@ -118,14 +118,18 @@ function emitDefinitionFile(
 ): string {
 	const imports = new Set<string>();
 	const helperImports = new Set<string>();
+	const lazySchemaHelpers = new Set<string>();
 
 	for (const property of definition.properties) {
 		if (
 			property.typeRef &&
-			property.typeRef !== definition.name &&
 			definitions.has(property.typeRef)
 		) {
-			imports.add(property.typeRef);
+			lazySchemaHelpers.add(property.typeRef);
+
+			if (property.typeRef !== definition.name) {
+				imports.add(property.typeRef);
+			}
 		}
 
 		const primitiveHelper = primitiveHelperName(property.primitiveType);
@@ -147,6 +151,7 @@ function emitDefinitionFile(
 		...[...imports]
 			.sort((left, right) => left.localeCompare(right))
 			.map((name) => `import { ${name} } from "./${name}";`),
+		...emitLazySchemaHelpers(lazySchemaHelpers),
 		"",
 		`export const ${definition.name} = z`,
 		"\t.object({",
@@ -207,7 +212,7 @@ function emitBaseExpression(
 	}
 
 	if (property.typeRef && definitions.has(property.typeRef)) {
-		return `z.lazy(() => ${property.typeRef})`;
+		return `z.lazy(${lazySchemaHelperName(property.typeRef)})`;
 	}
 
 	if (property.enumValues) {
@@ -350,6 +355,26 @@ function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
 
 function choiceGroupVariableName(choiceGroup: string): string {
 	return `${choiceGroup.replaceAll(/[^a-zA-Z0-9]+/g, "_")}Present`;
+}
+
+function emitLazySchemaHelpers(typeRefs: Set<string>): string[] {
+	if (typeRefs.size === 0) {
+		return [];
+	}
+
+	return [
+		"",
+		...[...typeRefs]
+			.sort((left, right) => left.localeCompare(right))
+			.map(
+				(typeRef) =>
+					`const ${lazySchemaHelperName(typeRef)} = (): z.ZodType<unknown> => ${typeRef};`,
+			),
+	];
+}
+
+function lazySchemaHelperName(typeRef: string): string {
+	return `get${typeRef}Schema`;
 }
 
 function emitPrimitiveExpression(

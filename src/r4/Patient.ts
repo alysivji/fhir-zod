@@ -18,84 +18,65 @@ import { Patient_Link } from "./Patient_Link";
 import { Reference } from "./Reference";
 import { Resource } from "./Resource";
 
+const getAddressSchema = (): z.ZodType<unknown> => Address;
+const getAttachmentSchema = (): z.ZodType<unknown> => Attachment;
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getContactPointSchema = (): z.ZodType<unknown> => ContactPoint;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getHumanNameSchema = (): z.ZodType<unknown> => HumanName;
+const getIdentifierSchema = (): z.ZodType<unknown> => Identifier;
+const getMetaSchema = (): z.ZodType<unknown> => Meta;
+const getNarrativeSchema = (): z.ZodType<unknown> => Narrative;
+const getPatient_CommunicationSchema = (): z.ZodType<unknown> =>
+	Patient_Communication;
+const getPatient_ContactSchema = (): z.ZodType<unknown> => Patient_Contact;
+const getPatient_LinkSchema = (): z.ZodType<unknown> => Patient_Link;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+const getResourceSchema = (): z.ZodType<unknown> => Resource;
+
 export const Patient = z
 	.object({
-		_active: z.lazy(() => Element).optional(),
-		_birthDate: z.lazy(() => Element).optional(),
-		_deceasedBoolean: z.lazy(() => Element).optional(),
-		_deceasedDateTime: z.lazy(() => Element).optional(),
-		_gender: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_implicitRules: z.lazy(() => Element).optional(),
-		_language: z.lazy(() => Element).optional(),
-		_multipleBirthBoolean: z.lazy(() => Element).optional(),
-		_multipleBirthInteger: z.lazy(() => Element).optional(),
+		_active: z.lazy(getElementSchema).optional(),
+		_birthDate: z.lazy(getElementSchema).optional(),
+		_deceasedBoolean: z.lazy(getElementSchema).optional(),
+		_deceasedDateTime: z.lazy(getElementSchema).optional(),
+		_gender: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_implicitRules: z.lazy(getElementSchema).optional(),
+		_language: z.lazy(getElementSchema).optional(),
+		_multipleBirthBoolean: z.lazy(getElementSchema).optional(),
+		_multipleBirthInteger: z.lazy(getElementSchema).optional(),
 		active: z.boolean().optional(),
-		address: z
-			.lazy(() => Address)
-			.array()
-			.optional(),
+		address: z.lazy(getAddressSchema).array().optional(),
 		birthDate: fhirDate().optional(),
-		communication: z
-			.lazy(() => Patient_Communication)
-			.array()
-			.optional(),
-		contact: z
-			.lazy(() => Patient_Contact)
-			.array()
-			.optional(),
-		contained: z
-			.lazy(() => Resource)
-			.array()
-			.optional(),
+		communication: z.lazy(getPatient_CommunicationSchema).array().optional(),
+		contact: z.lazy(getPatient_ContactSchema).array().optional(),
+		contained: z.lazy(getResourceSchema).array().optional(),
 		deceasedBoolean: z.boolean().optional(),
 		deceasedDateTime: fhirDateTime().optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		gender: z.enum(["female", "male", "other", "unknown"]).optional(),
-		generalPractitioner: z
-			.lazy(() => Reference)
-			.array()
-			.optional(),
+		generalPractitioner: z.lazy(getReferenceSchema).array().optional(),
 		id: fhirId().optional(),
-		identifier: z
-			.lazy(() => Identifier)
-			.array()
-			.optional(),
+		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		implicitRules: z.string().regex(/\S*/).optional(),
 		language: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		link: z
-			.lazy(() => Patient_Link)
-			.array()
-			.optional(),
-		managingOrganization: z.lazy(() => Reference).optional(),
-		maritalStatus: z.lazy(() => CodeableConcept).optional(),
-		meta: z.lazy(() => Meta).optional(),
-		modifierExtension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		link: z.lazy(getPatient_LinkSchema).array().optional(),
+		managingOrganization: z.lazy(getReferenceSchema).optional(),
+		maritalStatus: z.lazy(getCodeableConceptSchema).optional(),
+		meta: z.lazy(getMetaSchema).optional(),
+		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 		multipleBirthBoolean: z.boolean().optional(),
 		multipleBirthInteger: z.number().int().optional(),
-		name: z
-			.lazy(() => HumanName)
-			.array()
-			.optional(),
-		photo: z
-			.lazy(() => Attachment)
-			.array()
-			.optional(),
+		name: z.lazy(getHumanNameSchema).array().optional(),
+		photo: z.lazy(getAttachmentSchema).array().optional(),
 		resourceType: z.literal("Patient"),
-		telecom: z
-			.lazy(() => ContactPoint)
-			.array()
-			.optional(),
-		text: z.lazy(() => Narrative).optional(),
+		telecom: z.lazy(getContactPointSchema).array().optional(),
+		text: z.lazy(getNarrativeSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

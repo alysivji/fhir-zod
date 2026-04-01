@@ -6,21 +6,22 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+
 export const Annotation = z
 	.object({
-		_authorString: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_text: z.lazy(() => Element).optional(),
-		_time: z.lazy(() => Element).optional(),
-		authorReference: z.lazy(() => Reference).optional(),
+		_authorString: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_text: z.lazy(getElementSchema).optional(),
+		_time: z.lazy(getElementSchema).optional(),
+		authorReference: z.lazy(getReferenceSchema).optional(),
 		authorString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		text: z.string(),
 		time: fhirDateTime().optional(),

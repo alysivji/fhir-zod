@@ -5,14 +5,17 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const Coding = z
 	.object({
-		_code: z.lazy(() => Element).optional(),
-		_display: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_system: z.lazy(() => Element).optional(),
-		_userSelected: z.lazy(() => Element).optional(),
-		_version: z.lazy(() => Element).optional(),
+		_code: z.lazy(getElementSchema).optional(),
+		_display: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_system: z.lazy(getElementSchema).optional(),
+		_userSelected: z.lazy(getElementSchema).optional(),
+		_version: z.lazy(getElementSchema).optional(),
 		code: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -21,10 +24,7 @@ export const Coding = z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		system: z.string().regex(/\S*/).optional(),
 		userSelected: z.boolean().optional(),

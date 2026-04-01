@@ -7,16 +7,18 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Period } from "./Period";
 
+const getDurationSchema = (): z.ZodType<unknown> => Duration;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getPeriodSchema = (): z.ZodType<unknown> => Period;
+
 export const DataRequirement_DateFilter = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_path: z.lazy(() => Element).optional(),
-		_searchParam: z.lazy(() => Element).optional(),
-		_valueDateTime: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_path: z.lazy(getElementSchema).optional(),
+		_searchParam: z.lazy(getElementSchema).optional(),
+		_valueDateTime: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		path: z
 			.string()
@@ -27,8 +29,8 @@ export const DataRequirement_DateFilter = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		valueDateTime: fhirDateTime().optional(),
-		valueDuration: z.lazy(() => Duration).optional(),
-		valuePeriod: z.lazy(() => Period).optional(),
+		valueDuration: z.lazy(getDurationSchema).optional(),
+		valuePeriod: z.lazy(getPeriodSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

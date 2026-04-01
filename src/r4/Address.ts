@@ -6,18 +6,22 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Period } from "./Period";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getPeriodSchema = (): z.ZodType<unknown> => Period;
+
 export const Address = z
 	.object({
-		_city: z.lazy(() => Element).optional(),
-		_country: z.lazy(() => Element).optional(),
-		_district: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_line: z.lazy(() => Element).optional(),
-		_postalCode: z.lazy(() => Element).optional(),
-		_state: z.lazy(() => Element).optional(),
-		_text: z.lazy(() => Element).optional(),
-		_type: z.lazy(() => Element).optional(),
-		_use: z.lazy(() => Element).optional(),
+		_city: z.lazy(getElementSchema).optional(),
+		_country: z.lazy(getElementSchema).optional(),
+		_district: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_line: z.lazy(getElementSchema).optional(),
+		_postalCode: z.lazy(getElementSchema).optional(),
+		_state: z.lazy(getElementSchema).optional(),
+		_text: z.lazy(getElementSchema).optional(),
+		_type: z.lazy(getElementSchema).optional(),
+		_use: z.lazy(getElementSchema).optional(),
 		city: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -30,17 +34,14 @@ export const Address = z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		line: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.array()
 			.optional(),
-		period: z.lazy(() => Period).optional(),
+		period: z.lazy(getPeriodSchema).optional(),
 		postalCode: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)

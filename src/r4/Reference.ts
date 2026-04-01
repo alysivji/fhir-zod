@@ -6,22 +6,23 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Identifier } from "./Identifier";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getIdentifierSchema = (): z.ZodType<unknown> => Identifier;
+
 export const Reference = z
 	.object({
-		_display: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_reference: z.lazy(() => Element).optional(),
-		_type: z.lazy(() => Element).optional(),
+		_display: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_reference: z.lazy(getElementSchema).optional(),
+		_type: z.lazy(getElementSchema).optional(),
 		display: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		identifier: z.lazy(() => Identifier).optional(),
+		identifier: z.lazy(getIdentifierSchema).optional(),
 		reference: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)

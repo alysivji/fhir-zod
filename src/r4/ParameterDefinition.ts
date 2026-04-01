@@ -5,24 +5,24 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const ParameterDefinition = z
 	.object({
-		_documentation: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_max: z.lazy(() => Element).optional(),
-		_min: z.lazy(() => Element).optional(),
-		_name: z.lazy(() => Element).optional(),
-		_profile: z.lazy(() => Element).optional(),
-		_type: z.lazy(() => Element).optional(),
-		_use: z.lazy(() => Element).optional(),
+		_documentation: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_max: z.lazy(getElementSchema).optional(),
+		_min: z.lazy(getElementSchema).optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		_profile: z.lazy(getElementSchema).optional(),
+		_type: z.lazy(getElementSchema).optional(),
+		_use: z.lazy(getElementSchema).optional(),
 		documentation: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		max: z
 			.string()

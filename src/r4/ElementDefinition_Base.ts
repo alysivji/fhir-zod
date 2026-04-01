@@ -5,16 +5,16 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const ElementDefinition_Base = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_max: z.lazy(() => Element).optional(),
-		_min: z.lazy(() => Element).optional(),
-		_path: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_max: z.lazy(getElementSchema).optional(),
+		_min: z.lazy(getElementSchema).optional(),
+		_path: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		max: z.string().regex(/[ \r\n\t\S]+/),
 		min: z.number().int().nonnegative(),

@@ -9,45 +9,43 @@ import { Quantity } from "./Quantity";
 import { Ratio } from "./Ratio";
 import { Timing } from "./Timing";
 
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+const getRatioSchema = (): z.ZodType<unknown> => Ratio;
+const getTimingSchema = (): z.ZodType<unknown> => Timing;
+
 export const Dosage = z
 	.object({
-		_asNeededBoolean: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_patientInstruction: z.lazy(() => Element).optional(),
-		_sequence: z.lazy(() => Element).optional(),
-		_text: z.lazy(() => Element).optional(),
-		additionalInstruction: z
-			.lazy(() => CodeableConcept)
-			.array()
-			.optional(),
+		_asNeededBoolean: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_patientInstruction: z.lazy(getElementSchema).optional(),
+		_sequence: z.lazy(getElementSchema).optional(),
+		_text: z.lazy(getElementSchema).optional(),
+		additionalInstruction: z.lazy(getCodeableConceptSchema).array().optional(),
 		asNeededBoolean: z.boolean().optional(),
-		asNeededCodeableConcept: z.lazy(() => CodeableConcept).optional(),
+		asNeededCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		doseAndRate: z.unknown().array().optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		maxDosePerAdministration: z.lazy(() => Quantity).optional(),
-		maxDosePerLifetime: z.lazy(() => Quantity).optional(),
-		maxDosePerPeriod: z.lazy(() => Ratio).optional(),
-		method: z.lazy(() => CodeableConcept).optional(),
-		modifierExtension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		maxDosePerAdministration: z.lazy(getQuantitySchema).optional(),
+		maxDosePerLifetime: z.lazy(getQuantitySchema).optional(),
+		maxDosePerPeriod: z.lazy(getRatioSchema).optional(),
+		method: z.lazy(getCodeableConceptSchema).optional(),
+		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 		patientInstruction: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		route: z.lazy(() => CodeableConcept).optional(),
+		route: z.lazy(getCodeableConceptSchema).optional(),
 		sequence: z.number().int().optional(),
-		site: z.lazy(() => CodeableConcept).optional(),
+		site: z.lazy(getCodeableConceptSchema).optional(),
 		text: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		timing: z.lazy(() => Timing).optional(),
+		timing: z.lazy(getTimingSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

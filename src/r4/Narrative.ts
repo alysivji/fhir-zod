@@ -5,16 +5,16 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const Narrative = z
 	.object({
-		_div: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_status: z.lazy(() => Element).optional(),
+		_div: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_status: z.lazy(getElementSchema).optional(),
 		div: z.string(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		status: z.enum(["additional", "empty", "extensions", "generated"]),
 	})

@@ -7,23 +7,25 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 
+const getCodingSchema = (): z.ZodType<unknown> => Coding;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+
 export const Signature = z
 	.object({
-		_data: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_sigFormat: z.lazy(() => Element).optional(),
-		_targetFormat: z.lazy(() => Element).optional(),
-		_when: z.lazy(() => Element).optional(),
+		_data: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_sigFormat: z.lazy(getElementSchema).optional(),
+		_targetFormat: z.lazy(getElementSchema).optional(),
+		_when: z.lazy(getElementSchema).optional(),
 		data: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		onBehalfOf: z.lazy(() => Reference).optional(),
+		onBehalfOf: z.lazy(getReferenceSchema).optional(),
 		sigFormat: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -32,8 +34,8 @@ export const Signature = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		type: z.lazy(() => Coding).array(),
+		type: z.lazy(getCodingSchema).array(),
 		when: fhirInstant(),
-		who: z.lazy(() => Reference),
+		who: z.lazy(getReferenceSchema),
 	})
 	.strict();

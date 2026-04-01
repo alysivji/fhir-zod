@@ -5,17 +5,20 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Meta } from "./Meta";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getMetaSchema = (): z.ZodType<unknown> => Meta;
+
 export const Resource = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_implicitRules: z.lazy(() => Element).optional(),
-		_language: z.lazy(() => Element).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_implicitRules: z.lazy(getElementSchema).optional(),
+		_language: z.lazy(getElementSchema).optional(),
 		id: fhirId().optional(),
 		implicitRules: z.string().regex(/\S*/).optional(),
 		language: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		meta: z.lazy(() => Meta).optional(),
+		meta: z.lazy(getMetaSchema).optional(),
 	})
 	.strict();

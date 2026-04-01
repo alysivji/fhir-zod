@@ -4,13 +4,13 @@ import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const Element = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 	})
 	.strict();

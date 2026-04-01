@@ -7,21 +7,20 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Timing_Repeat } from "./Timing_Repeat";
 
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getTiming_RepeatSchema = (): z.ZodType<unknown> => Timing_Repeat;
+
 export const Timing = z
 	.object({
-		_event: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		code: z.lazy(() => CodeableConcept).optional(),
+		_event: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		code: z.lazy(getCodeableConceptSchema).optional(),
 		event: fhirDateTime().array().optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		modifierExtension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
-		repeat: z.lazy(() => Timing_Repeat).optional(),
+		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+		repeat: z.lazy(getTiming_RepeatSchema).optional(),
 	})
 	.strict();

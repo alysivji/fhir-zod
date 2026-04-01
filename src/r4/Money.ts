@@ -5,19 +5,19 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const Money = z
 	.object({
-		_currency: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_value: z.lazy(() => Element).optional(),
+		_currency: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_value: z.lazy(getElementSchema).optional(),
 		currency: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		value: z.number().optional(),
 	})

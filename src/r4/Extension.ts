@@ -40,39 +40,70 @@ import { Timing } from "./Timing";
 import { TriggerDefinition } from "./TriggerDefinition";
 import { UsageContext } from "./UsageContext";
 
+const getAddressSchema = (): z.ZodType<unknown> => Address;
+const getAgeSchema = (): z.ZodType<unknown> => Age;
+const getAnnotationSchema = (): z.ZodType<unknown> => Annotation;
+const getAttachmentSchema = (): z.ZodType<unknown> => Attachment;
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getCodingSchema = (): z.ZodType<unknown> => Coding;
+const getContactDetailSchema = (): z.ZodType<unknown> => ContactDetail;
+const getContactPointSchema = (): z.ZodType<unknown> => ContactPoint;
+const getContributorSchema = (): z.ZodType<unknown> => Contributor;
+const getCountSchema = (): z.ZodType<unknown> => Count;
+const getDataRequirementSchema = (): z.ZodType<unknown> => DataRequirement;
+const getDistanceSchema = (): z.ZodType<unknown> => Distance;
+const getDosageSchema = (): z.ZodType<unknown> => Dosage;
+const getDurationSchema = (): z.ZodType<unknown> => Duration;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getHumanNameSchema = (): z.ZodType<unknown> => HumanName;
+const getIdentifierSchema = (): z.ZodType<unknown> => Identifier;
+const getMetaSchema = (): z.ZodType<unknown> => Meta;
+const getMoneySchema = (): z.ZodType<unknown> => Money;
+const getParameterDefinitionSchema = (): z.ZodType<unknown> =>
+	ParameterDefinition;
+const getPeriodSchema = (): z.ZodType<unknown> => Period;
+const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+const getRangeSchema = (): z.ZodType<unknown> => Range;
+const getRatioSchema = (): z.ZodType<unknown> => Ratio;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+const getRelatedArtifactSchema = (): z.ZodType<unknown> => RelatedArtifact;
+const getSampledDataSchema = (): z.ZodType<unknown> => SampledData;
+const getSignatureSchema = (): z.ZodType<unknown> => Signature;
+const getTimingSchema = (): z.ZodType<unknown> => Timing;
+const getTriggerDefinitionSchema = (): z.ZodType<unknown> => TriggerDefinition;
+const getUsageContextSchema = (): z.ZodType<unknown> => UsageContext;
+
 export const Extension = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_url: z.lazy(() => Element).optional(),
-		_valueBase64Binary: z.lazy(() => Element).optional(),
-		_valueBoolean: z.lazy(() => Element).optional(),
-		_valueCanonical: z.lazy(() => Element).optional(),
-		_valueCode: z.lazy(() => Element).optional(),
-		_valueDate: z.lazy(() => Element).optional(),
-		_valueDateTime: z.lazy(() => Element).optional(),
-		_valueDecimal: z.lazy(() => Element).optional(),
-		_valueId: z.lazy(() => Element).optional(),
-		_valueInstant: z.lazy(() => Element).optional(),
-		_valueInteger: z.lazy(() => Element).optional(),
-		_valueMarkdown: z.lazy(() => Element).optional(),
-		_valueOid: z.lazy(() => Element).optional(),
-		_valuePositiveInt: z.lazy(() => Element).optional(),
-		_valueString: z.lazy(() => Element).optional(),
-		_valueTime: z.lazy(() => Element).optional(),
-		_valueUnsignedInt: z.lazy(() => Element).optional(),
-		_valueUri: z.lazy(() => Element).optional(),
-		_valueUrl: z.lazy(() => Element).optional(),
-		_valueUuid: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_url: z.lazy(getElementSchema).optional(),
+		_valueBase64Binary: z.lazy(getElementSchema).optional(),
+		_valueBoolean: z.lazy(getElementSchema).optional(),
+		_valueCanonical: z.lazy(getElementSchema).optional(),
+		_valueCode: z.lazy(getElementSchema).optional(),
+		_valueDate: z.lazy(getElementSchema).optional(),
+		_valueDateTime: z.lazy(getElementSchema).optional(),
+		_valueDecimal: z.lazy(getElementSchema).optional(),
+		_valueId: z.lazy(getElementSchema).optional(),
+		_valueInstant: z.lazy(getElementSchema).optional(),
+		_valueInteger: z.lazy(getElementSchema).optional(),
+		_valueMarkdown: z.lazy(getElementSchema).optional(),
+		_valueOid: z.lazy(getElementSchema).optional(),
+		_valuePositiveInt: z.lazy(getElementSchema).optional(),
+		_valueString: z.lazy(getElementSchema).optional(),
+		_valueTime: z.lazy(getElementSchema).optional(),
+		_valueUnsignedInt: z.lazy(getElementSchema).optional(),
+		_valueUri: z.lazy(getElementSchema).optional(),
+		_valueUrl: z.lazy(getElementSchema).optional(),
+		_valueUuid: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		url: z.string().regex(/\S*/),
-		valueAddress: z.lazy(() => Address).optional(),
-		valueAge: z.lazy(() => Age).optional(),
-		valueAnnotation: z.lazy(() => Annotation).optional(),
-		valueAttachment: z.lazy(() => Attachment).optional(),
+		valueAddress: z.lazy(getAddressSchema).optional(),
+		valueAge: z.lazy(getAgeSchema).optional(),
+		valueAnnotation: z.lazy(getAnnotationSchema).optional(),
+		valueAttachment: z.lazy(getAttachmentSchema).optional(),
 		valueBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
@@ -83,53 +114,53 @@ export const Extension = z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		valueCodeableConcept: z.lazy(() => CodeableConcept).optional(),
-		valueCoding: z.lazy(() => Coding).optional(),
-		valueContactDetail: z.lazy(() => ContactDetail).optional(),
-		valueContactPoint: z.lazy(() => ContactPoint).optional(),
-		valueContributor: z.lazy(() => Contributor).optional(),
-		valueCount: z.lazy(() => Count).optional(),
-		valueDataRequirement: z.lazy(() => DataRequirement).optional(),
+		valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+		valueCoding: z.lazy(getCodingSchema).optional(),
+		valueContactDetail: z.lazy(getContactDetailSchema).optional(),
+		valueContactPoint: z.lazy(getContactPointSchema).optional(),
+		valueContributor: z.lazy(getContributorSchema).optional(),
+		valueCount: z.lazy(getCountSchema).optional(),
+		valueDataRequirement: z.lazy(getDataRequirementSchema).optional(),
 		valueDate: fhirDate().optional(),
 		valueDateTime: fhirDateTime().optional(),
 		valueDecimal: z.number().optional(),
-		valueDistance: z.lazy(() => Distance).optional(),
-		valueDosage: z.lazy(() => Dosage).optional(),
-		valueDuration: z.lazy(() => Duration).optional(),
+		valueDistance: z.lazy(getDistanceSchema).optional(),
+		valueDosage: z.lazy(getDosageSchema).optional(),
+		valueDuration: z.lazy(getDurationSchema).optional(),
 		valueExpression: z.unknown().optional(),
-		valueHumanName: z.lazy(() => HumanName).optional(),
+		valueHumanName: z.lazy(getHumanNameSchema).optional(),
 		valueId: fhirId().optional(),
-		valueIdentifier: z.lazy(() => Identifier).optional(),
+		valueIdentifier: z.lazy(getIdentifierSchema).optional(),
 		valueInstant: fhirInstant().optional(),
 		valueInteger: z.number().int().optional(),
 		valueMarkdown: z.string().optional(),
-		valueMeta: z.lazy(() => Meta).optional(),
-		valueMoney: z.lazy(() => Money).optional(),
+		valueMeta: z.lazy(getMetaSchema).optional(),
+		valueMoney: z.lazy(getMoneySchema).optional(),
 		valueOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
 			.optional(),
-		valueParameterDefinition: z.lazy(() => ParameterDefinition).optional(),
-		valuePeriod: z.lazy(() => Period).optional(),
+		valueParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
+		valuePeriod: z.lazy(getPeriodSchema).optional(),
 		valuePositiveInt: z.number().int().positive().optional(),
-		valueQuantity: z.lazy(() => Quantity).optional(),
-		valueRange: z.lazy(() => Range).optional(),
-		valueRatio: z.lazy(() => Ratio).optional(),
-		valueReference: z.lazy(() => Reference).optional(),
-		valueRelatedArtifact: z.lazy(() => RelatedArtifact).optional(),
-		valueSampledData: z.lazy(() => SampledData).optional(),
-		valueSignature: z.lazy(() => Signature).optional(),
+		valueQuantity: z.lazy(getQuantitySchema).optional(),
+		valueRange: z.lazy(getRangeSchema).optional(),
+		valueRatio: z.lazy(getRatioSchema).optional(),
+		valueReference: z.lazy(getReferenceSchema).optional(),
+		valueRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
+		valueSampledData: z.lazy(getSampledDataSchema).optional(),
+		valueSignature: z.lazy(getSignatureSchema).optional(),
 		valueString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		valueTime: fhirTime().optional(),
-		valueTiming: z.lazy(() => Timing).optional(),
-		valueTriggerDefinition: z.lazy(() => TriggerDefinition).optional(),
+		valueTiming: z.lazy(getTimingSchema).optional(),
+		valueTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
 		valueUnsignedInt: z.number().int().nonnegative().optional(),
 		valueUri: z.string().regex(/\S*/).optional(),
 		valueUrl: z.string().regex(/\S*/).optional(),
-		valueUsageContext: z.lazy(() => UsageContext).optional(),
+		valueUsageContext: z.lazy(getUsageContextSchema).optional(),
 		valueUuid: z
 			.string()
 			.regex(

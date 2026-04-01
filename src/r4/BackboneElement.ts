@@ -5,17 +5,14 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const BackboneElement = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		modifierExtension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 	})
 	.strict();

@@ -8,21 +8,24 @@ import { Extension } from "./Extension";
 import { Period } from "./Period";
 import { Reference } from "./Reference";
 
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getPeriodSchema = (): z.ZodType<unknown> => Period;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+
 export const Identifier = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_system: z.lazy(() => Element).optional(),
-		_use: z.lazy(() => Element).optional(),
-		_value: z.lazy(() => Element).optional(),
-		assigner: z.lazy(() => Reference).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_system: z.lazy(getElementSchema).optional(),
+		_use: z.lazy(getElementSchema).optional(),
+		_value: z.lazy(getElementSchema).optional(),
+		assigner: z.lazy(getReferenceSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		period: z.lazy(() => Period).optional(),
+		period: z.lazy(getPeriodSchema).optional(),
 		system: z.string().regex(/\S*/).optional(),
-		type: z.lazy(() => CodeableConcept).optional(),
+		type: z.lazy(getCodeableConceptSchema).optional(),
 		use: z.enum(["official", "old", "secondary", "temp", "usual"]).optional(),
 		value: z
 			.string()

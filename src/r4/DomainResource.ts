@@ -8,30 +8,27 @@ import { Meta } from "./Meta";
 import { Narrative } from "./Narrative";
 import { Resource } from "./Resource";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getMetaSchema = (): z.ZodType<unknown> => Meta;
+const getNarrativeSchema = (): z.ZodType<unknown> => Narrative;
+const getResourceSchema = (): z.ZodType<unknown> => Resource;
+
 export const DomainResource = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_implicitRules: z.lazy(() => Element).optional(),
-		_language: z.lazy(() => Element).optional(),
-		contained: z
-			.lazy(() => Resource)
-			.array()
-			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_implicitRules: z.lazy(getElementSchema).optional(),
+		_language: z.lazy(getElementSchema).optional(),
+		contained: z.lazy(getResourceSchema).array().optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		implicitRules: z.string().regex(/\S*/).optional(),
 		language: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional(),
-		meta: z.lazy(() => Meta).optional(),
-		modifierExtension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
-		text: z.lazy(() => Narrative).optional(),
+		meta: z.lazy(getMetaSchema).optional(),
+		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+		text: z.lazy(getNarrativeSchema).optional(),
 	})
 	.strict();

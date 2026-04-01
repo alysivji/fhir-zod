@@ -6,15 +6,16 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Quantity } from "./Quantity";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+
 export const Range = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
-		high: z.lazy(() => Quantity).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		high: z.lazy(getQuantitySchema).optional(),
 		id: fhirId().optional(),
-		low: z.lazy(() => Quantity).optional(),
+		low: z.lazy(getQuantitySchema).optional(),
 	})
 	.strict();

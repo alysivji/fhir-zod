@@ -6,29 +6,24 @@ import { Coding } from "./Coding";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getCodingSchema = (): z.ZodType<unknown> => Coding;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const Meta = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_lastUpdated: z.lazy(() => Element).optional(),
-		_profile: z.lazy(() => Element).optional(),
-		_source: z.lazy(() => Element).optional(),
-		_versionId: z.lazy(() => Element).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_lastUpdated: z.lazy(getElementSchema).optional(),
+		_profile: z.lazy(getElementSchema).optional(),
+		_source: z.lazy(getElementSchema).optional(),
+		_versionId: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		lastUpdated: fhirInstant().optional(),
 		profile: z.string().regex(/\S*/).array().optional(),
-		security: z
-			.lazy(() => Coding)
-			.array()
-			.optional(),
+		security: z.lazy(getCodingSchema).array().optional(),
 		source: z.string().regex(/\S*/).optional(),
-		tag: z
-			.lazy(() => Coding)
-			.array()
-			.optional(),
+		tag: z.lazy(getCodingSchema).array().optional(),
 		versionId: fhirId().optional(),
 	})
 	.strict();

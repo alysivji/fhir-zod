@@ -5,20 +5,20 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const ElementDefinition_Binding = z
 	.object({
-		_description: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_strength: z.lazy(() => Element).optional(),
-		_valueSet: z.lazy(() => Element).optional(),
+		_description: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_strength: z.lazy(getElementSchema).optional(),
+		_valueSet: z.lazy(getElementSchema).optional(),
 		description: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		strength: z.enum(["example", "extensible", "preferred", "required"]),
 		valueSet: z.string().regex(/\S*/).optional(),

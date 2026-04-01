@@ -11,31 +11,28 @@ import { HumanName } from "./HumanName";
 import { Period } from "./Period";
 import { Reference } from "./Reference";
 
+const getAddressSchema = (): z.ZodType<unknown> => Address;
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getContactPointSchema = (): z.ZodType<unknown> => ContactPoint;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getHumanNameSchema = (): z.ZodType<unknown> => HumanName;
+const getPeriodSchema = (): z.ZodType<unknown> => Period;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+
 export const Patient_Contact = z
 	.object({
-		_gender: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		address: z.lazy(() => Address).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_gender: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		address: z.lazy(getAddressSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		gender: z.enum(["female", "male", "other", "unknown"]).optional(),
 		id: fhirId().optional(),
-		modifierExtension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
-		name: z.lazy(() => HumanName).optional(),
-		organization: z.lazy(() => Reference).optional(),
-		period: z.lazy(() => Period).optional(),
-		relationship: z
-			.lazy(() => CodeableConcept)
-			.array()
-			.optional(),
-		telecom: z
-			.lazy(() => ContactPoint)
-			.array()
-			.optional(),
+		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+		name: z.lazy(getHumanNameSchema).optional(),
+		organization: z.lazy(getReferenceSchema).optional(),
+		period: z.lazy(getPeriodSchema).optional(),
+		relationship: z.lazy(getCodeableConceptSchema).array().optional(),
+		telecom: z.lazy(getContactPointSchema).array().optional(),
 	})
 	.strict();

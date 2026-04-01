@@ -5,23 +5,23 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const ElementDefinition_Type = z
 	.object({
-		_aggregation: z.lazy(() => Element).optional(),
-		_code: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_profile: z.lazy(() => Element).optional(),
-		_targetProfile: z.lazy(() => Element).optional(),
-		_versioning: z.lazy(() => Element).optional(),
+		_aggregation: z.lazy(getElementSchema).optional(),
+		_code: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_profile: z.lazy(getElementSchema).optional(),
+		_targetProfile: z.lazy(getElementSchema).optional(),
+		_versioning: z.lazy(getElementSchema).optional(),
 		aggregation: z
 			.enum(["bundled", "contained", "referenced"])
 			.array()
 			.optional(),
 		code: z.string().regex(/\S*/),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		profile: z.string().regex(/\S*/).array().optional(),
 		targetProfile: z.string().regex(/\S*/).array().optional(),

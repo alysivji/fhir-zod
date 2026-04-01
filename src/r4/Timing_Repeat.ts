@@ -8,26 +8,32 @@ import { Extension } from "./Extension";
 import { Period } from "./Period";
 import { Range } from "./Range";
 
+const getDurationSchema = (): z.ZodType<unknown> => Duration;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getPeriodSchema = (): z.ZodType<unknown> => Period;
+const getRangeSchema = (): z.ZodType<unknown> => Range;
+
 export const Timing_Repeat = z
 	.object({
-		_count: z.lazy(() => Element).optional(),
-		_countMax: z.lazy(() => Element).optional(),
-		_dayOfWeek: z.lazy(() => Element).optional(),
-		_duration: z.lazy(() => Element).optional(),
-		_durationMax: z.lazy(() => Element).optional(),
-		_durationUnit: z.lazy(() => Element).optional(),
-		_frequency: z.lazy(() => Element).optional(),
-		_frequencyMax: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_offset: z.lazy(() => Element).optional(),
-		_period: z.lazy(() => Element).optional(),
-		_periodMax: z.lazy(() => Element).optional(),
-		_periodUnit: z.lazy(() => Element).optional(),
-		_timeOfDay: z.lazy(() => Element).optional(),
-		_when: z.lazy(() => Element).optional(),
-		boundsDuration: z.lazy(() => Duration).optional(),
-		boundsPeriod: z.lazy(() => Period).optional(),
-		boundsRange: z.lazy(() => Range).optional(),
+		_count: z.lazy(getElementSchema).optional(),
+		_countMax: z.lazy(getElementSchema).optional(),
+		_dayOfWeek: z.lazy(getElementSchema).optional(),
+		_duration: z.lazy(getElementSchema).optional(),
+		_durationMax: z.lazy(getElementSchema).optional(),
+		_durationUnit: z.lazy(getElementSchema).optional(),
+		_frequency: z.lazy(getElementSchema).optional(),
+		_frequencyMax: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_offset: z.lazy(getElementSchema).optional(),
+		_period: z.lazy(getElementSchema).optional(),
+		_periodMax: z.lazy(getElementSchema).optional(),
+		_periodUnit: z.lazy(getElementSchema).optional(),
+		_timeOfDay: z.lazy(getElementSchema).optional(),
+		_when: z.lazy(getElementSchema).optional(),
+		boundsDuration: z.lazy(getDurationSchema).optional(),
+		boundsPeriod: z.lazy(getPeriodSchema).optional(),
+		boundsRange: z.lazy(getRangeSchema).optional(),
 		count: z.number().int().positive().optional(),
 		countMax: z.number().int().positive().optional(),
 		dayOfWeek: z
@@ -37,10 +43,7 @@ export const Timing_Repeat = z
 		duration: z.number().optional(),
 		durationMax: z.number().optional(),
 		durationUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		frequency: z.number().int().positive().optional(),
 		frequencyMax: z.number().int().positive().optional(),
 		id: fhirId().optional(),

@@ -8,22 +8,22 @@ import { Extension } from "./Extension";
 import { Reference } from "./Reference";
 import { Timing } from "./Timing";
 
+const getDataRequirementSchema = (): z.ZodType<unknown> => DataRequirement;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+const getTimingSchema = (): z.ZodType<unknown> => Timing;
+
 export const TriggerDefinition = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_name: z.lazy(() => Element).optional(),
-		_timingDate: z.lazy(() => Element).optional(),
-		_timingDateTime: z.lazy(() => Element).optional(),
-		_type: z.lazy(() => Element).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		_timingDate: z.lazy(getElementSchema).optional(),
+		_timingDateTime: z.lazy(getElementSchema).optional(),
+		_type: z.lazy(getElementSchema).optional(),
 		condition: z.unknown().optional(),
-		data: z
-			.lazy(() => DataRequirement)
-			.array()
-			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		data: z.lazy(getDataRequirementSchema).array().optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		name: z
 			.string()
@@ -31,8 +31,8 @@ export const TriggerDefinition = z
 			.optional(),
 		timingDate: fhirDate().optional(),
 		timingDateTime: fhirDateTime().optional(),
-		timingReference: z.lazy(() => Reference).optional(),
-		timingTiming: z.lazy(() => Timing).optional(),
+		timingReference: z.lazy(getReferenceSchema).optional(),
+		timingTiming: z.lazy(getTimingSchema).optional(),
 		type: z.enum([
 			"data-access-ended",
 			"data-accessed",

@@ -6,19 +6,17 @@ import { ContactDetail } from "./ContactDetail";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getContactDetailSchema = (): z.ZodType<unknown> => ContactDetail;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const Contributor = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		_name: z.lazy(() => Element).optional(),
-		_type: z.lazy(() => Element).optional(),
-		contact: z
-			.lazy(() => ContactDetail)
-			.array()
-			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		_type: z.lazy(getElementSchema).optional(),
+		contact: z.lazy(getContactDetailSchema).array().optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		name: z.string().regex(/[ \r\n\t\S]+/),
 		type: z.enum(["author", "editor", "endorser", "reviewer"]),

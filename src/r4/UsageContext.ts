@@ -10,19 +10,24 @@ import { Quantity } from "./Quantity";
 import { Range } from "./Range";
 import { Reference } from "./Reference";
 
+const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
+const getCodingSchema = (): z.ZodType<unknown> => Coding;
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+const getRangeSchema = (): z.ZodType<unknown> => Range;
+const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+
 export const UsageContext = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		code: z.lazy(() => Coding),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		code: z.lazy(getCodingSchema),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		valueCodeableConcept: z.lazy(() => CodeableConcept),
-		valueQuantity: z.lazy(() => Quantity),
-		valueRange: z.lazy(() => Range),
-		valueReference: z.lazy(() => Reference),
+		valueCodeableConcept: z.lazy(getCodeableConceptSchema),
+		valueQuantity: z.lazy(getQuantitySchema),
+		valueRange: z.lazy(getRangeSchema),
+		valueReference: z.lazy(getReferenceSchema),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

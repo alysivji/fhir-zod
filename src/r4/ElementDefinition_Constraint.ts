@@ -5,24 +5,24 @@ import { fhirId } from "../shared/fhir-primitives";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+
 export const ElementDefinition_Constraint = z
 	.object({
-		_expression: z.lazy(() => Element).optional(),
-		_human: z.lazy(() => Element).optional(),
-		_id: z.lazy(() => Element).optional(),
-		_key: z.lazy(() => Element).optional(),
-		_requirements: z.lazy(() => Element).optional(),
-		_severity: z.lazy(() => Element).optional(),
-		_source: z.lazy(() => Element).optional(),
-		_xpath: z.lazy(() => Element).optional(),
+		_expression: z.lazy(getElementSchema).optional(),
+		_human: z.lazy(getElementSchema).optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		_key: z.lazy(getElementSchema).optional(),
+		_requirements: z.lazy(getElementSchema).optional(),
+		_severity: z.lazy(getElementSchema).optional(),
+		_source: z.lazy(getElementSchema).optional(),
+		_xpath: z.lazy(getElementSchema).optional(),
 		expression: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		human: z.string().regex(/[ \r\n\t\S]+/),
 		id: fhirId().optional(),
 		key: fhirId(),

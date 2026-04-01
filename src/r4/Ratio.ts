@@ -6,15 +6,16 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Quantity } from "./Quantity";
 
+const getElementSchema = (): z.ZodType<unknown> => Element;
+const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+
 export const Ratio = z
 	.object({
-		_id: z.lazy(() => Element).optional(),
-		denominator: z.lazy(() => Quantity).optional(),
-		extension: z
-			.lazy(() => Extension)
-			.array()
-			.optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		denominator: z.lazy(getQuantitySchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
-		numerator: z.lazy(() => Quantity).optional(),
+		numerator: z.lazy(getQuantitySchema).optional(),
 	})
 	.strict();
