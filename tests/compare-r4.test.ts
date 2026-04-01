@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
 import {
 	compareR4,
@@ -50,9 +51,7 @@ describe("R4 comparison spike", () => {
 			result.files.some((file) => file.endsWith("/src/r4/Patient.ts")),
 		).toBe(true);
 		expect(
-			existsSync(
-				"/Users/alysivji/conductor/workspaces/fhir-zod/geneva/src/r4/Patient.ts",
-			),
+			existsSync(resolve(process.cwd(), "src", "r4", "Patient.ts")),
 		).toBe(true);
 	});
 
