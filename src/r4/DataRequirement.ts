@@ -255,4 +255,19 @@ export const DataRequirement = z
 			"xhtml",
 		]),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const subject_x_Present = [
+			"subjectCodeableConcept",
+			"subjectReference",
+		].filter((field) => record[field] !== undefined);
+		if (subject_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of subjectCodeableConcept, subjectReference may be present for subject[x]",
+				path: [subject_x_Present[0]],
+			});
+		}
+	});

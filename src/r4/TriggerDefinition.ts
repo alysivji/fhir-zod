@@ -44,4 +44,21 @@ export const TriggerDefinition = z
 			"periodic",
 		]),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const timing_x_Present = [
+			"timingDate",
+			"timingDateTime",
+			"timingReference",
+			"timingTiming",
+		].filter((field) => record[field] !== undefined);
+		if (timing_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of timingDate, timingDateTime, timingReference, timingTiming may be present for timing[x]",
+				path: [timing_x_Present[0]],
+			});
+		}
+	});

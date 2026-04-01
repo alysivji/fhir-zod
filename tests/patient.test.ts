@@ -106,4 +106,46 @@ describe("Patient", () => {
 			}),
 		).toThrow();
 	});
+
+	describe("deceased[x]", () => {
+		it("accepts a single choice", () => {
+			const result = Patient.safeParse({
+				deceasedBoolean: true,
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(true);
+		});
+
+		it("rejects multiple choices", () => {
+			const result = Patient.safeParse({
+				deceasedBoolean: true,
+				deceasedDateTime: "2020-01-01T00:00:00Z",
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(false);
+		});
+	});
+
+	describe("multipleBirth[x]", () => {
+		it("accepts a single choice", () => {
+			const result = Patient.safeParse({
+				multipleBirthInteger: 2,
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(true);
+		});
+
+		it("rejects multiple choices", () => {
+			const result = Patient.safeParse({
+				multipleBirthBoolean: true,
+				multipleBirthInteger: 2,
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(false);
+		});
+	});
 });

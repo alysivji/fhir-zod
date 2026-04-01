@@ -137,4 +137,67 @@ export const Extension = z
 			)
 			.optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const value_x_Present = [
+			"valueAddress",
+			"valueAge",
+			"valueAnnotation",
+			"valueAttachment",
+			"valueBase64Binary",
+			"valueBoolean",
+			"valueCanonical",
+			"valueCode",
+			"valueCodeableConcept",
+			"valueCoding",
+			"valueContactDetail",
+			"valueContactPoint",
+			"valueContributor",
+			"valueCount",
+			"valueDataRequirement",
+			"valueDate",
+			"valueDateTime",
+			"valueDecimal",
+			"valueDistance",
+			"valueDosage",
+			"valueDuration",
+			"valueExpression",
+			"valueHumanName",
+			"valueId",
+			"valueIdentifier",
+			"valueInstant",
+			"valueInteger",
+			"valueMarkdown",
+			"valueMeta",
+			"valueMoney",
+			"valueOid",
+			"valueParameterDefinition",
+			"valuePeriod",
+			"valuePositiveInt",
+			"valueQuantity",
+			"valueRange",
+			"valueRatio",
+			"valueReference",
+			"valueRelatedArtifact",
+			"valueSampledData",
+			"valueSignature",
+			"valueString",
+			"valueTime",
+			"valueTiming",
+			"valueTriggerDefinition",
+			"valueUnsignedInt",
+			"valueUri",
+			"valueUrl",
+			"valueUsageContext",
+			"valueUuid",
+		].filter((field) => record[field] !== undefined);
+		if (value_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of valueAddress, valueAge, valueAnnotation, valueAttachment, valueBase64Binary, valueBoolean, valueCanonical, valueCode, valueCodeableConcept, valueCoding, valueContactDetail, valueContactPoint, valueContributor, valueCount, valueDataRequirement, valueDate, valueDateTime, valueDecimal, valueDistance, valueDosage, valueDuration, valueExpression, valueHumanName, valueId, valueIdentifier, valueInstant, valueInteger, valueMarkdown, valueMeta, valueMoney, valueOid, valueParameterDefinition, valuePeriod, valuePositiveInt, valueQuantity, valueRange, valueRatio, valueReference, valueRelatedArtifact, valueSampledData, valueSignature, valueString, valueTime, valueTiming, valueTriggerDefinition, valueUnsignedInt, valueUri, valueUrl, valueUsageContext, valueUuid may be present for value[x]",
+				path: [value_x_Present[0]],
+			});
+		}
+	});

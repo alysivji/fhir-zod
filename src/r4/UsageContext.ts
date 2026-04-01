@@ -24,4 +24,21 @@ export const UsageContext = z
 		valueRange: z.lazy(() => Range),
 		valueReference: z.lazy(() => Reference),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const value_x_Present = [
+			"valueCodeableConcept",
+			"valueQuantity",
+			"valueRange",
+			"valueReference",
+		].filter((field) => record[field] !== undefined);
+		if (value_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of valueCodeableConcept, valueQuantity, valueRange, valueReference may be present for value[x]",
+				path: [value_x_Present[0]],
+			});
+		}
+	});

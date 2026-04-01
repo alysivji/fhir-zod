@@ -85,4 +85,20 @@ export const Timing_Repeat = z
 			.array()
 			.optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const bounds_x_Present = [
+			"boundsDuration",
+			"boundsPeriod",
+			"boundsRange",
+		].filter((field) => record[field] !== undefined);
+		if (bounds_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of boundsDuration, boundsPeriod, boundsRange may be present for bounds[x]",
+				path: [bounds_x_Present[0]],
+			});
+		}
+	});

@@ -30,4 +30,20 @@ export const DataRequirement_DateFilter = z
 		valueDuration: z.lazy(() => Duration).optional(),
 		valuePeriod: z.lazy(() => Period).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const value_x_Present = [
+			"valueDateTime",
+			"valueDuration",
+			"valuePeriod",
+		].filter((field) => record[field] !== undefined);
+		if (value_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of valueDateTime, valueDuration, valuePeriod may be present for value[x]",
+				path: [value_x_Present[0]],
+			});
+		}
+	});

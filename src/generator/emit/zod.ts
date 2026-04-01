@@ -31,7 +31,7 @@ export function buildRuntimeSchemas(
 	const runtimeSchemas: Record<string, z.ZodTypeAny> = {};
 
 	for (const definition of sortDefinitions(definitions.values())) {
-		runtimeSchemas[definition.name] = z
+		const schema = z
 			.object(
 				Object.fromEntries(
 					definition.properties.map((property) => [
@@ -47,6 +47,11 @@ export function buildRuntimeSchemas(
 				),
 			)
 			.strict();
+
+		runtimeSchemas[definition.name] = applyChoiceGroupRefinement(
+			schema,
+			definition,
+		);
 	}
 
 	return runtimeSchemas;
@@ -155,7 +160,9 @@ function emitDefinitionFile(
 				)},`,
 		),
 		"\t})",
-		"\t.strict();",
+		"\t.strict()",
+		...emitChoiceGroupRefinement(definition),
+		"\t;",
 		"",
 	];
 
@@ -251,6 +258,98 @@ function buildRuntimePropertySchema(
 	}
 
 	return baseSchema;
+}
+
+function applyChoiceGroupRefinement(
+	schema: z.ZodTypeAny,
+	definition: NormalizedDefinition,
+): z.ZodTypeAny {
+	const choiceGroups = collectChoiceGroups(definition);
+
+	if (choiceGroups.length === 0) {
+		return schema;
+	}
+
+	return schema.superRefine((value, ctx) => {
+		const record =
+			typeof value === "object" && value !== null
+				? (value as Record<string, unknown>)
+				: {};
+
+		for (const group of choiceGroups) {
+			const presentVariants = group.fields.filter(
+				(field) => record[field] !== undefined,
+			);
+
+			if (presentVariants.length <= 1) {
+				continue;
+			}
+
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message: `Only one of ${presentVariants.join(", ")} may be present for ${group.choiceGroup}`,
+				path: [presentVariants[0]],
+			});
+		}
+	});
+}
+
+function collectChoiceGroups(
+	definition: NormalizedDefinition,
+): Array<{ choiceGroup: string; fields: string[] }> {
+	const fieldsByGroup = new Map<string, string[]>();
+
+	for (const property of definition.properties) {
+		if (!property.choiceGroup || property.jsonName.startsWith("_")) {
+			continue;
+		}
+
+		const fields = fieldsByGroup.get(property.choiceGroup) ?? [];
+		fields.push(property.jsonName);
+		fieldsByGroup.set(property.choiceGroup, fields);
+	}
+
+	return [...fieldsByGroup.entries()]
+		.map(([choiceGroup, fields]) => ({
+			choiceGroup,
+			fields: [...new Set(fields)].sort((left, right) =>
+				left.localeCompare(right),
+			),
+		}))
+		.filter((group) => group.fields.length > 1)
+		.sort((left, right) => left.choiceGroup.localeCompare(right.choiceGroup));
+}
+
+function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
+	const choiceGroups = collectChoiceGroups(definition);
+
+	if (choiceGroups.length === 0) {
+		return [];
+	}
+
+	return [
+		"\t.superRefine((value, ctx) => {",
+		"\t\tconst record = value as Record<string, unknown>;",
+		...choiceGroups.flatMap((group) => {
+			const fieldArray = `[${group.fields.map((field) => JSON.stringify(field)).join(", ")}]`;
+
+			return [
+				`\t\tconst ${choiceGroupVariableName(group.choiceGroup)} = ${fieldArray}.filter((field) => record[field] !== undefined);`,
+				`\t\tif (${choiceGroupVariableName(group.choiceGroup)}.length > 1) {`,
+				"\t\t\tctx.addIssue({",
+				"\t\t\t\tcode: z.ZodIssueCode.custom,",
+				`\t\t\t\tmessage: ${JSON.stringify(`Only one of ${group.fields.join(", ")} may be present for ${group.choiceGroup}`)},`,
+				`\t\t\t\tpath: [${choiceGroupVariableName(group.choiceGroup)}[0]],`,
+				"\t\t\t});",
+				"\t\t}",
+			];
+		}),
+		"\t})",
+	];
+}
+
+function choiceGroupVariableName(choiceGroup: string): string {
+	return `${choiceGroup.replaceAll(/[^a-zA-Z0-9]+/g, "_")}Present`;
 }
 
 function emitPrimitiveExpression(

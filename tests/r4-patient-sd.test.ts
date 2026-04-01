@@ -169,4 +169,50 @@ describe("R4 SD-backed Patient schema", () => {
 
 		expect(result.success).toBe(true);
 	});
+
+	describe("deceased[x]", () => {
+		it("accepts a single runtime choice", () => {
+			const patientSchema = comparison.runtimeSchemas.Patient;
+			const result = patientSchema.safeParse({
+				deceasedBoolean: true,
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(true);
+		});
+
+		it("rejects multiple runtime choices", () => {
+			const patientSchema = comparison.runtimeSchemas.Patient;
+			const result = patientSchema.safeParse({
+				deceasedBoolean: true,
+				deceasedDateTime: "2020-01-01T00:00:00Z",
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(false);
+		});
+	});
+
+	describe("multipleBirth[x]", () => {
+		it("accepts a single runtime choice", () => {
+			const patientSchema = comparison.runtimeSchemas.Patient;
+			const result = patientSchema.safeParse({
+				multipleBirthInteger: 2,
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(true);
+		});
+
+		it("rejects multiple runtime choices", () => {
+			const patientSchema = comparison.runtimeSchemas.Patient;
+			const result = patientSchema.safeParse({
+				multipleBirthBoolean: true,
+				multipleBirthInteger: 2,
+				resourceType: "Patient",
+			});
+
+			expect(result.success).toBe(false);
+		});
+	});
 });

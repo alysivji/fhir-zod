@@ -42,6 +42,7 @@
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
 		"generate:r4:openapi": "node scripts/generate-r4-openapi.ts",
+		"inspect:choice-groups": "node scripts/inspect-choice-groups.ts",
 		"lint": "biome lint .",
 		"test": "vitest run",
 		"typecheck": "tsc --noEmit"

@@ -97,4 +97,30 @@ export const Patient = z
 			.optional(),
 		text: z.lazy(() => Narrative).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const deceased_x_Present = ["deceasedBoolean", "deceasedDateTime"].filter(
+			(field) => record[field] !== undefined,
+		);
+		if (deceased_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of deceasedBoolean, deceasedDateTime may be present for deceased[x]",
+				path: [deceased_x_Present[0]],
+			});
+		}
+		const multipleBirth_x_Present = [
+			"multipleBirthBoolean",
+			"multipleBirthInteger",
+		].filter((field) => record[field] !== undefined);
+		if (multipleBirth_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of multipleBirthBoolean, multipleBirthInteger may be present for multipleBirth[x]",
+				path: [multipleBirth_x_Present[0]],
+			});
+		}
+	});

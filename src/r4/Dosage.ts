@@ -49,4 +49,19 @@ export const Dosage = z
 			.optional(),
 		timing: z.lazy(() => Timing).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const asNeeded_x_Present = [
+			"asNeededBoolean",
+			"asNeededCodeableConcept",
+		].filter((field) => record[field] !== undefined);
+		if (asNeeded_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of asNeededBoolean, asNeededCodeableConcept may be present for asNeeded[x]",
+				path: [asNeeded_x_Present[0]],
+			});
+		}
+	});

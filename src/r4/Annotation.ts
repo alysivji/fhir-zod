@@ -25,4 +25,18 @@ export const Annotation = z
 		text: z.string(),
 		time: fhirDateTime().optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		const author_x_Present = ["authorReference", "authorString"].filter(
+			(field) => record[field] !== undefined,
+		);
+		if (author_x_Present.length > 1) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"Only one of authorReference, authorString may be present for author[x]",
+				path: [author_x_Present[0]],
+			});
+		}
+	});
