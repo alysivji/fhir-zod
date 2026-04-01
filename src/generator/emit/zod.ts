@@ -227,8 +227,9 @@ function buildRuntimePropertySchema(
 		definition.resourceTypeLiteral !== null
 	) {
 		baseSchema = z.literal(definition.resourceTypeLiteral);
-	} else if (property.typeRef && definitions.has(property.typeRef)) {
-		baseSchema = z.lazy(() => runtimeSchemas[property.typeRef] ?? z.unknown());
+	} else if (property.typeRef !== null && definitions.has(property.typeRef)) {
+		const typeRef = property.typeRef;
+		baseSchema = z.lazy(() => runtimeSchemas[typeRef] ?? z.unknown());
 	} else if (property.enumValues) {
 		baseSchema = z.enum(property.enumValues as [string, ...string[]]);
 	} else if (property.primitiveType) {

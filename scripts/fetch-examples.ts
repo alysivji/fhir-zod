@@ -37,8 +37,14 @@ function discoverPatientJsonExamples(pageHtml: string): ExampleLink[] {
 	const linkPattern = /href="([^"]*patient-[^"]+\.json\.html)"/g;
 
 	for (const match of pageHtml.matchAll(linkPattern)) {
-		const href = decodeHtmlEntities(match[1]);
-		const htmlUrl = new URL(href, patientExamplesPageUrl).toString();
+		const href = match[1];
+
+		if (!href) {
+			continue;
+		}
+
+		const decodedHref = decodeHtmlEntities(href);
+		const htmlUrl = new URL(decodedHref, patientExamplesPageUrl).toString();
 		const url = htmlUrl.replace(/\.html$/, "");
 		const filename = new URL(url).pathname.split("/").at(-1);
 

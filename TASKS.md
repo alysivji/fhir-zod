@@ -72,7 +72,10 @@ Track the work needed to align the repository with the current README.
 - [ ] Generate first real R5 schema set
 - [ ] Export generated schemas by version without mixing versions
 - [ ] Keep generated schemas Zod-first with no wrapper layer
-- [ ] Add explicit type annotations where generated schemas exceed TypeScript's serialized inferred type limit
+- [x] Add a short-term workaround for generated schemas that exceed TypeScript's serialized inferred type limit
+  Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
+- [ ] Teach the generator to emit named TypeScript interfaces/types for oversized schemas
+  Proper fix: preserve precise `z.infer<typeof Schema>` types while keeping declaration generation stable.
 
 ## Testing
 

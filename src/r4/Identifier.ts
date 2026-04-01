@@ -7,8 +7,7 @@ import { Extension } from "./Extension";
 import { Period } from "./Period";
 import { Reference } from "./Reference";
 
-export const Identifier = z
-	.object({
+const identifierShape: z.ZodRawShape = {
 		_id: z.lazy(() => Element).optional(),
 		_system: z.lazy(() => Element).optional(),
 		_use: z.lazy(() => Element).optional(),
@@ -30,5 +29,6 @@ export const Identifier = z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
-	})
-	.strict();
+};
+
+export const Identifier = z.object(identifierShape).strict();

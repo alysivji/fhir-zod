@@ -33,7 +33,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsdown",
+		"build": "npm run typecheck && tsdown",
 		"check": "biome check .",
 		"compare:r4": "node scripts/compare-r4.ts",
 		"coverage": "vitest run --coverage",
@@ -43,13 +43,15 @@
 		"generate": "node scripts/generate.ts",
 		"generate:r4:openapi": "node scripts/generate-r4-openapi.ts",
 		"lint": "biome lint .",
-		"test": "vitest run"
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
 	},
 	"peerDependencies": {
 		"zod": "^3.25.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.3",
+		"@types/node": "^25.5.0",
 		"@vitest/coverage-v8": "^3.2.4",
 		"tsdown": "^0.15.5",
 		"typescript": "^5.8.2",

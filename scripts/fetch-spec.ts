@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import {
+	type Dirent,
 	existsSync,
 	mkdirSync,
 	readdirSync,
@@ -30,7 +31,7 @@ function loadManifests(): Array<{
 	manifest: SpecManifest;
 }> {
 	return readdirSync(specRoot, { withFileTypes: true })
-		.filter((entry) => entry.isDirectory())
+		.filter((entry: Dirent) => entry.isDirectory())
 		.map((entry) => ({
 			version: entry.name,
 			manifestPath: join(specRoot, entry.name, "manifest.json"),
@@ -46,11 +47,19 @@ function loadManifests(): Array<{
 
 			return requestedVersions.has(version);
 		})
-		.map(({ version, manifestPath }) => ({
+		.map(
+			({
+				version,
+				manifestPath,
+			}: {
+				version: string;
+				manifestPath: string;
+			}) => ({
 			version,
 			manifestPath,
 			manifest: JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest,
-		}));
+			}),
+		);
 }
 
 function ensurePackage(

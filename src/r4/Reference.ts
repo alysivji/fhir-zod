@@ -5,8 +5,7 @@ import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Identifier } from "./Identifier";
 
-export const Reference = z
-	.object({
+const referenceShape: z.ZodRawShape = {
 		_display: z.lazy(() => Element).optional(),
 		_id: z.lazy(() => Element).optional(),
 		_reference: z.lazy(() => Element).optional(),
@@ -29,5 +28,6 @@ export const Reference = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 		type: z.string().regex(/\S*/).optional(),
-	})
-	.strict();
+};
+
+export const Reference = z.object(referenceShape).strict();

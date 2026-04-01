@@ -47,8 +47,7 @@ import { Timing } from "./Timing";
 import { TriggerDefinition } from "./TriggerDefinition";
 import { UsageContext } from "./UsageContext";
 
-export const ElementDefinition = z
-	.object({
+const elementDefinitionShape: z.ZodRawShape = {
 		_alias: z.lazy(() => Element).optional(),
 		_comment: z.lazy(() => Element).optional(),
 		_condition: z.lazy(() => Element).optional(),
@@ -459,5 +458,6 @@ export const ElementDefinition = z
 			.lazy(() => ElementDefinition_Type)
 			.array()
 			.optional(),
-	})
-	.strict();
+};
+
+export const ElementDefinition = z.object(elementDefinitionShape).strict();

@@ -39,8 +39,7 @@ import { Timing } from "./Timing";
 import { TriggerDefinition } from "./TriggerDefinition";
 import { UsageContext } from "./UsageContext";
 
-export const Extension = z
-	.object({
+const extensionShape: z.ZodRawShape = {
 		_id: z.lazy(() => Element).optional(),
 		_url: z.lazy(() => Element).optional(),
 		_valueBase64Binary: z.lazy(() => Element).optional(),
@@ -141,5 +140,6 @@ export const Extension = z
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
 			.optional(),
-	})
-	.strict();
+};
+
+export const Extension = z.object(extensionShape).strict();

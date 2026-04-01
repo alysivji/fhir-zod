@@ -3,8 +3,7 @@
 import * as z from "zod";
 import { Extension } from "./Extension";
 
-export const Element = z
-	.object({
+const elementShape: z.ZodRawShape = {
 		_id: z.lazy(() => Element).optional(),
 		extension: z
 			.lazy(() => Extension)
@@ -14,5 +13,6 @@ export const Element = z
 			.string()
 			.regex(/[A-Za-z0-9\-.]{1,64}/)
 			.optional(),
-	})
-	.strict();
+};
+
+export const Element = z.object(elementShape).strict();
