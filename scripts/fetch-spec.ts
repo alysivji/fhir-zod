@@ -71,7 +71,7 @@ function ensurePackage(
 ): void {
 	const packageDir = resolve(repoRoot, manifest.packageRoot);
 	const packageParentDir = dirname(packageDir);
-	const downloadDir = join(repoRoot, ".context", "spec-cache", "downloads");
+	const downloadDir = join(repoRoot, ".local", "spec-cache", "downloads");
 	const archivePath = join(
 		downloadDir,
 		`${manifest.packageName}-${manifest.packageVersion}.tgz`,

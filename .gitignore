@@ -2,5 +2,6 @@ node_modules/
 dist/
 coverage/
 .context/
+.local/
 *.tsbuildinfo
 .DS_Store

@@ -61,7 +61,7 @@ describe("R4 comparison spike", () => {
 
 		expect(
 			result.files.some((file) =>
-				file.endsWith("/.context/generated/r4-openapi/Patient.ts"),
+				file.endsWith("/.local/generated/r4-openapi/Patient.ts"),
 			),
 		).toBe(true);
 		expect(result.files.every((file) => !file.includes("/src/r4/"))).toBe(true);

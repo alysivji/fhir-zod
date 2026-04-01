@@ -3,6 +3,6 @@
 	"packageName": "hl7.fhir.r5.core",
 	"packageVersion": "5.0.0",
 	"sourceUrl": "https://packages2.fhir.org/packages/hl7.fhir.r5.core/5.0.0",
-	"packageRoot": ".context/spec-cache/r5/package",
-	"structureDefinitionGlob": ".context/spec-cache/r5/package/StructureDefinition-*.json"
+	"packageRoot": ".local/spec-cache/r5/package",
+	"structureDefinitionGlob": ".local/spec-cache/r5/package/StructureDefinition-*.json"
 }

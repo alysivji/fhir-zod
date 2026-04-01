@@ -26,7 +26,7 @@ format: ## Format files with Biome
 check: ## Run Biome checks
 	npm run check
 
-fetch-spec: ## Download pinned FHIR spec inputs into .context
+fetch-spec: ## Download pinned FHIR spec inputs into .local
 	npm run fetch-spec
 
 generate: ## Run the generator entrypoint

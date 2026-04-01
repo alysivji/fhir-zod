@@ -4,6 +4,7 @@
 		"includes": [
 			"**",
 			"!.context",
+			"!.local",
 			"!dist",
 			"!coverage",
 			"!node_modules",

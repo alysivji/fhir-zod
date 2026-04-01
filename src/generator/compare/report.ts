@@ -112,11 +112,11 @@ export function compareR4(): CompareR4Result {
 	);
 	const outputDir = resolve(
 		repoRoot,
-		".context",
+		".local",
 		"generated",
 		"r4-structuredefinition",
 	);
-	const reportDir = resolve(repoRoot, ".context", "reports");
+	const reportDir = resolve(repoRoot, ".local", "reports");
 	const generatedFiles = writeNormalizedZodDefinitions({
 		definitions: structureDefinitionResult.definitions,
 		generatedAt: new Date().toISOString(),
