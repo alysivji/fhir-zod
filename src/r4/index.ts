@@ -1,3 +1,6 @@
+// Release: R4
+// Last generated: 2026-04-01T17:08:32.363Z
+
 export { Address } from "./Address";
 export { Age } from "./Age";
 export { Annotation } from "./Annotation";

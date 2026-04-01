@@ -14,9 +14,10 @@ export function generateR4(): GenerationResult {
 		openApiDefinitions.keys(),
 	);
 	const outputDir = resolve(repoRoot, "src", "r4");
+	const generatedAt = new Date().toISOString();
 	const files = writeNormalizedZodDefinitions({
 		definitions: structureDefinitionResult.definitions,
-		generatedBy: "scripts/generate.ts",
+		generatedAt,
 		outputDir,
 		primitivePatterns: structureDefinitionResult.primitivePatterns,
 	});

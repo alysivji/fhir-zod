@@ -360,6 +360,11 @@ function normalizeDefinition(
 		notes,
 		properties,
 		resourceTypeLiteral,
+		sourceMetadata: {
+			profileUrl: null,
+			releaseLabel: null,
+			version: null,
+		},
 	};
 }
 

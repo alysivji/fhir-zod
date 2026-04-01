@@ -80,14 +80,13 @@ function listTargetEntries(): TargetEntry[] {
 				filename.startsWith("StructureDefinition-") &&
 				filename.endsWith(".json"),
 		)
-		.map((filename) =>
-			JSON.parse(
-				readFileSync(join(packageRoot, filename), "utf8"),
-			) as StructureDefinition,
+		.map(
+			(filename) =>
+				JSON.parse(
+					readFileSync(join(packageRoot, filename), "utf8"),
+				) as StructureDefinition,
 		)
-		.filter(
-			(definition) => definition.resourceType === "StructureDefinition",
-		)
+		.filter((definition) => definition.resourceType === "StructureDefinition")
 		.map((definition) => {
 			const isWhitelistedAbstract = abstractGenerationWhitelist.has(
 				definition.name,

@@ -55,9 +55,11 @@ function loadManifests(): Array<{
 				version: string;
 				manifestPath: string;
 			}) => ({
-			version,
-			manifestPath,
-			manifest: JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest,
+				version,
+				manifestPath,
+				manifest: JSON.parse(
+					readFileSync(manifestPath, "utf8"),
+				) as SpecManifest,
 			}),
 		);
 }

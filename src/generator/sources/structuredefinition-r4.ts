@@ -31,12 +31,18 @@ type StructureDefinition = {
 	abstract?: boolean;
 	baseDefinition?: string;
 	description?: string;
+	fhirVersion?: string;
 	kind?: string;
+	meta?: {
+		lastUpdated?: string;
+	};
 	name: string;
 	resourceType: "StructureDefinition";
 	snapshot?: {
 		element?: StructureElement[];
 	};
+	url?: string;
+	version?: string;
 	type: string;
 };
 
@@ -330,6 +336,11 @@ function buildRootDefinition(
 		notes,
 		properties: sortProperties(properties),
 		resourceTypeLiteral,
+		sourceMetadata: {
+			profileUrl: definition.url ?? null,
+			releaseLabel: "R4",
+			version: definition.version ?? definition.fhirVersion ?? null,
+		},
 	};
 }
 
@@ -378,6 +389,11 @@ function buildSyntheticDefinition(
 		notes,
 		properties: sortProperties(properties),
 		resourceTypeLiteral: null,
+		sourceMetadata: {
+			profileUrl: definition.url ?? null,
+			releaseLabel: "R4",
+			version: definition.version ?? definition.fhirVersion ?? null,
+		},
 	};
 }
 

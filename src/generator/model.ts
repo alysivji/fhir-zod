@@ -131,6 +131,11 @@ export type NormalizedDefinition = {
 	notes: string[];
 	properties: NormalizedProperty[];
 	resourceTypeLiteral: string | null;
+	sourceMetadata: {
+		profileUrl: string | null;
+		releaseLabel: string | null;
+		version: string | null;
+	};
 };
 
 export function sortDefinitions(

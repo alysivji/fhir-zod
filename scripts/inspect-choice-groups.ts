@@ -7,9 +7,9 @@ const structureDefinitionResult = buildStructureDefinitionR4Definitions(
 	openApiDefinitions.keys(),
 );
 
-for (const definition of [...structureDefinitionResult.definitions.values()].sort(
-	(left, right) => left.name.localeCompare(right.name),
-)) {
+for (const definition of [
+	...structureDefinitionResult.definitions.values(),
+].sort((left, right) => left.name.localeCompare(right.name))) {
 	const groups = new Map<string, string[]>();
 
 	for (const property of definition.properties) {
