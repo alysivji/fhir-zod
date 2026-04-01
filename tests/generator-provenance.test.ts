@@ -94,4 +94,30 @@ describe("generated provenance headers", () => {
 			"// Last generated: 2026-04-01T05:42:36.000Z",
 		);
 	});
+
+	it("carries source descriptions into generated schema fields", () => {
+		const outputDir = mkdtempSync(join(tmpdir(), "fhir-zod-provenance-"));
+		const definitionsResult = buildStructureDefinitionR4Definitions([
+			"Patient",
+		]);
+
+		writeNormalizedZodDefinitions({
+			definitions: definitionsResult.definitions,
+			generatedAt: "2026-04-01T05:42:36.000Z",
+			outputDir,
+			primitivePatterns: definitionsResult.primitivePatterns,
+		});
+
+		const definitionPath = join(outputDir, "Patient.ts");
+		const content = readFileSync(definitionPath, "utf8");
+
+		expect(content).toContain('_active: z.unknown().optional().describe(');
+		expect(content).toContain('"Extensions for active"');
+		expect(content).toContain(
+			'birthDate: fhirDate()\n\t\t\t.optional()\n\t\t\t.describe("The date of birth for the individual."),',
+		);
+		expect(content).toContain(
+			'resourceType: z.literal("Patient").describe("This is a Patient resource."),',
+		);
+	});
 });

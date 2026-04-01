@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/UsageContext
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:47:10.063Z
+// Last generated: 2026-04-01T18:09:54.499Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -24,14 +24,44 @@ const getReferenceSchema = (): z.ZodType<unknown> => Reference;
 
 export const UsageContext = z
 	.object({
-		_id: z.lazy(getElementSchema).optional(),
-		code: z.lazy(getCodingSchema),
-		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
-		valueCodeableConcept: z.lazy(getCodeableConceptSchema),
-		valueQuantity: z.lazy(getQuantitySchema),
-		valueRange: z.lazy(getRangeSchema),
-		valueReference: z.lazy(getReferenceSchema),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
+		code: z
+			.lazy(getCodingSchema)
+			.describe(
+				"A code that identifies the type of context being specified by this usage context.",
+			),
+		extension: z
+			.lazy(getExtensionSchema)
+			.array()
+			.optional()
+			.describe(
+				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+			),
+		id: fhirId()
+			.optional()
+			.describe(
+				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+			),
+		valueCodeableConcept: z
+			.lazy(getCodeableConceptSchema)
+			.describe(
+				"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+			),
+		valueQuantity: z
+			.lazy(getQuantitySchema)
+			.describe(
+				"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+			),
+		valueRange: z
+			.lazy(getRangeSchema)
+			.describe(
+				"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+			),
+		valueReference: z
+			.lazy(getReferenceSchema)
+			.describe(
+				"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+			),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

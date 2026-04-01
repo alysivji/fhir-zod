@@ -99,14 +99,13 @@ Track the work needed to align the repository with the current README.
 - [ ] Document how to run the generator
 - [ ] Document expectations around generated vs handwritten files
 - [ ] Document how BackboneElement behavior is represented in generated schemas
-- [ ] Carry source descriptions into generated schema fields where practical
+- [x] Carry source descriptions into generated schema fields where practical
 
 ## Patient Follow-Up
 
-- [ ] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
+- [x] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
 - [ ] Model primitive underscore fields as FHIR primitive extensions and compare the approach with `fhir.resources`
 - [x] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
-- [ ] Remove handwritten TODO-style notes from generated or checked-in schema files
 
 ## Reference Follow-Up
 

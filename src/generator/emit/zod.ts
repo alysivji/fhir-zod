@@ -401,6 +401,10 @@ function emitPropertyExpression(
 		baseExpression = `${baseExpression}.optional()`;
 	}
 
+	if (property.description) {
+		baseExpression = `${baseExpression}.describe(${JSON.stringify(property.description)})`;
+	}
+
 	return baseExpression;
 }
 
@@ -466,6 +470,10 @@ function buildRuntimePropertySchema(
 
 	if (!property.required) {
 		baseSchema = baseSchema.optional();
+	}
+
+	if (property.description) {
+		baseSchema = baseSchema.describe(property.description);
 	}
 
 	return baseSchema;

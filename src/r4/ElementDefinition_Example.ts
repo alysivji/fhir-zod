@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:48:12.649Z
+// Last generated: 2026-04-01T18:09:54.499Z
 
 import * as z from "zod";
 import {
@@ -80,83 +80,359 @@ const getUsageContextSchema = (): z.ZodType<unknown> => UsageContext;
 
 export const ElementDefinition_Example = z
 	.object({
-		_id: z.lazy(getElementSchema).optional(),
-		_label: z.lazy(getElementSchema).optional(),
-		_valueBase64Binary: z.lazy(getElementSchema).optional(),
-		_valueBoolean: z.lazy(getElementSchema).optional(),
-		_valueCanonical: z.lazy(getElementSchema).optional(),
-		_valueCode: z.lazy(getElementSchema).optional(),
-		_valueDate: z.lazy(getElementSchema).optional(),
-		_valueDateTime: z.lazy(getElementSchema).optional(),
-		_valueDecimal: z.lazy(getElementSchema).optional(),
-		_valueId: z.lazy(getElementSchema).optional(),
-		_valueInstant: z.lazy(getElementSchema).optional(),
-		_valueInteger: z.lazy(getElementSchema).optional(),
-		_valueMarkdown: z.lazy(getElementSchema).optional(),
-		_valueOid: z.lazy(getElementSchema).optional(),
-		_valuePositiveInt: z.lazy(getElementSchema).optional(),
-		_valueString: z.lazy(getElementSchema).optional(),
-		_valueTime: z.lazy(getElementSchema).optional(),
-		_valueUnsignedInt: z.lazy(getElementSchema).optional(),
-		_valueUri: z.lazy(getElementSchema).optional(),
-		_valueUrl: z.lazy(getElementSchema).optional(),
-		_valueUuid: z.lazy(getElementSchema).optional(),
-		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
-		label: z.string().regex(/[ \r\n\t\S]+/),
-		valueAddress: z.lazy(getAddressSchema),
-		valueAge: z.lazy(getAgeSchema),
-		valueAnnotation: z.lazy(getAnnotationSchema),
-		valueAttachment: z.lazy(getAttachmentSchema),
-		valueBase64Binary: z.string().regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/),
-		valueBoolean: z.boolean(),
-		valueCanonical: z.string().regex(/\S*/),
-		valueCode: z.string().regex(/[^\s]+(\s[^\s]+)*/),
-		valueCodeableConcept: z.lazy(getCodeableConceptSchema),
-		valueCoding: z.lazy(getCodingSchema),
-		valueContactDetail: z.lazy(getContactDetailSchema),
-		valueContactPoint: z.lazy(getContactPointSchema),
-		valueContributor: z.lazy(getContributorSchema),
-		valueCount: z.lazy(getCountSchema),
-		valueDataRequirement: z.lazy(getDataRequirementSchema),
-		valueDate: fhirDate(),
-		valueDateTime: fhirDateTime(),
-		valueDecimal: z.number(),
-		valueDistance: z.lazy(getDistanceSchema),
-		valueDosage: z.lazy(getDosageSchema),
-		valueDuration: z.lazy(getDurationSchema),
-		valueExpression: z.unknown(),
-		valueHumanName: z.lazy(getHumanNameSchema),
-		valueId: fhirId(),
-		valueIdentifier: z.lazy(getIdentifierSchema),
-		valueInstant: fhirInstant(),
-		valueInteger: z.number().int(),
-		valueMarkdown: z.string(),
-		valueMeta: z.lazy(getMetaSchema),
-		valueMoney: z.lazy(getMoneySchema),
-		valueOid: z.string().regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/),
-		valueParameterDefinition: z.lazy(getParameterDefinitionSchema),
-		valuePeriod: z.lazy(getPeriodSchema),
-		valuePositiveInt: z.number().int().positive(),
-		valueQuantity: z.lazy(getQuantitySchema),
-		valueRange: z.lazy(getRangeSchema),
-		valueRatio: z.lazy(getRatioSchema),
-		valueReference: z.lazy(getReferenceSchema),
-		valueRelatedArtifact: z.lazy(getRelatedArtifactSchema),
-		valueSampledData: z.lazy(getSampledDataSchema),
-		valueSignature: z.lazy(getSignatureSchema),
-		valueString: z.string().regex(/[ \r\n\t\S]+/),
-		valueTime: fhirTime(),
-		valueTiming: z.lazy(getTimingSchema),
-		valueTriggerDefinition: z.lazy(getTriggerDefinitionSchema),
-		valueUnsignedInt: z.number().int().nonnegative(),
-		valueUri: z.string().regex(/\S*/),
-		valueUrl: z.string().regex(/\S*/),
-		valueUsageContext: z.lazy(getUsageContextSchema),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
+		_label: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for label"),
+		_valueBase64Binary: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueBase64Binary"),
+		_valueBoolean: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueBoolean"),
+		_valueCanonical: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueCanonical"),
+		_valueCode: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueCode"),
+		_valueDate: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDate"),
+		_valueDateTime: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDateTime"),
+		_valueDecimal: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDecimal"),
+		_valueId: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueId"),
+		_valueInstant: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueInstant"),
+		_valueInteger: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueInteger"),
+		_valueMarkdown: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueMarkdown"),
+		_valueOid: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueOid"),
+		_valuePositiveInt: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valuePositiveInt"),
+		_valueString: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueString"),
+		_valueTime: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueTime"),
+		_valueUnsignedInt: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUnsignedInt"),
+		_valueUri: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUri"),
+		_valueUrl: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUrl"),
+		_valueUuid: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUuid"),
+		extension: z
+			.lazy(getExtensionSchema)
+			.array()
+			.optional()
+			.describe(
+				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+			),
+		id: fhirId()
+			.optional()
+			.describe(
+				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+			),
+		label: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.describe(
+				"Describes the purpose of this example amoung the set of examples.",
+			),
+		valueAddress: z
+			.lazy(getAddressSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueAge: z
+			.lazy(getAgeSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueAnnotation: z
+			.lazy(getAnnotationSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueAttachment: z
+			.lazy(getAttachmentSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueBase64Binary: z
+			.string()
+			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueBoolean: z
+			.boolean()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueCanonical: z
+			.string()
+			.regex(/\S*/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueCode: z
+			.string()
+			.regex(/[^\s]+(\s[^\s]+)*/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueCodeableConcept: z
+			.lazy(getCodeableConceptSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueCoding: z
+			.lazy(getCodingSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueContactDetail: z
+			.lazy(getContactDetailSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueContactPoint: z
+			.lazy(getContactPointSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueContributor: z
+			.lazy(getContributorSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueCount: z
+			.lazy(getCountSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueDataRequirement: z
+			.lazy(getDataRequirementSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueDate: fhirDate().describe(
+			"The actual value for the element, which must be one of the types allowed for this element.",
+		),
+		valueDateTime: fhirDateTime().describe(
+			"The actual value for the element, which must be one of the types allowed for this element.",
+		),
+		valueDecimal: z
+			.number()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueDistance: z
+			.lazy(getDistanceSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueDosage: z
+			.lazy(getDosageSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueDuration: z
+			.lazy(getDurationSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueExpression: z
+			.unknown()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueHumanName: z
+			.lazy(getHumanNameSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueId: fhirId().describe(
+			"The actual value for the element, which must be one of the types allowed for this element.",
+		),
+		valueIdentifier: z
+			.lazy(getIdentifierSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueInstant: fhirInstant().describe(
+			"The actual value for the element, which must be one of the types allowed for this element.",
+		),
+		valueInteger: z
+			.number()
+			.int()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueMarkdown: z
+			.string()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueMeta: z
+			.lazy(getMetaSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueMoney: z
+			.lazy(getMoneySchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueOid: z
+			.string()
+			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueParameterDefinition: z
+			.lazy(getParameterDefinitionSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valuePeriod: z
+			.lazy(getPeriodSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valuePositiveInt: z
+			.number()
+			.int()
+			.positive()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueQuantity: z
+			.lazy(getQuantitySchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueRange: z
+			.lazy(getRangeSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueRatio: z
+			.lazy(getRatioSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueReference: z
+			.lazy(getReferenceSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueRelatedArtifact: z
+			.lazy(getRelatedArtifactSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueSampledData: z
+			.lazy(getSampledDataSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueSignature: z
+			.lazy(getSignatureSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueString: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueTime: fhirTime().describe(
+			"The actual value for the element, which must be one of the types allowed for this element.",
+		),
+		valueTiming: z
+			.lazy(getTimingSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueTriggerDefinition: z
+			.lazy(getTriggerDefinitionSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueUnsignedInt: z
+			.number()
+			.int()
+			.nonnegative()
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueUri: z
+			.string()
+			.regex(/\S*/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueUrl: z
+			.string()
+			.regex(/\S*/)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
+		valueUsageContext: z
+			.lazy(getUsageContextSchema)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
+			),
 		valueUuid: z
 			.string()
 			.regex(
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
+			)
+			.describe(
+				"The actual value for the element, which must be one of the types allowed for this element.",
 			),
 	})
 	.strict()

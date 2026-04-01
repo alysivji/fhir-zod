@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Extension
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:48:12.649Z
+// Last generated: 2026-04-01T18:09:54.499Z
 
 import * as z from "zod";
 import {
@@ -79,97 +79,412 @@ const getUsageContextSchema = (): z.ZodType<unknown> => UsageContext;
 
 export const Extension = z
 	.object({
-		_id: z.lazy(getElementSchema).optional(),
-		_url: z.lazy(getElementSchema).optional(),
-		_valueBase64Binary: z.lazy(getElementSchema).optional(),
-		_valueBoolean: z.lazy(getElementSchema).optional(),
-		_valueCanonical: z.lazy(getElementSchema).optional(),
-		_valueCode: z.lazy(getElementSchema).optional(),
-		_valueDate: z.lazy(getElementSchema).optional(),
-		_valueDateTime: z.lazy(getElementSchema).optional(),
-		_valueDecimal: z.lazy(getElementSchema).optional(),
-		_valueId: z.lazy(getElementSchema).optional(),
-		_valueInstant: z.lazy(getElementSchema).optional(),
-		_valueInteger: z.lazy(getElementSchema).optional(),
-		_valueMarkdown: z.lazy(getElementSchema).optional(),
-		_valueOid: z.lazy(getElementSchema).optional(),
-		_valuePositiveInt: z.lazy(getElementSchema).optional(),
-		_valueString: z.lazy(getElementSchema).optional(),
-		_valueTime: z.lazy(getElementSchema).optional(),
-		_valueUnsignedInt: z.lazy(getElementSchema).optional(),
-		_valueUri: z.lazy(getElementSchema).optional(),
-		_valueUrl: z.lazy(getElementSchema).optional(),
-		_valueUuid: z.lazy(getElementSchema).optional(),
-		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
-		url: z.string().regex(/\S*/),
-		valueAddress: z.lazy(getAddressSchema).optional(),
-		valueAge: z.lazy(getAgeSchema).optional(),
-		valueAnnotation: z.lazy(getAnnotationSchema).optional(),
-		valueAttachment: z.lazy(getAttachmentSchema).optional(),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
+		_url: z.lazy(getElementSchema).optional().describe("Extensions for url"),
+		_valueBase64Binary: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueBase64Binary"),
+		_valueBoolean: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueBoolean"),
+		_valueCanonical: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueCanonical"),
+		_valueCode: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueCode"),
+		_valueDate: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDate"),
+		_valueDateTime: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDateTime"),
+		_valueDecimal: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDecimal"),
+		_valueId: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueId"),
+		_valueInstant: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueInstant"),
+		_valueInteger: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueInteger"),
+		_valueMarkdown: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueMarkdown"),
+		_valueOid: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueOid"),
+		_valuePositiveInt: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valuePositiveInt"),
+		_valueString: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueString"),
+		_valueTime: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueTime"),
+		_valueUnsignedInt: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUnsignedInt"),
+		_valueUri: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUri"),
+		_valueUrl: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUrl"),
+		_valueUuid: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueUuid"),
+		extension: z
+			.lazy(getExtensionSchema)
+			.array()
+			.optional()
+			.describe(
+				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+			),
+		id: fhirId()
+			.optional()
+			.describe(
+				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+			),
+		url: z
+			.string()
+			.regex(/\S*/)
+			.describe(
+				"Source of the definition for the extension code - a logical name or a URL.",
+			),
+		valueAddress: z
+			.lazy(getAddressSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueAge: z
+			.lazy(getAgeSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueAnnotation: z
+			.lazy(getAnnotationSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueAttachment: z
+			.lazy(getAttachmentSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
 		valueBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
-		valueBoolean: z.boolean().optional(),
-		valueCanonical: z.string().regex(/\S*/).optional(),
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueBoolean: z
+			.boolean()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueCanonical: z
+			.string()
+			.regex(/\S*/)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
 		valueCode: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
-		valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		valueCoding: z.lazy(getCodingSchema).optional(),
-		valueContactDetail: z.lazy(getContactDetailSchema).optional(),
-		valueContactPoint: z.lazy(getContactPointSchema).optional(),
-		valueContributor: z.lazy(getContributorSchema).optional(),
-		valueCount: z.lazy(getCountSchema).optional(),
-		valueDataRequirement: z.lazy(getDataRequirementSchema).optional(),
-		valueDate: fhirDate().optional(),
-		valueDateTime: fhirDateTime().optional(),
-		valueDecimal: z.number().optional(),
-		valueDistance: z.lazy(getDistanceSchema).optional(),
-		valueDosage: z.lazy(getDosageSchema).optional(),
-		valueDuration: z.lazy(getDurationSchema).optional(),
-		valueExpression: z.unknown().optional(),
-		valueHumanName: z.lazy(getHumanNameSchema).optional(),
-		valueId: fhirId().optional(),
-		valueIdentifier: z.lazy(getIdentifierSchema).optional(),
-		valueInstant: fhirInstant().optional(),
-		valueInteger: z.number().int().optional(),
-		valueMarkdown: z.string().optional(),
-		valueMeta: z.lazy(getMetaSchema).optional(),
-		valueMoney: z.lazy(getMoneySchema).optional(),
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueCodeableConcept: z
+			.lazy(getCodeableConceptSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueCoding: z
+			.lazy(getCodingSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueContactDetail: z
+			.lazy(getContactDetailSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueContactPoint: z
+			.lazy(getContactPointSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueContributor: z
+			.lazy(getContributorSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueCount: z
+			.lazy(getCountSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDataRequirement: z
+			.lazy(getDataRequirementSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDate: fhirDate()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDateTime: fhirDateTime()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDecimal: z
+			.number()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDistance: z
+			.lazy(getDistanceSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDosage: z
+			.lazy(getDosageSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueDuration: z
+			.lazy(getDurationSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueExpression: z
+			.unknown()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueHumanName: z
+			.lazy(getHumanNameSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueId: fhirId()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueIdentifier: z
+			.lazy(getIdentifierSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueInstant: fhirInstant()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueInteger: z
+			.number()
+			.int()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueMarkdown: z
+			.string()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueMeta: z
+			.lazy(getMetaSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueMoney: z
+			.lazy(getMoneySchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
 		valueOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional(),
-		valueParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
-		valuePeriod: z.lazy(getPeriodSchema).optional(),
-		valuePositiveInt: z.number().int().positive().optional(),
-		valueQuantity: z.lazy(getQuantitySchema).optional(),
-		valueRange: z.lazy(getRangeSchema).optional(),
-		valueRatio: z.lazy(getRatioSchema).optional(),
-		valueReference: z.lazy(getReferenceSchema).optional(),
-		valueRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
-		valueSampledData: z.lazy(getSampledDataSchema).optional(),
-		valueSignature: z.lazy(getSignatureSchema).optional(),
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueParameterDefinition: z
+			.lazy(getParameterDefinitionSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valuePeriod: z
+			.lazy(getPeriodSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valuePositiveInt: z
+			.number()
+			.int()
+			.positive()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueQuantity: z
+			.lazy(getQuantitySchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueRange: z
+			.lazy(getRangeSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueRatio: z
+			.lazy(getRatioSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueReference: z
+			.lazy(getReferenceSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueRelatedArtifact: z
+			.lazy(getRelatedArtifactSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueSampledData: z
+			.lazy(getSampledDataSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueSignature: z
+			.lazy(getSignatureSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
 		valueString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional(),
-		valueTime: fhirTime().optional(),
-		valueTiming: z.lazy(getTimingSchema).optional(),
-		valueTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
-		valueUnsignedInt: z.number().int().nonnegative().optional(),
-		valueUri: z.string().regex(/\S*/).optional(),
-		valueUrl: z.string().regex(/\S*/).optional(),
-		valueUsageContext: z.lazy(getUsageContextSchema).optional(),
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueTime: fhirTime()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueTiming: z
+			.lazy(getTimingSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueTriggerDefinition: z
+			.lazy(getTriggerDefinitionSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueUnsignedInt: z
+			.number()
+			.int()
+			.nonnegative()
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueUri: z
+			.string()
+			.regex(/\S*/)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueUrl: z
+			.string()
+			.regex(/\S*/)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
+		valueUsageContext: z
+			.lazy(getUsageContextSchema)
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
 		valueUuid: z
 			.string()
 			.regex(
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
-			.optional(),
+			.optional()
+			.describe(
+				"Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+			),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
