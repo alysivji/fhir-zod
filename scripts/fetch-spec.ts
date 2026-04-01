@@ -85,6 +85,9 @@ function ensurePackage(
 	mkdirSync(packageParentDir, { recursive: true });
 
 	if (!packageReady) {
+		console.log(
+			`spec-fetch[${version}]: cache miss for extracted package, downloading ${manifest.packageName}@${manifest.packageVersion}.`,
+		);
 		rmSync(packageDir, { recursive: true, force: true });
 
 		execFileSync("curl", ["-L", manifest.sourceUrl, "-o", archivePath], {
@@ -96,6 +99,10 @@ function ensurePackage(
 			cwd: repoRoot,
 			stdio: "inherit",
 		});
+	} else {
+		console.log(
+			`spec-fetch[${version}]: using extracted package cache for ${manifest.packageName}@${manifest.packageVersion}.`,
+		);
 	}
 
 	ensureJsonSchema(downloadDir, manifest);
@@ -142,12 +149,19 @@ function ensureJsonSchema(downloadDir: string, manifest: SpecManifest): void {
 	const outputPath = resolve(repoRoot, manifest.jsonSchemaOutputPath);
 
 	if (existsSync(outputPath)) {
+		console.log(
+			`spec-fetch: using cached JSON schema at ${manifest.jsonSchemaOutputPath}.`,
+		);
 		return;
 	}
 
 	const archivePath = join(
 		downloadDir,
 		basenameFromUrl(manifest.jsonSchemaSourceUrl),
+	);
+
+	console.log(
+		`spec-fetch: downloading JSON schema from ${manifest.jsonSchemaSourceUrl}.`,
 	);
 
 	execFileSync(
