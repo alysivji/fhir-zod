@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
@@ -40,4 +41,16 @@ export const Annotation = z
 				path: [author_x_Present[0]],
 			});
 		}
+		validateReferenceTarget(
+			record["authorReference"],
+			"authorReference",
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Organization", "Patient", "Practitioner", "RelatedPerson"],
+			ctx,
+		);
 	});

@@ -153,7 +153,7 @@ describe("R4 SD-backed Patient schema", () => {
 		expect(result.success).toBe(false);
 	});
 
-	it("keeps Reference runtime validation generic", () => {
+	it("rejects constrained references outside the allowed target profiles", () => {
 		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			generalPractitioner: [
@@ -167,7 +167,7 @@ describe("R4 SD-backed Patient schema", () => {
 			resourceType: "Patient",
 		});
 
-		expect(result.success).toBe(true);
+		expect(result.success).toBe(false);
 	});
 
 	describe("deceased[x]", () => {

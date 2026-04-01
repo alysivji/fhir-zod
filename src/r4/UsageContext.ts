@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { CodeableConcept } from "./CodeableConcept";
 import { Coding } from "./Coding";
 import { Element } from "./Element";
@@ -46,4 +47,27 @@ export const UsageContext = z
 				path: [value_x_Present[0]],
 			});
 		}
+		validateReferenceTarget(
+			record["valueReference"],
+			"valueReference",
+			[
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
+				"http://hl7.org/fhir/StructureDefinition/InsurancePlan",
+				"http://hl7.org/fhir/StructureDefinition/Location",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/PlanDefinition",
+				"http://hl7.org/fhir/StructureDefinition/ResearchStudy",
+			],
+			[
+				"Group",
+				"HealthcareService",
+				"InsurancePlan",
+				"Location",
+				"Organization",
+				"PlanDefinition",
+				"ResearchStudy",
+			],
+			ctx,
+		);
 	});

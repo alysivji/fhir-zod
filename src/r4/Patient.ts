@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirDate, fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { Address } from "./Address";
 import { Attachment } from "./Attachment";
 import { CodeableConcept } from "./CodeableConcept";
@@ -104,4 +105,22 @@ export const Patient = z
 				path: [multipleBirth_x_Present[0]],
 			});
 		}
+		validateReferenceTarget(
+			record["generalPractitioner"],
+			"generalPractitioner",
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+			],
+			["Organization", "Practitioner", "PractitionerRole"],
+			ctx,
+		);
+		validateReferenceTarget(
+			record["managingOrganization"],
+			"managingOrganization",
+			["http://hl7.org/fhir/StructureDefinition/Organization"],
+			["Organization"],
+			ctx,
+		);
 	});

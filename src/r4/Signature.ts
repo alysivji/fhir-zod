@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { Coding } from "./Coding";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
@@ -38,4 +39,49 @@ export const Signature = z
 		when: fhirInstant(),
 		who: z.lazy(getReferenceSchema),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validateReferenceTarget(
+			record["onBehalfOf"],
+			"onBehalfOf",
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			[
+				"Device",
+				"Organization",
+				"Patient",
+				"Practitioner",
+				"PractitionerRole",
+				"RelatedPerson",
+			],
+			ctx,
+		);
+		validateReferenceTarget(
+			record["who"],
+			"who",
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			[
+				"Device",
+				"Organization",
+				"Patient",
+				"Practitioner",
+				"PractitionerRole",
+				"RelatedPerson",
+			],
+			ctx,
+		);
+	});

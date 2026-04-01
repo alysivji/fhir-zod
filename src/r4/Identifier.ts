@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { CodeableConcept } from "./CodeableConcept";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
@@ -32,4 +33,14 @@ export const Identifier = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validateReferenceTarget(
+			record["assigner"],
+			"assigner",
+			["http://hl7.org/fhir/StructureDefinition/Organization"],
+			["Organization"],
+			ctx,
+		);
+	});

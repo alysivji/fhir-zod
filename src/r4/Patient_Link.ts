@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
 import { Reference } from "./Reference";
@@ -20,4 +21,17 @@ export const Patient_Link = z
 		other: z.lazy(getReferenceSchema),
 		type: z.enum(["refer", "replaced-by", "replaces", "seealso"]),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validateReferenceTarget(
+			record["other"],
+			"other",
+			[
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Patient", "RelatedPerson"],
+			ctx,
+		);
+	});

@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { Address } from "./Address";
 import { CodeableConcept } from "./CodeableConcept";
 import { ContactPoint } from "./ContactPoint";
@@ -35,4 +36,14 @@ export const Patient_Contact = z
 		relationship: z.lazy(getCodeableConceptSchema).array().optional(),
 		telecom: z.lazy(getContactPointSchema).array().optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validateReferenceTarget(
+			record["organization"],
+			"organization",
+			["http://hl7.org/fhir/StructureDefinition/Organization"],
+			["Organization"],
+			ctx,
+		);
+	});

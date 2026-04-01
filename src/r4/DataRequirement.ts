@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { CodeableConcept } from "./CodeableConcept";
 import { DataRequirement_CodeFilter } from "./DataRequirement_CodeFilter";
 import { DataRequirement_DateFilter } from "./DataRequirement_DateFilter";
@@ -270,4 +271,11 @@ export const DataRequirement = z
 				path: [subject_x_Present[0]],
 			});
 		}
+		validateReferenceTarget(
+			record["subjectReference"],
+			"subjectReference",
+			["http://hl7.org/fhir/StructureDefinition/Group"],
+			["Group"],
+			ctx,
+		);
 	});

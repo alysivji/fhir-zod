@@ -2,6 +2,7 @@
 // Source: HL7 FHIR R4 StructureDefinitions from the pinned spec manifest.
 import * as z from "zod";
 import { fhirDate, fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { DataRequirement } from "./DataRequirement";
 import { Element } from "./Element";
 import { Extension } from "./Extension";
@@ -61,4 +62,11 @@ export const TriggerDefinition = z
 				path: [timing_x_Present[0]],
 			});
 		}
+		validateReferenceTarget(
+			record["timingReference"],
+			"timingReference",
+			["http://hl7.org/fhir/StructureDefinition/Schedule"],
+			["Schedule"],
+			ctx,
+		);
 	});

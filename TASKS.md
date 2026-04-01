@@ -53,25 +53,25 @@ Track the work needed to align the repository with the current README.
 
 ## Generator
 
-- [ ] Parse StructureDefinitions
-- [ ] Map FHIR primitive types to Zod
-- [ ] Map FHIR complex types to Zod
-- [ ] Handle cardinality for arrays
-- [ ] Handle required vs optional fields
-- [ ] Handle choice fields such as `value[x]`
-- [ ] Enforce single-choice presence for generated choice fields
-- [ ] Make generator output deterministic
-- [ ] Implement generation entrypoint in `scripts/generate.ts`
+- [x] Parse StructureDefinitions
+- [x] Map FHIR primitive types to Zod
+- [x] Map FHIR complex types to Zod
+- [x] Handle cardinality for arrays
+- [x] Handle required vs optional fields
+- [x] Handle choice fields such as `value[x]`
+- [x] Enforce single-choice presence for generated choice fields
+- [x] Make generator output deterministic
+- [x] Implement generation entrypoint in `scripts/generate.ts`
 
 ## Generated Schema Output
 
-- [ ] Generate shared primitives/helpers needed by emitted schemas
+- [x] Generate shared primitives/helpers needed by emitted schemas
 - [ ] Generate first real STU3 schema set
-- [ ] Generate first real R4 schema set
+- [x] Generate first real R4 schema set
 - [ ] Generate first real R4B schema set
 - [ ] Generate first real R5 schema set
-- [ ] Export generated schemas by version without mixing versions
-- [ ] Keep generated schemas Zod-first with no wrapper layer
+- [x] Export generated schemas by version without mixing versions
+- [x] Keep generated schemas Zod-first with no wrapper layer
 - [x] Add a short-term workaround for generated schemas that exceed TypeScript's serialized inferred type limit
   Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
 - [ ] Teach the generator to emit named TypeScript interfaces/types for oversized schemas
@@ -80,13 +80,13 @@ Track the work needed to align the repository with the current README.
 ## Testing
 
 - [x] Validate parsing of a basic valid resource
-- [ ] Add tests for rejecting invalid structures
-- [ ] Add tests for required field enforcement
-- [ ] Add tests for choice field constraints
+- [x] Add tests for rejecting invalid structures
+- [x] Add tests for required field enforcement
+- [x] Add tests for choice field constraints
 - [ ] Add version-specific test coverage
-- [ ] Add tests for generator determinism
-- [ ] Add a schema test that rejects unknown top-level Patient fields
-- [ ] Compare generated Patient fields against the official HL7 R4 Patient definition page or source schema
+- [x] Add tests for generator determinism
+- [x] Add a schema test that rejects unknown top-level Patient fields
+- [x] Compare generated Patient fields against the official HL7 R4 Patient definition page or source schema
 
 ## Documentation
 
@@ -101,8 +101,15 @@ Track the work needed to align the repository with the current README.
 
 - [ ] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
 - [ ] Model primitive underscore fields as FHIR primitive extensions and compare the approach with `fhir.resources`
-- [ ] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
+- [x] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
 - [ ] Remove handwritten TODO-style notes from generated or checked-in schema files
+
+## Reference Follow-Up
+
+- [ ] Reuse the shared reference-target runtime validation in additional generated versions beyond R4
+- [ ] Add direct unit tests for `src/shared/fhir-reference-validation.ts`
+- [ ] Decide whether constrained reference validation should surface richer errors for internal references when the containing `contained` resources are available
+- [ ] Document the supported FHIR reference forms and current ambiguity behavior in the README or generator docs
 
 ## Non-Goals
 
