@@ -1,4 +1,4 @@
-import { HumanName, Patient } from "@fhir-zod/core/r4";
+import { type HumanName, Patient } from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 
 describe("generated type aliases", () => {

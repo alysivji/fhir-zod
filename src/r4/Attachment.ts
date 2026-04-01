@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Attachment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:48:12.649Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
@@ -29,12 +29,12 @@ export const Attachment = z
 		creation: fhirDateTime().optional(),
 		data: z
 			.string()
-			.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		hash: z
 			.string()
-			.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
 		id: fhirId().optional(),
 		language: z

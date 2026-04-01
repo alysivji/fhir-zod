@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Extension
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:48:12.649Z
 
 import * as z from "zod";
 import {
@@ -109,7 +109,7 @@ export const Extension = z
 		valueAttachment: z.lazy(getAttachmentSchema).optional(),
 		valueBase64Binary: z
 			.string()
-			.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
 		valueBoolean: z.boolean().optional(),
 		valueCanonical: z.string().regex(/\S*/).optional(),

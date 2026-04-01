@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:48:12.649Z
 
 import * as z from "zod";
 import {
@@ -211,7 +211,7 @@ export const ElementDefinition = BackboneElement.extend({
 	defaultValueAttachment: z.lazy(getAttachmentSchema).optional(),
 	defaultValueBase64Binary: z
 		.string()
-		.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+		.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 		.optional(),
 	defaultValueBoolean: z.boolean().optional(),
 	defaultValueCanonical: z.string().regex(/\S*/).optional(),
@@ -282,7 +282,7 @@ export const ElementDefinition = BackboneElement.extend({
 	fixedAttachment: z.lazy(getAttachmentSchema).optional(),
 	fixedBase64Binary: z
 		.string()
-		.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+		.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 		.optional(),
 	fixedBoolean: z.boolean().optional(),
 	fixedCanonical: z.string().regex(/\S*/).optional(),
@@ -391,7 +391,7 @@ export const ElementDefinition = BackboneElement.extend({
 	patternAttachment: z.lazy(getAttachmentSchema).optional(),
 	patternBase64Binary: z
 		.string()
-		.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+		.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 		.optional(),
 	patternBoolean: z.boolean().optional(),
 	patternCanonical: z.string().regex(/\S*/).optional(),

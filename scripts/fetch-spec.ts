@@ -12,6 +12,9 @@ import { fileURLToPath } from "node:url";
 
 type SpecManifest = {
 	fhirVersion: string;
+	jsonSchemaArchiveEntry?: string;
+	jsonSchemaOutputPath?: string;
+	jsonSchemaSourceUrl?: string;
 	packageName: string;
 	packageVersion: string;
 	sourceUrl: string;
@@ -76,24 +79,106 @@ function ensurePackage(
 		downloadDir,
 		`${manifest.packageName}-${manifest.packageVersion}.tgz`,
 	);
+	const packageReady = isPackageReady(packageDir, manifest);
 
 	mkdirSync(downloadDir, { recursive: true });
 	mkdirSync(packageParentDir, { recursive: true });
-	rmSync(packageDir, { recursive: true, force: true });
 
-	execFileSync("curl", ["-L", manifest.sourceUrl, "-o", archivePath], {
-		cwd: repoRoot,
-		stdio: "inherit",
-	});
+	if (!packageReady) {
+		rmSync(packageDir, { recursive: true, force: true });
 
-	execFileSync("tar", ["-xzf", archivePath, "-C", packageParentDir], {
-		cwd: repoRoot,
-		stdio: "inherit",
-	});
+		execFileSync("curl", ["-L", manifest.sourceUrl, "-o", archivePath], {
+			cwd: repoRoot,
+			stdio: "inherit",
+		});
+
+		execFileSync("tar", ["-xzf", archivePath, "-C", packageParentDir], {
+			cwd: repoRoot,
+			stdio: "inherit",
+		});
+	}
+
+	ensureJsonSchema(downloadDir, manifest);
 
 	console.log(
 		`Fetched ${version}: ${manifest.packageName}@${manifest.packageVersion} for ${manifest.fhirVersion} using ${manifestPath}.`,
 	);
+}
+
+function isPackageReady(packageDir: string, manifest: SpecManifest): boolean {
+	if (!existsSync(packageDir)) {
+		return false;
+	}
+
+	const structureDefinitionPath = join(
+		packageDir,
+		"StructureDefinition-Patient.json",
+	);
+
+	if (!existsSync(structureDefinitionPath)) {
+		return false;
+	}
+
+	if (manifest.jsonSchemaOutputPath) {
+		const jsonSchemaPath = resolve(repoRoot, manifest.jsonSchemaOutputPath);
+
+		if (!existsSync(jsonSchemaPath)) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function ensureJsonSchema(downloadDir: string, manifest: SpecManifest): void {
+	if (
+		!manifest.jsonSchemaSourceUrl ||
+		!manifest.jsonSchemaArchiveEntry ||
+		!manifest.jsonSchemaOutputPath
+	) {
+		return;
+	}
+
+	const outputPath = resolve(repoRoot, manifest.jsonSchemaOutputPath);
+
+	if (existsSync(outputPath)) {
+		return;
+	}
+
+	const archivePath = join(
+		downloadDir,
+		basenameFromUrl(manifest.jsonSchemaSourceUrl),
+	);
+
+	execFileSync(
+		"curl",
+		["-L", manifest.jsonSchemaSourceUrl, "-o", archivePath],
+		{
+			cwd: repoRoot,
+			stdio: "inherit",
+		},
+	);
+
+	mkdirSync(dirname(outputPath), { recursive: true });
+	execFileSync(
+		"sh",
+		[
+			"-c",
+			`unzip -p "$1" "$2" > "$3"`,
+			"sh",
+			archivePath,
+			manifest.jsonSchemaArchiveEntry,
+			outputPath,
+		],
+		{
+			cwd: repoRoot,
+			stdio: "inherit",
+		},
+	);
+}
+
+function basenameFromUrl(url: string): string {
+	return url.split("/").at(-1) ?? "download";
 }
 
 for (const { version, manifestPath, manifest } of loadManifests()) {

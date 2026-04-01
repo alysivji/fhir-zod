@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:47:10.063Z
 
 import * as z from "zod";
 import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
@@ -87,7 +87,7 @@ export const Patient = DomainResource.extend({
 			});
 		}
 		validateReferenceTarget(
-			record["generalPractitioner"],
+			record.generalPractitioner,
 			"generalPractitioner",
 			[
 				"http://hl7.org/fhir/StructureDefinition/Organization",
@@ -98,7 +98,7 @@ export const Patient = DomainResource.extend({
 			ctx,
 		);
 		validateReferenceTarget(
-			record["managingOrganization"],
+			record.managingOrganization,
 			"managingOrganization",
 			["http://hl7.org/fhir/StructureDefinition/Organization"],
 			["Organization"],

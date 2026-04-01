@@ -21,8 +21,17 @@ jobs:
           node-version: "24"
           cache: npm
 
+      - name: Restore spec cache
+        uses: actions/cache@v4
+        with:
+          path: .local/spec-cache
+          key: spec-cache-${{ runner.os }}-${{ hashFiles('src/spec/**/*.json', 'scripts/fetch-spec.ts') }}
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Fetch spec artifacts
+        run: npm run fetch-spec
 
       - name: Build
         run: npm run build

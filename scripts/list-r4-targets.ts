@@ -52,7 +52,7 @@ function parseFlag(name: string): string | null {
 		return directMatch.slice(name.length + 1);
 	}
 
-	const flagIndex = args.findIndex((arg) => arg === name);
+	const flagIndex = args.indexOf(name);
 
 	if (flagIndex === -1) {
 		return null;

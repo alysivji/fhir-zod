@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
-	fhirId,
 	fhirDate,
 	fhirDateTime,
+	fhirId,
 	fhirInstant,
 	fhirTime,
 } from "../src/shared/fhir-primitives.ts";

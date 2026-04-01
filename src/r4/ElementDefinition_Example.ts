@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:48:12.649Z
 
 import * as z from "zod";
 import {
@@ -108,7 +108,7 @@ export const ElementDefinition_Example = z
 		valueAge: z.lazy(getAgeSchema),
 		valueAnnotation: z.lazy(getAnnotationSchema),
 		valueAttachment: z.lazy(getAttachmentSchema),
-		valueBase64Binary: z.string().regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/),
+		valueBase64Binary: z.string().regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/),
 		valueBoolean: z.boolean(),
 		valueCanonical: z.string().regex(/\S*/),
 		valueCode: z.string().regex(/[^\s]+(\s[^\s]+)*/),

@@ -3,6 +3,9 @@
 	"packageName": "hl7.fhir.r4.core",
 	"packageVersion": "4.0.1",
 	"sourceUrl": "https://packages2.fhir.org/packages/hl7.fhir.r4.core/4.0.1",
+	"jsonSchemaSourceUrl": "https://www.hl7.org/fhir/R4/fhir.schema.json.zip",
+	"jsonSchemaArchiveEntry": "fhir.schema.json",
+	"jsonSchemaOutputPath": ".local/spec-cache/r4/package/fhir.schema.json",
 	"packageRoot": ".local/spec-cache/r4/package",
 	"structureDefinitionGlob": ".local/spec-cache/r4/package/StructureDefinition-*.json"
 }

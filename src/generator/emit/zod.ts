@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import {
-	mkdtempSync,
 	mkdirSync,
+	mkdtempSync,
 	readdirSync,
 	readFileSync,
 	rmSync,
@@ -10,17 +10,17 @@ import {
 import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import * as z from "zod";
-import type { NormalizedDefinition } from "../model.ts";
-import { primitiveRuntimeKind, sortDefinitions } from "../model.ts";
-import { repoRoot } from "../shared.ts";
 import {
-	fhirId,
 	fhirDate,
 	fhirDateTime,
+	fhirId,
 	fhirInstant,
 	fhirTime,
 } from "../../shared/fhir-primitives.ts";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation.ts";
+import type { NormalizedDefinition } from "../model.ts";
+import { primitiveRuntimeKind, sortDefinitions } from "../model.ts";
+import { repoRoot } from "../shared.ts";
 
 type BuiltFile = {
 	content: string;
@@ -562,7 +562,7 @@ function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
 			];
 		}),
 		...referenceConstraints.flatMap((constraint) => [
-			`\t\tvalidateReferenceTarget(record[${JSON.stringify(constraint.field)}], ${JSON.stringify(constraint.field)}, [${constraint.allowedCanonicalTypes.map((type) => JSON.stringify(type)).join(", ")}], [${constraint.allowedResourceTypes.map((type) => JSON.stringify(type)).join(", ")}], ctx);`,
+			`\t\tvalidateReferenceTarget(${emitRecordAccess("record", constraint.field)}, ${JSON.stringify(constraint.field)}, [${constraint.allowedCanonicalTypes.map((type) => JSON.stringify(type)).join(", ")}], [${constraint.allowedResourceTypes.map((type) => JSON.stringify(type)).join(", ")}], ctx);`,
 		]),
 		"\t})",
 	];
@@ -748,13 +748,12 @@ function buildPrimitiveSchema(
 }
 
 function toRegexLiteral(pattern: string): string {
-	const escapedPattern = pattern.replaceAll("/", "\\/");
 	let normalized = "";
 	let inCharacterClass = false;
 
-	for (let index = 0; index < escapedPattern.length; index += 1) {
-		const current = escapedPattern[index];
-		const next = escapedPattern[index + 1];
+	for (let index = 0; index < pattern.length; index += 1) {
+		const current = pattern[index];
+		const next = pattern[index + 1];
 
 		if (current === "[" && !inCharacterClass) {
 			inCharacterClass = true;
@@ -774,10 +773,33 @@ function toRegexLiteral(pattern: string): string {
 			continue;
 		}
 
+		if (inCharacterClass && current === "\\" && next === "+") {
+			normalized += "+";
+			index += 1;
+			continue;
+		}
+
+		if (inCharacterClass && current === "\\" && next === "/") {
+			normalized += "/";
+			index += 1;
+			continue;
+		}
+
+		if (!inCharacterClass && current === "/") {
+			normalized += "\\/";
+			continue;
+		}
+
 		normalized += current;
 	}
 
 	return `/${normalized}/`;
+}
+
+function emitRecordAccess(recordName: string, field: string): string {
+	return /^[$A-Z_a-z][$\w]*$/.test(field)
+		? `${recordName}.${field}`
+		: `${recordName}[${JSON.stringify(field)}]`;
 }
 
 function primitiveHelperName(type: string | null): string | null {

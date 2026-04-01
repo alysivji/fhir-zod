@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:47:10.063Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -43,7 +43,7 @@ export const Patient_Contact = z
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
 		validateReferenceTarget(
-			record["organization"],
+			record.organization,
 			"organization",
 			["http://hl7.org/fhir/StructureDefinition/Organization"],
 			["Organization"],

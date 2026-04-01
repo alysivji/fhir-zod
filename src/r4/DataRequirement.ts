@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:47:10.063Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -275,7 +275,7 @@ export const DataRequirement = z
 			});
 		}
 		validateReferenceTarget(
-			record["subjectReference"],
+			record.subjectReference,
 			"subjectReference",
 			["http://hl7.org/fhir/StructureDefinition/Group"],
 			["Group"],

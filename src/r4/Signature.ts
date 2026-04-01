@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Signature
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T17:08:32.363Z
+// Last generated: 2026-04-01T17:48:12.649Z
 
 import * as z from "zod";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
@@ -25,7 +25,7 @@ export const Signature = z
 		_when: z.lazy(getElementSchema).optional(),
 		data: z
 			.string()
-			.regex(/(\s*([0-9a-zA-Z\+\/=]){4}\s*)+/)
+			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
 			.optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
@@ -46,7 +46,7 @@ export const Signature = z
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
 		validateReferenceTarget(
-			record["onBehalfOf"],
+			record.onBehalfOf,
 			"onBehalfOf",
 			[
 				"http://hl7.org/fhir/StructureDefinition/Device",
@@ -67,7 +67,7 @@ export const Signature = z
 			ctx,
 		);
 		validateReferenceTarget(
-			record["who"],
+			record.who,
 			"who",
 			[
 				"http://hl7.org/fhir/StructureDefinition/Device",

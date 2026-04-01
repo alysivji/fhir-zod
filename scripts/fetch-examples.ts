@@ -23,6 +23,10 @@ function fetchText(url: string): string {
 	});
 }
 
+function normalizeTextFileContent(content: string): string {
+	return content.replace(/\r\n/g, "\n").replace(/\n*$/, "\n");
+}
+
 function decodeHtmlEntities(value: string): string {
 	return value
 		.replaceAll("&amp;", "&")
@@ -92,7 +96,7 @@ function fetchJsonExample(example: ExampleLink): void {
 	const json = fetchText(example.url);
 	const outputPath = join(outputDir, example.filename);
 
-	writeFileSync(outputPath, json, "utf8");
+	writeFileSync(outputPath, normalizeTextFileContent(json), "utf8");
 	console.log(`Fetched R4 Patient example ${example.id} -> ${outputPath}`);
 }
 

@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { NormalizedDefinition, NormalizedProperty } from "../model.ts";
@@ -12,6 +12,9 @@ import {
 
 type SpecManifest = {
 	fhirVersion: string;
+	jsonSchemaArchiveEntry?: string;
+	jsonSchemaOutputPath?: string;
+	jsonSchemaSourceUrl?: string;
 	packageName: string;
 	packageRoot: string;
 	packageVersion: string;
@@ -78,29 +81,42 @@ function buildDefinitionSources(packageRoot: string): Map<string, string> {
 	const definitionSources = new Map<string, string>();
 	const openApiDir = join(packageRoot, "openapi");
 
-	for (const filename of readdirSync(openApiDir)) {
-		if (!filename.endsWith(".schema.json")) {
-			continue;
-		}
+	if (existsSync(openApiDir)) {
+		for (const filename of readdirSync(openApiDir)) {
+			if (!filename.endsWith(".schema.json")) {
+				continue;
+			}
 
-		const sourceStem = basename(filename, ".schema.json");
-		const document = JSON.parse(
-			readFileSync(join(openApiDir, filename), "utf8"),
-		) as {
-			definitions?: Record<string, JsonSchema>;
-		};
+			const sourceStem = basename(filename, ".schema.json");
+			const document = JSON.parse(
+				readFileSync(join(openApiDir, filename), "utf8"),
+			) as {
+				definitions?: Record<string, JsonSchema>;
+			};
 
-		for (const definitionName of Object.keys(document.definitions ?? {})) {
-			const existing = definitionSources.get(definitionName);
-			const nextScore = scoreDefinitionSource(definitionName, sourceStem);
-			const existingScore = existing
-				? scoreDefinitionSource(definitionName, existing)
-				: -1;
+			for (const definitionName of Object.keys(document.definitions ?? {})) {
+				const existing = definitionSources.get(definitionName);
+				const nextScore = scoreDefinitionSource(definitionName, sourceStem);
+				const existingScore = existing
+					? scoreDefinitionSource(definitionName, existing)
+					: -1;
 
-			if (!existing || nextScore >= existingScore) {
-				definitionSources.set(definitionName, sourceStem);
+				if (!existing || nextScore >= existingScore) {
+					definitionSources.set(definitionName, sourceStem);
+				}
 			}
 		}
+
+		return definitionSources;
+	}
+
+	const monolithPath = join(packageRoot, "fhir.schema.json");
+	const document = JSON.parse(readFileSync(monolithPath, "utf8")) as {
+		definitions?: Record<string, JsonSchema>;
+	};
+
+	for (const definitionName of Object.keys(document.definitions ?? {})) {
+		definitionSources.set(definitionName, "fhir");
 	}
 
 	return definitionSources;
@@ -130,7 +146,10 @@ function loadOpenApiDefinition(
 	name: string,
 	sourceStem: string,
 ): LoadedDefinition {
-	const openApiPath = join(packageRoot, "openapi", `${sourceStem}.schema.json`);
+	const openApiPath =
+		sourceStem === "fhir"
+			? join(packageRoot, "fhir.schema.json")
+			: join(packageRoot, "openapi", `${sourceStem}.schema.json`);
 	const document = JSON.parse(readFileSync(openApiPath, "utf8")) as {
 		definitions: Record<string, JsonSchema>;
 	};
