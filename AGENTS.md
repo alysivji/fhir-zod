@@ -1,0 +1,172 @@
+# AGENTS.md
+
+## Project Intent
+
+`fhir-zod` generates versioned Zod schemas from official HL7 FHIR definitions.
+
+The goal is a thin, spec-aligned TypeScript library:
+
+- generated, not handwritten
+- Zod-first, with no wrapper runtime
+- version-separated (`stu3`, `r4`, `r4b`, `r5`)
+- focused on structural/schema validation, not full FHIR platform behavior
+
+## Project Status
+
+This project is pre-release.
+
+There are no customers and no compatibility promises yet. Agents should optimize for:
+
+- correctness over compatibility
+- clarity over preserving accidental APIs
+- simplifying the architecture when the current path looks wrong
+- documenting tradeoffs and open questions as they are discovered
+
+Breaking changes are acceptable if they improve the generator, emitted schemas, or package shape.
+
+## Current Reality
+
+Do not rely on the README alone for status. It is partially stale.
+
+As of this branch:
+
+- R4 generation is implemented and checked in under `src/r4/`
+- spec manifests exist for `stu3`, `r4`, `r4b`, and `r5`
+- the default fetch flow only downloads `r4`
+- R4 is the only version with real generated schema output today
+- some docs still describe the generator as unimplemented; trust the code and `TASKS.md`
+
+## Source of Truth
+
+When there is tension between docs and code, use this order:
+
+1. `scripts/` entrypoints
+2. `src/generator/`
+3. `src/spec/*/manifest.json`
+4. generated output in `src/r4/`
+5. `TASKS.md`
+6. `README.md`
+
+## Generation Pipeline
+
+The current generation pipeline is:
+
+1. Pin upstream package metadata in `src/spec/<version>/manifest.json`
+2. Fetch and cache upstream artifacts into `.local/spec-cache/<version>/package/`
+3. Load StructureDefinitions and related inputs from the pinned cache
+4. Normalize FHIR definitions into an internal generator model
+5. Emit deterministic Zod schema files into `src/<version>/`
+6. Run tests and comparison scripts to catch regressions
+
+Primary commands:
+
+```bash
+npm run fetch-spec
+npm run fetch-spec -- r4b r5
+npm run list:r4-targets -- --summary
+npm run generate
+npm run compare:r4
+npm test
+npm run typecheck
+```
+
+Important implementation facts:
+
+- `scripts/generate.ts` currently generates `r4` only
+- `scripts/fetch-spec.ts` defaults to fetching `r4` only
+- manifests are committed; extracted upstream package contents in `.local/` are not
+- generated files include timestamps, so normalized comparison logic matters for determinism checks
+
+## Generated vs Handwritten Code
+
+Treat these areas differently:
+
+- `src/generator/`, `src/shared/`, `scripts/`, `tests/`, and `src/spec/` are handwritten
+- `src/r4/` is generated output and should usually be changed by editing the generator, not by hand
+
+If generated output is wrong:
+
+- fix the generator or its source normalization
+- regenerate
+- verify the emitted diff
+
+Do not make manual one-off edits in generated files unless the task is explicitly a temporary unblocker and the follow-up is documented.
+
+## Base Types
+
+Base types are an important part of the current design.
+
+Today the generator uses inheritance-style emission where it is safe:
+
+- `BackboneElement` extends `Element`
+- `DomainResource` extends `Resource`
+- concrete resources such as `Patient` can extend `DomainResource`
+
+This is not purely cosmetic. It keeps shared FHIR structure visible in emitted schemas and avoids duplicating common fields everywhere.
+
+Current caveat:
+
+- some definitions still fall back to flattened one-shot schemas when dependency cycles would cause ESM initialization problems
+
+When changing base-type behavior, preserve clarity around:
+
+- where common fields come from
+- when `.extend(...)` is safe
+- when flattening is required to avoid cyclic runtime failures
+- how this choice affects emitted TypeScript declarations
+
+## Validation Scope
+
+This library is currently aiming at structural FHIR validation.
+
+In scope:
+
+- field presence
+- cardinality
+- primitive formatting
+- choice-type exclusivity such as `value[x]`
+- selected runtime checks derived from the spec, such as constrained reference targets
+
+Out of scope unless the project direction changes:
+
+- terminology validation
+- FHIRPath execution
+- profile resolution
+- slicing
+- server behavior
+
+## Working Norms
+
+When making changes, prefer:
+
+- generator-first fixes over patching generated files
+- deterministic output
+- explicit tests for schema behavior
+- updating docs when project reality changes
+
+If you change the pipeline, also consider updating:
+
+- `README.md`
+- `TASKS.md`
+- this file
+- any scripts or tests that encode generator assumptions
+
+## Open Edges Worth Remembering
+
+These are active areas, not settled design:
+
+- generating additional versions beyond R4
+- handling inheritance safely in the presence of dependency cycles
+- replacing the oversized-schema DTS workaround with named emitted TS types
+- deciding how primitive underscore fields should be modeled long-term
+- documenting BackboneElement behavior and reference validation more clearly
+
+## Good Agent Contributions
+
+High-value work in this repo usually looks like:
+
+- making the generator more spec-faithful
+- reducing special cases in emitted code
+- improving deterministic generation and reviewability
+- tightening tests around known tricky FHIR constructs
+- deleting stale assumptions from docs
