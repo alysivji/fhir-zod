@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Extension
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:25:07.426Z
 
 import * as z from "zod";
 import type { Address } from "./Address";
@@ -19,6 +19,7 @@ import type { Distance } from "./Distance";
 import type { Dosage } from "./Dosage";
 import type { Duration } from "./Duration";
 import type { Element } from "./Element";
+import type { Expression } from "./Expression";
 import type { HumanName } from "./HumanName";
 import type { Identifier } from "./Identifier";
 import type { Meta } from "./Meta";
@@ -57,6 +58,7 @@ import { DistanceSchemaInternal } from "./Distance";
 import { DosageSchemaInternal } from "./Dosage";
 import { DurationSchemaInternal } from "./Duration";
 import { ElementSchemaInternal } from "./Element";
+import { ExpressionSchemaInternal } from "./Expression";
 import { HumanNameSchemaInternal } from "./HumanName";
 import { IdentifierSchemaInternal } from "./Identifier";
 import { MetaSchemaInternal } from "./Meta";
@@ -137,7 +139,7 @@ export interface Extension extends Element {
 	/** Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list). */
 	valueDuration?: Duration;
 	/** Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list). */
-	valueExpression?: unknown;
+	valueExpression?: Expression;
 	/** Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list). */
 	valueHumanName?: HumanName;
 	/** Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list). */
@@ -242,6 +244,8 @@ const getDistanceSchema = (): z.ZodType<Distance> => DistanceSchemaInternal;
 const getDosageSchema = (): z.ZodType<Dosage> => DosageSchemaInternal;
 const getDurationSchema = (): z.ZodType<Duration> => DurationSchemaInternal;
 const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExpressionSchema = (): z.ZodType<Expression> =>
+	ExpressionSchemaInternal;
 const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
 const getHumanNameSchema = (): z.ZodType<HumanName> => HumanNameSchemaInternal;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
@@ -308,7 +312,7 @@ export const ExtensionSchemaInternal = z
 		valueDistance: z.lazy(getDistanceSchema).optional(),
 		valueDosage: z.lazy(getDosageSchema).optional(),
 		valueDuration: z.lazy(getDurationSchema).optional(),
-		valueExpression: z.any().optional(),
+		valueExpression: z.lazy(getExpressionSchema).optional(),
 		valueHumanName: z.lazy(getHumanNameSchema).optional(),
 		valueId: fhirId().optional(),
 		_valueId: z.lazy(getElementSchema).optional(),

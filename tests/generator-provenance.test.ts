@@ -111,13 +111,10 @@ describe("generated provenance headers", () => {
 		const definitionPath = join(outputDir, "Patient.ts");
 		const content = readFileSync(definitionPath, "utf8");
 
-		expect(content).toContain("_active: z.any().optional(),");
+		expect(content).toContain("_active: z.lazy(getElementSchema).optional(),");
 		expect(content).toContain("birthDate: fhirDate().optional(),");
 		expect(content).toContain('resourceType: z.literal("Patient"),');
-		expect(content).not.toContain('.describe("Extensions for active")');
-		expect(content).not.toContain(
-			'.describe("The date of birth for the individual.")',
-		);
+		expect(content).not.toContain(".describe(");
 	});
 
 	it("writes source descriptions as JSDoc on generated model types", () => {

@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
-import { compareR4 } from "../src/generator/compare/report.ts";
+import { buildRuntimeSchemas } from "../src/generator/emit/zod.ts";
+import { buildStructureDefinitionR4Definitions } from "../src/generator/sources/structuredefinition-r4.ts";
 
 const fixturesDir = resolve(
 	process.cwd(),
@@ -11,7 +12,11 @@ const fixturesDir = resolve(
 	"Patient",
 );
 
-let comparison = compareR4();
+const initialDefinitionsResult = buildStructureDefinitionR4Definitions();
+let patientSchema = buildRuntimeSchemas(
+	initialDefinitionsResult.definitions,
+	initialDefinitionsResult.primitivePatterns,
+).Patient;
 
 function validatePatientPayload(
 	patientSchema: { safeParse: (input: unknown) => { success: boolean } },
@@ -49,7 +54,11 @@ function validatePatientPayload(
 
 describe("R4 SD-backed Patient schema", () => {
 	beforeAll(() => {
-		comparison = compareR4();
+		const definitionsResult = buildStructureDefinitionR4Definitions();
+		patientSchema = buildRuntimeSchemas(
+			definitionsResult.definitions,
+			definitionsResult.primitivePatterns,
+		).Patient;
 	});
 
 	for (const filename of readdirSync(fixturesDir).sort()) {
@@ -58,7 +67,6 @@ describe("R4 SD-backed Patient schema", () => {
 		}
 
 		it(`parses ${filename}`, () => {
-			const patientSchema = comparison.runtimeSchemas.Patient;
 			const fixturePath = join(fixturesDir, filename);
 			const input = JSON.parse(readFileSync(fixturePath, "utf8")) as unknown;
 			const result = validatePatientPayload(
@@ -73,7 +81,6 @@ describe("R4 SD-backed Patient schema", () => {
 	}
 
 	it("rejects a top-level animal property", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			animal: {
 				species: {
@@ -87,7 +94,6 @@ describe("R4 SD-backed Patient schema", () => {
 	});
 
 	it("requires communication.language", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			communication: [{}],
 			resourceType: "Patient",
@@ -97,7 +103,6 @@ describe("R4 SD-backed Patient schema", () => {
 	});
 
 	it("requires link.other", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			link: [
 				{
@@ -111,7 +116,6 @@ describe("R4 SD-backed Patient schema", () => {
 	});
 
 	it("requires link.type", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			link: [
 				{
@@ -127,7 +131,6 @@ describe("R4 SD-backed Patient schema", () => {
 	});
 
 	it("rejects gender outside the required ValueSet binding", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			gender: "nonspecific",
 			resourceType: "Patient",
@@ -137,7 +140,6 @@ describe("R4 SD-backed Patient schema", () => {
 	});
 
 	it("rejects link.type outside the required ValueSet binding", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			link: [
 				{
@@ -154,7 +156,6 @@ describe("R4 SD-backed Patient schema", () => {
 	});
 
 	it("rejects constrained references outside the allowed target profiles", () => {
-		const patientSchema = comparison.runtimeSchemas.Patient;
 		const result = patientSchema.safeParse({
 			generalPractitioner: [
 				{
@@ -172,7 +173,6 @@ describe("R4 SD-backed Patient schema", () => {
 
 	describe("deceased[x]", () => {
 		it("accepts a single runtime choice", () => {
-			const patientSchema = comparison.runtimeSchemas.Patient;
 			const result = patientSchema.safeParse({
 				deceasedBoolean: true,
 				resourceType: "Patient",
@@ -182,7 +182,6 @@ describe("R4 SD-backed Patient schema", () => {
 		});
 
 		it("rejects multiple runtime choices", () => {
-			const patientSchema = comparison.runtimeSchemas.Patient;
 			const result = patientSchema.safeParse({
 				deceasedBoolean: true,
 				deceasedDateTime: "2020-01-01T00:00:00Z",
@@ -195,7 +194,6 @@ describe("R4 SD-backed Patient schema", () => {
 
 	describe("multipleBirth[x]", () => {
 		it("accepts a single runtime choice", () => {
-			const patientSchema = comparison.runtimeSchemas.Patient;
 			const result = patientSchema.safeParse({
 				multipleBirthInteger: 2,
 				resourceType: "Patient",
@@ -205,7 +203,6 @@ describe("R4 SD-backed Patient schema", () => {
 		});
 
 		it("rejects multiple runtime choices", () => {
-			const patientSchema = comparison.runtimeSchemas.Patient;
 			const result = patientSchema.safeParse({
 				multipleBirthBoolean: true,
 				multipleBirthInteger: 2,

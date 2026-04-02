@@ -152,7 +152,7 @@ export function buildStructureDefinitionR4Definitions(
 	const terminology = loadTerminologyIndex(packageRoot);
 	const primitivePatterns = loadPrimitivePatterns(index);
 	const normalized = new Map<string, NormalizedDefinition>();
-	const desiredNames = new Set(scopeNames);
+	const desiredNames = expandScopeNames(scopeNames, index);
 
 	for (const name of [...desiredNames].sort((left, right) =>
 		left.localeCompare(right),
@@ -175,6 +175,109 @@ export function buildStructureDefinitionR4Definitions(
 		definitions: normalized,
 		primitivePatterns,
 	};
+}
+
+function expandScopeNames(
+	initialNames: Iterable<string>,
+	index: Map<string, StructureDefinition>,
+): Set<string> {
+	const desiredNames = new Set(initialNames);
+	const queue = [...desiredNames];
+
+	while (queue.length > 0) {
+		const name = queue.shift();
+
+		if (!name) {
+			continue;
+		}
+
+		for (const dependency of collectReferencedDefinitionNames(name, index)) {
+			if (desiredNames.has(dependency)) {
+				continue;
+			}
+
+			desiredNames.add(dependency);
+			queue.push(dependency);
+		}
+	}
+
+	return desiredNames;
+}
+
+function collectReferencedDefinitionNames(
+	name: string,
+	index: Map<string, StructureDefinition>,
+): Set<string> {
+	const references = new Set<string>();
+
+	if (name.includes("_")) {
+		const fhirPath = definitionNameToFhirPath(name);
+		const rootName = fhirPath.split(".")[0];
+		const definition = index.get(rootName);
+		const elements = definition?.snapshot?.element ?? [];
+
+		for (const element of directChildElements(elements, fhirPath)) {
+			for (const reference of collectElementTypeRefs(element, elements)) {
+				references.add(reference);
+			}
+		}
+
+		const rootElement = elements.find((element) => element.path === fhirPath);
+		const directTypeCode = rootElement?.type?.[0]?.code ?? null;
+
+		if (directTypeCode === "BackboneElement" || directTypeCode === "Element") {
+			references.add(directTypeCode);
+		}
+
+		return references;
+	}
+
+	const definition = index.get(name);
+	const elements = definition?.snapshot?.element ?? [];
+	const rootPath = definition?.type ?? name;
+
+	for (const element of directChildElements(elements, rootPath)) {
+		for (const reference of collectElementTypeRefs(element, elements)) {
+			references.add(reference);
+		}
+	}
+
+	const baseName = lastPathSegment(definition?.baseDefinition);
+
+	if (baseName && baseName !== name) {
+		references.add(baseName);
+	}
+
+	return references;
+}
+
+function collectElementTypeRefs(
+	element: StructureElement,
+	elements: StructureElement[],
+): Set<string> {
+	const references = new Set<string>();
+
+	if (lastPathSegment(element.path)?.includes("[x]")) {
+		for (const type of element.type ?? []) {
+			const normalizedType = normalizeStructureType(element, type, elements);
+
+			if (normalizedType.typeRef) {
+				references.add(normalizedType.typeRef);
+			}
+		}
+	} else {
+		const normalizedType = normalizeStructureType(
+			element,
+			element.type?.[0],
+			elements,
+		);
+
+		if (normalizedType.typeRef) {
+			references.add(normalizedType.typeRef);
+		}
+	}
+
+	return references;
 }
 
 function loadManifest(version: "r4"): SpecManifest {

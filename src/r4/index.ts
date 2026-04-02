@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-02T03:28:33.283Z
+// Last generated: 2026-04-02T04:25:07.426Z
 
 export type { Address } from "./Address";
 export { AddressSchema } from "./Address";
@@ -29,32 +29,22 @@ export type { DataRequirement_CodeFilter } from "./DataRequirement_CodeFilter";
 export { DataRequirement_CodeFilterSchema } from "./DataRequirement_CodeFilter";
 export type { DataRequirement_DateFilter } from "./DataRequirement_DateFilter";
 export { DataRequirement_DateFilterSchema } from "./DataRequirement_DateFilter";
+export type { DataRequirement_Sort } from "./DataRequirement_Sort";
+export { DataRequirement_SortSchema } from "./DataRequirement_Sort";
 export type { Distance } from "./Distance";
 export { DistanceSchema } from "./Distance";
 export type { DomainResource } from "./DomainResource";
 export { DomainResourceSchema } from "./DomainResource";
 export type { Dosage } from "./Dosage";
 export { DosageSchema } from "./Dosage";
+export type { Dosage_DoseAndRate } from "./Dosage_DoseAndRate";
+export { Dosage_DoseAndRateSchema } from "./Dosage_DoseAndRate";
 export type { Duration } from "./Duration";
 export { DurationSchema } from "./Duration";
 export type { Element } from "./Element";
 export { ElementSchema } from "./Element";
-export type { ElementDefinition } from "./ElementDefinition";
-export { ElementDefinitionSchema } from "./ElementDefinition";
-export type { ElementDefinition_Base } from "./ElementDefinition_Base";
-export { ElementDefinition_BaseSchema } from "./ElementDefinition_Base";
-export type { ElementDefinition_Binding } from "./ElementDefinition_Binding";
-export { ElementDefinition_BindingSchema } from "./ElementDefinition_Binding";
-export type { ElementDefinition_Constraint } from "./ElementDefinition_Constraint";
-export { ElementDefinition_ConstraintSchema } from "./ElementDefinition_Constraint";
-export type { ElementDefinition_Example } from "./ElementDefinition_Example";
-export { ElementDefinition_ExampleSchema } from "./ElementDefinition_Example";
-export type { ElementDefinition_Mapping } from "./ElementDefinition_Mapping";
-export { ElementDefinition_MappingSchema } from "./ElementDefinition_Mapping";
-export type { ElementDefinition_Slicing } from "./ElementDefinition_Slicing";
-export { ElementDefinition_SlicingSchema } from "./ElementDefinition_Slicing";
-export type { ElementDefinition_Type } from "./ElementDefinition_Type";
-export { ElementDefinition_TypeSchema } from "./ElementDefinition_Type";
+export type { Expression } from "./Expression";
+export { ExpressionSchema } from "./Expression";
 export type { Extension } from "./Extension";
 export { ExtensionSchema } from "./Extension";
 export type { HumanName } from "./HumanName";

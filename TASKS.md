@@ -99,7 +99,7 @@ Track the work needed to align the repository with the current README.
 - [ ] Add version-specific test coverage
 - [x] Add tests for generator determinism
 - [x] Add a schema test that rejects unknown top-level Patient fields
-- [x] Compare generated Patient fields against the official HL7 R4 Patient definition page or source schema
+- [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 
 ## Documentation
 

@@ -1,11 +1,7 @@
-import { buildOpenApiR4Definitions } from "../src/generator/sources/openapi-r4.ts";
 import { buildStructureDefinitionR4Definitions } from "../src/generator/sources/structuredefinition-r4.ts";
 
 const filter = process.argv[2]?.toLowerCase() ?? null;
-const openApiDefinitions = buildOpenApiR4Definitions();
-const structureDefinitionResult = buildStructureDefinitionR4Definitions(
-	openApiDefinitions.keys(),
-);
+const structureDefinitionResult = buildStructureDefinitionR4Definitions();
 
 for (const definition of [
 	...structureDefinitionResult.definitions.values(),

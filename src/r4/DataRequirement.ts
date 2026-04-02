@@ -1,12 +1,13 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:25:07.426Z
 
 import * as z from "zod";
 import type { CodeableConcept } from "./CodeableConcept";
 import type { DataRequirement_CodeFilter } from "./DataRequirement_CodeFilter";
 import type { DataRequirement_DateFilter } from "./DataRequirement_DateFilter";
+import type { DataRequirement_Sort } from "./DataRequirement_Sort";
 import type { Element } from "./Element";
 import type { Extension } from "./Extension";
 import type { Reference } from "./Reference";
@@ -15,6 +16,7 @@ import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import { DataRequirement_CodeFilterSchemaInternal } from "./DataRequirement_CodeFilter";
 import { DataRequirement_DateFilterSchemaInternal } from "./DataRequirement_DateFilter";
+import { DataRequirement_SortSchemaInternal } from "./DataRequirement_Sort";
 import { ElementSchemaInternal } from "./Element";
 import { ExtensionSchemaInternal } from "./Extension";
 import { ReferenceSchemaInternal } from "./Reference";
@@ -42,7 +44,7 @@ export interface DataRequirement extends Element {
 	/** Extensions for profile */
 	_profile?: Element;
 	/** Specifies the order of the results to be returned. */
-	sort?: Array<unknown>;
+	sort?: Array<DataRequirement_Sort>;
 	/** The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed. */
 	subjectCodeableConcept?: CodeableConcept;
 	/** The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed. */
@@ -274,6 +276,8 @@ const getDataRequirement_CodeFilterSchema =
 const getDataRequirement_DateFilterSchema =
 	(): z.ZodType<DataRequirement_DateFilter> =>
 		DataRequirement_DateFilterSchemaInternal;
+const getDataRequirement_SortSchema = (): z.ZodType<DataRequirement_Sort> =>
+	DataRequirement_SortSchemaInternal;
 const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
 const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
 const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
@@ -296,7 +300,7 @@ export const DataRequirementSchemaInternal = z
 		_mustSupport: z.lazy(getElementSchema).optional(),
 		profile: z.string().regex(/\S*/).array().optional(),
 		_profile: z.lazy(getElementSchema).optional(),
-		sort: z.any().array().optional(),
+		sort: z.lazy(getDataRequirement_SortSchema).array().optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		subjectReference: z.lazy(getReferenceSchema).optional(),
 		type: z.enum([

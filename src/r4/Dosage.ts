@@ -1,11 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:25:07.426Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
+import type { Dosage_DoseAndRate } from "./Dosage_DoseAndRate";
 import type { Element } from "./Element";
 import type { Extension } from "./Extension";
 import type { Quantity } from "./Quantity";
@@ -13,6 +14,7 @@ import type { Ratio } from "./Ratio";
 import type { Timing } from "./Timing";
 import { fhirId } from "../shared/fhir-primitives";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import { Dosage_DoseAndRateSchemaInternal } from "./Dosage_DoseAndRate";
 import { ElementSchemaInternal } from "./Element";
 import { ExtensionSchemaInternal } from "./Extension";
 import { QuantitySchemaInternal } from "./Quantity";
@@ -30,7 +32,7 @@ export interface Dosage extends BackboneElement {
 	/** Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept). */
 	asNeededCodeableConcept?: CodeableConcept;
 	/** The amount of medication administered. */
-	doseAndRate?: Array<unknown>;
+	doseAndRate?: Array<Dosage_DoseAndRate>;
 	/** Upper limit on medication per administration. */
 	maxDosePerAdministration?: Quantity;
 	/** Upper limit on medication per lifetime of the patient. */
@@ -61,6 +63,8 @@ export interface Dosage extends BackboneElement {
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
 	CodeableConceptSchemaInternal;
+const getDosage_DoseAndRateSchema = (): z.ZodType<Dosage_DoseAndRate> =>
+	Dosage_DoseAndRateSchemaInternal;
 const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
 const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
 const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
@@ -74,7 +78,7 @@ export const DosageSchemaInternal = z
 		asNeededBoolean: z.boolean().optional(),
 		_asNeededBoolean: z.lazy(getElementSchema).optional(),
 		asNeededCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		doseAndRate: z.any().array().optional(),
+		doseAndRate: z.lazy(getDosage_DoseAndRateSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),

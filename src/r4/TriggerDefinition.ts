@@ -1,11 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TriggerDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:25:07.426Z
 
 import * as z from "zod";
 import type { DataRequirement } from "./DataRequirement";
 import type { Element } from "./Element";
+import type { Expression } from "./Expression";
 import type { Extension } from "./Extension";
 import type { Reference } from "./Reference";
 import type { Timing } from "./Timing";
@@ -13,6 +14,7 @@ import { fhirDate, fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import { DataRequirementSchemaInternal } from "./DataRequirement";
 import { ElementSchemaInternal } from "./Element";
+import { ExpressionSchemaInternal } from "./Expression";
 import { ExtensionSchemaInternal } from "./Extension";
 import { ReferenceSchemaInternal } from "./Reference";
 import { TimingSchemaInternal } from "./Timing";
@@ -20,7 +22,7 @@ import { TimingSchemaInternal } from "./Timing";
 /** Base StructureDefinition for TriggerDefinition Type: A description of a triggering event. Triggering events can be named events, data events, or periodic, as determined by the type element. */
 export interface TriggerDefinition extends Element {
 	/** A boolean-valued expression that is evaluated in the context of the container of the trigger definition and returns whether or not the trigger fires. */
-	condition?: unknown;
+	condition?: Expression;
 	/** The triggering data of the event (if this is a data trigger). If more than one data is requirement is specified, then all the data requirements must be true. */
 	data?: Array<DataRequirement>;
 	/** A formal name for the event. This may be an absolute URI that identifies the event formally (e.g. from a trigger registry), or a simple relative URI that identifies the event in a local context. */
@@ -56,6 +58,8 @@ export interface TriggerDefinition extends Element {
 const getDataRequirementSchema = (): z.ZodType<DataRequirement> =>
 	DataRequirementSchemaInternal;
 const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExpressionSchema = (): z.ZodType<Expression> =>
+	ExpressionSchemaInternal;
 const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
 const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
 const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
@@ -63,7 +67,7 @@ const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
 /** @internal */
 export const TriggerDefinitionSchemaInternal = z
 	.object({
-		condition: z.any().optional(),
+		condition: z.lazy(getExpressionSchema).optional(),
 		data: z.lazy(getDataRequirementSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),

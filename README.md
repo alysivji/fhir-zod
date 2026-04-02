@@ -77,7 +77,6 @@ Common commands:
 make help
 make build
 make check
-make compare-r4
 make coverage
 make fetch-spec
 make test
@@ -90,7 +89,6 @@ Equivalent npm scripts:
 ```bash
 npm run build
 npm run check
-npm run compare:r4
 npm run format
 npm run fetch-spec
 npm run fetch-spec -- r4b
@@ -277,7 +275,6 @@ Current implementation notes:
 - `npm run fetch-spec` defaults to `r4`
 - `npm run generate` currently generates `r4`
 - manifests are committed, but extracted upstream package contents in `.local/` are not
-- `npm run compare:r4` provides an experimental comparison report for generated R4 definitions
 
 ## Example Output
 

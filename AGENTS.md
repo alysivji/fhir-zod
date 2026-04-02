@@ -66,7 +66,6 @@ npm run fetch-spec
 npm run fetch-spec -- r4b r5
 npm run list:r4-targets -- --summary
 npm run generate
-npm run compare:r4
 npm test
 npm run typecheck
 ```

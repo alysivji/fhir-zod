@@ -35,13 +35,11 @@
 	"scripts": {
 		"build": "npm run typecheck && tsdown",
 		"check": "biome check .",
-		"compare:r4": "node scripts/compare-r4.ts",
 		"coverage": "vitest run --coverage",
 		"fetch-examples": "node scripts/fetch-examples.ts",
 		"fetch-spec": "node scripts/fetch-spec.ts",
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
-		"generate:r4:openapi": "node scripts/generate-r4-openapi.ts",
 		"inspect:choice-groups": "node scripts/inspect-choice-groups.ts",
 		"list:r4-targets": "node scripts/list-r4-targets.ts",
 		"lint": "biome lint .",
