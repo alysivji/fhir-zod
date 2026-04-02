@@ -33,19 +33,25 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsdown",
+		"build": "npm run typecheck && tsdown",
 		"check": "biome check .",
 		"coverage": "vitest run --coverage",
+		"fetch-examples": "node scripts/fetch-examples.ts",
+		"fetch-spec": "node scripts/fetch-spec.ts",
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
+		"inspect:choice-groups": "node scripts/inspect-choice-groups.ts",
+		"list:r4-targets": "node scripts/list-r4-targets.ts",
 		"lint": "biome lint .",
-		"test": "vitest run"
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
 	},
 	"peerDependencies": {
 		"zod": "^3.25.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.3",
+		"@types/node": "^25.5.0",
 		"@vitest/coverage-v8": "^3.2.4",
 		"tsdown": "^0.15.5",
 		"typescript": "^5.8.2",

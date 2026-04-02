@@ -1,0 +1,8 @@
+{
+	"fhirVersion": "3.0.2",
+	"packageName": "hl7.fhir.r3.core",
+	"packageVersion": "3.0.2",
+	"sourceUrl": "https://packages2.fhir.org/packages/hl7.fhir.r3.core/3.0.2",
+	"packageRoot": ".local/spec-cache/stu3/package",
+	"structureDefinitionGlob": ".local/spec-cache/stu3/package/StructureDefinition-*.json"
+}

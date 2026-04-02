@@ -1,0 +1,68 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/Coding
+// Release: R4
+// Version: 4.0.1
+// Last generated: 2026-04-02T04:42:40.346Z
+
+import * as z from "zod";
+import { fhirId } from "../shared/fhir-primitives";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
+import { ExtensionSchemaInternal } from "./Extension";
+
+/** Base StructureDefinition for Coding Type: A reference to a code defined by a terminology system. */
+export interface Coding extends Element {
+	/** A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination). */
+	code?: string;
+	/** Extensions for code */
+	_code?: Element;
+	/** A representation of the meaning of the code in the system, following the rules of the system. */
+	display?: string;
+	/** Extensions for display */
+	_display?: Element;
+	/** The identification of the code system that defines the meaning of the symbol in the code. */
+	system?: string;
+	/** Extensions for system */
+	_system?: Element;
+	/** Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays). */
+	userSelected?: boolean;
+	/** Extensions for userSelected */
+	_userSelected?: Element;
+	/** The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged. */
+	version?: string;
+	/** Extensions for version */
+	_version?: Element;
+}
+
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const CodingSchemaInternal = z
+	.object({
+		code: z
+			.string()
+			.regex(/[^\s]+(\s[^\s]+)*/)
+			.optional(),
+		_code: z.lazy(getElementSchema).optional(),
+		display: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
+		_display: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		system: z.string().regex(/\S*/).optional(),
+		_system: z.lazy(getElementSchema).optional(),
+		userSelected: z.boolean().optional(),
+		_userSelected: z.lazy(getElementSchema).optional(),
+		version: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
+		_version: z.lazy(getElementSchema).optional(),
+	})
+	.strict();
+
+export const CodingSchema: z.ZodType<Coding> = CodingSchemaInternal;

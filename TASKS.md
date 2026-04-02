@@ -44,50 +44,86 @@ Track the work needed to align the repository with the current README.
 
 ## Spec Inputs
 
-- [ ] Decide how official HL7 artifacts will be stored under `src/spec`
+- [x] Decide how official HL7 artifacts will be stored under `src/spec`
 - [ ] Add initial raw FHIR spec files for STU3
 - [ ] Add initial raw FHIR spec files for R4
 - [ ] Add initial raw FHIR spec files for R4B
 - [ ] Add initial raw FHIR spec files for R5
-- [ ] Document expected spec file layout
+- [x] Document expected spec file layout
 
 ## Generator
 
-- [ ] Parse StructureDefinitions
-- [ ] Map FHIR primitive types to Zod
-- [ ] Map FHIR complex types to Zod
-- [ ] Handle cardinality for arrays
-- [ ] Handle required vs optional fields
-- [ ] Handle choice fields such as `value[x]`
-- [ ] Enforce single-choice presence for generated choice fields
-- [ ] Make generator output deterministic
-- [ ] Implement generation entrypoint in `scripts/generate.ts`
+- [x] Parse StructureDefinitions
+- [x] Map FHIR primitive types to Zod
+- [x] Map FHIR complex types to Zod
+- [x] Handle cardinality for arrays
+- [x] Handle required vs optional fields
+- [x] Handle choice fields such as `value[x]`
+- [x] Enforce single-choice presence for generated choice fields
+- [x] Make generator output deterministic
+- [x] Implement generation entrypoint in `scripts/generate.ts`
 
 ## Generated Schema Output
 
-- [ ] Generate shared primitives/helpers needed by emitted schemas
+- [x] Generate shared primitives/helpers needed by emitted schemas
 - [ ] Generate first real STU3 schema set
-- [ ] Generate first real R4 schema set
+- [x] Generate first real R4 schema set
 - [ ] Generate first real R4B schema set
 - [ ] Generate first real R5 schema set
-- [ ] Export generated schemas by version without mixing versions
-- [ ] Keep generated schemas Zod-first with no wrapper layer
+- [x] Export generated schemas by version without mixing versions
+- [x] Keep generated schemas Zod-first with no wrapper layer
+- [x] Add a short-term workaround for generated schemas that exceed TypeScript's serialized inferred type limit
+  Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
+- [ ] Split the public generated surface into TypeScript models and separate Zod schemas
+  Target direction:
+  `Patient` is the public TS model.
+  `PatientSchema` is the runtime validator.
+- [ ] Decide the public model strategy for generated declarations
+  Open choice:
+  prefer interfaces for object-like FHIR definitions where possible, but use type aliases where unions or recursive composition make that cleaner.
+- [ ] Teach the generator to emit named TypeScript models for generated definitions
+  This should replace reliance on `z.output<typeof Schema>` as the main consumer-facing type story.
+- [ ] Rename generated schema exports to `*Schema` once the separate public model layer is in place
+- [ ] Preserve inheritance relationships in both generated TS models and schema exports
+- [ ] Audit inheritance/codegen gaps for abstract schemas and cyclic dependencies
+  Current state: safe cases now emit `Base.extend({...})` for abstract types such as `Resource`, `DomainResource`, and some concrete resources.
+  Current shortfall: definitions that participate in dependency cycles still fall back to flattened one-shot schemas to avoid ESM initialization failures.
+  Follow-up direction: generate a class hierarchy/dependency diagram from Python's `fhir.resources` package and use it to define which FHIR types can participate in runtime inheritance safely and which need a different emission strategy.
 
 ## Testing
 
 - [x] Validate parsing of a basic valid resource
-- [ ] Add tests for rejecting invalid structures
-- [ ] Add tests for required field enforcement
-- [ ] Add tests for choice field constraints
+- [x] Add tests for rejecting invalid structures
+- [x] Add tests for required field enforcement
+- [x] Add tests for choice field constraints
 - [ ] Add version-specific test coverage
-- [ ] Add tests for generator determinism
+- [x] Add tests for generator determinism
+- [x] Add a schema test that rejects unknown top-level Patient fields
+- [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 
 ## Documentation
 
-- [ ] Keep README examples aligned with generated output
-- [ ] Document how to refresh spec files
+- [ ] Keep README examples aligned with generated output and target public API
+- [x] Document how to refresh spec files
 - [ ] Document how to run the generator
 - [ ] Document expectations around generated vs handwritten files
+- [ ] Document how BackboneElement behavior is represented in generated schemas
+- [ ] Document the intended split between public TS models and runtime Zod schemas
+- [ ] Document the future layering for convenience builders above core
+- [x] Carry source descriptions into generated schema fields where practical
+
+## Patient Follow-Up
+
+- [x] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
+- [ ] Model primitive underscore fields as FHIR primitive extensions and compare the approach with `fhir.resources`
+- [x] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
+
+## Reference Follow-Up
+
+- [ ] Reuse the shared reference-target runtime validation in additional generated versions beyond R4
+- [ ] Add direct unit tests for `src/shared/fhir-reference-validation.ts`
+- [ ] Decide whether constrained reference validation should surface richer errors for internal references when the containing `contained` resources are available
+- [ ] Document the supported FHIR reference forms and current ambiguity behavior in the README or generator docs
 
 ## Non-Goals
 
@@ -96,3 +132,14 @@ Track the work needed to align the repository with the current README.
 - [ ] Do not add profile resolution
 - [ ] Do not add slicing support
 - [ ] Do not add server-side logic
+
+## Aly's Notes
+
+- Have a file / folder that just has Base definition for all elements in a resource
+  - elements are not FHIR resources but just other base definitions (how do we define these)
+- public direction:
+  - `Patient` should be the TS model
+  - `PatientSchema` should be the Zod validator
+  - core should be type-first, then Zod
+- future layering:
+  - builders/factories could exist later, but should sit above core rather than replacing the generated model/schema layer

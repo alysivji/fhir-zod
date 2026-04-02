@@ -1,16 +1,17 @@
 # FHIR Zod
 
-Canonical, versioned, generated Zod schemas for the FHIR specification.
+Canonical, versioned, generated TypeScript models and Zod schemas for the FHIR specification.
 
 ## Goal
 
-Provide a **reference implementation of FHIR schemas in TypeScript** using Zod.
+Provide a **reference implementation of FHIR types and schemas in TypeScript** using Zod.
 
 This library is:
 - **spec-aligned** (generated from HL7 definitions)
 - **versioned** (STU3, R4, R4B, R5)
 - **minimal** (no business logic, no terminology validation)
 - **predictable** (deterministic generation)
+- **type-first** (developer-facing TS models, with runtime Zod validation)
 
 This is NOT:
 - a full FHIR validator
@@ -23,10 +24,11 @@ Current repository status:
 
 - TypeScript library scaffold is set up
 - versioned subpath exports are wired
-- a placeholder `Patient` schema exists in `src/r4`
+- R4 generation is implemented and checked in under `src/r4`
 - build, lint, format, coverage, and test commands are configured
-- the generator is not implemented yet
-- full FHIR schemas are not implemented yet
+- spec manifests are pinned for `stu3`, `r4`, `r4b`, and `r5`
+- real generated schema output currently exists for `r4`
+- the project is pre-release, with no compatibility guarantees yet
 
 ## Installation
 
@@ -43,10 +45,23 @@ npm install zod
 ## Usage
 
 ```ts
-import { Patient } from "@fhir-zod/core/r4"
+import type { Patient } from "@fhir-zod/core/r4"
+import { PatientSchema } from "@fhir-zod/core/r4"
 
-Patient.parse(data)
+const parsed = PatientSchema.parse(data)
+
+const patient: Patient = {
+  resourceType: "Patient",
+}
 ```
+
+Target package shape:
+
+- export generated TypeScript interfaces/types for FHIR model shapes
+- export separate generated Zod schemas for runtime validation
+- avoid making `z.output<typeof Schema>` the primary public type story
+
+The repository is not fully on that API yet, but this is the intended direction.
 
 ## Development
 
@@ -63,8 +78,10 @@ make help
 make build
 make check
 make coverage
+make fetch-spec
 make test
 make generate
+make list-r4-targets
 ```
 
 Equivalent npm scripts:
@@ -73,13 +90,60 @@ Equivalent npm scripts:
 npm run build
 npm run check
 npm run format
+npm run fetch-spec
+npm run fetch-spec -- r4b
 npm run lint
 npm run coverage
 npm test
 npm run generate
+npm run list:r4-targets -- --summary
 ```
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
+
+## Pre-release
+
+This repository is still pre-release.
+
+There are no customers and no compatibility promises yet. Breaking changes are acceptable when they improve:
+
+- generator correctness
+- emitted schema quality
+- package shape
+- long-term maintainability
+
+## Inspecting R4 Targets
+
+Use the R4 target listing script to inspect which `StructureDefinition` entries are:
+
+- core canonical resources
+- profile-like resource definitions
+- abstract shared base types
+- final generation targets
+
+Examples:
+
+```bash
+npm run list:r4-targets -- --summary
+npm run list:r4-targets -- --category core-resource --names-only
+npm run list:r4-targets -- --category profile-resource --names-only
+npm run list:r4-targets -- --category generation-target --names-only
+```
+
+Supported categories:
+
+- `core-resource`
+- `profile-resource`
+- `abstract-whitelist`
+- `generation-target`
+- `other`
+- `all`
+
+Supported output modes:
+
+- default JSON output
+- `--names-only`
+- `--summary`
 
 ## Design Principles
 
@@ -92,16 +156,22 @@ All schemas are generated from:
 
 No manual schema definitions.
 
-### 2. Zod is the runtime
+### 2. Types First, Zod Second
 
-We use Zod directly.
+The intended public model is:
 
-- Do not wrap or abstract Zod
-- Export native Zod schemas
+- generated TypeScript interfaces/types for FHIR resources and shared complex types
+- separate generated Zod schemas for runtime validation
+
+Zod remains the runtime validation layer.
+
+- do not build a custom validation DSL on top of Zod
+- do not make Zod inference the only source of public TypeScript types
+- prefer generating named TS models from the normalized FHIR definition graph
 
 ```ts
-Patient.parse(data)
-Patient.safeParse(data)
+const parsed = PatientSchema.parse(data)
+PatientSchema.safeParse(data)
 ```
 
 ### 3. Version-first architecture
@@ -130,11 +200,31 @@ We explicitly do NOT support:
 - profile resolution
 - slicing
 
-### 5. Thin runtime layer
+### 5. Thin Runtime Layer
 
 Schemas remain Zod-first.
 
-Optional helpers may be added, but must not obscure Zod.
+Optional helpers may be added later, but must not obscure Zod or replace the generated model/schema surface.
+
+Possible future convenience layers such as builders should live above core, not inside the core generated package.
+
+## Generated vs Handwritten Code
+
+Most changes should happen in handwritten generator code, not in generated schemas.
+
+Handwritten areas:
+
+- `src/generator/`
+- `src/shared/`
+- `src/spec/`
+- `scripts/`
+- `tests/`
+
+Generated areas:
+
+- `src/r4/`
+
+If generated output is wrong, fix the generator or source normalization logic, then regenerate.
 
 ## Project Structure
 
@@ -169,15 +259,38 @@ The generator must:
    - choice types (`value[x]`)
 4. Output deterministic schemas
 
+## Generation Pipeline
+
+The current pipeline is:
+
+1. Pin upstream package metadata in `src/spec/<version>/manifest.json`
+2. Fetch official HL7 artifacts into `.local/spec-cache/<version>/package/`
+3. Load StructureDefinitions and related spec inputs from the pinned cache
+4. Normalize them into the internal generator model
+5. Emit deterministic TypeScript model declarations and Zod schemas into `src/<version>/`
+6. Run tests and comparison tooling to review diffs
+
+Current implementation notes:
+
+- `npm run fetch-spec` defaults to `r4`
+- `npm run generate` currently generates `r4`
+- manifests are committed, but extracted upstream package contents in `.local/` are not
+
 ## Example Output
 
 ```ts
-export const Patient = z.object({
+export interface Patient extends DomainResource {
+  resourceType: "Patient"
+  identifier?: Identifier[]
+}
+
+export const PatientSchema: z.ZodType<Patient> = DomainResourceSchema.extend({
   resourceType: z.literal("Patient"),
-  id: z.string().optional(),
-  identifier: z.array(Identifier).optional(),
+  identifier: z.array(z.lazy(() => IdentifierSchema)).optional(),
 })
 ```
+
+Actual emitted schemas may also include inherited fields, choice-type validation, and selected runtime checks such as constrained reference target validation.
 
 ## Choice Types (`[x]`)
 
@@ -199,6 +312,20 @@ z.object({
 Must enforce:
 
 - only one value present
+
+## Base Types
+
+Generated schemas use inheritance-style emission where it is safe.
+
+Examples:
+
+- `BackboneElement` extends `Element`
+- `DomainResource` extends `Resource`
+- concrete resources such as `Patient` can extend `DomainResource`
+
+This keeps shared FHIR structure visible and avoids duplicating common fields everywhere.
+
+Some definitions still fall back to flattened one-shot schemas when dependency cycles would create ESM initialization problems.
 
 ## Zod Version Strategy
 
@@ -250,7 +377,12 @@ We aim to be:
 
 1. Update FHIR spec files
 2. Run generator
-3. Run tests
-4. Commit generated output
+3. Run comparison and tests
+4. Commit generator and generated output together when appropriate
 
 No manual edits to generated schemas.
+
+## Useful Links
+
+- https://zod.dev/library-authors
+- https://github.com/nazrulworld/fhir.resources
