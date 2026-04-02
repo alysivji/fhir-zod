@@ -42,7 +42,9 @@ describe("generated declarations", () => {
 			"utf8",
 		);
 
-		expect(patientDts).toContain("export interface Patient extends DomainResource");
+		expect(patientDts).toContain(
+			"export interface Patient extends DomainResource",
+		);
 		expect(patientDts).toContain(
 			"export declare const PatientSchema: z.ZodType<Patient",
 		);

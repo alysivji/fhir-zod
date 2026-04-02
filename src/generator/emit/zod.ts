@@ -247,8 +247,7 @@ function emitDefinitionFile(
 		...[...valueImports]
 			.sort((left, right) => left.localeCompare(right))
 			.map(
-				(name) =>
-					`import { ${schemaInternalName(name)} } from "./${name}";`,
+				(name) => `import { ${schemaInternalName(name)} } from "./${name}";`,
 			),
 		"",
 		...emitModelDeclaration(definition, definitions, modelBaseName),
@@ -374,7 +373,9 @@ function emitModelBaseType(
 	}
 
 	if (property.enumValues) {
-		return property.enumValues.map((value) => JSON.stringify(value)).join(" | ");
+		return property.enumValues
+			.map((value) => JSON.stringify(value))
+			.join(" | ");
 	}
 
 	if (property.primitiveType) {
@@ -403,10 +404,7 @@ function emitTypePropertyName(name: string): string {
 	return /^[$A-Z_a-z][$\w]*$/.test(name) ? name : JSON.stringify(name);
 }
 
-function emitJsDoc(
-	description: string | null,
-	indent = "",
-): string[] {
+function emitJsDoc(description: string | null, indent = ""): string[] {
 	if (!description) {
 		return [];
 	}

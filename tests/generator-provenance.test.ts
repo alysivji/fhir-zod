@@ -133,9 +133,11 @@ describe("generated provenance headers", () => {
 		const definitionPath = join(outputDir, "Patient.ts");
 		const content = readFileSync(definitionPath, "utf8");
 
-		expect(content).toContain("/** Demographics and other administrative information about an individual or animal receiving care or other health-related services. */");
 		expect(content).toContain(
-			'\t/** The date of birth for the individual. */\n\tbirthDate?: string;',
+			"/** Demographics and other administrative information about an individual or animal receiving care or other health-related services. */",
+		);
+		expect(content).toContain(
+			"\t/** The date of birth for the individual. */\n\tbirthDate?: string;",
 		);
 		expect(content).toContain(
 			'\t/** This is a Patient resource. */\n\tresourceType: "Patient";',
