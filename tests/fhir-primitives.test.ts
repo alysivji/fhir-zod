@@ -1,3 +1,4 @@
+import * as r4Schemas from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 import {
 	fhirDate,
@@ -90,6 +91,26 @@ describe("FHIR primitives", () => {
 
 			expect(schema.safeParse("24:00:00").success).toBe(false);
 			expect(schema.safeParse("23:59").success).toBe(false);
+		});
+	});
+
+	describe("ElementDefinition.id", () => {
+		it("accepts legal element path identifiers used in StructureDefinition examples", () => {
+			const result = r4Schemas.ElementDefinitionSchema.safeParse({
+				id: "Extension.value[x]",
+				path: "Extension.value[x]",
+			});
+
+			expect(result.success).toBe(true);
+		});
+
+		it("still rejects invalid resource ids", () => {
+			expect(
+				r4Schemas.PatientSchema.safeParse({
+					resourceType: "Patient",
+					id: "contains space",
+				}).success,
+			).toBe(false);
 		});
 	});
 });

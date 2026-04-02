@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Expression
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T14:11:40.945Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -53,7 +53,10 @@ export const ExpressionSchemaInternal = z
 			.optional(),
 		_expression: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		language: z.string().regex(/[^\s]+(\s[^\s]+)*/),
 		_language: z.lazy(getElementSchema).optional(),

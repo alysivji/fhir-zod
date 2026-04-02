@@ -106,6 +106,14 @@ Track the work needed to align the repository with the current README.
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 - [x] Add R4 target-inventory regression tests
 - [x] Add generic official-example tests for generated R4 fixtures
+- [ ] Investigate the four skipped official R4 examples that violate emitted base reference-target constraints
+  Current skips:
+  `DeviceMetric/devicemetric-example.json`
+  `DeviceUseStatement/deviceusestatement-example.json`
+  `MedicationRequest/medicationrequest0301.json`
+  `Observation/observation-example-clinical-gender.json`
+  Follow-up:
+  trace each example back to the pinned R4 StructureDefinitions and decide whether the mismatch is a spec/example inconsistency, a generator extraction bug, or an intentional compatibility gap.
 
 ## Documentation
 

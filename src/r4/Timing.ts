@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T14:11:40.945Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import { fhirDateTime } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -43,7 +43,10 @@ export const TimingSchemaInternal = z
 		event: fhirDateTime().array().optional(),
 		_event: z.lazy(getElementSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 		repeat: z.lazy(getTiming_RepeatSchema).optional(),

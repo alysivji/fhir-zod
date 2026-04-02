@@ -1,10 +1,9 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T14:11:40.945Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { Element } from "./Element";
@@ -53,7 +52,10 @@ export const Dosage_DoseAndRateSchemaInternal = z
 		doseQuantity: z.lazy(getQuantitySchema).optional(),
 		doseRange: z.lazy(getRangeSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		rateQuantity: z.lazy(getQuantitySchema).optional(),
 		rateRange: z.lazy(getRangeSchema).optional(),

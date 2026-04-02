@@ -44,9 +44,16 @@ export function validateReferenceTarget(
 			typeof referenceObject.type === "string"
 				? normalizeReferenceCanonicalUrl(referenceObject.type)
 				: null;
+		const normalizedTypeCanonical =
+			normalizedType && isResourceTypeName(normalizedType)
+				? `http://hl7.org/fhir/StructureDefinition/${normalizedType}`
+				: normalizedType;
 		const inferredType = inferReferenceResourceType(reference);
 
-		if (normalizedType && !allowedCanonicalTypes.includes(normalizedType)) {
+		if (
+			normalizedTypeCanonical &&
+			!allowedCanonicalTypes.includes(normalizedTypeCanonical)
+		) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
 				message: `Expected ${field}.type to be one of: ${allowedResourceTypes.join(", ")}; got ${normalizedType}`,
@@ -55,9 +62,9 @@ export function validateReferenceTarget(
 		}
 
 		if (
-			normalizedType &&
+			normalizedTypeCanonical &&
 			inferredType &&
-			targetProfileToResourceType(normalizedType) !== inferredType
+			targetProfileToResourceType(normalizedTypeCanonical) !== inferredType
 		) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,

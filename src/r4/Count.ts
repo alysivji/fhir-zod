@@ -1,10 +1,9 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Count
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T14:11:40.945Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -30,7 +29,10 @@ export const CountSchemaInternal = z
 		comparator: z.enum(["<", "<=", ">", ">="]).optional(),
 		_comparator: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		system: z.string().regex(/\S*/).optional(),
 		_system: z.lazy(getElementSchema).optional(),

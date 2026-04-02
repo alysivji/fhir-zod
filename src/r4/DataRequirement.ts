@@ -1,10 +1,9 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T14:11:40.945Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -291,7 +290,10 @@ export const DataRequirementSchemaInternal = z
 		codeFilter: z.lazy(getDataRequirement_CodeFilterSchema).array().optional(),
 		dateFilter: z.lazy(getDataRequirement_DateFilterSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		limit: z.number().int().positive().optional(),
 		_limit: z.lazy(getElementSchema).optional(),

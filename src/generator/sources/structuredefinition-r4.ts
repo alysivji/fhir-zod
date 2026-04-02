@@ -83,6 +83,9 @@ type CodeSystemConcept = {
 };
 
 type StructureElement = {
+	base?: {
+		path?: string;
+	};
 	binding?: {
 		strength?: string;
 		valueSet?: string;
@@ -743,7 +746,11 @@ function normalizeStructureType(
 			extensionType ?? fhirPathPrimitiveByCode.get(normalizedCode) ?? null;
 	}
 
-	if (primitiveType === "string" && lastPathSegment(element.path) === "id") {
+	if (
+		primitiveType === "string" &&
+		lastPathSegment(element.path) === "id" &&
+		element.base?.path === "Resource.id"
+	) {
 		primitiveType = "id";
 	}
 

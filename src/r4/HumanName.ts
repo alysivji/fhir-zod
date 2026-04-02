@@ -1,10 +1,9 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HumanName
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T14:11:40.945Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -71,7 +70,10 @@ export const HumanNameSchemaInternal = z
 			.array()
 			.optional(),
 		_given: z.lazy(getElementSchema).array().optional(),
-		id: fhirId().optional(),
+		id: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
 		prefix: z

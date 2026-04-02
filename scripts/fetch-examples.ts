@@ -271,7 +271,6 @@ function main(): void {
 			fetchResourceExamples(resourceName);
 			fetched.push(resourceName);
 		} catch (error) {
-			const outputDir = join(fixturesRoot, resourceName);
 			const detail =
 				error instanceof Error
 					? error.message
