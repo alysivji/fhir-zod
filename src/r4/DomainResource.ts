@@ -1,14 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DomainResource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
 import type { Extension } from "./Extension";
-import type { Narrative } from "./Narrative";
-import type { Resource } from "./Resource";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Narrative } from "./Narrative";
 import { NarrativeSchemaInternal } from "./Narrative";
+import type { Resource } from "./Resource";
 import { ResourceSchemaInternal } from "./Resource";
 
 /** A resource that includes narrative, extensions, and contained resources. */

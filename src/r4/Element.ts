@@ -1,11 +1,11 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Element
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
 
 /** Base StructureDefinition for Element Type: Base definition for all elements in a resource. */

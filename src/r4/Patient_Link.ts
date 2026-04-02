@@ -1,15 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { BackboneElement } from "./BackboneElement";
-import type { Element } from "./Element";
-import type { Reference } from "./Reference";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
 
 /** Link to another patient resource that concerns the same actual patient. */

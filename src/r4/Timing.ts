@@ -1,18 +1,18 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
+import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Timing_Repeat } from "./Timing_Repeat";
-import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Timing_Repeat } from "./Timing_Repeat";
 import { Timing_RepeatSchemaInternal } from "./Timing_Repeat";
 
 /** Base StructureDefinition for Timing Type: Specifies an event that may occur multiple times. Timing schedules are used to record when things are planned, expected or requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning care of various kinds, and may be used for reporting the schedule to which past regular activities were carried out. */

@@ -1,22 +1,22 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TriggerDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:25:07.426Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { DataRequirement } from "./DataRequirement";
-import type { Element } from "./Element";
-import type { Expression } from "./Expression";
-import type { Extension } from "./Extension";
-import type { Reference } from "./Reference";
-import type { Timing } from "./Timing";
 import { fhirDate, fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { DataRequirement } from "./DataRequirement";
 import { DataRequirementSchemaInternal } from "./DataRequirement";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Expression } from "./Expression";
 import { ExpressionSchemaInternal } from "./Expression";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
+import type { Timing } from "./Timing";
 import { TimingSchemaInternal } from "./Timing";
 
 /** Base StructureDefinition for TriggerDefinition Type: A description of a triggering event. Triggering events can be named events, data events, or periodic, as determined by the type element. */

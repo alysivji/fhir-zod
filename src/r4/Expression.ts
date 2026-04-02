@@ -1,13 +1,13 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Expression
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:25:07.426Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
 
 /** Base StructureDefinition for Expression Type: A expression that is evaluated in a specified context and returns a value. The context of use of the expression must specify the context in which the expression is evaluated, and how the result of the expression is used. */

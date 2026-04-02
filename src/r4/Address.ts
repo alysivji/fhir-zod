@@ -1,15 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Address
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Period } from "./Period";
 import { fhirId } from "../shared/fhir-primitives";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Period } from "./Period";
 import { PeriodSchemaInternal } from "./Period";
 
 /** Base StructureDefinition for Address Type: An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data type may be used to convey addresses for use in delivering mail as well as for visiting locations which might not be valid for mail delivery.  There are a variety of postal address formats defined around the world. */

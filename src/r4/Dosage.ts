@@ -1,24 +1,24 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:25:07.426Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
+import { fhirId } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
-import type { Dosage_DoseAndRate } from "./Dosage_DoseAndRate";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Quantity } from "./Quantity";
-import type { Ratio } from "./Ratio";
-import type { Timing } from "./Timing";
-import { fhirId } from "../shared/fhir-primitives";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Dosage_DoseAndRate } from "./Dosage_DoseAndRate";
 import { Dosage_DoseAndRateSchemaInternal } from "./Dosage_DoseAndRate";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Quantity } from "./Quantity";
 import { QuantitySchemaInternal } from "./Quantity";
+import type { Ratio } from "./Ratio";
 import { RatioSchemaInternal } from "./Ratio";
+import type { Timing } from "./Timing";
 import { TimingSchemaInternal } from "./Timing";
 
 /** Base StructureDefinition for Dosage Type: Indicates how the medication is/was taken or should be taken by the patient. */

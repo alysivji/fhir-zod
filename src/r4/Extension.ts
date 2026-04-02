@@ -1,41 +1,9 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Extension
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:25:07.426Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Address } from "./Address";
-import type { Age } from "./Age";
-import type { Annotation } from "./Annotation";
-import type { Attachment } from "./Attachment";
-import type { CodeableConcept } from "./CodeableConcept";
-import type { Coding } from "./Coding";
-import type { ContactDetail } from "./ContactDetail";
-import type { ContactPoint } from "./ContactPoint";
-import type { Contributor } from "./Contributor";
-import type { Count } from "./Count";
-import type { DataRequirement } from "./DataRequirement";
-import type { Distance } from "./Distance";
-import type { Dosage } from "./Dosage";
-import type { Duration } from "./Duration";
-import type { Element } from "./Element";
-import type { Expression } from "./Expression";
-import type { HumanName } from "./HumanName";
-import type { Identifier } from "./Identifier";
-import type { Meta } from "./Meta";
-import type { Money } from "./Money";
-import type { ParameterDefinition } from "./ParameterDefinition";
-import type { Period } from "./Period";
-import type { Quantity } from "./Quantity";
-import type { Range } from "./Range";
-import type { Ratio } from "./Ratio";
-import type { Reference } from "./Reference";
-import type { RelatedArtifact } from "./RelatedArtifact";
-import type { SampledData } from "./SampledData";
-import type { Signature } from "./Signature";
-import type { Timing } from "./Timing";
-import type { TriggerDefinition } from "./TriggerDefinition";
-import type { UsageContext } from "./UsageContext";
 import {
 	fhirDate,
 	fhirDateTime,
@@ -43,37 +11,69 @@ import {
 	fhirInstant,
 	fhirTime,
 } from "../shared/fhir-primitives";
+import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
+import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
+import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
+import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
+import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
+import type { ContactDetail } from "./ContactDetail";
 import { ContactDetailSchemaInternal } from "./ContactDetail";
+import type { ContactPoint } from "./ContactPoint";
 import { ContactPointSchemaInternal } from "./ContactPoint";
+import type { Contributor } from "./Contributor";
 import { ContributorSchemaInternal } from "./Contributor";
+import type { Count } from "./Count";
 import { CountSchemaInternal } from "./Count";
+import type { DataRequirement } from "./DataRequirement";
 import { DataRequirementSchemaInternal } from "./DataRequirement";
+import type { Distance } from "./Distance";
 import { DistanceSchemaInternal } from "./Distance";
+import type { Dosage } from "./Dosage";
 import { DosageSchemaInternal } from "./Dosage";
+import type { Duration } from "./Duration";
 import { DurationSchemaInternal } from "./Duration";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Expression } from "./Expression";
 import { ExpressionSchemaInternal } from "./Expression";
+import type { HumanName } from "./HumanName";
 import { HumanNameSchemaInternal } from "./HumanName";
+import type { Identifier } from "./Identifier";
 import { IdentifierSchemaInternal } from "./Identifier";
+import type { Meta } from "./Meta";
 import { MetaSchemaInternal } from "./Meta";
+import type { Money } from "./Money";
 import { MoneySchemaInternal } from "./Money";
+import type { ParameterDefinition } from "./ParameterDefinition";
 import { ParameterDefinitionSchemaInternal } from "./ParameterDefinition";
+import type { Period } from "./Period";
 import { PeriodSchemaInternal } from "./Period";
+import type { Quantity } from "./Quantity";
 import { QuantitySchemaInternal } from "./Quantity";
+import type { Range } from "./Range";
 import { RangeSchemaInternal } from "./Range";
+import type { Ratio } from "./Ratio";
 import { RatioSchemaInternal } from "./Ratio";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
+import type { RelatedArtifact } from "./RelatedArtifact";
 import { RelatedArtifactSchemaInternal } from "./RelatedArtifact";
+import type { SampledData } from "./SampledData";
 import { SampledDataSchemaInternal } from "./SampledData";
+import type { Signature } from "./Signature";
 import { SignatureSchemaInternal } from "./Signature";
+import type { Timing } from "./Timing";
 import { TimingSchemaInternal } from "./Timing";
+import type { TriggerDefinition } from "./TriggerDefinition";
 import { TriggerDefinitionSchemaInternal } from "./TriggerDefinition";
+import type { UsageContext } from "./UsageContext";
 import { UsageContextSchemaInternal } from "./UsageContext";
 
 /** Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources. */

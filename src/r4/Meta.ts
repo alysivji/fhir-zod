@@ -1,15 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Meta
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Coding } from "./Coding";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
+import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
 
 /** Base StructureDefinition for Meta Type: The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource. */

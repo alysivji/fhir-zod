@@ -1,17 +1,17 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Duration } from "./Duration";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Period } from "./Period";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import type { Duration } from "./Duration";
 import { DurationSchemaInternal } from "./Duration";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Period } from "./Period";
 import { PeriodSchemaInternal } from "./Period";
 
 /** Date filters specify additional constraints on the data in terms of the applicable date range for specific elements. Each date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not OR'ed. */

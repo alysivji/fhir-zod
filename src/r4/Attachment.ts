@@ -1,13 +1,13 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Attachment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
 
 /** Base StructureDefinition for Attachment Type: For referring to data content defined in other formats. */

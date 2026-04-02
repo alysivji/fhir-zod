@@ -1,34 +1,34 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Address } from "./Address";
-import type { Attachment } from "./Attachment";
-import type { CodeableConcept } from "./CodeableConcept";
-import type { ContactPoint } from "./ContactPoint";
-import type { DomainResource } from "./DomainResource";
-import type { Element } from "./Element";
-import type { HumanName } from "./HumanName";
-import type { Identifier } from "./Identifier";
-import type { Patient_Communication } from "./Patient_Communication";
-import type { Patient_Contact } from "./Patient_Contact";
-import type { Patient_Link } from "./Patient_Link";
-import type { Reference } from "./Reference";
 import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
+import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
+import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { ContactPoint } from "./ContactPoint";
 import { ContactPointSchemaInternal } from "./ContactPoint";
+import type { DomainResource } from "./DomainResource";
 import { DomainResourceSchemaInternal } from "./DomainResource";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { HumanName } from "./HumanName";
 import { HumanNameSchemaInternal } from "./HumanName";
+import type { Identifier } from "./Identifier";
 import { IdentifierSchemaInternal } from "./Identifier";
+import type { Patient_Communication } from "./Patient_Communication";
 import { Patient_CommunicationSchemaInternal } from "./Patient_Communication";
+import type { Patient_Contact } from "./Patient_Contact";
 import { Patient_ContactSchemaInternal } from "./Patient_Contact";
+import type { Patient_Link } from "./Patient_Link";
 import { Patient_LinkSchemaInternal } from "./Patient_Link";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
 
 /** Demographics and other administrative information about an individual or animal receiving care or other health-related services. */

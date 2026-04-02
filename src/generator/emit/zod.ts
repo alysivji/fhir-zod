@@ -104,6 +104,10 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 			cwd: repoRoot,
 			stdio: "ignore",
 		});
+		execFileSync("npx", ["biome", "check", "--write", ...stagedPaths], {
+			cwd: repoRoot,
+			stdio: "ignore",
+		});
 
 		return files.map((file) => {
 			const stagedPath = join(stagingDir, basename(file.path));

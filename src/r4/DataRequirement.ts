@@ -1,24 +1,24 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:25:07.426Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { CodeableConcept } from "./CodeableConcept";
-import type { DataRequirement_CodeFilter } from "./DataRequirement_CodeFilter";
-import type { DataRequirement_DateFilter } from "./DataRequirement_DateFilter";
-import type { DataRequirement_Sort } from "./DataRequirement_Sort";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Reference } from "./Reference";
 import { fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { DataRequirement_CodeFilter } from "./DataRequirement_CodeFilter";
 import { DataRequirement_CodeFilterSchemaInternal } from "./DataRequirement_CodeFilter";
+import type { DataRequirement_DateFilter } from "./DataRequirement_DateFilter";
 import { DataRequirement_DateFilterSchemaInternal } from "./DataRequirement_DateFilter";
+import type { DataRequirement_Sort } from "./DataRequirement_Sort";
 import { DataRequirement_SortSchemaInternal } from "./DataRequirement_Sort";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for DataRequirement Type: Describes a required data item for evaluation in terms of the type of data, and optional code or date-based filters of the data. */

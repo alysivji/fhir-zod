@@ -1,24 +1,24 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/UsageContext
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { CodeableConcept } from "./CodeableConcept";
-import type { Coding } from "./Coding";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Quantity } from "./Quantity";
-import type { Range } from "./Range";
-import type { Reference } from "./Reference";
 import { fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Quantity } from "./Quantity";
 import { QuantitySchemaInternal } from "./Quantity";
+import type { Range } from "./Range";
 import { RangeSchemaInternal } from "./Range";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for UsageContext Type: Specifies clinical/business/etc. metadata that can be used to retrieve, index and/or categorize an artifact. This metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context of care (e.g., venue, care setting, provider of care). */

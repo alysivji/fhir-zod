@@ -1,18 +1,18 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Signature
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-02T04:42:40.346Z
 
 import * as z from "zod";
-import type { Coding } from "./Coding";
-import type { Element } from "./Element";
-import type { Extension } from "./Extension";
-import type { Reference } from "./Reference";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
+import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
+import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
+import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for Signature Type: A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have different utilities. */
