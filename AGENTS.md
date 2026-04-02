@@ -2,12 +2,13 @@
 
 ## Project Intent
 
-`fhir-zod` generates versioned Zod schemas from official HL7 FHIR definitions.
+`fhir-zod` generates versioned TypeScript model types and Zod schemas from official HL7 FHIR definitions.
 
 The goal is a thin, spec-aligned TypeScript library:
 
 - generated, not handwritten
-- Zod-first, with no wrapper runtime
+- type-first for the public model surface
+- separate Zod schemas for runtime validation
 - version-separated (`stu3`, `r4`, `r4b`, `r5`)
 - focused on structural/schema validation, not full FHIR platform behavior
 
@@ -55,7 +56,7 @@ The current generation pipeline is:
 2. Fetch and cache upstream artifacts into `.local/spec-cache/<version>/package/`
 3. Load StructureDefinitions and related inputs from the pinned cache
 4. Normalize FHIR definitions into an internal generator model
-5. Emit deterministic Zod schema files into `src/<version>/`
+5. Emit deterministic generated output into `src/<version>/`
 6. Run tests and comparison scripts to catch regressions
 
 Primary commands:
@@ -104,6 +105,8 @@ Today the generator uses inheritance-style emission where it is safe:
 
 This is not purely cosmetic. It keeps shared FHIR structure visible in emitted schemas and avoids duplicating common fields everywhere.
 
+The same inheritance relationships should also be reflected in the public generated TypeScript model surface where practical.
+
 Current caveat:
 
 - some definitions still fall back to flattened one-shot schemas when dependency cycles would cause ESM initialization problems
@@ -135,6 +138,27 @@ Out of scope unless the project direction changes:
 - slicing
 - server behavior
 
+## Public API Direction
+
+The intended package shape is:
+
+- generated TypeScript interfaces/types as the primary developer-facing FHIR model layer
+- separate generated Zod schemas as the runtime validation layer
+- no long-term reliance on `z.output<typeof Schema>` as the main exported model type strategy
+
+Preferred naming direction:
+
+- `Patient` for the public TypeScript model
+- `PatientSchema` for the runtime validator
+
+Why:
+
+- recursive FHIR models are easier to express and maintain as named TS models
+- recursive Zod graphs should not be forced to carry the entire public type story
+- this keeps editor ergonomics clean and makes room for future higher-level helpers such as builders in a separate package
+
+If work moves the repo further toward this separation, update docs and tests accordingly.
+
 ## Working Norms
 
 When making changes, prefer:
@@ -157,9 +181,10 @@ These are active areas, not settled design:
 
 - generating additional versions beyond R4
 - handling inheritance safely in the presence of dependency cycles
-- replacing the oversized-schema DTS workaround with named emitted TS types
+- replacing the current mixed type/schema export story with generated public TS models plus separate schema exports
 - deciding how primitive underscore fields should be modeled long-term
 - documenting BackboneElement behavior and reference validation more clearly
+- deciding where to use interfaces vs type aliases in the generated public model layer
 
 ## Good Agent Contributions
 

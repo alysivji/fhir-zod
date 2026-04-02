@@ -74,8 +74,17 @@ Track the work needed to align the repository with the current README.
 - [x] Keep generated schemas Zod-first with no wrapper layer
 - [x] Add a short-term workaround for generated schemas that exceed TypeScript's serialized inferred type limit
   Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
-- [ ] Teach the generator to emit named TypeScript interfaces/types for oversized schemas
-  Proper fix: preserve precise `z.infer<typeof Schema>` types while keeping declaration generation stable.
+- [ ] Split the public generated surface into TypeScript models and separate Zod schemas
+  Target direction:
+  `Patient` is the public TS model.
+  `PatientSchema` is the runtime validator.
+- [ ] Decide the public model strategy for generated declarations
+  Open choice:
+  prefer interfaces for object-like FHIR definitions where possible, but use type aliases where unions or recursive composition make that cleaner.
+- [ ] Teach the generator to emit named TypeScript models for generated definitions
+  This should replace reliance on `z.output<typeof Schema>` as the main consumer-facing type story.
+- [ ] Rename generated schema exports to `*Schema` once the separate public model layer is in place
+- [ ] Preserve inheritance relationships in both generated TS models and schema exports
 - [ ] Audit inheritance/codegen gaps for abstract schemas and cyclic dependencies
   Current state: safe cases now emit `Base.extend({...})` for abstract types such as `Resource`, `DomainResource`, and some concrete resources.
   Current shortfall: definitions that participate in dependency cycles still fall back to flattened one-shot schemas to avoid ESM initialization failures.
@@ -94,11 +103,13 @@ Track the work needed to align the repository with the current README.
 
 ## Documentation
 
-- [ ] Keep README examples aligned with generated output
+- [ ] Keep README examples aligned with generated output and target public API
 - [x] Document how to refresh spec files
 - [ ] Document how to run the generator
 - [ ] Document expectations around generated vs handwritten files
 - [ ] Document how BackboneElement behavior is represented in generated schemas
+- [ ] Document the intended split between public TS models and runtime Zod schemas
+- [ ] Document the future layering for convenience builders above core
 - [x] Carry source descriptions into generated schema fields where practical
 
 ## Patient Follow-Up
@@ -121,3 +132,14 @@ Track the work needed to align the repository with the current README.
 - [ ] Do not add profile resolution
 - [ ] Do not add slicing support
 - [ ] Do not add server-side logic
+
+## Aly's Notes
+
+- Have a file / folder that just has Base definition for all elements in a resource
+  - elements are not FHIR resources but just other base definitions (how do we define these)
+- public direction:
+  - `Patient` should be the TS model
+  - `PatientSchema` should be the Zod validator
+  - core should be type-first, then Zod
+- future layering:
+  - builders/factories could exist later, but should sit above core rather than replacing the generated model/schema layer

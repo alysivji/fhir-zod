@@ -1,16 +1,17 @@
 # FHIR Zod
 
-Canonical, versioned, generated Zod schemas for the FHIR specification.
+Canonical, versioned, generated TypeScript models and Zod schemas for the FHIR specification.
 
 ## Goal
 
-Provide a **reference implementation of FHIR schemas in TypeScript** using Zod.
+Provide a **reference implementation of FHIR types and schemas in TypeScript** using Zod.
 
 This library is:
 - **spec-aligned** (generated from HL7 definitions)
 - **versioned** (STU3, R4, R4B, R5)
 - **minimal** (no business logic, no terminology validation)
 - **predictable** (deterministic generation)
+- **type-first** (developer-facing TS models, with runtime Zod validation)
 
 This is NOT:
 - a full FHIR validator
@@ -44,14 +45,23 @@ npm install zod
 ## Usage
 
 ```ts
-import { Patient } from "@fhir-zod/core/r4"
+import type { Patient } from "@fhir-zod/core/r4"
+import { PatientSchema } from "@fhir-zod/core/r4"
 
-const parsed = Patient.parse(data)
+const parsed = PatientSchema.parse(data)
 
 const patient: Patient = {
   resourceType: "Patient",
 }
 ```
+
+Target package shape:
+
+- export generated TypeScript interfaces/types for FHIR model shapes
+- export separate generated Zod schemas for runtime validation
+- avoid making `z.output<typeof Schema>` the primary public type story
+
+The repository is not fully on that API yet, but this is the intended direction.
 
 ## Development
 
@@ -148,16 +158,22 @@ All schemas are generated from:
 
 No manual schema definitions.
 
-### 2. Zod is the runtime
+### 2. Types First, Zod Second
 
-We use Zod directly.
+The intended public model is:
 
-- Do not wrap or abstract Zod
-- Export native Zod schemas
+- generated TypeScript interfaces/types for FHIR resources and shared complex types
+- separate generated Zod schemas for runtime validation
+
+Zod remains the runtime validation layer.
+
+- do not build a custom validation DSL on top of Zod
+- do not make Zod inference the only source of public TypeScript types
+- prefer generating named TS models from the normalized FHIR definition graph
 
 ```ts
-Patient.parse(data)
-Patient.safeParse(data)
+const parsed = PatientSchema.parse(data)
+PatientSchema.safeParse(data)
 ```
 
 ### 3. Version-first architecture
@@ -186,11 +202,13 @@ We explicitly do NOT support:
 - profile resolution
 - slicing
 
-### 5. Thin runtime layer
+### 5. Thin Runtime Layer
 
 Schemas remain Zod-first.
 
-Optional helpers may be added, but must not obscure Zod.
+Optional helpers may be added later, but must not obscure Zod or replace the generated model/schema surface.
+
+Possible future convenience layers such as builders should live above core, not inside the core generated package.
 
 ## Generated vs Handwritten Code
 
@@ -251,7 +269,7 @@ The current pipeline is:
 2. Fetch official HL7 artifacts into `.local/spec-cache/<version>/package/`
 3. Load StructureDefinitions and related spec inputs from the pinned cache
 4. Normalize them into the internal generator model
-5. Emit deterministic Zod schemas into `src/<version>/`
+5. Emit deterministic TypeScript model declarations and Zod schemas into `src/<version>/`
 6. Run tests and comparison tooling to review diffs
 
 Current implementation notes:
