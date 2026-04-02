@@ -1,22 +1,30 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeableConcept
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Coding } from "./Coding";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
-import { Coding } from "./Coding";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { CodingSchemaInternal } from "./Coding";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getCodingSchema = (): z.ZodType<unknown> => Coding;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface CodeableConcept extends Element {
+	coding?: Array<Coding>;
+	text?: string;
+	_text?: Element;
+}
 
-export const CodeableConcept = z
+const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const CodeableConceptSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
 		coding: z
 			.lazy(getCodingSchema)
 			.array()
@@ -34,6 +42,7 @@ export const CodeableConcept = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		text: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -41,7 +50,9 @@ export const CodeableConcept = z
 			.describe(
 				"A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.",
 			),
+		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
 	})
 	.strict();
 
-export type CodeableConcept = z.output<typeof CodeableConcept>;
+export const CodeableConceptSchema: z.ZodType<CodeableConcept> =
+	CodeableConceptSchemaInternal;

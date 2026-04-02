@@ -1,9 +1,9 @@
-import { Patient } from "@fhir-zod/core/r4";
+import { PatientSchema } from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 
 describe("Patient", () => {
 	it("parses a basic patient resource", () => {
-		const result = Patient.parse({
+		const result = PatientSchema.parse({
 			active: true,
 			birthDate: "1980-01-01",
 			gender: "female",
@@ -48,7 +48,7 @@ describe("Patient", () => {
 
 	it("rejects an invalid nested patient shape", () => {
 		expect(() =>
-			Patient.parse({
+			PatientSchema.parse({
 				resourceType: "Patient",
 				identifier: [
 					{
@@ -62,7 +62,7 @@ describe("Patient", () => {
 
 	it("rejects unknown top-level patient fields", () => {
 		expect(() =>
-			Patient.parse({
+			PatientSchema.parse({
 				resourceType: "Patient",
 				unexpected: true,
 			}),
@@ -71,7 +71,7 @@ describe("Patient", () => {
 
 	it("rejects the OpenAPI-only top-level animal field", () => {
 		expect(() =>
-			Patient.parse({
+			PatientSchema.parse({
 				animal: {
 					species: {
 						text: "dog",
@@ -84,7 +84,7 @@ describe("Patient", () => {
 
 	it("rejects a Patient.gender value outside the required SD binding", () => {
 		expect(() =>
-			Patient.parse({
+			PatientSchema.parse({
 				gender: "nonspecific",
 				resourceType: "Patient",
 			}),
@@ -93,7 +93,7 @@ describe("Patient", () => {
 
 	it("rejects a Patient.link.type value outside the required SD binding", () => {
 		expect(() =>
-			Patient.parse({
+			PatientSchema.parse({
 				link: [
 					{
 						other: {
@@ -108,7 +108,7 @@ describe("Patient", () => {
 	});
 
 	it("accepts references that include an allowed target resource type", () => {
-		const result = Patient.parse({
+		const result = PatientSchema.parse({
 			generalPractitioner: [
 				{
 					reference: "Practitioner/example",
@@ -125,7 +125,7 @@ describe("Patient", () => {
 	});
 
 	it("accepts recognizable absolute FHIR URLs for constrained references", () => {
-		const result = Patient.parse({
+		const result = PatientSchema.parse({
 			generalPractitioner: [
 				{
 					reference: "https://example.org/fhir/Practitioner/example",
@@ -142,7 +142,7 @@ describe("Patient", () => {
 	});
 
 	it("accepts internal references when type is allowed", () => {
-		const result = Patient.parse({
+		const result = PatientSchema.parse({
 			managingOrganization: {
 				reference: "#org1",
 				type: "http://hl7.org/fhir/StructureDefinition/Organization",
@@ -157,7 +157,7 @@ describe("Patient", () => {
 	});
 
 	it("allows ambiguous references without type", () => {
-		const result = Patient.parse({
+		const result = PatientSchema.parse({
 			managingOrganization: {
 				reference: "urn:uuid:12345678-1234-1234-1234-123456789abc",
 			},
@@ -170,7 +170,7 @@ describe("Patient", () => {
 	});
 
 	it("allows opaque absolute references without type", () => {
-		const result = Patient.parse({
+		const result = PatientSchema.parse({
 			managingOrganization: {
 				reference: "https://example.org/not-a-fhir-path",
 			},
@@ -183,7 +183,7 @@ describe("Patient", () => {
 	});
 
 	it("rejects references that use the wrong target resource type", () => {
-		const result = Patient.safeParse({
+		const result = PatientSchema.safeParse({
 			managingOrganization: {
 				reference: "Patient/example",
 			},
@@ -207,7 +207,7 @@ describe("Patient", () => {
 	});
 
 	it("rejects link.other references outside the allowed targets", () => {
-		const result = Patient.safeParse({
+		const result = PatientSchema.safeParse({
 			link: [
 				{
 					other: {
@@ -236,7 +236,7 @@ describe("Patient", () => {
 	});
 
 	it("rejects invalid reference.type values for constrained references", () => {
-		const result = Patient.safeParse({
+		const result = PatientSchema.safeParse({
 			generalPractitioner: [
 				{
 					type: "http://hl7.org/fhir/StructureDefinition/Patient",
@@ -262,7 +262,7 @@ describe("Patient", () => {
 	});
 
 	it("rejects when reference.type and reference disagree", () => {
-		const result = Patient.safeParse({
+		const result = PatientSchema.safeParse({
 			managingOrganization: {
 				reference: "Patient/example",
 				type: "http://hl7.org/fhir/StructureDefinition/Organization",
@@ -288,7 +288,7 @@ describe("Patient", () => {
 
 	describe("deceased[x]", () => {
 		it("accepts a single choice", () => {
-			const result = Patient.safeParse({
+			const result = PatientSchema.safeParse({
 				deceasedBoolean: true,
 				resourceType: "Patient",
 			});
@@ -297,7 +297,7 @@ describe("Patient", () => {
 		});
 
 		it("rejects multiple choices", () => {
-			const result = Patient.safeParse({
+			const result = PatientSchema.safeParse({
 				deceasedBoolean: true,
 				deceasedDateTime: "2020-01-01T00:00:00Z",
 				resourceType: "Patient",
@@ -309,7 +309,7 @@ describe("Patient", () => {
 
 	describe("multipleBirth[x]", () => {
 		it("accepts a single choice", () => {
-			const result = Patient.safeParse({
+			const result = PatientSchema.safeParse({
 				multipleBirthInteger: 2,
 				resourceType: "Patient",
 			});
@@ -318,7 +318,7 @@ describe("Patient", () => {
 		});
 
 		it("rejects multiple choices", () => {
-			const result = Patient.safeParse({
+			const result = PatientSchema.safeParse({
 				multipleBirthBoolean: true,
 				multipleBirthInteger: 2,
 				resourceType: "Patient",

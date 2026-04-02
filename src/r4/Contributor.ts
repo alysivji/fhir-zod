@@ -1,23 +1,33 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contributor
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { ContactDetail } from "./ContactDetail";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
-import { ContactDetail } from "./ContactDetail";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { ContactDetailSchemaInternal } from "./ContactDetail";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getContactDetailSchema = (): z.ZodType<unknown> => ContactDetail;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Contributor extends Element {
+	contact?: Array<ContactDetail>;
+	name: string;
+	_name?: Element;
+	type: "author" | "editor" | "endorser" | "reviewer";
+	_type?: Element;
+}
 
-export const Contributor = z
+const getContactDetailSchema = (): z.ZodType<ContactDetail> =>
+	ContactDetailSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const ContributorSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_name: z.lazy(getElementSchema).optional().describe("Extensions for name"),
-		_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
 		contact: z
 			.lazy(getContactDetailSchema)
 			.array()
@@ -37,16 +47,20 @@ export const Contributor = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		name: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.describe(
 				"The name of the individual or organization responsible for the contribution.",
 			),
+		_name: z.lazy(getElementSchema).optional().describe("Extensions for name"),
 		type: z
 			.enum(["author", "editor", "endorser", "reviewer"])
 			.describe("The type of contributor."),
+		_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
 	})
 	.strict();
 
-export type Contributor = z.output<typeof Contributor>;
+export const ContributorSchema: z.ZodType<Contributor> =
+	ContributorSchemaInternal;

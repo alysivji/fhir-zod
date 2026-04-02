@@ -1,33 +1,24 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Distance
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Quantity } from "./Quantity";
 import { fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Distance extends Quantity {}
 
-export const Distance = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const DistanceSchemaInternal = z
 	.object({
-		_code: z.lazy(getElementSchema).optional().describe("Extensions for code"),
-		_comparator: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for comparator"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_system: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for system"),
-		_unit: z.lazy(getElementSchema).optional().describe("Extensions for unit"),
-		_value: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for value"),
 		code: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -35,12 +26,17 @@ export const Distance = z
 			.describe(
 				"A computer processable form of the unit in some unit representation system.",
 			),
+		_code: z.lazy(getElementSchema).optional().describe("Extensions for code"),
 		comparator: z
 			.enum(["<", "<=", ">", ">="])
 			.optional()
 			.describe(
 				'How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.',
 			),
+		_comparator: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for comparator"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -53,6 +49,7 @@ export const Distance = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		system: z
 			.string()
 			.regex(/\S*/)
@@ -60,18 +57,27 @@ export const Distance = z
 			.describe(
 				"The identification of the system that provides the coded form of the unit.",
 			),
+		_system: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for system"),
 		unit: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional()
 			.describe("A human-readable form of the unit."),
+		_unit: z.lazy(getElementSchema).optional().describe("Extensions for unit"),
 		value: z
 			.number()
 			.optional()
 			.describe(
 				"The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
 			),
+		_value: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for value"),
 	})
 	.strict();
 
-export type Distance = z.output<typeof Distance>;
+export const DistanceSchema: z.ZodType<Distance> = DistanceSchemaInternal;

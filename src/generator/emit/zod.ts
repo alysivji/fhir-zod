@@ -18,8 +18,13 @@ import {
 	fhirTime,
 } from "../../shared/fhir-primitives.ts";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation.ts";
-import type { NormalizedDefinition } from "../model.ts";
-import { primitiveRuntimeKind, sortDefinitions } from "../model.ts";
+import type { NormalizedDefinition, NormalizedProperty } from "../model.ts";
+import {
+	primitiveRuntimeKind,
+	schemaExportName,
+	schemaInternalName,
+	sortDefinitions,
+} from "../model.ts";
 import { repoRoot } from "../shared.ts";
 
 type BuiltFile = {
@@ -140,10 +145,10 @@ function buildNormalizedZodFiles(options: {
 				generatedAt: options.generatedAt,
 				releaseLabel,
 			}),
-			...sortDefinitions(options.definitions.values()).map(
-				(definition) =>
-					`export { ${definition.name} } from "./${definition.name}";`,
-			),
+			...sortDefinitions(options.definitions.values()).flatMap((definition) => [
+				`export type { ${definition.name} } from "./${definition.name}";`,
+				`export { ${schemaExportName(definition.name)} } from "./${definition.name}";`,
+			]),
 			"",
 		].join("\n"),
 		path: join(options.outputDir, "index.ts"),
@@ -158,34 +163,50 @@ function emitDefinitionFile(
 	generatedAt: string,
 	primitivePatterns: Map<string, string>,
 ): string {
-	const shouldExtend = shouldExtendDefinition(definition, definitions);
-	const directProperties = shouldExtend
+	const modelBaseName = resolveModelBaseName(definition, definitions);
+	const runtimeShouldExtend = shouldExtendDefinition(definition, definitions);
+	const modelProperties = modelBaseName
 		? getDirectProperties(definition, definitions)
 		: definition.properties;
-	const imports = new Set<string>();
+	const runtimeProperties = runtimeShouldExtend
+		? getDirectProperties(definition, definitions)
+		: definition.properties;
+	const typeImports = new Set<string>();
+	const valueImports = new Set<string>();
 	const helperImports = new Set<string>();
 	const sharedImports = new Set<string>();
 	const lazySchemaHelpers = new Set<string>();
 	const referenceConstraints = collectReferenceConstraints(definition);
-	const baseDefinition =
-		definition.baseName !== null
-			? (definitions.get(definition.baseName) ?? null)
-			: null;
+	const runtimeBaseDefinition = resolveRuntimeBaseDefinition(
+		definition,
+		definitions,
+		runtimeShouldExtend,
+	);
 
-	if (
-		shouldExtend &&
-		baseDefinition &&
-		baseDefinition.name !== definition.name
-	) {
-		imports.add(baseDefinition.name);
+	if (modelBaseName) {
+		typeImports.add(modelBaseName);
 	}
 
-	for (const property of directProperties) {
+	if (runtimeBaseDefinition) {
+		valueImports.add(runtimeBaseDefinition.name);
+	}
+
+	for (const property of [...modelProperties, ...runtimeProperties]) {
+		if (
+			property.typeRef &&
+			definitions.has(property.typeRef) &&
+			property.typeRef !== definition.name
+		) {
+			typeImports.add(property.typeRef);
+		}
+	}
+
+	for (const property of runtimeProperties) {
 		if (property.typeRef && definitions.has(property.typeRef)) {
 			lazySchemaHelpers.add(property.typeRef);
 
 			if (property.typeRef !== definition.name) {
-				imports.add(property.typeRef);
+				valueImports.add(property.typeRef);
 			}
 		}
 
@@ -210,6 +231,9 @@ function emitDefinitionFile(
 			version: definition.sourceMetadata.version,
 		}),
 		'import * as z from "zod";',
+		...[...typeImports]
+			.sort((left, right) => left.localeCompare(right))
+			.map((name) => `import type { ${name} } from "./${name}";`),
 		...(helperImports.size > 0
 			? [
 					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitives";`,
@@ -220,15 +244,21 @@ function emitDefinitionFile(
 					`import { ${[...sharedImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-reference-validation";`,
 				]
 			: []),
-		...[...imports]
+		...[...valueImports]
 			.sort((left, right) => left.localeCompare(right))
-			.map((name) => `import { ${name} } from "./${name}";`),
-		...emitLazySchemaHelpers(lazySchemaHelpers),
+			.map(
+				(name) =>
+					`import { ${schemaInternalName(name)} } from "./${name}";`,
+			),
 		"",
-		...emitDefinitionDeclaration(definition, definitions, shouldExtend),
+		...emitModelDeclaration(definition, definitions, modelBaseName),
+		"",
+		...emitLazySchemaHelpers(lazySchemaHelpers),
+		...(lazySchemaHelpers.size > 0 ? [""] : []),
+		...emitSchemaDeclaration(definition, definitions, runtimeShouldExtend),
 		...emitDefinitionExpression(
 			definition,
-			directProperties,
+			runtimeProperties,
 			definitions,
 			primitivePatterns,
 			refinementLines.length > 0,
@@ -236,7 +266,7 @@ function emitDefinitionFile(
 		...refinementLines,
 		...(refinementLines.length > 0 ? ["\t;"] : []),
 		"",
-		`export type ${definition.name} = z.output<typeof ${definition.name}>;`,
+		...emitPublicSchemaExport(definition),
 		"",
 	];
 
@@ -258,25 +288,181 @@ function buildGeneratedHeader(options: {
 	];
 }
 
-function emitDefinitionDeclaration(
+function emitModelDeclaration(
+	definition: NormalizedDefinition,
+	definitions: Map<string, NormalizedDefinition>,
+	modelBaseName: string | null,
+): string[] {
+	const properties = modelBaseName
+		? getDirectProperties(definition, definitions)
+		: definition.properties;
+	const declaration = modelBaseName
+		? `export interface ${definition.name} extends ${modelBaseName} {`
+		: `export interface ${definition.name} {`;
+
+	return [
+		declaration,
+		...properties.map((property) => `\t${emitModelProperty(definition, property, definitions)}`),
+		"}",
+	];
+}
+
+function emitModelProperty(
+	definition: NormalizedDefinition,
+	property: NormalizedProperty,
+	definitions: Map<string, NormalizedDefinition>,
+): string {
+	const propertyName = emitTypePropertyName(property.jsonName);
+	const optionalSuffix = isOptionalModelProperty(property, definitions)
+		? "?"
+		: "";
+	const propertyType = emitModelPropertyType(definition, property, definitions);
+
+	return `${propertyName}${optionalSuffix}: ${propertyType};`;
+}
+
+function isOptionalModelProperty(
+	property: NormalizedProperty,
+	definitions: Map<string, NormalizedDefinition>,
+): boolean {
+	if (!property.required) {
+		return true;
+	}
+
+	return (
+		property.typeRef !== null &&
+		!definitions.has(property.typeRef) &&
+		property.primitiveType === null &&
+		property.enumValues === null
+	);
+}
+
+function emitModelPropertyType(
+	definition: NormalizedDefinition,
+	property: NormalizedProperty,
+	definitions: Map<string, NormalizedDefinition>,
+): string {
+	let baseType = emitModelBaseType(definition, property, definitions);
+
+	if (property.isArray) {
+		baseType = `Array<${baseType}>`;
+	}
+
+	return baseType;
+}
+
+function emitModelBaseType(
+	definition: NormalizedDefinition,
+	property: NormalizedProperty,
+	definitions: Map<string, NormalizedDefinition>,
+): string {
+	if (
+		property.jsonName === "resourceType" &&
+		definition.resourceTypeLiteral !== null
+	) {
+		return JSON.stringify(definition.resourceTypeLiteral);
+	}
+
+	if (property.typeRef && definitions.has(property.typeRef)) {
+		return property.typeRef;
+	}
+
+	if (property.enumValues) {
+		return property.enumValues.map((value) => JSON.stringify(value)).join(" | ");
+	}
+
+	if (property.primitiveType) {
+		return emitPrimitiveType(property.primitiveType);
+	}
+
+	return "unknown";
+}
+
+function emitPrimitiveType(type: string): string {
+	const runtimeKind = primitiveRuntimeKind(type);
+
+	switch (runtimeKind) {
+		case "boolean":
+			return "boolean";
+		case "number":
+			return "number";
+		case "string":
+			return "string";
+		default:
+			return "unknown";
+	}
+}
+
+function emitTypePropertyName(name: string): string {
+	return /^[$A-Z_a-z][$\w]*$/.test(name) ? name : JSON.stringify(name);
+}
+
+function emitSchemaDeclaration(
 	definition: NormalizedDefinition,
 	definitions: Map<string, NormalizedDefinition>,
 	shouldExtend: boolean,
 ): string[] {
+	const schemaName = schemaInternalName(definition.name);
+
 	if (!shouldExtend) {
-		return [`export const ${definition.name} = z.object({`];
+		return ["/** @internal */", `export const ${schemaName} = z.object({`];
 	}
 
-	const baseDefinition =
-		definition.baseName !== null
-			? (definitions.get(definition.baseName) ?? null)
-			: null;
+	const baseDefinition = resolveRuntimeBaseDefinition(
+		definition,
+		definitions,
+		shouldExtend,
+	);
 
 	if (!baseDefinition || baseDefinition.name === definition.name) {
-		return [`export const ${definition.name} = z.object({`];
+		return ["/** @internal */", `export const ${schemaName} = z.object({`];
 	}
 
-	return [`export const ${definition.name} = ${baseDefinition.name}.extend({`];
+	return [
+		"/** @internal */",
+		`export const ${schemaName} = ${schemaInternalName(baseDefinition.name)}.extend({`,
+	];
+}
+
+function emitPublicSchemaExport(definition: NormalizedDefinition): string[] {
+	return [
+		`export const ${schemaExportName(definition.name)}: z.ZodType<${definition.name}> = ${schemaInternalName(definition.name)};`,
+	];
+}
+
+function resolveModelBaseName(
+	definition: NormalizedDefinition,
+	definitions: Map<string, NormalizedDefinition>,
+): string | null {
+	if (!definition.baseName) {
+		return null;
+	}
+
+	const baseDefinition = definitions.get(definition.baseName);
+
+	if (!baseDefinition || baseDefinition.name === definition.name) {
+		return null;
+	}
+
+	return baseDefinition.name;
+}
+
+function resolveRuntimeBaseDefinition(
+	definition: NormalizedDefinition,
+	definitions: Map<string, NormalizedDefinition>,
+	shouldExtend: boolean,
+): NormalizedDefinition | null {
+	if (!shouldExtend || !definition.baseName) {
+		return null;
+	}
+
+	const baseDefinition = definitions.get(definition.baseName);
+
+	if (!baseDefinition || baseDefinition.name === definition.name) {
+		return null;
+	}
+
+	return baseDefinition;
 }
 
 function emitDefinitionExpression(
@@ -433,7 +619,7 @@ function emitBaseExpression(
 		return emitPrimitiveExpression(property.primitiveType, primitivePatterns);
 	}
 
-	return "z.unknown()";
+	return "z.any()";
 }
 
 function buildRuntimePropertySchema(
@@ -461,7 +647,7 @@ function buildRuntimePropertySchema(
 			primitivePatterns,
 		);
 	} else {
-		baseSchema = z.unknown();
+		baseSchema = z.any();
 	}
 
 	if (property.isArray) {
@@ -661,12 +847,11 @@ function emitLazySchemaHelpers(typeRefs: Set<string>): string[] {
 	}
 
 	return [
-		"",
 		...[...typeRefs]
 			.sort((left, right) => left.localeCompare(right))
 			.map(
 				(typeRef) =>
-					`const ${lazySchemaHelperName(typeRef)} = (): z.ZodType<unknown> => ${typeRef};`,
+					`const ${lazySchemaHelperName(typeRef)} = (): z.ZodType<${typeRef}> => ${schemaInternalName(typeRef)};`,
 			),
 	];
 }

@@ -149,9 +149,33 @@ export function sortDefinitions(
 export function sortProperties(
 	properties: Iterable<NormalizedProperty>,
 ): NormalizedProperty[] {
-	return [...properties].sort((left, right) =>
-		left.jsonName.localeCompare(right.jsonName),
-	);
+	return [...properties].sort((left, right) => {
+		const leftBaseName = left.jsonName.startsWith("_")
+			? left.jsonName.slice(1)
+			: left.jsonName;
+		const rightBaseName = right.jsonName.startsWith("_")
+			? right.jsonName.slice(1)
+			: right.jsonName;
+		const baseComparison = leftBaseName.localeCompare(rightBaseName);
+
+		if (baseComparison !== 0) {
+			return baseComparison;
+		}
+
+		if (left.jsonName === right.jsonName) {
+			return 0;
+		}
+
+		if (left.jsonName === leftBaseName) {
+			return -1;
+		}
+
+		if (right.jsonName === rightBaseName) {
+			return 1;
+		}
+
+		return left.jsonName.localeCompare(right.jsonName);
+	});
 }
 
 export function isPrimitiveType(type: string | null | undefined): boolean {
@@ -237,6 +261,14 @@ export function fhirPathToDefinitionName(path: string): string {
 
 export function normalizeDefinitionName(name: string): string {
 	return name.replace(/\.schema\.json$/, "");
+}
+
+export function schemaExportName(name: string): string {
+	return `${name}Schema`;
+}
+
+export function schemaInternalName(name: string): string {
+	return `${name}SchemaInternal`;
 }
 
 export function normalizeTargetProfiles(

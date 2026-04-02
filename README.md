@@ -282,10 +282,14 @@ Current implementation notes:
 ## Example Output
 
 ```ts
-export const Patient = DomainResource.extend({
+export interface Patient extends DomainResource {
+  resourceType: "Patient"
+  identifier?: Identifier[]
+}
+
+export const PatientSchema: z.ZodType<Patient> = DomainResourceSchema.extend({
   resourceType: z.literal("Patient"),
-  id: z.string().optional(),
-  identifier: z.array(Identifier).optional(),
+  identifier: z.array(z.lazy(() => IdentifierSchema)).optional(),
 })
 ```
 

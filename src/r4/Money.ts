@@ -1,32 +1,37 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Money
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Money extends Element {
+	currency?: string;
+	_currency?: Element;
+	value?: number;
+	_value?: Element;
+}
 
-export const Money = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const MoneySchemaInternal = z
 	.object({
-		_currency: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for currency"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_value: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for value"),
 		currency: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
 			.optional()
 			.describe("ISO 4217 Currency Code."),
+		_currency: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for currency"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -39,11 +44,16 @@ export const Money = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		value: z
 			.number()
 			.optional()
 			.describe("Numerical value (with implicit precision)."),
+		_value: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for value"),
 	})
 	.strict();
 
-export type Money = z.output<typeof Money>;
+export const MoneySchema: z.ZodType<Money> = MoneySchemaInternal;

@@ -1,15 +1,22 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/BackboneElement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:33:06.145Z
 
 import * as z from "zod";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface BackboneElement extends Element {
+	modifierExtension?: Array<Extension>;
+}
 
-export const BackboneElement = Element.extend({
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const BackboneElementSchemaInternal = ElementSchemaInternal.extend({
 	modifierExtension: z
 		.lazy(getExtensionSchema)
 		.array()
@@ -19,4 +26,5 @@ export const BackboneElement = Element.extend({
 		),
 }).strict();
 
-export type BackboneElement = z.output<typeof BackboneElement>;
+export const BackboneElementSchema: z.ZodType<BackboneElement> =
+	BackboneElementSchemaInternal;

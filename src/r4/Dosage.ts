@@ -1,40 +1,56 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { BackboneElement } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Quantity } from "./Quantity";
+import type { Ratio } from "./Ratio";
+import type { Timing } from "./Timing";
 import { fhirId } from "../shared/fhir-primitives";
-import { CodeableConcept } from "./CodeableConcept";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Quantity } from "./Quantity";
-import { Ratio } from "./Ratio";
-import { Timing } from "./Timing";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { QuantitySchemaInternal } from "./Quantity";
+import { RatioSchemaInternal } from "./Ratio";
+import { TimingSchemaInternal } from "./Timing";
 
-const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
-const getRatioSchema = (): z.ZodType<unknown> => Ratio;
-const getTimingSchema = (): z.ZodType<unknown> => Timing;
+export interface Dosage extends BackboneElement {
+	additionalInstruction?: Array<CodeableConcept>;
+	asNeededBoolean?: boolean;
+	_asNeededBoolean?: Element;
+	asNeededCodeableConcept?: CodeableConcept;
+	doseAndRate?: Array<unknown>;
+	maxDosePerAdministration?: Quantity;
+	maxDosePerLifetime?: Quantity;
+	maxDosePerPeriod?: Ratio;
+	method?: CodeableConcept;
+	patientInstruction?: string;
+	_patientInstruction?: Element;
+	route?: CodeableConcept;
+	sequence?: number;
+	_sequence?: Element;
+	site?: CodeableConcept;
+	text?: string;
+	_text?: Element;
+	timing?: Timing;
+}
 
-export const Dosage = z
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
+const getRatioSchema = (): z.ZodType<Ratio> => RatioSchemaInternal;
+const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
+
+/** @internal */
+export const DosageSchemaInternal = z
 	.object({
-		_asNeededBoolean: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for asNeededBoolean"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_patientInstruction: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patientInstruction"),
-		_sequence: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for sequence"),
-		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
 		additionalInstruction: z
 			.lazy(getCodeableConceptSchema)
 			.array()
@@ -48,6 +64,10 @@ export const Dosage = z
 			.describe(
 				"Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
 			),
+		_asNeededBoolean: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for asNeededBoolean"),
 		asNeededCodeableConcept: z
 			.lazy(getCodeableConceptSchema)
 			.optional()
@@ -55,7 +75,7 @@ export const Dosage = z
 				"Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
 			),
 		doseAndRate: z
-			.unknown()
+			.any()
 			.array()
 			.optional()
 			.describe("The amount of medication administered."),
@@ -71,6 +91,7 @@ export const Dosage = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		maxDosePerAdministration: z
 			.lazy(getQuantitySchema)
 			.optional()
@@ -101,6 +122,10 @@ export const Dosage = z
 			.describe(
 				"Instructions in terms that are understood by the patient or consumer.",
 			),
+		_patientInstruction: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for patientInstruction"),
 		route: z
 			.lazy(getCodeableConceptSchema)
 			.optional()
@@ -112,6 +137,10 @@ export const Dosage = z
 			.describe(
 				"Indicates the order in which the dosage instructions should be applied or interpreted.",
 			),
+		_sequence: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for sequence"),
 		site: z
 			.lazy(getCodeableConceptSchema)
 			.optional()
@@ -121,6 +150,7 @@ export const Dosage = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional()
 			.describe("Free text dosage instructions e.g. SIG."),
+		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
 		timing: z
 			.lazy(getTimingSchema)
 			.optional()
@@ -143,4 +173,4 @@ export const Dosage = z
 		}
 	});
 
-export type Dosage = z.output<typeof Dosage>;
+export const DosageSchema: z.ZodType<Dosage> = DosageSchemaInternal;

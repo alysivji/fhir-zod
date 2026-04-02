@@ -1,29 +1,34 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Period
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Period extends Element {
+	end?: string;
+	_end?: Element;
+	start?: string;
+	_start?: Element;
+}
 
-export const Period = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const PeriodSchemaInternal = z
 	.object({
-		_end: z.lazy(getElementSchema).optional().describe("Extensions for end"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_start: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for start"),
 		end: fhirDateTime()
 			.optional()
 			.describe(
 				"The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
 			),
+		_end: z.lazy(getElementSchema).optional().describe("Extensions for end"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -36,10 +41,15 @@ export const Period = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		start: fhirDateTime()
 			.optional()
 			.describe("The start of the period. The boundary is inclusive."),
+		_start: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for start"),
 	})
 	.strict();
 
-export type Period = z.output<typeof Period>;
+export const PeriodSchema: z.ZodType<Period> = PeriodSchemaInternal;

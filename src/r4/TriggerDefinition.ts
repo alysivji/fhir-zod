@@ -1,38 +1,57 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TriggerDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { DataRequirement } from "./DataRequirement";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Reference } from "./Reference";
+import type { Timing } from "./Timing";
 import { fhirDate, fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import { DataRequirement } from "./DataRequirement";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Reference } from "./Reference";
-import { Timing } from "./Timing";
+import { DataRequirementSchemaInternal } from "./DataRequirement";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { ReferenceSchemaInternal } from "./Reference";
+import { TimingSchemaInternal } from "./Timing";
 
-const getDataRequirementSchema = (): z.ZodType<unknown> => DataRequirement;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getReferenceSchema = (): z.ZodType<unknown> => Reference;
-const getTimingSchema = (): z.ZodType<unknown> => Timing;
+export interface TriggerDefinition extends Element {
+	condition?: unknown;
+	data?: Array<DataRequirement>;
+	name?: string;
+	_name?: Element;
+	timingDate?: string;
+	_timingDate?: Element;
+	timingDateTime?: string;
+	_timingDateTime?: Element;
+	timingReference?: Reference;
+	timingTiming?: Timing;
+	type:
+		| "data-access-ended"
+		| "data-accessed"
+		| "data-added"
+		| "data-changed"
+		| "data-modified"
+		| "data-removed"
+		| "named-event"
+		| "periodic";
+	_type?: Element;
+}
 
-export const TriggerDefinition = z
+const getDataRequirementSchema = (): z.ZodType<DataRequirement> =>
+	DataRequirementSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
+
+/** @internal */
+export const TriggerDefinitionSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_name: z.lazy(getElementSchema).optional().describe("Extensions for name"),
-		_timingDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for timingDate"),
-		_timingDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for timingDateTime"),
-		_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
 		condition: z
-			.unknown()
+			.any()
 			.optional()
 			.describe(
 				"A boolean-valued expression that is evaluated in the context of the container of the trigger definition and returns whether or not the trigger fires.",
@@ -56,6 +75,7 @@ export const TriggerDefinition = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		name: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -63,12 +83,21 @@ export const TriggerDefinition = z
 			.describe(
 				"A formal name for the event. This may be an absolute URI that identifies the event formally (e.g. from a trigger registry), or a simple relative URI that identifies the event in a local context.",
 			),
+		_name: z.lazy(getElementSchema).optional().describe("Extensions for name"),
 		timingDate: fhirDate()
 			.optional()
 			.describe("The timing of the event (if this is a periodic trigger)."),
+		_timingDate: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for timingDate"),
 		timingDateTime: fhirDateTime()
 			.optional()
 			.describe("The timing of the event (if this is a periodic trigger)."),
+		_timingDateTime: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for timingDateTime"),
 		timingReference: z
 			.lazy(getReferenceSchema)
 			.optional()
@@ -89,6 +118,7 @@ export const TriggerDefinition = z
 				"periodic",
 			])
 			.describe("The type of triggering event."),
+		_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
@@ -116,4 +146,5 @@ export const TriggerDefinition = z
 		);
 	});
 
-export type TriggerDefinition = z.output<typeof TriggerDefinition>;
+export const TriggerDefinitionSchema: z.ZodType<TriggerDefinition> =
+	TriggerDefinitionSchemaInternal;

@@ -1,39 +1,40 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Attachment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Attachment extends Element {
+	contentType?: string;
+	_contentType?: Element;
+	creation?: string;
+	_creation?: Element;
+	data?: string;
+	_data?: Element;
+	hash?: string;
+	_hash?: Element;
+	language?: string;
+	_language?: Element;
+	size?: number;
+	_size?: Element;
+	title?: string;
+	_title?: Element;
+	url?: string;
+	_url?: Element;
+}
 
-export const Attachment = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const AttachmentSchemaInternal = z
 	.object({
-		_contentType: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for contentType"),
-		_creation: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for creation"),
-		_data: z.lazy(getElementSchema).optional().describe("Extensions for data"),
-		_hash: z.lazy(getElementSchema).optional().describe("Extensions for hash"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_language: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for language"),
-		_size: z.lazy(getElementSchema).optional().describe("Extensions for size"),
-		_title: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for title"),
-		_url: z.lazy(getElementSchema).optional().describe("Extensions for url"),
 		contentType: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -41,9 +42,17 @@ export const Attachment = z
 			.describe(
 				"Identifies the type of the data in the attachment and allows a method to be chosen to interpret or render the data. Includes mime type parameters such as charset where appropriate.",
 			),
+		_contentType: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for contentType"),
 		creation: fhirDateTime()
 			.optional()
 			.describe("The date that the attachment was first created."),
+		_creation: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for creation"),
 		data: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
@@ -51,6 +60,7 @@ export const Attachment = z
 			.describe(
 				"The actual data of the attachment - a sequence of bytes, base64 encoded.",
 			),
+		_data: z.lazy(getElementSchema).optional().describe("Extensions for data"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -65,11 +75,13 @@ export const Attachment = z
 			.describe(
 				"The calculated hash of the data using SHA-1. Represented using base64.",
 			),
+		_hash: z.lazy(getElementSchema).optional().describe("Extensions for hash"),
 		id: fhirId()
 			.optional()
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		language: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -77,6 +89,10 @@ export const Attachment = z
 			.describe(
 				"The human language of the content. The value can be any valid value according to BCP 47.",
 			),
+		_language: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for language"),
 		size: z
 			.number()
 			.int()
@@ -85,17 +101,23 @@ export const Attachment = z
 			.describe(
 				"The number of bytes of data that make up this attachment (before base64 encoding, if that is done).",
 			),
+		_size: z.lazy(getElementSchema).optional().describe("Extensions for size"),
 		title: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional()
 			.describe("A label or set of text to display in place of the data."),
+		_title: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for title"),
 		url: z
 			.string()
 			.regex(/\S*/)
 			.optional()
 			.describe("A location where the data can be accessed."),
+		_url: z.lazy(getElementSchema).optional().describe("Extensions for url"),
 	})
 	.strict();
 
-export type Attachment = z.output<typeof Attachment>;
+export const AttachmentSchema: z.ZodType<Attachment> = AttachmentSchemaInternal;

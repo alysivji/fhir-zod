@@ -1,30 +1,46 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/UsageContext
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { CodeableConcept } from "./CodeableConcept";
+import type { Coding } from "./Coding";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Quantity } from "./Quantity";
+import type { Range } from "./Range";
+import type { Reference } from "./Reference";
 import { fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import { CodeableConcept } from "./CodeableConcept";
-import { Coding } from "./Coding";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Quantity } from "./Quantity";
-import { Range } from "./Range";
-import { Reference } from "./Reference";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import { CodingSchemaInternal } from "./Coding";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { QuantitySchemaInternal } from "./Quantity";
+import { RangeSchemaInternal } from "./Range";
+import { ReferenceSchemaInternal } from "./Reference";
 
-const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
-const getCodingSchema = (): z.ZodType<unknown> => Coding;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
-const getRangeSchema = (): z.ZodType<unknown> => Range;
-const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+export interface UsageContext extends Element {
+	code: Coding;
+	valueCodeableConcept: CodeableConcept;
+	valueQuantity: Quantity;
+	valueRange: Range;
+	valueReference: Reference;
+}
 
-export const UsageContext = z
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal;
+const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
+const getRangeSchema = (): z.ZodType<Range> => RangeSchemaInternal;
+const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+
+/** @internal */
+export const UsageContextSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		code: z
 			.lazy(getCodingSchema)
 			.describe(
@@ -42,6 +58,7 @@ export const UsageContext = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		valueCodeableConcept: z
 			.lazy(getCodeableConceptSchema)
 			.describe(
@@ -105,4 +122,5 @@ export const UsageContext = z
 		);
 	});
 
-export type UsageContext = z.output<typeof UsageContext>;
+export const UsageContextSchema: z.ZodType<UsageContext> =
+	UsageContextSchemaInternal;

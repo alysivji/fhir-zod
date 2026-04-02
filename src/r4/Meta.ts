@@ -1,37 +1,37 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Meta
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Coding } from "./Coding";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
-import { Coding } from "./Coding";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { CodingSchemaInternal } from "./Coding";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getCodingSchema = (): z.ZodType<unknown> => Coding;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Meta extends Element {
+	lastUpdated?: string;
+	_lastUpdated?: Element;
+	profile?: Array<string>;
+	_profile?: Element;
+	security?: Array<Coding>;
+	source?: string;
+	_source?: Element;
+	tag?: Array<Coding>;
+	versionId?: string;
+	_versionId?: Element;
+}
 
-export const Meta = z
+const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const MetaSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_lastUpdated: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for lastUpdated"),
-		_profile: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for profile"),
-		_source: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for source"),
-		_versionId: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for versionId"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -44,11 +44,16 @@ export const Meta = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		lastUpdated: fhirInstant()
 			.optional()
 			.describe(
 				"When the resource last changed - e.g. when the version changed.",
 			),
+		_lastUpdated: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for lastUpdated"),
 		profile: z
 			.string()
 			.regex(/\S*/)
@@ -57,6 +62,10 @@ export const Meta = z
 			.describe(
 				"A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).",
 			),
+		_profile: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for profile"),
 		security: z
 			.lazy(getCodingSchema)
 			.array()
@@ -71,6 +80,10 @@ export const Meta = z
 			.describe(
 				"A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
 			),
+		_source: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for source"),
 		tag: z
 			.lazy(getCodingSchema)
 			.array()
@@ -83,7 +96,11 @@ export const Meta = z
 			.describe(
 				"The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
 			),
+		_versionId: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for versionId"),
 	})
 	.strict();
 
-export type Meta = z.output<typeof Meta>;
+export const MetaSchema: z.ZodType<Meta> = MetaSchemaInternal;

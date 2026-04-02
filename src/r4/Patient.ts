@@ -1,72 +1,96 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Address } from "./Address";
+import type { Attachment } from "./Attachment";
+import type { CodeableConcept } from "./CodeableConcept";
+import type { ContactPoint } from "./ContactPoint";
+import type { DomainResource } from "./DomainResource";
+import type { Element } from "./Element";
+import type { HumanName } from "./HumanName";
+import type { Identifier } from "./Identifier";
+import type { Patient_Communication } from "./Patient_Communication";
+import type { Patient_Contact } from "./Patient_Contact";
+import type { Patient_Link } from "./Patient_Link";
+import type { Reference } from "./Reference";
 import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import { Address } from "./Address";
-import { Attachment } from "./Attachment";
-import { CodeableConcept } from "./CodeableConcept";
-import { ContactPoint } from "./ContactPoint";
-import { DomainResource } from "./DomainResource";
-import { Element } from "./Element";
-import { HumanName } from "./HumanName";
-import { Identifier } from "./Identifier";
-import { Patient_Communication } from "./Patient_Communication";
-import { Patient_Contact } from "./Patient_Contact";
-import { Patient_Link } from "./Patient_Link";
-import { Reference } from "./Reference";
+import { AddressSchemaInternal } from "./Address";
+import { AttachmentSchemaInternal } from "./Attachment";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import { ContactPointSchemaInternal } from "./ContactPoint";
+import { DomainResourceSchemaInternal } from "./DomainResource";
+import { ElementSchemaInternal } from "./Element";
+import { HumanNameSchemaInternal } from "./HumanName";
+import { IdentifierSchemaInternal } from "./Identifier";
+import { Patient_CommunicationSchemaInternal } from "./Patient_Communication";
+import { Patient_ContactSchemaInternal } from "./Patient_Contact";
+import { Patient_LinkSchemaInternal } from "./Patient_Link";
+import { ReferenceSchemaInternal } from "./Reference";
 
-const getAddressSchema = (): z.ZodType<unknown> => Address;
-const getAttachmentSchema = (): z.ZodType<unknown> => Attachment;
-const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
-const getContactPointSchema = (): z.ZodType<unknown> => ContactPoint;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getHumanNameSchema = (): z.ZodType<unknown> => HumanName;
-const getIdentifierSchema = (): z.ZodType<unknown> => Identifier;
-const getPatient_CommunicationSchema = (): z.ZodType<unknown> =>
-	Patient_Communication;
-const getPatient_ContactSchema = (): z.ZodType<unknown> => Patient_Contact;
-const getPatient_LinkSchema = (): z.ZodType<unknown> => Patient_Link;
-const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+export interface Patient extends DomainResource {
+	active?: boolean;
+	_active?: Element;
+	address?: Array<Address>;
+	birthDate?: string;
+	_birthDate?: Element;
+	communication?: Array<Patient_Communication>;
+	contact?: Array<Patient_Contact>;
+	deceasedBoolean?: boolean;
+	_deceasedBoolean?: Element;
+	deceasedDateTime?: string;
+	_deceasedDateTime?: Element;
+	gender?: "female" | "male" | "other" | "unknown";
+	_gender?: Element;
+	generalPractitioner?: Array<Reference>;
+	identifier?: Array<Identifier>;
+	link?: Array<Patient_Link>;
+	managingOrganization?: Reference;
+	maritalStatus?: CodeableConcept;
+	multipleBirthBoolean?: boolean;
+	_multipleBirthBoolean?: Element;
+	multipleBirthInteger?: number;
+	_multipleBirthInteger?: Element;
+	name?: Array<HumanName>;
+	photo?: Array<Attachment>;
+	resourceType: "Patient";
+	telecom?: Array<ContactPoint>;
+}
 
-export const Patient = DomainResource.extend({
-	_active: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for active"),
-	_birthDate: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for birthDate"),
-	_deceasedBoolean: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for deceasedBoolean"),
-	_deceasedDateTime: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for deceasedDateTime"),
-	_gender: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for gender"),
-	_multipleBirthBoolean: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for multipleBirthBoolean"),
-	_multipleBirthInteger: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for multipleBirthInteger"),
+const getAddressSchema = (): z.ZodType<Address> => AddressSchemaInternal;
+const getAttachmentSchema = (): z.ZodType<Attachment> =>
+	AttachmentSchemaInternal;
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal;
+const getContactPointSchema = (): z.ZodType<ContactPoint> =>
+	ContactPointSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getHumanNameSchema = (): z.ZodType<HumanName> => HumanNameSchemaInternal;
+const getIdentifierSchema = (): z.ZodType<Identifier> =>
+	IdentifierSchemaInternal;
+const getPatient_CommunicationSchema = (): z.ZodType<Patient_Communication> =>
+	Patient_CommunicationSchemaInternal;
+const getPatient_ContactSchema = (): z.ZodType<Patient_Contact> =>
+	Patient_ContactSchemaInternal;
+const getPatient_LinkSchema = (): z.ZodType<Patient_Link> =>
+	Patient_LinkSchemaInternal;
+const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+
+/** @internal */
+export const PatientSchemaInternal = DomainResourceSchemaInternal.extend({
 	active: z
 		.boolean()
 		.optional()
 		.describe(
 			"Whether this patient record is in active use. \nMany systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization's business rules.\n\nIt is often used to filter patient lists to exclude inactive patients\n\nDeceased patients may also be marked as inactive for the same reasons, but may be active for some time after death.",
 		),
+	_active: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for active"),
 	address: z
 		.lazy(getAddressSchema)
 		.array()
@@ -75,6 +99,10 @@ export const Patient = DomainResource.extend({
 	birthDate: fhirDate()
 		.optional()
 		.describe("The date of birth for the individual."),
+	_birthDate: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for birthDate"),
 	communication: z
 		.lazy(getPatient_CommunicationSchema)
 		.array()
@@ -93,15 +121,27 @@ export const Patient = DomainResource.extend({
 		.boolean()
 		.optional()
 		.describe("Indicates if the individual is deceased or not."),
+	_deceasedBoolean: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for deceasedBoolean"),
 	deceasedDateTime: fhirDateTime()
 		.optional()
 		.describe("Indicates if the individual is deceased or not."),
+	_deceasedDateTime: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for deceasedDateTime"),
 	gender: z
 		.enum(["female", "male", "other", "unknown"])
 		.optional()
 		.describe(
 			"Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.",
 		),
+	_gender: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for gender"),
 	generalPractitioner: z
 		.lazy(getReferenceSchema)
 		.array()
@@ -135,6 +175,10 @@ export const Patient = DomainResource.extend({
 		.describe(
 			"Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer).",
 		),
+	_multipleBirthBoolean: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for multipleBirthBoolean"),
 	multipleBirthInteger: z
 		.number()
 		.int()
@@ -142,6 +186,10 @@ export const Patient = DomainResource.extend({
 		.describe(
 			"Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer).",
 		),
+	_multipleBirthInteger: z
+		.lazy(getElementSchema)
+		.optional()
+		.describe("Extensions for multipleBirthInteger"),
 	name: z
 		.lazy(getHumanNameSchema)
 		.array()
@@ -207,4 +255,4 @@ export const Patient = DomainResource.extend({
 		);
 	});
 
-export type Patient = z.output<typeof Patient>;
+export const PatientSchema: z.ZodType<Patient> = PatientSchemaInternal;

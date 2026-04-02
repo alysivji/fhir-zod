@@ -431,6 +431,12 @@ function inferSyntheticBaseName(
 	element: StructureElement,
 	elements: StructureElement[],
 ): string | null {
+	const directTypeCode = element.type?.[0]?.code ?? null;
+
+	if (directTypeCode === "BackboneElement" || directTypeCode === "Element") {
+		return directTypeCode;
+	}
+
 	const normalizedType = normalizeStructureType(
 		element,
 		element.type?.[0],

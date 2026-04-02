@@ -1,31 +1,27 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface ElementDefinition_Slicing extends Element {
+	description?: string;
+	_description?: Element;
+	discriminator?: Array<unknown>;
+	ordered?: boolean;
+	_ordered?: Element;
+	rules: "closed" | "open" | "openAtEnd";
+	_rules?: Element;
+}
 
-export const ElementDefinition_Slicing = z
-	.object({
-		_description: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for description"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_ordered: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for ordered"),
-		_rules: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for rules"),
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+
+/** @internal */
+export const ElementDefinition_SlicingSchemaInternal =
+	ElementSchemaInternal.extend({
 		description: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -33,24 +29,16 @@ export const ElementDefinition_Slicing = z
 			.describe(
 				"A human-readable text description of how the slicing works. If there is no discriminator, this is required to be present to provide whatever information is possible about how the slices can be differentiated.",
 			),
+		_description: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for description"),
 		discriminator: z
-			.unknown()
+			.any()
 			.array()
 			.optional()
 			.describe(
 				"Designates which child elements are used to discriminate between the slices when processing an instance. If one or more discriminators are provided, the value of the child elements in the instance data SHALL completely distinguish which slice the element in the resource matches based on the allowed values for those elements in each of the slices.",
-			),
-		extension: z
-			.lazy(getExtensionSchema)
-			.array()
-			.optional()
-			.describe(
-				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-			),
-		id: fhirId()
-			.optional()
-			.describe(
-				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
 		ordered: z
 			.boolean()
@@ -58,14 +46,20 @@ export const ElementDefinition_Slicing = z
 			.describe(
 				"If the matching elements have to occur in the same order as defined in the profile.",
 			),
+		_ordered: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for ordered"),
 		rules: z
 			.enum(["closed", "open", "openAtEnd"])
 			.describe(
 				"Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.",
 			),
-	})
-	.strict();
+		_rules: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for rules"),
+	}).strict();
 
-export type ElementDefinition_Slicing = z.output<
-	typeof ElementDefinition_Slicing
->;
+export const ElementDefinition_SlicingSchema: z.ZodType<ElementDefinition_Slicing> =
+	ElementDefinition_SlicingSchemaInternal;

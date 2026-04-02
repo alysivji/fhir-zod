@@ -1,39 +1,47 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HumanName
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Period } from "./Period";
 import { fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Period } from "./Period";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { PeriodSchemaInternal } from "./Period";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getPeriodSchema = (): z.ZodType<unknown> => Period;
+export interface HumanName extends Element {
+	family?: string;
+	_family?: Element;
+	given?: Array<string>;
+	_given?: Element;
+	period?: Period;
+	prefix?: Array<string>;
+	_prefix?: Element;
+	suffix?: Array<string>;
+	_suffix?: Element;
+	text?: string;
+	_text?: Element;
+	use?:
+		| "anonymous"
+		| "maiden"
+		| "nickname"
+		| "official"
+		| "old"
+		| "temp"
+		| "usual";
+	_use?: Element;
+}
 
-export const HumanName = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+
+/** @internal */
+export const HumanNameSchemaInternal = z
 	.object({
-		_family: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for family"),
-		_given: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for given"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_prefix: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for prefix"),
-		_suffix: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for suffix"),
-		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
-		_use: z.lazy(getElementSchema).optional().describe("Extensions for use"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -48,17 +56,26 @@ export const HumanName = z
 			.describe(
 				"The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
 			),
+		_family: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for family"),
 		given: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.array()
 			.optional()
 			.describe("Given name."),
+		_given: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for given"),
 		id: fhirId()
 			.optional()
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		period: z
 			.lazy(getPeriodSchema)
 			.optional()
@@ -73,6 +90,10 @@ export const HumanName = z
 			.describe(
 				"Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.",
 			),
+		_prefix: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for prefix"),
 		suffix: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -81,6 +102,10 @@ export const HumanName = z
 			.describe(
 				"Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.",
 			),
+		_suffix: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for suffix"),
 		text: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -88,6 +113,7 @@ export const HumanName = z
 			.describe(
 				"Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.",
 			),
+		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
 		use: z
 			.enum([
 				"anonymous",
@@ -100,7 +126,8 @@ export const HumanName = z
 			])
 			.optional()
 			.describe("Identifies the purpose for this name."),
+		_use: z.lazy(getElementSchema).optional().describe("Extensions for use"),
 	})
 	.strict();
 
-export type HumanName = z.output<typeof HumanName>;
+export const HumanNameSchema: z.ZodType<HumanName> = HumanNameSchemaInternal;

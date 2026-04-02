@@ -1,22 +1,31 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ContactDetail
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { ContactPoint } from "./ContactPoint";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
-import { ContactPoint } from "./ContactPoint";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { ContactPointSchemaInternal } from "./ContactPoint";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getContactPointSchema = (): z.ZodType<unknown> => ContactPoint;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface ContactDetail extends Element {
+	name?: string;
+	_name?: Element;
+	telecom?: Array<ContactPoint>;
+}
 
-export const ContactDetail = z
+const getContactPointSchema = (): z.ZodType<ContactPoint> =>
+	ContactPointSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const ContactDetailSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_name: z.lazy(getElementSchema).optional().describe("Extensions for name"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -29,11 +38,13 @@ export const ContactDetail = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		name: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.optional()
 			.describe("The name of an individual to contact."),
+		_name: z.lazy(getElementSchema).optional().describe("Extensions for name"),
 		telecom: z
 			.lazy(getContactPointSchema)
 			.array()
@@ -44,4 +55,5 @@ export const ContactDetail = z
 	})
 	.strict();
 
-export type ContactDetail = z.output<typeof ContactDetail>;
+export const ContactDetailSchema: z.ZodType<ContactDetail> =
+	ContactDetailSchemaInternal;

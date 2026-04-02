@@ -1,27 +1,37 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { BackboneElement } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Timing_Repeat } from "./Timing_Repeat";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
-import { CodeableConcept } from "./CodeableConcept";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Timing_Repeat } from "./Timing_Repeat";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { Timing_RepeatSchemaInternal } from "./Timing_Repeat";
 
-const getCodeableConceptSchema = (): z.ZodType<unknown> => CodeableConcept;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getTiming_RepeatSchema = (): z.ZodType<unknown> => Timing_Repeat;
+export interface Timing extends BackboneElement {
+	code?: CodeableConcept;
+	event?: Array<string>;
+	_event?: Element;
+	repeat?: Timing_Repeat;
+}
 
-export const Timing = z
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getTiming_RepeatSchema = (): z.ZodType<Timing_Repeat> =>
+	Timing_RepeatSchemaInternal;
+
+/** @internal */
+export const TimingSchemaInternal = z
 	.object({
-		_event: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for event"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		code: z
 			.lazy(getCodeableConceptSchema)
 			.optional()
@@ -32,6 +42,10 @@ export const Timing = z
 			.array()
 			.optional()
 			.describe("Identifies specific times when the event occurs."),
+		_event: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for event"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -44,6 +58,7 @@ export const Timing = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		modifierExtension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -58,4 +73,4 @@ export const Timing = z
 	})
 	.strict();
 
-export type Timing = z.output<typeof Timing>;
+export const TimingSchema: z.ZodType<Timing> = TimingSchemaInternal;

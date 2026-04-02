@@ -1,18 +1,29 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DomainResource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:33:06.145Z
 
 import * as z from "zod";
-import { Extension } from "./Extension";
-import { Narrative } from "./Narrative";
-import { Resource } from "./Resource";
+import type { Extension } from "./Extension";
+import type { Narrative } from "./Narrative";
+import type { Resource } from "./Resource";
+import { ExtensionSchemaInternal } from "./Extension";
+import { NarrativeSchemaInternal } from "./Narrative";
+import { ResourceSchemaInternal } from "./Resource";
 
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getNarrativeSchema = (): z.ZodType<unknown> => Narrative;
-const getResourceSchema = (): z.ZodType<unknown> => Resource;
+export interface DomainResource extends Resource {
+	contained?: Array<Resource>;
+	extension?: Array<Extension>;
+	modifierExtension?: Array<Extension>;
+	text?: Narrative;
+}
 
-export const DomainResource = Resource.extend({
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getNarrativeSchema = (): z.ZodType<Narrative> => NarrativeSchemaInternal;
+const getResourceSchema = (): z.ZodType<Resource> => ResourceSchemaInternal;
+
+/** @internal */
+export const DomainResourceSchemaInternal = ResourceSchemaInternal.extend({
 	contained: z
 		.lazy(getResourceSchema)
 		.array()
@@ -42,4 +53,5 @@ export const DomainResource = Resource.extend({
 		),
 }).strict();
 
-export type DomainResource = z.output<typeof DomainResource>;
+export const DomainResourceSchema: z.ZodType<DomainResource> =
+	DomainResourceSchemaInternal;

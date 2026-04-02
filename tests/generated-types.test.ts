@@ -1,9 +1,10 @@
-import { type HumanName, Patient } from "@fhir-zod/core/r4";
+import type { HumanName, Patient } from "@fhir-zod/core/r4";
+import { PatientSchema } from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 
-describe("generated type aliases", () => {
-	it("allows using a schema export as both a runtime validator and a type", () => {
-		const patient: Patient = Patient.parse({
+describe("generated model types", () => {
+	it("allows using a model type separately from its runtime validator", () => {
+		const patient: Patient = PatientSchema.parse({
 			active: true,
 			name: [
 				{

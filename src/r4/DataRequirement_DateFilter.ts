@@ -1,32 +1,38 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Duration } from "./Duration";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Period } from "./Period";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
-import { Duration } from "./Duration";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Period } from "./Period";
+import { DurationSchemaInternal } from "./Duration";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { PeriodSchemaInternal } from "./Period";
 
-const getDurationSchema = (): z.ZodType<unknown> => Duration;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getPeriodSchema = (): z.ZodType<unknown> => Period;
+export interface DataRequirement_DateFilter extends Element {
+	path?: string;
+	_path?: Element;
+	searchParam?: string;
+	_searchParam?: Element;
+	valueDateTime?: string;
+	_valueDateTime?: Element;
+	valueDuration?: Duration;
+	valuePeriod?: Period;
+}
 
-export const DataRequirement_DateFilter = z
+const getDurationSchema = (): z.ZodType<Duration> => DurationSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+
+/** @internal */
+export const DataRequirement_DateFilterSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_path: z.lazy(getElementSchema).optional().describe("Extensions for path"),
-		_searchParam: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for searchParam"),
-		_valueDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueDateTime"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -39,6 +45,7 @@ export const DataRequirement_DateFilter = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		path: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -46,6 +53,7 @@ export const DataRequirement_DateFilter = z
 			.describe(
 				"The date-valued attribute of the filter. The specified path SHALL be a FHIRPath resolveable on the specified type of the DataRequirement, and SHALL consist only of identifiers, constant indexers, and .resolve(). The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note that the index must be an integer constant. The path must resolve to an element of type date, dateTime, Period, Schedule, or Timing.",
 			),
+		_path: z.lazy(getElementSchema).optional().describe("Extensions for path"),
 		searchParam: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -53,11 +61,19 @@ export const DataRequirement_DateFilter = z
 			.describe(
 				"A date parameter that refers to a search parameter defined on the specified type of the DataRequirement, and which searches on elements of type date, dateTime, Period, Schedule, or Timing.",
 			),
+		_searchParam: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for searchParam"),
 		valueDateTime: fhirDateTime()
 			.optional()
 			.describe(
 				"The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
 			),
+		_valueDateTime: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for valueDateTime"),
 		valueDuration: z
 			.lazy(getDurationSchema)
 			.optional()
@@ -89,6 +105,5 @@ export const DataRequirement_DateFilter = z
 		}
 	});
 
-export type DataRequirement_DateFilter = z.output<
-	typeof DataRequirement_DateFilter
->;
+export const DataRequirement_DateFilterSchema: z.ZodType<DataRequirement_DateFilter> =
+	DataRequirement_DateFilterSchemaInternal;

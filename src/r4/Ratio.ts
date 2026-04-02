@@ -1,21 +1,29 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Ratio
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Quantity } from "./Quantity";
 import { fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Quantity } from "./Quantity";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { QuantitySchemaInternal } from "./Quantity";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+export interface Ratio extends Element {
+	denominator?: Quantity;
+	numerator?: Quantity;
+}
 
-export const Ratio = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
+
+/** @internal */
+export const RatioSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		denominator: z
 			.lazy(getQuantitySchema)
 			.optional()
@@ -32,6 +40,7 @@ export const Ratio = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		numerator: z
 			.lazy(getQuantitySchema)
 			.optional()
@@ -39,4 +48,4 @@ export const Ratio = z
 	})
 	.strict();
 
-export type Ratio = z.output<typeof Ratio>;
+export const RatioSchema: z.ZodType<Ratio> = RatioSchemaInternal;

@@ -1,34 +1,42 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Signature
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Coding } from "./Coding";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Reference } from "./Reference";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import { Coding } from "./Coding";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Reference } from "./Reference";
+import { CodingSchemaInternal } from "./Coding";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { ReferenceSchemaInternal } from "./Reference";
 
-const getCodingSchema = (): z.ZodType<unknown> => Coding;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+export interface Signature extends Element {
+	data?: string;
+	_data?: Element;
+	onBehalfOf?: Reference;
+	sigFormat?: string;
+	_sigFormat?: Element;
+	targetFormat?: string;
+	_targetFormat?: Element;
+	type: Array<Coding>;
+	when: string;
+	_when?: Element;
+	who: Reference;
+}
 
-export const Signature = z
+const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+
+/** @internal */
+export const SignatureSchemaInternal = z
 	.object({
-		_data: z.lazy(getElementSchema).optional().describe("Extensions for data"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_sigFormat: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for sigFormat"),
-		_targetFormat: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for targetFormat"),
-		_when: z.lazy(getElementSchema).optional().describe("Extensions for when"),
 		data: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
@@ -36,6 +44,7 @@ export const Signature = z
 			.describe(
 				"The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty.",
 			),
+		_data: z.lazy(getElementSchema).optional().describe("Extensions for data"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -48,6 +57,7 @@ export const Signature = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		onBehalfOf: z
 			.lazy(getReferenceSchema)
 			.optional()
@@ -61,6 +71,10 @@ export const Signature = z
 			.describe(
 				"A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc.",
 			),
+		_sigFormat: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for sigFormat"),
 		targetFormat: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
@@ -68,6 +82,10 @@ export const Signature = z
 			.describe(
 				"A mime type that indicates the technical format of the target resources signed by the signature.",
 			),
+		_targetFormat: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for targetFormat"),
 		type: z
 			.lazy(getCodingSchema)
 			.array()
@@ -75,6 +93,7 @@ export const Signature = z
 				"An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document.",
 			),
 		when: fhirInstant().describe("When the digital signature was signed."),
+		_when: z.lazy(getElementSchema).optional().describe("Extensions for when"),
 		who: z
 			.lazy(getReferenceSchema)
 			.describe(
@@ -128,4 +147,4 @@ export const Signature = z
 		);
 	});
 
-export type Signature = z.output<typeof Signature>;
+export const SignatureSchema: z.ZodType<Signature> = SignatureSchemaInternal;

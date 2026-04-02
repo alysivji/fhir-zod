@@ -1,42 +1,40 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SampledData
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Quantity } from "./Quantity";
 import { fhirId } from "../shared/fhir-primitives";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Quantity } from "./Quantity";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { QuantitySchemaInternal } from "./Quantity";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getQuantitySchema = (): z.ZodType<unknown> => Quantity;
+export interface SampledData extends Element {
+	data?: string;
+	_data?: Element;
+	dimensions: number;
+	_dimensions?: Element;
+	factor?: number;
+	_factor?: Element;
+	lowerLimit?: number;
+	_lowerLimit?: Element;
+	origin: Quantity;
+	period: number;
+	_period?: Element;
+	upperLimit?: number;
+	_upperLimit?: Element;
+}
 
-export const SampledData = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
+
+/** @internal */
+export const SampledDataSchemaInternal = z
 	.object({
-		_data: z.lazy(getElementSchema).optional().describe("Extensions for data"),
-		_dimensions: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for dimensions"),
-		_factor: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for factor"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_lowerLimit: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for lowerLimit"),
-		_period: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for period"),
-		_upperLimit: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for upperLimit"),
 		data: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -44,6 +42,7 @@ export const SampledData = z
 			.describe(
 				'A series of data points which are decimal values separated by a single space (character u20). The special values "E" (error), "L" (below detection limit) and "U" (above detection limit) can also be used in place of a decimal value.',
 			),
+		_data: z.lazy(getElementSchema).optional().describe("Extensions for data"),
 		dimensions: z
 			.number()
 			.int()
@@ -51,6 +50,10 @@ export const SampledData = z
 			.describe(
 				"The number of sample points at each time point. If this value is greater than one, then the dimensions will be interlaced - all the sample points for a point in time will be recorded at once.",
 			),
+		_dimensions: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for dimensions"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -64,17 +67,26 @@ export const SampledData = z
 			.describe(
 				"A correction factor that is applied to the sampled data points before they are added to the origin.",
 			),
+		_factor: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for factor"),
 		id: fhirId()
 			.optional()
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		lowerLimit: z
 			.number()
 			.optional()
 			.describe(
 				'The lower limit of detection of the measured points. This is needed if any of the data points have the value "L" (lower than detection limit).',
 			),
+		_lowerLimit: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for lowerLimit"),
 		origin: z
 			.lazy(getQuantitySchema)
 			.describe(
@@ -85,13 +97,22 @@ export const SampledData = z
 			.describe(
 				"The length of time between sampling times, measured in milliseconds.",
 			),
+		_period: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for period"),
 		upperLimit: z
 			.number()
 			.optional()
 			.describe(
 				'The upper limit of detection of the measured points. This is needed if any of the data points have the value "U" (higher than detection limit).',
 			),
+		_upperLimit: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for upperLimit"),
 	})
 	.strict();
 
-export type SampledData = z.output<typeof SampledData>;
+export const SampledDataSchema: z.ZodType<SampledData> =
+	SampledDataSchemaInternal;

@@ -1,45 +1,59 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RelatedArtifact
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Attachment } from "./Attachment";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
-import { Attachment } from "./Attachment";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
+import { AttachmentSchemaInternal } from "./Attachment";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getAttachmentSchema = (): z.ZodType<unknown> => Attachment;
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface RelatedArtifact extends Element {
+	citation?: string;
+	_citation?: Element;
+	display?: string;
+	_display?: Element;
+	document?: Attachment;
+	label?: string;
+	_label?: Element;
+	resource?: string;
+	_resource?: Element;
+	type:
+		| "citation"
+		| "composed-of"
+		| "depends-on"
+		| "derived-from"
+		| "documentation"
+		| "justification"
+		| "predecessor"
+		| "successor";
+	_type?: Element;
+	url?: string;
+	_url?: Element;
+}
 
-export const RelatedArtifact = z
+const getAttachmentSchema = (): z.ZodType<Attachment> =>
+	AttachmentSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const RelatedArtifactSchemaInternal = z
 	.object({
-		_citation: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for citation"),
-		_display: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for display"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_label: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for label"),
-		_resource: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for resource"),
-		_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
-		_url: z.lazy(getElementSchema).optional().describe("Extensions for url"),
 		citation: z
 			.string()
 			.optional()
 			.describe(
 				"A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format.",
 			),
+		_citation: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for citation"),
 		display: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -47,6 +61,10 @@ export const RelatedArtifact = z
 			.describe(
 				"A brief description of the document or knowledge resource being referenced, suitable for display to a consumer.",
 			),
+		_display: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for display"),
 		document: z
 			.lazy(getAttachmentSchema)
 			.optional()
@@ -65,6 +83,7 @@ export const RelatedArtifact = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		label: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
@@ -72,6 +91,10 @@ export const RelatedArtifact = z
 			.describe(
 				"A short label that can be used to reference the citation from elsewhere in the containing artifact, such as a footnote index.",
 			),
+		_label: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for label"),
 		resource: z
 			.string()
 			.regex(/\S*/)
@@ -79,6 +102,10 @@ export const RelatedArtifact = z
 			.describe(
 				"The related resource, such as a library, value set, profile, or other knowledge resource.",
 			),
+		_resource: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for resource"),
 		type: z
 			.enum([
 				"citation",
@@ -91,6 +118,7 @@ export const RelatedArtifact = z
 				"successor",
 			])
 			.describe("The type of relationship to the related artifact."),
+		_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
 		url: z
 			.string()
 			.regex(/\S*/)
@@ -98,7 +126,9 @@ export const RelatedArtifact = z
 			.describe(
 				"A url for the artifact that can be followed to access the actual content.",
 			),
+		_url: z.lazy(getElementSchema).optional().describe("Extensions for url"),
 	})
 	.strict();
 
-export type RelatedArtifact = z.output<typeof RelatedArtifact>;
+export const RelatedArtifactSchema: z.ZodType<RelatedArtifact> =
+	RelatedArtifactSchemaInternal;

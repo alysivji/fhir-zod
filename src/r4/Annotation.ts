@@ -1,28 +1,35 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Annotation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Element } from "./Element";
+import type { Extension } from "./Extension";
+import type { Reference } from "./Reference";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import { Element } from "./Element";
-import { Extension } from "./Extension";
-import { Reference } from "./Reference";
+import { ElementSchemaInternal } from "./Element";
+import { ExtensionSchemaInternal } from "./Extension";
+import { ReferenceSchemaInternal } from "./Reference";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
-const getReferenceSchema = (): z.ZodType<unknown> => Reference;
+export interface Annotation extends Element {
+	authorReference?: Reference;
+	authorString?: string;
+	_authorString?: Element;
+	text: string;
+	_text?: Element;
+	time?: string;
+	_time?: Element;
+}
 
-export const Annotation = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+
+/** @internal */
+export const AnnotationSchemaInternal = z
 	.object({
-		_authorString: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for authorString"),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
-		_time: z.lazy(getElementSchema).optional().describe("Extensions for time"),
 		authorReference: z
 			.lazy(getReferenceSchema)
 			.optional()
@@ -32,6 +39,10 @@ export const Annotation = z
 			.regex(/[ \r\n\t\S]+/)
 			.optional()
 			.describe("The individual responsible for making the annotation."),
+		_authorString: z
+			.lazy(getElementSchema)
+			.optional()
+			.describe("Extensions for authorString"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -44,10 +55,13 @@ export const Annotation = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		text: z.string().describe("The text of the annotation in markdown format."),
+		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
 		time: fhirDateTime()
 			.optional()
 			.describe("Indicates when this particular annotation was made."),
+		_time: z.lazy(getElementSchema).optional().describe("Extensions for time"),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
@@ -77,4 +91,4 @@ export const Annotation = z
 		);
 	});
 
-export type Annotation = z.output<typeof Annotation>;
+export const AnnotationSchema: z.ZodType<Annotation> = AnnotationSchemaInternal;

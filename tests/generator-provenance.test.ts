@@ -111,7 +111,7 @@ describe("generated provenance headers", () => {
 		const definitionPath = join(outputDir, "Patient.ts");
 		const content = readFileSync(definitionPath, "utf8");
 
-		expect(content).toContain("_active: z.unknown().optional().describe(");
+		expect(content).toContain("_active: z.any().optional().describe(");
 		expect(content).toContain('"Extensions for active"');
 		expect(content).toContain(
 			'birthDate: fhirDate()\n\t\t\t.optional()\n\t\t\t.describe("The date of birth for the individual."),',

@@ -1,18 +1,25 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Element
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-01T18:09:54.499Z
+// Last generated: 2026-04-02T03:53:33.727Z
 
 import * as z from "zod";
+import type { Extension } from "./Extension";
 import { fhirId } from "../shared/fhir-primitives";
-import { Extension } from "./Extension";
+import { ExtensionSchemaInternal } from "./Extension";
 
-const getElementSchema = (): z.ZodType<unknown> => Element;
-const getExtensionSchema = (): z.ZodType<unknown> => Extension;
+export interface Element {
+	extension?: Array<Extension>;
+	id?: string;
+	_id?: Element;
+}
 
-export const Element = z
+const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+
+/** @internal */
+export const ElementSchemaInternal = z
 	.object({
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 		extension: z
 			.lazy(getExtensionSchema)
 			.array()
@@ -25,7 +32,8 @@ export const Element = z
 			.describe(
 				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
 			),
+		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
 	})
 	.strict();
 
-export type Element = z.output<typeof Element>;
+export const ElementSchema: z.ZodType<Element> = ElementSchemaInternal;

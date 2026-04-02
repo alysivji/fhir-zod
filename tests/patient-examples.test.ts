@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { Patient } from "@fhir-zod/core/r4";
+import { PatientSchema } from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 
 const fixturesDir = resolve(
@@ -34,7 +34,7 @@ function validatePatientPayload(
 				};
 			}
 
-			const result = Patient.safeParse(entry.resource);
+			const result = PatientSchema.safeParse(entry.resource);
 
 			if (!result.success) {
 				return result;
@@ -44,7 +44,7 @@ function validatePatientPayload(
 		return { success: true };
 	}
 
-	return Patient.safeParse(input);
+	return PatientSchema.safeParse(input);
 }
 
 describe("Patient official R4 examples", () => {
