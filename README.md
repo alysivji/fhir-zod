@@ -23,10 +23,11 @@ Current repository status:
 
 - TypeScript library scaffold is set up
 - versioned subpath exports are wired
-- a placeholder `Patient` schema exists in `src/r4`
+- R4 generation is implemented and checked in under `src/r4`
 - build, lint, format, coverage, and test commands are configured
-- the generator is not implemented yet
-- full FHIR schemas are not implemented yet
+- spec manifests are pinned for `stu3`, `r4`, `r4b`, and `r5`
+- real generated schema output currently exists for `r4`
+- the project is pre-release, with no compatibility guarantees yet
 
 ## Installation
 
@@ -45,7 +46,11 @@ npm install zod
 ```ts
 import { Patient } from "@fhir-zod/core/r4"
 
-const patient: Patient = Patient.parse(data)
+const parsed = Patient.parse(data)
+
+const patient: Patient = {
+  resourceType: "Patient",
+}
 ```
 
 ## Development
@@ -62,6 +67,7 @@ Common commands:
 make help
 make build
 make check
+make compare-r4
 make coverage
 make fetch-spec
 make test
@@ -74,6 +80,7 @@ Equivalent npm scripts:
 ```bash
 npm run build
 npm run check
+npm run compare:r4
 npm run format
 npm run fetch-spec
 npm run fetch-spec -- r4b
@@ -85,6 +92,17 @@ npm run list:r4-targets -- --summary
 ```
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
+
+## Pre-release
+
+This repository is still pre-release.
+
+There are no customers and no compatibility promises yet. Breaking changes are acceptable when they improve:
+
+- generator correctness
+- emitted schema quality
+- package shape
+- long-term maintainability
 
 ## Inspecting R4 Targets
 
@@ -174,6 +192,24 @@ Schemas remain Zod-first.
 
 Optional helpers may be added, but must not obscure Zod.
 
+## Generated vs Handwritten Code
+
+Most changes should happen in handwritten generator code, not in generated schemas.
+
+Handwritten areas:
+
+- `src/generator/`
+- `src/shared/`
+- `src/spec/`
+- `scripts/`
+- `tests/`
+
+Generated areas:
+
+- `src/r4/`
+
+If generated output is wrong, fix the generator or source normalization logic, then regenerate.
+
 ## Project Structure
 
 ```console
@@ -207,15 +243,35 @@ The generator must:
    - choice types (`value[x]`)
 4. Output deterministic schemas
 
+## Generation Pipeline
+
+The current pipeline is:
+
+1. Pin upstream package metadata in `src/spec/<version>/manifest.json`
+2. Fetch official HL7 artifacts into `.local/spec-cache/<version>/package/`
+3. Load StructureDefinitions and related spec inputs from the pinned cache
+4. Normalize them into the internal generator model
+5. Emit deterministic Zod schemas into `src/<version>/`
+6. Run tests and comparison tooling to review diffs
+
+Current implementation notes:
+
+- `npm run fetch-spec` defaults to `r4`
+- `npm run generate` currently generates `r4`
+- manifests are committed, but extracted upstream package contents in `.local/` are not
+- `npm run compare:r4` provides an experimental comparison report for generated R4 definitions
+
 ## Example Output
 
 ```ts
-export const Patient = z.object({
+export const Patient = DomainResource.extend({
   resourceType: z.literal("Patient"),
   id: z.string().optional(),
   identifier: z.array(Identifier).optional(),
 })
 ```
+
+Actual emitted schemas may also include inherited fields, choice-type validation, and selected runtime checks such as constrained reference target validation.
 
 ## Choice Types (`[x]`)
 
@@ -237,6 +293,20 @@ z.object({
 Must enforce:
 
 - only one value present
+
+## Base Types
+
+Generated schemas use inheritance-style emission where it is safe.
+
+Examples:
+
+- `BackboneElement` extends `Element`
+- `DomainResource` extends `Resource`
+- concrete resources such as `Patient` can extend `DomainResource`
+
+This keeps shared FHIR structure visible and avoids duplicating common fields everywhere.
+
+Some definitions still fall back to flattened one-shot schemas when dependency cycles would create ESM initialization problems.
 
 ## Zod Version Strategy
 
@@ -288,7 +358,12 @@ We aim to be:
 
 1. Update FHIR spec files
 2. Run generator
-3. Run tests
-4. Commit generated output
+3. Run comparison and tests
+4. Commit generator and generated output together when appropriate
 
 No manual edits to generated schemas.
+
+## Useful Links
+
+- https://zod.dev/library-authors
+- https://github.com/nazrulworld/fhir.resources
