@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Money
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Element } from "./Element";
@@ -10,10 +10,15 @@ import { fhirId } from "../shared/fhir-primitives";
 import { ElementSchemaInternal } from "./Element";
 import { ExtensionSchemaInternal } from "./Extension";
 
+/** Base StructureDefinition for Money Type: An amount of economic utility in some recognized currency. */
 export interface Money extends Element {
+	/** ISO 4217 Currency Code. */
 	currency?: string;
+	/** Extensions for currency */
 	_currency?: Element;
+	/** Numerical value (with implicit precision). */
 	value?: number;
+	/** Extensions for value */
 	_value?: Element;
 }
 
@@ -26,33 +31,13 @@ export const MoneySchemaInternal = z
 		currency: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional()
-			.describe("ISO 4217 Currency Code."),
-		_currency: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for currency"),
-		extension: z
-			.lazy(getExtensionSchema)
-			.array()
-			.optional()
-			.describe(
-				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-			),
-		id: fhirId()
-			.optional()
-			.describe(
-				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-			),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		value: z
-			.number()
-			.optional()
-			.describe("Numerical value (with implicit precision)."),
-		_value: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for value"),
+			.optional(),
+		_currency: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		value: z.number().optional(),
+		_value: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 

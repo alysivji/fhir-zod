@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Address } from "./Address";
@@ -74,77 +74,149 @@ import { TimingSchemaInternal } from "./Timing";
 import { TriggerDefinitionSchemaInternal } from "./TriggerDefinition";
 import { UsageContextSchemaInternal } from "./UsageContext";
 
+/** A sample value for this element demonstrating the type of information that would typically be found in the element. */
 export interface ElementDefinition_Example extends Element {
+	/** Describes the purpose of this example amoung the set of examples. */
 	label: string;
+	/** Extensions for label */
 	_label?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueAddress: Address;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueAge: Age;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueAnnotation: Annotation;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueAttachment: Attachment;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueBase64Binary: string;
+	/** Extensions for valueBase64Binary */
 	_valueBase64Binary?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueBoolean: boolean;
+	/** Extensions for valueBoolean */
 	_valueBoolean?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueCanonical: string;
+	/** Extensions for valueCanonical */
 	_valueCanonical?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueCode: string;
+	/** Extensions for valueCode */
 	_valueCode?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueCodeableConcept: CodeableConcept;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueCoding: Coding;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueContactDetail: ContactDetail;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueContactPoint: ContactPoint;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueContributor: Contributor;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueCount: Count;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDataRequirement: DataRequirement;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDate: string;
+	/** Extensions for valueDate */
 	_valueDate?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDateTime: string;
+	/** Extensions for valueDateTime */
 	_valueDateTime?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDecimal: number;
+	/** Extensions for valueDecimal */
 	_valueDecimal?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDistance: Distance;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDosage: Dosage;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueDuration: Duration;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueExpression?: unknown;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueHumanName: HumanName;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueId: string;
+	/** Extensions for valueId */
 	_valueId?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueIdentifier: Identifier;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueInstant: string;
+	/** Extensions for valueInstant */
 	_valueInstant?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueInteger: number;
+	/** Extensions for valueInteger */
 	_valueInteger?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueMarkdown: string;
+	/** Extensions for valueMarkdown */
 	_valueMarkdown?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueMeta: Meta;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueMoney: Money;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueOid: string;
+	/** Extensions for valueOid */
 	_valueOid?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueParameterDefinition: ParameterDefinition;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valuePeriod: Period;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valuePositiveInt: number;
+	/** Extensions for valuePositiveInt */
 	_valuePositiveInt?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueQuantity: Quantity;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueRange: Range;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueRatio: Ratio;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueReference: Reference;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueRelatedArtifact: RelatedArtifact;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueSampledData: SampledData;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueSignature: Signature;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueString: string;
+	/** Extensions for valueString */
 	_valueString?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueTime: string;
+	/** Extensions for valueTime */
 	_valueTime?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueTiming: Timing;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueTriggerDefinition: TriggerDefinition;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueUnsignedInt: number;
+	/** Extensions for valueUnsignedInt */
 	_valueUnsignedInt?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueUri: string;
+	/** Extensions for valueUri */
 	_valueUri?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueUrl: string;
+	/** Extensions for valueUrl */
 	_valueUrl?: Element;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueUsageContext: UsageContext;
+	/** The actual value for the element, which must be one of the types allowed for this element. */
 	valueUuid: string;
+	/** Extensions for valueUuid */
 	_valueUuid?: Element;
 }
 
@@ -196,347 +268,81 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 /** @internal */
 export const ElementDefinition_ExampleSchemaInternal =
 	ElementSchemaInternal.extend({
-		label: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.describe(
-				"Describes the purpose of this example amoung the set of examples.",
-			),
-		_label: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for label"),
-		valueAddress: z
-			.lazy(getAddressSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueAge: z
-			.lazy(getAgeSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueAnnotation: z
-			.lazy(getAnnotationSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueAttachment: z
-			.lazy(getAttachmentSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueBase64Binary: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueBase64Binary"),
-		valueBoolean: z
-			.boolean()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueBoolean: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueBoolean"),
-		valueCanonical: z
-			.string()
-			.regex(/\S*/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueCanonical: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueCanonical"),
-		valueCode: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueCode: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueCode"),
-		valueCodeableConcept: z
-			.lazy(getCodeableConceptSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueCoding: z
-			.lazy(getCodingSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueContactDetail: z
-			.lazy(getContactDetailSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueContactPoint: z
-			.lazy(getContactPointSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueContributor: z
-			.lazy(getContributorSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueCount: z
-			.lazy(getCountSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueDataRequirement: z
-			.lazy(getDataRequirementSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueDate: fhirDate().describe(
-			"The actual value for the element, which must be one of the types allowed for this element.",
-		),
-		_valueDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueDate"),
-		valueDateTime: fhirDateTime().describe(
-			"The actual value for the element, which must be one of the types allowed for this element.",
-		),
-		_valueDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueDateTime"),
-		valueDecimal: z
-			.number()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueDecimal: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueDecimal"),
-		valueDistance: z
-			.lazy(getDistanceSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueDosage: z
-			.lazy(getDosageSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueDuration: z
-			.lazy(getDurationSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueExpression: z
-			.any()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueHumanName: z
-			.lazy(getHumanNameSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueId: fhirId().describe(
-			"The actual value for the element, which must be one of the types allowed for this element.",
-		),
-		_valueId: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueId"),
-		valueIdentifier: z
-			.lazy(getIdentifierSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueInstant: fhirInstant().describe(
-			"The actual value for the element, which must be one of the types allowed for this element.",
-		),
-		_valueInstant: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueInstant"),
-		valueInteger: z
-			.number()
-			.int()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueInteger: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueInteger"),
-		valueMarkdown: z
-			.string()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueMarkdown: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueMarkdown"),
-		valueMeta: z
-			.lazy(getMetaSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueMoney: z
-			.lazy(getMoneySchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueOid: z
-			.string()
-			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueOid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueOid"),
-		valueParameterDefinition: z
-			.lazy(getParameterDefinitionSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valuePeriod: z
-			.lazy(getPeriodSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valuePositiveInt: z
-			.number()
-			.int()
-			.positive()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valuePositiveInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valuePositiveInt"),
-		valueQuantity: z
-			.lazy(getQuantitySchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueRange: z
-			.lazy(getRangeSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueRatio: z
-			.lazy(getRatioSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueReference: z
-			.lazy(getReferenceSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueRelatedArtifact: z
-			.lazy(getRelatedArtifactSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueSampledData: z
-			.lazy(getSampledDataSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueSignature: z
-			.lazy(getSignatureSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueString: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueString"),
-		valueTime: fhirTime().describe(
-			"The actual value for the element, which must be one of the types allowed for this element.",
-		),
-		_valueTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueTime"),
-		valueTiming: z
-			.lazy(getTimingSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueTriggerDefinition: z
-			.lazy(getTriggerDefinitionSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		valueUnsignedInt: z
-			.number()
-			.int()
-			.nonnegative()
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueUnsignedInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueUnsignedInt"),
-		valueUri: z
-			.string()
-			.regex(/\S*/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueUri: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueUri"),
-		valueUrl: z
-			.string()
-			.regex(/\S*/)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
-		_valueUrl: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueUrl"),
-		valueUsageContext: z
-			.lazy(getUsageContextSchema)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
-			),
+		label: z.string().regex(/[ \r\n\t\S]+/),
+		_label: z.lazy(getElementSchema).optional(),
+		valueAddress: z.lazy(getAddressSchema),
+		valueAge: z.lazy(getAgeSchema),
+		valueAnnotation: z.lazy(getAnnotationSchema),
+		valueAttachment: z.lazy(getAttachmentSchema),
+		valueBase64Binary: z.string().regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/),
+		_valueBase64Binary: z.lazy(getElementSchema).optional(),
+		valueBoolean: z.boolean(),
+		_valueBoolean: z.lazy(getElementSchema).optional(),
+		valueCanonical: z.string().regex(/\S*/),
+		_valueCanonical: z.lazy(getElementSchema).optional(),
+		valueCode: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		_valueCode: z.lazy(getElementSchema).optional(),
+		valueCodeableConcept: z.lazy(getCodeableConceptSchema),
+		valueCoding: z.lazy(getCodingSchema),
+		valueContactDetail: z.lazy(getContactDetailSchema),
+		valueContactPoint: z.lazy(getContactPointSchema),
+		valueContributor: z.lazy(getContributorSchema),
+		valueCount: z.lazy(getCountSchema),
+		valueDataRequirement: z.lazy(getDataRequirementSchema),
+		valueDate: fhirDate(),
+		_valueDate: z.lazy(getElementSchema).optional(),
+		valueDateTime: fhirDateTime(),
+		_valueDateTime: z.lazy(getElementSchema).optional(),
+		valueDecimal: z.number(),
+		_valueDecimal: z.lazy(getElementSchema).optional(),
+		valueDistance: z.lazy(getDistanceSchema),
+		valueDosage: z.lazy(getDosageSchema),
+		valueDuration: z.lazy(getDurationSchema),
+		valueExpression: z.any(),
+		valueHumanName: z.lazy(getHumanNameSchema),
+		valueId: fhirId(),
+		_valueId: z.lazy(getElementSchema).optional(),
+		valueIdentifier: z.lazy(getIdentifierSchema),
+		valueInstant: fhirInstant(),
+		_valueInstant: z.lazy(getElementSchema).optional(),
+		valueInteger: z.number().int(),
+		_valueInteger: z.lazy(getElementSchema).optional(),
+		valueMarkdown: z.string(),
+		_valueMarkdown: z.lazy(getElementSchema).optional(),
+		valueMeta: z.lazy(getMetaSchema),
+		valueMoney: z.lazy(getMoneySchema),
+		valueOid: z.string().regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/),
+		_valueOid: z.lazy(getElementSchema).optional(),
+		valueParameterDefinition: z.lazy(getParameterDefinitionSchema),
+		valuePeriod: z.lazy(getPeriodSchema),
+		valuePositiveInt: z.number().int().positive(),
+		_valuePositiveInt: z.lazy(getElementSchema).optional(),
+		valueQuantity: z.lazy(getQuantitySchema),
+		valueRange: z.lazy(getRangeSchema),
+		valueRatio: z.lazy(getRatioSchema),
+		valueReference: z.lazy(getReferenceSchema),
+		valueRelatedArtifact: z.lazy(getRelatedArtifactSchema),
+		valueSampledData: z.lazy(getSampledDataSchema),
+		valueSignature: z.lazy(getSignatureSchema),
+		valueString: z.string().regex(/[ \r\n\t\S]+/),
+		_valueString: z.lazy(getElementSchema).optional(),
+		valueTime: fhirTime(),
+		_valueTime: z.lazy(getElementSchema).optional(),
+		valueTiming: z.lazy(getTimingSchema),
+		valueTriggerDefinition: z.lazy(getTriggerDefinitionSchema),
+		valueUnsignedInt: z.number().int().nonnegative(),
+		_valueUnsignedInt: z.lazy(getElementSchema).optional(),
+		valueUri: z.string().regex(/\S*/),
+		_valueUri: z.lazy(getElementSchema).optional(),
+		valueUrl: z.string().regex(/\S*/),
+		_valueUrl: z.lazy(getElementSchema).optional(),
+		valueUsageContext: z.lazy(getUsageContextSchema),
 		valueUuid: z
 			.string()
 			.regex(
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
-			)
-			.describe(
-				"The actual value for the element, which must be one of the types allowed for this element.",
 			),
-		_valueUuid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueUuid"),
+		_valueUuid: z.lazy(getElementSchema).optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Period
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Element } from "./Element";
@@ -10,10 +10,15 @@ import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import { ElementSchemaInternal } from "./Element";
 import { ExtensionSchemaInternal } from "./Extension";
 
+/** Base StructureDefinition for Period Type: A time period defined by a start and end date and optionally time. */
 export interface Period extends Element {
+	/** The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time. */
 	end?: string;
+	/** Extensions for end */
 	_end?: Element;
+	/** The start of the period. The boundary is inclusive. */
 	start?: string;
+	/** Extensions for start */
 	_start?: Element;
 }
 
@@ -23,32 +28,13 @@ const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
 /** @internal */
 export const PeriodSchemaInternal = z
 	.object({
-		end: fhirDateTime()
-			.optional()
-			.describe(
-				"The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
-			),
-		_end: z.lazy(getElementSchema).optional().describe("Extensions for end"),
-		extension: z
-			.lazy(getExtensionSchema)
-			.array()
-			.optional()
-			.describe(
-				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-			),
-		id: fhirId()
-			.optional()
-			.describe(
-				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-			),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		start: fhirDateTime()
-			.optional()
-			.describe("The start of the period. The boundary is inclusive."),
-		_start: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for start"),
+		end: fhirDateTime().optional(),
+		_end: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		start: fhirDateTime().optional(),
+		_start: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 

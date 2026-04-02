@@ -95,7 +95,7 @@ describe("generated provenance headers", () => {
 		);
 	});
 
-	it("carries source descriptions into generated schema fields", () => {
+	it("omits source descriptions from generated schema fields", () => {
 		const outputDir = mkdtempSync(join(tmpdir(), "fhir-zod-provenance-"));
 		const definitionsResult = buildStructureDefinitionR4Definitions([
 			"Patient",
@@ -111,13 +111,37 @@ describe("generated provenance headers", () => {
 		const definitionPath = join(outputDir, "Patient.ts");
 		const content = readFileSync(definitionPath, "utf8");
 
-		expect(content).toContain("_active: z.any().optional().describe(");
-		expect(content).toContain('"Extensions for active"');
+		expect(content).toContain("_active: z.any().optional(),");
+		expect(content).toContain("birthDate: fhirDate().optional(),");
+		expect(content).toContain('resourceType: z.literal("Patient"),');
+		expect(content).not.toContain('.describe("Extensions for active")');
+		expect(content).not.toContain(
+			'.describe("The date of birth for the individual.")',
+		);
+	});
+
+	it("writes source descriptions as JSDoc on generated model types", () => {
+		const outputDir = mkdtempSync(join(tmpdir(), "fhir-zod-provenance-"));
+		const definitionsResult = buildStructureDefinitionR4Definitions([
+			"Patient",
+		]);
+
+		writeNormalizedZodDefinitions({
+			definitions: definitionsResult.definitions,
+			generatedAt: "2026-04-01T05:42:36.000Z",
+			outputDir,
+			primitivePatterns: definitionsResult.primitivePatterns,
+		});
+
+		const definitionPath = join(outputDir, "Patient.ts");
+		const content = readFileSync(definitionPath, "utf8");
+
+		expect(content).toContain("/** Demographics and other administrative information about an individual or animal receiving care or other health-related services. */");
 		expect(content).toContain(
-			'birthDate: fhirDate()\n\t\t\t.optional()\n\t\t\t.describe("The date of birth for the individual."),',
+			'\t/** The date of birth for the individual. */\n\tbirthDate?: string;',
 		);
 		expect(content).toContain(
-			'resourceType: z.literal("Patient").describe("This is a Patient resource."),',
+			'\t/** This is a Patient resource. */\n\tresourceType: "Patient";',
 		);
 	});
 });

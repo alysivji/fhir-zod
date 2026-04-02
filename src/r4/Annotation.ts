@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Annotation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Element } from "./Element";
@@ -13,13 +13,21 @@ import { ElementSchemaInternal } from "./Element";
 import { ExtensionSchemaInternal } from "./Extension";
 import { ReferenceSchemaInternal } from "./Reference";
 
+/** Base StructureDefinition for Annotation Type: A  text note which also  contains information about who made the statement and when. */
 export interface Annotation extends Element {
+	/** The individual responsible for making the annotation. */
 	authorReference?: Reference;
+	/** The individual responsible for making the annotation. */
 	authorString?: string;
+	/** Extensions for authorString */
 	_authorString?: Element;
+	/** The text of the annotation in markdown format. */
 	text: string;
+	/** Extensions for text */
 	_text?: Element;
+	/** Indicates when this particular annotation was made. */
 	time?: string;
+	/** Extensions for time */
 	_time?: Element;
 }
 
@@ -30,38 +38,19 @@ const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
 /** @internal */
 export const AnnotationSchemaInternal = z
 	.object({
-		authorReference: z
-			.lazy(getReferenceSchema)
-			.optional()
-			.describe("The individual responsible for making the annotation."),
+		authorReference: z.lazy(getReferenceSchema).optional(),
 		authorString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe("The individual responsible for making the annotation."),
-		_authorString: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for authorString"),
-		extension: z
-			.lazy(getExtensionSchema)
-			.array()
-			.optional()
-			.describe(
-				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-			),
-		id: fhirId()
-			.optional()
-			.describe(
-				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-			),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		text: z.string().describe("The text of the annotation in markdown format."),
-		_text: z.lazy(getElementSchema).optional().describe("Extensions for text"),
-		time: fhirDateTime()
-			.optional()
-			.describe("Indicates when this particular annotation was made."),
-		_time: z.lazy(getElementSchema).optional().describe("Extensions for time"),
+			.optional(),
+		_authorString: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		text: z.string(),
+		_text: z.lazy(getElementSchema).optional(),
+		time: fhirDateTime().optional(),
+		_time: z.lazy(getElementSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

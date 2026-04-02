@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Address } from "./Address";
@@ -31,32 +31,66 @@ import { Patient_ContactSchemaInternal } from "./Patient_Contact";
 import { Patient_LinkSchemaInternal } from "./Patient_Link";
 import { ReferenceSchemaInternal } from "./Reference";
 
+/** Demographics and other administrative information about an individual or animal receiving care or other health-related services. */
 export interface Patient extends DomainResource {
+	/**
+	 * Whether this patient record is in active use.
+	 * Many systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization's business rules.
+	 *
+	 * It is often used to filter patient lists to exclude inactive patients
+	 *
+	 * Deceased patients may also be marked as inactive for the same reasons, but may be active for some time after death.
+	 */
 	active?: boolean;
+	/** Extensions for active */
 	_active?: Element;
+	/** An address for the individual. */
 	address?: Array<Address>;
+	/** The date of birth for the individual. */
 	birthDate?: string;
+	/** Extensions for birthDate */
 	_birthDate?: Element;
+	/** A language which may be used to communicate with the patient about his or her health. */
 	communication?: Array<Patient_Communication>;
+	/** A contact party (e.g. guardian, partner, friend) for the patient. */
 	contact?: Array<Patient_Contact>;
+	/** Indicates if the individual is deceased or not. */
 	deceasedBoolean?: boolean;
+	/** Extensions for deceasedBoolean */
 	_deceasedBoolean?: Element;
+	/** Indicates if the individual is deceased or not. */
 	deceasedDateTime?: string;
+	/** Extensions for deceasedDateTime */
 	_deceasedDateTime?: Element;
+	/** Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes. */
 	gender?: "female" | "male" | "other" | "unknown";
+	/** Extensions for gender */
 	_gender?: Element;
+	/** Patient's nominated care provider. */
 	generalPractitioner?: Array<Reference>;
+	/** An identifier for this patient. */
 	identifier?: Array<Identifier>;
+	/** Link to another patient resource that concerns the same actual patient. */
 	link?: Array<Patient_Link>;
+	/** Organization that is the custodian of the patient record. */
 	managingOrganization?: Reference;
+	/** This field contains a patient's most recent marital (civil) status. */
 	maritalStatus?: CodeableConcept;
+	/** Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer). */
 	multipleBirthBoolean?: boolean;
+	/** Extensions for multipleBirthBoolean */
 	_multipleBirthBoolean?: Element;
+	/** Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer). */
 	multipleBirthInteger?: number;
+	/** Extensions for multipleBirthInteger */
 	_multipleBirthInteger?: Element;
+	/** A name associated with the individual. */
 	name?: Array<HumanName>;
+	/** Image of the patient. */
 	photo?: Array<Attachment>;
+	/** This is a Patient resource. */
 	resourceType: "Patient";
+	/** A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted. */
 	telecom?: Array<ContactPoint>;
 }
 
@@ -81,133 +115,32 @@ const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
 
 /** @internal */
 export const PatientSchemaInternal = DomainResourceSchemaInternal.extend({
-	active: z
-		.boolean()
-		.optional()
-		.describe(
-			"Whether this patient record is in active use. \nMany systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization's business rules.\n\nIt is often used to filter patient lists to exclude inactive patients\n\nDeceased patients may also be marked as inactive for the same reasons, but may be active for some time after death.",
-		),
-	_active: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for active"),
-	address: z
-		.lazy(getAddressSchema)
-		.array()
-		.optional()
-		.describe("An address for the individual."),
-	birthDate: fhirDate()
-		.optional()
-		.describe("The date of birth for the individual."),
-	_birthDate: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for birthDate"),
-	communication: z
-		.lazy(getPatient_CommunicationSchema)
-		.array()
-		.optional()
-		.describe(
-			"A language which may be used to communicate with the patient about his or her health.",
-		),
-	contact: z
-		.lazy(getPatient_ContactSchema)
-		.array()
-		.optional()
-		.describe(
-			"A contact party (e.g. guardian, partner, friend) for the patient.",
-		),
-	deceasedBoolean: z
-		.boolean()
-		.optional()
-		.describe("Indicates if the individual is deceased or not."),
-	_deceasedBoolean: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for deceasedBoolean"),
-	deceasedDateTime: fhirDateTime()
-		.optional()
-		.describe("Indicates if the individual is deceased or not."),
-	_deceasedDateTime: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for deceasedDateTime"),
-	gender: z
-		.enum(["female", "male", "other", "unknown"])
-		.optional()
-		.describe(
-			"Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.",
-		),
-	_gender: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for gender"),
-	generalPractitioner: z
-		.lazy(getReferenceSchema)
-		.array()
-		.optional()
-		.describe("Patient's nominated care provider."),
-	identifier: z
-		.lazy(getIdentifierSchema)
-		.array()
-		.optional()
-		.describe("An identifier for this patient."),
-	link: z
-		.lazy(getPatient_LinkSchema)
-		.array()
-		.optional()
-		.describe(
-			"Link to another patient resource that concerns the same actual patient.",
-		),
-	managingOrganization: z
-		.lazy(getReferenceSchema)
-		.optional()
-		.describe("Organization that is the custodian of the patient record."),
-	maritalStatus: z
-		.lazy(getCodeableConceptSchema)
-		.optional()
-		.describe(
-			"This field contains a patient's most recent marital (civil) status.",
-		),
-	multipleBirthBoolean: z
-		.boolean()
-		.optional()
-		.describe(
-			"Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer).",
-		),
-	_multipleBirthBoolean: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for multipleBirthBoolean"),
-	multipleBirthInteger: z
-		.number()
-		.int()
-		.optional()
-		.describe(
-			"Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer).",
-		),
-	_multipleBirthInteger: z
-		.lazy(getElementSchema)
-		.optional()
-		.describe("Extensions for multipleBirthInteger"),
-	name: z
-		.lazy(getHumanNameSchema)
-		.array()
-		.optional()
-		.describe("A name associated with the individual."),
-	photo: z
-		.lazy(getAttachmentSchema)
-		.array()
-		.optional()
-		.describe("Image of the patient."),
-	resourceType: z.literal("Patient").describe("This is a Patient resource."),
-	telecom: z
-		.lazy(getContactPointSchema)
-		.array()
-		.optional()
-		.describe(
-			"A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted.",
-		),
+	active: z.boolean().optional(),
+	_active: z.lazy(getElementSchema).optional(),
+	address: z.lazy(getAddressSchema).array().optional(),
+	birthDate: fhirDate().optional(),
+	_birthDate: z.lazy(getElementSchema).optional(),
+	communication: z.lazy(getPatient_CommunicationSchema).array().optional(),
+	contact: z.lazy(getPatient_ContactSchema).array().optional(),
+	deceasedBoolean: z.boolean().optional(),
+	_deceasedBoolean: z.lazy(getElementSchema).optional(),
+	deceasedDateTime: fhirDateTime().optional(),
+	_deceasedDateTime: z.lazy(getElementSchema).optional(),
+	gender: z.enum(["female", "male", "other", "unknown"]).optional(),
+	_gender: z.lazy(getElementSchema).optional(),
+	generalPractitioner: z.lazy(getReferenceSchema).array().optional(),
+	identifier: z.lazy(getIdentifierSchema).array().optional(),
+	link: z.lazy(getPatient_LinkSchema).array().optional(),
+	managingOrganization: z.lazy(getReferenceSchema).optional(),
+	maritalStatus: z.lazy(getCodeableConceptSchema).optional(),
+	multipleBirthBoolean: z.boolean().optional(),
+	_multipleBirthBoolean: z.lazy(getElementSchema).optional(),
+	multipleBirthInteger: z.number().int().optional(),
+	_multipleBirthInteger: z.lazy(getElementSchema).optional(),
+	name: z.lazy(getHumanNameSchema).array().optional(),
+	photo: z.lazy(getAttachmentSchema).array().optional(),
+	resourceType: z.literal("Patient"),
+	telecom: z.lazy(getContactPointSchema).array().optional(),
 })
 	.strict()
 	.superRefine((value, ctx) => {

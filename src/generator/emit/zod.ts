@@ -301,8 +301,11 @@ function emitModelDeclaration(
 		: `export interface ${definition.name} {`;
 
 	return [
+		...emitJsDoc(definition.description),
 		declaration,
-		...properties.map((property) => `\t${emitModelProperty(definition, property, definitions)}`),
+		...properties.flatMap((property) =>
+			emitModelProperty(definition, property, definitions),
+		),
 		"}",
 	];
 }
@@ -311,14 +314,17 @@ function emitModelProperty(
 	definition: NormalizedDefinition,
 	property: NormalizedProperty,
 	definitions: Map<string, NormalizedDefinition>,
-): string {
+): string[] {
 	const propertyName = emitTypePropertyName(property.jsonName);
 	const optionalSuffix = isOptionalModelProperty(property, definitions)
 		? "?"
 		: "";
 	const propertyType = emitModelPropertyType(definition, property, definitions);
 
-	return `${propertyName}${optionalSuffix}: ${propertyType};`;
+	return [
+		...emitJsDoc(property.description, "\t"),
+		`\t${propertyName}${optionalSuffix}: ${propertyType};`,
+	];
 }
 
 function isOptionalModelProperty(
@@ -395,6 +401,27 @@ function emitPrimitiveType(type: string): string {
 
 function emitTypePropertyName(name: string): string {
 	return /^[$A-Z_a-z][$\w]*$/.test(name) ? name : JSON.stringify(name);
+}
+
+function emitJsDoc(
+	description: string | null,
+	indent = "",
+): string[] {
+	if (!description) {
+		return [];
+	}
+
+	const lines = description.split("\n");
+
+	if (lines.length === 1) {
+		return [`${indent}/** ${lines[0]} */`];
+	}
+
+	return [
+		`${indent}/**`,
+		...lines.map((line) => `${indent} * ${line}`),
+		`${indent} */`,
+	];
 }
 
 function emitSchemaDeclaration(
@@ -587,10 +614,6 @@ function emitPropertyExpression(
 		baseExpression = `${baseExpression}.optional()`;
 	}
 
-	if (property.description) {
-		baseExpression = `${baseExpression}.describe(${JSON.stringify(property.description)})`;
-	}
-
 	return baseExpression;
 }
 
@@ -656,10 +679,6 @@ function buildRuntimePropertySchema(
 
 	if (!property.required) {
 		baseSchema = baseSchema.optional();
-	}
-
-	if (property.description) {
-		baseSchema = baseSchema.describe(property.description);
 	}
 
 	return baseSchema;

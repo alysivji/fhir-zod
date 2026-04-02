@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -12,9 +12,13 @@ import { BackboneElementSchemaInternal } from "./BackboneElement";
 import { ElementSchemaInternal } from "./Element";
 import { ReferenceSchemaInternal } from "./Reference";
 
+/** Link to another patient resource that concerns the same actual patient. */
 export interface Patient_Link extends BackboneElement {
+	/** The other patient resource that the link refers to. */
 	other: Reference;
+	/** The type of link between this patient resource and another patient resource. */
 	type: "refer" | "replaced-by" | "replaces" | "seealso";
+	/** Extensions for type */
 	_type?: Element;
 }
 
@@ -23,15 +27,9 @@ const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
 
 /** @internal */
 export const Patient_LinkSchemaInternal = BackboneElementSchemaInternal.extend({
-	other: z
-		.lazy(getReferenceSchema)
-		.describe("The other patient resource that the link refers to."),
-	type: z
-		.enum(["refer", "replaced-by", "replaces", "seealso"])
-		.describe(
-			"The type of link between this patient resource and another patient resource.",
-		),
-	_type: z.lazy(getElementSchema).optional().describe("Extensions for type"),
+	other: z.lazy(getReferenceSchema),
+	type: z.enum(["refer", "replaced-by", "replaces", "seealso"]),
+	_type: z.lazy(getElementSchema).optional(),
 })
 	.strict()
 	.superRefine((value, ctx) => {

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Address } from "./Address";
@@ -90,299 +90,1191 @@ import { TimingSchemaInternal } from "./Timing";
 import { TriggerDefinitionSchemaInternal } from "./TriggerDefinition";
 import { UsageContextSchemaInternal } from "./UsageContext";
 
+/** Base StructureDefinition for ElementDefinition Type: Captures constraints on each element within the resource, profile, or extension. */
 export interface ElementDefinition extends BackboneElement {
+	/** Identifies additional names by which this element might also be known. */
 	alias?: Array<string>;
+	/** Extensions for alias */
 	_alias?: Element;
+	/** Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of the element through the derived and related profiles. When the element definition is not the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the information in provided in the element definition may be different to the base definition. On the original definition of the element, it will be same. */
 	base?: ElementDefinition_Base;
+	/** Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri). */
 	binding?: ElementDefinition_Binding;
+	/** A code that has the same meaning as the element in a particular terminology. */
 	code?: Array<Coding>;
+	/** Explanatory notes and implementation guidance about the data element, including notes about how to use the data properly, exceptions to proper use, etc. (Note: The text you are reading is specified in ElementDefinition.comment). */
 	comment?: string;
+	/** Extensions for comment */
 	_comment?: Element;
+	/** A reference to an invariant that may make additional statements about the cardinality or value in the instance. */
 	condition?: Array<string>;
+	/** Extensions for condition */
 	_condition?: Element;
+	/** Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context of the instance. */
 	constraint?: Array<ElementDefinition_Constraint>;
+	/** Identifies an element defined elsewhere in the definition whose content rules should be applied to the current element. ContentReferences bring across all the rules that are in the ElementDefinition for the element, including definitions, cardinality constraints, bindings, invariants etc. */
 	contentReference?: string;
+	/** Extensions for contentReference */
 	_contentReference?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueAddress?: Address;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueAge?: Age;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueAnnotation?: Annotation;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueAttachment?: Attachment;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueBase64Binary?: string;
+	/** Extensions for defaultValueBase64Binary */
 	_defaultValueBase64Binary?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueBoolean?: boolean;
+	/** Extensions for defaultValueBoolean */
 	_defaultValueBoolean?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueCanonical?: string;
+	/** Extensions for defaultValueCanonical */
 	_defaultValueCanonical?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueCode?: string;
+	/** Extensions for defaultValueCode */
 	_defaultValueCode?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueCodeableConcept?: CodeableConcept;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueCoding?: Coding;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueContactDetail?: ContactDetail;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueContactPoint?: ContactPoint;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueContributor?: Contributor;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueCount?: Count;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDataRequirement?: DataRequirement;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDate?: string;
+	/** Extensions for defaultValueDate */
 	_defaultValueDate?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDateTime?: string;
+	/** Extensions for defaultValueDateTime */
 	_defaultValueDateTime?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDecimal?: number;
+	/** Extensions for defaultValueDecimal */
 	_defaultValueDecimal?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDistance?: Distance;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDosage?: Dosage;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueDuration?: Duration;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueExpression?: unknown;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueHumanName?: HumanName;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueId?: string;
+	/** Extensions for defaultValueId */
 	_defaultValueId?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueIdentifier?: Identifier;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueInstant?: string;
+	/** Extensions for defaultValueInstant */
 	_defaultValueInstant?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueInteger?: number;
+	/** Extensions for defaultValueInteger */
 	_defaultValueInteger?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueMarkdown?: string;
+	/** Extensions for defaultValueMarkdown */
 	_defaultValueMarkdown?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueMeta?: Meta;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueMoney?: Money;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueOid?: string;
+	/** Extensions for defaultValueOid */
 	_defaultValueOid?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueParameterDefinition?: ParameterDefinition;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValuePeriod?: Period;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValuePositiveInt?: number;
+	/** Extensions for defaultValuePositiveInt */
 	_defaultValuePositiveInt?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueQuantity?: Quantity;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueRange?: Range;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueRatio?: Ratio;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueReference?: Reference;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueRelatedArtifact?: RelatedArtifact;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueSampledData?: SampledData;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueSignature?: Signature;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueString?: string;
+	/** Extensions for defaultValueString */
 	_defaultValueString?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueTime?: string;
+	/** Extensions for defaultValueTime */
 	_defaultValueTime?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueTiming?: Timing;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueTriggerDefinition?: TriggerDefinition;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueUnsignedInt?: number;
+	/** Extensions for defaultValueUnsignedInt */
 	_defaultValueUnsignedInt?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueUri?: string;
+	/** Extensions for defaultValueUri */
 	_defaultValueUri?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueUrl?: string;
+	/** Extensions for defaultValueUrl */
 	_defaultValueUrl?: Element;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueUsageContext?: UsageContext;
+	/** The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false'). */
 	defaultValueUuid?: string;
+	/** Extensions for defaultValueUuid */
 	_defaultValueUuid?: Element;
+	/** Provides a complete explanation of the meaning of the data element for human readability.  For the case of elements derived from existing elements (e.g. constraints), the definition SHALL be consistent with the base definition, but convey the meaning of the element in the particular context of use of the resource. (Note: The text you are reading is specified in ElementDefinition.definition). */
 	definition?: string;
+	/** Extensions for definition */
 	_definition?: Element;
+	/** A sample value for this element demonstrating the type of information that would typically be found in the element. */
 	example?: Array<ElementDefinition_Example>;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedAddress?: Address;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedAge?: Age;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedAnnotation?: Annotation;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedAttachment?: Attachment;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedBase64Binary?: string;
+	/** Extensions for fixedBase64Binary */
 	_fixedBase64Binary?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedBoolean?: boolean;
+	/** Extensions for fixedBoolean */
 	_fixedBoolean?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedCanonical?: string;
+	/** Extensions for fixedCanonical */
 	_fixedCanonical?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedCode?: string;
+	/** Extensions for fixedCode */
 	_fixedCode?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedCodeableConcept?: CodeableConcept;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedCoding?: Coding;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedContactDetail?: ContactDetail;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedContactPoint?: ContactPoint;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedContributor?: Contributor;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedCount?: Count;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDataRequirement?: DataRequirement;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDate?: string;
+	/** Extensions for fixedDate */
 	_fixedDate?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDateTime?: string;
+	/** Extensions for fixedDateTime */
 	_fixedDateTime?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDecimal?: number;
+	/** Extensions for fixedDecimal */
 	_fixedDecimal?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDistance?: Distance;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDosage?: Dosage;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedDuration?: Duration;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedExpression?: unknown;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedHumanName?: HumanName;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedId?: string;
+	/** Extensions for fixedId */
 	_fixedId?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedIdentifier?: Identifier;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedInstant?: string;
+	/** Extensions for fixedInstant */
 	_fixedInstant?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedInteger?: number;
+	/** Extensions for fixedInteger */
 	_fixedInteger?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedMarkdown?: string;
+	/** Extensions for fixedMarkdown */
 	_fixedMarkdown?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedMeta?: Meta;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedMoney?: Money;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedOid?: string;
+	/** Extensions for fixedOid */
 	_fixedOid?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedParameterDefinition?: ParameterDefinition;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedPeriod?: Period;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedPositiveInt?: number;
+	/** Extensions for fixedPositiveInt */
 	_fixedPositiveInt?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedQuantity?: Quantity;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedRange?: Range;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedRatio?: Ratio;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedReference?: Reference;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedRelatedArtifact?: RelatedArtifact;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedSampledData?: SampledData;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedSignature?: Signature;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedString?: string;
+	/** Extensions for fixedString */
 	_fixedString?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedTime?: string;
+	/** Extensions for fixedTime */
 	_fixedTime?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedTiming?: Timing;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedTriggerDefinition?: TriggerDefinition;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedUnsignedInt?: number;
+	/** Extensions for fixedUnsignedInt */
 	_fixedUnsignedInt?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedUri?: string;
+	/** Extensions for fixedUri */
 	_fixedUri?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedUrl?: string;
+	/** Extensions for fixedUrl */
 	_fixedUrl?: Element;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedUsageContext?: UsageContext;
+	/** Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing. */
 	fixedUuid?: string;
+	/** Extensions for fixedUuid */
 	_fixedUuid?: Element;
+	/** If true, the value of this element affects the interpretation of the element or resource that contains it, and the value of the element cannot be ignored. Typically, this is used for status, negation and qualification codes. The effect of this is that the element cannot be ignored by systems: they SHALL either recognize the element and process it, and/or a pre-determination has been made that it is not relevant to their particular system. */
 	isModifier?: boolean;
+	/** Extensions for isModifier */
 	_isModifier?: Element;
+	/** Explains how that element affects the interpretation of the resource or element that contains it. */
 	isModifierReason?: string;
+	/** Extensions for isModifierReason */
 	_isModifierReason?: Element;
+	/** Whether the element should be included if a client requests a search with the parameter _summary=true. */
 	isSummary?: boolean;
+	/** Extensions for isSummary */
 	_isSummary?: Element;
+	/** A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for the element in a user display or form. */
 	label?: string;
+	/** Extensions for label */
 	_label?: Element;
+	/** Identifies a concept from an external specification that roughly corresponds to this element. */
 	mapping?: Array<ElementDefinition_Mapping>;
+	/** The maximum number of times this element is permitted to appear in the instance. */
 	max?: string;
+	/** Extensions for max */
 	_max?: Element;
+	/** Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element. */
 	maxLength?: number;
+	/** Extensions for maxLength */
 	_maxLength?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueDate?: string;
+	/** Extensions for maxValueDate */
 	_maxValueDate?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueDateTime?: string;
+	/** Extensions for maxValueDateTime */
 	_maxValueDateTime?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueDecimal?: number;
+	/** Extensions for maxValueDecimal */
 	_maxValueDecimal?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueInstant?: string;
+	/** Extensions for maxValueInstant */
 	_maxValueInstant?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueInteger?: number;
+	/** Extensions for maxValueInteger */
 	_maxValueInteger?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValuePositiveInt?: number;
+	/** Extensions for maxValuePositiveInt */
 	_maxValuePositiveInt?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueQuantity?: Quantity;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueTime?: string;
+	/** Extensions for maxValueTime */
 	_maxValueTime?: Element;
+	/** The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	maxValueUnsignedInt?: number;
+	/** Extensions for maxValueUnsignedInt */
 	_maxValueUnsignedInt?: Element;
+	/** The Implicit meaning that is to be understood when this element is missing (e.g. 'when this element is missing, the period is ongoing'). */
 	meaningWhenMissing?: string;
+	/** Extensions for meaningWhenMissing */
 	_meaningWhenMissing?: Element;
+	/** The minimum number of times this element SHALL appear in the instance. */
 	min?: number;
+	/** Extensions for min */
 	_min?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueDate?: string;
+	/** Extensions for minValueDate */
 	_minValueDate?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueDateTime?: string;
+	/** Extensions for minValueDateTime */
 	_minValueDateTime?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueDecimal?: number;
+	/** Extensions for minValueDecimal */
 	_minValueDecimal?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueInstant?: string;
+	/** Extensions for minValueInstant */
 	_minValueInstant?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueInteger?: number;
+	/** Extensions for minValueInteger */
 	_minValueInteger?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValuePositiveInt?: number;
+	/** Extensions for minValuePositiveInt */
 	_minValuePositiveInt?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueQuantity?: Quantity;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueTime?: string;
+	/** Extensions for minValueTime */
 	_minValueTime?: Element;
+	/** The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. */
 	minValueUnsignedInt?: number;
+	/** Extensions for minValueUnsignedInt */
 	_minValueUnsignedInt?: Element;
+	/** If true, implementations that produce or consume resources SHALL provide "support" for the element in some meaningful way.  If false, the element may be ignored and not supported. If false, whether to populate or use the data element in any way is at the discretion of the implementation. */
 	mustSupport?: boolean;
+	/** Extensions for mustSupport */
 	_mustSupport?: Element;
+	/** If present, indicates that the order of the repeating element has meaning and describes what that meaning is.  If absent, it means that the order of the element has no meaning. */
 	orderMeaning?: string;
+	/** Extensions for orderMeaning */
 	_orderMeaning?: Element;
+	/** The path identifies the element and is expressed as a "."-separated list of ancestor elements, beginning with the name of the resource or extension. */
 	path: string;
+	/** Extensions for path */
 	_path?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternAddress?: Address;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternAge?: Age;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternAnnotation?: Annotation;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternAttachment?: Attachment;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternBase64Binary?: string;
+	/** Extensions for patternBase64Binary */
 	_patternBase64Binary?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternBoolean?: boolean;
+	/** Extensions for patternBoolean */
 	_patternBoolean?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternCanonical?: string;
+	/** Extensions for patternCanonical */
 	_patternCanonical?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternCode?: string;
+	/** Extensions for patternCode */
 	_patternCode?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternCodeableConcept?: CodeableConcept;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternCoding?: Coding;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternContactDetail?: ContactDetail;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternContactPoint?: ContactPoint;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternContributor?: Contributor;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternCount?: Count;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDataRequirement?: DataRequirement;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDate?: string;
+	/** Extensions for patternDate */
 	_patternDate?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDateTime?: string;
+	/** Extensions for patternDateTime */
 	_patternDateTime?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDecimal?: number;
+	/** Extensions for patternDecimal */
 	_patternDecimal?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDistance?: Distance;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDosage?: Dosage;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternDuration?: Duration;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternExpression?: unknown;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternHumanName?: HumanName;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternId?: string;
+	/** Extensions for patternId */
 	_patternId?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternIdentifier?: Identifier;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternInstant?: string;
+	/** Extensions for patternInstant */
 	_patternInstant?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternInteger?: number;
+	/** Extensions for patternInteger */
 	_patternInteger?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternMarkdown?: string;
+	/** Extensions for patternMarkdown */
 	_patternMarkdown?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternMeta?: Meta;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternMoney?: Money;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternOid?: string;
+	/** Extensions for patternOid */
 	_patternOid?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternParameterDefinition?: ParameterDefinition;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternPeriod?: Period;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternPositiveInt?: number;
+	/** Extensions for patternPositiveInt */
 	_patternPositiveInt?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternQuantity?: Quantity;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternRange?: Range;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternRatio?: Ratio;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternReference?: Reference;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternRelatedArtifact?: RelatedArtifact;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternSampledData?: SampledData;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternSignature?: Signature;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternString?: string;
+	/** Extensions for patternString */
 	_patternString?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternTime?: string;
+	/** Extensions for patternTime */
 	_patternTime?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternTiming?: Timing;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternTriggerDefinition?: TriggerDefinition;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternUnsignedInt?: number;
+	/** Extensions for patternUnsignedInt */
 	_patternUnsignedInt?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternUri?: string;
+	/** Extensions for patternUri */
 	_patternUri?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternUrl?: string;
+	/** Extensions for patternUrl */
 	_patternUrl?: Element;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternUsageContext?: UsageContext;
+	/**
+	 * Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.
+	 *
+	 * When pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.
+	 *
+	 * When pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.
+	 *
+	 * When pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,
+	 *
+	 * 1. If primitive: it must match exactly the pattern value
+	 * 2. If a complex object: it must match (recursively) the pattern value
+	 * 3. If an array: it must match (recursively) the pattern value.
+	 */
 	patternUuid?: string;
+	/** Extensions for patternUuid */
 	_patternUuid?: Element;
+	/** Codes that define how this element is represented in instances, when the deviation varies from the normal case. */
 	representation?: Array<
 		"cdaText" | "typeAttr" | "xhtml" | "xmlAttr" | "xmlText"
 	>;
+	/** Extensions for representation */
 	_representation?: Element;
+	/** This element is for traceability of why the element was created and why the constraints exist as they do. This may be used to point to source materials or specifications that drove the structure of this element. */
 	requirements?: string;
+	/** Extensions for requirements */
 	_requirements?: Element;
+	/** A concise description of what this element means (e.g. for use in autogenerated summaries). */
 	short?: string;
+	/** Extensions for short */
 	_short?: Element;
+	/** If true, indicates that this slice definition is constraining a slice definition with the same name in an inherited profile. If false, the slice is not overriding any slice in an inherited profile. If missing, the slice might or might not be overriding a slice in an inherited profile, depending on the sliceName. */
 	sliceIsConstraining?: boolean;
+	/** Extensions for sliceIsConstraining */
 	_sliceIsConstraining?: Element;
+	/** The name of this element definition slice, when slicing is working. The name must be a token with no dots or spaces. This is a unique name referring to a specific set of constraints applied to this element, used to provide a name to different slices of the same element. */
 	sliceName?: string;
+	/** Extensions for sliceName */
 	_sliceName?: Element;
+	/** Indicates that the element is sliced into a set of alternative definitions (i.e. in a structure definition, there are multiple different constraints on a single element in the base resource). Slicing can be used in any resource that has cardinality ..* on the base resource, or any resource with a choice of types. The set of slices is any elements that come after this in the element sequence that have the same path, until a shorter path occurs (the shorter path terminates the set). */
 	slicing?: ElementDefinition_Slicing;
+	/** The data type or resource that the value of this element is permitted to be. */
 	type?: Array<ElementDefinition_Type>;
 }
 
@@ -457,1601 +1349,376 @@ export const ElementDefinitionSchemaInternal =
 			.string()
 			.regex(/[ \r\n\t\S]+/)
 			.array()
-			.optional()
-			.describe(
-				"Identifies additional names by which this element might also be known.",
-			),
-		_alias: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for alias"),
-		base: z
-			.lazy(getElementDefinition_BaseSchema)
-			.optional()
-			.describe(
-				"Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of the element through the derived and related profiles. When the element definition is not the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the information in provided in the element definition may be different to the base definition. On the original definition of the element, it will be same.",
-			),
-		binding: z
-			.lazy(getElementDefinition_BindingSchema)
-			.optional()
-			.describe(
-				"Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri).",
-			),
-		code: z
-			.lazy(getCodingSchema)
-			.array()
-			.optional()
-			.describe(
-				"A code that has the same meaning as the element in a particular terminology.",
-			),
-		comment: z
-			.string()
-			.optional()
-			.describe(
-				"Explanatory notes and implementation guidance about the data element, including notes about how to use the data properly, exceptions to proper use, etc. (Note: The text you are reading is specified in ElementDefinition.comment).",
-			),
-		_comment: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for comment"),
-		condition: fhirId()
-			.array()
-			.optional()
-			.describe(
-				"A reference to an invariant that may make additional statements about the cardinality or value in the instance.",
-			),
-		_condition: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for condition"),
+			.optional(),
+		_alias: z.lazy(getElementSchema).optional(),
+		base: z.lazy(getElementDefinition_BaseSchema).optional(),
+		binding: z.lazy(getElementDefinition_BindingSchema).optional(),
+		code: z.lazy(getCodingSchema).array().optional(),
+		comment: z.string().optional(),
+		_comment: z.lazy(getElementSchema).optional(),
+		condition: fhirId().array().optional(),
+		_condition: z.lazy(getElementSchema).optional(),
 		constraint: z
 			.lazy(getElementDefinition_ConstraintSchema)
 			.array()
-			.optional()
-			.describe(
-				"Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context of the instance.",
-			),
-		contentReference: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Identifies an element defined elsewhere in the definition whose content rules should be applied to the current element. ContentReferences bring across all the rules that are in the ElementDefinition for the element, including definitions, cardinality constraints, bindings, invariants etc.",
-			),
-		_contentReference: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for contentReference"),
-		defaultValueAddress: z
-			.lazy(getAddressSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueAge: z
-			.lazy(getAgeSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueAnnotation: z
-			.lazy(getAnnotationSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueAttachment: z
-			.lazy(getAttachmentSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
+			.optional(),
+		contentReference: z.string().regex(/\S*/).optional(),
+		_contentReference: z.lazy(getElementSchema).optional(),
+		defaultValueAddress: z.lazy(getAddressSchema).optional(),
+		defaultValueAge: z.lazy(getAgeSchema).optional(),
+		defaultValueAnnotation: z.lazy(getAnnotationSchema).optional(),
+		defaultValueAttachment: z.lazy(getAttachmentSchema).optional(),
 		defaultValueBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueBase64Binary: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueBase64Binary"),
-		defaultValueBoolean: z
-			.boolean()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueBoolean: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueBoolean"),
-		defaultValueCanonical: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueCanonical: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueCanonical"),
+			.optional(),
+		_defaultValueBase64Binary: z.lazy(getElementSchema).optional(),
+		defaultValueBoolean: z.boolean().optional(),
+		_defaultValueBoolean: z.lazy(getElementSchema).optional(),
+		defaultValueCanonical: z.string().regex(/\S*/).optional(),
+		_defaultValueCanonical: z.lazy(getElementSchema).optional(),
 		defaultValueCode: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueCode: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueCode"),
-		defaultValueCodeableConcept: z
-			.lazy(getCodeableConceptSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueCoding: z
-			.lazy(getCodingSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueContactDetail: z
-			.lazy(getContactDetailSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueContactPoint: z
-			.lazy(getContactPointSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueContributor: z
-			.lazy(getContributorSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueCount: z
-			.lazy(getCountSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueDataRequirement: z
-			.lazy(getDataRequirementSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueDate: fhirDate()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueDate"),
-		defaultValueDateTime: fhirDateTime()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueDateTime"),
-		defaultValueDecimal: z
-			.number()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueDecimal: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueDecimal"),
-		defaultValueDistance: z
-			.lazy(getDistanceSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueDosage: z
-			.lazy(getDosageSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueDuration: z
-			.lazy(getDurationSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueExpression: z
-			.any()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueHumanName: z
-			.lazy(getHumanNameSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueId: fhirId()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueId: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueId"),
-		defaultValueIdentifier: z
-			.lazy(getIdentifierSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueInstant: fhirInstant()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueInstant: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueInstant"),
-		defaultValueInteger: z
-			.number()
-			.int()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueInteger: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueInteger"),
-		defaultValueMarkdown: z
-			.string()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueMarkdown: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueMarkdown"),
-		defaultValueMeta: z
-			.lazy(getMetaSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueMoney: z
-			.lazy(getMoneySchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
+			.optional(),
+		_defaultValueCode: z.lazy(getElementSchema).optional(),
+		defaultValueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+		defaultValueCoding: z.lazy(getCodingSchema).optional(),
+		defaultValueContactDetail: z.lazy(getContactDetailSchema).optional(),
+		defaultValueContactPoint: z.lazy(getContactPointSchema).optional(),
+		defaultValueContributor: z.lazy(getContributorSchema).optional(),
+		defaultValueCount: z.lazy(getCountSchema).optional(),
+		defaultValueDataRequirement: z.lazy(getDataRequirementSchema).optional(),
+		defaultValueDate: fhirDate().optional(),
+		_defaultValueDate: z.lazy(getElementSchema).optional(),
+		defaultValueDateTime: fhirDateTime().optional(),
+		_defaultValueDateTime: z.lazy(getElementSchema).optional(),
+		defaultValueDecimal: z.number().optional(),
+		_defaultValueDecimal: z.lazy(getElementSchema).optional(),
+		defaultValueDistance: z.lazy(getDistanceSchema).optional(),
+		defaultValueDosage: z.lazy(getDosageSchema).optional(),
+		defaultValueDuration: z.lazy(getDurationSchema).optional(),
+		defaultValueExpression: z.any().optional(),
+		defaultValueHumanName: z.lazy(getHumanNameSchema).optional(),
+		defaultValueId: fhirId().optional(),
+		_defaultValueId: z.lazy(getElementSchema).optional(),
+		defaultValueIdentifier: z.lazy(getIdentifierSchema).optional(),
+		defaultValueInstant: fhirInstant().optional(),
+		_defaultValueInstant: z.lazy(getElementSchema).optional(),
+		defaultValueInteger: z.number().int().optional(),
+		_defaultValueInteger: z.lazy(getElementSchema).optional(),
+		defaultValueMarkdown: z.string().optional(),
+		_defaultValueMarkdown: z.lazy(getElementSchema).optional(),
+		defaultValueMeta: z.lazy(getMetaSchema).optional(),
+		defaultValueMoney: z.lazy(getMoneySchema).optional(),
 		defaultValueOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueOid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueOid"),
+			.optional(),
+		_defaultValueOid: z.lazy(getElementSchema).optional(),
 		defaultValueParameterDefinition: z
 			.lazy(getParameterDefinitionSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValuePeriod: z
-			.lazy(getPeriodSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValuePositiveInt: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValuePositiveInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValuePositiveInt"),
-		defaultValueQuantity: z
-			.lazy(getQuantitySchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueRange: z
-			.lazy(getRangeSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueRatio: z
-			.lazy(getRatioSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueReference: z
-			.lazy(getReferenceSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueRelatedArtifact: z
-			.lazy(getRelatedArtifactSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueSampledData: z
-			.lazy(getSampledDataSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueSignature: z
-			.lazy(getSignatureSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
+			.optional(),
+		defaultValuePeriod: z.lazy(getPeriodSchema).optional(),
+		defaultValuePositiveInt: z.number().int().positive().optional(),
+		_defaultValuePositiveInt: z.lazy(getElementSchema).optional(),
+		defaultValueQuantity: z.lazy(getQuantitySchema).optional(),
+		defaultValueRange: z.lazy(getRangeSchema).optional(),
+		defaultValueRatio: z.lazy(getRatioSchema).optional(),
+		defaultValueReference: z.lazy(getReferenceSchema).optional(),
+		defaultValueRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
+		defaultValueSampledData: z.lazy(getSampledDataSchema).optional(),
+		defaultValueSignature: z.lazy(getSignatureSchema).optional(),
 		defaultValueString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueString: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueString"),
-		defaultValueTime: fhirTime()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueTime"),
-		defaultValueTiming: z
-			.lazy(getTimingSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
+			.optional(),
+		_defaultValueString: z.lazy(getElementSchema).optional(),
+		defaultValueTime: fhirTime().optional(),
+		_defaultValueTime: z.lazy(getElementSchema).optional(),
+		defaultValueTiming: z.lazy(getTimingSchema).optional(),
 		defaultValueTriggerDefinition: z
 			.lazy(getTriggerDefinitionSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		defaultValueUnsignedInt: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueUnsignedInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueUnsignedInt"),
-		defaultValueUri: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueUri: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueUri"),
-		defaultValueUrl: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueUrl: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueUrl"),
-		defaultValueUsageContext: z
-			.lazy(getUsageContextSchema)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
+			.optional(),
+		defaultValueUnsignedInt: z.number().int().nonnegative().optional(),
+		_defaultValueUnsignedInt: z.lazy(getElementSchema).optional(),
+		defaultValueUri: z.string().regex(/\S*/).optional(),
+		_defaultValueUri: z.lazy(getElementSchema).optional(),
+		defaultValueUrl: z.string().regex(/\S*/).optional(),
+		_defaultValueUrl: z.lazy(getElementSchema).optional(),
+		defaultValueUsageContext: z.lazy(getUsageContextSchema).optional(),
 		defaultValueUuid: z
 			.string()
 			.regex(
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
-			.optional()
-			.describe(
-				"The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').",
-			),
-		_defaultValueUuid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for defaultValueUuid"),
-		definition: z
-			.string()
-			.optional()
-			.describe(
-				"Provides a complete explanation of the meaning of the data element for human readability.  For the case of elements derived from existing elements (e.g. constraints), the definition SHALL be consistent with the base definition, but convey the meaning of the element in the particular context of use of the resource. (Note: The text you are reading is specified in ElementDefinition.definition).",
-			),
-		_definition: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for definition"),
-		example: z
-			.lazy(getElementDefinition_ExampleSchema)
-			.array()
-			.optional()
-			.describe(
-				"A sample value for this element demonstrating the type of information that would typically be found in the element.",
-			),
-		fixedAddress: z
-			.lazy(getAddressSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedAge: z
-			.lazy(getAgeSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedAnnotation: z
-			.lazy(getAnnotationSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedAttachment: z
-			.lazy(getAttachmentSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
+			.optional(),
+		_defaultValueUuid: z.lazy(getElementSchema).optional(),
+		definition: z.string().optional(),
+		_definition: z.lazy(getElementSchema).optional(),
+		example: z.lazy(getElementDefinition_ExampleSchema).array().optional(),
+		fixedAddress: z.lazy(getAddressSchema).optional(),
+		fixedAge: z.lazy(getAgeSchema).optional(),
+		fixedAnnotation: z.lazy(getAnnotationSchema).optional(),
+		fixedAttachment: z.lazy(getAttachmentSchema).optional(),
 		fixedBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedBase64Binary: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedBase64Binary"),
-		fixedBoolean: z
-			.boolean()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedBoolean: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedBoolean"),
-		fixedCanonical: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedCanonical: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedCanonical"),
+			.optional(),
+		_fixedBase64Binary: z.lazy(getElementSchema).optional(),
+		fixedBoolean: z.boolean().optional(),
+		_fixedBoolean: z.lazy(getElementSchema).optional(),
+		fixedCanonical: z.string().regex(/\S*/).optional(),
+		_fixedCanonical: z.lazy(getElementSchema).optional(),
 		fixedCode: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedCode: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedCode"),
-		fixedCodeableConcept: z
-			.lazy(getCodeableConceptSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedCoding: z
-			.lazy(getCodingSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedContactDetail: z
-			.lazy(getContactDetailSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedContactPoint: z
-			.lazy(getContactPointSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedContributor: z
-			.lazy(getContributorSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedCount: z
-			.lazy(getCountSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedDataRequirement: z
-			.lazy(getDataRequirementSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedDate: fhirDate()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedDate"),
-		fixedDateTime: fhirDateTime()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedDateTime"),
-		fixedDecimal: z
-			.number()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedDecimal: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedDecimal"),
-		fixedDistance: z
-			.lazy(getDistanceSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedDosage: z
-			.lazy(getDosageSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedDuration: z
-			.lazy(getDurationSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedExpression: z
-			.any()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedHumanName: z
-			.lazy(getHumanNameSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedId: fhirId()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedId: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedId"),
-		fixedIdentifier: z
-			.lazy(getIdentifierSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedInstant: fhirInstant()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedInstant: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedInstant"),
-		fixedInteger: z
-			.number()
-			.int()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedInteger: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedInteger"),
-		fixedMarkdown: z
-			.string()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedMarkdown: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedMarkdown"),
-		fixedMeta: z
-			.lazy(getMetaSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedMoney: z
-			.lazy(getMoneySchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
+			.optional(),
+		_fixedCode: z.lazy(getElementSchema).optional(),
+		fixedCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+		fixedCoding: z.lazy(getCodingSchema).optional(),
+		fixedContactDetail: z.lazy(getContactDetailSchema).optional(),
+		fixedContactPoint: z.lazy(getContactPointSchema).optional(),
+		fixedContributor: z.lazy(getContributorSchema).optional(),
+		fixedCount: z.lazy(getCountSchema).optional(),
+		fixedDataRequirement: z.lazy(getDataRequirementSchema).optional(),
+		fixedDate: fhirDate().optional(),
+		_fixedDate: z.lazy(getElementSchema).optional(),
+		fixedDateTime: fhirDateTime().optional(),
+		_fixedDateTime: z.lazy(getElementSchema).optional(),
+		fixedDecimal: z.number().optional(),
+		_fixedDecimal: z.lazy(getElementSchema).optional(),
+		fixedDistance: z.lazy(getDistanceSchema).optional(),
+		fixedDosage: z.lazy(getDosageSchema).optional(),
+		fixedDuration: z.lazy(getDurationSchema).optional(),
+		fixedExpression: z.any().optional(),
+		fixedHumanName: z.lazy(getHumanNameSchema).optional(),
+		fixedId: fhirId().optional(),
+		_fixedId: z.lazy(getElementSchema).optional(),
+		fixedIdentifier: z.lazy(getIdentifierSchema).optional(),
+		fixedInstant: fhirInstant().optional(),
+		_fixedInstant: z.lazy(getElementSchema).optional(),
+		fixedInteger: z.number().int().optional(),
+		_fixedInteger: z.lazy(getElementSchema).optional(),
+		fixedMarkdown: z.string().optional(),
+		_fixedMarkdown: z.lazy(getElementSchema).optional(),
+		fixedMeta: z.lazy(getMetaSchema).optional(),
+		fixedMoney: z.lazy(getMoneySchema).optional(),
 		fixedOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedOid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedOid"),
-		fixedParameterDefinition: z
-			.lazy(getParameterDefinitionSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedPeriod: z
-			.lazy(getPeriodSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedPositiveInt: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedPositiveInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedPositiveInt"),
-		fixedQuantity: z
-			.lazy(getQuantitySchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedRange: z
-			.lazy(getRangeSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedRatio: z
-			.lazy(getRatioSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedReference: z
-			.lazy(getReferenceSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedRelatedArtifact: z
-			.lazy(getRelatedArtifactSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedSampledData: z
-			.lazy(getSampledDataSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedSignature: z
-			.lazy(getSignatureSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
+			.optional(),
+		_fixedOid: z.lazy(getElementSchema).optional(),
+		fixedParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
+		fixedPeriod: z.lazy(getPeriodSchema).optional(),
+		fixedPositiveInt: z.number().int().positive().optional(),
+		_fixedPositiveInt: z.lazy(getElementSchema).optional(),
+		fixedQuantity: z.lazy(getQuantitySchema).optional(),
+		fixedRange: z.lazy(getRangeSchema).optional(),
+		fixedRatio: z.lazy(getRatioSchema).optional(),
+		fixedReference: z.lazy(getReferenceSchema).optional(),
+		fixedRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
+		fixedSampledData: z.lazy(getSampledDataSchema).optional(),
+		fixedSignature: z.lazy(getSignatureSchema).optional(),
 		fixedString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedString: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedString"),
-		fixedTime: fhirTime()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedTime"),
-		fixedTiming: z
-			.lazy(getTimingSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedTriggerDefinition: z
-			.lazy(getTriggerDefinitionSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		fixedUnsignedInt: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedUnsignedInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedUnsignedInt"),
-		fixedUri: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedUri: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedUri"),
-		fixedUrl: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedUrl: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedUrl"),
-		fixedUsageContext: z
-			.lazy(getUsageContextSchema)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
+			.optional(),
+		_fixedString: z.lazy(getElementSchema).optional(),
+		fixedTime: fhirTime().optional(),
+		_fixedTime: z.lazy(getElementSchema).optional(),
+		fixedTiming: z.lazy(getTimingSchema).optional(),
+		fixedTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
+		fixedUnsignedInt: z.number().int().nonnegative().optional(),
+		_fixedUnsignedInt: z.lazy(getElementSchema).optional(),
+		fixedUri: z.string().regex(/\S*/).optional(),
+		_fixedUri: z.lazy(getElementSchema).optional(),
+		fixedUrl: z.string().regex(/\S*/).optional(),
+		_fixedUrl: z.lazy(getElementSchema).optional(),
+		fixedUsageContext: z.lazy(getUsageContextSchema).optional(),
 		fixedUuid: z
 			.string()
 			.regex(
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
-			.optional()
-			.describe(
-				"Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
-			),
-		_fixedUuid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for fixedUuid"),
-		isModifier: z
-			.boolean()
-			.optional()
-			.describe(
-				"If true, the value of this element affects the interpretation of the element or resource that contains it, and the value of the element cannot be ignored. Typically, this is used for status, negation and qualification codes. The effect of this is that the element cannot be ignored by systems: they SHALL either recognize the element and process it, and/or a pre-determination has been made that it is not relevant to their particular system.",
-			),
-		_isModifier: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for isModifier"),
+			.optional(),
+		_fixedUuid: z.lazy(getElementSchema).optional(),
+		isModifier: z.boolean().optional(),
+		_isModifier: z.lazy(getElementSchema).optional(),
 		isModifierReason: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"Explains how that element affects the interpretation of the resource or element that contains it.",
-			),
-		_isModifierReason: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for isModifierReason"),
-		isSummary: z
-			.boolean()
-			.optional()
-			.describe(
-				"Whether the element should be included if a client requests a search with the parameter _summary=true.",
-			),
-		_isSummary: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for isSummary"),
+			.optional(),
+		_isModifierReason: z.lazy(getElementSchema).optional(),
+		isSummary: z.boolean().optional(),
+		_isSummary: z.lazy(getElementSchema).optional(),
 		label: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for the element in a user display or form.",
-			),
-		_label: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for label"),
-		mapping: z
-			.lazy(getElementDefinition_MappingSchema)
-			.array()
-			.optional()
-			.describe(
-				"Identifies a concept from an external specification that roughly corresponds to this element.",
-			),
+			.optional(),
+		_label: z.lazy(getElementSchema).optional(),
+		mapping: z.lazy(getElementDefinition_MappingSchema).array().optional(),
 		max: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"The maximum number of times this element is permitted to appear in the instance.",
-			),
-		_max: z.lazy(getElementSchema).optional().describe("Extensions for max"),
-		maxLength: z
-			.number()
-			.int()
-			.optional()
-			.describe(
-				"Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element.",
-			),
-		_maxLength: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxLength"),
-		maxValueDate: fhirDate()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueDate"),
-		maxValueDateTime: fhirDateTime()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueDateTime"),
-		maxValueDecimal: z
-			.number()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueDecimal: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueDecimal"),
-		maxValueInstant: fhirInstant()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueInstant: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueInstant"),
-		maxValueInteger: z
-			.number()
-			.int()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueInteger: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueInteger"),
-		maxValuePositiveInt: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValuePositiveInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValuePositiveInt"),
-		maxValueQuantity: z
-			.lazy(getQuantitySchema)
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		maxValueTime: fhirTime()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueTime"),
-		maxValueUnsignedInt: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_maxValueUnsignedInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for maxValueUnsignedInt"),
-		meaningWhenMissing: z
-			.string()
-			.optional()
-			.describe(
-				"The Implicit meaning that is to be understood when this element is missing (e.g. 'when this element is missing, the period is ongoing').",
-			),
-		_meaningWhenMissing: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for meaningWhenMissing"),
-		min: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"The minimum number of times this element SHALL appear in the instance.",
-			),
-		_min: z.lazy(getElementSchema).optional().describe("Extensions for min"),
-		minValueDate: fhirDate()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueDate"),
-		minValueDateTime: fhirDateTime()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueDateTime"),
-		minValueDecimal: z
-			.number()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueDecimal: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueDecimal"),
-		minValueInstant: fhirInstant()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueInstant: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueInstant"),
-		minValueInteger: z
-			.number()
-			.int()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueInteger: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueInteger"),
-		minValuePositiveInt: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValuePositiveInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValuePositiveInt"),
-		minValueQuantity: z
-			.lazy(getQuantitySchema)
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		minValueTime: fhirTime()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueTime"),
-		minValueUnsignedInt: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
-			),
-		_minValueUnsignedInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for minValueUnsignedInt"),
-		mustSupport: z
-			.boolean()
-			.optional()
-			.describe(
-				'If true, implementations that produce or consume resources SHALL provide "support" for the element in some meaningful way.  If false, the element may be ignored and not supported. If false, whether to populate or use the data element in any way is at the discretion of the implementation.',
-			),
-		_mustSupport: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for mustSupport"),
+			.optional(),
+		_max: z.lazy(getElementSchema).optional(),
+		maxLength: z.number().int().optional(),
+		_maxLength: z.lazy(getElementSchema).optional(),
+		maxValueDate: fhirDate().optional(),
+		_maxValueDate: z.lazy(getElementSchema).optional(),
+		maxValueDateTime: fhirDateTime().optional(),
+		_maxValueDateTime: z.lazy(getElementSchema).optional(),
+		maxValueDecimal: z.number().optional(),
+		_maxValueDecimal: z.lazy(getElementSchema).optional(),
+		maxValueInstant: fhirInstant().optional(),
+		_maxValueInstant: z.lazy(getElementSchema).optional(),
+		maxValueInteger: z.number().int().optional(),
+		_maxValueInteger: z.lazy(getElementSchema).optional(),
+		maxValuePositiveInt: z.number().int().positive().optional(),
+		_maxValuePositiveInt: z.lazy(getElementSchema).optional(),
+		maxValueQuantity: z.lazy(getQuantitySchema).optional(),
+		maxValueTime: fhirTime().optional(),
+		_maxValueTime: z.lazy(getElementSchema).optional(),
+		maxValueUnsignedInt: z.number().int().nonnegative().optional(),
+		_maxValueUnsignedInt: z.lazy(getElementSchema).optional(),
+		meaningWhenMissing: z.string().optional(),
+		_meaningWhenMissing: z.lazy(getElementSchema).optional(),
+		min: z.number().int().nonnegative().optional(),
+		_min: z.lazy(getElementSchema).optional(),
+		minValueDate: fhirDate().optional(),
+		_minValueDate: z.lazy(getElementSchema).optional(),
+		minValueDateTime: fhirDateTime().optional(),
+		_minValueDateTime: z.lazy(getElementSchema).optional(),
+		minValueDecimal: z.number().optional(),
+		_minValueDecimal: z.lazy(getElementSchema).optional(),
+		minValueInstant: fhirInstant().optional(),
+		_minValueInstant: z.lazy(getElementSchema).optional(),
+		minValueInteger: z.number().int().optional(),
+		_minValueInteger: z.lazy(getElementSchema).optional(),
+		minValuePositiveInt: z.number().int().positive().optional(),
+		_minValuePositiveInt: z.lazy(getElementSchema).optional(),
+		minValueQuantity: z.lazy(getQuantitySchema).optional(),
+		minValueTime: fhirTime().optional(),
+		_minValueTime: z.lazy(getElementSchema).optional(),
+		minValueUnsignedInt: z.number().int().nonnegative().optional(),
+		_minValueUnsignedInt: z.lazy(getElementSchema).optional(),
+		mustSupport: z.boolean().optional(),
+		_mustSupport: z.lazy(getElementSchema).optional(),
 		orderMeaning: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"If present, indicates that the order of the repeating element has meaning and describes what that meaning is.  If absent, it means that the order of the element has no meaning.",
-			),
-		_orderMeaning: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for orderMeaning"),
-		path: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.describe(
-				'The path identifies the element and is expressed as a "."-separated list of ancestor elements, beginning with the name of the resource or extension.',
-			),
-		_path: z.lazy(getElementSchema).optional().describe("Extensions for path"),
-		patternAddress: z
-			.lazy(getAddressSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternAge: z
-			.lazy(getAgeSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternAnnotation: z
-			.lazy(getAnnotationSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternAttachment: z
-			.lazy(getAttachmentSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
+			.optional(),
+		_orderMeaning: z.lazy(getElementSchema).optional(),
+		path: z.string().regex(/[ \r\n\t\S]+/),
+		_path: z.lazy(getElementSchema).optional(),
+		patternAddress: z.lazy(getAddressSchema).optional(),
+		patternAge: z.lazy(getAgeSchema).optional(),
+		patternAnnotation: z.lazy(getAnnotationSchema).optional(),
+		patternAttachment: z.lazy(getAttachmentSchema).optional(),
 		patternBase64Binary: z
 			.string()
 			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternBase64Binary: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternBase64Binary"),
-		patternBoolean: z
-			.boolean()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternBoolean: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternBoolean"),
-		patternCanonical: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternCanonical: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternCanonical"),
+			.optional(),
+		_patternBase64Binary: z.lazy(getElementSchema).optional(),
+		patternBoolean: z.boolean().optional(),
+		_patternBoolean: z.lazy(getElementSchema).optional(),
+		patternCanonical: z.string().regex(/\S*/).optional(),
+		_patternCanonical: z.lazy(getElementSchema).optional(),
 		patternCode: z
 			.string()
 			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternCode: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternCode"),
-		patternCodeableConcept: z
-			.lazy(getCodeableConceptSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternCoding: z
-			.lazy(getCodingSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternContactDetail: z
-			.lazy(getContactDetailSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternContactPoint: z
-			.lazy(getContactPointSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternContributor: z
-			.lazy(getContributorSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternCount: z
-			.lazy(getCountSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternDataRequirement: z
-			.lazy(getDataRequirementSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternDate: fhirDate()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternDate: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternDate"),
-		patternDateTime: fhirDateTime()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternDateTime"),
-		patternDecimal: z
-			.number()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternDecimal: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternDecimal"),
-		patternDistance: z
-			.lazy(getDistanceSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternDosage: z
-			.lazy(getDosageSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternDuration: z
-			.lazy(getDurationSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternExpression: z
-			.any()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternHumanName: z
-			.lazy(getHumanNameSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternId: fhirId()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternId: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternId"),
-		patternIdentifier: z
-			.lazy(getIdentifierSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternInstant: fhirInstant()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternInstant: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternInstant"),
-		patternInteger: z
-			.number()
-			.int()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternInteger: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternInteger"),
-		patternMarkdown: z
-			.string()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternMarkdown: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternMarkdown"),
-		patternMeta: z
-			.lazy(getMetaSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternMoney: z
-			.lazy(getMoneySchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
+			.optional(),
+		_patternCode: z.lazy(getElementSchema).optional(),
+		patternCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+		patternCoding: z.lazy(getCodingSchema).optional(),
+		patternContactDetail: z.lazy(getContactDetailSchema).optional(),
+		patternContactPoint: z.lazy(getContactPointSchema).optional(),
+		patternContributor: z.lazy(getContributorSchema).optional(),
+		patternCount: z.lazy(getCountSchema).optional(),
+		patternDataRequirement: z.lazy(getDataRequirementSchema).optional(),
+		patternDate: fhirDate().optional(),
+		_patternDate: z.lazy(getElementSchema).optional(),
+		patternDateTime: fhirDateTime().optional(),
+		_patternDateTime: z.lazy(getElementSchema).optional(),
+		patternDecimal: z.number().optional(),
+		_patternDecimal: z.lazy(getElementSchema).optional(),
+		patternDistance: z.lazy(getDistanceSchema).optional(),
+		patternDosage: z.lazy(getDosageSchema).optional(),
+		patternDuration: z.lazy(getDurationSchema).optional(),
+		patternExpression: z.any().optional(),
+		patternHumanName: z.lazy(getHumanNameSchema).optional(),
+		patternId: fhirId().optional(),
+		_patternId: z.lazy(getElementSchema).optional(),
+		patternIdentifier: z.lazy(getIdentifierSchema).optional(),
+		patternInstant: fhirInstant().optional(),
+		_patternInstant: z.lazy(getElementSchema).optional(),
+		patternInteger: z.number().int().optional(),
+		_patternInteger: z.lazy(getElementSchema).optional(),
+		patternMarkdown: z.string().optional(),
+		_patternMarkdown: z.lazy(getElementSchema).optional(),
+		patternMeta: z.lazy(getMetaSchema).optional(),
+		patternMoney: z.lazy(getMoneySchema).optional(),
 		patternOid: z
 			.string()
 			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternOid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternOid"),
-		patternParameterDefinition: z
-			.lazy(getParameterDefinitionSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternPeriod: z
-			.lazy(getPeriodSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternPositiveInt: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternPositiveInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternPositiveInt"),
-		patternQuantity: z
-			.lazy(getQuantitySchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternRange: z
-			.lazy(getRangeSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternRatio: z
-			.lazy(getRatioSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternReference: z
-			.lazy(getReferenceSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternRelatedArtifact: z
-			.lazy(getRelatedArtifactSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternSampledData: z
-			.lazy(getSampledDataSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternSignature: z
-			.lazy(getSignatureSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
+			.optional(),
+		_patternOid: z.lazy(getElementSchema).optional(),
+		patternParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
+		patternPeriod: z.lazy(getPeriodSchema).optional(),
+		patternPositiveInt: z.number().int().positive().optional(),
+		_patternPositiveInt: z.lazy(getElementSchema).optional(),
+		patternQuantity: z.lazy(getQuantitySchema).optional(),
+		patternRange: z.lazy(getRangeSchema).optional(),
+		patternRatio: z.lazy(getRatioSchema).optional(),
+		patternReference: z.lazy(getReferenceSchema).optional(),
+		patternRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
+		patternSampledData: z.lazy(getSampledDataSchema).optional(),
+		patternSignature: z.lazy(getSignatureSchema).optional(),
 		patternString: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternString: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternString"),
-		patternTime: fhirTime()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternTime"),
-		patternTiming: z
-			.lazy(getTimingSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternTriggerDefinition: z
-			.lazy(getTriggerDefinitionSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		patternUnsignedInt: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternUnsignedInt: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternUnsignedInt"),
-		patternUri: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternUri: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternUri"),
-		patternUrl: z
-			.string()
-			.regex(/\S*/)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternUrl: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternUrl"),
-		patternUsageContext: z
-			.lazy(getUsageContextSchema)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
+			.optional(),
+		_patternString: z.lazy(getElementSchema).optional(),
+		patternTime: fhirTime().optional(),
+		_patternTime: z.lazy(getElementSchema).optional(),
+		patternTiming: z.lazy(getTimingSchema).optional(),
+		patternTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
+		patternUnsignedInt: z.number().int().nonnegative().optional(),
+		_patternUnsignedInt: z.lazy(getElementSchema).optional(),
+		patternUri: z.string().regex(/\S*/).optional(),
+		_patternUri: z.lazy(getElementSchema).optional(),
+		patternUrl: z.string().regex(/\S*/).optional(),
+		_patternUrl: z.lazy(getElementSchema).optional(),
+		patternUsageContext: z.lazy(getUsageContextSchema).optional(),
 		patternUuid: z
 			.string()
 			.regex(
 				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
 			)
-			.optional()
-			.describe(
-				"Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
-			),
-		_patternUuid: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for patternUuid"),
+			.optional(),
+		_patternUuid: z.lazy(getElementSchema).optional(),
 		representation: z
 			.enum(["cdaText", "typeAttr", "xhtml", "xmlAttr", "xmlText"])
 			.array()
-			.optional()
-			.describe(
-				"Codes that define how this element is represented in instances, when the deviation varies from the normal case.",
-			),
-		_representation: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for representation"),
-		requirements: z
-			.string()
-			.optional()
-			.describe(
-				"This element is for traceability of why the element was created and why the constraints exist as they do. This may be used to point to source materials or specifications that drove the structure of this element.",
-			),
-		_requirements: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for requirements"),
+			.optional(),
+		_representation: z.lazy(getElementSchema).optional(),
+		requirements: z.string().optional(),
+		_requirements: z.lazy(getElementSchema).optional(),
 		short: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"A concise description of what this element means (e.g. for use in autogenerated summaries).",
-			),
-		_short: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for short"),
-		sliceIsConstraining: z
-			.boolean()
-			.optional()
-			.describe(
-				"If true, indicates that this slice definition is constraining a slice definition with the same name in an inherited profile. If false, the slice is not overriding any slice in an inherited profile. If missing, the slice might or might not be overriding a slice in an inherited profile, depending on the sliceName.",
-			),
-		_sliceIsConstraining: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for sliceIsConstraining"),
+			.optional(),
+		_short: z.lazy(getElementSchema).optional(),
+		sliceIsConstraining: z.boolean().optional(),
+		_sliceIsConstraining: z.lazy(getElementSchema).optional(),
 		sliceName: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"The name of this element definition slice, when slicing is working. The name must be a token with no dots or spaces. This is a unique name referring to a specific set of constraints applied to this element, used to provide a name to different slices of the same element.",
-			),
-		_sliceName: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for sliceName"),
-		slicing: z
-			.lazy(getElementDefinition_SlicingSchema)
-			.optional()
-			.describe(
-				"Indicates that the element is sliced into a set of alternative definitions (i.e. in a structure definition, there are multiple different constraints on a single element in the base resource). Slicing can be used in any resource that has cardinality ..* on the base resource, or any resource with a choice of types. The set of slices is any elements that come after this in the element sequence that have the same path, until a shorter path occurs (the shorter path terminates the set).",
-			),
-		type: z
-			.lazy(getElementDefinition_TypeSchema)
-			.array()
-			.optional()
-			.describe(
-				"The data type or resource that the value of this element is permitted to be.",
-			),
+			.optional(),
+		_sliceName: z.lazy(getElementSchema).optional(),
+		slicing: z.lazy(getElementDefinition_SlicingSchema).optional(),
+		type: z.lazy(getElementDefinition_TypeSchema).array().optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {

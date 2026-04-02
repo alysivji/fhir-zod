@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Duration } from "./Duration";
@@ -14,14 +14,23 @@ import { ElementSchemaInternal } from "./Element";
 import { ExtensionSchemaInternal } from "./Extension";
 import { PeriodSchemaInternal } from "./Period";
 
+/** Date filters specify additional constraints on the data in terms of the applicable date range for specific elements. Each date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not OR'ed. */
 export interface DataRequirement_DateFilter extends Element {
+	/** The date-valued attribute of the filter. The specified path SHALL be a FHIRPath resolveable on the specified type of the DataRequirement, and SHALL consist only of identifiers, constant indexers, and .resolve(). The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note that the index must be an integer constant. The path must resolve to an element of type date, dateTime, Period, Schedule, or Timing. */
 	path?: string;
+	/** Extensions for path */
 	_path?: Element;
+	/** A date parameter that refers to a search parameter defined on the specified type of the DataRequirement, and which searches on elements of type date, dateTime, Period, Schedule, or Timing. */
 	searchParam?: string;
+	/** Extensions for searchParam */
 	_searchParam?: Element;
+	/** The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now. */
 	valueDateTime?: string;
+	/** Extensions for valueDateTime */
 	_valueDateTime?: Element;
+	/** The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now. */
 	valueDuration?: Duration;
+	/** The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now. */
 	valuePeriod?: Period;
 }
 
@@ -33,59 +42,23 @@ const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
 /** @internal */
 export const DataRequirement_DateFilterSchemaInternal = z
 	.object({
-		extension: z
-			.lazy(getExtensionSchema)
-			.array()
-			.optional()
-			.describe(
-				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-			),
-		id: fhirId()
-			.optional()
-			.describe(
-				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-			),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
 		path: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"The date-valued attribute of the filter. The specified path SHALL be a FHIRPath resolveable on the specified type of the DataRequirement, and SHALL consist only of identifiers, constant indexers, and .resolve(). The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note that the index must be an integer constant. The path must resolve to an element of type date, dateTime, Period, Schedule, or Timing.",
-			),
-		_path: z.lazy(getElementSchema).optional().describe("Extensions for path"),
+			.optional(),
+		_path: z.lazy(getElementSchema).optional(),
 		searchParam: z
 			.string()
 			.regex(/[ \r\n\t\S]+/)
-			.optional()
-			.describe(
-				"A date parameter that refers to a search parameter defined on the specified type of the DataRequirement, and which searches on elements of type date, dateTime, Period, Schedule, or Timing.",
-			),
-		_searchParam: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for searchParam"),
-		valueDateTime: fhirDateTime()
-			.optional()
-			.describe(
-				"The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
-			),
-		_valueDateTime: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for valueDateTime"),
-		valueDuration: z
-			.lazy(getDurationSchema)
-			.optional()
-			.describe(
-				"The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
-			),
-		valuePeriod: z
-			.lazy(getPeriodSchema)
-			.optional()
-			.describe(
-				"The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
-			),
+			.optional(),
+		_searchParam: z.lazy(getElementSchema).optional(),
+		valueDateTime: fhirDateTime().optional(),
+		_valueDateTime: z.lazy(getElementSchema).optional(),
+		valueDuration: z.lazy(getDurationSchema).optional(),
+		valuePeriod: z.lazy(getPeriodSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {

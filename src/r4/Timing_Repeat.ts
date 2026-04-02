@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T03:53:33.727Z
+// Last generated: 2026-04-02T04:00:24.609Z
 
 import * as z from "zod";
 import type { Duration } from "./Duration";
@@ -16,36 +16,67 @@ import { ExtensionSchemaInternal } from "./Extension";
 import { PeriodSchemaInternal } from "./Period";
 import { RangeSchemaInternal } from "./Range";
 
+/** A set of rules that describe when the event is scheduled. */
 export interface Timing_Repeat extends Element {
+	/** Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. */
 	boundsDuration?: Duration;
+	/** Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. */
 	boundsPeriod?: Period;
+	/** Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule. */
 	boundsRange?: Range;
+	/** A total count of the desired number of repetitions across the duration of the entire timing specification. If countMax is present, this element indicates the lower bound of the allowed range of count values. */
 	count?: number;
+	/** Extensions for count */
 	_count?: Element;
+	/** If present, indicates that the count is a range - so to perform the action between [count] and [countMax] times. */
 	countMax?: number;
+	/** Extensions for countMax */
 	_countMax?: Element;
+	/** If one or more days of week is provided, then the action happens only on the specified day(s). */
 	dayOfWeek?: Array<"fri" | "mon" | "sat" | "sun" | "thu" | "tue" | "wed">;
+	/** Extensions for dayOfWeek */
 	_dayOfWeek?: Element;
+	/** How long this thing happens for when it happens. If durationMax is present, this element indicates the lower bound of the allowed range of the duration. */
 	duration?: number;
+	/** Extensions for duration */
 	_duration?: Element;
+	/** If present, indicates that the duration is a range - so to perform the action between [duration] and [durationMax] time length. */
 	durationMax?: number;
+	/** Extensions for durationMax */
 	_durationMax?: Element;
+	/** The units of time for the duration, in UCUM units. */
 	durationUnit?: "a" | "d" | "h" | "min" | "mo" | "s" | "wk";
+	/** Extensions for durationUnit */
 	_durationUnit?: Element;
+	/** The number of times to repeat the action within the specified period. If frequencyMax is present, this element indicates the lower bound of the allowed range of the frequency. */
 	frequency?: number;
+	/** Extensions for frequency */
 	_frequency?: Element;
+	/** If present, indicates that the frequency is a range - so to repeat between [frequency] and [frequencyMax] times within the period or period range. */
 	frequencyMax?: number;
+	/** Extensions for frequencyMax */
 	_frequencyMax?: Element;
+	/** The number of minutes from the event. If the event code does not indicate whether the minutes is before or after the event, then the offset is assumed to be after the event. */
 	offset?: number;
+	/** Extensions for offset */
 	_offset?: Element;
+	/** Indicates the duration of time over which repetitions are to occur; e.g. to express "3 times per day", 3 would be the frequency and "1 day" would be the period. If periodMax is present, this element indicates the lower bound of the allowed range of the period length. */
 	period?: number;
+	/** Extensions for period */
 	_period?: Element;
+	/** If present, indicates that the period is a range from [period] to [periodMax], allowing expressing concepts such as "do this once every 3-5 days. */
 	periodMax?: number;
+	/** Extensions for periodMax */
 	_periodMax?: Element;
+	/** The units of time for the period in UCUM units. */
 	periodUnit?: "a" | "d" | "h" | "min" | "mo" | "s" | "wk";
+	/** Extensions for periodUnit */
 	_periodUnit?: Element;
+	/** Specified time of day for action to take place. */
 	timeOfDay?: Array<string>;
+	/** Extensions for timeOfDay */
 	_timeOfDay?: Element;
+	/** An approximate time period during the day, potentially linked to an event of daily living that indicates when the action should occur. */
 	when?: Array<
 		| "AC"
 		| "ACD"
@@ -78,6 +109,7 @@ export interface Timing_Repeat extends Element {
 		| "PHS"
 		| "WAKE"
 	>;
+	/** Extensions for when */
 	_when?: Element;
 }
 
@@ -90,172 +122,41 @@ const getRangeSchema = (): z.ZodType<Range> => RangeSchemaInternal;
 /** @internal */
 export const Timing_RepeatSchemaInternal = z
 	.object({
-		boundsDuration: z
-			.lazy(getDurationSchema)
-			.optional()
-			.describe(
-				"Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.",
-			),
-		boundsPeriod: z
-			.lazy(getPeriodSchema)
-			.optional()
-			.describe(
-				"Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.",
-			),
-		boundsRange: z
-			.lazy(getRangeSchema)
-			.optional()
-			.describe(
-				"Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.",
-			),
-		count: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"A total count of the desired number of repetitions across the duration of the entire timing specification. If countMax is present, this element indicates the lower bound of the allowed range of count values.",
-			),
-		_count: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for count"),
-		countMax: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"If present, indicates that the count is a range - so to perform the action between [count] and [countMax] times.",
-			),
-		_countMax: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for countMax"),
+		boundsDuration: z.lazy(getDurationSchema).optional(),
+		boundsPeriod: z.lazy(getPeriodSchema).optional(),
+		boundsRange: z.lazy(getRangeSchema).optional(),
+		count: z.number().int().positive().optional(),
+		_count: z.lazy(getElementSchema).optional(),
+		countMax: z.number().int().positive().optional(),
+		_countMax: z.lazy(getElementSchema).optional(),
 		dayOfWeek: z
 			.enum(["fri", "mon", "sat", "sun", "thu", "tue", "wed"])
 			.array()
-			.optional()
-			.describe(
-				"If one or more days of week is provided, then the action happens only on the specified day(s).",
-			),
-		_dayOfWeek: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for dayOfWeek"),
-		duration: z
-			.number()
-			.optional()
-			.describe(
-				"How long this thing happens for when it happens. If durationMax is present, this element indicates the lower bound of the allowed range of the duration.",
-			),
-		_duration: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for duration"),
-		durationMax: z
-			.number()
-			.optional()
-			.describe(
-				"If present, indicates that the duration is a range - so to perform the action between [duration] and [durationMax] time length.",
-			),
-		_durationMax: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for durationMax"),
-		durationUnit: z
-			.enum(["a", "d", "h", "min", "mo", "s", "wk"])
-			.optional()
-			.describe("The units of time for the duration, in UCUM units."),
-		_durationUnit: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for durationUnit"),
-		extension: z
-			.lazy(getExtensionSchema)
-			.array()
-			.optional()
-			.describe(
-				"May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
-			),
-		frequency: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"The number of times to repeat the action within the specified period. If frequencyMax is present, this element indicates the lower bound of the allowed range of the frequency.",
-			),
-		_frequency: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for frequency"),
-		frequencyMax: z
-			.number()
-			.int()
-			.positive()
-			.optional()
-			.describe(
-				"If present, indicates that the frequency is a range - so to repeat between [frequency] and [frequencyMax] times within the period or period range.",
-			),
-		_frequencyMax: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for frequencyMax"),
-		id: fhirId()
-			.optional()
-			.describe(
-				"Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
-			),
-		_id: z.lazy(getElementSchema).optional().describe("Extensions for id"),
-		offset: z
-			.number()
-			.int()
-			.nonnegative()
-			.optional()
-			.describe(
-				"The number of minutes from the event. If the event code does not indicate whether the minutes is before or after the event, then the offset is assumed to be after the event.",
-			),
-		_offset: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for offset"),
-		period: z
-			.number()
-			.optional()
-			.describe(
-				'Indicates the duration of time over which repetitions are to occur; e.g. to express "3 times per day", 3 would be the frequency and "1 day" would be the period. If periodMax is present, this element indicates the lower bound of the allowed range of the period length.',
-			),
-		_period: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for period"),
-		periodMax: z
-			.number()
-			.optional()
-			.describe(
-				'If present, indicates that the period is a range from [period] to [periodMax], allowing expressing concepts such as "do this once every 3-5 days.',
-			),
-		_periodMax: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for periodMax"),
-		periodUnit: z
-			.enum(["a", "d", "h", "min", "mo", "s", "wk"])
-			.optional()
-			.describe("The units of time for the period in UCUM units."),
-		_periodUnit: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for periodUnit"),
-		timeOfDay: fhirTime()
-			.array()
-			.optional()
-			.describe("Specified time of day for action to take place."),
-		_timeOfDay: z
-			.lazy(getElementSchema)
-			.optional()
-			.describe("Extensions for timeOfDay"),
+			.optional(),
+		_dayOfWeek: z.lazy(getElementSchema).optional(),
+		duration: z.number().optional(),
+		_duration: z.lazy(getElementSchema).optional(),
+		durationMax: z.number().optional(),
+		_durationMax: z.lazy(getElementSchema).optional(),
+		durationUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
+		_durationUnit: z.lazy(getElementSchema).optional(),
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		frequency: z.number().int().positive().optional(),
+		_frequency: z.lazy(getElementSchema).optional(),
+		frequencyMax: z.number().int().positive().optional(),
+		_frequencyMax: z.lazy(getElementSchema).optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		offset: z.number().int().nonnegative().optional(),
+		_offset: z.lazy(getElementSchema).optional(),
+		period: z.number().optional(),
+		_period: z.lazy(getElementSchema).optional(),
+		periodMax: z.number().optional(),
+		_periodMax: z.lazy(getElementSchema).optional(),
+		periodUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
+		_periodUnit: z.lazy(getElementSchema).optional(),
+		timeOfDay: fhirTime().array().optional(),
+		_timeOfDay: z.lazy(getElementSchema).optional(),
 		when: z
 			.enum([
 				"AC",
@@ -290,11 +191,8 @@ export const Timing_RepeatSchemaInternal = z
 				"WAKE",
 			])
 			.array()
-			.optional()
-			.describe(
-				"An approximate time period during the day, potentially linked to an event of daily living that indicates when the action should occur.",
-			),
-		_when: z.lazy(getElementSchema).optional().describe("Extensions for when"),
+			.optional(),
+		_when: z.lazy(getElementSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
