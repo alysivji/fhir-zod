@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Reference
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -34,10 +34,12 @@ export interface Reference extends Element {
 	_type?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 
 /** @internal */
 export const ReferenceSchemaInternal = z
@@ -61,4 +63,4 @@ export const ReferenceSchemaInternal = z
 	})
 	.strict();
 
-export const ReferenceSchema: z.ZodType<Reference> = ReferenceSchemaInternal;
+export const ReferenceSchema = ReferenceSchemaInternal as z.ZodType<Reference>;

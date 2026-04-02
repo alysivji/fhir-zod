@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -22,8 +22,9 @@ export interface Patient_Communication extends BackboneElement {
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const Patient_CommunicationSchemaInternal =
@@ -33,5 +34,5 @@ export const Patient_CommunicationSchemaInternal =
 		_preferred: z.lazy(getElementSchema).optional(),
 	}).strict();
 
-export const Patient_CommunicationSchema: z.ZodType<Patient_Communication> =
-	Patient_CommunicationSchemaInternal;
+export const Patient_CommunicationSchema =
+	Patient_CommunicationSchemaInternal as z.ZodType<Patient_Communication>;

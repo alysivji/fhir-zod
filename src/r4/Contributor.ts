@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contributor
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -27,9 +27,11 @@ export interface Contributor extends Element {
 }
 
 const getContactDetailSchema = (): z.ZodType<ContactDetail> =>
-	ContactDetailSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ContributorSchemaInternal = z
@@ -45,5 +47,5 @@ export const ContributorSchemaInternal = z
 	})
 	.strict();
 
-export const ContributorSchema: z.ZodType<Contributor> =
-	ContributorSchemaInternal;
+export const ContributorSchema =
+	ContributorSchemaInternal as z.ZodType<Contributor>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Address
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:26:21.962Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -29,7 +29,7 @@ export interface Address extends Element {
 	/** This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information. */
 	line?: Array<string>;
 	/** Extensions for line */
-	_line?: Element;
+	_line?: Array<Element>;
 	/** Time period when address was/is in use. */
 	period?: Period;
 	/** A postal code designating a region defined by the postal service. */
@@ -54,9 +54,12 @@ export interface Address extends Element {
 	_use?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const AddressSchemaInternal = z
@@ -84,7 +87,7 @@ export const AddressSchemaInternal = z
 			.regex(/[ \r\n\t\S]+/)
 			.array()
 			.optional(),
-		_line: z.lazy(getElementSchema).optional(),
+		_line: z.lazy(getElementSchema).array().optional(),
 		period: z.lazy(getPeriodSchema).optional(),
 		postalCode: z
 			.string()
@@ -108,4 +111,4 @@ export const AddressSchemaInternal = z
 	})
 	.strict();
 
-export const AddressSchema: z.ZodType<Address> = AddressSchemaInternal;
+export const AddressSchema = AddressSchemaInternal as z.ZodType<Address>;

@@ -25,6 +25,7 @@ Current repository status:
 - TypeScript library scaffold is set up
 - versioned subpath exports are wired
 - R4 generation is implemented and checked in under `src/r4`
+- default R4 generation covers the canonical core-resource set plus required dependencies
 - build, lint, format, coverage, and test commands are configured
 - spec manifests are pinned for `stu3`, `r4`, `r4b`, and `r5`
 - real generated schema output currently exists for `r4`
@@ -144,6 +145,12 @@ Supported output modes:
 - default JSON output
 - `--names-only`
 - `--summary`
+
+Current generation policy:
+
+- `npm run generate` emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
+- profile-resource definitions are intentionally excluded from generation for now
+- `profile-resource` entries are deferred because some pinned R4 profile names are not unique enough for the current name-based file emission strategy
 
 ## Design Principles
 

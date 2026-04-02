@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Money
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -22,8 +22,10 @@ export interface Money extends Element {
 	_value?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const MoneySchemaInternal = z
@@ -41,4 +43,4 @@ export const MoneySchemaInternal = z
 	})
 	.strict();
 
-export const MoneySchema: z.ZodType<Money> = MoneySchemaInternal;
+export const MoneySchema = MoneySchemaInternal as z.ZodType<Money>;

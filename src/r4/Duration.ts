@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Duration
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -14,8 +14,10 @@ import type { Quantity } from "./Quantity";
 /** Base StructureDefinition for Duration Type: A length of time. */
 export interface Duration extends Quantity {}
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const DurationSchemaInternal = z
@@ -42,4 +44,4 @@ export const DurationSchemaInternal = z
 	})
 	.strict();
 
-export const DurationSchema: z.ZodType<Duration> = DurationSchemaInternal;
+export const DurationSchema = DurationSchemaInternal as z.ZodType<Duration>;

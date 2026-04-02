@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
@@ -94,24 +94,28 @@ export interface Patient extends DomainResource {
 	telecom?: Array<ContactPoint>;
 }
 
-const getAddressSchema = (): z.ZodType<Address> => AddressSchemaInternal;
+const getAddressSchema = (): z.ZodType<Address> =>
+	AddressSchemaInternal as z.ZodType<Address>;
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal;
+	AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getHumanNameSchema = (): z.ZodType<HumanName> => HumanNameSchemaInternal;
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getHumanNameSchema = (): z.ZodType<HumanName> =>
+	HumanNameSchemaInternal as z.ZodType<HumanName>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getPatient_CommunicationSchema = (): z.ZodType<Patient_Communication> =>
-	Patient_CommunicationSchemaInternal;
+	Patient_CommunicationSchemaInternal as z.ZodType<Patient_Communication>;
 const getPatient_ContactSchema = (): z.ZodType<Patient_Contact> =>
-	Patient_ContactSchemaInternal;
+	Patient_ContactSchemaInternal as z.ZodType<Patient_Contact>;
 const getPatient_LinkSchema = (): z.ZodType<Patient_Link> =>
-	Patient_LinkSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	Patient_LinkSchemaInternal as z.ZodType<Patient_Link>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const PatientSchemaInternal = DomainResourceSchemaInternal.extend({
@@ -188,4 +192,4 @@ export const PatientSchemaInternal = DomainResourceSchemaInternal.extend({
 		);
 	});
 
-export const PatientSchema: z.ZodType<Patient> = PatientSchemaInternal;
+export const PatientSchema = PatientSchemaInternal as z.ZodType<Patient>;

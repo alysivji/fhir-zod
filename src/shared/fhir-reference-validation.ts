@@ -21,6 +21,10 @@ export function validateReferenceTarget(
 	allowedResourceTypes: string[],
 	ctx: z.RefinementCtx,
 ): void {
+	if (allowedResourceTypes.includes("Resource")) {
+		return;
+	}
+
 	const references = Array.isArray(value) ? value : [value];
 
 	for (const [index, referenceValue] of references.entries()) {
@@ -102,7 +106,7 @@ export function inferReferenceResourceType(
 export function inferResourceTypeFromPathSegments(
 	segments: string[],
 ): string | null {
-	for (let index = 0; index < segments.length - 1; index += 1) {
+	for (let index = segments.length - 2; index >= 0; index -= 1) {
 		const segment = segments[index];
 		const nextSegment = segments[index + 1];
 

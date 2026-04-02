@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -62,14 +62,19 @@ export interface Dosage extends BackboneElement {
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getDosage_DoseAndRateSchema = (): z.ZodType<Dosage_DoseAndRate> =>
-	Dosage_DoseAndRateSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
-const getRatioSchema = (): z.ZodType<Ratio> => RatioSchemaInternal;
-const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
+	Dosage_DoseAndRateSchemaInternal as z.ZodType<Dosage_DoseAndRate>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
+const getRatioSchema = (): z.ZodType<Ratio> =>
+	RatioSchemaInternal as z.ZodType<Ratio>;
+const getTimingSchema = (): z.ZodType<Timing> =>
+	TimingSchemaInternal as z.ZodType<Timing>;
 
 /** @internal */
 export const DosageSchemaInternal = z
@@ -120,4 +125,4 @@ export const DosageSchemaInternal = z
 		}
 	});
 
-export const DosageSchema: z.ZodType<Dosage> = DosageSchemaInternal;
+export const DosageSchema = DosageSchemaInternal as z.ZodType<Dosage>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:26:21.962Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
@@ -22,24 +22,26 @@ export interface Timing extends BackboneElement {
 	/** Identifies specific times when the event occurs. */
 	event?: Array<string>;
 	/** Extensions for event */
-	_event?: Element;
+	_event?: Array<Element>;
 	/** A set of rules that describe when the event is scheduled. */
 	repeat?: Timing_Repeat;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 const getTiming_RepeatSchema = (): z.ZodType<Timing_Repeat> =>
-	Timing_RepeatSchemaInternal;
+	Timing_RepeatSchemaInternal as z.ZodType<Timing_Repeat>;
 
 /** @internal */
 export const TimingSchemaInternal = z
 	.object({
 		code: z.lazy(getCodeableConceptSchema).optional(),
 		event: fhirDateTime().array().optional(),
-		_event: z.lazy(getElementSchema).optional(),
+		_event: z.lazy(getElementSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
@@ -48,4 +50,4 @@ export const TimingSchemaInternal = z
 	})
 	.strict();
 
-export const TimingSchema: z.ZodType<Timing> = TimingSchemaInternal;
+export const TimingSchema = TimingSchemaInternal as z.ZodType<Timing>;

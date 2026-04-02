@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:26:21.962Z
 
 import * as z from "zod";
 import { fhirId, fhirTime } from "../shared/fhir-primitives";
@@ -35,7 +35,7 @@ export interface Timing_Repeat extends Element {
 	/** If one or more days of week is provided, then the action happens only on the specified day(s). */
 	dayOfWeek?: Array<"fri" | "mon" | "sat" | "sun" | "thu" | "tue" | "wed">;
 	/** Extensions for dayOfWeek */
-	_dayOfWeek?: Element;
+	_dayOfWeek?: Array<Element>;
 	/** How long this thing happens for when it happens. If durationMax is present, this element indicates the lower bound of the allowed range of the duration. */
 	duration?: number;
 	/** Extensions for duration */
@@ -75,7 +75,7 @@ export interface Timing_Repeat extends Element {
 	/** Specified time of day for action to take place. */
 	timeOfDay?: Array<string>;
 	/** Extensions for timeOfDay */
-	_timeOfDay?: Element;
+	_timeOfDay?: Array<Element>;
 	/** An approximate time period during the day, potentially linked to an event of daily living that indicates when the action should occur. */
 	when?: Array<
 		| "AC"
@@ -110,14 +110,19 @@ export interface Timing_Repeat extends Element {
 		| "WAKE"
 	>;
 	/** Extensions for when */
-	_when?: Element;
+	_when?: Array<Element>;
 }
 
-const getDurationSchema = (): z.ZodType<Duration> => DurationSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
-const getRangeSchema = (): z.ZodType<Range> => RangeSchemaInternal;
+const getDurationSchema = (): z.ZodType<Duration> =>
+	DurationSchemaInternal as z.ZodType<Duration>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
+const getRangeSchema = (): z.ZodType<Range> =>
+	RangeSchemaInternal as z.ZodType<Range>;
 
 /** @internal */
 export const Timing_RepeatSchemaInternal = z
@@ -133,7 +138,7 @@ export const Timing_RepeatSchemaInternal = z
 			.enum(["fri", "mon", "sat", "sun", "thu", "tue", "wed"])
 			.array()
 			.optional(),
-		_dayOfWeek: z.lazy(getElementSchema).optional(),
+		_dayOfWeek: z.lazy(getElementSchema).array().optional(),
 		duration: z.number().optional(),
 		_duration: z.lazy(getElementSchema).optional(),
 		durationMax: z.number().optional(),
@@ -156,7 +161,7 @@ export const Timing_RepeatSchemaInternal = z
 		periodUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
 		_periodUnit: z.lazy(getElementSchema).optional(),
 		timeOfDay: fhirTime().array().optional(),
-		_timeOfDay: z.lazy(getElementSchema).optional(),
+		_timeOfDay: z.lazy(getElementSchema).array().optional(),
 		when: z
 			.enum([
 				"AC",
@@ -192,7 +197,7 @@ export const Timing_RepeatSchemaInternal = z
 			])
 			.array()
 			.optional(),
-		_when: z.lazy(getElementSchema).optional(),
+		_when: z.lazy(getElementSchema).array().optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
@@ -212,5 +217,5 @@ export const Timing_RepeatSchemaInternal = z
 		}
 	});
 
-export const Timing_RepeatSchema: z.ZodType<Timing_Repeat> =
-	Timing_RepeatSchemaInternal;
+export const Timing_RepeatSchema =
+	Timing_RepeatSchemaInternal as z.ZodType<Timing_Repeat>;

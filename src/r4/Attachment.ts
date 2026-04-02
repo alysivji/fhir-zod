@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Attachment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
@@ -46,8 +46,10 @@ export interface Attachment extends Element {
 	_url?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const AttachmentSchemaInternal = z
@@ -89,4 +91,5 @@ export const AttachmentSchemaInternal = z
 	})
 	.strict();
 
-export const AttachmentSchema: z.ZodType<Attachment> = AttachmentSchemaInternal;
+export const AttachmentSchema =
+	AttachmentSchemaInternal as z.ZodType<Attachment>;

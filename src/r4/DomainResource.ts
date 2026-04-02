@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DomainResource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:26:21.962Z
 
 import * as z from "zod";
 import type { Extension } from "./Extension";
@@ -27,17 +27,22 @@ export interface DomainResource extends Resource {
 	text?: Narrative;
 }
 
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getNarrativeSchema = (): z.ZodType<Narrative> => NarrativeSchemaInternal;
-const getResourceSchema = (): z.ZodType<Resource> => ResourceSchemaInternal;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getNarrativeSchema = (): z.ZodType<Narrative> =>
+	NarrativeSchemaInternal as z.ZodType<Narrative>;
 
 /** @internal */
 export const DomainResourceSchemaInternal = ResourceSchemaInternal.extend({
-	contained: z.lazy(getResourceSchema).array().optional(),
+	contained: z
+		.object({ resourceType: z.string() })
+		.passthrough()
+		.array()
+		.optional(),
 	extension: z.lazy(getExtensionSchema).array().optional(),
 	modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 	text: z.lazy(getNarrativeSchema).optional(),
 }).strict();
 
-export const DomainResourceSchema: z.ZodType<DomainResource> =
-	DomainResourceSchemaInternal;
+export const DomainResourceSchema =
+	DomainResourceSchemaInternal as z.ZodType<DomainResource>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Meta
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:26:21.962Z
 
 import * as z from "zod";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
@@ -21,7 +21,7 @@ export interface Meta extends Element {
 	/** A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url). */
 	profile?: Array<string>;
 	/** Extensions for profile */
-	_profile?: Element;
+	_profile?: Array<Element>;
 	/** Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. */
 	security?: Array<Coding>;
 	/** A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. */
@@ -36,9 +36,12 @@ export interface Meta extends Element {
 	_versionId?: Element;
 }
 
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const MetaSchemaInternal = z
@@ -49,7 +52,7 @@ export const MetaSchemaInternal = z
 		lastUpdated: fhirInstant().optional(),
 		_lastUpdated: z.lazy(getElementSchema).optional(),
 		profile: z.string().regex(/\S*/).array().optional(),
-		_profile: z.lazy(getElementSchema).optional(),
+		_profile: z.lazy(getElementSchema).array().optional(),
 		security: z.lazy(getCodingSchema).array().optional(),
 		source: z.string().regex(/\S*/).optional(),
 		_source: z.lazy(getElementSchema).optional(),
@@ -59,4 +62,4 @@ export const MetaSchemaInternal = z
 	})
 	.strict();
 
-export const MetaSchema: z.ZodType<Meta> = MetaSchemaInternal;
+export const MetaSchema = MetaSchemaInternal as z.ZodType<Meta>;

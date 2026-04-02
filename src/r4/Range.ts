@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Range
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -20,9 +20,12 @@ export interface Range extends Element {
 	low?: Quantity;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const RangeSchemaInternal = z
@@ -35,4 +38,4 @@ export const RangeSchemaInternal = z
 	})
 	.strict();
 
-export const RangeSchema: z.ZodType<Range> = RangeSchemaInternal;
+export const RangeSchema = RangeSchemaInternal as z.ZodType<Range>;

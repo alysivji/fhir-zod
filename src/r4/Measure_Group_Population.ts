@@ -1,0 +1,48 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/Measure
+// Release: R4
+// Version: 4.0.1
+// Last generated: 2026-04-02T05:23:25.793Z
+
+import * as z from "zod";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { Expression } from "./Expression";
+import { ExpressionSchemaInternal } from "./Expression";
+
+/** A population criteria for the measure. */
+export interface Measure_Group_Population extends BackboneElement {
+	/** The type of population criteria. */
+	code?: CodeableConcept;
+	/** An expression that specifies the criteria for the population, typically the name of an expression in a library. */
+	criteria: Expression;
+	/** The human readable description of this population criteria. */
+	description?: string;
+	/** Extensions for description */
+	_description?: Element;
+}
+
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExpressionSchema = (): z.ZodType<Expression> =>
+	ExpressionSchemaInternal as z.ZodType<Expression>;
+
+/** @internal */
+export const Measure_Group_PopulationSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		code: z.lazy(getCodeableConceptSchema).optional(),
+		criteria: z.lazy(getExpressionSchema),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
+		_description: z.lazy(getElementSchema).optional(),
+	}).strict();
+
+export const Measure_Group_PopulationSchema =
+	Measure_Group_PopulationSchemaInternal as z.ZodType<Measure_Group_Population>;

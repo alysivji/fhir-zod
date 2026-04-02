@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/UsageContext
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:26:21.962Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -26,23 +26,29 @@ export interface UsageContext extends Element {
 	/** A code that identifies the type of context being specified by this usage context. */
 	code: Coding;
 	/** A value that defines the context specified in this context of use. The interpretation of the value is defined by the code. */
-	valueCodeableConcept: CodeableConcept;
+	valueCodeableConcept?: CodeableConcept;
 	/** A value that defines the context specified in this context of use. The interpretation of the value is defined by the code. */
-	valueQuantity: Quantity;
+	valueQuantity?: Quantity;
 	/** A value that defines the context specified in this context of use. The interpretation of the value is defined by the code. */
-	valueRange: Range;
+	valueRange?: Range;
 	/** A value that defines the context specified in this context of use. The interpretation of the value is defined by the code. */
-	valueReference: Reference;
+	valueReference?: Reference;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
-const getRangeSchema = (): z.ZodType<Range> => RangeSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
+const getRangeSchema = (): z.ZodType<Range> =>
+	RangeSchemaInternal as z.ZodType<Range>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const UsageContextSchemaInternal = z
@@ -51,10 +57,10 @@ export const UsageContextSchemaInternal = z
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		valueCodeableConcept: z.lazy(getCodeableConceptSchema),
-		valueQuantity: z.lazy(getQuantitySchema),
-		valueRange: z.lazy(getRangeSchema),
-		valueReference: z.lazy(getReferenceSchema),
+		valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+		valueQuantity: z.lazy(getQuantitySchema).optional(),
+		valueRange: z.lazy(getRangeSchema).optional(),
+		valueReference: z.lazy(getReferenceSchema).optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
@@ -65,6 +71,14 @@ export const UsageContextSchemaInternal = z
 			"valueRange",
 			"valueReference",
 		].filter((field) => record[field] !== undefined);
+		if (value_x_Present.length === 0) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message:
+					"One of valueCodeableConcept, valueQuantity, valueRange, valueReference must be present for value[x]",
+				path: ["valueCodeableConcept"],
+			});
+		}
 		if (value_x_Present.length > 1) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
@@ -98,5 +112,5 @@ export const UsageContextSchemaInternal = z
 		);
 	});
 
-export const UsageContextSchema: z.ZodType<UsageContext> =
-	UsageContextSchemaInternal;
+export const UsageContextSchema =
+	UsageContextSchemaInternal as z.ZodType<UsageContext>;

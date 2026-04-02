@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -22,8 +22,10 @@ export interface Patient_Link extends BackboneElement {
 	_type?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Patient_LinkSchemaInternal = BackboneElementSchemaInternal.extend({
@@ -46,5 +48,5 @@ export const Patient_LinkSchemaInternal = BackboneElementSchemaInternal.extend({
 		);
 	});
 
-export const Patient_LinkSchema: z.ZodType<Patient_Link> =
-	Patient_LinkSchemaInternal;
+export const Patient_LinkSchema =
+	Patient_LinkSchemaInternal as z.ZodType<Patient_Link>;

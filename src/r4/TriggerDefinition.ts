@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TriggerDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirDate, fhirDateTime, fhirId } from "../shared/fhir-primitives";
@@ -56,13 +56,17 @@ export interface TriggerDefinition extends Element {
 }
 
 const getDataRequirementSchema = (): z.ZodType<DataRequirement> =>
-	DataRequirementSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+	DataRequirementSchemaInternal as z.ZodType<DataRequirement>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
 const getExpressionSchema = (): z.ZodType<Expression> =>
-	ExpressionSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
-const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
+	ExpressionSchemaInternal as z.ZodType<Expression>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
+const getTimingSchema = (): z.ZodType<Timing> =>
+	TimingSchemaInternal as z.ZodType<Timing>;
 
 /** @internal */
 export const TriggerDefinitionSchemaInternal = z
@@ -121,5 +125,5 @@ export const TriggerDefinitionSchemaInternal = z
 		);
 	});
 
-export const TriggerDefinitionSchema: z.ZodType<TriggerDefinition> =
-	TriggerDefinitionSchemaInternal;
+export const TriggerDefinitionSchema =
+	TriggerDefinitionSchemaInternal as z.ZodType<TriggerDefinition>;

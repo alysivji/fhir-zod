@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Identifier
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -40,11 +40,15 @@ export interface Identifier extends Element {
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const IdentifierSchemaInternal = z
@@ -77,4 +81,5 @@ export const IdentifierSchemaInternal = z
 		);
 	});
 
-export const IdentifierSchema: z.ZodType<Identifier> = IdentifierSchemaInternal;
+export const IdentifierSchema =
+	IdentifierSchemaInternal as z.ZodType<Identifier>;

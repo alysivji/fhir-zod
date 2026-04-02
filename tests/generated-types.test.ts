@@ -1,5 +1,22 @@
-import type { HumanName, Patient } from "@fhir-zod/core/r4";
-import { PatientSchema } from "@fhir-zod/core/r4";
+import type {
+	Account,
+	Bundle,
+	Encounter,
+	HumanName,
+	Observation,
+	Patient,
+	Practitioner,
+	ValueSet,
+} from "@fhir-zod/core/r4";
+import {
+	AccountSchema,
+	BundleSchema,
+	EncounterSchema,
+	ObservationSchema,
+	PatientSchema,
+	PractitionerSchema,
+	ValueSetSchema,
+} from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 
 describe("generated model types", () => {
@@ -22,5 +39,52 @@ describe("generated model types", () => {
 
 		expect(patient.resourceType).toBe("Patient");
 		expect(humanName.family).toBe("Doe");
+	});
+
+	it("exports representative core resources as model types with separate schemas", () => {
+		const patient: Patient = PatientSchema.parse({
+			resourceType: "Patient",
+		});
+		const account: Account = AccountSchema.parse({
+			resourceType: "Account",
+			status: "active",
+		});
+		const observation: Observation = ObservationSchema.parse({
+			code: {
+				text: "Example observation",
+			},
+			resourceType: "Observation",
+			status: "final",
+		});
+		const encounter: Encounter = EncounterSchema.parse({
+			class: {
+				code: "AMB",
+			},
+			resourceType: "Encounter",
+			status: "finished",
+		});
+		const practitioner: Practitioner = PractitionerSchema.parse({
+			resourceType: "Practitioner",
+		});
+		const bundle: Bundle = BundleSchema.parse({
+			entry: [
+				{
+					resource: patient,
+				},
+			],
+			resourceType: "Bundle",
+			type: "collection",
+		});
+		const valueSet: ValueSet = ValueSetSchema.parse({
+			resourceType: "ValueSet",
+			status: "active",
+		});
+
+		expect(account.resourceType).toBe("Account");
+		expect(observation.resourceType).toBe("Observation");
+		expect(encounter.resourceType).toBe("Encounter");
+		expect(practitioner.resourceType).toBe("Practitioner");
+		expect(bundle.entry?.[0]?.resource).toEqual(patient);
+		expect(valueSet.resourceType).toBe("ValueSet");
 	});
 });

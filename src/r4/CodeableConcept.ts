@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeableConcept
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -22,9 +22,12 @@ export interface CodeableConcept extends Element {
 	_text?: Element;
 }
 
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const CodeableConceptSchemaInternal = z
@@ -41,5 +44,5 @@ export const CodeableConceptSchemaInternal = z
 	})
 	.strict();
 
-export const CodeableConceptSchema: z.ZodType<CodeableConcept> =
-	CodeableConceptSchemaInternal;
+export const CodeableConceptSchema =
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;

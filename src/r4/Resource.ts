@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Resource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -28,8 +28,10 @@ export interface Resource {
 	meta?: Meta;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getMetaSchema = (): z.ZodType<Meta> => MetaSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+	MetaSchemaInternal as z.ZodType<Meta>;
 
 /** @internal */
 export const ResourceSchemaInternal = z
@@ -47,4 +49,4 @@ export const ResourceSchemaInternal = z
 	})
 	.strict();
 
-export const ResourceSchema: z.ZodType<Resource> = ResourceSchemaInternal;
+export const ResourceSchema = ResourceSchemaInternal as z.ZodType<Resource>;

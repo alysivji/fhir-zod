@@ -1,0 +1,52 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
+// Release: R4
+// Version: 4.0.1
+// Last generated: 2026-04-02T05:23:25.793Z
+
+import * as z from "zod";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+
+/** Actor participating in the resource. */
+export interface ExampleScenario_Actor extends BackboneElement {
+	/** ID or acronym of actor. */
+	actorId: string;
+	/** Extensions for actorId */
+	_actorId?: Element;
+	/** The description of the actor. */
+	description?: string;
+	/** Extensions for description */
+	_description?: Element;
+	/** The name of the actor as shown in the page. */
+	name?: string;
+	/** Extensions for name */
+	_name?: Element;
+	/** The type of actor - person or system. */
+	type: "entity" | "person";
+	/** Extensions for type */
+	_type?: Element;
+}
+
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+
+/** @internal */
+export const ExampleScenario_ActorSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		actorId: z.string().regex(/[ \r\n\t\S]+/),
+		_actorId: z.lazy(getElementSchema).optional(),
+		description: z.string().optional(),
+		_description: z.lazy(getElementSchema).optional(),
+		name: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		type: z.enum(["entity", "person"]),
+		_type: z.lazy(getElementSchema).optional(),
+	}).strict();
+
+export const ExampleScenario_ActorSchema =
+	ExampleScenario_ActorSchemaInternal as z.ZodType<ExampleScenario_Actor>;

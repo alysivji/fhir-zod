@@ -1,23 +1,3 @@
-export const r4AbstractTargetNames = [
-	"BackboneElement",
-	"DomainResource",
-	"Element",
-	"Resource",
-] as const;
-
-export const r4TargetNames = [
-	"CodeableConcept",
-	"Coding",
-	"HumanName",
-	"Identifier",
-	"Patient",
-] as const;
-
-export const r4GenerationTargetNames = [
-	...r4AbstractTargetNames,
-	...r4TargetNames,
-] as const;
-
 export const fhirPrimitiveTypes = new Set([
 	"base64Binary",
 	"boolean",

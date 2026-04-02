@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Signature
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId, fhirInstant } from "../shared/fhir-primitives";
@@ -41,10 +41,14 @@ export interface Signature extends Element {
 	who: Reference;
 }
 
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SignatureSchemaInternal = z
@@ -120,4 +124,4 @@ export const SignatureSchemaInternal = z
 		);
 	});
 
-export const SignatureSchema: z.ZodType<Signature> = SignatureSchemaInternal;
+export const SignatureSchema = SignatureSchemaInternal as z.ZodType<Signature>;

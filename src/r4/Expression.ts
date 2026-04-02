@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Expression
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -34,8 +34,10 @@ export interface Expression extends Element {
 	_reference?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ExpressionSchemaInternal = z
@@ -62,4 +64,5 @@ export const ExpressionSchemaInternal = z
 	})
 	.strict();
 
-export const ExpressionSchema: z.ZodType<Expression> = ExpressionSchemaInternal;
+export const ExpressionSchema =
+	ExpressionSchemaInternal as z.ZodType<Expression>;

@@ -1,0 +1,49 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
+// Release: R4
+// Version: 4.0.1
+// Last generated: 2026-04-02T05:23:25.793Z
+
+import * as z from "zod";
+import type { Attachment } from "./Attachment";
+import { AttachmentSchemaInternal } from "./Attachment";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+
+/** Todo. */
+export interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation
+	extends BackboneElement {
+	/** Todo. */
+	attachment?: Attachment;
+	/** Todo. */
+	representation?: string;
+	/** Extensions for representation */
+	_representation?: Element;
+	/** Todo. */
+	type?: CodeableConcept;
+}
+
+const getAttachmentSchema = (): z.ZodType<Attachment> =>
+	AttachmentSchemaInternal as z.ZodType<Attachment>;
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+
+/** @internal */
+export const SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		attachment: z.lazy(getAttachmentSchema).optional(),
+		representation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
+		_representation: z.lazy(getElementSchema).optional(),
+		type: z.lazy(getCodeableConceptSchema).optional(),
+	}).strict();
+
+export const SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchema =
+	SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation>;

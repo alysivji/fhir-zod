@@ -25,8 +25,24 @@ describe("generated declarations", () => {
 			},
 		);
 
-		const patientDts = readFileSync(
-			join(outDir, "src", "r4", "Patient.d.ts"),
+		const accountDts = readFileSync(
+			join(outDir, "src", "r4", "Account.d.ts"),
+			"utf8",
+		);
+		const bundleDts = readFileSync(
+			join(outDir, "src", "r4", "Bundle.d.ts"),
+			"utf8",
+		);
+		const encounterDts = readFileSync(
+			join(outDir, "src", "r4", "Encounter.d.ts"),
+			"utf8",
+		);
+		const indexDts = readFileSync(
+			join(outDir, "src", "r4", "index.d.ts"),
+			"utf8",
+		);
+		const observationDts = readFileSync(
+			join(outDir, "src", "r4", "Observation.d.ts"),
 			"utf8",
 		);
 		const patientContactDts = readFileSync(
@@ -37,23 +53,34 @@ describe("generated declarations", () => {
 			join(outDir, "src", "r4", "Quantity.d.ts"),
 			"utf8",
 		);
-		const indexDts = readFileSync(
-			join(outDir, "src", "r4", "index.d.ts"),
-			"utf8",
-		);
 
-		expect(patientDts).toContain(
-			"export interface Patient extends DomainResource",
+		expect(accountDts).toContain(
+			"export interface Account extends DomainResource",
 		);
-		expect(patientDts).toContain(
-			"export declare const PatientSchema: z.ZodType<Patient",
+		expect(bundleDts).toContain("export interface Bundle extends Resource");
+		expect(bundleDts).toContain(
+			"export declare const BundleSchema: z.ZodType<Bundle",
 		);
-		expect(patientDts).not.toContain("z.output<typeof");
+		expect(encounterDts).toContain(
+			"export declare const EncounterSchema: z.ZodType<Encounter",
+		);
+		expect(observationDts).toContain(
+			"export interface Observation extends DomainResource",
+		);
+		expect(observationDts).not.toContain("z.output<typeof");
 		expect(patientContactDts).toContain(
 			"export interface Patient_Contact extends BackboneElement",
 		);
 		expect(quantityDts).toContain("export interface Quantity extends Element");
-		expect(indexDts).toContain('export type { Patient } from "./Patient";');
-		expect(indexDts).toContain('export { PatientSchema } from "./Patient";');
-	});
+		expect(indexDts).toContain('export type { Account } from "./Account";');
+		expect(indexDts).toContain('export { AccountSchema } from "./Account";');
+		expect(indexDts).toContain(
+			'export type { Observation } from "./Observation";',
+		);
+		expect(indexDts).toContain(
+			'export { ObservationSchema } from "./Observation";',
+		);
+		expect(indexDts).toContain('export type { ValueSet } from "./ValueSet";');
+		expect(indexDts).toContain('export { ValueSetSchema } from "./ValueSet";');
+	}, 30_000);
 });

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
@@ -34,10 +34,14 @@ export interface DataRequirement_DateFilter extends Element {
 	valuePeriod?: Period;
 }
 
-const getDurationSchema = (): z.ZodType<Duration> => DurationSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+const getDurationSchema = (): z.ZodType<Duration> =>
+	DurationSchemaInternal as z.ZodType<Duration>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const DataRequirement_DateFilterSchemaInternal = z
@@ -78,5 +82,5 @@ export const DataRequirement_DateFilterSchemaInternal = z
 		}
 	});
 
-export const DataRequirement_DateFilterSchema: z.ZodType<DataRequirement_DateFilter> =
-	DataRequirement_DateFilterSchemaInternal;
+export const DataRequirement_DateFilterSchema =
+	DataRequirement_DateFilterSchemaInternal as z.ZodType<DataRequirement_DateFilter>;

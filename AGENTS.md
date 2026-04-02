@@ -32,9 +32,11 @@ Do not rely on the README alone for status. It is partially stale.
 As of this branch:
 
 - R4 generation is implemented and checked in under `src/r4/`
+- default R4 generation targets the canonical core-resource set plus required dependencies
 - spec manifests exist for `stu3`, `r4`, `r4b`, and `r5`
 - the default fetch flow only downloads `r4`
 - R4 is the only version with real generated schema output today
+- R4 profile-resource definitions are still excluded from generation because the current emitted file identity is name-based and some profile names collide
 - some docs still describe the generator as unimplemented; trust the code and `TASKS.md`
 
 ## Source of Truth
@@ -73,7 +75,9 @@ npm run typecheck
 Important implementation facts:
 
 - `scripts/generate.ts` currently generates `r4` only
+- the default R4 generation scope is all `core-resource` targets reported by `npm run list:r4-targets -- --summary`, plus the abstract whitelist
 - `scripts/fetch-spec.ts` defaults to fetching `r4` only
+- `scripts/fetch-examples.ts` refreshes committed R4 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
 - manifests are committed; extracted upstream package contents in `.local/` are not
 - generated files include timestamps, so normalized comparison logic matters for determinism checks
 

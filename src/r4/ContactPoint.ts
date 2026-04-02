@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ContactPoint
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T05:23:25.793Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -34,9 +34,12 @@ export interface ContactPoint extends Element {
 	_value?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const ContactPointSchemaInternal = z
@@ -61,5 +64,5 @@ export const ContactPointSchemaInternal = z
 	})
 	.strict();
 
-export const ContactPointSchema: z.ZodType<ContactPoint> =
-	ContactPointSchemaInternal;
+export const ContactPointSchema =
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
