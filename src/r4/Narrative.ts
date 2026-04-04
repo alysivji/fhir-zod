@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Narrative
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:00:24.609Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
 import type { Element } from "./Element";
@@ -19,7 +19,8 @@ export interface Narrative extends Element {
 	_status?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const NarrativeSchemaInternal = ElementSchemaInternal.extend({
@@ -29,4 +30,4 @@ export const NarrativeSchemaInternal = ElementSchemaInternal.extend({
 	_status: z.lazy(getElementSchema).optional(),
 }).strict();
 
-export const NarrativeSchema: z.ZodType<Narrative> = NarrativeSchemaInternal;
+export const NarrativeSchema = NarrativeSchemaInternal as z.ZodType<Narrative>;

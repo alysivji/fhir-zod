@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Identifier
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -40,29 +40,30 @@ export interface Identifier extends Element {
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const IdentifierSchemaInternal = z
 	.object({
 		assigner: z.lazy(getReferenceSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
-		system: z.string().regex(/\S*/).optional(),
+		system: fhirUri().optional(),
 		_system: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 		use: z.enum(["official", "old", "secondary", "temp", "usual"]).optional(),
 		_use: z.lazy(getElementSchema).optional(),
-		value: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		value: fhirString().optional(),
 		_value: z.lazy(getElementSchema).optional(),
 	})
 	.strict()
@@ -77,4 +78,5 @@ export const IdentifierSchemaInternal = z
 		);
 	});
 
-export const IdentifierSchema: z.ZodType<Identifier> = IdentifierSchemaInternal;
+export const IdentifierSchema =
+	IdentifierSchemaInternal as z.ZodType<Identifier>;

@@ -11,11 +11,19 @@ import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import * as z from "zod";
 import {
+	fhirBase64Binary,
+	fhirCanonical,
+	fhirCode,
 	fhirDate,
 	fhirDateTime,
 	fhirId,
 	fhirInstant,
+	fhirOid,
+	fhirString,
 	fhirTime,
+	fhirUri,
+	fhirUrl,
+	fhirUuid,
 } from "../../shared/fhir-primitives.ts";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation.ts";
 import type { NormalizedDefinition, NormalizedProperty } from "../model.ts";
@@ -30,6 +38,12 @@ import { repoRoot } from "../shared.ts";
 type BuiltFile = {
 	content: string;
 	path: string;
+};
+
+type ChoiceGroup = {
+	choiceGroup: string;
+	fields: string[];
+	requiresValue: boolean;
 };
 
 export function buildRuntimeSchemas(
@@ -69,6 +83,7 @@ export function writeNormalizedZodDefinitions(options: {
 	definitions: Map<string, NormalizedDefinition>;
 	generatedAt: string;
 	outputDir: string;
+	prune?: boolean;
 	primitivePatterns: Map<string, string>;
 }): string[] {
 	const files = formatBuiltFiles(buildNormalizedZodFiles(options));
@@ -78,10 +93,12 @@ export function writeNormalizedZodDefinitions(options: {
 		writeFileIfChanged(file.path, file.content);
 	}
 
-	pruneGeneratedFiles(
-		options.outputDir,
-		files.map((file) => file.path),
-	);
+	if (options.prune ?? true) {
+		pruneGeneratedFiles(
+			options.outputDir,
+			files.map((file) => file.path),
+		);
+	}
 
 	return files.map((file) => file.path);
 }
@@ -206,7 +223,11 @@ function emitDefinitionFile(
 	}
 
 	for (const property of runtimeProperties) {
-		if (property.typeRef && definitions.has(property.typeRef)) {
+		if (
+			property.typeRef &&
+			property.typeRef !== "Resource" &&
+			definitions.has(property.typeRef)
+		) {
 			lazySchemaHelpers.add(property.typeRef);
 
 			if (property.typeRef !== definition.name) {
@@ -214,7 +235,10 @@ function emitDefinitionFile(
 			}
 		}
 
-		const primitiveHelper = primitiveHelperName(property.primitiveType);
+		const primitiveHelper =
+			property.enumValues === null
+				? primitiveHelperName(property.primitiveType)
+				: null;
 
 		if (primitiveHelper) {
 			helperImports.add(primitiveHelper);
@@ -455,7 +479,7 @@ function emitSchemaDeclaration(
 
 function emitPublicSchemaExport(definition: NormalizedDefinition): string[] {
 	return [
-		`export const ${schemaExportName(definition.name)}: z.ZodType<${definition.name}> = ${schemaInternalName(definition.name)};`,
+		`export const ${schemaExportName(definition.name)} = ${schemaInternalName(definition.name)} as z.ZodType<${definition.name}>;`,
 	];
 }
 
@@ -632,6 +656,10 @@ function emitBaseExpression(
 		return `z.literal(${JSON.stringify(definition.resourceTypeLiteral)})`;
 	}
 
+	if (property.typeRef === "Resource") {
+		return "z.object({ resourceType: z.string() }).passthrough()";
+	}
+
 	if (property.typeRef && definitions.has(property.typeRef)) {
 		return `z.lazy(${lazySchemaHelperName(property.typeRef)})`;
 	}
@@ -644,7 +672,9 @@ function emitBaseExpression(
 		return emitPrimitiveExpression(property.primitiveType, primitivePatterns);
 	}
 
-	return "z.any()";
+	return property.required
+		? "z.custom<unknown>((value) => value !== undefined)"
+		: "z.unknown()";
 }
 
 function buildRuntimePropertySchema(
@@ -661,6 +691,8 @@ function buildRuntimePropertySchema(
 		definition.resourceTypeLiteral !== null
 	) {
 		baseSchema = z.literal(definition.resourceTypeLiteral);
+	} else if (property.typeRef === "Resource") {
+		baseSchema = z.object({ resourceType: z.string() }).passthrough();
 	} else if (property.typeRef !== null && definitions.has(property.typeRef)) {
 		const typeRef = property.typeRef;
 		baseSchema = z.lazy(() => runtimeSchemas[typeRef] ?? z.unknown());
@@ -672,7 +704,9 @@ function buildRuntimePropertySchema(
 			primitivePatterns,
 		);
 	} else {
-		baseSchema = z.any();
+		baseSchema = property.required
+			? z.custom<unknown>((value) => value !== undefined)
+			: z.unknown();
 	}
 
 	if (property.isArray) {
@@ -708,6 +742,15 @@ function applyChoiceGroupRefinement(
 				(field) => record[field] !== undefined,
 			);
 
+			if (presentVariants.length === 0 && group.requiresValue) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: `One of ${group.fields.join(", ")} must be present for ${group.choiceGroup}`,
+					path: [group.fields[0]],
+				});
+				continue;
+			}
+
 			if (presentVariants.length <= 1) {
 				continue;
 			}
@@ -725,10 +768,9 @@ function applyChoiceGroupRefinement(
 	});
 }
 
-function collectChoiceGroups(
-	definition: NormalizedDefinition,
-): Array<{ choiceGroup: string; fields: string[] }> {
+function collectChoiceGroups(definition: NormalizedDefinition): ChoiceGroup[] {
 	const fieldsByGroup = new Map<string, string[]>();
+	const requiredChoiceGroups = new Set<string>();
 
 	for (const property of definition.properties) {
 		if (!property.choiceGroup || property.jsonName.startsWith("_")) {
@@ -738,6 +780,10 @@ function collectChoiceGroups(
 		const fields = fieldsByGroup.get(property.choiceGroup) ?? [];
 		fields.push(property.jsonName);
 		fieldsByGroup.set(property.choiceGroup, fields);
+
+		if (property.min > 0) {
+			requiredChoiceGroups.add(property.choiceGroup);
+		}
 	}
 
 	return [...fieldsByGroup.entries()]
@@ -746,6 +792,7 @@ function collectChoiceGroups(
 			fields: [...new Set(fields)].sort((left, right) =>
 				left.localeCompare(right),
 			),
+			requiresValue: requiredChoiceGroups.has(choiceGroup),
 		}))
 		.filter((group) => group.fields.length > 1)
 		.sort((left, right) => left.choiceGroup.localeCompare(right.choiceGroup));
@@ -767,6 +814,17 @@ function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
 
 			return [
 				`\t\tconst ${choiceGroupVariableName(group.choiceGroup)} = ${fieldArray}.filter((field) => record[field] !== undefined);`,
+				...(group.requiresValue
+					? [
+							`\t\tif (${choiceGroupVariableName(group.choiceGroup)}.length === 0) {`,
+							"\t\t\tctx.addIssue({",
+							"\t\t\t\tcode: z.ZodIssueCode.custom,",
+							`\t\t\t\tmessage: ${JSON.stringify(`One of ${group.fields.join(", ")} must be present for ${group.choiceGroup}`)},`,
+							`\t\t\t\tpath: [${JSON.stringify(group.fields[0])}],`,
+							"\t\t\t});",
+							"\t\t}",
+						]
+					: []),
 				`\t\tif (${choiceGroupVariableName(group.choiceGroup)}.length > 1) {`,
 				"\t\t\tctx.addIssue({",
 				"\t\t\t\tcode: z.ZodIssueCode.custom,",
@@ -872,7 +930,7 @@ function emitLazySchemaHelpers(typeRefs: Set<string>): string[] {
 			.sort((left, right) => left.localeCompare(right))
 			.map(
 				(typeRef) =>
-					`const ${lazySchemaHelperName(typeRef)} = (): z.ZodType<${typeRef}> => ${schemaInternalName(typeRef)};`,
+					`const ${lazySchemaHelperName(typeRef)} = (): z.ZodType<${typeRef}> => ${schemaInternalName(typeRef)} as z.ZodType<${typeRef}>;`,
 			),
 	];
 }
@@ -1018,6 +1076,12 @@ function emitRecordAccess(recordName: string, field: string): string {
 
 function primitiveHelperName(type: string | null): string | null {
 	switch (type) {
+		case "base64Binary":
+			return "fhirBase64Binary";
+		case "canonical":
+			return "fhirCanonical";
+		case "code":
+			return "fhirCode";
 		case "id":
 			return "fhirId";
 		case "date":
@@ -1026,8 +1090,18 @@ function primitiveHelperName(type: string | null): string | null {
 			return "fhirDateTime";
 		case "instant":
 			return "fhirInstant";
+		case "oid":
+			return "fhirOid";
+		case "string":
+			return "fhirString";
 		case "time":
 			return "fhirTime";
+		case "uri":
+			return "fhirUri";
+		case "url":
+			return "fhirUrl";
+		case "uuid":
+			return "fhirUuid";
 		default:
 			return null;
 	}
@@ -1035,6 +1109,12 @@ function primitiveHelperName(type: string | null): string | null {
 
 function primitiveHelper(type: string): (() => z.ZodString) | null {
 	switch (type) {
+		case "base64Binary":
+			return fhirBase64Binary;
+		case "canonical":
+			return fhirCanonical;
+		case "code":
+			return fhirCode;
 		case "id":
 			return fhirId;
 		case "date":
@@ -1043,8 +1123,18 @@ function primitiveHelper(type: string): (() => z.ZodString) | null {
 			return fhirDateTime;
 		case "instant":
 			return fhirInstant;
+		case "oid":
+			return fhirOid;
+		case "string":
+			return fhirString;
 		case "time":
 			return fhirTime;
+		case "uri":
+			return fhirUri;
+		case "url":
+			return fhirUrl;
+		case "uuid":
+			return fhirUuid;
 		default:
 			return null;
 	}

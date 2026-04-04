@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Annotation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
@@ -31,21 +31,21 @@ export interface Annotation extends Element {
 	_time?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const AnnotationSchemaInternal = z
 	.object({
 		authorReference: z.lazy(getReferenceSchema).optional(),
-		authorString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		authorString: fhirString().optional(),
 		_authorString: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		text: z.string(),
 		_text: z.lazy(getElementSchema).optional(),
@@ -80,4 +80,5 @@ export const AnnotationSchemaInternal = z
 		);
 	});
 
-export const AnnotationSchema: z.ZodType<Annotation> = AnnotationSchemaInternal;
+export const AnnotationSchema =
+	AnnotationSchemaInternal as z.ZodType<Annotation>;

@@ -261,6 +261,21 @@ describe("Patient", () => {
 		);
 	});
 
+	it("accepts bare resource names in reference.type", () => {
+		const result = PatientSchema.parse({
+			managingOrganization: {
+				reference: "Organization/example",
+				type: "Organization",
+			},
+			resourceType: "Patient",
+		});
+
+		expect(result.managingOrganization).toEqual({
+			reference: "Organization/example",
+			type: "Organization",
+		});
+	});
+
 	it("rejects when reference.type and reference disagree", () => {
 		const result = PatientSchema.safeParse({
 			managingOrganization: {

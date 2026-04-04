@@ -60,8 +60,12 @@ Track the work needed to align the repository with the current README.
 - [x] Handle required vs optional fields
 - [x] Handle choice fields such as `value[x]`
 - [x] Enforce single-choice presence for generated choice fields
+- [x] Enforce required choice-group presence without making every variant individually required
 - [x] Make generator output deterministic
 - [x] Implement generation entrypoint in `scripts/generate.ts`
+- [x] Replace the hand-maintained Patient-first R4 seed list with shared target discovery
+- [x] Default R4 generation to all canonical core resources plus required dependencies
+- [x] Exclude profile-resource definitions from generation until canonical-url-based naming is implemented
 
 ## Generated Schema Output
 
@@ -100,12 +104,22 @@ Track the work needed to align the repository with the current README.
 - [x] Add tests for generator determinism
 - [x] Add a schema test that rejects unknown top-level Patient fields
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
+- [x] Add R4 target-inventory regression tests
+- [x] Add generic official-example tests for generated R4 fixtures
+- [ ] Investigate the four skipped official R4 examples that violate emitted base reference-target constraints
+  Current skips:
+  `DeviceMetric/devicemetric-example.json`
+  `DeviceUseStatement/deviceusestatement-example.json`
+  `MedicationRequest/medicationrequest0301.json`
+  `Observation/observation-example-clinical-gender.json`
+  Follow-up:
+  trace each example back to the pinned R4 StructureDefinitions and decide whether the mismatch is a spec/example inconsistency, a generator extraction bug, or an intentional compatibility gap.
 
 ## Documentation
 
 - [ ] Keep README examples aligned with generated output and target public API
 - [x] Document how to refresh spec files
-- [ ] Document how to run the generator
+- [x] Document how to run the generator
 - [ ] Document expectations around generated vs handwritten files
 - [ ] Document how BackboneElement behavior is represented in generated schemas
 - [ ] Document the intended split between public TS models and runtime Zod schemas
@@ -116,6 +130,9 @@ Track the work needed to align the repository with the current README.
 
 - [x] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
 - [ ] Model primitive underscore fields as FHIR primitive extensions and compare the approach with `fhir.resources`
+- [ ] Decide whether to support lenient parsing of empty-string primitive values seen in real-world data even when they are invalid FHIR
+  Follow-up:
+  determine whether this belongs in core schema validation, an opt-in compatibility mode, or a separate normalization layer before validation.
 - [x] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
 
 ## Reference Follow-Up
@@ -124,6 +141,7 @@ Track the work needed to align the repository with the current README.
 - [ ] Add direct unit tests for `src/shared/fhir-reference-validation.ts`
 - [ ] Decide whether constrained reference validation should surface richer errors for internal references when the containing `contained` resources are available
 - [ ] Document the supported FHIR reference forms and current ambiguity behavior in the README or generator docs
+- [ ] Decide whether `Resource`-typed fields should keep the current permissive runtime handling or move to a generated any-resource dispatcher
 
 ## Non-Goals
 

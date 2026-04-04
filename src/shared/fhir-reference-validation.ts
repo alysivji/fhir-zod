@@ -21,6 +21,10 @@ export function validateReferenceTarget(
 	allowedResourceTypes: string[],
 	ctx: z.RefinementCtx,
 ): void {
+	if (allowedResourceTypes.includes("Resource")) {
+		return;
+	}
+
 	const references = Array.isArray(value) ? value : [value];
 
 	for (const [index, referenceValue] of references.entries()) {
@@ -40,9 +44,16 @@ export function validateReferenceTarget(
 			typeof referenceObject.type === "string"
 				? normalizeReferenceCanonicalUrl(referenceObject.type)
 				: null;
+		const normalizedTypeCanonical =
+			normalizedType && isResourceTypeName(normalizedType)
+				? `http://hl7.org/fhir/StructureDefinition/${normalizedType}`
+				: normalizedType;
 		const inferredType = inferReferenceResourceType(reference);
 
-		if (normalizedType && !allowedCanonicalTypes.includes(normalizedType)) {
+		if (
+			normalizedTypeCanonical &&
+			!allowedCanonicalTypes.includes(normalizedTypeCanonical)
+		) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
 				message: `Expected ${field}.type to be one of: ${allowedResourceTypes.join(", ")}; got ${normalizedType}`,
@@ -51,9 +62,9 @@ export function validateReferenceTarget(
 		}
 
 		if (
-			normalizedType &&
+			normalizedTypeCanonical &&
 			inferredType &&
-			targetProfileToResourceType(normalizedType) !== inferredType
+			targetProfileToResourceType(normalizedTypeCanonical) !== inferredType
 		) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
@@ -102,7 +113,7 @@ export function inferReferenceResourceType(
 export function inferResourceTypeFromPathSegments(
 	segments: string[],
 ): string | null {
-	for (let index = 0; index < segments.length - 1; index += 1) {
+	for (let index = segments.length - 2; index >= 0; index -= 1) {
 		const segment = segments[index];
 		const nextSegment = segments[index + 1];
 

@@ -1,15 +1,23 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Extension
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
 import {
+	fhirBase64Binary,
+	fhirCanonical,
+	fhirCode,
 	fhirDate,
 	fhirDateTime,
 	fhirId,
 	fhirInstant,
+	fhirOid,
+	fhirString,
 	fhirTime,
+	fhirUri,
+	fhirUrl,
+	fhirUuid,
 } from "../shared/fhir-primitives";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
@@ -222,79 +230,91 @@ export interface Extension extends Element {
 	_valueUuid?: Element;
 }
 
-const getAddressSchema = (): z.ZodType<Address> => AddressSchemaInternal;
-const getAgeSchema = (): z.ZodType<Age> => AgeSchemaInternal;
+const getAddressSchema = (): z.ZodType<Address> =>
+	AddressSchemaInternal as z.ZodType<Address>;
+const getAgeSchema = (): z.ZodType<Age> => AgeSchemaInternal as z.ZodType<Age>;
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal;
+	AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal;
+	AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
 const getContactDetailSchema = (): z.ZodType<ContactDetail> =>
-	ContactDetailSchemaInternal;
+	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal;
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getContributorSchema = (): z.ZodType<Contributor> =>
-	ContributorSchemaInternal;
-const getCountSchema = (): z.ZodType<Count> => CountSchemaInternal;
+	ContributorSchemaInternal as z.ZodType<Contributor>;
+const getCountSchema = (): z.ZodType<Count> =>
+	CountSchemaInternal as z.ZodType<Count>;
 const getDataRequirementSchema = (): z.ZodType<DataRequirement> =>
-	DataRequirementSchemaInternal;
-const getDistanceSchema = (): z.ZodType<Distance> => DistanceSchemaInternal;
-const getDosageSchema = (): z.ZodType<Dosage> => DosageSchemaInternal;
-const getDurationSchema = (): z.ZodType<Duration> => DurationSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
+	DataRequirementSchemaInternal as z.ZodType<DataRequirement>;
+const getDistanceSchema = (): z.ZodType<Distance> =>
+	DistanceSchemaInternal as z.ZodType<Distance>;
+const getDosageSchema = (): z.ZodType<Dosage> =>
+	DosageSchemaInternal as z.ZodType<Dosage>;
+const getDurationSchema = (): z.ZodType<Duration> =>
+	DurationSchemaInternal as z.ZodType<Duration>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
 const getExpressionSchema = (): z.ZodType<Expression> =>
-	ExpressionSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getHumanNameSchema = (): z.ZodType<HumanName> => HumanNameSchemaInternal;
+	ExpressionSchemaInternal as z.ZodType<Expression>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getHumanNameSchema = (): z.ZodType<HumanName> =>
+	HumanNameSchemaInternal as z.ZodType<HumanName>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal;
-const getMetaSchema = (): z.ZodType<Meta> => MetaSchemaInternal;
-const getMoneySchema = (): z.ZodType<Money> => MoneySchemaInternal;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+	MetaSchemaInternal as z.ZodType<Meta>;
+const getMoneySchema = (): z.ZodType<Money> =>
+	MoneySchemaInternal as z.ZodType<Money>;
 const getParameterDefinitionSchema = (): z.ZodType<ParameterDefinition> =>
-	ParameterDefinitionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
-const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
-const getRangeSchema = (): z.ZodType<Range> => RangeSchemaInternal;
-const getRatioSchema = (): z.ZodType<Ratio> => RatioSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	ParameterDefinitionSchemaInternal as z.ZodType<ParameterDefinition>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
+const getRangeSchema = (): z.ZodType<Range> =>
+	RangeSchemaInternal as z.ZodType<Range>;
+const getRatioSchema = (): z.ZodType<Ratio> =>
+	RatioSchemaInternal as z.ZodType<Ratio>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 const getRelatedArtifactSchema = (): z.ZodType<RelatedArtifact> =>
-	RelatedArtifactSchemaInternal;
+	RelatedArtifactSchemaInternal as z.ZodType<RelatedArtifact>;
 const getSampledDataSchema = (): z.ZodType<SampledData> =>
-	SampledDataSchemaInternal;
-const getSignatureSchema = (): z.ZodType<Signature> => SignatureSchemaInternal;
-const getTimingSchema = (): z.ZodType<Timing> => TimingSchemaInternal;
+	SampledDataSchemaInternal as z.ZodType<SampledData>;
+const getSignatureSchema = (): z.ZodType<Signature> =>
+	SignatureSchemaInternal as z.ZodType<Signature>;
+const getTimingSchema = (): z.ZodType<Timing> =>
+	TimingSchemaInternal as z.ZodType<Timing>;
 const getTriggerDefinitionSchema = (): z.ZodType<TriggerDefinition> =>
-	TriggerDefinitionSchemaInternal;
+	TriggerDefinitionSchemaInternal as z.ZodType<TriggerDefinition>;
 const getUsageContextSchema = (): z.ZodType<UsageContext> =>
-	UsageContextSchemaInternal;
+	UsageContextSchemaInternal as z.ZodType<UsageContext>;
 
 /** @internal */
 export const ExtensionSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/),
+		url: fhirUri(),
 		_url: z.lazy(getElementSchema).optional(),
 		valueAddress: z.lazy(getAddressSchema).optional(),
 		valueAge: z.lazy(getAgeSchema).optional(),
 		valueAnnotation: z.lazy(getAnnotationSchema).optional(),
 		valueAttachment: z.lazy(getAttachmentSchema).optional(),
-		valueBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		valueBase64Binary: fhirBase64Binary().optional(),
 		_valueBase64Binary: z.lazy(getElementSchema).optional(),
 		valueBoolean: z.boolean().optional(),
 		_valueBoolean: z.lazy(getElementSchema).optional(),
-		valueCanonical: z.string().regex(/\S*/).optional(),
+		valueCanonical: fhirCanonical().optional(),
 		_valueCanonical: z.lazy(getElementSchema).optional(),
-		valueCode: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		valueCode: fhirCode().optional(),
 		_valueCode: z.lazy(getElementSchema).optional(),
 		valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		valueCoding: z.lazy(getCodingSchema).optional(),
@@ -325,10 +345,7 @@ export const ExtensionSchemaInternal = z
 		_valueMarkdown: z.lazy(getElementSchema).optional(),
 		valueMeta: z.lazy(getMetaSchema).optional(),
 		valueMoney: z.lazy(getMoneySchema).optional(),
-		valueOid: z
-			.string()
-			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional(),
+		valueOid: fhirOid().optional(),
 		_valueOid: z.lazy(getElementSchema).optional(),
 		valueParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
 		valuePeriod: z.lazy(getPeriodSchema).optional(),
@@ -341,10 +358,7 @@ export const ExtensionSchemaInternal = z
 		valueRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
 		valueSampledData: z.lazy(getSampledDataSchema).optional(),
 		valueSignature: z.lazy(getSignatureSchema).optional(),
-		valueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		valueString: fhirString().optional(),
 		_valueString: z.lazy(getElementSchema).optional(),
 		valueTime: fhirTime().optional(),
 		_valueTime: z.lazy(getElementSchema).optional(),
@@ -352,17 +366,12 @@ export const ExtensionSchemaInternal = z
 		valueTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
 		valueUnsignedInt: z.number().int().nonnegative().optional(),
 		_valueUnsignedInt: z.lazy(getElementSchema).optional(),
-		valueUri: z.string().regex(/\S*/).optional(),
+		valueUri: fhirUri().optional(),
 		_valueUri: z.lazy(getElementSchema).optional(),
-		valueUrl: z.string().regex(/\S*/).optional(),
+		valueUrl: fhirUrl().optional(),
 		_valueUrl: z.lazy(getElementSchema).optional(),
 		valueUsageContext: z.lazy(getUsageContextSchema).optional(),
-		valueUuid: z
-			.string()
-			.regex(
-				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
-			)
-			.optional(),
+		valueUuid: fhirUuid().optional(),
 		_valueUuid: z.lazy(getElementSchema).optional(),
 	})
 	.strict()
@@ -430,4 +439,4 @@ export const ExtensionSchemaInternal = z
 		}
 	});
 
-export const ExtensionSchema: z.ZodType<Extension> = ExtensionSchemaInternal;
+export const ExtensionSchema = ExtensionSchemaInternal as z.ZodType<Extension>;

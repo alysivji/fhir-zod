@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import type { Duration } from "./Duration";
 import { DurationSchemaInternal } from "./Duration";
 import type { Element } from "./Element";
@@ -34,26 +34,24 @@ export interface DataRequirement_DateFilter extends Element {
 	valuePeriod?: Period;
 }
 
-const getDurationSchema = (): z.ZodType<Duration> => DurationSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+const getDurationSchema = (): z.ZodType<Duration> =>
+	DurationSchemaInternal as z.ZodType<Duration>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const DataRequirement_DateFilterSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		path: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		path: fhirString().optional(),
 		_path: z.lazy(getElementSchema).optional(),
-		searchParam: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		searchParam: fhirString().optional(),
 		_searchParam: z.lazy(getElementSchema).optional(),
 		valueDateTime: fhirDateTime().optional(),
 		_valueDateTime: z.lazy(getElementSchema).optional(),
@@ -78,5 +76,5 @@ export const DataRequirement_DateFilterSchemaInternal = z
 		}
 	});
 
-export const DataRequirement_DateFilterSchema: z.ZodType<DataRequirement_DateFilter> =
-	DataRequirement_DateFilterSchemaInternal;
+export const DataRequirement_DateFilterSchema =
+	DataRequirement_DateFilterSchemaInternal as z.ZodType<DataRequirement_DateFilter>;

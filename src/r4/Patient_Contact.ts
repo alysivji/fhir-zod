@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -42,15 +42,20 @@ export interface Patient_Contact extends BackboneElement {
 	telecom?: Array<ContactPoint>;
 }
 
-const getAddressSchema = (): z.ZodType<Address> => AddressSchemaInternal;
+const getAddressSchema = (): z.ZodType<Address> =>
+	AddressSchemaInternal as z.ZodType<Address>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getHumanNameSchema = (): z.ZodType<HumanName> => HumanNameSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getHumanNameSchema = (): z.ZodType<HumanName> =>
+	HumanNameSchemaInternal as z.ZodType<HumanName>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Patient_ContactSchemaInternal =
@@ -76,5 +81,5 @@ export const Patient_ContactSchemaInternal =
 			);
 		});
 
-export const Patient_ContactSchema: z.ZodType<Patient_Contact> =
-	Patient_ContactSchemaInternal;
+export const Patient_ContactSchema =
+	Patient_ContactSchemaInternal as z.ZodType<Patient_Contact>;

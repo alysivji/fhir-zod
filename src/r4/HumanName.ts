@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HumanName
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -21,17 +21,17 @@ export interface HumanName extends Element {
 	/** Given name. */
 	given?: Array<string>;
 	/** Extensions for given */
-	_given?: Element;
+	_given?: Array<Element>;
 	/** Indicates the period of time when this name was valid for the named person. */
 	period?: Period;
 	/** Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name. */
 	prefix?: Array<string>;
 	/** Extensions for prefix */
-	_prefix?: Element;
+	_prefix?: Array<Element>;
 	/** Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name. */
 	suffix?: Array<string>;
 	/** Extensions for suffix */
-	_suffix?: Element;
+	_suffix?: Array<Element>;
 	/** Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts. */
 	text?: string;
 	/** Extensions for text */
@@ -49,44 +49,29 @@ export interface HumanName extends Element {
 	_use?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getPeriodSchema = (): z.ZodType<Period> => PeriodSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const HumanNameSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		family: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		family: fhirString().optional(),
 		_family: z.lazy(getElementSchema).optional(),
-		given: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
-		_given: z.lazy(getElementSchema).optional(),
-		id: fhirId().optional(),
+		given: fhirString().array().optional(),
+		_given: z.lazy(getElementSchema).array().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
-		prefix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
-		_prefix: z.lazy(getElementSchema).optional(),
-		suffix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
-		_suffix: z.lazy(getElementSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		prefix: fhirString().array().optional(),
+		_prefix: z.lazy(getElementSchema).array().optional(),
+		suffix: fhirString().array().optional(),
+		_suffix: z.lazy(getElementSchema).array().optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		use: z
 			.enum([
@@ -103,4 +88,4 @@ export const HumanNameSchemaInternal = z
 	})
 	.strict();
 
-export const HumanNameSchema: z.ZodType<HumanName> = HumanNameSchemaInternal;
+export const HumanNameSchema = HumanNameSchemaInternal as z.ZodType<HumanName>;

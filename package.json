@@ -34,7 +34,7 @@
 	],
 	"scripts": {
 		"build": "npm run typecheck && tsdown",
-		"check": "biome check .",
+		"check": "biome check . && npm run typecheck",
 		"coverage": "vitest run --coverage",
 		"fetch-examples": "node scripts/fetch-examples.ts",
 		"fetch-spec": "node scripts/fetch-spec.ts",

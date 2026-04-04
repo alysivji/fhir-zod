@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SampledData
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -42,24 +42,24 @@ export interface SampledData extends Element {
 	_upperLimit?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const SampledDataSchemaInternal = z
 	.object({
-		data: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		data: fhirString().optional(),
 		_data: z.lazy(getElementSchema).optional(),
 		dimensions: z.number().int().positive(),
 		_dimensions: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		factor: z.number().optional(),
 		_factor: z.lazy(getElementSchema).optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		lowerLimit: z.number().optional(),
 		_lowerLimit: z.lazy(getElementSchema).optional(),
@@ -71,5 +71,5 @@ export const SampledDataSchemaInternal = z
 	})
 	.strict();
 
-export const SampledDataSchema: z.ZodType<SampledData> =
-	SampledDataSchemaInternal;
+export const SampledDataSchema =
+	SampledDataSchemaInternal as z.ZodType<SampledData>;

@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -38,11 +38,11 @@ export interface DataRequirement extends Element {
 	 */
 	mustSupport?: Array<string>;
 	/** Extensions for mustSupport */
-	_mustSupport?: Element;
+	_mustSupport?: Array<Element>;
 	/** The profile of the required data, specified as the uri of the profile definition. */
 	profile?: Array<string>;
 	/** Extensions for profile */
-	_profile?: Element;
+	_profile?: Array<Element>;
 	/** Specifies the order of the results to be returned. */
 	sort?: Array<DataRequirement_Sort>;
 	/** The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed. */
@@ -269,18 +269,21 @@ export interface DataRequirement extends Element {
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getDataRequirement_CodeFilterSchema =
 	(): z.ZodType<DataRequirement_CodeFilter> =>
-		DataRequirement_CodeFilterSchemaInternal;
+		DataRequirement_CodeFilterSchemaInternal as z.ZodType<DataRequirement_CodeFilter>;
 const getDataRequirement_DateFilterSchema =
 	(): z.ZodType<DataRequirement_DateFilter> =>
-		DataRequirement_DateFilterSchemaInternal;
+		DataRequirement_DateFilterSchemaInternal as z.ZodType<DataRequirement_DateFilter>;
 const getDataRequirement_SortSchema = (): z.ZodType<DataRequirement_Sort> =>
-	DataRequirement_SortSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+	DataRequirement_SortSchemaInternal as z.ZodType<DataRequirement_Sort>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const DataRequirementSchemaInternal = z
@@ -288,18 +291,14 @@ export const DataRequirementSchemaInternal = z
 		codeFilter: z.lazy(getDataRequirement_CodeFilterSchema).array().optional(),
 		dateFilter: z.lazy(getDataRequirement_DateFilterSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		limit: z.number().int().positive().optional(),
 		_limit: z.lazy(getElementSchema).optional(),
-		mustSupport: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
-		_mustSupport: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/).array().optional(),
-		_profile: z.lazy(getElementSchema).optional(),
+		mustSupport: fhirString().array().optional(),
+		_mustSupport: z.lazy(getElementSchema).array().optional(),
+		profile: fhirCanonical().array().optional(),
+		_profile: z.lazy(getElementSchema).array().optional(),
 		sort: z.lazy(getDataRequirement_SortSchema).array().optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		subjectReference: z.lazy(getReferenceSchema).optional(),
@@ -544,5 +543,5 @@ export const DataRequirementSchemaInternal = z
 		);
 	});
 
-export const DataRequirementSchema: z.ZodType<DataRequirement> =
-	DataRequirementSchemaInternal;
+export const DataRequirementSchema =
+	DataRequirementSchemaInternal as z.ZodType<DataRequirement>;

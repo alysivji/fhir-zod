@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { Element } from "./Element";
@@ -35,12 +35,17 @@ export interface Dosage_DoseAndRate extends Element {
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getQuantitySchema = (): z.ZodType<Quantity> => QuantitySchemaInternal;
-const getRangeSchema = (): z.ZodType<Range> => RangeSchemaInternal;
-const getRatioSchema = (): z.ZodType<Ratio> => RatioSchemaInternal;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
+const getRangeSchema = (): z.ZodType<Range> =>
+	RangeSchemaInternal as z.ZodType<Range>;
+const getRatioSchema = (): z.ZodType<Ratio> =>
+	RatioSchemaInternal as z.ZodType<Ratio>;
 
 /** @internal */
 export const Dosage_DoseAndRateSchemaInternal = z
@@ -48,7 +53,7 @@ export const Dosage_DoseAndRateSchemaInternal = z
 		doseQuantity: z.lazy(getQuantitySchema).optional(),
 		doseRange: z.lazy(getRangeSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		rateQuantity: z.lazy(getQuantitySchema).optional(),
 		rateRange: z.lazy(getRangeSchema).optional(),
@@ -82,5 +87,5 @@ export const Dosage_DoseAndRateSchemaInternal = z
 		}
 	});
 
-export const Dosage_DoseAndRateSchema: z.ZodType<Dosage_DoseAndRate> =
-	Dosage_DoseAndRateSchemaInternal;
+export const Dosage_DoseAndRateSchema =
+	Dosage_DoseAndRateSchemaInternal as z.ZodType<Dosage_DoseAndRate>;

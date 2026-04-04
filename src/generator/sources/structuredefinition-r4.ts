@@ -14,9 +14,9 @@ import {
 	fhirPrimitiveTypes,
 	isPrimitiveType,
 	normalizeTargetProfiles,
-	r4GenerationTargetNames,
 	sortProperties,
 } from "../model.ts";
+import { listR4GenerationTargetNames } from "../targets/r4.ts";
 
 type SpecManifest = {
 	fhirVersion: string;
@@ -83,6 +83,9 @@ type CodeSystemConcept = {
 };
 
 type StructureElement = {
+	base?: {
+		path?: string;
+	};
 	binding?: {
 		strength?: string;
 		valueSet?: string;
@@ -144,7 +147,7 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 ]);
 
 export function buildStructureDefinitionR4Definitions(
-	scopeNames: Iterable<string> = r4GenerationTargetNames,
+	scopeNames: Iterable<string> = listR4GenerationTargetNames(),
 ): StructureDefinitionBuildResult {
 	const manifest = loadManifest("r4");
 	const packageRoot = resolve(repoRoot, manifest.packageRoot);
@@ -606,7 +609,13 @@ function normalizeElementProperties(
 	});
 
 	if (normalizedType.primitiveType) {
-		properties.push(buildPrimitiveCompanionProperty(segment, element.path));
+		properties.push(
+			buildPrimitiveCompanionProperty(
+				segment,
+				element.path,
+				element.max === "*",
+			),
+		);
 	}
 
 	return properties;
@@ -655,7 +664,7 @@ function normalizeChoiceElementProperties(
 			max: element.max,
 			min: element.min,
 			primitiveType: normalizedType.primitiveType,
-			required: element.min > 0,
+			required: false,
 			targetProfiles: normalizedType.targetProfiles,
 			typeRef: normalizedType.typeRef,
 		});
@@ -665,6 +674,7 @@ function normalizeChoiceElementProperties(
 				buildPrimitiveCompanionProperty(
 					jsonName,
 					element.path,
+					element.max === "*",
 					segment,
 					choiceVariant,
 				),
@@ -678,6 +688,7 @@ function normalizeChoiceElementProperties(
 function buildPrimitiveCompanionProperty(
 	jsonName: string,
 	fhirPath: string,
+	isArray: boolean,
 	choiceGroup?: string,
 	choiceVariant?: string,
 ): NormalizedProperty {
@@ -689,7 +700,7 @@ function buildPrimitiveCompanionProperty(
 		enumValues: null,
 		fhirPath,
 		invariants: [],
-		isArray: false,
+		isArray,
 		jsonName: `_${jsonName}`,
 		max: "1",
 		min: 0,
@@ -735,7 +746,11 @@ function normalizeStructureType(
 			extensionType ?? fhirPathPrimitiveByCode.get(normalizedCode) ?? null;
 	}
 
-	if (primitiveType === "string" && lastPathSegment(element.path) === "id") {
+	if (
+		primitiveType === "string" &&
+		lastPathSegment(element.path) === "id" &&
+		element.base?.path === "Resource.id"
+	) {
 		primitiveType = "id";
 	}
 

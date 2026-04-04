@@ -1,34 +1,7 @@
-import { readdirSync, readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import { r4AbstractTargetNames } from "../src/generator/model.ts";
-
-type SpecManifest = {
-	packageRoot: string;
-};
-
-type StructureDefinition = {
-	abstract?: boolean;
-	baseDefinition?: string;
-	kind?: string;
-	name: string;
-	resourceType: "StructureDefinition";
-	type?: string;
-};
-
-type TargetEntry = {
-	abstract: boolean;
-	baseDefinition: string | null;
-	category:
-		| "abstract-whitelist"
-		| "core-resource"
-		| "other"
-		| "profile-resource";
-	kind: string | null;
-	name: string;
-	shouldGenerate: boolean;
-	type: string | null;
-};
+import {
+	loadR4TargetEntries,
+	summarizeR4Targets,
+} from "../src/generator/targets/r4.ts";
 
 type OutputMode = "json" | "names" | "summary";
 type CategoryFilter =
@@ -39,10 +12,6 @@ type CategoryFilter =
 	| "other"
 	| "profile-resource";
 
-const abstractGenerationWhitelist = new Set<string>(r4AbstractTargetNames);
-
-const scriptDir = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(scriptDir, "..");
 const args = process.argv.slice(2);
 
 function parseFlag(name: string): string | null {
@@ -65,64 +34,7 @@ function hasFlag(name: string): boolean {
 	return args.includes(name);
 }
 
-function loadManifest(version: "r4"): SpecManifest {
-	const manifestPath = join(repoRoot, "src", "spec", version, "manifest.json");
-	return JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest;
-}
-
-function listTargetEntries(): TargetEntry[] {
-	const manifest = loadManifest("r4");
-	const packageRoot = resolve(repoRoot, manifest.packageRoot);
-
-	return readdirSync(packageRoot)
-		.filter(
-			(filename) =>
-				filename.startsWith("StructureDefinition-") &&
-				filename.endsWith(".json"),
-		)
-		.map(
-			(filename) =>
-				JSON.parse(
-					readFileSync(join(packageRoot, filename), "utf8"),
-				) as StructureDefinition,
-		)
-		.filter((definition) => definition.resourceType === "StructureDefinition")
-		.map((definition) => {
-			const isWhitelistedAbstract = abstractGenerationWhitelist.has(
-				definition.name,
-			);
-			const isConcreteResource =
-				definition.kind === "resource" && definition.abstract !== true;
-			const isCoreResource =
-				isConcreteResource &&
-				definition.type === definition.name &&
-				(definition.baseDefinition ===
-					"http://hl7.org/fhir/StructureDefinition/Resource" ||
-					definition.baseDefinition ===
-						"http://hl7.org/fhir/StructureDefinition/DomainResource");
-			const isProfileResource = isConcreteResource && !isCoreResource;
-			const category: TargetEntry["category"] = isWhitelistedAbstract
-				? "abstract-whitelist"
-				: isCoreResource
-					? "core-resource"
-					: isProfileResource
-						? "profile-resource"
-						: "other";
-
-			return {
-				abstract: definition.abstract === true,
-				baseDefinition: definition.baseDefinition ?? null,
-				category,
-				kind: definition.kind ?? null,
-				name: definition.name,
-				shouldGenerate: isCoreResource || isWhitelistedAbstract,
-				type: definition.type ?? null,
-			} satisfies TargetEntry;
-		})
-		.sort((left, right) => left.name.localeCompare(right.name));
-}
-
-const entries = listTargetEntries();
+const entries = loadR4TargetEntries();
 const concreteResourceNames = entries
 	.filter(
 		(entry) =>
@@ -141,13 +53,7 @@ const profileResourceNames = entries
 const generationTargetNames = entries
 	.filter((entry) => entry.shouldGenerate)
 	.map((entry) => entry.name);
-const summary = {
-	abstractGenerationWhitelist: [...abstractGenerationWhitelist].sort(),
-	concreteResourceCount: concreteResourceNames.length,
-	coreResourceCount: coreResourceNames.length,
-	generationTargetCount: generationTargetNames.length,
-	profileResourceCount: profileResourceNames.length,
-};
+const summary = summarizeR4Targets(entries);
 const rawCategoryFilter = parseFlag("--category") ?? "all";
 const categoryFilter: CategoryFilter =
 	rawCategoryFilter === "abstract-whitelist" ||

@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeableConcept
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
 import type { Element } from "./Element";
@@ -22,24 +22,24 @@ export interface CodeableConcept extends Element {
 	_text?: Element;
 }
 
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const CodeableConceptSchemaInternal = z
 	.object({
 		coding: z.lazy(getCodingSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 
-export const CodeableConceptSchema: z.ZodType<CodeableConcept> =
-	CodeableConceptSchemaInternal;
+export const CodeableConceptSchema =
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;

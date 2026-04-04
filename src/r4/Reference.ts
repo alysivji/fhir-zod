@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Reference
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -34,31 +34,27 @@ export interface Reference extends Element {
 	_type?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 
 /** @internal */
 export const ReferenceSchemaInternal = z
 	.object({
-		display: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		display: fhirString().optional(),
 		_display: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).optional(),
-		reference: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		reference: fhirString().optional(),
 		_reference: z.lazy(getElementSchema).optional(),
-		type: z.string().regex(/\S*/).optional(),
+		type: fhirUri().optional(),
 		_type: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 
-export const ReferenceSchema: z.ZodType<Reference> = ReferenceSchemaInternal;
+export const ReferenceSchema = ReferenceSchemaInternal as z.ZodType<Reference>;

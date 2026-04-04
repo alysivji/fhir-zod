@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contributor
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { ContactDetail } from "./ContactDetail";
 import { ContactDetailSchemaInternal } from "./ContactDetail";
 import type { Element } from "./Element";
@@ -27,23 +27,25 @@ export interface Contributor extends Element {
 }
 
 const getContactDetailSchema = (): z.ZodType<ContactDetail> =>
-	ContactDetailSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ContributorSchemaInternal = z
 	.object({
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		type: z.enum(["author", "editor", "endorser", "reviewer"]),
 		_type: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 
-export const ContributorSchema: z.ZodType<Contributor> =
-	ContributorSchemaInternal;
+export const ContributorSchema =
+	ContributorSchemaInternal as z.ZodType<Contributor>;

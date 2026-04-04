@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Money
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -22,23 +22,22 @@ export interface Money extends Element {
 	_value?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const MoneySchemaInternal = z
 	.object({
-		currency: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		currency: fhirCode().optional(),
 		_currency: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		value: z.number().optional(),
 		_value: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 
-export const MoneySchema: z.ZodType<Money> = MoneySchemaInternal;
+export const MoneySchema = MoneySchemaInternal as z.ZodType<Money>;

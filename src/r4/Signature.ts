@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Signature
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId, fhirInstant } from "../shared/fhir-primitives";
+import {
+	fhirBase64Binary,
+	fhirCode,
+	fhirInstant,
+	fhirString,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
@@ -41,32 +46,27 @@ export interface Signature extends Element {
 	who: Reference;
 }
 
-const getCodingSchema = (): z.ZodType<Coding> => CodingSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
-const getReferenceSchema = (): z.ZodType<Reference> => ReferenceSchemaInternal;
+const getCodingSchema = (): z.ZodType<Coding> =>
+	CodingSchemaInternal as z.ZodType<Coding>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SignatureSchemaInternal = z
 	.object({
-		data: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		data: fhirBase64Binary().optional(),
 		_data: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		onBehalfOf: z.lazy(getReferenceSchema).optional(),
-		sigFormat: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		sigFormat: fhirCode().optional(),
 		_sigFormat: z.lazy(getElementSchema).optional(),
-		targetFormat: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		targetFormat: fhirCode().optional(),
 		_targetFormat: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodingSchema).array(),
 		when: fhirInstant(),
@@ -120,4 +120,4 @@ export const SignatureSchemaInternal = z
 		);
 	});
 
-export const SignatureSchema: z.ZodType<Signature> = SignatureSchemaInternal;
+export const SignatureSchema = SignatureSchemaInternal as z.ZodType<Signature>;

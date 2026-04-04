@@ -1,22 +1,109 @@
 import { execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
+import {
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	rmSync,
+	writeFileSync,
+} from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { listR4CoreResourceNames } from "../src/generator/targets/r4.ts";
 
 type ExampleLink = {
-	id: string;
 	filename: string;
+	id: string;
 	url: string;
 };
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
-const requestedExamples = new Set(process.argv.slice(2));
+const fixturesRoot = join(repoRoot, "tests", "fixtures", "r4");
+const knownResourceNames = listR4CoreResourceNames();
+const args = process.argv.slice(2);
+const forceRefresh = hasFlag("--force");
+const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
+const limit = parseNumberFlag("--limit");
+const requestedResources = selectResourceNames(collectPositionalArgs(args));
 
-const patientExamplesPageUrl = "https://hl7.org/fhir/R4/patient-examples.html";
-const outputDir = join(repoRoot, "tests", "fixtures", "r4", "Patient");
+let requestCount = 0;
+
+function parseFlag(name: string): string | null {
+	const directMatch = args.find((arg) => arg.startsWith(`${name}=`));
+
+	if (directMatch) {
+		return directMatch.slice(name.length + 1);
+	}
+
+	const flagIndex = args.indexOf(name);
+
+	if (flagIndex === -1) {
+		return null;
+	}
+
+	return args[flagIndex + 1] ?? null;
+}
+
+function parseNumberFlag(name: string): number | null {
+	const raw = parseFlag(name);
+
+	if (raw === null) {
+		return null;
+	}
+
+	const value = Number(raw);
+
+	if (!Number.isInteger(value) || value < 0) {
+		throw new Error(
+			`Expected ${name} to be a non-negative integer, got "${raw}".`,
+		);
+	}
+
+	return value;
+}
+
+function hasFlag(name: string): boolean {
+	return args.includes(name);
+}
+
+function collectPositionalArgs(argv: string[]): string[] {
+	const positional: string[] = [];
+	const flagsWithValues = new Set(["--delay-ms", "--limit"]);
+
+	for (let index = 0; index < argv.length; index += 1) {
+		const arg = argv[index];
+
+		if (arg.startsWith("--")) {
+			const [flagName] = arg.split("=", 1);
+
+			if (flagsWithValues.has(flagName) && !arg.includes("=")) {
+				index += 1;
+			}
+
+			continue;
+		}
+
+		positional.push(arg);
+	}
+
+	return positional;
+}
+
+function sleep(milliseconds: number): void {
+	if (milliseconds <= 0) {
+		return;
+	}
+
+	Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+}
 
 function fetchText(url: string): string {
+	if (requestCount > 0) {
+		sleep(delayMs);
+	}
+
+	requestCount += 1;
+
 	return execFileSync("curl", ["-L", "-sS", url], {
 		cwd: repoRoot,
 		encoding: "utf8",
@@ -36,9 +123,21 @@ function decodeHtmlEntities(value: string): string {
 		.replaceAll("&gt;", ">");
 }
 
-function discoverPatientJsonExamples(pageHtml: string): ExampleLink[] {
+function resourceExamplesPageUrl(resourceName: string): string {
+	return `https://hl7.org/fhir/R4/${resourceName.toLowerCase()}-examples.html`;
+}
+
+function discoverJsonExamples(
+	resourceName: string,
+	pageHtml: string,
+): ExampleLink[] {
+	const pageUrl = resourceExamplesPageUrl(resourceName);
+	const resourceSlug = resourceName.toLowerCase();
 	const discovered = new Map<string, ExampleLink>();
-	const linkPattern = /href="([^"]*patient-[^"]+\.json\.html)"/g;
+	const linkPattern = new RegExp(
+		`href="([^"]*${resourceSlug}[^"]*\\.json\\.html)"`,
+		"gi",
+	);
 
 	for (const match of pageHtml.matchAll(linkPattern)) {
 		const href = match[1];
@@ -48,7 +147,7 @@ function discoverPatientJsonExamples(pageHtml: string): ExampleLink[] {
 		}
 
 		const decodedHref = decodeHtmlEntities(href);
-		const htmlUrl = new URL(decodedHref, patientExamplesPageUrl).toString();
+		const htmlUrl = new URL(decodedHref, pageUrl).toString();
 		const url = htmlUrl.replace(/\.html$/, "");
 		const filename = new URL(url).pathname.split("/").at(-1);
 
@@ -56,67 +155,154 @@ function discoverPatientJsonExamples(pageHtml: string): ExampleLink[] {
 			throw new Error(`Unable to derive filename from ${url}.`);
 		}
 
-		const id = filename.replace(/^patient-/, "").replace(/\.json$/, "");
+		const id = filename.replace(/\.json$/, "");
 
-		discovered.set(id, {
-			id,
+		discovered.set(filename, {
 			filename,
+			id,
 			url,
 		});
 	}
 
-	return [...discovered.values()].sort((a, b) => a.id.localeCompare(b.id));
+	return [...discovered.values()].sort((left, right) =>
+		left.filename.localeCompare(right.filename),
+	);
 }
 
-function selectExamples(exampleLinks: ExampleLink[]): ExampleLink[] {
-	if (requestedExamples.size === 0) {
-		return exampleLinks;
+function selectResourceNames(requested: string[]): string[] {
+	if (requested.length === 0) {
+		return knownResourceNames;
 	}
 
-	const available = new Map(
-		exampleLinks.map((example) => [example.id, example]),
+	const availableByLowerName = new Map(
+		knownResourceNames.map((resourceName) => [
+			resourceName.toLowerCase(),
+			resourceName,
+		]),
 	);
 
-	return [...requestedExamples].map((exampleId) => {
-		const example = available.get(exampleId);
+	return requested.map((resourceName) => {
+		const matchedName = availableByLowerName.get(resourceName.toLowerCase());
 
-		if (!example) {
+		if (!matchedName) {
 			throw new Error(
-				`Unknown R4 Patient example "${exampleId}". Known examples: ${exampleLinks
-					.map((candidate) => candidate.id)
-					.join(", ")}.`,
+				`Unknown R4 core resource "${resourceName}". Known resources: ${knownResourceNames.join(", ")}.`,
 			);
 		}
 
-		return example;
+		return matchedName;
 	});
 }
 
-function fetchJsonExample(example: ExampleLink): void {
-	const json = fetchText(example.url);
-	const outputPath = join(outputDir, example.filename);
+function clearFixtureDirectory(resourceName: string): string {
+	const outputDir = join(fixturesRoot, resourceName);
 
-	writeFileSync(outputPath, normalizeTextFileContent(json), "utf8");
-	console.log(`Fetched R4 Patient example ${example.id} -> ${outputPath}`);
-}
-
-function main(): void {
+	rmSync(outputDir, { force: true, recursive: true });
 	mkdirSync(outputDir, { recursive: true });
 
-	const pageHtml = fetchText(patientExamplesPageUrl);
-	const discoveredExamples = discoverPatientJsonExamples(pageHtml);
+	return outputDir;
+}
+
+function hasFetchedFixtures(resourceName: string): boolean {
+	const outputDir = join(fixturesRoot, resourceName);
+
+	if (!existsSync(outputDir)) {
+		return false;
+	}
+
+	return readdirSync(outputDir).some((entry) => entry.endsWith(".json"));
+}
+
+function assertNotHumanVerification(pageHtml: string, pageUrl: string): void {
+	if (
+		pageHtml.includes("<title>Human Verification</title>") ||
+		pageHtml.includes('id="captcha-container"')
+	) {
+		throw new Error(
+			`Human verification blocked automated fetches for ${pageUrl}.`,
+		);
+	}
+}
+
+function fetchResourceExamples(resourceName: string): boolean {
+	const pageUrl = resourceExamplesPageUrl(resourceName);
+	const pageHtml = fetchText(pageUrl);
+
+	assertNotHumanVerification(pageHtml, pageUrl);
+	const discoveredExamples = discoverJsonExamples(resourceName, pageHtml);
 
 	if (discoveredExamples.length === 0) {
 		throw new Error(
-			`No JSON examples discovered on ${patientExamplesPageUrl}. Page structure may have changed.`,
+			`No JSON examples discovered on ${pageUrl}. Page structure may have changed.`,
 		);
 	}
 
-	const selectedExamples = selectExamples(discoveredExamples);
+	const outputDir = clearFixtureDirectory(resourceName);
 
-	for (const example of selectedExamples) {
-		fetchJsonExample(example);
+	for (const example of discoveredExamples) {
+		const json = fetchText(example.url);
+		const outputPath = join(outputDir, example.filename);
+
+		writeFileSync(outputPath, normalizeTextFileContent(json), "utf8");
+		console.log(
+			`Fetched R4 ${resourceName} example ${example.id} -> ${outputPath}`,
+		);
 	}
+
+	return true;
+}
+
+function main(): void {
+	mkdirSync(fixturesRoot, { recursive: true });
+	const failures: string[] = [];
+	const skipped: string[] = [];
+	const fetched: string[] = [];
+	const selectedResources =
+		limit === null ? requestedResources : requestedResources.slice(0, limit);
+
+	for (const resourceName of selectedResources) {
+		if (!forceRefresh && hasFetchedFixtures(resourceName)) {
+			skipped.push(resourceName);
+			console.log(`Skipping R4 ${resourceName}; fixtures already exist.`);
+			continue;
+		}
+
+		try {
+			fetchResourceExamples(resourceName);
+			fetched.push(resourceName);
+		} catch (error) {
+			const detail =
+				error instanceof Error
+					? error.message
+					: "Unknown example fetch failure.";
+
+			if (detail.includes("Human verification blocked automated fetches")) {
+				const remainingResources = selectedResources.slice(
+					selectedResources.indexOf(resourceName),
+				);
+
+				console.warn(
+					`Stopped at R4 ${resourceName}; ${detail}\nFetched ${fetched.length} resources this run, skipped ${skipped.length}. Resume later with:\n` +
+						`npm run fetch-examples -- ${remainingResources
+							.slice(0, limit ?? remainingResources.length)
+							.join(" ")}`,
+				);
+				break;
+			}
+
+			failures.push(`${resourceName}: ${detail}`);
+		}
+	}
+
+	if (failures.length > 0) {
+		throw new Error(
+			`Unable to fetch fixtures for ${failures.length} R4 resources.\n${failures.join("\n")}`,
+		);
+	}
+
+	console.log(
+		`Finished R4 example fetch. fetched=${fetched.length} skipped=${skipped.length} requests=${requestCount}`,
+	);
 }
 
 main();

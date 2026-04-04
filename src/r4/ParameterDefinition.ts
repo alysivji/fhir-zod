@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ParameterDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -255,33 +255,26 @@ export interface ParameterDefinition extends Element {
 	_use?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ParameterDefinitionSchemaInternal = z
 	.object({
-		documentation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		documentation: fhirString().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		max: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		max: fhirString().optional(),
 		_max: z.lazy(getElementSchema).optional(),
 		min: z.number().int().optional(),
 		_min: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		name: fhirCode().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/).optional(),
+		profile: fhirCanonical().optional(),
 		_profile: z.lazy(getElementSchema).optional(),
 		type: z.enum([
 			"Account",
@@ -504,5 +497,5 @@ export const ParameterDefinitionSchemaInternal = z
 	})
 	.strict();
 
-export const ParameterDefinitionSchema: z.ZodType<ParameterDefinition> =
-	ParameterDefinitionSchemaInternal;
+export const ParameterDefinitionSchema =
+	ParameterDefinitionSchemaInternal as z.ZodType<ParameterDefinition>;

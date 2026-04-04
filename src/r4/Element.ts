@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Element
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
 
@@ -18,16 +18,18 @@ export interface Element {
 	_id?: Element;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ElementSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 	})
 	.strict();
 
-export const ElementSchema: z.ZodType<Element> = ElementSchemaInternal;
+export const ElementSchema = ElementSchemaInternal as z.ZodType<Element>;

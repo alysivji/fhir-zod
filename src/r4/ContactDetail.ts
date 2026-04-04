@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ContactDetail
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirString } from "../shared/fhir-primitives";
 import type { ContactPoint } from "./ContactPoint";
 import { ContactPointSchemaInternal } from "./ContactPoint";
 import type { Element } from "./Element";
@@ -23,24 +23,23 @@ export interface ContactDetail extends Element {
 }
 
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal;
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getExtensionSchema = (): z.ZodType<Extension> => ExtensionSchemaInternal;
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ContactDetailSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		telecom: z.lazy(getContactPointSchema).array().optional(),
 	})
 	.strict();
 
-export const ContactDetailSchema: z.ZodType<ContactDetail> =
-	ContactDetailSchemaInternal;
+export const ContactDetailSchema =
+	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;

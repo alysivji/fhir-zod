@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Resource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T04:42:40.346Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCode, fhirId, fhirUri } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Meta } from "./Meta";
@@ -28,23 +28,22 @@ export interface Resource {
 	meta?: Meta;
 }
 
-const getElementSchema = (): z.ZodType<Element> => ElementSchemaInternal;
-const getMetaSchema = (): z.ZodType<Meta> => MetaSchemaInternal;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+	MetaSchemaInternal as z.ZodType<Meta>;
 
 /** @internal */
 export const ResourceSchemaInternal = z
 	.object({
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		implicitRules: z.string().regex(/\S*/).optional(),
+		implicitRules: fhirUri().optional(),
 		_implicitRules: z.lazy(getElementSchema).optional(),
-		language: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		language: fhirCode().optional(),
 		_language: z.lazy(getElementSchema).optional(),
 		meta: z.lazy(getMetaSchema).optional(),
 	})
 	.strict();
 
-export const ResourceSchema: z.ZodType<Resource> = ResourceSchemaInternal;
+export const ResourceSchema = ResourceSchemaInternal as z.ZodType<Resource>;
