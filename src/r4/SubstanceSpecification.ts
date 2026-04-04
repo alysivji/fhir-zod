@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSpecification
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -107,15 +108,9 @@ const getSubstanceSpecification_StructureSchema =
 export const SubstanceSpecificationSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		code: z.lazy(getSubstanceSpecification_CodeSchema).array().optional(),
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		domain: z.lazy(getCodeableConceptSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).optional(),

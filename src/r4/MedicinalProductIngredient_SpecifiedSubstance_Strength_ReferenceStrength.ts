@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -41,10 +42,7 @@ const getRatioSchema = (): z.ZodType<Ratio> =>
 export const MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		country: z.lazy(getCodeableConceptSchema).array().optional(),
-		measurementPoint: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		measurementPoint: fhirString().optional(),
 		_measurementPoint: z.lazy(getElementSchema).optional(),
 		strength: z.lazy(getRatioSchema),
 		strengthLowLimit: z.lazy(getRatioSchema).optional(),

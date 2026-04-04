@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PaymentReconciliation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDate, fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -96,10 +96,7 @@ export const PaymentReconciliationSchemaInternal =
 		created: fhirDateTime(),
 		_created: z.lazy(getElementSchema).optional(),
 		detail: z.lazy(getPaymentReconciliation_DetailSchema).array().optional(),
-		disposition: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		disposition: fhirString().optional(),
 		_disposition: z.lazy(getElementSchema).optional(),
 		formCode: z.lazy(getCodeableConceptSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),

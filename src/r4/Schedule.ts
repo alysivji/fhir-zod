@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Schedule
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -60,10 +61,7 @@ export const ScheduleSchemaInternal = DomainResourceSchemaInternal.extend({
 	active: z.boolean().optional(),
 	_active: z.lazy(getElementSchema).optional(),
 	actor: z.lazy(getReferenceSchema).array(),
-	comment: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	comment: fhirString().optional(),
 	_comment: z.lazy(getElementSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	planningHorizon: z.lazy(getPeriodSchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MolecularSequence
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -43,29 +44,17 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const MolecularSequence_RepositorySchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		datasetId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		datasetId: fhirString().optional(),
 		_datasetId: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		readsetId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		readsetId: fhirString().optional(),
 		_readsetId: z.lazy(getElementSchema).optional(),
 		type: z.enum(["directlink", "login", "oauth", "openapi", "other"]),
 		_type: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
-		variantsetId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		variantsetId: fhirString().optional(),
 		_variantsetId: z.lazy(getElementSchema).optional(),
 	}).strict();
 

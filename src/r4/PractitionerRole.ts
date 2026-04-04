@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PractitionerRole
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -86,10 +87,7 @@ export const PractitionerRoleSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		active: z.boolean().optional(),
 		_active: z.lazy(getElementSchema).optional(),
-		availabilityExceptions: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		availabilityExceptions: fhirString().optional(),
 		_availabilityExceptions: z.lazy(getElementSchema).optional(),
 		availableTime: z
 			.lazy(getPractitionerRole_AvailableTimeSchema)

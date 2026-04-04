@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -63,10 +64,7 @@ export const SubstanceSourceMaterial_OrganismSchemaInternal =
 		family: z.lazy(getCodeableConceptSchema).optional(),
 		genus: z.lazy(getCodeableConceptSchema).optional(),
 		hybrid: z.lazy(getSubstanceSourceMaterial_Organism_HybridSchema).optional(),
-		intraspecificDescription: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		intraspecificDescription: fhirString().optional(),
 		_intraspecificDescription: z.lazy(getElementSchema).optional(),
 		intraspecificType: z.lazy(getCodeableConceptSchema).optional(),
 		organismGeneral: z

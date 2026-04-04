@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/BodyStructure
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -59,10 +60,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const BodyStructureSchemaInternal = DomainResourceSchemaInternal.extend({
 	active: z.boolean().optional(),
 	_active: z.lazy(getElementSchema).optional(),
-	description: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	image: z.lazy(getAttachmentSchema).array().optional(),

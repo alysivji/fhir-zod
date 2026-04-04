@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Dosage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -84,29 +85,20 @@ export const DosageSchemaInternal = z
 		asNeededCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		doseAndRate: z.lazy(getDosage_DoseAndRateSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		maxDosePerAdministration: z.lazy(getQuantitySchema).optional(),
 		maxDosePerLifetime: z.lazy(getQuantitySchema).optional(),
 		maxDosePerPeriod: z.lazy(getRatioSchema).optional(),
 		method: z.lazy(getCodeableConceptSchema).optional(),
 		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
-		patientInstruction: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		patientInstruction: fhirString().optional(),
 		_patientInstruction: z.lazy(getElementSchema).optional(),
 		route: z.lazy(getCodeableConceptSchema).optional(),
 		sequence: z.number().int().optional(),
 		_sequence: z.lazy(getElementSchema).optional(),
 		site: z.lazy(getCodeableConceptSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		timing: z.lazy(getTimingSchema).optional(),
 	})

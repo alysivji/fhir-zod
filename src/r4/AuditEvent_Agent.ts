@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { AuditEvent_Agent_Network } from "./AuditEvent_Agent_Network";
 import { AuditEvent_Agent_NetworkSchemaInternal } from "./AuditEvent_Agent_Network";
@@ -67,20 +68,14 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const AuditEvent_AgentSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		altId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		altId: fhirString().optional(),
 		_altId: z.lazy(getElementSchema).optional(),
 		location: z.lazy(getReferenceSchema).optional(),
 		media: z.lazy(getCodingSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		network: z.lazy(getAuditEvent_Agent_NetworkSchema).optional(),
-		policy: z.string().regex(/\S*/).array().optional(),
+		policy: fhirUri().array().optional(),
 		_policy: z.lazy(getElementSchema).array().optional(),
 		purposeOfUse: z.lazy(getCodeableConceptSchema).array().optional(),
 		requestor: z.boolean(),

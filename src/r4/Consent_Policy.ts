@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Consent
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,9 +28,9 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Consent_PolicySchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		authority: z.string().regex(/\S*/).optional(),
+		authority: fhirUri().optional(),
 		_authority: z.lazy(getElementSchema).optional(),
-		uri: z.string().regex(/\S*/).optional(),
+		uri: fhirUri().optional(),
 		_uri: z.lazy(getElementSchema).optional(),
 	}).strict();
 

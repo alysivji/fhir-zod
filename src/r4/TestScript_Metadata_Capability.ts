@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -47,16 +48,13 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const TestScript_Metadata_CapabilitySchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		capabilities: z.string().regex(/\S*/),
+		capabilities: fhirCanonical(),
 		_capabilities: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		destination: z.number().int().optional(),
 		_destination: z.lazy(getElementSchema).optional(),
-		link: z.string().regex(/\S*/).array().optional(),
+		link: fhirUri().array().optional(),
 		_link: z.lazy(getElementSchema).array().optional(),
 		origin: z.number().int().array().optional(),
 		_origin: z.lazy(getElementSchema).array().optional(),

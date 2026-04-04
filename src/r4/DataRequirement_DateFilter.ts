@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import type { Duration } from "./Duration";
 import { DurationSchemaInternal } from "./Duration";
 import type { Element } from "./Element";
@@ -47,20 +47,11 @@ const getPeriodSchema = (): z.ZodType<Period> =>
 export const DataRequirement_DateFilterSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		path: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		path: fhirString().optional(),
 		_path: z.lazy(getElementSchema).optional(),
-		searchParam: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		searchParam: fhirString().optional(),
 		_searchParam: z.lazy(getElementSchema).optional(),
 		valueDateTime: fhirDateTime().optional(),
 		_valueDateTime: z.lazy(getElementSchema).optional(),

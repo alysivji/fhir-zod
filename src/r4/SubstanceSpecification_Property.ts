@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSpecification
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -51,10 +52,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const SubstanceSpecification_PropertySchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		amountQuantity: z.lazy(getQuantitySchema).optional(),
-		amountString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		amountString: fhirString().optional(),
 		_amountString: z.lazy(getElementSchema).optional(),
 		category: z.lazy(getCodeableConceptSchema).optional(),
 		code: z.lazy(getCodeableConceptSchema).optional(),
@@ -62,10 +60,7 @@ export const SubstanceSpecification_PropertySchemaInternal =
 			.lazy(getCodeableConceptSchema)
 			.optional(),
 		definingSubstanceReference: z.lazy(getReferenceSchema).optional(),
-		parameters: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		parameters: fhirString().optional(),
 		_parameters: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

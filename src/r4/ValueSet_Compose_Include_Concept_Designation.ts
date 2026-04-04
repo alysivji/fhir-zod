@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Coding } from "./Coding";
@@ -34,13 +35,10 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ValueSet_Compose_Include_Concept_DesignationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		language: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		language: fhirCode().optional(),
 		_language: z.lazy(getElementSchema).optional(),
 		use: z.lazy(getCodingSchema).optional(),
-		value: z.string().regex(/[ \r\n\t\S]+/),
+		value: fhirString(),
 		_value: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,10 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Appointment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirInstant } from "../shared/fhir-primitives";
+import {
+	fhirDateTime,
+	fhirInstant,
+	fhirString,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Appointment_Participant } from "./Appointment_Participant";
 import { Appointment_ParticipantSchemaInternal } from "./Appointment_Participant";
@@ -122,17 +126,11 @@ export const AppointmentSchemaInternal = DomainResourceSchemaInternal.extend({
 	appointmentType: z.lazy(getCodeableConceptSchema).optional(),
 	basedOn: z.lazy(getReferenceSchema).array().optional(),
 	cancelationReason: z.lazy(getCodeableConceptSchema).optional(),
-	comment: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	comment: fhirString().optional(),
 	_comment: z.lazy(getElementSchema).optional(),
 	created: fhirDateTime().optional(),
 	_created: z.lazy(getElementSchema).optional(),
-	description: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	end: fhirInstant().optional(),
 	_end: z.lazy(getElementSchema).optional(),
@@ -140,10 +138,7 @@ export const AppointmentSchemaInternal = DomainResourceSchemaInternal.extend({
 	minutesDuration: z.number().int().positive().optional(),
 	_minutesDuration: z.lazy(getElementSchema).optional(),
 	participant: z.lazy(getAppointment_ParticipantSchema).array(),
-	patientInstruction: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	patientInstruction: fhirString().optional(),
 	_patientInstruction: z.lazy(getElementSchema).optional(),
 	priority: z.number().int().nonnegative().optional(),
 	_priority: z.lazy(getElementSchema).optional(),

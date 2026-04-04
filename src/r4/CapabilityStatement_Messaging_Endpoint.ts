@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirUrl } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Coding } from "./Coding";
@@ -30,7 +31,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CapabilityStatement_Messaging_EndpointSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		address: z.string().regex(/\S*/),
+		address: fhirUrl(),
 		_address: z.lazy(getElementSchema).optional(),
 		protocol: z.lazy(getCodingSchema),
 	}).strict();

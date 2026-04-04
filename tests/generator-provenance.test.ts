@@ -143,4 +143,29 @@ describe("generated provenance headers", () => {
 			'\t/** This is a Patient resource. */\n\tresourceType: "Patient";',
 		);
 	});
+
+	it("emits shared helpers for regex-backed string primitives", () => {
+		const outputDir = mkdtempSync(join(tmpdir(), "fhir-zod-provenance-"));
+		const definitionsResult = buildStructureDefinitionR4Definitions(["Meta"]);
+
+		writeNormalizedZodDefinitions({
+			definitions: definitionsResult.definitions,
+			generatedAt: "2026-04-01T05:42:36.000Z",
+			outputDir,
+			primitivePatterns: definitionsResult.primitivePatterns,
+		});
+
+		const definitionPath = join(outputDir, "Meta.ts");
+		const content = readFileSync(definitionPath, "utf8");
+
+		expect(content).toContain('from "../shared/fhir-primitives";');
+		expect(content).toContain("fhirCanonical");
+		expect(content).toContain("fhirId");
+		expect(content).toContain("fhirInstant");
+		expect(content).toContain("fhirString");
+		expect(content).toContain("fhirUri");
+		expect(content).toContain("profile: fhirCanonical().array().optional(),");
+		expect(content).toContain("id: fhirString().optional(),");
+		expect(content).toContain("source: fhirUri().optional(),");
+	});
 });

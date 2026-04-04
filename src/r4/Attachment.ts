@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Attachment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirBase64Binary,
+	fhirCode,
+	fhirDateTime,
+	fhirString,
+	fhirUrl,
+} from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -54,42 +60,24 @@ const getExtensionSchema = (): z.ZodType<Extension> =>
 /** @internal */
 export const AttachmentSchemaInternal = z
 	.object({
-		contentType: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		contentType: fhirCode().optional(),
 		_contentType: z.lazy(getElementSchema).optional(),
 		creation: fhirDateTime().optional(),
 		_creation: z.lazy(getElementSchema).optional(),
-		data: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		data: fhirBase64Binary().optional(),
 		_data: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		hash: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		hash: fhirBase64Binary().optional(),
 		_hash: z.lazy(getElementSchema).optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		language: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		language: fhirCode().optional(),
 		_language: z.lazy(getElementSchema).optional(),
 		size: z.number().int().nonnegative().optional(),
 		_size: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUrl().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 	})
 	.strict();

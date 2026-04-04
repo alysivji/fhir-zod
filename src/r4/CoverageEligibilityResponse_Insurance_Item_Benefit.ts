@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -51,19 +52,13 @@ const getMoneySchema = (): z.ZodType<Money> =>
 export const CoverageEligibilityResponse_Insurance_Item_BenefitSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		allowedMoney: z.lazy(getMoneySchema).optional(),
-		allowedString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		allowedString: fhirString().optional(),
 		_allowedString: z.lazy(getElementSchema).optional(),
 		allowedUnsignedInt: z.number().int().nonnegative().optional(),
 		_allowedUnsignedInt: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema),
 		usedMoney: z.lazy(getMoneySchema).optional(),
-		usedString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		usedString: fhirString().optional(),
 		_usedString: z.lazy(getElementSchema).optional(),
 		usedUnsignedInt: z.number().int().nonnegative().optional(),
 		_usedUnsignedInt: z.lazy(getElementSchema).optional(),

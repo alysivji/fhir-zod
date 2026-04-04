@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Condition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
@@ -122,10 +122,7 @@ export const ConditionSchemaInternal = DomainResourceSchemaInternal.extend({
 	_abatementDateTime: z.lazy(getElementSchema).optional(),
 	abatementPeriod: z.lazy(getPeriodSchema).optional(),
 	abatementRange: z.lazy(getRangeSchema).optional(),
-	abatementString: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	abatementString: fhirString().optional(),
 	_abatementString: z.lazy(getElementSchema).optional(),
 	asserter: z.lazy(getReferenceSchema).optional(),
 	bodySite: z.lazy(getCodeableConceptSchema).array().optional(),
@@ -141,10 +138,7 @@ export const ConditionSchemaInternal = DomainResourceSchemaInternal.extend({
 	_onsetDateTime: z.lazy(getElementSchema).optional(),
 	onsetPeriod: z.lazy(getPeriodSchema).optional(),
 	onsetRange: z.lazy(getRangeSchema).optional(),
-	onsetString: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	onsetString: fhirString().optional(),
 	_onsetString: z.lazy(getElementSchema).optional(),
 	recordedDate: fhirDateTime().optional(),
 	_recordedDate: z.lazy(getElementSchema).optional(),

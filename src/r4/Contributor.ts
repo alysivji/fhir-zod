@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contributor
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { ContactDetail } from "./ContactDetail";
 import { ContactDetailSchemaInternal } from "./ContactDetail";
 import type { Element } from "./Element";
@@ -37,12 +38,9 @@ export const ContributorSchemaInternal = z
 	.object({
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		type: z.enum(["author", "editor", "endorser", "reviewer"]),
 		_type: z.lazy(getElementSchema).optional(),

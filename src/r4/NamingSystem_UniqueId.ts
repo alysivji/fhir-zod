@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NamingSystem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -41,17 +42,14 @@ const getPeriodSchema = (): z.ZodType<Period> =>
 /** @internal */
 export const NamingSystem_UniqueIdSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
 		preferred: z.boolean().optional(),
 		_preferred: z.lazy(getElementSchema).optional(),
 		type: z.enum(["oid", "other", "uri", "uuid"]),
 		_type: z.lazy(getElementSchema).optional(),
-		value: z.string().regex(/[ \r\n\t\S]+/),
+		value: fhirString(),
 		_value: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -170,11 +176,7 @@ export const ResearchElementDefinitionSchemaInternal =
 		characteristic: z
 			.lazy(getResearchElementDefinition_CharacteristicSchema)
 			.array(),
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		comment: fhirString().array().optional(),
 		_comment: z.lazy(getElementSchema).array().optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		copyright: z.string().optional(),
@@ -192,61 +194,40 @@ export const ResearchElementDefinitionSchemaInternal =
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		library: z.string().regex(/\S*/).array().optional(),
+		library: fhirCanonical().array().optional(),
 		_library: z.lazy(getElementSchema).array().optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
 		relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
 		resourceType: z.literal("ResearchElementDefinition"),
 		reviewer: z.lazy(getContactDetailSchema).array().optional(),
-		shortTitle: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		shortTitle: fhirString().optional(),
 		_shortTitle: z.lazy(getElementSchema).optional(),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		subjectReference: z.lazy(getReferenceSchema).optional(),
-		subtitle: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		subtitle: fhirString().optional(),
 		_subtitle: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 		topic: z.lazy(getCodeableConceptSchema).array().optional(),
 		type: z.enum(["exposure", "outcome", "population"]),
 		_type: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
-		usage: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		usage: fhirString().optional(),
 		_usage: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
 		variableType: z
 			.enum(["continuous", "descriptive", "dichotomous"])
 			.optional(),
 		_variableType: z.lazy(getElementSchema).optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

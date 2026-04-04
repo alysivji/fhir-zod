@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
 import type { BackboneElement } from "./BackboneElement";
@@ -37,10 +38,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 export const SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		attachment: z.lazy(getAttachmentSchema).optional(),
-		representation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		representation: fhirString().optional(),
 		_representation: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 	}).strict();

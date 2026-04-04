@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -290,16 +291,13 @@ const getOperationDefinition_Parameter_ReferencedFromSchema =
 export const OperationDefinition_ParameterSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		binding: z.lazy(getOperationDefinition_Parameter_BindingSchema).optional(),
-		documentation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		documentation: fhirString().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
-		max: z.string().regex(/[ \r\n\t\S]+/),
+		max: fhirString(),
 		_max: z.lazy(getElementSchema).optional(),
 		min: z.number().int(),
 		_min: z.lazy(getElementSchema).optional(),
-		name: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		name: fhirCode(),
 		_name: z.lazy(getElementSchema).optional(),
 		part: z.unknown().array().optional(),
 		referencedFrom: z
@@ -320,7 +318,7 @@ export const OperationDefinition_ParameterSchemaInternal =
 			])
 			.optional(),
 		_searchType: z.lazy(getElementSchema).optional(),
-		targetProfile: z.string().regex(/\S*/).array().optional(),
+		targetProfile: fhirCanonical().array().optional(),
 		_targetProfile: z.lazy(getElementSchema).array().optional(),
 		type: z
 			.enum([

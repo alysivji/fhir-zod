@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/VisionPrescription
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
 import type { BackboneElement } from "./BackboneElement";
@@ -90,15 +91,9 @@ export const VisionPrescription_LensSpecificationSchemaInternal =
 		_axis: z.lazy(getElementSchema).optional(),
 		backCurve: z.number().optional(),
 		_backCurve: z.lazy(getElementSchema).optional(),
-		brand: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		brand: fhirString().optional(),
 		_brand: z.lazy(getElementSchema).optional(),
-		color: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		color: fhirString().optional(),
 		_color: z.lazy(getElementSchema).optional(),
 		cylinder: z.number().optional(),
 		_cylinder: z.lazy(getElementSchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -44,15 +45,12 @@ export const QuestionnaireResponse_ItemSchemaInternal =
 			.lazy(getQuestionnaireResponse_Item_AnswerSchema)
 			.array()
 			.optional(),
-		definition: z.string().regex(/\S*/).optional(),
+		definition: fhirUri().optional(),
 		_definition: z.lazy(getElementSchema).optional(),
 		item: z.unknown().array().optional(),
-		linkId: z.string().regex(/[ \r\n\t\S]+/),
+		linkId: fhirString(),
 		_linkId: z.lazy(getElementSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 	}).strict();
 

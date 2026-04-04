@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { ElementDefinition_Slicing_Discriminator } from "./ElementDefinition_Slicing_Discriminator";
@@ -36,10 +37,7 @@ const getElementDefinition_Slicing_DiscriminatorSchema =
 /** @internal */
 export const ElementDefinition_SlicingSchemaInternal =
 	ElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		discriminator: z
 			.lazy(getElementDefinition_Slicing_DiscriminatorSchema)

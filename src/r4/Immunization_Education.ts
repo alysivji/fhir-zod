@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Immunization
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -36,16 +36,13 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Immunization_EducationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		documentType: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		documentType: fhirString().optional(),
 		_documentType: z.lazy(getElementSchema).optional(),
 		presentationDate: fhirDateTime().optional(),
 		_presentationDate: z.lazy(getElementSchema).optional(),
 		publicationDate: fhirDateTime().optional(),
 		_publicationDate: z.lazy(getElementSchema).optional(),
-		reference: z.string().regex(/\S*/).optional(),
+		reference: fhirUri().optional(),
 		_reference: z.lazy(getElementSchema).optional(),
 	}).strict();
 

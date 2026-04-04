@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Procedure
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
@@ -150,9 +155,9 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 	focalDevice: z.lazy(getProcedure_FocalDeviceSchema).array().optional(),
 	followUp: z.lazy(getCodeableConceptSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	instantiatesCanonical: z.string().regex(/\S*/).array().optional(),
+	instantiatesCanonical: fhirCanonical().array().optional(),
 	_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-	instantiatesUri: z.string().regex(/\S*/).array().optional(),
+	instantiatesUri: fhirUri().array().optional(),
 	_instantiatesUri: z.lazy(getElementSchema).array().optional(),
 	location: z.lazy(getReferenceSchema).optional(),
 	note: z.lazy(getAnnotationSchema).array().optional(),
@@ -163,10 +168,7 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 	_performedDateTime: z.lazy(getElementSchema).optional(),
 	performedPeriod: z.lazy(getPeriodSchema).optional(),
 	performedRange: z.lazy(getRangeSchema).optional(),
-	performedString: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	performedString: fhirString().optional(),
 	_performedString: z.lazy(getElementSchema).optional(),
 	performer: z.lazy(getProcedure_PerformerSchema).array().optional(),
 	reasonCode: z.lazy(getCodeableConceptSchema).array().optional(),

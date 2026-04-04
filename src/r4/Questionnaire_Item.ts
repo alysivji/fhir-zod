@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Coding } from "./Coding";
@@ -123,10 +124,10 @@ export const Questionnaire_ItemSchemaInternal =
 			.lazy(getQuestionnaire_Item_AnswerOptionSchema)
 			.array()
 			.optional(),
-		answerValueSet: z.string().regex(/\S*/).optional(),
+		answerValueSet: fhirCanonical().optional(),
 		_answerValueSet: z.lazy(getElementSchema).optional(),
 		code: z.lazy(getCodingSchema).array().optional(),
-		definition: z.string().regex(/\S*/).optional(),
+		definition: fhirUri().optional(),
 		_definition: z.lazy(getElementSchema).optional(),
 		enableBehavior: z.enum(["all", "any"]).optional(),
 		_enableBehavior: z.lazy(getElementSchema).optional(),
@@ -136,14 +137,11 @@ export const Questionnaire_ItemSchemaInternal =
 			.optional(),
 		initial: z.lazy(getQuestionnaire_Item_InitialSchema).array().optional(),
 		item: z.unknown().array().optional(),
-		linkId: z.string().regex(/[ \r\n\t\S]+/),
+		linkId: fhirString(),
 		_linkId: z.lazy(getElementSchema).optional(),
 		maxLength: z.number().int().optional(),
 		_maxLength: z.lazy(getElementSchema).optional(),
-		prefix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		prefix: fhirString().optional(),
 		_prefix: z.lazy(getElementSchema).optional(),
 		readOnly: z.boolean().optional(),
 		_readOnly: z.lazy(getElementSchema).optional(),
@@ -151,10 +149,7 @@ export const Questionnaire_ItemSchemaInternal =
 		_repeats: z.lazy(getElementSchema).optional(),
 		required: z.boolean().optional(),
 		_required: z.lazy(getElementSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		type: z.enum([
 			"attachment",

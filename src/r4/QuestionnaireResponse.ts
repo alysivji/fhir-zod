@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { DomainResource } from "./DomainResource";
 import { DomainResourceSchemaInternal } from "./DomainResource";
@@ -77,7 +77,7 @@ export const QuestionnaireResponseSchemaInternal =
 		identifier: z.lazy(getIdentifierSchema).optional(),
 		item: z.lazy(getQuestionnaireResponse_ItemSchema).array().optional(),
 		partOf: z.lazy(getReferenceSchema).array().optional(),
-		questionnaire: z.string().regex(/\S*/).optional(),
+		questionnaire: fhirCanonical().optional(),
 		_questionnaire: z.lazy(getElementSchema).optional(),
 		resourceType: z.literal("QuestionnaireResponse"),
 		source: z.lazy(getReferenceSchema).optional(),

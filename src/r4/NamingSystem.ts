@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NamingSystem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { ContactDetail } from "./ContactDetail";
@@ -87,27 +87,18 @@ export const NamingSystemSchemaInternal = DomainResourceSchemaInternal.extend({
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 	kind: z.enum(["codesystem", "identifier", "root"]),
 	_kind: z.lazy(getElementSchema).optional(),
-	name: z.string().regex(/[ \r\n\t\S]+/),
+	name: fhirString(),
 	_name: z.lazy(getElementSchema).optional(),
-	publisher: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("NamingSystem"),
-	responsible: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	responsible: fhirString().optional(),
 	_responsible: z.lazy(getElementSchema).optional(),
 	status: z.enum(["active", "draft", "retired", "unknown"]),
 	_status: z.lazy(getElementSchema).optional(),
 	type: z.lazy(getCodeableConceptSchema).optional(),
 	uniqueId: z.lazy(getNamingSystem_UniqueIdSchema).array(),
-	usage: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	usage: fhirString().optional(),
 	_usage: z.lazy(getElementSchema).optional(),
 	useContext: z.lazy(getUsageContextSchema).array().optional(),
 }).strict();

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Group
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -86,10 +87,7 @@ export const GroupSchemaInternal = DomainResourceSchemaInternal.extend({
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	managingEntity: z.lazy(getReferenceSchema).optional(),
 	member: z.lazy(getGroup_MemberSchema).array().optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	quantity: z.number().int().nonnegative().optional(),
 	_quantity: z.lazy(getElementSchema).optional(),

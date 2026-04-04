@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCode, fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -349,52 +349,25 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const TestScript_Setup_Action_AssertSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		compareToSourceExpression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		compareToSourceExpression: fhirString().optional(),
 		_compareToSourceExpression: z.lazy(getElementSchema).optional(),
-		compareToSourceId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		compareToSourceId: fhirString().optional(),
 		_compareToSourceId: z.lazy(getElementSchema).optional(),
-		compareToSourcePath: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		compareToSourcePath: fhirString().optional(),
 		_compareToSourcePath: z.lazy(getElementSchema).optional(),
-		contentType: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		contentType: fhirCode().optional(),
 		_contentType: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		direction: z.enum(["request", "response"]).optional(),
 		_direction: z.lazy(getElementSchema).optional(),
-		expression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		expression: fhirString().optional(),
 		_expression: z.lazy(getElementSchema).optional(),
-		headerField: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		headerField: fhirString().optional(),
 		_headerField: z.lazy(getElementSchema).optional(),
-		label: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		label: fhirString().optional(),
 		_label: z.lazy(getElementSchema).optional(),
-		minimumId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		minimumId: fhirString().optional(),
 		_minimumId: z.lazy(getElementSchema).optional(),
 		navigationLinks: z.boolean().optional(),
 		_navigationLinks: z.lazy(getElementSchema).optional(),
@@ -414,19 +387,13 @@ export const TestScript_Setup_Action_AssertSchemaInternal =
 			])
 			.optional(),
 		_operator: z.lazy(getElementSchema).optional(),
-		path: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		path: fhirString().optional(),
 		_path: z.lazy(getElementSchema).optional(),
 		requestMethod: z
 			.enum(["delete", "get", "head", "options", "patch", "post", "put"])
 			.optional(),
 		_requestMethod: z.lazy(getElementSchema).optional(),
-		requestURL: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		requestURL: fhirString().optional(),
 		_requestURL: z.lazy(getElementSchema).optional(),
 		resource: z
 			.enum([
@@ -661,19 +628,13 @@ export const TestScript_Setup_Action_AssertSchemaInternal =
 			])
 			.optional(),
 		_response: z.lazy(getElementSchema).optional(),
-		responseCode: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		responseCode: fhirString().optional(),
 		_responseCode: z.lazy(getElementSchema).optional(),
 		sourceId: fhirId().optional(),
 		_sourceId: z.lazy(getElementSchema).optional(),
 		validateProfileId: fhirId().optional(),
 		_validateProfileId: z.lazy(getElementSchema).optional(),
-		value: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		value: fhirString().optional(),
 		_value: z.lazy(getElementSchema).optional(),
 		warningOnly: z.boolean(),
 		_warningOnly: z.lazy(getElementSchema).optional(),

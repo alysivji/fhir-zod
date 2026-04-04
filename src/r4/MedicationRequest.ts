@@ -1,10 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationRequest
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -169,9 +173,9 @@ export const MedicationRequestSchemaInternal =
 		eventHistory: z.lazy(getReferenceSchema).array().optional(),
 		groupIdentifier: z.lazy(getIdentifierSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiatesCanonical: z.string().regex(/\S*/).array().optional(),
+		instantiatesCanonical: fhirCanonical().array().optional(),
 		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: z.string().regex(/\S*/).array().optional(),
+		instantiatesUri: fhirUri().array().optional(),
 		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
 		insurance: z.lazy(getReferenceSchema).array().optional(),
 		intent: z.enum([

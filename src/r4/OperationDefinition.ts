@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirCode,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { ContactDetail } from "./ContactDetail";
@@ -289,9 +295,9 @@ export const OperationDefinitionSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		affectsState: z.boolean().optional(),
 		_affectsState: z.lazy(getElementSchema).optional(),
-		base: z.string().regex(/\S*/).optional(),
+		base: fhirCanonical().optional(),
 		_base: z.lazy(getElementSchema).optional(),
-		code: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		code: fhirCode(),
 		_code: z.lazy(getElementSchema).optional(),
 		comment: z.string().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
@@ -302,26 +308,23 @@ export const OperationDefinitionSchemaInternal =
 		_description: z.lazy(getElementSchema).optional(),
 		experimental: z.boolean().optional(),
 		_experimental: z.lazy(getElementSchema).optional(),
-		inputProfile: z.string().regex(/\S*/).optional(),
+		inputProfile: fhirCanonical().optional(),
 		_inputProfile: z.lazy(getElementSchema).optional(),
 		instance: z.boolean(),
 		_instance: z.lazy(getElementSchema).optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		kind: z.enum(["operation", "query"]),
 		_kind: z.lazy(getElementSchema).optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
-		outputProfile: z.string().regex(/\S*/).optional(),
+		outputProfile: fhirCanonical().optional(),
 		_outputProfile: z.lazy(getElementSchema).optional(),
 		overload: z.lazy(getOperationDefinition_OverloadSchema).array().optional(),
 		parameter: z
 			.lazy(getOperationDefinition_ParameterSchema)
 			.array()
 			.optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
@@ -484,20 +487,14 @@ export const OperationDefinitionSchemaInternal =
 		_status: z.lazy(getElementSchema).optional(),
 		system: z.boolean(),
 		_system: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 		type: z.boolean(),
 		_type: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

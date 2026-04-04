@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -37,10 +38,7 @@ const getPeriodSchema = (): z.ZodType<Period> =>
 /** @internal */
 export const BiologicallyDerivedProduct_StorageSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		duration: z.lazy(getPeriodSchema).optional(),
 		scale: z.enum(["celsius", "farenheit", "kelvin"]).optional(),

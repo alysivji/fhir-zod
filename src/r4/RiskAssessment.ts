@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RiskAssessment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -105,10 +105,7 @@ export const RiskAssessmentSchemaInternal = DomainResourceSchemaInternal.extend(
 		encounter: z.lazy(getReferenceSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		method: z.lazy(getCodeableConceptSchema).optional(),
-		mitigation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		mitigation: fhirString().optional(),
 		_mitigation: z.lazy(getElementSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		occurrenceDateTime: fhirDateTime().optional(),

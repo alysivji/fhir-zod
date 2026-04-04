@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,12 +28,9 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const TerminologyCapabilities_SoftwareSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

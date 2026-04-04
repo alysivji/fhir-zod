@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/UsageContext
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -54,10 +55,7 @@ export const UsageContextSchemaInternal = z
 	.object({
 		code: z.lazy(getCodingSchema),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		valueQuantity: z.lazy(getQuantitySchema).optional(),

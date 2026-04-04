@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeSystem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -45,12 +46,9 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CodeSystem_FilterSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		code: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		code: fhirCode(),
 		_code: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		operator: z
 			.enum([
@@ -66,7 +64,7 @@ export const CodeSystem_FilterSchemaInternal =
 			])
 			.array(),
 		_operator: z.lazy(getElementSchema).array().optional(),
-		value: z.string().regex(/[ \r\n\t\S]+/),
+		value: fhirString(),
 		_value: z.lazy(getElementSchema).optional(),
 	}).strict();
 

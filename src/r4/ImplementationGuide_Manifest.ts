@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -45,20 +46,12 @@ const getImplementationGuide_Manifest_ResourceSchema =
 /** @internal */
 export const ImplementationGuide_ManifestSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		image: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		image: fhirString().array().optional(),
 		_image: z.lazy(getElementSchema).array().optional(),
-		other: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		other: fhirString().array().optional(),
 		_other: z.lazy(getElementSchema).array().optional(),
 		page: z.lazy(getImplementationGuide_Manifest_PageSchema).array().optional(),
-		rendering: z.string().regex(/\S*/).optional(),
+		rendering: fhirUrl().optional(),
 		_rendering: z.lazy(getElementSchema).optional(),
 		resource: z.lazy(getImplementationGuide_Manifest_ResourceSchema).array(),
 	}).strict();

@@ -1,10 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EvidenceVariable
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -103,17 +107,14 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 /** @internal */
 export const EvidenceVariable_CharacteristicSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		definitionCanonical: z.string().regex(/\S*/).optional(),
+		definitionCanonical: fhirCanonical().optional(),
 		_definitionCanonical: z.lazy(getElementSchema).optional(),
 		definitionCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		definitionDataRequirement: z.lazy(getDataRequirementSchema).optional(),
 		definitionExpression: z.lazy(getExpressionSchema).optional(),
 		definitionReference: z.lazy(getReferenceSchema).optional(),
 		definitionTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		exclude: z.boolean().optional(),
 		_exclude: z.lazy(getElementSchema).optional(),

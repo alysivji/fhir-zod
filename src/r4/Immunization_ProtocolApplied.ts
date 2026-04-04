@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Immunization
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -55,22 +56,13 @@ export const Immunization_ProtocolAppliedSchemaInternal =
 		authority: z.lazy(getReferenceSchema).optional(),
 		doseNumberPositiveInt: z.number().int().positive().optional(),
 		_doseNumberPositiveInt: z.lazy(getElementSchema).optional(),
-		doseNumberString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		doseNumberString: fhirString().optional(),
 		_doseNumberString: z.lazy(getElementSchema).optional(),
-		series: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		series: fhirString().optional(),
 		_series: z.lazy(getElementSchema).optional(),
 		seriesDosesPositiveInt: z.number().int().positive().optional(),
 		_seriesDosesPositiveInt: z.lazy(getElementSchema).optional(),
-		seriesDosesString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		seriesDosesString: fhirString().optional(),
 		_seriesDosesString: z.lazy(getElementSchema).optional(),
 		targetDisease: z.lazy(getCodeableConceptSchema).array().optional(),
 	})

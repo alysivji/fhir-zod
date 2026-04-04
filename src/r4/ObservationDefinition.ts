@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ObservationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -114,10 +115,7 @@ export const ObservationDefinitionSchemaInternal =
 			.array()
 			.optional(),
 		_permittedDataType: z.lazy(getElementSchema).array().optional(),
-		preferredReportName: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		preferredReportName: fhirString().optional(),
 		_preferredReportName: z.lazy(getElementSchema).optional(),
 		qualifiedInterval: z
 			.lazy(getObservationDefinition_QualifiedIntervalSchema)

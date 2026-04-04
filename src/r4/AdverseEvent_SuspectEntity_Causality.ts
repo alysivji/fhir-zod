@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AdverseEvent
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -41,10 +42,7 @@ export const AdverseEvent_SuspectEntity_CausalitySchemaInternal =
 		assessment: z.lazy(getCodeableConceptSchema).optional(),
 		author: z.lazy(getReferenceSchema).optional(),
 		method: z.lazy(getCodeableConceptSchema).optional(),
-		productRelatedness: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		productRelatedness: fhirString().optional(),
 		_productRelatedness: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

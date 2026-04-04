@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GraphDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -46,27 +47,15 @@ const getGraphDefinition_Link_TargetSchema =
 /** @internal */
 export const GraphDefinition_LinkSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
-		max: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		max: fhirString().optional(),
 		_max: z.lazy(getElementSchema).optional(),
 		min: z.number().int().optional(),
 		_min: z.lazy(getElementSchema).optional(),
-		path: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		path: fhirString().optional(),
 		_path: z.lazy(getElementSchema).optional(),
-		sliceName: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		sliceName: fhirString().optional(),
 		_sliceName: z.lazy(getElementSchema).optional(),
 		target: z.lazy(getGraphDefinition_Link_TargetSchema).array().optional(),
 	}).strict();

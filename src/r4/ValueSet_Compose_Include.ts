@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -50,14 +51,11 @@ export const ValueSet_Compose_IncludeSchemaInternal =
 			.array()
 			.optional(),
 		filter: z.lazy(getValueSet_Compose_Include_FilterSchema).array().optional(),
-		system: z.string().regex(/\S*/).optional(),
+		system: fhirUri().optional(),
 		_system: z.lazy(getElementSchema).optional(),
-		valueSet: z.string().regex(/\S*/).array().optional(),
+		valueSet: fhirCanonical().array().optional(),
 		_valueSet: z.lazy(getElementSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

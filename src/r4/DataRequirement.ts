@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -290,20 +291,13 @@ export const DataRequirementSchemaInternal = z
 		codeFilter: z.lazy(getDataRequirement_CodeFilterSchema).array().optional(),
 		dateFilter: z.lazy(getDataRequirement_DateFilterSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		limit: z.number().int().positive().optional(),
 		_limit: z.lazy(getElementSchema).optional(),
-		mustSupport: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		mustSupport: fhirString().array().optional(),
 		_mustSupport: z.lazy(getElementSchema).array().optional(),
-		profile: z.string().regex(/\S*/).array().optional(),
+		profile: fhirCanonical().array().optional(),
 		_profile: z.lazy(getElementSchema).array().optional(),
 		sort: z.lazy(getDataRequirement_SortSchema).array().optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -41,10 +42,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const EffectEvidenceSynthesis_ResultsByExposureSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		exposureState: z.enum(["exposure", "exposure-alternative"]).optional(),
 		_exposureState: z.lazy(getElementSchema).optional(),

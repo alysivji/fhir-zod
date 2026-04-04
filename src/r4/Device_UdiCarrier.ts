@@ -1,9 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Device
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import {
+	fhirBase64Binary,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -59,28 +64,19 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Device_UdiCarrierSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		carrierAIDC: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		carrierAIDC: fhirBase64Binary().optional(),
 		_carrierAIDC: z.lazy(getElementSchema).optional(),
-		carrierHRF: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		carrierHRF: fhirString().optional(),
 		_carrierHRF: z.lazy(getElementSchema).optional(),
-		deviceIdentifier: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		deviceIdentifier: fhirString().optional(),
 		_deviceIdentifier: z.lazy(getElementSchema).optional(),
 		entryType: z
 			.enum(["barcode", "card", "manual", "rfid", "self-reported", "unknown"])
 			.optional(),
 		_entryType: z.lazy(getElementSchema).optional(),
-		issuer: z.string().regex(/\S*/).optional(),
+		issuer: fhirUri().optional(),
 		_issuer: z.lazy(getElementSchema).optional(),
-		jurisdiction: z.string().regex(/\S*/).optional(),
+		jurisdiction: fhirUri().optional(),
 		_jurisdiction: z.lazy(getElementSchema).optional(),
 	}).strict();
 

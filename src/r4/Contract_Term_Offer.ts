@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -72,19 +73,12 @@ export const Contract_Term_OfferSchemaInternal =
 		decision: z.lazy(getCodeableConceptSchema).optional(),
 		decisionMode: z.lazy(getCodeableConceptSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		linkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		linkId: fhirString().array().optional(),
 		_linkId: z.lazy(getElementSchema).array().optional(),
 		party: z.lazy(getContract_Term_Offer_PartySchema).array().optional(),
 		securityLabelNumber: z.number().int().nonnegative().array().optional(),
 		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		topic: z.lazy(getReferenceSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),

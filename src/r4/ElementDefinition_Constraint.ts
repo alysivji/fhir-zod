@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirId, fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 
@@ -46,28 +46,19 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ElementDefinition_ConstraintSchemaInternal =
 	ElementSchemaInternal.extend({
-		expression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		expression: fhirString().optional(),
 		_expression: z.lazy(getElementSchema).optional(),
-		human: z.string().regex(/[ \r\n\t\S]+/),
+		human: fhirString(),
 		_human: z.lazy(getElementSchema).optional(),
 		key: fhirId(),
 		_key: z.lazy(getElementSchema).optional(),
-		requirements: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		requirements: fhirString().optional(),
 		_requirements: z.lazy(getElementSchema).optional(),
 		severity: z.enum(["error", "warning"]),
 		_severity: z.lazy(getElementSchema).optional(),
-		source: z.string().regex(/\S*/).optional(),
+		source: fhirCanonical().optional(),
 		_source: z.lazy(getElementSchema).optional(),
-		xpath: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		xpath: fhirString().optional(),
 		_xpath: z.lazy(getElementSchema).optional(),
 	}).strict();
 

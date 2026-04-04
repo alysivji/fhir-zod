@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirBase64Binary, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { AuditEvent_Entity_Detail } from "./AuditEvent_Entity_Detail";
 import { AuditEvent_Entity_DetailSchemaInternal } from "./AuditEvent_Entity_Detail";
@@ -57,22 +58,13 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const AuditEvent_EntitySchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		detail: z.lazy(getAuditEvent_Entity_DetailSchema).array().optional(),
 		lifecycle: z.lazy(getCodingSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		query: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		query: fhirBase64Binary().optional(),
 		_query: z.lazy(getElementSchema).optional(),
 		role: z.lazy(getCodingSchema).optional(),
 		securityLabel: z.lazy(getCodingSchema).array().optional(),

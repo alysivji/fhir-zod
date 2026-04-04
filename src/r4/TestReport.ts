@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestReport
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { DomainResource } from "./DomainResource";
 import { DomainResourceSchemaInternal } from "./DomainResource";
@@ -90,10 +90,7 @@ export const TestReportSchemaInternal = DomainResourceSchemaInternal.extend({
 	identifier: z.lazy(getIdentifierSchema).optional(),
 	issued: fhirDateTime().optional(),
 	_issued: z.lazy(getElementSchema).optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	participant: z.lazy(getTestReport_ParticipantSchema).array().optional(),
 	resourceType: z.literal("TestReport"),
@@ -112,10 +109,7 @@ export const TestReportSchemaInternal = DomainResourceSchemaInternal.extend({
 	_status: z.lazy(getElementSchema).optional(),
 	teardown: z.lazy(getTestReport_TeardownSchema).optional(),
 	test: z.lazy(getTestReport_TestSchema).array().optional(),
-	tester: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	tester: fhirString().optional(),
 	_tester: z.lazy(getElementSchema).optional(),
 	testScript: z.lazy(getReferenceSchema),
 })

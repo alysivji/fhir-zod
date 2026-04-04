@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HumanName
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -59,39 +60,18 @@ const getPeriodSchema = (): z.ZodType<Period> =>
 export const HumanNameSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		family: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		family: fhirString().optional(),
 		_family: z.lazy(getElementSchema).optional(),
-		given: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		given: fhirString().array().optional(),
 		_given: z.lazy(getElementSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
-		prefix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		prefix: fhirString().array().optional(),
 		_prefix: z.lazy(getElementSchema).array().optional(),
-		suffix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		suffix: fhirString().array().optional(),
 		_suffix: z.lazy(getElementSchema).array().optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		use: z
 			.enum([

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -47,10 +48,7 @@ const getMoneySchema = (): z.ZodType<Money> =>
 export const ExplanationOfBenefit_BenefitBalance_FinancialSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		allowedMoney: z.lazy(getMoneySchema).optional(),
-		allowedString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		allowedString: fhirString().optional(),
 		_allowedString: z.lazy(getElementSchema).optional(),
 		allowedUnsignedInt: z.number().int().nonnegative().optional(),
 		_allowedUnsignedInt: z.lazy(getElementSchema).optional(),

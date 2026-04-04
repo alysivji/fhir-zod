@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RiskAssessment
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -58,10 +59,7 @@ export const RiskAssessment_PredictionSchemaInternal =
 		_probabilityDecimal: z.lazy(getElementSchema).optional(),
 		probabilityRange: z.lazy(getRangeSchema).optional(),
 		qualitativeRisk: z.lazy(getCodeableConceptSchema).optional(),
-		rationale: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		rationale: fhirString().optional(),
 		_rationale: z.lazy(getElementSchema).optional(),
 		relativeRisk: z.number().optional(),
 		_relativeRisk: z.lazy(getElementSchema).optional(),

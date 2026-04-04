@@ -11,11 +11,19 @@ import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import * as z from "zod";
 import {
+	fhirBase64Binary,
+	fhirCanonical,
+	fhirCode,
 	fhirDate,
 	fhirDateTime,
 	fhirId,
 	fhirInstant,
+	fhirOid,
+	fhirString,
 	fhirTime,
+	fhirUri,
+	fhirUrl,
+	fhirUuid,
 } from "../../shared/fhir-primitives.ts";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation.ts";
 import type { NormalizedDefinition, NormalizedProperty } from "../model.ts";
@@ -227,7 +235,10 @@ function emitDefinitionFile(
 			}
 		}
 
-		const primitiveHelper = primitiveHelperName(property.primitiveType);
+		const primitiveHelper =
+			property.enumValues === null
+				? primitiveHelperName(property.primitiveType)
+				: null;
 
 		if (primitiveHelper) {
 			helperImports.add(primitiveHelper);
@@ -1065,6 +1076,12 @@ function emitRecordAccess(recordName: string, field: string): string {
 
 function primitiveHelperName(type: string | null): string | null {
 	switch (type) {
+		case "base64Binary":
+			return "fhirBase64Binary";
+		case "canonical":
+			return "fhirCanonical";
+		case "code":
+			return "fhirCode";
 		case "id":
 			return "fhirId";
 		case "date":
@@ -1073,8 +1090,18 @@ function primitiveHelperName(type: string | null): string | null {
 			return "fhirDateTime";
 		case "instant":
 			return "fhirInstant";
+		case "oid":
+			return "fhirOid";
+		case "string":
+			return "fhirString";
 		case "time":
 			return "fhirTime";
+		case "uri":
+			return "fhirUri";
+		case "url":
+			return "fhirUrl";
+		case "uuid":
+			return "fhirUuid";
 		default:
 			return null;
 	}
@@ -1082,6 +1109,12 @@ function primitiveHelperName(type: string | null): string | null {
 
 function primitiveHelper(type: string): (() => z.ZodString) | null {
 	switch (type) {
+		case "base64Binary":
+			return fhirBase64Binary;
+		case "canonical":
+			return fhirCanonical;
+		case "code":
+			return fhirCode;
 		case "id":
 			return fhirId;
 		case "date":
@@ -1090,8 +1123,18 @@ function primitiveHelper(type: string): (() => z.ZodString) | null {
 			return fhirDateTime;
 		case "instant":
 			return fhirInstant;
+		case "oid":
+			return fhirOid;
+		case "string":
+			return fhirString;
 		case "time":
 			return fhirTime;
+		case "uri":
+			return fhirUri;
+		case "url":
+			return fhirUrl;
+		case "uuid":
+			return fhirUuid;
 		default:
 			return null;
 	}

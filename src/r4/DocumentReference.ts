@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DocumentReference
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import { fhirInstant, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -98,10 +98,7 @@ export const DocumentReferenceSchemaInternal =
 		custodian: z.lazy(getReferenceSchema).optional(),
 		date: fhirInstant().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		docStatus: z
 			.enum(["amended", "entered-in-error", "final", "preliminary"])

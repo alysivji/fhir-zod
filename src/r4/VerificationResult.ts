@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/VerificationResult
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDate, fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -119,11 +119,7 @@ export const VerificationResultSchemaInternal =
 		statusDate: fhirDateTime().optional(),
 		_statusDate: z.lazy(getElementSchema).optional(),
 		target: z.lazy(getReferenceSchema).array().optional(),
-		targetLocation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		targetLocation: fhirString().array().optional(),
 		_targetLocation: z.lazy(getElementSchema).array().optional(),
 		validationProcess: z.lazy(getCodeableConceptSchema).array().optional(),
 		validationType: z.lazy(getCodeableConceptSchema).optional(),

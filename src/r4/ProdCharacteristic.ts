@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ProdCharacteristic
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
 import type { BackboneElement } from "./BackboneElement";
@@ -59,28 +60,17 @@ const getQuantitySchema = (): z.ZodType<Quantity> =>
 /** @internal */
 export const ProdCharacteristicSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		color: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		color: fhirString().array().optional(),
 		_color: z.lazy(getElementSchema).array().optional(),
 		depth: z.lazy(getQuantitySchema).optional(),
 		externalDiameter: z.lazy(getQuantitySchema).optional(),
 		height: z.lazy(getQuantitySchema).optional(),
 		image: z.lazy(getAttachmentSchema).array().optional(),
-		imprint: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		imprint: fhirString().array().optional(),
 		_imprint: z.lazy(getElementSchema).array().optional(),
 		nominalVolume: z.lazy(getQuantitySchema).optional(),
 		scoring: z.lazy(getCodeableConceptSchema).optional(),
-		shape: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		shape: fhirString().optional(),
 		_shape: z.lazy(getElementSchema).optional(),
 		weight: z.lazy(getQuantitySchema).optional(),
 		width: z.lazy(getQuantitySchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -40,10 +41,10 @@ export const ImplementationGuide_Manifest_ResourceSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		exampleBoolean: z.boolean().optional(),
 		_exampleBoolean: z.lazy(getElementSchema).optional(),
-		exampleCanonical: z.string().regex(/\S*/).optional(),
+		exampleCanonical: fhirCanonical().optional(),
 		_exampleCanonical: z.lazy(getElementSchema).optional(),
 		reference: z.lazy(getReferenceSchema),
-		relativePath: z.string().regex(/\S*/).optional(),
+		relativePath: fhirUrl().optional(),
 		_relativePath: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Device
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -37,7 +38,7 @@ export const Device_VersionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		component: z.lazy(getIdentifierSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
-		value: z.string().regex(/[ \r\n\t\S]+/),
+		value: fhirString(),
 		_value: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Meta
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId, fhirInstant } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirId,
+	fhirInstant,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
 import type { Element } from "./Element";
@@ -47,17 +53,14 @@ const getExtensionSchema = (): z.ZodType<Extension> =>
 export const MetaSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		lastUpdated: fhirInstant().optional(),
 		_lastUpdated: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/).array().optional(),
+		profile: fhirCanonical().array().optional(),
 		_profile: z.lazy(getElementSchema).array().optional(),
 		security: z.lazy(getCodingSchema).array().optional(),
-		source: z.string().regex(/\S*/).optional(),
+		source: fhirUri().optional(),
 		_source: z.lazy(getElementSchema).optional(),
 		tag: z.lazy(getCodingSchema).array().optional(),
 		versionId: fhirId().optional(),

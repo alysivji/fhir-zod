@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,16 +28,9 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const OperationDefinition_OverloadSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
-		parameterName: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		parameterName: fhirString().array().optional(),
 		_parameterName: z.lazy(getElementSchema).array().optional(),
 	}).strict();
 

@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Resource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCode, fhirId, fhirUri } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Meta } from "./Meta";
@@ -38,12 +38,9 @@ export const ResourceSchemaInternal = z
 	.object({
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		implicitRules: z.string().regex(/\S*/).optional(),
+		implicitRules: fhirUri().optional(),
 		_implicitRules: z.lazy(getElementSchema).optional(),
-		language: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		language: fhirCode().optional(),
 		_language: z.lazy(getElementSchema).optional(),
 		meta: z.lazy(getMetaSchema).optional(),
 	})

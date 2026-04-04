@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -29,7 +30,7 @@ export const ExampleScenario_Instance_VersionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		description: z.string(),
 		_description: z.lazy(getElementSchema).optional(),
-		versionId: z.string().regex(/[ \r\n\t\S]+/),
+		versionId: fhirString(),
 		_versionId: z.lazy(getElementSchema).optional(),
 	}).strict();
 

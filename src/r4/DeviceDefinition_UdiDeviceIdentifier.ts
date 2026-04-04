@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -31,11 +32,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const DeviceDefinition_UdiDeviceIdentifierSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		deviceIdentifier: z.string().regex(/[ \r\n\t\S]+/),
+		deviceIdentifier: fhirString(),
 		_deviceIdentifier: z.lazy(getElementSchema).optional(),
-		issuer: z.string().regex(/\S*/),
+		issuer: fhirUri(),
 		_issuer: z.lazy(getElementSchema).optional(),
-		jurisdiction: z.string().regex(/\S*/),
+		jurisdiction: fhirUri(),
 		_jurisdiction: z.lazy(getElementSchema).optional(),
 	}).strict();
 

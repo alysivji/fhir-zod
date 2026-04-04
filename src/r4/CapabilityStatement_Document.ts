@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -35,7 +36,7 @@ export const CapabilityStatement_DocumentSchemaInternal =
 		_documentation: z.lazy(getElementSchema).optional(),
 		mode: z.enum(["consumer", "producer"]),
 		_mode: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/),
+		profile: fhirCanonical(),
 		_profile: z.lazy(getElementSchema).optional(),
 	}).strict();
 

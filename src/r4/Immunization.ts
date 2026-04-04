@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Immunization
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDate, fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -151,19 +151,13 @@ export const ImmunizationSchemaInternal = DomainResourceSchemaInternal.extend({
 	isSubpotent: z.boolean().optional(),
 	_isSubpotent: z.lazy(getElementSchema).optional(),
 	location: z.lazy(getReferenceSchema).optional(),
-	lotNumber: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	lotNumber: fhirString().optional(),
 	_lotNumber: z.lazy(getElementSchema).optional(),
 	manufacturer: z.lazy(getReferenceSchema).optional(),
 	note: z.lazy(getAnnotationSchema).array().optional(),
 	occurrenceDateTime: fhirDateTime().optional(),
 	_occurrenceDateTime: z.lazy(getElementSchema).optional(),
-	occurrenceString: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	occurrenceString: fhirString().optional(),
 	_occurrenceString: z.lazy(getElementSchema).optional(),
 	patient: z.lazy(getReferenceSchema),
 	performer: z.lazy(getImmunization_PerformerSchema).array().optional(),

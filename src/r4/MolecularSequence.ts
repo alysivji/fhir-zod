@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MolecularSequence
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { DomainResource } from "./DomainResource";
 import { DomainResourceSchemaInternal } from "./DomainResource";
@@ -103,10 +104,7 @@ export const MolecularSequenceSchemaInternal =
 		_coordinateSystem: z.lazy(getElementSchema).optional(),
 		device: z.lazy(getReferenceSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		observedSeq: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		observedSeq: fhirString().optional(),
 		_observedSeq: z.lazy(getElementSchema).optional(),
 		patient: z.lazy(getReferenceSchema).optional(),
 		performer: z.lazy(getReferenceSchema).optional(),

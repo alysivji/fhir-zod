@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageHeader
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -36,12 +37,9 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const MessageHeader_DestinationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		endpoint: z.string().regex(/\S*/),
+		endpoint: fhirUrl(),
 		_endpoint: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		receiver: z.lazy(getReferenceSchema).optional(),
 		target: z.lazy(getReferenceSchema).optional(),

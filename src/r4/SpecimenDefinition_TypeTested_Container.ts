@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SpecimenDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -63,22 +64,13 @@ export const SpecimenDefinition_TypeTested_ContainerSchemaInternal =
 			.optional(),
 		cap: z.lazy(getCodeableConceptSchema).optional(),
 		capacity: z.lazy(getQuantitySchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		material: z.lazy(getCodeableConceptSchema).optional(),
 		minimumVolumeQuantity: z.lazy(getQuantitySchema).optional(),
-		minimumVolumeString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		minimumVolumeString: fhirString().optional(),
 		_minimumVolumeString: z.lazy(getElementSchema).optional(),
-		preparation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		preparation: fhirString().optional(),
 		_preparation: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 	})

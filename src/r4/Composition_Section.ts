@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Composition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -66,10 +67,7 @@ export const Composition_SectionSchemaInternal =
 		orderedBy: z.lazy(getCodeableConceptSchema).optional(),
 		section: z.unknown().array().optional(),
 		text: z.lazy(getNarrativeSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

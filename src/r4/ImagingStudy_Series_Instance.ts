@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImagingStudy
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Coding } from "./Coding";
@@ -41,10 +41,7 @@ export const ImagingStudy_Series_InstanceSchemaInternal =
 		number: z.number().int().nonnegative().optional(),
 		_number: z.lazy(getElementSchema).optional(),
 		sopClass: z.lazy(getCodingSchema),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 		uid: fhirId(),
 		_uid: z.lazy(getElementSchema).optional(),

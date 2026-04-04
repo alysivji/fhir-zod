@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -29,7 +30,7 @@ export const OperationDefinition_Parameter_BindingSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		strength: z.enum(["example", "extensible", "preferred", "required"]),
 		_strength: z.lazy(getElementSchema).optional(),
-		valueSet: z.string().regex(/\S*/),
+		valueSet: fhirCanonical(),
 		_valueSet: z.lazy(getElementSchema).optional(),
 	}).strict();
 

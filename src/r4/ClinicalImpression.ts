@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalImpression
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -119,10 +119,7 @@ export const ClinicalImpressionSchemaInternal =
 		code: z.lazy(getCodeableConceptSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		effectiveDateTime: fhirDateTime().optional(),
 		_effectiveDateTime: z.lazy(getElementSchema).optional(),
@@ -142,7 +139,7 @@ export const ClinicalImpressionSchemaInternal =
 			.array()
 			.optional(),
 		prognosisReference: z.lazy(getReferenceSchema).array().optional(),
-		protocol: z.string().regex(/\S*/).array().optional(),
+		protocol: fhirUri().array().optional(),
 		_protocol: z.lazy(getElementSchema).array().optional(),
 		resourceType: z.literal("ClinicalImpression"),
 		status: z.enum([
@@ -158,10 +155,7 @@ export const ClinicalImpressionSchemaInternal =
 		_status: z.lazy(getElementSchema).optional(),
 		statusReason: z.lazy(getCodeableConceptSchema).optional(),
 		subject: z.lazy(getReferenceSchema),
-		summary: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		summary: fhirString().optional(),
 		_summary: z.lazy(getElementSchema).optional(),
 		supportingInfo: z.lazy(getReferenceSchema).array().optional(),
 	})

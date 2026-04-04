@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Subscription
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -35,18 +36,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Subscription_ChannelSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		endpoint: z.string().regex(/\S*/).optional(),
+		endpoint: fhirUrl().optional(),
 		_endpoint: z.lazy(getElementSchema).optional(),
-		header: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		header: fhirString().array().optional(),
 		_header: z.lazy(getElementSchema).array().optional(),
-		payload: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		payload: fhirCode().optional(),
 		_payload: z.lazy(getElementSchema).optional(),
 		type: z.enum(["email", "message", "rest-hook", "sms", "websocket"]),
 		_type: z.lazy(getElementSchema).optional(),

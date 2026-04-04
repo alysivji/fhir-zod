@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -50,10 +50,7 @@ const getStructureMap_Group_RuleSchema =
 /** @internal */
 export const StructureMap_GroupSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		documentation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		documentation: fhirString().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		extends: fhirId().optional(),
 		_extends: z.lazy(getElementSchema).optional(),

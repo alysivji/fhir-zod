@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { Coding } from "./Coding";
@@ -142,7 +147,7 @@ export const MessageDefinitionSchemaInternal =
 			.lazy(getMessageDefinition_AllowedResponseSchema)
 			.array()
 			.optional(),
-		base: z.string().regex(/\S*/).optional(),
+		base: fhirCanonical().optional(),
 		_base: z.lazy(getElementSchema).optional(),
 		category: z.enum(["consequence", "currency", "notification"]).optional(),
 		_category: z.lazy(getElementSchema).optional(),
@@ -154,30 +159,24 @@ export const MessageDefinitionSchemaInternal =
 		description: z.string().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		eventCoding: z.lazy(getCodingSchema).optional(),
-		eventUri: z.string().regex(/\S*/).optional(),
+		eventUri: fhirUri().optional(),
 		_eventUri: z.lazy(getElementSchema).optional(),
 		experimental: z.boolean().optional(),
 		_experimental: z.lazy(getElementSchema).optional(),
 		focus: z.lazy(getMessageDefinition_FocusSchema).array().optional(),
-		graph: z.string().regex(/\S*/).array().optional(),
+		graph: fhirCanonical().array().optional(),
 		_graph: z.lazy(getElementSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		parent: z.string().regex(/\S*/).array().optional(),
+		parent: fhirCanonical().array().optional(),
 		_parent: z.lazy(getElementSchema).array().optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
-		replaces: z.string().regex(/\S*/).array().optional(),
+		replaces: fhirCanonical().array().optional(),
 		_replaces: z.lazy(getElementSchema).array().optional(),
 		resourceType: z.literal("MessageDefinition"),
 		responseRequired: z
@@ -186,18 +185,12 @@ export const MessageDefinitionSchemaInternal =
 		_responseRequired: z.lazy(getElementSchema).optional(),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GraphDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -193,12 +194,9 @@ export const GraphDefinition_Link_TargetSchemaInternal =
 			.array()
 			.optional(),
 		link: z.unknown().array().optional(),
-		params: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		params: fhirString().optional(),
 		_params: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/).optional(),
+		profile: fhirCanonical().optional(),
 		_profile: z.lazy(getElementSchema).optional(),
 		type: z.enum([
 			"Account",

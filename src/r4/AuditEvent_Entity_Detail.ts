@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirBase64Binary, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -31,17 +32,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const AuditEvent_Entity_DetailSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		type: z.string().regex(/[ \r\n\t\S]+/),
+		type: fhirString(),
 		_type: z.lazy(getElementSchema).optional(),
-		valueBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		valueBase64Binary: fhirBase64Binary().optional(),
 		_valueBase64Binary: z.lazy(getElementSchema).optional(),
-		valueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		valueString: fhirString().optional(),
 		_valueString: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

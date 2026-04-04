@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DocumentManifest
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -76,17 +76,14 @@ export const DocumentManifestSchemaInternal =
 		content: z.lazy(getReferenceSchema).array(),
 		created: fhirDateTime().optional(),
 		_created: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		masterIdentifier: z.lazy(getIdentifierSchema).optional(),
 		recipient: z.lazy(getReferenceSchema).array().optional(),
 		related: z.lazy(getDocumentManifest_RelatedSchema).array().optional(),
 		resourceType: z.literal("DocumentManifest"),
-		source: z.string().regex(/\S*/).optional(),
+		source: fhirUri().optional(),
 		_source: z.lazy(getElementSchema).optional(),
 		status: z.enum(["current", "entered-in-error", "superseded"]),
 		_status: z.lazy(getElementSchema).optional(),

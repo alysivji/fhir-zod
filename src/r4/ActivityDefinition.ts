@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ActivityDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { ActivityDefinition_DynamicValue } from "./ActivityDefinition_DynamicValue";
 import { ActivityDefinition_DynamicValueSchemaInternal } from "./ActivityDefinition_DynamicValue";
@@ -322,13 +328,10 @@ export const ActivityDefinitionSchemaInternal =
 		_kind: z.lazy(getElementSchema).optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		library: z.string().regex(/\S*/).array().optional(),
+		library: fhirCanonical().array().optional(),
 		_library: z.lazy(getElementSchema).array().optional(),
 		location: z.lazy(getReferenceSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		observationRequirement: z.lazy(getReferenceSchema).array().optional(),
 		observationResultRequirement: z.lazy(getReferenceSchema).array().optional(),
@@ -340,12 +343,9 @@ export const ActivityDefinitionSchemaInternal =
 		_priority: z.lazy(getElementSchema).optional(),
 		productCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		productReference: z.lazy(getReferenceSchema).optional(),
-		profile: z.string().regex(/\S*/).optional(),
+		profile: fhirCanonical().optional(),
 		_profile: z.lazy(getElementSchema).optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
@@ -358,10 +358,7 @@ export const ActivityDefinitionSchemaInternal =
 		_status: z.lazy(getElementSchema).optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		subjectReference: z.lazy(getReferenceSchema).optional(),
-		subtitle: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		subtitle: fhirString().optional(),
 		_subtitle: z.lazy(getElementSchema).optional(),
 		timingAge: z.lazy(getAgeSchema).optional(),
 		timingDateTime: fhirDateTime().optional(),
@@ -370,26 +367,17 @@ export const ActivityDefinitionSchemaInternal =
 		timingPeriod: z.lazy(getPeriodSchema).optional(),
 		timingRange: z.lazy(getRangeSchema).optional(),
 		timingTiming: z.lazy(getTimingSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 		topic: z.lazy(getCodeableConceptSchema).array().optional(),
-		transform: z.string().regex(/\S*/).optional(),
+		transform: fhirCanonical().optional(),
 		_transform: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
-		usage: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		usage: fhirString().optional(),
 		_usage: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

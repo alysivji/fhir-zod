@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Device
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -137,48 +137,30 @@ export const DeviceSchemaInternal = DomainResourceSchemaInternal.extend({
 	contact: z.lazy(getContactPointSchema).array().optional(),
 	definition: z.lazy(getReferenceSchema).optional(),
 	deviceName: z.lazy(getDevice_DeviceNameSchema).array().optional(),
-	distinctIdentifier: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	distinctIdentifier: fhirString().optional(),
 	_distinctIdentifier: z.lazy(getElementSchema).optional(),
 	expirationDate: fhirDateTime().optional(),
 	_expirationDate: z.lazy(getElementSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	location: z.lazy(getReferenceSchema).optional(),
-	lotNumber: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	lotNumber: fhirString().optional(),
 	_lotNumber: z.lazy(getElementSchema).optional(),
 	manufactureDate: fhirDateTime().optional(),
 	_manufactureDate: z.lazy(getElementSchema).optional(),
-	manufacturer: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	manufacturer: fhirString().optional(),
 	_manufacturer: z.lazy(getElementSchema).optional(),
-	modelNumber: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	modelNumber: fhirString().optional(),
 	_modelNumber: z.lazy(getElementSchema).optional(),
 	note: z.lazy(getAnnotationSchema).array().optional(),
 	owner: z.lazy(getReferenceSchema).optional(),
 	parent: z.lazy(getReferenceSchema).optional(),
-	partNumber: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	partNumber: fhirString().optional(),
 	_partNumber: z.lazy(getElementSchema).optional(),
 	patient: z.lazy(getReferenceSchema).optional(),
 	property: z.lazy(getDevice_PropertySchema).array().optional(),
 	resourceType: z.literal("Device"),
 	safety: z.lazy(getCodeableConceptSchema).array().optional(),
-	serialNumber: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	serialNumber: fhirString().optional(),
 	_serialNumber: z.lazy(getElementSchema).optional(),
 	specialization: z.lazy(getDevice_SpecializationSchema).array().optional(),
 	status: z
@@ -188,7 +170,7 @@ export const DeviceSchemaInternal = DomainResourceSchemaInternal.extend({
 	statusReason: z.lazy(getCodeableConceptSchema).array().optional(),
 	type: z.lazy(getCodeableConceptSchema).optional(),
 	udiCarrier: z.lazy(getDevice_UdiCarrierSchema).array().optional(),
-	url: z.string().regex(/\S*/).optional(),
+	url: fhirUri().optional(),
 	_url: z.lazy(getElementSchema).optional(),
 	version: z.lazy(getDevice_VersionSchema).array().optional(),
 })

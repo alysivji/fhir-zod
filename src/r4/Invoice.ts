@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Invoice
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -91,10 +91,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const InvoiceSchemaInternal = DomainResourceSchemaInternal.extend({
 	account: z.lazy(getReferenceSchema).optional(),
-	cancelledReason: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	cancelledReason: fhirString().optional(),
 	_cancelledReason: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),

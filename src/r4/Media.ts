@@ -1,10 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Media
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirInstant } from "../shared/fhir-primitives";
+import {
+	fhirDateTime,
+	fhirInstant,
+	fhirString,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -123,10 +127,7 @@ export const MediaSchemaInternal = DomainResourceSchemaInternal.extend({
 	_createdDateTime: z.lazy(getElementSchema).optional(),
 	createdPeriod: z.lazy(getPeriodSchema).optional(),
 	device: z.lazy(getReferenceSchema).optional(),
-	deviceName: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	deviceName: fhirString().optional(),
 	_deviceName: z.lazy(getElementSchema).optional(),
 	duration: z.number().optional(),
 	_duration: z.lazy(getElementSchema).optional(),

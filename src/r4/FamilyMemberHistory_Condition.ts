@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
 import type { Annotation } from "./Annotation";
@@ -65,10 +66,7 @@ export const FamilyMemberHistory_ConditionSchemaInternal =
 		onsetAge: z.lazy(getAgeSchema).optional(),
 		onsetPeriod: z.lazy(getPeriodSchema).optional(),
 		onsetRange: z.lazy(getRangeSchema).optional(),
-		onsetString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		onsetString: fhirString().optional(),
 		_onsetString: z.lazy(getElementSchema).optional(),
 		outcome: z.lazy(getCodeableConceptSchema).optional(),
 	})

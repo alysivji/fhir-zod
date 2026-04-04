@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -111,20 +111,12 @@ const getTimingSchema = (): z.ZodType<Timing> =>
 export const Contract_Term_ActionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		context: z.lazy(getReferenceSchema).optional(),
-		contextLinkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		contextLinkId: fhirString().array().optional(),
 		_contextLinkId: z.lazy(getElementSchema).array().optional(),
 		doNotPerform: z.boolean().optional(),
 		_doNotPerform: z.lazy(getElementSchema).optional(),
 		intent: z.lazy(getCodeableConceptSchema),
-		linkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		linkId: fhirString().array().optional(),
 		_linkId: z.lazy(getElementSchema).array().optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		occurrenceDateTime: fhirDateTime().optional(),
@@ -132,34 +124,18 @@ export const Contract_Term_ActionSchemaInternal =
 		occurrencePeriod: z.lazy(getPeriodSchema).optional(),
 		occurrenceTiming: z.lazy(getTimingSchema).optional(),
 		performer: z.lazy(getReferenceSchema).optional(),
-		performerLinkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		performerLinkId: fhirString().array().optional(),
 		_performerLinkId: z.lazy(getElementSchema).array().optional(),
 		performerRole: z.lazy(getCodeableConceptSchema).optional(),
 		performerType: z.lazy(getCodeableConceptSchema).array().optional(),
-		reason: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		reason: fhirString().array().optional(),
 		_reason: z.lazy(getElementSchema).array().optional(),
 		reasonCode: z.lazy(getCodeableConceptSchema).array().optional(),
-		reasonLinkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		reasonLinkId: fhirString().array().optional(),
 		_reasonLinkId: z.lazy(getElementSchema).array().optional(),
 		reasonReference: z.lazy(getReferenceSchema).array().optional(),
 		requester: z.lazy(getReferenceSchema).array().optional(),
-		requesterLinkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		requesterLinkId: fhirString().array().optional(),
 		_requesterLinkId: z.lazy(getElementSchema).array().optional(),
 		securityLabelNumber: z.number().int().nonnegative().array().optional(),
 		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),

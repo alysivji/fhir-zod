@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -76,10 +76,7 @@ export const StructureMap_Group_Rule_TargetSchemaInternal =
 		_context: z.lazy(getElementSchema).optional(),
 		contextType: z.enum(["type", "variable"]).optional(),
 		_contextType: z.lazy(getElementSchema).optional(),
-		element: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		element: fhirString().optional(),
 		_element: z.lazy(getElementSchema).optional(),
 		listMode: z.enum(["collate", "first", "last", "share"]).array().optional(),
 		_listMode: z.lazy(getElementSchema).array().optional(),

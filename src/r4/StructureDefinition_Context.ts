@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,7 +28,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const StructureDefinition_ContextSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		expression: z.string().regex(/[ \r\n\t\S]+/),
+		expression: fhirString(),
 		_expression: z.lazy(getElementSchema).optional(),
 		type: z.enum(["element", "extension", "fhirpath"]),
 		_type: z.lazy(getElementSchema).optional(),

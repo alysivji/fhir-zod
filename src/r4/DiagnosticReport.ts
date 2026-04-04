@@ -1,10 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DiagnosticReport
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirInstant } from "../shared/fhir-primitives";
+import {
+	fhirDateTime,
+	fhirInstant,
+	fhirString,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -106,10 +110,7 @@ export const DiagnosticReportSchemaInternal =
 		basedOn: z.lazy(getReferenceSchema).array().optional(),
 		category: z.lazy(getCodeableConceptSchema).array().optional(),
 		code: z.lazy(getCodeableConceptSchema),
-		conclusion: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		conclusion: fhirString().optional(),
 		_conclusion: z.lazy(getElementSchema).optional(),
 		conclusionCode: z.lazy(getCodeableConceptSchema).array().optional(),
 		effectiveDateTime: fhirDateTime().optional(),

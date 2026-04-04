@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Location
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
@@ -101,21 +102,11 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const LocationSchemaInternal = DomainResourceSchemaInternal.extend({
 	address: z.lazy(getAddressSchema).optional(),
-	alias: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.array()
-		.optional(),
+	alias: fhirString().array().optional(),
 	_alias: z.lazy(getElementSchema).array().optional(),
-	availabilityExceptions: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	availabilityExceptions: fhirString().optional(),
 	_availabilityExceptions: z.lazy(getElementSchema).optional(),
-	description: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	endpoint: z.lazy(getReferenceSchema).array().optional(),
 	hoursOfOperation: z
@@ -126,10 +117,7 @@ export const LocationSchemaInternal = DomainResourceSchemaInternal.extend({
 	managingOrganization: z.lazy(getReferenceSchema).optional(),
 	mode: z.enum(["instance", "kind"]).optional(),
 	_mode: z.lazy(getElementSchema).optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	operationalStatus: z.lazy(getCodingSchema).optional(),
 	partOf: z.lazy(getReferenceSchema).optional(),

@@ -1,15 +1,23 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
 import {
+	fhirBase64Binary,
+	fhirCanonical,
+	fhirCode,
 	fhirDate,
 	fhirDateTime,
 	fhirId,
 	fhirInstant,
+	fhirOid,
+	fhirString,
 	fhirTime,
+	fhirUri,
+	fhirUrl,
+	fhirUuid,
 } from "../shared/fhir-primitives";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
@@ -1366,11 +1374,7 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 /** @internal */
 export const ElementDefinitionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		alias: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		alias: fhirString().array().optional(),
 		_alias: z.lazy(getElementSchema).array().optional(),
 		base: z.lazy(getElementDefinition_BaseSchema).optional(),
 		binding: z.lazy(getElementDefinition_BindingSchema).optional(),
@@ -1383,25 +1387,19 @@ export const ElementDefinitionSchemaInternal =
 			.lazy(getElementDefinition_ConstraintSchema)
 			.array()
 			.optional(),
-		contentReference: z.string().regex(/\S*/).optional(),
+		contentReference: fhirUri().optional(),
 		_contentReference: z.lazy(getElementSchema).optional(),
 		defaultValueAddress: z.lazy(getAddressSchema).optional(),
 		defaultValueAge: z.lazy(getAgeSchema).optional(),
 		defaultValueAnnotation: z.lazy(getAnnotationSchema).optional(),
 		defaultValueAttachment: z.lazy(getAttachmentSchema).optional(),
-		defaultValueBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		defaultValueBase64Binary: fhirBase64Binary().optional(),
 		_defaultValueBase64Binary: z.lazy(getElementSchema).optional(),
 		defaultValueBoolean: z.boolean().optional(),
 		_defaultValueBoolean: z.lazy(getElementSchema).optional(),
-		defaultValueCanonical: z.string().regex(/\S*/).optional(),
+		defaultValueCanonical: fhirCanonical().optional(),
 		_defaultValueCanonical: z.lazy(getElementSchema).optional(),
-		defaultValueCode: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		defaultValueCode: fhirCode().optional(),
 		_defaultValueCode: z.lazy(getElementSchema).optional(),
 		defaultValueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		defaultValueCoding: z.lazy(getCodingSchema).optional(),
@@ -1432,10 +1430,7 @@ export const ElementDefinitionSchemaInternal =
 		_defaultValueMarkdown: z.lazy(getElementSchema).optional(),
 		defaultValueMeta: z.lazy(getMetaSchema).optional(),
 		defaultValueMoney: z.lazy(getMoneySchema).optional(),
-		defaultValueOid: z
-			.string()
-			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional(),
+		defaultValueOid: fhirOid().optional(),
 		_defaultValueOid: z.lazy(getElementSchema).optional(),
 		defaultValueParameterDefinition: z
 			.lazy(getParameterDefinitionSchema)
@@ -1450,10 +1445,7 @@ export const ElementDefinitionSchemaInternal =
 		defaultValueRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
 		defaultValueSampledData: z.lazy(getSampledDataSchema).optional(),
 		defaultValueSignature: z.lazy(getSignatureSchema).optional(),
-		defaultValueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		defaultValueString: fhirString().optional(),
 		_defaultValueString: z.lazy(getElementSchema).optional(),
 		defaultValueTime: fhirTime().optional(),
 		_defaultValueTime: z.lazy(getElementSchema).optional(),
@@ -1463,17 +1455,12 @@ export const ElementDefinitionSchemaInternal =
 			.optional(),
 		defaultValueUnsignedInt: z.number().int().nonnegative().optional(),
 		_defaultValueUnsignedInt: z.lazy(getElementSchema).optional(),
-		defaultValueUri: z.string().regex(/\S*/).optional(),
+		defaultValueUri: fhirUri().optional(),
 		_defaultValueUri: z.lazy(getElementSchema).optional(),
-		defaultValueUrl: z.string().regex(/\S*/).optional(),
+		defaultValueUrl: fhirUrl().optional(),
 		_defaultValueUrl: z.lazy(getElementSchema).optional(),
 		defaultValueUsageContext: z.lazy(getUsageContextSchema).optional(),
-		defaultValueUuid: z
-			.string()
-			.regex(
-				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
-			)
-			.optional(),
+		defaultValueUuid: fhirUuid().optional(),
 		_defaultValueUuid: z.lazy(getElementSchema).optional(),
 		definition: z.string().optional(),
 		_definition: z.lazy(getElementSchema).optional(),
@@ -1482,19 +1469,13 @@ export const ElementDefinitionSchemaInternal =
 		fixedAge: z.lazy(getAgeSchema).optional(),
 		fixedAnnotation: z.lazy(getAnnotationSchema).optional(),
 		fixedAttachment: z.lazy(getAttachmentSchema).optional(),
-		fixedBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		fixedBase64Binary: fhirBase64Binary().optional(),
 		_fixedBase64Binary: z.lazy(getElementSchema).optional(),
 		fixedBoolean: z.boolean().optional(),
 		_fixedBoolean: z.lazy(getElementSchema).optional(),
-		fixedCanonical: z.string().regex(/\S*/).optional(),
+		fixedCanonical: fhirCanonical().optional(),
 		_fixedCanonical: z.lazy(getElementSchema).optional(),
-		fixedCode: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		fixedCode: fhirCode().optional(),
 		_fixedCode: z.lazy(getElementSchema).optional(),
 		fixedCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		fixedCoding: z.lazy(getCodingSchema).optional(),
@@ -1525,10 +1506,7 @@ export const ElementDefinitionSchemaInternal =
 		_fixedMarkdown: z.lazy(getElementSchema).optional(),
 		fixedMeta: z.lazy(getMetaSchema).optional(),
 		fixedMoney: z.lazy(getMoneySchema).optional(),
-		fixedOid: z
-			.string()
-			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional(),
+		fixedOid: fhirOid().optional(),
 		_fixedOid: z.lazy(getElementSchema).optional(),
 		fixedParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
 		fixedPeriod: z.lazy(getPeriodSchema).optional(),
@@ -1541,10 +1519,7 @@ export const ElementDefinitionSchemaInternal =
 		fixedRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
 		fixedSampledData: z.lazy(getSampledDataSchema).optional(),
 		fixedSignature: z.lazy(getSignatureSchema).optional(),
-		fixedString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		fixedString: fhirString().optional(),
 		_fixedString: z.lazy(getElementSchema).optional(),
 		fixedTime: fhirTime().optional(),
 		_fixedTime: z.lazy(getElementSchema).optional(),
@@ -1552,37 +1527,23 @@ export const ElementDefinitionSchemaInternal =
 		fixedTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
 		fixedUnsignedInt: z.number().int().nonnegative().optional(),
 		_fixedUnsignedInt: z.lazy(getElementSchema).optional(),
-		fixedUri: z.string().regex(/\S*/).optional(),
+		fixedUri: fhirUri().optional(),
 		_fixedUri: z.lazy(getElementSchema).optional(),
-		fixedUrl: z.string().regex(/\S*/).optional(),
+		fixedUrl: fhirUrl().optional(),
 		_fixedUrl: z.lazy(getElementSchema).optional(),
 		fixedUsageContext: z.lazy(getUsageContextSchema).optional(),
-		fixedUuid: z
-			.string()
-			.regex(
-				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
-			)
-			.optional(),
+		fixedUuid: fhirUuid().optional(),
 		_fixedUuid: z.lazy(getElementSchema).optional(),
 		isModifier: z.boolean().optional(),
 		_isModifier: z.lazy(getElementSchema).optional(),
-		isModifierReason: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		isModifierReason: fhirString().optional(),
 		_isModifierReason: z.lazy(getElementSchema).optional(),
 		isSummary: z.boolean().optional(),
 		_isSummary: z.lazy(getElementSchema).optional(),
-		label: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		label: fhirString().optional(),
 		_label: z.lazy(getElementSchema).optional(),
 		mapping: z.lazy(getElementDefinition_MappingSchema).array().optional(),
-		max: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		max: fhirString().optional(),
 		_max: z.lazy(getElementSchema).optional(),
 		maxLength: z.number().int().optional(),
 		_maxLength: z.lazy(getElementSchema).optional(),
@@ -1626,30 +1587,21 @@ export const ElementDefinitionSchemaInternal =
 		_minValueUnsignedInt: z.lazy(getElementSchema).optional(),
 		mustSupport: z.boolean().optional(),
 		_mustSupport: z.lazy(getElementSchema).optional(),
-		orderMeaning: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		orderMeaning: fhirString().optional(),
 		_orderMeaning: z.lazy(getElementSchema).optional(),
-		path: z.string().regex(/[ \r\n\t\S]+/),
+		path: fhirString(),
 		_path: z.lazy(getElementSchema).optional(),
 		patternAddress: z.lazy(getAddressSchema).optional(),
 		patternAge: z.lazy(getAgeSchema).optional(),
 		patternAnnotation: z.lazy(getAnnotationSchema).optional(),
 		patternAttachment: z.lazy(getAttachmentSchema).optional(),
-		patternBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		patternBase64Binary: fhirBase64Binary().optional(),
 		_patternBase64Binary: z.lazy(getElementSchema).optional(),
 		patternBoolean: z.boolean().optional(),
 		_patternBoolean: z.lazy(getElementSchema).optional(),
-		patternCanonical: z.string().regex(/\S*/).optional(),
+		patternCanonical: fhirCanonical().optional(),
 		_patternCanonical: z.lazy(getElementSchema).optional(),
-		patternCode: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		patternCode: fhirCode().optional(),
 		_patternCode: z.lazy(getElementSchema).optional(),
 		patternCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		patternCoding: z.lazy(getCodingSchema).optional(),
@@ -1680,10 +1632,7 @@ export const ElementDefinitionSchemaInternal =
 		_patternMarkdown: z.lazy(getElementSchema).optional(),
 		patternMeta: z.lazy(getMetaSchema).optional(),
 		patternMoney: z.lazy(getMoneySchema).optional(),
-		patternOid: z
-			.string()
-			.regex(/urn:oid:[0-2](\.(0|[1-9][0-9]*))+/)
-			.optional(),
+		patternOid: fhirOid().optional(),
 		_patternOid: z.lazy(getElementSchema).optional(),
 		patternParameterDefinition: z.lazy(getParameterDefinitionSchema).optional(),
 		patternPeriod: z.lazy(getPeriodSchema).optional(),
@@ -1696,10 +1645,7 @@ export const ElementDefinitionSchemaInternal =
 		patternRelatedArtifact: z.lazy(getRelatedArtifactSchema).optional(),
 		patternSampledData: z.lazy(getSampledDataSchema).optional(),
 		patternSignature: z.lazy(getSignatureSchema).optional(),
-		patternString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		patternString: fhirString().optional(),
 		_patternString: z.lazy(getElementSchema).optional(),
 		patternTime: fhirTime().optional(),
 		_patternTime: z.lazy(getElementSchema).optional(),
@@ -1707,17 +1653,12 @@ export const ElementDefinitionSchemaInternal =
 		patternTriggerDefinition: z.lazy(getTriggerDefinitionSchema).optional(),
 		patternUnsignedInt: z.number().int().nonnegative().optional(),
 		_patternUnsignedInt: z.lazy(getElementSchema).optional(),
-		patternUri: z.string().regex(/\S*/).optional(),
+		patternUri: fhirUri().optional(),
 		_patternUri: z.lazy(getElementSchema).optional(),
-		patternUrl: z.string().regex(/\S*/).optional(),
+		patternUrl: fhirUrl().optional(),
 		_patternUrl: z.lazy(getElementSchema).optional(),
 		patternUsageContext: z.lazy(getUsageContextSchema).optional(),
-		patternUuid: z
-			.string()
-			.regex(
-				/urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
-			)
-			.optional(),
+		patternUuid: fhirUuid().optional(),
 		_patternUuid: z.lazy(getElementSchema).optional(),
 		representation: z
 			.enum(["cdaText", "typeAttr", "xhtml", "xmlAttr", "xmlText"])
@@ -1726,17 +1667,11 @@ export const ElementDefinitionSchemaInternal =
 		_representation: z.lazy(getElementSchema).array().optional(),
 		requirements: z.string().optional(),
 		_requirements: z.lazy(getElementSchema).optional(),
-		short: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		short: fhirString().optional(),
 		_short: z.lazy(getElementSchema).optional(),
 		sliceIsConstraining: z.boolean().optional(),
 		_sliceIsConstraining: z.lazy(getElementSchema).optional(),
-		sliceName: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		sliceName: fhirString().optional(),
 		_sliceName: z.lazy(getElementSchema).optional(),
 		slicing: z.lazy(getElementDefinition_SlicingSchema).optional(),
 		type: z.lazy(getElementDefinition_TypeSchema).array().optional(),

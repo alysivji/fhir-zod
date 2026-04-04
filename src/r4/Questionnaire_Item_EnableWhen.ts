@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime, fhirTime } from "../shared/fhir-primitives";
+import {
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirTime,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -88,16 +93,13 @@ export const Questionnaire_Item_EnableWhenSchemaInternal =
 		_answerInteger: z.lazy(getElementSchema).optional(),
 		answerQuantity: z.lazy(getQuantitySchema).optional(),
 		answerReference: z.lazy(getReferenceSchema).optional(),
-		answerString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		answerString: fhirString().optional(),
 		_answerString: z.lazy(getElementSchema).optional(),
 		answerTime: fhirTime().optional(),
 		_answerTime: z.lazy(getElementSchema).optional(),
 		operator: z.enum(["!=", "<", "<=", "=", ">", ">=", "exists"]),
 		_operator: z.lazy(getElementSchema).optional(),
-		question: z.string().regex(/[ \r\n\t\S]+/),
+		question: fhirString(),
 		_question: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

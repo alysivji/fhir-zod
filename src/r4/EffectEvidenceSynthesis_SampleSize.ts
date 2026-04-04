@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -31,10 +32,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const EffectEvidenceSynthesis_SampleSizeSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		numberOfParticipants: z.number().int().optional(),
 		_numberOfParticipants: z.lazy(getElementSchema).optional(),

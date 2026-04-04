@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PlanDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirId,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
@@ -192,14 +198,11 @@ export const PlanDefinition_ActionSchemaInternal =
 			.lazy(getPlanDefinition_Action_ConditionSchema)
 			.array()
 			.optional(),
-		definitionCanonical: z.string().regex(/\S*/).optional(),
+		definitionCanonical: fhirCanonical().optional(),
 		_definitionCanonical: z.lazy(getElementSchema).optional(),
-		definitionUri: z.string().regex(/\S*/).optional(),
+		definitionUri: fhirUri().optional(),
 		_definitionUri: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		documentation: z.lazy(getRelatedArtifactSchema).array().optional(),
 		dynamicValue: z
@@ -220,10 +223,7 @@ export const PlanDefinition_ActionSchemaInternal =
 			.optional(),
 		precheckBehavior: z.enum(["no", "yes"]).optional(),
 		_precheckBehavior: z.lazy(getElementSchema).optional(),
-		prefix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		prefix: fhirString().optional(),
 		_prefix: z.lazy(getElementSchema).optional(),
 		priority: z.enum(["asap", "routine", "stat", "urgent"]).optional(),
 		_priority: z.lazy(getElementSchema).optional(),
@@ -249,10 +249,7 @@ export const PlanDefinition_ActionSchemaInternal =
 		_selectionBehavior: z.lazy(getElementSchema).optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		subjectReference: z.lazy(getReferenceSchema).optional(),
-		textEquivalent: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		textEquivalent: fhirString().optional(),
 		_textEquivalent: z.lazy(getElementSchema).optional(),
 		timingAge: z.lazy(getAgeSchema).optional(),
 		timingDateTime: fhirDateTime().optional(),
@@ -261,12 +258,9 @@ export const PlanDefinition_ActionSchemaInternal =
 		timingPeriod: z.lazy(getPeriodSchema).optional(),
 		timingRange: z.lazy(getRangeSchema).optional(),
 		timingTiming: z.lazy(getTimingSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-		transform: z.string().regex(/\S*/).optional(),
+		transform: fhirCanonical().optional(),
 		_transform: z.lazy(getElementSchema).optional(),
 		trigger: z.lazy(getTriggerDefinitionSchema).array().optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),

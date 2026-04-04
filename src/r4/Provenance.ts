@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Provenance
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirInstant } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirInstant, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -81,7 +81,7 @@ export const ProvenanceSchemaInternal = DomainResourceSchemaInternal.extend({
 	occurredDateTime: fhirDateTime().optional(),
 	_occurredDateTime: z.lazy(getElementSchema).optional(),
 	occurredPeriod: z.lazy(getPeriodSchema).optional(),
-	policy: z.string().regex(/\S*/).array().optional(),
+	policy: fhirUri().array().optional(),
 	_policy: z.lazy(getElementSchema).array().optional(),
 	reason: z.lazy(getCodeableConceptSchema).array().optional(),
 	recorded: fhirInstant(),

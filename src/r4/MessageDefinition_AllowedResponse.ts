@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,7 +28,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const MessageDefinition_AllowedResponseSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		message: z.string().regex(/\S*/),
+		message: fhirCanonical(),
 		_message: z.lazy(getElementSchema).optional(),
 		situation: z.string().optional(),
 		_situation: z.lazy(getElementSchema).optional(),

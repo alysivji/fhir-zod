@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -52,37 +52,19 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const TestScript_VariableSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		defaultValue: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		defaultValue: fhirString().optional(),
 		_defaultValue: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
-		expression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		expression: fhirString().optional(),
 		_expression: z.lazy(getElementSchema).optional(),
-		headerField: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		headerField: fhirString().optional(),
 		_headerField: z.lazy(getElementSchema).optional(),
-		hint: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		hint: fhirString().optional(),
 		_hint: z.lazy(getElementSchema).optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
-		path: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		path: fhirString().optional(),
 		_path: z.lazy(getElementSchema).optional(),
 		sourceId: fhirId().optional(),
 		_sourceId: z.lazy(getElementSchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -85,17 +86,10 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const Contract_Term_AssetSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		answer: z.unknown().array().optional(),
-		condition: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		condition: fhirString().optional(),
 		_condition: z.lazy(getElementSchema).optional(),
 		context: z.lazy(getContract_Term_Asset_ContextSchema).array().optional(),
-		linkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		linkId: fhirString().array().optional(),
 		_linkId: z.lazy(getElementSchema).array().optional(),
 		period: z.lazy(getPeriodSchema).array().optional(),
 		periodType: z.lazy(getCodeableConceptSchema).array().optional(),
@@ -104,10 +98,7 @@ export const Contract_Term_AssetSchemaInternal =
 		securityLabelNumber: z.number().int().nonnegative().array().optional(),
 		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),
 		subtype: z.lazy(getCodeableConceptSchema).array().optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).array().optional(),
 		typeReference: z.lazy(getReferenceSchema).array().optional(),

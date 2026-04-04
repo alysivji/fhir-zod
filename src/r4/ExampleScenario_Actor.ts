@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -35,14 +36,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ExampleScenario_ActorSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		actorId: z.string().regex(/[ \r\n\t\S]+/),
+		actorId: fhirString(),
 		_actorId: z.lazy(getElementSchema).optional(),
 		description: z.string().optional(),
 		_description: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		type: z.enum(["entity", "person"]),
 		_type: z.lazy(getElementSchema).optional(),

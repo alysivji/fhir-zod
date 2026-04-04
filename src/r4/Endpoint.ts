@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Endpoint
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -83,28 +84,17 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 
 /** @internal */
 export const EndpointSchemaInternal = DomainResourceSchemaInternal.extend({
-	address: z.string().regex(/\S*/),
+	address: fhirUrl(),
 	_address: z.lazy(getElementSchema).optional(),
 	connectionType: z.lazy(getCodingSchema),
 	contact: z.lazy(getContactPointSchema).array().optional(),
-	header: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.array()
-		.optional(),
+	header: fhirString().array().optional(),
 	_header: z.lazy(getElementSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	managingOrganization: z.lazy(getReferenceSchema).optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
-	payloadMimeType: z
-		.string()
-		.regex(/[^\s]+(\s[^\s]+)*/)
-		.array()
-		.optional(),
+	payloadMimeType: fhirCode().array().optional(),
 	_payloadMimeType: z.lazy(getElementSchema).array().optional(),
 	payloadType: z.lazy(getCodeableConceptSchema).array(),
 	period: z.lazy(getPeriodSchema).optional(),

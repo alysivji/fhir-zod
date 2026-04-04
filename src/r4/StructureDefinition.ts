@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { Coding } from "./Coding";
@@ -176,15 +181,11 @@ export const StructureDefinitionSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		abstract: z.boolean(),
 		_abstract: z.lazy(getElementSchema).optional(),
-		baseDefinition: z.string().regex(/\S*/).optional(),
+		baseDefinition: fhirCanonical().optional(),
 		_baseDefinition: z.lazy(getElementSchema).optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		context: z.lazy(getStructureDefinition_ContextSchema).array().optional(),
-		contextInvariant: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		contextInvariant: fhirString().array().optional(),
 		_contextInvariant: z.lazy(getElementSchema).array().optional(),
 		copyright: z.string().optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
@@ -230,12 +231,9 @@ export const StructureDefinitionSchemaInternal =
 		kind: z.enum(["complex-type", "logical", "primitive-type", "resource"]),
 		_kind: z.lazy(getElementSchema).optional(),
 		mapping: z.lazy(getStructureDefinition_MappingSchema).array().optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
@@ -243,20 +241,14 @@ export const StructureDefinitionSchemaInternal =
 		snapshot: z.lazy(getStructureDefinition_SnapshotSchema).optional(),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-		type: z.string().regex(/\S*/),
+		type: fhirUri(),
 		_type: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/),
+		url: fhirUri(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

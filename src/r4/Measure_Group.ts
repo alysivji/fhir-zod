@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Measure
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -44,10 +45,7 @@ const getMeasure_Group_StratifierSchema =
 export const Measure_GroupSchemaInternal = BackboneElementSchemaInternal.extend(
 	{
 		code: z.lazy(getCodeableConceptSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		population: z.lazy(getMeasure_Group_PopulationSchema).array().optional(),
 		stratifier: z.lazy(getMeasure_Group_StratifierSchema).array().optional(),

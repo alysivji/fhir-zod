@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CompartmentDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -330,16 +331,9 @@ export const CompartmentDefinition_ResourceSchemaInternal =
 			"VisionPrescription",
 		]),
 		_code: z.lazy(getElementSchema).optional(),
-		documentation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		documentation: fhirString().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
-		param: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		param: fhirString().array().optional(),
 		_param: z.lazy(getElementSchema).array().optional(),
 	}).strict();
 

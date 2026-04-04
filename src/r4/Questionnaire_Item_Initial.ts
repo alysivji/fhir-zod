@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime, fhirTime } from "../shared/fhir-primitives";
+import {
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirTime,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -91,14 +97,11 @@ export const Questionnaire_Item_InitialSchemaInternal =
 		_valueInteger: z.lazy(getElementSchema).optional(),
 		valueQuantity: z.lazy(getQuantitySchema).optional(),
 		valueReference: z.lazy(getReferenceSchema).optional(),
-		valueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		valueString: fhirString().optional(),
 		_valueString: z.lazy(getElementSchema).optional(),
 		valueTime: fhirTime().optional(),
 		_valueTime: z.lazy(getElementSchema).optional(),
-		valueUri: z.string().regex(/\S*/).optional(),
+		valueUri: fhirUri().optional(),
 		_valueUri: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

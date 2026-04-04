@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CapabilityStatement_Rest_Resource_Interaction } from "./CapabilityStatement_Rest_Resource_Interaction";
@@ -272,7 +273,7 @@ export const CapabilityStatement_Rest_ResourceSchemaInternal =
 			.lazy(getCapabilityStatement_Rest_Resource_OperationSchema)
 			.array()
 			.optional(),
-		profile: z.string().regex(/\S*/).optional(),
+		profile: fhirCanonical().optional(),
 		_profile: z.lazy(getElementSchema).optional(),
 		readHistory: z.boolean().optional(),
 		_readHistory: z.lazy(getElementSchema).optional(),
@@ -281,23 +282,15 @@ export const CapabilityStatement_Rest_ResourceSchemaInternal =
 			.array()
 			.optional(),
 		_referencePolicy: z.lazy(getElementSchema).array().optional(),
-		searchInclude: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		searchInclude: fhirString().array().optional(),
 		_searchInclude: z.lazy(getElementSchema).array().optional(),
 		searchParam: z
 			.lazy(getCapabilityStatement_Rest_Resource_SearchParamSchema)
 			.array()
 			.optional(),
-		searchRevInclude: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		searchRevInclude: fhirString().array().optional(),
 		_searchRevInclude: z.lazy(getElementSchema).array().optional(),
-		supportedProfile: z.string().regex(/\S*/).array().optional(),
+		supportedProfile: fhirCanonical().array().optional(),
 		_supportedProfile: z.lazy(getElementSchema).array().optional(),
 		type: z.enum([
 			"Account",

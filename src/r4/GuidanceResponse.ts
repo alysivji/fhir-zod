@@ -1,10 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GuidanceResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -95,10 +99,10 @@ export const GuidanceResponseSchemaInternal =
 		encounter: z.lazy(getReferenceSchema).optional(),
 		evaluationMessage: z.lazy(getReferenceSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		moduleCanonical: z.string().regex(/\S*/).optional(),
+		moduleCanonical: fhirCanonical().optional(),
 		_moduleCanonical: z.lazy(getElementSchema).optional(),
 		moduleCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		moduleUri: z.string().regex(/\S*/).optional(),
+		moduleUri: fhirUri().optional(),
 		_moduleUri: z.lazy(getElementSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		occurrenceDateTime: fhirDateTime().optional(),

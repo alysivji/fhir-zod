@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageHeader
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { ContactPoint } from "./ContactPoint";
@@ -42,22 +43,13 @@ const getElementSchema = (): z.ZodType<Element> =>
 export const MessageHeader_SourceSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		contact: z.lazy(getContactPointSchema).optional(),
-		endpoint: z.string().regex(/\S*/),
+		endpoint: fhirUrl(),
 		_endpoint: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		software: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		software: fhirString().optional(),
 		_software: z.lazy(getElementSchema).optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -190,18 +195,12 @@ export const EffectEvidenceSynthesisSchemaInternal =
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		outcome: z.lazy(getReferenceSchema),
 		population: z.lazy(getReferenceSchema),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
 		resourceType: z.literal("EffectEvidenceSynthesis"),
@@ -215,19 +214,13 @@ export const EffectEvidenceSynthesisSchemaInternal =
 		_status: z.lazy(getElementSchema).optional(),
 		studyType: z.lazy(getCodeableConceptSchema).optional(),
 		synthesisType: z.lazy(getCodeableConceptSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 		topic: z.lazy(getCodeableConceptSchema).array().optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

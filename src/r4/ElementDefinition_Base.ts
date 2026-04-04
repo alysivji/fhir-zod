@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 
@@ -29,11 +30,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ElementDefinition_BaseSchemaInternal =
 	ElementSchemaInternal.extend({
-		max: z.string().regex(/[ \r\n\t\S]+/),
+		max: fhirString(),
 		_max: z.lazy(getElementSchema).optional(),
 		min: z.number().int().nonnegative(),
 		_min: z.lazy(getElementSchema).optional(),
-		path: z.string().regex(/[ \r\n\t\S]+/),
+		path: fhirString(),
 		_path: z.lazy(getElementSchema).optional(),
 	}).strict();
 

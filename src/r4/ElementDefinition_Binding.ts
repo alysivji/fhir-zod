@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 
@@ -29,14 +30,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ElementDefinition_BindingSchemaInternal =
 	ElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		strength: z.enum(["example", "extensible", "preferred", "required"]),
 		_strength: z.lazy(getElementSchema).optional(),
-		valueSet: z.string().regex(/\S*/).optional(),
+		valueSet: fhirCanonical().optional(),
 		_valueSet: z.lazy(getElementSchema).optional(),
 	}).strict();
 

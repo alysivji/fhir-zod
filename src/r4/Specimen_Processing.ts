@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Specimen
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -48,10 +48,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const Specimen_ProcessingSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		additive: z.lazy(getReferenceSchema).array().optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		procedure: z.lazy(getCodeableConceptSchema).optional(),
 		timeDateTime: fhirDateTime().optional(),

@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -158,14 +158,11 @@ export const TestScriptSchemaInternal = DomainResourceSchemaInternal.extend({
 	identifier: z.lazy(getIdentifierSchema).optional(),
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 	metadata: z.lazy(getTestScript_MetadataSchema).optional(),
-	name: z.string().regex(/[ \r\n\t\S]+/),
+	name: fhirString(),
 	_name: z.lazy(getElementSchema).optional(),
 	origin: z.lazy(getTestScript_OriginSchema).array().optional(),
 	profile: z.lazy(getReferenceSchema).array().optional(),
-	publisher: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
 	purpose: z.string().optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
@@ -175,19 +172,13 @@ export const TestScriptSchemaInternal = DomainResourceSchemaInternal.extend({
 	_status: z.lazy(getElementSchema).optional(),
 	teardown: z.lazy(getTestScript_TeardownSchema).optional(),
 	test: z.lazy(getTestScript_TestSchema).array().optional(),
-	title: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	title: fhirString().optional(),
 	_title: z.lazy(getElementSchema).optional(),
-	url: z.string().regex(/\S*/),
+	url: fhirUri(),
 	_url: z.lazy(getElementSchema).optional(),
 	useContext: z.lazy(getUsageContextSchema).array().optional(),
 	variable: z.lazy(getTestScript_VariableSchema).array().optional(),
-	version: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	version: fhirString().optional(),
 	_version: z.lazy(getElementSchema).optional(),
 })
 	.strict()

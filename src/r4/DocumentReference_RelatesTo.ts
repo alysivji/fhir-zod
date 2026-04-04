@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DocumentReference
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";

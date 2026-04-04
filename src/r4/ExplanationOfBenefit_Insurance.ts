@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -37,11 +38,7 @@ export const ExplanationOfBenefit_InsuranceSchemaInternal =
 		coverage: z.lazy(getReferenceSchema),
 		focal: z.boolean(),
 		_focal: z.lazy(getElementSchema).optional(),
-		preAuthRef: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		preAuthRef: fhirString().array().optional(),
 		_preAuthRef: z.lazy(getElementSchema).array().optional(),
 	})
 		.strict()

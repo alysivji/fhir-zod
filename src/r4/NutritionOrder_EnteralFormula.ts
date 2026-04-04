@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NutritionOrder
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -56,25 +57,16 @@ const getQuantitySchema = (): z.ZodType<Quantity> =>
 /** @internal */
 export const NutritionOrder_EnteralFormulaSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		additiveProductName: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		additiveProductName: fhirString().optional(),
 		_additiveProductName: z.lazy(getElementSchema).optional(),
 		additiveType: z.lazy(getCodeableConceptSchema).optional(),
 		administration: z
 			.lazy(getNutritionOrder_EnteralFormula_AdministrationSchema)
 			.array()
 			.optional(),
-		administrationInstruction: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		administrationInstruction: fhirString().optional(),
 		_administrationInstruction: z.lazy(getElementSchema).optional(),
-		baseFormulaProductName: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		baseFormulaProductName: fhirString().optional(),
 		_baseFormulaProductName: z.lazy(getElementSchema).optional(),
 		baseFormulaType: z.lazy(getCodeableConceptSchema).optional(),
 		caloricDensity: z.lazy(getQuantitySchema).optional(),

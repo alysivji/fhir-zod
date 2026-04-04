@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HealthcareService
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -121,10 +122,7 @@ export const HealthcareServiceSchemaInternal =
 		_active: z.lazy(getElementSchema).optional(),
 		appointmentRequired: z.boolean().optional(),
 		_appointmentRequired: z.lazy(getElementSchema).optional(),
-		availabilityExceptions: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		availabilityExceptions: fhirString().optional(),
 		_availabilityExceptions: z.lazy(getElementSchema).optional(),
 		availableTime: z
 			.lazy(getHealthcareService_AvailableTimeSchema)
@@ -132,10 +130,7 @@ export const HealthcareServiceSchemaInternal =
 			.optional(),
 		category: z.lazy(getCodeableConceptSchema).array().optional(),
 		characteristic: z.lazy(getCodeableConceptSchema).array().optional(),
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
 		communication: z.lazy(getCodeableConceptSchema).array().optional(),
 		coverageArea: z.lazy(getReferenceSchema).array().optional(),
@@ -148,10 +143,7 @@ export const HealthcareServiceSchemaInternal =
 		_extraDetails: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		location: z.lazy(getReferenceSchema).array().optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		notAvailable: z
 			.lazy(getHealthcareService_NotAvailableSchema)

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Measure
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -39,10 +40,7 @@ export const Measure_SupplementalDataSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		code: z.lazy(getCodeableConceptSchema).optional(),
 		criteria: z.lazy(getExpressionSchema),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		usage: z.lazy(getCodeableConceptSchema).array().optional(),
 	}).strict();

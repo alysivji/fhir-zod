@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MolecularSequence
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -46,22 +47,13 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const MolecularSequence_VariantSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		cigar: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		cigar: fhirString().optional(),
 		_cigar: z.lazy(getElementSchema).optional(),
 		end: z.number().int().optional(),
 		_end: z.lazy(getElementSchema).optional(),
-		observedAllele: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		observedAllele: fhirString().optional(),
 		_observedAllele: z.lazy(getElementSchema).optional(),
-		referenceAllele: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		referenceAllele: fhirString().optional(),
 		_referenceAllele: z.lazy(getElementSchema).optional(),
 		start: z.number().int().optional(),
 		_start: z.lazy(getElementSchema).optional(),

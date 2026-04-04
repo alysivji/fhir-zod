@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MolecularSequence
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -59,19 +60,13 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const MolecularSequence_ReferenceSeqSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		chromosome: z.lazy(getCodeableConceptSchema).optional(),
-		genomeBuild: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		genomeBuild: fhirString().optional(),
 		_genomeBuild: z.lazy(getElementSchema).optional(),
 		orientation: z.enum(["antisense", "sense"]).optional(),
 		_orientation: z.lazy(getElementSchema).optional(),
 		referenceSeqId: z.lazy(getCodeableConceptSchema).optional(),
 		referenceSeqPointer: z.lazy(getReferenceSchema).optional(),
-		referenceSeqString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		referenceSeqString: fhirString().optional(),
 		_referenceSeqString: z.lazy(getElementSchema).optional(),
 		strand: z.enum(["crick", "watson"]).optional(),
 		_strand: z.lazy(getElementSchema).optional(),

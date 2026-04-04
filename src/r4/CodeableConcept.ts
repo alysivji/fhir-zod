@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeableConcept
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
 import type { Element } from "./Element";
@@ -33,15 +34,9 @@ export const CodeableConceptSchemaInternal = z
 	.object({
 		coding: z.lazy(getCodingSchema).array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 	})
 	.strict();

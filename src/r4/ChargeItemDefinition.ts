@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { ChargeItemDefinition_Applicability } from "./ChargeItemDefinition_Applicability";
 import { ChargeItemDefinition_ApplicabilitySchemaInternal } from "./ChargeItemDefinition_Applicability";
@@ -143,7 +149,7 @@ export const ChargeItemDefinitionSchemaInternal =
 		_copyright: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		derivedFromUri: z.string().regex(/\S*/).array().optional(),
+		derivedFromUri: fhirUri().array().optional(),
 		_derivedFromUri: z.lazy(getElementSchema).array().optional(),
 		description: z.string().optional(),
 		_description: z.lazy(getElementSchema).optional(),
@@ -155,34 +161,25 @@ export const ChargeItemDefinitionSchemaInternal =
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		partOf: z.string().regex(/\S*/).array().optional(),
+		partOf: fhirCanonical().array().optional(),
 		_partOf: z.lazy(getElementSchema).array().optional(),
 		propertyGroup: z
 			.lazy(getChargeItemDefinition_PropertyGroupSchema)
 			.array()
 			.optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
-		replaces: z.string().regex(/\S*/).array().optional(),
+		replaces: fhirCanonical().array().optional(),
 		_replaces: z.lazy(getElementSchema).array().optional(),
 		resourceType: z.literal("ChargeItemDefinition"),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/),
+		url: fhirUri(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

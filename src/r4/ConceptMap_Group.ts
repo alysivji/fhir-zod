@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ConceptMap
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { ConceptMap_Group_Element } from "./ConceptMap_Group_Element";
@@ -50,19 +51,13 @@ const getElementSchema = (): z.ZodType<Element> =>
 export const ConceptMap_GroupSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		element: z.lazy(getConceptMap_Group_ElementSchema).array(),
-		source: z.string().regex(/\S*/).optional(),
+		source: fhirUri().optional(),
 		_source: z.lazy(getElementSchema).optional(),
-		sourceVersion: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		sourceVersion: fhirString().optional(),
 		_sourceVersion: z.lazy(getElementSchema).optional(),
-		target: z.string().regex(/\S*/).optional(),
+		target: fhirUri().optional(),
 		_target: z.lazy(getElementSchema).optional(),
-		targetVersion: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		targetVersion: fhirString().optional(),
 		_targetVersion: z.lazy(getElementSchema).optional(),
 		unmapped: z.lazy(getConceptMap_Group_UnmappedSchema).optional(),
 	}).strict();

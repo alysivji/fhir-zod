@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Coverage
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -99,16 +100,10 @@ export const CoverageSchemaInternal = DomainResourceSchemaInternal.extend({
 		.lazy(getCoverage_CostToBeneficiarySchema)
 		.array()
 		.optional(),
-	dependent: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	dependent: fhirString().optional(),
 	_dependent: z.lazy(getElementSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	network: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	network: fhirString().optional(),
 	_network: z.lazy(getElementSchema).optional(),
 	order: z.number().int().positive().optional(),
 	_order: z.lazy(getElementSchema).optional(),
@@ -122,10 +117,7 @@ export const CoverageSchemaInternal = DomainResourceSchemaInternal.extend({
 	subrogation: z.boolean().optional(),
 	_subrogation: z.lazy(getElementSchema).optional(),
 	subscriber: z.lazy(getReferenceSchema).optional(),
-	subscriberId: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	subscriberId: fhirString().optional(),
 	_subscriberId: z.lazy(getElementSchema).optional(),
 	type: z.lazy(getCodeableConceptSchema).optional(),
 })

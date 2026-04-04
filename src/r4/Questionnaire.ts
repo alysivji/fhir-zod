@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { Coding } from "./Coding";
@@ -280,7 +286,7 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 	_copyright: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	derivedFrom: z.string().regex(/\S*/).array().optional(),
+	derivedFrom: fhirCanonical().array().optional(),
 	_derivedFrom: z.lazy(getElementSchema).array().optional(),
 	description: z.string().optional(),
 	_description: z.lazy(getElementSchema).optional(),
@@ -292,15 +298,9 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 	lastReviewDate: fhirDate().optional(),
 	_lastReviewDate: z.lazy(getElementSchema).optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
-	publisher: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
 	purpose: z.string().optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
@@ -461,18 +461,12 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 		.array()
 		.optional(),
 	_subjectType: z.lazy(getElementSchema).array().optional(),
-	title: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	title: fhirString().optional(),
 	_title: z.lazy(getElementSchema).optional(),
-	url: z.string().regex(/\S*/).optional(),
+	url: fhirUri().optional(),
 	_url: z.lazy(getElementSchema).optional(),
 	useContext: z.lazy(getUsageContextSchema).array().optional(),
-	version: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	version: fhirString().optional(),
 	_version: z.lazy(getElementSchema).optional(),
 }).strict();
 

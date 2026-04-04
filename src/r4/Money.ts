@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Money
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -29,16 +30,10 @@ const getExtensionSchema = (): z.ZodType<Extension> =>
 /** @internal */
 export const MoneySchemaInternal = z
 	.object({
-		currency: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		currency: fhirCode().optional(),
 		_currency: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		value: z.number().optional(),
 		_value: z.lazy(getElementSchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { DomainResource } from "./DomainResource";
@@ -52,11 +53,7 @@ export const SubstancePolymerSchemaInternal =
 		class: z.lazy(getCodeableConceptSchema).optional(),
 		copolymerConnectivity: z.lazy(getCodeableConceptSchema).array().optional(),
 		geometry: z.lazy(getCodeableConceptSchema).optional(),
-		modification: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		modification: fhirString().array().optional(),
 		_modification: z.lazy(getElementSchema).array().optional(),
 		monomerSet: z.lazy(getSubstancePolymer_MonomerSetSchema).array().optional(),
 		repeat: z.lazy(getSubstancePolymer_RepeatSchema).array().optional(),

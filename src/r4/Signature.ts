@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Signature
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import {
+	fhirBase64Binary,
+	fhirCode,
+	fhirInstant,
+	fhirString,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
@@ -53,27 +58,15 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const SignatureSchemaInternal = z
 	.object({
-		data: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		data: fhirBase64Binary().optional(),
 		_data: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		onBehalfOf: z.lazy(getReferenceSchema).optional(),
-		sigFormat: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		sigFormat: fhirCode().optional(),
 		_sigFormat: z.lazy(getElementSchema).optional(),
-		targetFormat: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		targetFormat: fhirCode().optional(),
 		_targetFormat: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodingSchema).array(),
 		when: fhirInstant(),

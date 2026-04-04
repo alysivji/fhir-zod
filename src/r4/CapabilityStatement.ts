@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirCode,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CapabilityStatement_Document } from "./CapabilityStatement_Document";
 import { CapabilityStatement_DocumentSchemaInternal } from "./CapabilityStatement_Document";
 import type { CapabilityStatement_Implementation } from "./CapabilityStatement_Implementation";
@@ -204,19 +210,16 @@ export const CapabilityStatementSchemaInternal =
 			"4.0.1",
 		]),
 		_fhirVersion: z.lazy(getElementSchema).optional(),
-		format: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.array(),
+		format: fhirCode().array(),
 		_format: z.lazy(getElementSchema).array().optional(),
 		implementation: z
 			.lazy(getCapabilityStatement_ImplementationSchema)
 			.optional(),
-		implementationGuide: z.string().regex(/\S*/).array().optional(),
+		implementationGuide: fhirCanonical().array().optional(),
 		_implementationGuide: z.lazy(getElementSchema).array().optional(),
-		imports: z.string().regex(/\S*/).array().optional(),
+		imports: fhirCanonical().array().optional(),
 		_imports: z.lazy(getElementSchema).array().optional(),
-		instantiates: z.string().regex(/\S*/).array().optional(),
+		instantiates: fhirCanonical().array().optional(),
 		_instantiates: z.lazy(getElementSchema).array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		kind: z.enum(["capability", "instance", "requirements"]),
@@ -225,21 +228,11 @@ export const CapabilityStatementSchemaInternal =
 			.lazy(getCapabilityStatement_MessagingSchema)
 			.array()
 			.optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		patchFormat: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.array()
-			.optional(),
+		patchFormat: fhirCode().array().optional(),
 		_patchFormat: z.lazy(getElementSchema).array().optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
@@ -248,18 +241,12 @@ export const CapabilityStatementSchemaInternal =
 		software: z.lazy(getCapabilityStatement_SoftwareSchema).optional(),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

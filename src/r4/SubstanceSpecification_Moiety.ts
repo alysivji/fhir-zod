@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSpecification
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -54,21 +55,12 @@ const getQuantitySchema = (): z.ZodType<Quantity> =>
 export const SubstanceSpecification_MoietySchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		amountQuantity: z.lazy(getQuantitySchema).optional(),
-		amountString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		amountString: fhirString().optional(),
 		_amountString: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).optional(),
-		molecularFormula: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		molecularFormula: fhirString().optional(),
 		_molecularFormula: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		opticalActivity: z.lazy(getCodeableConceptSchema).optional(),
 		role: z.lazy(getCodeableConceptSchema).optional(),

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -40,10 +41,7 @@ const getSubstancePolymer_Repeat_RepeatUnitSchema =
 /** @internal */
 export const SubstancePolymer_RepeatSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		averageMolecularFormula: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		averageMolecularFormula: fhirString().optional(),
 		_averageMolecularFormula: z.lazy(getElementSchema).optional(),
 		numberOfUnits: z.number().int().optional(),
 		_numberOfUnits: z.lazy(getElementSchema).optional(),

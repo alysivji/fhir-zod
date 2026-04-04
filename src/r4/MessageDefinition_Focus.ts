@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -334,14 +335,11 @@ export const MessageDefinition_FocusSchemaInternal =
 			"VisionPrescription",
 		]),
 		_code: z.lazy(getElementSchema).optional(),
-		max: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		max: fhirString().optional(),
 		_max: z.lazy(getElementSchema).optional(),
 		min: z.number().int().nonnegative(),
 		_min: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/).optional(),
+		profile: fhirCanonical().optional(),
 		_profile: z.lazy(getElementSchema).optional(),
 	}).strict();
 

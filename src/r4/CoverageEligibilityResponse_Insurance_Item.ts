@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -78,25 +79,19 @@ export const CoverageEligibilityResponse_Insurance_ItemSchemaInternal =
 			.lazy(getCodeableConceptSchema)
 			.array()
 			.optional(),
-		authorizationUrl: z.string().regex(/\S*/).optional(),
+		authorizationUrl: fhirUri().optional(),
 		_authorizationUrl: z.lazy(getElementSchema).optional(),
 		benefit: z
 			.lazy(getCoverageEligibilityResponse_Insurance_Item_BenefitSchema)
 			.array()
 			.optional(),
 		category: z.lazy(getCodeableConceptSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		excluded: z.boolean().optional(),
 		_excluded: z.lazy(getElementSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		network: z.lazy(getCodeableConceptSchema).optional(),
 		productOrService: z.lazy(getCodeableConceptSchema).optional(),

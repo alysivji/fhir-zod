@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GraphDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -48,15 +49,9 @@ export const GraphDefinition_Link_Target_CompartmentSchemaInternal =
 			"RelatedPerson",
 		]),
 		_code: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
-		expression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		expression: fhirString().optional(),
 		_expression: z.lazy(getElementSchema).optional(),
 		rule: z.enum(["custom", "different", "identical", "matching"]),
 		_rule: z.lazy(getElementSchema).optional(),

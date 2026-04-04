@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageHeader
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -75,12 +76,12 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const MessageHeaderSchemaInternal = DomainResourceSchemaInternal.extend({
 	author: z.lazy(getReferenceSchema).optional(),
-	definition: z.string().regex(/\S*/).optional(),
+	definition: fhirCanonical().optional(),
 	_definition: z.lazy(getElementSchema).optional(),
 	destination: z.lazy(getMessageHeader_DestinationSchema).array().optional(),
 	enterer: z.lazy(getReferenceSchema).optional(),
 	eventCoding: z.lazy(getCodingSchema).optional(),
-	eventUri: z.string().regex(/\S*/).optional(),
+	eventUri: fhirUri().optional(),
 	_eventUri: z.lazy(getElementSchema).optional(),
 	focus: z.lazy(getReferenceSchema).array().optional(),
 	reason: z.lazy(getCodeableConceptSchema).optional(),

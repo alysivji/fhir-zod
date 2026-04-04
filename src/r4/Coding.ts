@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Coding
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -41,30 +42,18 @@ const getExtensionSchema = (): z.ZodType<Extension> =>
 /** @internal */
 export const CodingSchemaInternal = z
 	.object({
-		code: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		code: fhirCode().optional(),
 		_code: z.lazy(getElementSchema).optional(),
-		display: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		display: fhirString().optional(),
 		_display: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		system: z.string().regex(/\S*/).optional(),
+		system: fhirUri().optional(),
 		_system: z.lazy(getElementSchema).optional(),
 		userSelected: z.boolean().optional(),
 		_userSelected: z.lazy(getElementSchema).optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	})
 	.strict();

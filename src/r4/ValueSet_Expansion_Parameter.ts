@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCode,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -52,14 +57,11 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ValueSet_Expansion_ParameterSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		valueBoolean: z.boolean().optional(),
 		_valueBoolean: z.lazy(getElementSchema).optional(),
-		valueCode: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		valueCode: fhirCode().optional(),
 		_valueCode: z.lazy(getElementSchema).optional(),
 		valueDateTime: fhirDateTime().optional(),
 		_valueDateTime: z.lazy(getElementSchema).optional(),
@@ -67,12 +69,9 @@ export const ValueSet_Expansion_ParameterSchemaInternal =
 		_valueDecimal: z.lazy(getElementSchema).optional(),
 		valueInteger: z.number().int().optional(),
 		_valueInteger: z.lazy(getElementSchema).optional(),
-		valueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		valueString: fhirString().optional(),
 		_valueString: z.lazy(getElementSchema).optional(),
-		valueUri: z.string().regex(/\S*/).optional(),
+		valueUri: fhirUri().optional(),
 		_valueUri: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

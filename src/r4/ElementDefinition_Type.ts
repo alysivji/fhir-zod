@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirUri } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 
@@ -42,11 +43,11 @@ export const ElementDefinition_TypeSchemaInternal =
 			.array()
 			.optional(),
 		_aggregation: z.lazy(getElementSchema).array().optional(),
-		code: z.string().regex(/\S*/),
+		code: fhirUri(),
 		_code: z.lazy(getElementSchema).optional(),
-		profile: z.string().regex(/\S*/).array().optional(),
+		profile: fhirCanonical().array().optional(),
 		_profile: z.lazy(getElementSchema).array().optional(),
-		targetProfile: z.string().regex(/\S*/).array().optional(),
+		targetProfile: fhirCanonical().array().optional(),
 		_targetProfile: z.lazy(getElementSchema).array().optional(),
 		versioning: z.enum(["either", "independent", "specific"]).optional(),
 		_versioning: z.lazy(getElementSchema).optional(),

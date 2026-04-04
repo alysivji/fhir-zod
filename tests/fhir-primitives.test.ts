@@ -1,11 +1,19 @@
 import * as r4Schemas from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
 import {
+	fhirBase64Binary,
+	fhirCanonical,
+	fhirCode,
 	fhirDate,
 	fhirDateTime,
 	fhirId,
 	fhirInstant,
+	fhirOid,
+	fhirString,
 	fhirTime,
+	fhirUri,
+	fhirUrl,
+	fhirUuid,
 } from "../src/shared/fhir-primitives.ts";
 
 describe("FHIR primitives", () => {
@@ -91,6 +99,35 @@ describe("FHIR primitives", () => {
 
 			expect(schema.safeParse("24:00:00").success).toBe(false);
 			expect(schema.safeParse("23:59").success).toBe(false);
+		});
+	});
+
+	describe("regex-backed string primitives", () => {
+		it("accepts valid values for shared string primitive helpers", () => {
+			expect(fhirBase64Binary().safeParse("Zm9v").success).toBe(true);
+			expect(
+				fhirCanonical().safeParse("http://example.com/ValueSet/foo").success,
+			).toBe(true);
+			expect(fhirCode().safeParse("final").success).toBe(true);
+			expect(fhirOid().safeParse("urn:oid:1.2.840.10008").success).toBe(true);
+			expect(fhirString().safeParse("hello\nworld").success).toBe(true);
+			expect(fhirUri().safeParse("urn:test:abc").success).toBe(true);
+			expect(fhirUrl().safeParse("https://example.com").success).toBe(true);
+			expect(
+				fhirUuid().safeParse("urn:uuid:123e4567-e89b-12d3-a456-426614174000")
+					.success,
+			).toBe(true);
+		});
+
+		it("rejects invalid values for shared string primitive helpers", () => {
+			expect(fhirBase64Binary().safeParse("*").success).toBe(false);
+			expect(fhirCode().safeParse(" ").success).toBe(false);
+			expect(fhirOid().safeParse("1.2.840.10008").success).toBe(false);
+			expect(fhirString().safeParse("").success).toBe(false);
+			expect(
+				fhirUuid().safeParse("urn:uuid:123E4567-E89B-12D3-A456-426614174000")
+					.success,
+			).toBe(false);
 		});
 	});
 

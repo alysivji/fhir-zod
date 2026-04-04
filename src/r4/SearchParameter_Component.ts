@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SearchParameter
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,9 +28,9 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const SearchParameter_ComponentSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		definition: z.string().regex(/\S*/),
+		definition: fhirCanonical(),
 		_definition: z.lazy(getElementSchema).optional(),
-		expression: z.string().regex(/[ \r\n\t\S]+/),
+		expression: fhirString(),
 		_expression: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SampledData
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -51,20 +52,14 @@ const getQuantitySchema = (): z.ZodType<Quantity> =>
 /** @internal */
 export const SampledDataSchemaInternal = z
 	.object({
-		data: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		data: fhirString().optional(),
 		_data: z.lazy(getElementSchema).optional(),
 		dimensions: z.number().int().positive(),
 		_dimensions: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		factor: z.number().optional(),
 		_factor: z.lazy(getElementSchema).optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		lowerLimit: z.number().optional(),
 		_lowerLimit: z.lazy(getElementSchema).optional(),

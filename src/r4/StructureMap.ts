@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { ContactDetail } from "./ContactDetail";
@@ -116,15 +121,12 @@ export const StructureMapSchemaInternal = DomainResourceSchemaInternal.extend({
 	_experimental: z.lazy(getElementSchema).optional(),
 	group: z.lazy(getStructureMap_GroupSchema).array(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	import: z.string().regex(/\S*/).array().optional(),
+	import: fhirCanonical().array().optional(),
 	_import: z.lazy(getElementSchema).array().optional(),
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
-	name: z.string().regex(/[ \r\n\t\S]+/),
+	name: fhirString(),
 	_name: z.lazy(getElementSchema).optional(),
-	publisher: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
 	purpose: z.string().optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
@@ -132,18 +134,12 @@ export const StructureMapSchemaInternal = DomainResourceSchemaInternal.extend({
 	status: z.enum(["active", "draft", "retired", "unknown"]),
 	_status: z.lazy(getElementSchema).optional(),
 	structure: z.lazy(getStructureMap_StructureSchema).array().optional(),
-	title: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	title: fhirString().optional(),
 	_title: z.lazy(getElementSchema).optional(),
-	url: z.string().regex(/\S*/),
+	url: fhirUri(),
 	_url: z.lazy(getElementSchema).optional(),
 	useContext: z.lazy(getUsageContextSchema).array().optional(),
-	version: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	version: fhirString().optional(),
 	_version: z.lazy(getElementSchema).optional(),
 }).strict();
 

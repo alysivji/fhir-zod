@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Task
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -159,10 +164,7 @@ export const TaskSchemaInternal = DomainResourceSchemaInternal.extend({
 	basedOn: z.lazy(getReferenceSchema).array().optional(),
 	businessStatus: z.lazy(getCodeableConceptSchema).optional(),
 	code: z.lazy(getCodeableConceptSchema).optional(),
-	description: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	encounter: z.lazy(getReferenceSchema).optional(),
 	executionPeriod: z.lazy(getPeriodSchema).optional(),
@@ -171,9 +173,9 @@ export const TaskSchemaInternal = DomainResourceSchemaInternal.extend({
 	groupIdentifier: z.lazy(getIdentifierSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	input: z.lazy(getTask_InputSchema).array().optional(),
-	instantiatesCanonical: z.string().regex(/\S*/).optional(),
+	instantiatesCanonical: fhirCanonical().optional(),
 	_instantiatesCanonical: z.lazy(getElementSchema).optional(),
-	instantiatesUri: z.string().regex(/\S*/).optional(),
+	instantiatesUri: fhirUri().optional(),
 	_instantiatesUri: z.lazy(getElementSchema).optional(),
 	insurance: z.lazy(getReferenceSchema).array().optional(),
 	intent: z.enum([

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Substance
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { DomainResource } from "./DomainResource";
@@ -56,10 +57,7 @@ const getSubstance_InstanceSchema = (): z.ZodType<Substance_Instance> =>
 export const SubstanceSchemaInternal = DomainResourceSchemaInternal.extend({
 	category: z.lazy(getCodeableConceptSchema).array().optional(),
 	code: z.lazy(getCodeableConceptSchema),
-	description: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	ingredient: z.lazy(getSubstance_IngredientSchema).array().optional(),

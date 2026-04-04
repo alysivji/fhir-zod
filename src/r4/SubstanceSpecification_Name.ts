@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSpecification
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -62,7 +63,7 @@ export const SubstanceSpecification_NameSchemaInternal =
 		domain: z.lazy(getCodeableConceptSchema).array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		language: z.lazy(getCodeableConceptSchema).array().optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		official: z
 			.lazy(getSubstanceSpecification_Name_OfficialSchema)

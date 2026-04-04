@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EnrollmentResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { DomainResource } from "./DomainResource";
 import { DomainResourceSchemaInternal } from "./DomainResource";
@@ -57,10 +57,7 @@ export const EnrollmentResponseSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		created: fhirDateTime().optional(),
 		_created: z.lazy(getElementSchema).optional(),
-		disposition: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		disposition: fhirString().optional(),
 		_disposition: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		organization: z.lazy(getReferenceSchema).optional(),

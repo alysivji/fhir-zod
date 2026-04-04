@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { DomainResource } from "./DomainResource";
@@ -44,10 +45,7 @@ const getSubstanceNucleicAcid_SubunitSchema =
 /** @internal */
 export const SubstanceNucleicAcidSchemaInternal =
 	DomainResourceSchemaInternal.extend({
-		areaOfHybridisation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		areaOfHybridisation: fhirString().optional(),
 		_areaOfHybridisation: z.lazy(getElementSchema).optional(),
 		numberOfSubunits: z.number().int().optional(),
 		_numberOfSubunits: z.lazy(getElementSchema).optional(),

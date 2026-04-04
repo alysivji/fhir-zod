@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MeasureReport
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -78,7 +78,7 @@ export const MeasureReportSchemaInternal = DomainResourceSchemaInternal.extend({
 	group: z.lazy(getMeasureReport_GroupSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	improvementNotation: z.lazy(getCodeableConceptSchema).optional(),
-	measure: z.string().regex(/\S*/),
+	measure: fhirCanonical(),
 	_measure: z.lazy(getElementSchema).optional(),
 	period: z.lazy(getPeriodSchema),
 	reporter: z.lazy(getReferenceSchema).optional(),

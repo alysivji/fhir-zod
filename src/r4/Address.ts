@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Address
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -63,48 +64,23 @@ const getPeriodSchema = (): z.ZodType<Period> =>
 /** @internal */
 export const AddressSchemaInternal = z
 	.object({
-		city: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		city: fhirString().optional(),
 		_city: z.lazy(getElementSchema).optional(),
-		country: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		country: fhirString().optional(),
 		_country: z.lazy(getElementSchema).optional(),
-		district: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		district: fhirString().optional(),
 		_district: z.lazy(getElementSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		line: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		line: fhirString().array().optional(),
 		_line: z.lazy(getElementSchema).array().optional(),
 		period: z.lazy(getPeriodSchema).optional(),
-		postalCode: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		postalCode: fhirString().optional(),
 		_postalCode: z.lazy(getElementSchema).optional(),
-		state: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		state: fhirString().optional(),
 		_state: z.lazy(getElementSchema).optional(),
-		text: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		type: z.enum(["both", "physical", "postal"]).optional(),
 		_type: z.lazy(getElementSchema).optional(),

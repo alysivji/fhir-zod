@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Subscription
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import { fhirInstant, fhirString } from "../shared/fhir-primitives";
 import type { ContactPoint } from "./ContactPoint";
 import { ContactPointSchemaInternal } from "./ContactPoint";
 import type { DomainResource } from "./DomainResource";
@@ -55,16 +55,13 @@ const getSubscription_ChannelSchema = (): z.ZodType<Subscription_Channel> =>
 export const SubscriptionSchemaInternal = DomainResourceSchemaInternal.extend({
 	channel: z.lazy(getSubscription_ChannelSchema),
 	contact: z.lazy(getContactPointSchema).array().optional(),
-	criteria: z.string().regex(/[ \r\n\t\S]+/),
+	criteria: fhirString(),
 	_criteria: z.lazy(getElementSchema).optional(),
 	end: fhirInstant().optional(),
 	_end: z.lazy(getElementSchema).optional(),
-	error: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	error: fhirString().optional(),
 	_error: z.lazy(getElementSchema).optional(),
-	reason: z.string().regex(/[ \r\n\t\S]+/),
+	reason: fhirString(),
 	_reason: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("Subscription"),
 	status: z.enum(["active", "error", "off", "requested"]),

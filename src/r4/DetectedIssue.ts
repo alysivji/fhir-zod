@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DetectedIssue
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -93,10 +93,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const DetectedIssueSchemaInternal = DomainResourceSchemaInternal.extend({
 	author: z.lazy(getReferenceSchema).optional(),
 	code: z.lazy(getCodeableConceptSchema).optional(),
-	detail: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	detail: fhirString().optional(),
 	_detail: z.lazy(getElementSchema).optional(),
 	evidence: z.lazy(getDetectedIssue_EvidenceSchema).array().optional(),
 	identifiedDateTime: fhirDateTime().optional(),
@@ -106,7 +103,7 @@ export const DetectedIssueSchemaInternal = DomainResourceSchemaInternal.extend({
 	implicated: z.lazy(getReferenceSchema).array().optional(),
 	mitigation: z.lazy(getDetectedIssue_MitigationSchema).array().optional(),
 	patient: z.lazy(getReferenceSchema).optional(),
-	reference: z.string().regex(/\S*/).optional(),
+	reference: fhirUri().optional(),
 	_reference: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("DetectedIssue"),
 	severity: z.enum(["high", "low", "moderate"]).optional(),

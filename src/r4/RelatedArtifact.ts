@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RelatedArtifact
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical, fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
 import type { Element } from "./Element";
@@ -61,24 +62,15 @@ export const RelatedArtifactSchemaInternal = z
 	.object({
 		citation: z.string().optional(),
 		_citation: z.lazy(getElementSchema).optional(),
-		display: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		display: fhirString().optional(),
 		_display: z.lazy(getElementSchema).optional(),
 		document: z.lazy(getAttachmentSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		label: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		label: fhirString().optional(),
 		_label: z.lazy(getElementSchema).optional(),
-		resource: z.string().regex(/\S*/).optional(),
+		resource: fhirCanonical().optional(),
 		_resource: z.lazy(getElementSchema).optional(),
 		type: z.enum([
 			"citation",
@@ -91,7 +83,7 @@ export const RelatedArtifactSchemaInternal = z
 			"successor",
 		]),
 		_type: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUrl().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 	})
 	.strict();

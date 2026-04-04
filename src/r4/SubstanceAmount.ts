@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceAmount
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -54,15 +55,9 @@ export const SubstanceAmountSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		amountQuantity: z.lazy(getQuantitySchema).optional(),
 		amountRange: z.lazy(getRangeSchema).optional(),
-		amountString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		amountString: fhirString().optional(),
 		_amountString: z.lazy(getElementSchema).optional(),
-		amountText: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		amountText: fhirString().optional(),
 		_amountText: z.lazy(getElementSchema).optional(),
 		amountType: z.lazy(getCodeableConceptSchema).optional(),
 		referenceRange: z.lazy(getSubstanceAmount_ReferenceRangeSchema).optional(),

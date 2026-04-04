@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RequestGroup
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
@@ -146,10 +146,7 @@ export const RequestGroup_ActionSchemaInternal =
 			.lazy(getRequestGroup_Action_ConditionSchema)
 			.array()
 			.optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		documentation: z.lazy(getRelatedArtifactSchema).array().optional(),
 		groupingBehavior: z
@@ -159,10 +156,7 @@ export const RequestGroup_ActionSchemaInternal =
 		participant: z.lazy(getReferenceSchema).array().optional(),
 		precheckBehavior: z.enum(["no", "yes"]).optional(),
 		_precheckBehavior: z.lazy(getElementSchema).optional(),
-		prefix: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		prefix: fhirString().optional(),
 		_prefix: z.lazy(getElementSchema).optional(),
 		priority: z.enum(["asap", "routine", "stat", "urgent"]).optional(),
 		_priority: z.lazy(getElementSchema).optional(),
@@ -186,10 +180,7 @@ export const RequestGroup_ActionSchemaInternal =
 			])
 			.optional(),
 		_selectionBehavior: z.lazy(getElementSchema).optional(),
-		textEquivalent: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		textEquivalent: fhirString().optional(),
 		_textEquivalent: z.lazy(getElementSchema).optional(),
 		timingAge: z.lazy(getAgeSchema).optional(),
 		timingDateTime: fhirDateTime().optional(),
@@ -198,10 +189,7 @@ export const RequestGroup_ActionSchemaInternal =
 		timingPeriod: z.lazy(getPeriodSchema).optional(),
 		timingRange: z.lazy(getRangeSchema).optional(),
 		timingTiming: z.lazy(getTimingSchema).optional(),
-		title: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 	})

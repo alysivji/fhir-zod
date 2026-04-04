@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -146,19 +147,13 @@ export const DeviceDefinitionSchemaInternal =
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		languageCode: z.lazy(getCodeableConceptSchema).array().optional(),
 		manufacturerReference: z.lazy(getReferenceSchema).optional(),
-		manufacturerString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		manufacturerString: fhirString().optional(),
 		_manufacturerString: z.lazy(getElementSchema).optional(),
 		material: z.lazy(getDeviceDefinition_MaterialSchema).array().optional(),
-		modelNumber: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		modelNumber: fhirString().optional(),
 		_modelNumber: z.lazy(getElementSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
-		onlineInformation: z.string().regex(/\S*/).optional(),
+		onlineInformation: fhirUri().optional(),
 		_onlineInformation: z.lazy(getElementSchema).optional(),
 		owner: z.lazy(getReferenceSchema).optional(),
 		parentDevice: z.lazy(getReferenceSchema).optional(),
@@ -177,13 +172,9 @@ export const DeviceDefinitionSchemaInternal =
 			.lazy(getDeviceDefinition_UdiDeviceIdentifierSchema)
 			.array()
 			.optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		version: fhirString().array().optional(),
 		_version: z.lazy(getElementSchema).array().optional(),
 	})
 		.strict()

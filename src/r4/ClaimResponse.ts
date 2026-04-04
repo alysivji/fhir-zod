@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -143,10 +143,7 @@ export const ClaimResponseSchemaInternal = DomainResourceSchemaInternal.extend({
 	communicationRequest: z.lazy(getReferenceSchema).array().optional(),
 	created: fhirDateTime(),
 	_created: z.lazy(getElementSchema).optional(),
-	disposition: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	disposition: fhirString().optional(),
 	_disposition: z.lazy(getElementSchema).optional(),
 	error: z.lazy(getClaimResponse_ErrorSchema).array().optional(),
 	form: z.lazy(getAttachmentSchema).optional(),
@@ -162,10 +159,7 @@ export const ClaimResponseSchemaInternal = DomainResourceSchemaInternal.extend({
 	payeeType: z.lazy(getCodeableConceptSchema).optional(),
 	payment: z.lazy(getClaimResponse_PaymentSchema).optional(),
 	preAuthPeriod: z.lazy(getPeriodSchema).optional(),
-	preAuthRef: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	preAuthRef: fhirString().optional(),
 	_preAuthRef: z.lazy(getElementSchema).optional(),
 	processNote: z.lazy(getClaimResponse_ProcessNoteSchema).array().optional(),
 	request: z.lazy(getReferenceSchema).optional(),

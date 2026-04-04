@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ChargeItem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -142,9 +147,9 @@ export const ChargeItemSchemaInternal = DomainResourceSchemaInternal.extend({
 	code: z.lazy(getCodeableConceptSchema),
 	context: z.lazy(getReferenceSchema).optional(),
 	costCenter: z.lazy(getReferenceSchema).optional(),
-	definitionCanonical: z.string().regex(/\S*/).array().optional(),
+	definitionCanonical: fhirCanonical().array().optional(),
 	_definitionCanonical: z.lazy(getElementSchema).array().optional(),
-	definitionUri: z.string().regex(/\S*/).array().optional(),
+	definitionUri: fhirUri().array().optional(),
 	_definitionUri: z.lazy(getElementSchema).array().optional(),
 	enteredDate: fhirDateTime().optional(),
 	_enteredDate: z.lazy(getElementSchema).optional(),
@@ -157,10 +162,7 @@ export const ChargeItemSchemaInternal = DomainResourceSchemaInternal.extend({
 	_occurrenceDateTime: z.lazy(getElementSchema).optional(),
 	occurrencePeriod: z.lazy(getPeriodSchema).optional(),
 	occurrenceTiming: z.lazy(getTimingSchema).optional(),
-	overrideReason: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	overrideReason: fhirString().optional(),
 	_overrideReason: z.lazy(getElementSchema).optional(),
 	partOf: z.lazy(getReferenceSchema).array().optional(),
 	performer: z.lazy(getChargeItem_PerformerSchema).array().optional(),

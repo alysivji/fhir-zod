@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationAdministration
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -117,7 +117,7 @@ export const MedicationAdministrationSchemaInternal =
 		effectivePeriod: z.lazy(getPeriodSchema).optional(),
 		eventHistory: z.lazy(getReferenceSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiates: z.string().regex(/\S*/).array().optional(),
+		instantiates: fhirUri().array().optional(),
 		_instantiates: z.lazy(getElementSchema).array().optional(),
 		medicationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		medicationReference: z.lazy(getReferenceSchema).optional(),

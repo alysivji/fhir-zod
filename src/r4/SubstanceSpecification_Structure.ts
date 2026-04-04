@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSpecification
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -62,15 +63,9 @@ export const SubstanceSpecification_StructureSchemaInternal =
 			.lazy(getSubstanceSpecification_Structure_IsotopeSchema)
 			.array()
 			.optional(),
-		molecularFormula: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		molecularFormula: fhirString().optional(),
 		_molecularFormula: z.lazy(getElementSchema).optional(),
-		molecularFormulaByMoiety: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		molecularFormulaByMoiety: fhirString().optional(),
 		_molecularFormulaByMoiety: z.lazy(getElementSchema).optional(),
 		molecularWeight: z.unknown().optional(),
 		opticalActivity: z.lazy(getCodeableConceptSchema).optional(),

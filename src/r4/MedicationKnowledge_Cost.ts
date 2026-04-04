@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -36,10 +37,7 @@ const getMoneySchema = (): z.ZodType<Money> =>
 export const MedicationKnowledge_CostSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		cost: z.lazy(getMoneySchema),
-		source: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		source: fhirString().optional(),
 		_source: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema),
 	}).strict();

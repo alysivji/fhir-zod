@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
 import type { BackboneElement } from "./BackboneElement";
@@ -66,10 +67,7 @@ export const SubstanceNucleicAcid_SubunitSchemaInternal =
 			.lazy(getSubstanceNucleicAcid_Subunit_LinkageSchema)
 			.array()
 			.optional(),
-		sequence: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		sequence: fhirString().optional(),
 		_sequence: z.lazy(getElementSchema).optional(),
 		sequenceAttachment: z.lazy(getAttachmentSchema).optional(),
 		subunit: z.number().int().optional(),

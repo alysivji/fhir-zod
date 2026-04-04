@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/List
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -92,10 +92,7 @@ export const ListSchemaInternal = DomainResourceSchemaInternal.extend({
 	status: z.enum(["current", "entered-in-error", "retired"]),
 	_status: z.lazy(getElementSchema).optional(),
 	subject: z.lazy(getReferenceSchema).optional(),
-	title: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	title: fhirString().optional(),
 	_title: z.lazy(getElementSchema).optional(),
 })
 	.strict()

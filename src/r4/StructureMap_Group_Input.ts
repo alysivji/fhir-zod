@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -36,19 +36,13 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const StructureMap_Group_InputSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		documentation: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		documentation: fhirString().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		mode: z.enum(["source", "target"]),
 		_mode: z.lazy(getElementSchema).optional(),
 		name: fhirId(),
 		_name: z.lazy(getElementSchema).optional(),
-		type: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		type: fhirString().optional(),
 		_type: z.lazy(getElementSchema).optional(),
 	}).strict();
 

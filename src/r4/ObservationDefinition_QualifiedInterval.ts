@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ObservationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -54,10 +55,7 @@ export const ObservationDefinition_QualifiedIntervalSchemaInternal =
 		appliesTo: z.lazy(getCodeableConceptSchema).array().optional(),
 		category: z.enum(["absolute", "critical", "reference"]).optional(),
 		_category: z.lazy(getElementSchema).optional(),
-		condition: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		condition: fhirString().optional(),
 		_condition: z.lazy(getElementSchema).optional(),
 		context: z.lazy(getCodeableConceptSchema).optional(),
 		gender: z.enum(["female", "male", "other", "unknown"]).optional(),

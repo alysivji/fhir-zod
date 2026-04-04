@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirDate,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Age } from "./Age";
 import { AgeSchemaInternal } from "./Age";
@@ -133,18 +139,12 @@ export const FamilyMemberHistorySchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		ageAge: z.lazy(getAgeSchema).optional(),
 		ageRange: z.lazy(getRangeSchema).optional(),
-		ageString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		ageString: fhirString().optional(),
 		_ageString: z.lazy(getElementSchema).optional(),
 		bornDate: fhirDate().optional(),
 		_bornDate: z.lazy(getElementSchema).optional(),
 		bornPeriod: z.lazy(getPeriodSchema).optional(),
-		bornString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		bornString: fhirString().optional(),
 		_bornString: z.lazy(getElementSchema).optional(),
 		condition: z
 			.lazy(getFamilyMemberHistory_ConditionSchema)
@@ -159,22 +159,16 @@ export const FamilyMemberHistorySchemaInternal =
 		deceasedDate: fhirDate().optional(),
 		_deceasedDate: z.lazy(getElementSchema).optional(),
 		deceasedRange: z.lazy(getRangeSchema).optional(),
-		deceasedString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		deceasedString: fhirString().optional(),
 		_deceasedString: z.lazy(getElementSchema).optional(),
 		estimatedAge: z.boolean().optional(),
 		_estimatedAge: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiatesCanonical: z.string().regex(/\S*/).array().optional(),
+		instantiatesCanonical: fhirCanonical().array().optional(),
 		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: z.string().regex(/\S*/).array().optional(),
+		instantiatesUri: fhirUri().array().optional(),
 		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		patient: z.lazy(getReferenceSchema),

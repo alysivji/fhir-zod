@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Identifier
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -54,21 +55,15 @@ export const IdentifierSchemaInternal = z
 	.object({
 		assigner: z.lazy(getReferenceSchema).optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
-		system: z.string().regex(/\S*/).optional(),
+		system: fhirUri().optional(),
 		_system: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 		use: z.enum(["official", "old", "secondary", "temp", "usual"]).optional(),
 		_use: z.lazy(getElementSchema).optional(),
-		value: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		value: fhirString().optional(),
 		_value: z.lazy(getElementSchema).optional(),
 	})
 	.strict()

@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import { fhirInstant, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -44,26 +44,17 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Bundle_Entry_RequestSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		ifMatch: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		ifMatch: fhirString().optional(),
 		_ifMatch: z.lazy(getElementSchema).optional(),
 		ifModifiedSince: fhirInstant().optional(),
 		_ifModifiedSince: z.lazy(getElementSchema).optional(),
-		ifNoneExist: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		ifNoneExist: fhirString().optional(),
 		_ifNoneExist: z.lazy(getElementSchema).optional(),
-		ifNoneMatch: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		ifNoneMatch: fhirString().optional(),
 		_ifNoneMatch: z.lazy(getElementSchema).optional(),
 		method: z.enum(["DELETE", "GET", "HEAD", "PATCH", "POST", "PUT"]),
 		_method: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/),
+		url: fhirUri(),
 		_url: z.lazy(getElementSchema).optional(),
 	}).strict();
 

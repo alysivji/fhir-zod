@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeSystem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeSystem_Concept_Designation } from "./CodeSystem_Concept_Designation";
@@ -47,22 +48,16 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CodeSystem_ConceptSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		code: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		code: fhirCode(),
 		_code: z.lazy(getElementSchema).optional(),
 		concept: z.unknown().array().optional(),
-		definition: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		definition: fhirString().optional(),
 		_definition: z.lazy(getElementSchema).optional(),
 		designation: z
 			.lazy(getCodeSystem_Concept_DesignationSchema)
 			.array()
 			.optional(),
-		display: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		display: fhirString().optional(),
 		_display: z.lazy(getElementSchema).optional(),
 		property: z.lazy(getCodeSystem_Concept_PropertySchema).array().optional(),
 	}).strict();

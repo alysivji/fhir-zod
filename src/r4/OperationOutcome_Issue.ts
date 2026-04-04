@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationOutcome
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -115,22 +116,11 @@ export const OperationOutcome_IssueSchemaInternal =
 		]),
 		_code: z.lazy(getElementSchema).optional(),
 		details: z.lazy(getCodeableConceptSchema).optional(),
-		diagnostics: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		diagnostics: fhirString().optional(),
 		_diagnostics: z.lazy(getElementSchema).optional(),
-		expression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		expression: fhirString().array().optional(),
 		_expression: z.lazy(getElementSchema).array().optional(),
-		location: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		location: fhirString().array().optional(),
 		_location: z.lazy(getElementSchema).array().optional(),
 		severity: z.enum(["error", "fatal", "information", "warning"]),
 		_severity: z.lazy(getElementSchema).optional(),

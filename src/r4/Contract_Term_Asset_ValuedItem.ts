@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -92,17 +92,10 @@ export const Contract_Term_Asset_ValuedItemSchemaInternal =
 		factor: z.number().optional(),
 		_factor: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).optional(),
-		linkId: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		linkId: fhirString().array().optional(),
 		_linkId: z.lazy(getElementSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		payment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		payment: fhirString().optional(),
 		_payment: z.lazy(getElementSchema).optional(),
 		paymentDate: fhirDateTime().optional(),
 		_paymentDate: z.lazy(getElementSchema).optional(),

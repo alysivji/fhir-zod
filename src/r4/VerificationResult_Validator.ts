@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/VerificationResult
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -37,10 +38,7 @@ const getSignatureSchema = (): z.ZodType<Signature> =>
 export const VerificationResult_ValidatorSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		attestationSignature: z.lazy(getSignatureSchema).optional(),
-		identityCertificate: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		identityCertificate: fhirString().optional(),
 		_identityCertificate: z.lazy(getElementSchema).optional(),
 		organization: z.lazy(getReferenceSchema),
 	})

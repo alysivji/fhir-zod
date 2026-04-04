@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -51,7 +51,7 @@ const getValueSet_Expansion_ParameterSchema =
 export const ValueSet_ExpansionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		contains: z.lazy(getValueSet_Expansion_ContainsSchema).array().optional(),
-		identifier: z.string().regex(/\S*/).optional(),
+		identifier: fhirUri().optional(),
 		_identifier: z.lazy(getElementSchema).optional(),
 		offset: z.number().int().optional(),
 		_offset: z.lazy(getElementSchema).optional(),

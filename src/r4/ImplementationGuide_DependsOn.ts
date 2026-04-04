@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -34,12 +34,9 @@ export const ImplementationGuide_DependsOnSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		packageId: fhirId().optional(),
 		_packageId: z.lazy(getElementSchema).optional(),
-		uri: z.string().regex(/\S*/),
+		uri: fhirCanonical(),
 		_uri: z.lazy(getElementSchema).optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
 	}).strict();
 

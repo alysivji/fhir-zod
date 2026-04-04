@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Goal
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDate } from "../shared/fhir-primitives";
+import { fhirDate, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -121,10 +121,7 @@ export const GoalSchemaInternal = DomainResourceSchemaInternal.extend({
 	_startDate: z.lazy(getElementSchema).optional(),
 	statusDate: fhirDate().optional(),
 	_statusDate: z.lazy(getElementSchema).optional(),
-	statusReason: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	statusReason: fhirString().optional(),
 	_statusReason: z.lazy(getElementSchema).optional(),
 	subject: z.lazy(getReferenceSchema),
 	target: z.lazy(getGoal_TargetSchema).array().optional(),

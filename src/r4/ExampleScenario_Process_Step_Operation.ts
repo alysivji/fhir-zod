@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -58,33 +59,21 @@ export const ExampleScenario_Process_Step_OperationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		description: z.string().optional(),
 		_description: z.lazy(getElementSchema).optional(),
-		initiator: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		initiator: fhirString().optional(),
 		_initiator: z.lazy(getElementSchema).optional(),
 		initiatorActive: z.boolean().optional(),
 		_initiatorActive: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		number: z.string().regex(/[ \r\n\t\S]+/),
+		number: fhirString(),
 		_number: z.lazy(getElementSchema).optional(),
-		receiver: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		receiver: fhirString().optional(),
 		_receiver: z.lazy(getElementSchema).optional(),
 		receiverActive: z.boolean().optional(),
 		_receiverActive: z.lazy(getElementSchema).optional(),
 		request: z.unknown().optional(),
 		response: z.unknown().optional(),
-		type: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		type: fhirString().optional(),
 		_type: z.lazy(getElementSchema).optional(),
 	}).strict();
 

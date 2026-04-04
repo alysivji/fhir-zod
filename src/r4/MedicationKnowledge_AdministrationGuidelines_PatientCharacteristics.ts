@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -38,11 +39,7 @@ export const MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
 	BackboneElementSchemaInternal.extend({
 		characteristicCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		characteristicQuantity: z.lazy(getQuantitySchema).optional(),
-		value: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		value: fhirString().array().optional(),
 		_value: z.lazy(getElementSchema).array().optional(),
 	})
 		.strict()

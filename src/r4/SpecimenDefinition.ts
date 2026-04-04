@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SpecimenDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { DomainResource } from "./DomainResource";
@@ -52,10 +53,7 @@ export const SpecimenDefinitionSchemaInternal =
 		identifier: z.lazy(getIdentifierSchema).optional(),
 		patientPreparation: z.lazy(getCodeableConceptSchema).array().optional(),
 		resourceType: z.literal("SpecimenDefinition"),
-		timeAspect: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		timeAspect: fhirString().optional(),
 		_timeAspect: z.lazy(getElementSchema).optional(),
 		typeCollected: z.lazy(getCodeableConceptSchema).optional(),
 		typeTested: z

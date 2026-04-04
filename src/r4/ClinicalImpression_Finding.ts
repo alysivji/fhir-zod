@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalImpression
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -36,10 +37,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const ClinicalImpression_FindingSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		basis: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		basis: fhirString().optional(),
 		_basis: z.lazy(getElementSchema).optional(),
 		itemCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		itemReference: z.lazy(getReferenceSchema).optional(),

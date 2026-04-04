@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -47,10 +48,7 @@ const getTerminologyCapabilities_CodeSystem_Version_FilterSchema =
 /** @internal */
 export const TerminologyCapabilities_CodeSystem_VersionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		code: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		code: fhirString().optional(),
 		_code: z.lazy(getElementSchema).optional(),
 		compositional: z.boolean().optional(),
 		_compositional: z.lazy(getElementSchema).optional(),
@@ -60,17 +58,9 @@ export const TerminologyCapabilities_CodeSystem_VersionSchemaInternal =
 			.optional(),
 		isDefault: z.boolean().optional(),
 		_isDefault: z.lazy(getElementSchema).optional(),
-		language: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.array()
-			.optional(),
+		language: fhirCode().array().optional(),
 		_language: z.lazy(getElementSchema).array().optional(),
-		property: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.array()
-			.optional(),
+		property: fhirCode().array().optional(),
 		_property: z.lazy(getElementSchema).array().optional(),
 	}).strict();
 

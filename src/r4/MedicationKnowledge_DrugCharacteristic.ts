@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirBase64Binary, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -43,17 +44,11 @@ const getQuantitySchema = (): z.ZodType<Quantity> =>
 export const MedicationKnowledge_DrugCharacteristicSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		type: z.lazy(getCodeableConceptSchema).optional(),
-		valueBase64Binary: z
-			.string()
-			.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-			.optional(),
+		valueBase64Binary: fhirBase64Binary().optional(),
 		_valueBase64Binary: z.lazy(getElementSchema).optional(),
 		valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		valueQuantity: z.lazy(getQuantitySchema).optional(),
-		valueString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		valueString: fhirString().optional(),
 		_valueString: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

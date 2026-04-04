@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirCanonical } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -28,7 +29,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CapabilityStatement_Messaging_SupportedMessageSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		definition: z.string().regex(/\S*/),
+		definition: fhirCanonical(),
 		_definition: z.lazy(getElementSchema).optional(),
 		mode: z.enum(["receiver", "sender"]),
 		_mode: z.lazy(getElementSchema).optional(),

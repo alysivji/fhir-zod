@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AppointmentResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import { fhirInstant, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -61,10 +61,7 @@ export const AppointmentResponseSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		actor: z.lazy(getReferenceSchema).optional(),
 		appointment: z.lazy(getReferenceSchema),
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
 		end: fhirInstant().optional(),
 		_end: z.lazy(getElementSchema).optional(),

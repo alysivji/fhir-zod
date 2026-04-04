@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -91,17 +91,11 @@ export const ImmunizationEvaluationSchemaInternal =
 		authority: z.lazy(getReferenceSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		doseNumberPositiveInt: z.number().int().positive().optional(),
 		_doseNumberPositiveInt: z.lazy(getElementSchema).optional(),
-		doseNumberString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		doseNumberString: fhirString().optional(),
 		_doseNumberString: z.lazy(getElementSchema).optional(),
 		doseStatus: z.lazy(getCodeableConceptSchema),
 		doseStatusReason: z.lazy(getCodeableConceptSchema).array().optional(),
@@ -109,17 +103,11 @@ export const ImmunizationEvaluationSchemaInternal =
 		immunizationEvent: z.lazy(getReferenceSchema),
 		patient: z.lazy(getReferenceSchema),
 		resourceType: z.literal("ImmunizationEvaluation"),
-		series: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		series: fhirString().optional(),
 		_series: z.lazy(getElementSchema).optional(),
 		seriesDosesPositiveInt: z.number().int().positive().optional(),
 		_seriesDosesPositiveInt: z.lazy(getElementSchema).optional(),
-		seriesDosesString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		seriesDosesString: fhirString().optional(),
 		_seriesDosesString: z.lazy(getElementSchema).optional(),
 		status: z.enum([
 			"completed",

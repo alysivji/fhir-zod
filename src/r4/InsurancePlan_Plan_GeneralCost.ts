@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/InsurancePlan
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -39,10 +40,7 @@ const getMoneySchema = (): z.ZodType<Money> =>
 /** @internal */
 export const InsurancePlan_Plan_GeneralCostSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
 		cost: z.lazy(getMoneySchema).optional(),
 		groupSize: z.number().int().positive().optional(),

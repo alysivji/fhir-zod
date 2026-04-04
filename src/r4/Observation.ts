@@ -1,10 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Observation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime, fhirInstant, fhirTime } from "../shared/fhir-primitives";
+import {
+	fhirDateTime,
+	fhirInstant,
+	fhirString,
+	fhirTime,
+} from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
 import { AnnotationSchemaInternal } from "./Annotation";
@@ -226,10 +231,7 @@ export const ObservationSchemaInternal = DomainResourceSchemaInternal.extend({
 	valueRange: z.lazy(getRangeSchema).optional(),
 	valueRatio: z.lazy(getRatioSchema).optional(),
 	valueSampledData: z.lazy(getSampledDataSchema).optional(),
-	valueString: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	valueString: fhirString().optional(),
 	_valueString: z.lazy(getElementSchema).optional(),
 	valueTime: fhirTime().optional(),
 	_valueTime: z.lazy(getElementSchema).optional(),

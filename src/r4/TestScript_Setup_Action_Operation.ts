@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCode, fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Coding } from "./Coding";
@@ -304,29 +304,17 @@ const getTestScript_Setup_Action_Operation_RequestHeaderSchema =
 /** @internal */
 export const TestScript_Setup_Action_OperationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		accept: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		accept: fhirCode().optional(),
 		_accept: z.lazy(getElementSchema).optional(),
-		contentType: z
-			.string()
-			.regex(/[^\s]+(\s[^\s]+)*/)
-			.optional(),
+		contentType: fhirCode().optional(),
 		_contentType: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		destination: z.number().int().optional(),
 		_destination: z.lazy(getElementSchema).optional(),
 		encodeRequestUrl: z.boolean(),
 		_encodeRequestUrl: z.lazy(getElementSchema).optional(),
-		label: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		label: fhirString().optional(),
 		_label: z.lazy(getElementSchema).optional(),
 		method: z
 			.enum(["delete", "get", "head", "options", "patch", "post", "put"])
@@ -334,10 +322,7 @@ export const TestScript_Setup_Action_OperationSchemaInternal =
 		_method: z.lazy(getElementSchema).optional(),
 		origin: z.number().int().optional(),
 		_origin: z.lazy(getElementSchema).optional(),
-		params: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		params: fhirString().optional(),
 		_params: z.lazy(getElementSchema).optional(),
 		requestHeader: z
 			.lazy(getTestScript_Setup_Action_Operation_RequestHeaderSchema)
@@ -568,10 +553,7 @@ export const TestScript_Setup_Action_OperationSchemaInternal =
 		targetId: fhirId().optional(),
 		_targetId: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodingSchema).optional(),
-		url: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		url: fhirString().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -170,11 +170,7 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 
 /** @internal */
 export const ContractSchemaInternal = DomainResourceSchemaInternal.extend({
-	alias: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.array()
-		.optional(),
+	alias: fhirString().array().optional(),
 	_alias: z.lazy(getElementSchema).array().optional(),
 	applies: z.lazy(getPeriodSchema).optional(),
 	author: z.lazy(getReferenceSchema).optional(),
@@ -186,7 +182,7 @@ export const ContractSchemaInternal = DomainResourceSchemaInternal.extend({
 	friendly: z.lazy(getContract_FriendlySchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	instantiatesCanonical: z.lazy(getReferenceSchema).optional(),
-	instantiatesUri: z.string().regex(/\S*/).optional(),
+	instantiatesUri: fhirUri().optional(),
 	_instantiatesUri: z.lazy(getElementSchema).optional(),
 	issued: fhirDateTime().optional(),
 	_issued: z.lazy(getElementSchema).optional(),
@@ -194,10 +190,7 @@ export const ContractSchemaInternal = DomainResourceSchemaInternal.extend({
 	legallyBindingAttachment: z.lazy(getAttachmentSchema).optional(),
 	legallyBindingReference: z.lazy(getReferenceSchema).optional(),
 	legalState: z.lazy(getCodeableConceptSchema).optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	relevantHistory: z.lazy(getReferenceSchema).array().optional(),
 	resourceType: z.literal("Contract"),
@@ -226,28 +219,19 @@ export const ContractSchemaInternal = DomainResourceSchemaInternal.extend({
 		.optional(),
 	_status: z.lazy(getElementSchema).optional(),
 	subject: z.lazy(getReferenceSchema).array().optional(),
-	subtitle: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	subtitle: fhirString().optional(),
 	_subtitle: z.lazy(getElementSchema).optional(),
 	subType: z.lazy(getCodeableConceptSchema).array().optional(),
 	supportingInfo: z.lazy(getReferenceSchema).array().optional(),
 	term: z.lazy(getContract_TermSchema).array().optional(),
-	title: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	title: fhirString().optional(),
 	_title: z.lazy(getElementSchema).optional(),
 	topicCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 	topicReference: z.lazy(getReferenceSchema).optional(),
 	type: z.lazy(getCodeableConceptSchema).optional(),
-	url: z.string().regex(/\S*/).optional(),
+	url: fhirUri().optional(),
 	_url: z.lazy(getElementSchema).optional(),
-	version: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	version: fhirString().optional(),
 	_version: z.lazy(getElementSchema).optional(),
 })
 	.strict()

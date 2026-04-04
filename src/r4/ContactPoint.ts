@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ContactPoint
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T14:11:40.945Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
 import type { Extension } from "./Extension";
@@ -44,10 +45,7 @@ const getPeriodSchema = (): z.ZodType<Period> =>
 export const ContactPointSchemaInternal = z
 	.object({
 		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
 		rank: z.number().int().positive().optional(),
@@ -58,10 +56,7 @@ export const ContactPointSchemaInternal = z
 		_system: z.lazy(getElementSchema).optional(),
 		use: z.enum(["home", "mobile", "old", "temp", "work"]).optional(),
 		_use: z.lazy(getElementSchema).optional(),
-		value: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		value: fhirString().optional(),
 		_value: z.lazy(getElementSchema).optional(),
 	})
 	.strict();

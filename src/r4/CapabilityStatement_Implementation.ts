@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -35,9 +36,9 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const CapabilityStatement_ImplementationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		custodian: z.lazy(getReferenceSchema).optional(),
-		description: z.string().regex(/[ \r\n\t\S]+/),
+		description: fhirString(),
 		_description: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/).optional(),
+		url: fhirUrl().optional(),
 		_url: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Account
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Account_Coverage } from "./Account_Coverage";
 import { Account_CoverageSchemaInternal } from "./Account_Coverage";
@@ -74,17 +75,11 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const AccountSchemaInternal = DomainResourceSchemaInternal.extend({
 	coverage: z.lazy(getAccount_CoverageSchema).array().optional(),
-	description: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	guarantor: z.lazy(getAccount_GuarantorSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	owner: z.lazy(getReferenceSchema).optional(),
 	partOf: z.lazy(getReferenceSchema).optional(),

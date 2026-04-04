@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Communication
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -38,10 +39,7 @@ export const Communication_PayloadSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		contentAttachment: z.lazy(getAttachmentSchema).optional(),
 		contentReference: z.lazy(getReferenceSchema).optional(),
-		contentString: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		contentString: fhirString().optional(),
 		_contentString: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Organization
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
@@ -74,19 +75,12 @@ export const OrganizationSchemaInternal = DomainResourceSchemaInternal.extend({
 	active: z.boolean().optional(),
 	_active: z.lazy(getElementSchema).optional(),
 	address: z.lazy(getAddressSchema).array().optional(),
-	alias: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.array()
-		.optional(),
+	alias: fhirString().array().optional(),
 	_alias: z.lazy(getElementSchema).array().optional(),
 	contact: z.lazy(getOrganization_ContactSchema).array().optional(),
 	endpoint: z.lazy(getReferenceSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	partOf: z.lazy(getReferenceSchema).optional(),
 	resourceType: z.literal("Organization"),

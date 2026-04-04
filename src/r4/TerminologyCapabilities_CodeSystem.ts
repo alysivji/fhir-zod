@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirCanonical } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -36,7 +37,7 @@ export const TerminologyCapabilities_CodeSystemSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		subsumption: z.boolean().optional(),
 		_subsumption: z.lazy(getElementSchema).optional(),
-		uri: z.string().regex(/\S*/).optional(),
+		uri: fhirCanonical().optional(),
 		_uri: z.lazy(getElementSchema).optional(),
 		version: z
 			.lazy(getTerminologyCapabilities_CodeSystem_VersionSchema)

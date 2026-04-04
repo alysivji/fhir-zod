@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import { fhirInstant, fhirString } from "../shared/fhir-primitives";
 import type { AuditEvent_Agent } from "./AuditEvent_Agent";
 import { AuditEvent_AgentSchemaInternal } from "./AuditEvent_Agent";
 import type { AuditEvent_Entity } from "./AuditEvent_Entity";
@@ -81,10 +81,7 @@ export const AuditEventSchemaInternal = DomainResourceSchemaInternal.extend({
 	entity: z.lazy(getAuditEvent_EntitySchema).array().optional(),
 	outcome: z.enum(["0", "12", "4", "8"]).optional(),
 	_outcome: z.lazy(getElementSchema).optional(),
-	outcomeDesc: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	outcomeDesc: fhirString().optional(),
 	_outcomeDesc: z.lazy(getElementSchema).optional(),
 	period: z.lazy(getPeriodSchema).optional(),
 	purposeOfEvent: z.lazy(getCodeableConceptSchema).array().optional(),

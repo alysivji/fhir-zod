@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SpecimenDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -71,10 +72,7 @@ export const SpecimenDefinition_TypeTestedSchemaInternal =
 		preference: z.enum(["alternate", "preferred"]),
 		_preference: z.lazy(getElementSchema).optional(),
 		rejectionCriterion: z.lazy(getCodeableConceptSchema).array().optional(),
-		requirement: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		requirement: fhirString().optional(),
 		_requirement: z.lazy(getElementSchema).optional(),
 		retentionTime: z.lazy(getDurationSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),

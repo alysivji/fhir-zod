@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Binary
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirBase64Binary, fhirCode } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
@@ -35,12 +36,9 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 
 /** @internal */
 export const BinarySchemaInternal = ResourceSchemaInternal.extend({
-	contentType: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+	contentType: fhirCode(),
 	_contentType: z.lazy(getElementSchema).optional(),
-	data: z
-		.string()
-		.regex(/(\s*([0-9a-zA-Z+/=]){4}\s*)+/)
-		.optional(),
+	data: fhirBase64Binary().optional(),
 	_data: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("Binary"),
 	securityContext: z.lazy(getReferenceSchema).optional(),

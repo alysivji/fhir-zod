@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestReport
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -31,10 +32,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const TestReport_Setup_Action_AssertSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		detail: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		detail: fhirString().optional(),
 		_detail: z.lazy(getElementSchema).optional(),
 		message: z.string().optional(),
 		_message: z.lazy(getElementSchema).optional(),

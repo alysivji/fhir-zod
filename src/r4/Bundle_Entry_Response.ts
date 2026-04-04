@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirInstant } from "../shared/fhir-primitives";
+import { fhirInstant, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -39,17 +39,14 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Bundle_Entry_ResponseSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		etag: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		etag: fhirString().optional(),
 		_etag: z.lazy(getElementSchema).optional(),
 		lastModified: fhirInstant().optional(),
 		_lastModified: z.lazy(getElementSchema).optional(),
-		location: z.string().regex(/\S*/).optional(),
+		location: fhirUri().optional(),
 		_location: z.lazy(getElementSchema).optional(),
 		outcome: z.object({ resourceType: z.string() }).passthrough().optional(),
-		status: z.string().regex(/[ \r\n\t\S]+/),
+		status: fhirString(),
 		_status: z.lazy(getElementSchema).optional(),
 	}).strict();
 

@@ -1,10 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SearchParameter
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
-import { fhirDateTime } from "../shared/fhir-primitives";
+import {
+	fhirCanonical,
+	fhirCode,
+	fhirDateTime,
+	fhirString,
+	fhirUri,
+} from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 import type { ContactDetail } from "./ContactDetail";
@@ -610,13 +616,9 @@ export const SearchParameterSchemaInternal =
 			])
 			.array(),
 		_base: z.lazy(getElementSchema).array().optional(),
-		chain: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.array()
-			.optional(),
+		chain: fhirString().array().optional(),
 		_chain: z.lazy(getElementSchema).array().optional(),
-		code: z.string().regex(/[^\s]+(\s[^\s]+)*/),
+		code: fhirCode(),
 		_code: z.lazy(getElementSchema).optional(),
 		comparator: z
 			.enum(["ap", "eb", "eq", "ge", "gt", "le", "lt", "ne", "sa"])
@@ -627,16 +629,13 @@ export const SearchParameterSchemaInternal =
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		derivedFrom: z.string().regex(/\S*/).optional(),
+		derivedFrom: fhirCanonical().optional(),
 		_derivedFrom: z.lazy(getElementSchema).optional(),
 		description: z.string(),
 		_description: z.lazy(getElementSchema).optional(),
 		experimental: z.boolean().optional(),
 		_experimental: z.lazy(getElementSchema).optional(),
-		expression: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		expression: fhirString().optional(),
 		_expression: z.lazy(getElementSchema).optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		modifier: z
@@ -661,12 +660,9 @@ export const SearchParameterSchemaInternal =
 		_multipleAnd: z.lazy(getElementSchema).optional(),
 		multipleOr: z.boolean().optional(),
 		_multipleOr: z.lazy(getElementSchema).optional(),
-		name: z.string().regex(/[ \r\n\t\S]+/),
+		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
-		publisher: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
@@ -839,18 +835,12 @@ export const SearchParameterSchemaInternal =
 			"uri",
 		]),
 		_type: z.lazy(getElementSchema).optional(),
-		url: z.string().regex(/\S*/),
+		url: fhirUri(),
 		_url: z.lazy(getElementSchema).optional(),
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-		xpath: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		xpath: fhirString().optional(),
 		_xpath: z.lazy(getElementSchema).optional(),
 		xpathUsage: z
 			.enum(["distance", "nearby", "normal", "other", "phonetic"])

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -43,10 +44,10 @@ export const ImplementationGuide_Definition_PageSchemaInternal =
 		generation: z.enum(["generated", "html", "markdown", "xml"]),
 		_generation: z.lazy(getElementSchema).optional(),
 		nameReference: z.lazy(getReferenceSchema).optional(),
-		nameUrl: z.string().regex(/\S*/).optional(),
+		nameUrl: fhirUrl().optional(),
 		_nameUrl: z.lazy(getElementSchema).optional(),
 		page: z.unknown().array().optional(),
-		title: z.string().regex(/[ \r\n\t\S]+/),
+		title: fhirString(),
 		_title: z.lazy(getElementSchema).optional(),
 	})
 		.strict()

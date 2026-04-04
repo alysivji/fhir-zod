@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Bundle_Entry_Request } from "./Bundle_Entry_Request";
@@ -49,7 +50,7 @@ const getElementSchema = (): z.ZodType<Element> =>
 
 /** @internal */
 export const Bundle_EntrySchemaInternal = BackboneElementSchemaInternal.extend({
-	fullUrl: z.string().regex(/\S*/).optional(),
+	fullUrl: fhirUri().optional(),
 	_fullUrl: z.lazy(getElementSchema).optional(),
 	link: z.unknown().array().optional(),
 	request: z.lazy(getBundle_Entry_RequestSchema).optional(),

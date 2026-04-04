@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/InsurancePlan
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -84,21 +85,14 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const InsurancePlanSchemaInternal = DomainResourceSchemaInternal.extend({
 	administeredBy: z.lazy(getReferenceSchema).optional(),
-	alias: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.array()
-		.optional(),
+	alias: fhirString().array().optional(),
 	_alias: z.lazy(getElementSchema).array().optional(),
 	contact: z.lazy(getInsurancePlan_ContactSchema).array().optional(),
 	coverage: z.lazy(getInsurancePlan_CoverageSchema).array().optional(),
 	coverageArea: z.lazy(getReferenceSchema).array().optional(),
 	endpoint: z.lazy(getReferenceSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	name: z
-		.string()
-		.regex(/[ \r\n\t\S]+/)
-		.optional(),
+	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	network: z.lazy(getReferenceSchema).array().optional(),
 	ownedBy: z.lazy(getReferenceSchema).optional(),

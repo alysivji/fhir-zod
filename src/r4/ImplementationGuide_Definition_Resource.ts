@@ -1,10 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-04T22:42:43.846Z
 
 import * as z from "zod";
-import { fhirId } from "../shared/fhir-primitives";
+import { fhirCanonical, fhirId, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -75,14 +75,11 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const ImplementationGuide_Definition_ResourceSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		description: fhirString().optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		exampleBoolean: z.boolean().optional(),
 		_exampleBoolean: z.lazy(getElementSchema).optional(),
-		exampleCanonical: z.string().regex(/\S*/).optional(),
+		exampleCanonical: fhirCanonical().optional(),
 		_exampleCanonical: z.lazy(getElementSchema).optional(),
 		fhirVersion: z
 			.enum([
@@ -114,10 +111,7 @@ export const ImplementationGuide_Definition_ResourceSchemaInternal =
 		_fhirVersion: z.lazy(getElementSchema).array().optional(),
 		groupingId: fhirId().optional(),
 		_groupingId: z.lazy(getElementSchema).optional(),
-		name: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		reference: z.lazy(getReferenceSchema),
 	})

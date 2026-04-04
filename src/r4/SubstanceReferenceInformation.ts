@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceReferenceInformation
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-02T20:28:54.953Z
 
 import * as z from "zod";
+import { fhirString } from "../shared/fhir-primitives";
 import type { DomainResource } from "./DomainResource";
 import { DomainResourceSchemaInternal } from "./DomainResource";
 import type { Element } from "./Element";
@@ -57,10 +58,7 @@ export const SubstanceReferenceInformationSchemaInternal =
 			.lazy(getSubstanceReferenceInformation_ClassificationSchema)
 			.array()
 			.optional(),
-		comment: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
+		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
 		gene: z
 			.lazy(getSubstanceReferenceInformation_GeneSchema)
