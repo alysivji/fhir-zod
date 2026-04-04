@@ -12,6 +12,8 @@ describe("generated declarations", () => {
 			"npx",
 			[
 				"tsc",
+				"--noEmit",
+				"false",
 				"--emitDeclarationOnly",
 				"--declaration",
 				"--declarationMap",
