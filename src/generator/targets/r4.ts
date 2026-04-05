@@ -1,10 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
-import { repoRoot } from "../shared.ts";
-
-type SpecManifest = {
-	packageRoot: string;
-};
+import { join } from "node:path";
+import { resolveRequiredSpecPackageRoot } from "../../spec/spec-cache.ts";
 
 type StructureDefinition = {
 	abstract?: boolean;
@@ -43,8 +39,7 @@ export const r4AbstractTargetNames = [
 const abstractGenerationWhitelist = new Set<string>(r4AbstractTargetNames);
 
 export function loadR4TargetEntries(): R4TargetEntry[] {
-	const manifest = loadManifest("r4");
-	const packageRoot = resolve(repoRoot, manifest.packageRoot);
+	const packageRoot = resolveRequiredSpecPackageRoot("r4");
 
 	return readdirSync(packageRoot)
 		.filter(
@@ -140,9 +135,4 @@ function classifyTargetEntry(definition: StructureDefinition): R4TargetEntry {
 		type: definition.type ?? null,
 		url: definition.url ?? null,
 	};
-}
-
-function loadManifest(version: "r4"): SpecManifest {
-	const manifestPath = join(repoRoot, "src", "spec", version, "manifest.json");
-	return JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest;
 }

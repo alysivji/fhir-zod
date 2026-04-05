@@ -102,6 +102,19 @@ npm run list:r4-targets -- --summary
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
 
+### Spec-dependent tests
+
+Some generator-side tests validate behavior against pinned extracted R4 spec inputs
+under `.local/spec-cache/r4/package`.
+
+Those extracted inputs are not committed. On a clean checkout, run:
+
+```bash
+npm run fetch-spec
+```
+
+before running the full generator-oriented test suite with `npm test`.
+
 ## Pre-release
 
 This repository is still pre-release.

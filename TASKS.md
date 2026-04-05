@@ -102,10 +102,12 @@ Track the work needed to align the repository with the current README.
 - [x] Add tests for choice field constraints
 - [ ] Add version-specific test coverage
 - [x] Add tests for generator determinism
+- [x] Fail clearly or skip intentionally when extracted spec cache is missing
 - [x] Add a schema test that rejects unknown top-level Patient fields
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 - [x] Add R4 target-inventory regression tests
 - [x] Add generic official-example tests for generated R4 fixtures
+- [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
 - [ ] Investigate the four skipped official R4 examples that violate emitted base reference-target constraints
   Current skips:
   `DeviceMetric/devicemetric-example.json`
