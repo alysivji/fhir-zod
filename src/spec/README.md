@@ -48,6 +48,13 @@ npm run fetch-spec -- stu3
 npm run fetch-spec -- r4b r5
 ```
 
+On a clean checkout without extracted spec inputs, runtime/generated-output tests still
+pass, while spec-dependent generator suites skip with a message telling you to run
+`npm run fetch-spec`.
+
+Once `r4` has been fetched into `.local/spec-cache/r4/package`, the full current test
+suite runs, including the generator-side R4 inventory and provenance coverage.
+
 After refreshing:
 
 1. Update the matching `src/spec/<version>/manifest.json` if the pinned package changed.

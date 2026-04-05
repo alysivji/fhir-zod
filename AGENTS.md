@@ -79,6 +79,8 @@ Important implementation facts:
 - `scripts/fetch-spec.ts` defaults to fetching `r4` only
 - `scripts/fetch-examples.ts` refreshes committed R4 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
 - manifests are committed; extracted upstream package contents in `.local/` are not
+- code paths that require extracted spec inputs now fail with an explicit `MissingSpecPackageError` that tells the user to run `npm run fetch-spec`
+- spec-dependent generator suites skip cleanly on a fresh checkout when `.local/spec-cache/r4/package` is absent; fetching `r4` enables the full generator-side test coverage
 - generated files include timestamps, so normalized comparison logic matters for determinism checks
 
 ## Generated vs Handwritten Code
