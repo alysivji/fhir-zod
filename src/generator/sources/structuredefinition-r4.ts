@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { resolveRequiredSpecPackageRoot } from "../../spec/spec-cache.ts";
 import type {
 	BindingMetadata,
 	InvariantMetadata,
@@ -17,15 +17,6 @@ import {
 	sortProperties,
 } from "../model.ts";
 import { listR4GenerationTargetNames } from "../targets/r4.ts";
-
-type SpecManifest = {
-	fhirVersion: string;
-	packageName: string;
-	packageRoot: string;
-	packageVersion: string;
-	sourceUrl: string;
-	structureDefinitionGlob: string;
-};
 
 type StructureDefinition = {
 	abstract?: boolean;
@@ -134,8 +125,6 @@ type TerminologyIndex = {
 	valueSetsByUrl: Map<string, ValueSet>;
 };
 
-const moduleDir = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(moduleDir, "../../..");
 const fhirPathPrimitiveByCode = new Map<string, string>([
 	["http://hl7.org/fhirpath/System.Boolean", "boolean"],
 	["http://hl7.org/fhirpath/System.Date", "date"],
@@ -149,8 +138,7 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 export function buildStructureDefinitionR4Definitions(
 	scopeNames: Iterable<string> = listR4GenerationTargetNames(),
 ): StructureDefinitionBuildResult {
-	const manifest = loadManifest("r4");
-	const packageRoot = resolve(repoRoot, manifest.packageRoot);
+	const packageRoot = resolveRequiredSpecPackageRoot("r4");
 	const index = loadStructureDefinitionIndex(packageRoot);
 	const terminology = loadTerminologyIndex(packageRoot);
 	const primitivePatterns = loadPrimitivePatterns(index);
@@ -281,11 +269,6 @@ function collectElementTypeRefs(
 	}
 
 	return references;
-}
-
-function loadManifest(version: "r4"): SpecManifest {
-	const manifestPath = join(repoRoot, "src", "spec", version, "manifest.json");
-	return JSON.parse(readFileSync(manifestPath, "utf8")) as SpecManifest;
 }
 
 function loadStructureDefinitionIndex(
