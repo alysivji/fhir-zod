@@ -1,0 +1,31 @@
+{
+  "resourceType" : "Patient",
+  "id" : "infant-mom",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Leia Solo (OFFICIAL)</b> female, DoB: 1995-10-12</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Known Marital status of Patient\">Marital Status:</td><td colspan=\"3\"><span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v3-MaritalStatus M}\">Married</span></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Alternate names (see the one above)\">Alt. Name:</td><td colspan=\"3\">Leia Organa (MAIDEN)</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Patient Links\">Links:</td><td colspan=\"3\"><ul><li>General Practitioner: <a href=\"practitioner-example-f202-lm.html\">Practitioner/f202: Luigi Maas</a> &quot;Luigi Maas&quot;</li></ul></td></tr></table></div>"
+  },
+  "name" : [{
+    "use" : "official",
+    "family" : "Solo",
+    "given" : ["Leia"]
+  },
+  {
+    "use" : "maiden",
+    "family" : "Organa",
+    "given" : ["Leia"]
+  }],
+  "gender" : "female",
+  "birthDate" : "1995-10-12",
+  "maritalStatus" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+      "code" : "M",
+      "display" : "Married"
+    }]
+  },
+  "generalPractitioner" : [{
+    "reference" : "Practitioner/f202",
+    "display" : "Luigi Maas"
+  }]
+}

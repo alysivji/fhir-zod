@@ -14,6 +14,7 @@ export const fhirDateTimePattern =
 export const fhirIdPattern = /^[A-Za-z0-9\-.]{1,64}$/;
 export const fhirInstantPattern =
 	/^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$/;
+export const fhirInteger64Pattern = /[0]|[-+]?[1-9][0-9]*/;
 export const fhirOidPattern = /urn:oid:[0-2](\.(0|[1-9][0-9]*))+/;
 export const fhirStringPattern = /[ \r\n\t\S]+/;
 export const fhirTimePattern =
@@ -49,6 +50,10 @@ export function fhirDateTime(): z.ZodString {
 
 export function fhirInstant(): z.ZodString {
 	return withPattern(fhirInstantPattern);
+}
+
+export function fhirInteger64(): z.ZodString {
+	return withPattern(fhirInteger64Pattern);
 }
 
 export function fhirOid(): z.ZodString {
