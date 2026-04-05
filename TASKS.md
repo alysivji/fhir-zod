@@ -36,7 +36,7 @@ Track the work needed to align the repository with the current README.
 - [x] Create `tests`
 - [x] Add `scripts/generate.ts` placeholder
 
-## Placeholder Schema
+## Initial Bootstrap Milestones
 
 - [x] Add placeholder `Patient` schema in `src/r4/Patient.ts`
 - [x] Export `Patient` from `src/r4/index.ts`
@@ -78,17 +78,21 @@ Track the work needed to align the repository with the current README.
 - [x] Keep generated schemas Zod-first with no wrapper layer
 - [x] Add a short-term workaround for generated schemas that exceed TypeScript's serialized inferred type limit
   Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
-- [ ] Split the public generated surface into TypeScript models and separate Zod schemas
-  Target direction:
-  `Patient` is the public TS model.
-  `PatientSchema` is the runtime validator.
-- [ ] Decide the public model strategy for generated declarations
+- [x] Split the public generated surface into TypeScript models and separate Zod schemas for generated R4 output
+  Current state:
+  generated R4 exports `Patient` as the public TS model and `PatientSchema` as the runtime validator.
+  Follow-up:
+  extend the same public surface pattern to additional generated versions.
+- [ ] Decide the public model strategy for generated declarations in additional versions
   Open choice:
   prefer interfaces for object-like FHIR definitions where possible, but use type aliases where unions or recursive composition make that cleaner.
-- [ ] Teach the generator to emit named TypeScript models for generated definitions
-  This should replace reliance on `z.output<typeof Schema>` as the main consumer-facing type story.
-- [ ] Rename generated schema exports to `*Schema` once the separate public model layer is in place
-- [ ] Preserve inheritance relationships in both generated TS models and schema exports
+- [x] Teach the generator to emit named TypeScript models for generated R4 definitions
+  Current state:
+  generated R4 declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
+  Follow-up:
+  carry the same emission strategy into additional generated versions.
+- [x] Rename generated R4 schema exports to `*Schema` alongside the separate public model layer
+- [ ] Preserve spec-defined inheritance relationships in both generated TS models and schema exports for each generated version independently
 - [ ] Audit inheritance/codegen gaps for abstract schemas and cyclic dependencies
   Current state: safe cases now emit `Base.extend({...})` for abstract types such as `Resource`, `DomainResource`, and some concrete resources.
   Current shortfall: definitions that participate in dependency cycles still fall back to flattened one-shot schemas to avoid ESM initialization failures.
@@ -119,12 +123,12 @@ Track the work needed to align the repository with the current README.
 
 ## Documentation
 
-- [ ] Keep README examples aligned with generated output and target public API
+- [x] Keep README examples aligned with generated output and target public API
 - [x] Document how to refresh spec files
 - [x] Document how to run the generator
-- [ ] Document expectations around generated vs handwritten files
+- [x] Document expectations around generated vs handwritten files
 - [ ] Document how BackboneElement behavior is represented in generated schemas
-- [ ] Document the intended split between public TS models and runtime Zod schemas
+- [x] Document the current split between public TS models and runtime Zod schemas
 - [ ] Document the future layering for convenience builders above core
 - [x] Carry source descriptions into generated schema fields where practical
 
