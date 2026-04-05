@@ -62,7 +62,10 @@ Target package shape:
 - export separate generated Zod schemas for runtime validation
 - avoid making `z.output<typeof Schema>` the primary public type story
 
-The repository is not fully on that API yet, but this is the intended direction.
+Current state:
+
+- generated R4 output follows this split today
+- additional generated versions still need to adopt the same public surface as generation expands beyond R4
 
 ## Development
 
@@ -101,6 +104,20 @@ npm run list:r4-targets -- --summary
 ```
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
+
+### Generated vs Handwritten Code
+
+Treat these areas as handwritten source:
+
+- `src/generator/`
+- `src/shared/`
+- `scripts/`
+- `tests/`
+- `src/spec/`
+
+Treat `src/r4/` as generated output.
+
+If generated R4 files are wrong, fix the generator or source normalization first, then regenerate and review the emitted diff.
 
 ### Spec-dependent tests
 
@@ -227,24 +244,6 @@ Schemas remain Zod-first.
 Optional helpers may be added later, but must not obscure Zod or replace the generated model/schema surface.
 
 Possible future convenience layers such as builders should live above core, not inside the core generated package.
-
-## Generated vs Handwritten Code
-
-Most changes should happen in handwritten generator code, not in generated schemas.
-
-Handwritten areas:
-
-- `src/generator/`
-- `src/shared/`
-- `src/spec/`
-- `scripts/`
-- `tests/`
-
-Generated areas:
-
-- `src/r4/`
-
-If generated output is wrong, fix the generator or source normalization logic, then regenerate.
 
 ## Project Structure
 
