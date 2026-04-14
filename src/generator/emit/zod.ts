@@ -18,6 +18,7 @@ import {
 	fhirDateTime,
 	fhirId,
 	fhirInstant,
+	fhirInteger64,
 	fhirOid,
 	fhirString,
 	fhirTime,
@@ -1090,6 +1091,8 @@ function primitiveHelperName(type: string | null): string | null {
 			return "fhirDateTime";
 		case "instant":
 			return "fhirInstant";
+		case "integer64":
+			return "fhirInteger64";
 		case "oid":
 			return "fhirOid";
 		case "string":
@@ -1123,6 +1126,8 @@ function primitiveHelper(type: string): (() => z.ZodString) | null {
 			return fhirDateTime;
 		case "instant":
 			return fhirInstant;
+		case "integer64":
+			return fhirInteger64;
 		case "oid":
 			return fhirOid;
 		case "string":

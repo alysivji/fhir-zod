@@ -10,6 +10,8 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { listR4CoreResourceNames } from "../src/generator/targets/r4.ts";
 
+type SupportedVersion = "r4" | "r5";
+
 type ExampleLink = {
 	filename: string;
 	id: string;
@@ -18,15 +20,30 @@ type ExampleLink = {
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
-const fixturesRoot = join(repoRoot, "tests", "fixtures", "r4");
-const knownResourceNames = listR4CoreResourceNames();
 const args = process.argv.slice(2);
+const positionalArgs = collectPositionalArgs(args);
+const requestedVersion = parseVersion(positionalArgs[0]);
+const version: SupportedVersion = requestedVersion ?? "r4";
+const resourceArgs = requestedVersion
+	? positionalArgs.slice(1)
+	: positionalArgs;
+const fixturesRoot = join(repoRoot, "tests", "fixtures", version);
+const knownResourceNames =
+	version === "r4" ? listR4CoreResourceNames() : ["Patient"];
 const forceRefresh = hasFlag("--force");
 const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
 const limit = parseNumberFlag("--limit");
-const requestedResources = selectResourceNames(collectPositionalArgs(args));
+const requestedResources = selectResourceNames(resourceArgs);
 
 let requestCount = 0;
+
+function parseVersion(value: string | undefined): SupportedVersion | null {
+	if (value === "r4" || value === "r5") {
+		return value;
+	}
+
+	return null;
+}
 
 function parseFlag(name: string): string | null {
 	const directMatch = args.find((arg) => arg.startsWith(`${name}=`));
@@ -124,7 +141,7 @@ function decodeHtmlEntities(value: string): string {
 }
 
 function resourceExamplesPageUrl(resourceName: string): string {
-	return `https://hl7.org/fhir/R4/${resourceName.toLowerCase()}-examples.html`;
+	return `https://hl7.org/fhir/${version.toUpperCase()}/${resourceName.toLowerCase()}-examples.html`;
 }
 
 function discoverJsonExamples(
@@ -186,7 +203,7 @@ function selectResourceNames(requested: string[]): string[] {
 
 		if (!matchedName) {
 			throw new Error(
-				`Unknown R4 core resource "${resourceName}". Known resources: ${knownResourceNames.join(", ")}.`,
+				`Unknown ${version.toUpperCase()} resource "${resourceName}". Known resources: ${knownResourceNames.join(", ")}.`,
 			);
 		}
 
@@ -245,7 +262,7 @@ function fetchResourceExamples(resourceName: string): boolean {
 
 		writeFileSync(outputPath, normalizeTextFileContent(json), "utf8");
 		console.log(
-			`Fetched R4 ${resourceName} example ${example.id} -> ${outputPath}`,
+			`Fetched ${version.toUpperCase()} ${resourceName} example ${example.id} -> ${outputPath}`,
 		);
 	}
 
@@ -263,7 +280,9 @@ function main(): void {
 	for (const resourceName of selectedResources) {
 		if (!forceRefresh && hasFetchedFixtures(resourceName)) {
 			skipped.push(resourceName);
-			console.log(`Skipping R4 ${resourceName}; fixtures already exist.`);
+			console.log(
+				`Skipping ${version.toUpperCase()} ${resourceName}; fixtures already exist.`,
+			);
 			continue;
 		}
 
@@ -282,8 +301,8 @@ function main(): void {
 				);
 
 				console.warn(
-					`Stopped at R4 ${resourceName}; ${detail}\nFetched ${fetched.length} resources this run, skipped ${skipped.length}. Resume later with:\n` +
-						`npm run fetch-examples -- ${remainingResources
+					`Stopped at ${version.toUpperCase()} ${resourceName}; ${detail}\nFetched ${fetched.length} resources this run, skipped ${skipped.length}. Resume later with:\n` +
+						`npm run fetch-examples -- ${version} ${remainingResources
 							.slice(0, limit ?? remainingResources.length)
 							.join(" ")}`,
 				);
@@ -296,12 +315,12 @@ function main(): void {
 
 	if (failures.length > 0) {
 		throw new Error(
-			`Unable to fetch fixtures for ${failures.length} R4 resources.\n${failures.join("\n")}`,
+			`Unable to fetch fixtures for ${failures.length} ${version.toUpperCase()} resources.\n${failures.join("\n")}`,
 		);
 	}
 
 	console.log(
-		`Finished R4 example fetch. fetched=${fetched.length} skipped=${skipped.length} requests=${requestCount}`,
+		`Finished ${version.toUpperCase()} example fetch. fetched=${fetched.length} skipped=${skipped.length} requests=${requestCount}`,
 	);
 }
 
