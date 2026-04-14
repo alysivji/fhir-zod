@@ -1,0 +1,2473 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "ghp",
+  "type" : "collection",
+  "entry" : [{
+    "fullUrl" : "https://example.com/base/DiagnosticReport/ghp",
+    "resource" : {
+      "resourceType" : "DiagnosticReport",
+      "id" : "ghp",
+      "meta" : {
+        "lastUpdated" : "2015-08-16T10:35:23Z"
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2><span title=\"Codes: {http://acme.com/labs/reports GHP}\">General Health Profile</span> </h2><table class=\"grid\"><tr><td>Subject</td><td><b>Duck D Donald (OFFICIAL)</b> other, DoB Unknown ( Medical record number: 123456\u00a0(use:\u00a0USUAL))</td></tr><tr><td>When For</td><td>2015-08-16T06:40:17Z</td></tr><tr><td>Reported</td><td>2015-08-17T06:40:17Z</td></tr><tr><td>Identifier:</td><td> id:\u00a0ghp-example</td></tr></table><p><b>Report Details</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Value</b></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr></table></div>"
+      },
+      "identifier" : [{
+        "system" : "http://acme.com/lab/reports",
+        "value" : "ghp-example"
+      }],
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://acme.com/labs/reports",
+          "code" : "GHP",
+          "display" : "General Health Profile"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "specimen" : [{
+        "reference" : "Specimen/rtt",
+        "display" : "Red Top Tube"
+      },
+      {
+        "reference" : "Specimen/ltt",
+        "display" : "Lavender Top Tube"
+      },
+      {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }],
+      "result" : [{
+        "reference" : "Observation/p1",
+        "display" : "Chemistry Panel"
+      },
+      {
+        "reference" : "Observation/p2",
+        "display" : "CBC"
+      },
+      {
+        "reference" : "Observation/p3",
+        "display" : "Urinalysis"
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Specimen/rtt",
+    "resource" : {
+      "resourceType" : "Specimen",
+      "id" : "rtt",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"rtt\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;rtt&quot; </p></div><p><b>accessionIdentifier</b>: id:\u00a020150816-00124</p><p><b>type</b>: Serum sample <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119364003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-example-sst-vacutainer.html\">Device/device-example-specimen-container-example-sst-vacutainer</a></td></tr></table></div>"
+      },
+      "accessionIdentifier" : {
+        "system" : "http://acme.com/labs/accession-ids",
+        "value" : "20150816-00124"
+      },
+      "type" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "119364003",
+          "display" : "Serum sample"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "collection" : {
+        "collector" : {
+          "reference" : "Practitioner/f202"
+        },
+        "collectedDateTime" : "2015-08-16T06:40:17Z"
+      },
+      "container" : [{
+        "device" : {
+          "reference" : "Device/device-example-specimen-container-example-sst-vacutainer"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Specimen/ltt",
+    "resource" : {
+      "resourceType" : "Specimen",
+      "id" : "ltt",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"ltt\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;ltt&quot; </p></div><p><b>accessionIdentifier</b>: id:\u00a020150816-00124</p><p><b>type</b>: Blood specimen with EDTA <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#445295009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-lavender-vacutainer.html\">Device/device-example-specimen-container-lavender-vacutainer</a></td></tr></table></div>"
+      },
+      "accessionIdentifier" : {
+        "system" : "http://acme.com/labs/accession-ids",
+        "value" : "20150816-00124"
+      },
+      "type" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "445295009",
+          "display" : "Blood specimen with EDTA"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "collection" : {
+        "collector" : {
+          "reference" : "Practitioner/f202"
+        },
+        "collectedDateTime" : "2015-08-16T06:40:17Z"
+      },
+      "container" : [{
+        "device" : {
+          "reference" : "Device/device-example-specimen-container-lavender-vacutainer"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Specimen/urine",
+    "resource" : {
+      "resourceType" : "Specimen",
+      "id" : "urine",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"urine\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;urine&quot; </p></div><p><b>accessionIdentifier</b>: id:\u00a020150816-00124</p><p><b>type</b>: Urine specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#122575003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-polycup.html\">Device/device-example-specimen-container-polycup</a></td></tr></table></div>"
+      },
+      "accessionIdentifier" : {
+        "system" : "http://acme.com/labs/accession-ids",
+        "value" : "20150816-00124"
+      },
+      "type" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "122575003",
+          "display" : "Urine specimen"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "collection" : {
+        "collector" : {
+          "reference" : "Practitioner/f202"
+        },
+        "collectedDateTime" : "2015-08-16T06:40:17Z"
+      },
+      "container" : [{
+        "device" : {
+          "reference" : "Device/device-example-specimen-container-polycup"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/p2",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "p2",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"p2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;p2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Complete blood count (hemogram) panel - Blood by Automated count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#58410-2)</span></p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/ltt: Lavender Top Tube</a></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/r1</a></li><li><a href=\"broken-link.html\">Observation/r2</a></li><li><a href=\"broken-link.html\">Observation/r3</a></li><li><a href=\"broken-link.html\">Observation/r4</a></li><li><a href=\"broken-link.html\">Observation/r5</a></li><li><a href=\"broken-link.html\">Observation/r6</a></li><li><a href=\"broken-link.html\">Observation/r7</a></li><li><a href=\"broken-link.html\">Observation/r8</a></li><li><a href=\"broken-link.html\">Observation/r9</a></li><li><a href=\"broken-link.html\">Observation/r10</a></li><li><a href=\"broken-link.html\">Observation/r11</a></li><li><a href=\"broken-link.html\">Observation/r12</a></li><li><a href=\"broken-link.html\">Observation/r13</a></li><li><a href=\"broken-link.html\">Observation/r14</a></li><li><a href=\"broken-link.html\">Observation/r15</a></li><li><a href=\"broken-link.html\">Observation/r16</a></li><li><a href=\"broken-link.html\">Observation/r17</a></li></ul></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "58410-2",
+          "display" : "Complete blood count (hemogram) panel - Blood by Automated count"
+        }]
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "specimen" : {
+        "reference" : "Specimen/ltt",
+        "display" : "Lavender Top Tube"
+      },
+      "hasMember" : [{
+        "reference" : "Observation/r1"
+      },
+      {
+        "reference" : "Observation/r2"
+      },
+      {
+        "reference" : "Observation/r3"
+      },
+      {
+        "reference" : "Observation/r4"
+      },
+      {
+        "reference" : "Observation/r5"
+      },
+      {
+        "reference" : "Observation/r6"
+      },
+      {
+        "reference" : "Observation/r7"
+      },
+      {
+        "reference" : "Observation/r8"
+      },
+      {
+        "reference" : "Observation/r9"
+      },
+      {
+        "reference" : "Observation/r10"
+      },
+      {
+        "reference" : "Observation/r11"
+      },
+      {
+        "reference" : "Observation/r12"
+      },
+      {
+        "reference" : "Observation/r13"
+      },
+      {
+        "reference" : "Observation/r14"
+      },
+      {
+        "reference" : "Observation/r15"
+      },
+      {
+        "reference" : "Observation/r16"
+      },
+      {
+        "reference" : "Observation/r17"
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r1",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r1",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Haemoglobin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#718-7 &quot;Hemoglobin [Mass/volume] in Blood&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 176 g/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/L = 'g/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>135 g/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/L = 'g/L')</span></td><td>180 g/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/L = 'g/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "718-7",
+          "display" : "Hemoglobin [Mass/volume] in Blood"
+        }],
+        "text" : "Haemoglobin"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 176,
+        "unit" : "g/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "g/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 135,
+          "unit" : "g/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/L"
+        },
+        "high" : {
+          "value" : 180,
+          "unit" : "g/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r2",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r2",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Red Cell Count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#789-8 &quot;Erythrocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 5.9 x10*12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>4.2 x10*12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></td><td>6.0 x10*12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "789-8",
+          "display" : "Erythrocytes [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Red Cell Count"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 5.9,
+        "unit" : "x10*12/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*12/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 4.2,
+          "unit" : "x10*12/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*12/L"
+        },
+        "high" : {
+          "value" : 6.0,
+          "unit" : "x10*12/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*12/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r3",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r3",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Haematocrit <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#4544-3 &quot;Hematocrit [Volume Fraction] of Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 55 %</p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>38 %</td><td>52 %</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "4544-3",
+          "display" : "Hematocrit [Volume Fraction] of Blood by Automated count"
+        }],
+        "text" : "Haematocrit"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 55,
+        "unit" : "%"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "H"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 38,
+          "unit" : "%"
+        },
+        "high" : {
+          "value" : 52,
+          "unit" : "%"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r4",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r4",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Mean Cell Volume <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#787-2 &quot;Erythrocyte mean corpuscular volume [Entitic volume] by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 99 fL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code fL = 'fL')</span></p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>80 fL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code fL = 'fL')</span></td><td>98 fL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code fL = 'fL')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "787-2",
+          "display" : "Erythrocyte mean corpuscular volume [Entitic volume] by Automated count"
+        }],
+        "text" : "Mean Cell Volume"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 99,
+        "unit" : "fL",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "fL"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "H"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 80,
+          "unit" : "fL",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "fL"
+        },
+        "high" : {
+          "value" : 98,
+          "unit" : "fL",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "fL"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r5",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r5",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Mean Cell Haemoglobin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#785-6 &quot;Erythrocyte mean corpuscular hemoglobin [Entitic mass] by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 36 pg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code pg = 'pg')</span></p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>27 pg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code pg = 'pg')</span></td><td>35 pg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code pg = 'pg')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "785-6",
+          "display" : "Erythrocyte mean corpuscular hemoglobin [Entitic mass] by Automated count"
+        }],
+        "text" : "Mean Cell Haemoglobin"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 36,
+        "unit" : "pg",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "pg"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "H"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 27,
+          "unit" : "pg",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "pg"
+        },
+        "high" : {
+          "value" : 35,
+          "unit" : "pg",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "pg"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r6",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r6",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Platelet Count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#777-3 &quot;Platelets [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 444 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>150 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>450 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "777-3",
+          "display" : "Platelets [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Platelet Count"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 444,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 150,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 450,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r7",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r7",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r7&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: White Cell Count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#6690-2 &quot;Leukocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 4.6 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>4.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>11.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "6690-2",
+          "display" : "Leukocytes [#/volume] in Blood by Automated count"
+        }],
+        "text" : "White Cell Count"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 4.6,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 4.0,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 11.0,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r8",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r8",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Neutrophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#770-8 &quot;Neutrophils/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "770-8",
+          "display" : "Neutrophils/100 leukocytes in Blood by Automated count"
+        }],
+        "text" : "Neutrophils"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 20,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r9",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r9",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r9\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r9&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Neutrophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#751-8 &quot;Neutrophils [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.9 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><p><b>interpretation</b>: Critical low <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#LL)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>7.5 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "751-8",
+          "display" : "Neutrophils [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Neutrophils"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.9,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "LL"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2.0,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 7.5,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r10",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r10",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r10\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r10&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Lymphocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#736-9 &quot;Lymphocytes/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "736-9",
+          "display" : "Lymphocytes/100 leukocytes in Blood by Automated count"
+        }],
+        "text" : "Lymphocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 20,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r11",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r11",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r11\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r11&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Lymphocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#731-0 &quot;Lymphocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.9 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><p><b>interpretation</b>: Low <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#L)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>1.1 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>4.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "731-0",
+          "display" : "Lymphocytes [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Lymphocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.9,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "L"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 1.1,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 4.0,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r12",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r12",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r12\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r12&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Monocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#5905-5 &quot;Monocytes/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "5905-5",
+          "display" : "Monocytes/100 leukocytes in Blood by Automated count"
+        }],
+        "text" : "Monocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 20,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r13",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r13",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r13\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r13&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Monocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#742-7 &quot;Monocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.9 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.2 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>1.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "742-7",
+          "display" : "Monocytes [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Monocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.9,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.2,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 1.0,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r14",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r14",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r14\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r14&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Eosinophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#713-8 &quot;Eosinophils/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "713-8",
+          "display" : "Eosinophils/100 leukocytes in Blood by Automated count"
+        }],
+        "text" : "Eosinophils"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 20,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r15",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r15",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r15\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r15&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Eosinophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#711-2 &quot;Eosinophils [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.92 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><p><b>interpretation</b>: Critical high <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#HH)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.04 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>0.40 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "711-2",
+          "display" : "Eosinophils [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Eosinophils"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.92,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "HH"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.04,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 0.40,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r16",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r16",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r16\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r16&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Basophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#706-2 &quot;Basophils/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "706-2",
+          "display" : "Basophils/100 leukocytes in Blood by Automated count"
+        }],
+        "text" : "Basophils"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 20,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/r17",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "r17",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r17\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r17&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Basophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#704-7 &quot;Basophils [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.92 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>High</b></td></tr><tr><td>*</td><td>0.21 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "704-7",
+          "display" : "Basophils [#/volume] in Blood by Automated count"
+        }],
+        "text" : "Basophils"
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.92,
+        "unit" : "x10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "high" : {
+          "value" : 0.21,
+          "unit" : "x10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/p1",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "p1",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"p1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;p1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Comprehensive metabolic 2000 panel - Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#24323-8)</span></p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/rtt: Red Top Tube</a></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/o1</a></li><li><a href=\"broken-link.html\">Observation/o2</a></li><li><a href=\"broken-link.html\">Observation/o3</a></li><li><a href=\"broken-link.html\">Observation/o4</a></li><li><a href=\"broken-link.html\">Observation/o5</a></li><li><a href=\"broken-link.html\">Observation/o6</a></li><li><a href=\"broken-link.html\">Observation/o7</a></li><li><a href=\"broken-link.html\">Observation/o8</a></li><li><a href=\"broken-link.html\">Observation/o9</a></li><li><a href=\"broken-link.html\">Observation/o10</a></li><li><a href=\"broken-link.html\">Observation/o11</a></li><li><a href=\"broken-link.html\">Observation/o12</a></li><li><a href=\"broken-link.html\">Observation/o13</a></li><li><a href=\"broken-link.html\">Observation/o14</a></li><li><a href=\"broken-link.html\">Observation/o15</a></li><li><a href=\"broken-link.html\">Observation/o16</a></li><li><a href=\"broken-link.html\">Observation/o17</a></li><li><a href=\"broken-link.html\">Observation/o18</a></li><li><a href=\"broken-link.html\">Observation/o19</a></li><li><a href=\"broken-link.html\">Observation/o20</a></li><li><a href=\"broken-link.html\">Observation/o21</a></li><li><a href=\"broken-link.html\">Observation/o22</a></li></ul></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "24323-8",
+          "display" : "Comprehensive metabolic 2000 panel - Serum or Plasma"
+        }]
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "specimen" : {
+        "reference" : "Specimen/rtt",
+        "display" : "Red Top Tube"
+      },
+      "hasMember" : [{
+        "reference" : "Observation/o1"
+      },
+      {
+        "reference" : "Observation/o2"
+      },
+      {
+        "reference" : "Observation/o3"
+      },
+      {
+        "reference" : "Observation/o4"
+      },
+      {
+        "reference" : "Observation/o5"
+      },
+      {
+        "reference" : "Observation/o6"
+      },
+      {
+        "reference" : "Observation/o7"
+      },
+      {
+        "reference" : "Observation/o8"
+      },
+      {
+        "reference" : "Observation/o9"
+      },
+      {
+        "reference" : "Observation/o10"
+      },
+      {
+        "reference" : "Observation/o11"
+      },
+      {
+        "reference" : "Observation/o12"
+      },
+      {
+        "reference" : "Observation/o13"
+      },
+      {
+        "reference" : "Observation/o14"
+      },
+      {
+        "reference" : "Observation/o15"
+      },
+      {
+        "reference" : "Observation/o16"
+      },
+      {
+        "reference" : "Observation/o17"
+      },
+      {
+        "reference" : "Observation/o18"
+      },
+      {
+        "reference" : "Observation/o19"
+      },
+      {
+        "reference" : "Observation/o20"
+      },
+      {
+        "reference" : "Observation/o21"
+      },
+      {
+        "reference" : "Observation/o22"
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o1",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o1",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Sodium [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2951-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104934005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 140 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>137 mmol/L</td><td>147 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2951-2",
+          "display" : "Sodium [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "104934005"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 140,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 137,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 147,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o2",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o2",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Potassium [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2823-3; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#59573005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 4.2 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>3.5 mmol/L</td><td>5.0 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2823-3",
+          "display" : "Potassium [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "59573005"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 4.2,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 3.5,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 5.0,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o3",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o3",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Chloride [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2075-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#46511006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 105 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>96 mmol/L</td><td>109 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2075-0",
+          "display" : "Chloride [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "46511006"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 105,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 96,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 109,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o4",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o4",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Bicarbonate [Moles/volume] in Serum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1963-8; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#88645003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 26 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>25 mmol/L</td><td>33 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1963-8",
+          "display" : "Bicarbonate [Moles/volume] in Serum"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "88645003"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 26,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 25,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 33,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o5",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o5",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Anion gap 4 in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1863-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#271057005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 13 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>4 mmol/L</td><td>17 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1863-0",
+          "display" : "Anion gap 4 in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "271057005"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 13,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 4,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 17,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o6",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o6",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Glucose [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14749-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#36048009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 7.4 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>3.0 mmol/L</td><td>7.7 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14749-6",
+          "display" : "Glucose [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "36048009"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 7.4,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 3.0,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 7.7,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o7",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o7",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o7&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Urea nitrogen [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14937-7; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#273967009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 4.7 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.0 mmol/L</td><td>7.0 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14937-7",
+          "display" : "Urea nitrogen [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "273967009"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 4.7,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2.0,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 7.0,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o8",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o8",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Creatinine [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14682-9; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#70901006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.09 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.04 mmol/L</td><td>0.11 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14682-9",
+          "display" : "Creatinine [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "70901006"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.09,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.04,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 0.11,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o9",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o9",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o9\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o9&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Urate [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14933-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#86228006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.39 mmol/L</p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.14 mmol/L</td><td>0.35 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14933-6",
+          "display" : "Urate [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "86228006"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 0.39,
+        "unit" : "mmol/L"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "H"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.14,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 0.35,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o10",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o10",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o10\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o10&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Bilirubin.total [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14631-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#27171005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 7 umol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2 umol/L</td><td>20 umol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14631-6",
+          "display" : "Bilirubin.total [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "27171005"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 7,
+        "unit" : "umol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2,
+          "unit" : "umol/L"
+        },
+        "high" : {
+          "value" : 20,
+          "unit" : "umol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o11",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o11",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o11\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o11&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Bilirubin.direct [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14629-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#39748002)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 3 umol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 umol/L</td><td>8 umol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14629-0",
+          "display" : "Bilirubin.direct [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "39748002"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 3,
+        "unit" : "umol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0,
+          "unit" : "umol/L"
+        },
+        "high" : {
+          "value" : 8,
+          "unit" : "umol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o12",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o12",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o12\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o12&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#6768-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#88810008)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 108 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>30 U/L</td><td>115 U/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "6768-6",
+          "display" : "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "88810008"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 108,
+        "unit" : "U/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 30,
+          "unit" : "U/L"
+        },
+        "high" : {
+          "value" : 115,
+          "unit" : "U/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o13",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o13",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o13\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o13&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2324-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#69480007)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 35 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 U/L</td><td>45 U/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2324-2",
+          "display" : "Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "69480007"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 35,
+        "unit" : "U/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0,
+          "unit" : "U/L"
+        },
+        "high" : {
+          "value" : 45,
+          "unit" : "U/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o14",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o14",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o14\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o14&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1742-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34608000)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 54 U/L</p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 U/L</td><td>45 U/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1742-6",
+          "display" : "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "34608000"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 54,
+        "unit" : "U/L"
+      },
+      "interpretation" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code" : "H"
+        }]
+      }],
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0,
+          "unit" : "U/L"
+        },
+        "high" : {
+          "value" : 45,
+          "unit" : "U/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o15",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o15",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o15\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o15&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1920-8; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#45896001)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 30 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 U/L</td><td>41 U/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1920-8",
+          "display" : "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "45896001"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 30,
+        "unit" : "U/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0,
+          "unit" : "U/L"
+        },
+        "high" : {
+          "value" : 41,
+          "unit" : "U/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o16",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o16",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o16\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o16&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2532-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#11274001)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 131 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>80 U/L</td><td>250 U/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2532-0",
+          "display" : "Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "11274001"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 131,
+        "unit" : "U/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 80,
+          "unit" : "U/L"
+        },
+        "high" : {
+          "value" : 250,
+          "unit" : "U/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o17",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o17",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o17\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o17&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Calcium [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2000-8; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#71878006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 2.38 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.25 mmol/L</td><td>2.65 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2000-8",
+          "display" : "Calcium [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "71878006"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 2.38,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2.25,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 2.65,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o18",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o18",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o18\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o18&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Calcium.ionized [Moles/volume] in Serum or Plasma by calculation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#13959-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#166708003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 2.39 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.25 mmol/L</td><td>2.65 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "13959-2",
+          "display" : "Calcium.ionized [Moles/volume] in Serum or Plasma by calculation"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "166708003"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 2.39,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2.25,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 2.65,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o19",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o19",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o19\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o19&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Phosphate [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14879-1; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104866001)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 1.5 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.8 mmol/L</td><td>1.5 mmol/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14879-1",
+          "display" : "Phosphate [Moles/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "104866001"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 1.5,
+        "unit" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.8,
+          "unit" : "mmol/L"
+        },
+        "high" : {
+          "value" : 1.5,
+          "unit" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o20",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o20",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o20\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o20&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Protein [Mass/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2885-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#74040009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 67 g/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>60 g/L</td><td>82 g/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2885-2",
+          "display" : "Protein [Mass/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "74040009"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 67,
+        "unit" : "g/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 60,
+          "unit" : "g/L"
+        },
+        "high" : {
+          "value" : 82,
+          "unit" : "g/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o21",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o21",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o21\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o21&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Albumin [Mass/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1751-7; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104485008)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 42 g/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>35 g/L</td><td>50 g/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1751-7",
+          "display" : "Albumin [Mass/volume] in Serum or Plasma"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "104485008"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 42,
+        "unit" : "g/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 35,
+          "unit" : "g/L"
+        },
+        "high" : {
+          "value" : 50,
+          "unit" : "g/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/o22",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "o22",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o22\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o22&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Globulin [Mass/volume] in Serum by calculation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#10834-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104979009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 25 g/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>20 g/L</td><td>40 g/L</td></tr></table></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "10834-0",
+          "display" : "Globulin [Mass/volume] in Serum by calculation"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "104979009"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 25,
+        "unit" : "g/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 20,
+          "unit" : "g/L"
+        },
+        "high" : {
+          "value" : 40,
+          "unit" : "g/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/p3",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "p3",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"p3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;p3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Urinalysis macro (dipstick) panel - Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#24357-6)</span></p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/u1</a></li><li><a href=\"broken-link.html\">Observation/u2</a></li><li><a href=\"broken-link.html\">Observation/u3</a></li><li><a href=\"broken-link.html\">Observation/u4</a></li><li><a href=\"broken-link.html\">Observation/u5</a></li><li><a href=\"broken-link.html\">Observation/u6</a></li><li><a href=\"broken-link.html\">Observation/u7</a></li><li><a href=\"broken-link.html\">Observation/u8</a></li><li><a href=\"broken-link.html\">Observation/u9</a></li></ul></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "24357-6",
+          "display" : "Urinalysis macro (dipstick) panel - Urine"
+        }]
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      },
+      "hasMember" : [{
+        "reference" : "Observation/u1"
+      },
+      {
+        "reference" : "Observation/u2"
+      },
+      {
+        "reference" : "Observation/u3"
+      },
+      {
+        "reference" : "Observation/u4"
+      },
+      {
+        "reference" : "Observation/u5"
+      },
+      {
+        "reference" : "Observation/u6"
+      },
+      {
+        "reference" : "Observation/u7"
+      },
+      {
+        "reference" : "Observation/u8"
+      },
+      {
+        "reference" : "Observation/u9"
+      }]
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u1",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u1",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: pH of Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2756-5)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 5.0 pH</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2756-5",
+          "display" : "pH of Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 5.0,
+        "unit" : "pH"
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u2",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u2",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Protein [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2887-8)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2887-8",
+          "display" : "Protein [Presence] in Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "260385009",
+          "display" : "Negative"
+        }]
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u3",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u3",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Specific gravity of Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2965-2)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 1.009</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2965-2",
+          "display" : "Specific gravity of Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 1.009
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u4",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u4",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Erythrocytes [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#33051-4)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "33051-4",
+          "display" : "Erythrocytes [Presence] in Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "260385009",
+          "display" : "Negative"
+        }]
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u5",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u5",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Glucose [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2349-9)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2349-9",
+          "display" : "Glucose [Presence] in Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "260385009",
+          "display" : "Negative"
+        }]
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u6",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u6",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Leukocytes [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#33052-2)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "33052-2",
+          "display" : "Leukocytes [Presence] in Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "260385009",
+          "display" : "Negative"
+        }]
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u7",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u7",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u7&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Leukocytes [#/volume] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#30405-5)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 1 /uL</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "30405-5",
+          "display" : "Leukocytes [#/volume] in Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 1,
+        "unit" : "/uL"
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u8",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u8",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Erythocytes [#/volume] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#30391-7)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: &lt;1 /uL</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "30391-7",
+          "display" : "Erythocytes [#/volume] in Urine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 1,
+        "comparator" : "<",
+        "unit" : "/uL"
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  },
+  {
+    "fullUrl" : "https://example.com/base/Observation/u9",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "u9",
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u9\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u9&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Epithelial cells.squamous [#/volume] in Urine sediment <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#13654-9)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: &lt;1 /mL</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+      },
+      "status" : "final",
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "13654-9",
+          "display" : "Epithelial cells.squamous [#/volume] in Urine sediment"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/pat2"
+      },
+      "effectiveDateTime" : "2015-08-16T06:40:17Z",
+      "issued" : "2015-08-17T06:40:17Z",
+      "performer" : [{
+        "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+        "display" : "Acme Laboratory, Inc"
+      }],
+      "valueQuantity" : {
+        "value" : 1,
+        "comparator" : "<",
+        "unit" : "/mL"
+      },
+      "specimen" : {
+        "reference" : "Specimen/urine",
+        "display" : "Urine Sample"
+      }
+    }
+  }]
+}

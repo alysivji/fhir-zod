@@ -1,0 +1,66 @@
+{
+  "resourceType" : "CarePlan",
+  "id" : "f202",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: CarePlan</b><a name=\"f202\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource CarePlan &quot;f202&quot; </p></div><p><b>status</b>: active</p><p><b>intent</b>: plan</p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>careTeam</b>: <a name=\"careteam\"> </a></p><blockquote><p/><p><a name=\"careteam\"> </a></p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>Member</b></td></tr><tr><td>*</td><td>Treated with <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#28995006)</span></td><td><a href=\"practitioner-example-f201-ab.html\">Practitioner/f201: Dokter Bronsig</a> &quot;Dokter Bronsig&quot;</td></tr></table></blockquote><h3>Addresses</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"condition-example-f202-malignancy.html\">Condition/f202: Roel's head-neck tumor</a></td></tr></table><p><b>goal</b>: <a name=\"goal\"> </a></p><blockquote><p/><p><a name=\"goal\"> </a></p><p><b>lifecycleStatus</b>: active</p><p><b>description</b>: Elimination of the spenoid bone tumor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p></blockquote><blockquote><p><b>activity</b></p><h3>PerformedActivities</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"procedure-example-f201-tpf.html\">Procedure/f201: Roel's Chemotherapy</a></td></tr></table><p><b>plannedActivityReference</b>: <span title=\"  Chemotherapy  \"><a href=\"requestorchestration-example.html\">RequestOrchestration/example</a></span></p></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "CareTeam",
+    "id" : "careteam",
+    "participant" : [{
+      "role" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "28995006",
+          "display" : "Treated with"
+        }]
+      },
+      "member" : {
+        "reference" : "Practitioner/f201",
+        "display" : "Dokter Bronsig"
+      }
+    }]
+  },
+  {
+    "resourceType" : "Goal",
+    "id" : "goal",
+    "lifecycleStatus" : "active",
+    "description" : {
+      "text" : "Elimination of the spenoid bone tumor"
+    },
+    "subject" : {
+      "reference" : "Patient/f201",
+      "display" : "Roel"
+    }
+  }],
+  "status" : "active",
+  "intent" : "plan",
+  "subject" : {
+    "reference" : "Patient/f201",
+    "display" : "Roel"
+  },
+  "careTeam" : [{
+    "reference" : "#careteam"
+  }],
+  "addresses" : [{
+    "reference" : {
+      "reference" : "Condition/f202",
+      "display" : "Roel's head-neck tumor"
+    }
+  }],
+  "goal" : [{
+    "reference" : "#goal"
+  }],
+  "activity" : [{
+    "performedActivity" : [{
+      "reference" : {
+        "reference" : "Procedure/f201",
+        "display" : "Roel's Chemotherapy"
+      }
+    }],
+    "plannedActivityReference" : {
+      "reference" : "RequestOrchestration/example"
+    }
+  }]
+}

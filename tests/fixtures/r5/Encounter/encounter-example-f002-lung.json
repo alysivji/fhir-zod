@@ -1,0 +1,87 @@
+{
+  "resourceType" : "Encounter",
+  "id" : "f002",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"f002\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;f002&quot; </p></div><p><b>identifier</b>: id:\u00a0v3251\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: completed</p><p><b>class</b>: ambulatory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#AMB)</span></p><p><b>priority</b>: Urgent <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#103391001)</span></p><p><b>type</b>: Patient-initiated encounter <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#270427003)</span></p><p><b>subject</b>: <a href=\"patient-example-f001-pieter.html\">Patient/f001: P. van de Heuvel</a> &quot;Pieter VAN DE HEUVEL&quot;</p><p><b>serviceProvider</b>: <a href=\"organization-example-f001-burgers.html\">Organization/f001: BMC</a> &quot;Burgers University Medical Center&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f003-mv.html\">Practitioner/f003: M.I.M Versteegh</a> &quot;Marc VERSTEEGH&quot;</td></tr></table><h3>Lengths</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>140</td><td>min</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>min</td></tr></table><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Partial lobectomy of lung <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34068001)</span></td></tr></table></blockquote><h3>Admissions</h3><table class=\"grid\"><tr><td>-</td><td><b>PreAdmissionIdentifier</b></td><td><b>AdmitSource</b></td><td><b>DischargeDisposition</b></td></tr><tr><td>*</td><td>id:\u00a098682\u00a0(use:\u00a0OFFICIAL)</td><td><span title=\"     &lt;preAdmissionTest&gt;\n            &lt;coding&gt;\n                &lt;system value=&quot;http://snomed.info/sct&quot;/&gt;\n                &lt;code value=&quot;399208008&quot;/&gt;\n                &lt;display value=&quot;Chest X-ray&quot;/&gt;\n            &lt;/coding&gt;\n            &lt;coding&gt;\n                &lt;system value=&quot;http://snomed.info/sct&quot;/&gt;\n                &lt;code value=&quot;396550006&quot;/&gt;\n                &lt;display value=&quot;Blood test&quot;/&gt;\n            &lt;/coding&gt;\n        &lt;/preAdmissionTest&gt;  \">Referral by radiologist <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#305997006)</span></span></td><td>Discharge to home <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#306689006)</span></td></tr></table></div>"
+  },
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http://www.bmc.nl/zorgportal/identifiers/encounters",
+    "value" : "v3251"
+  }],
+  "status" : "completed",
+  "class" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code" : "AMB",
+      "display" : "ambulatory"
+    }]
+  }],
+  "priority" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "103391001",
+      "display" : "Urgent"
+    }]
+  },
+  "type" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "270427003",
+      "display" : "Patient-initiated encounter"
+    }]
+  }],
+  "subject" : {
+    "reference" : "Patient/f001",
+    "display" : "P. van de Heuvel"
+  },
+  "serviceProvider" : {
+    "reference" : "Organization/f001",
+    "display" : "BMC"
+  },
+  "participant" : [{
+    "actor" : {
+      "reference" : "Practitioner/f003",
+      "display" : "M.I.M Versteegh"
+    }
+  }],
+  "length" : {
+    "value" : 140,
+    "unit" : "min",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "min"
+  },
+  "reason" : [{
+    "value" : [{
+      "concept" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "34068001",
+          "display" : "Partial lobectomy of lung"
+        }]
+      }
+    }]
+  }],
+  "admission" : {
+    "preAdmissionIdentifier" : {
+      "use" : "official",
+      "system" : "http://www.bmc.nl/zorgportal/identifiers/pre-admissions",
+      "value" : "98682"
+    },
+    "admitSource" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "305997006",
+        "display" : "Referral by radiologist"
+      }]
+    },
+    "dischargeDisposition" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "306689006",
+        "display" : "Discharge to home"
+      }]
+    }
+  }
+}

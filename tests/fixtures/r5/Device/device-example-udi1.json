@@ -1,0 +1,57 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-udi1",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-udi1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-udi1&quot; </p></div><p><b>identifier</b>: 1234-5678-90AB-CDEF, Serial Number: 10987654d321</p><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td><td><b>CarrierAIDC</b></td><td><b>CarrierHRF</b></td><td><b>EntryType</b></td></tr><tr><td>*</td><td>00844588003288</td><td><a href=\"http://hl7.org/fhir/NamingSystem/gs1\">http://hl7.org/fhir/NamingSystem/gs1</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td><td>XWQyMDExMDg1NzY3NDAwMjAxNzE3MTQxMTIwMTBOWUZVTDAx4oaUMjExOTI4MzfihpQ3MTNBMUIyQzNENEU1RjZH</td><td>{01}00844588003288{17}141120{10}7654321D{21}10987654d321</td><td>barcode</td></tr></table><p><b>status</b>: active</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>expirationDate</b>: 2014-11-20</p><p><b>lotNumber</b>: 7654321D</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>PM/Octane 2014</td><td>user-friendly-name</td></tr></table><p><b>type</b>: Coated femoral stem prosthesis, modular <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#468063009)</span></p><p><b>safety</b>: <span title=\"  &lt;association&gt;\n\t  &lt;status&gt; \n\t     &lt;coding&gt;\n\t\t   &lt;system value=&quot;http://terminology.hl7.org/CodeSystem/device-association-status&quot; /&gt;\n           &lt;code value=&quot;attached&quot;/&gt;\n\t\t &lt;/coding&gt;\n\t  &lt;/status&gt;\n      &lt;humanSubject&gt;\n\t\t&lt;reference value=&quot;Patient/example&quot;/&gt;\n\t  &lt;/humanSubject&gt;\n\t&lt;/association&gt;  \">MR Unsafe <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#mr-unsafe)</span></span></p></div>"
+  },
+  "identifier" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://acme.com/devices/pacemakers/octane/serial"
+      }]
+    },
+    "value" : "1234-5678-90AB-CDEF"
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+        "code" : "SNO"
+      }]
+    },
+    "value" : "10987654d321"
+  }],
+  "udiCarrier" : [{
+    "deviceIdentifier" : "00844588003288",
+    "issuer" : "http://hl7.org/fhir/NamingSystem/gs1",
+    "jurisdiction" : "http://hl7.org/fhir/NamingSystem/fda-udi",
+    "carrierAIDC" : "XWQyMDExMDg1NzY3NDAwMjAxNzE3MTQxMTIwMTBOWUZVTDAx4oaUMjExOTI4MzfihpQ3MTNBMUIyQzNENEU1RjZH",
+    "carrierHRF" : "{01}00844588003288{17}141120{10}7654321D{21}10987654d321",
+    "entryType" : "barcode"
+  }],
+  "status" : "active",
+  "manufacturer" : "Acme Devices, Inc",
+  "expirationDate" : "2014-11-20",
+  "lotNumber" : "7654321D",
+  "name" : [{
+    "value" : "PM/Octane 2014",
+    "type" : "user-friendly-name"
+  }],
+  "type" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "468063009",
+      "display" : "Coated femoral stem prosthesis, modular"
+    }],
+    "text" : "Coated femoral stem prosthesis, modular"
+  }],
+  "safety" : [{
+    "coding" : [{
+      "system" : "urn:oid:2.16.840.1.113883.3.26.1.1",
+      "code" : "mr-unsafe",
+      "display" : "MR Unsafe"
+    }],
+    "text" : "MR Unsafe"
+  }]
+}

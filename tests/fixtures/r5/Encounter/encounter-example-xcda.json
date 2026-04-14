@@ -1,0 +1,40 @@
+{
+  "resourceType" : "Encounter",
+  "id" : "xcda",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"xcda\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;xcda&quot; </p></div><p><b>identifier</b>: id:\u00a01234213.52345873\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: completed</p><p><b>class</b>: ambulatory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#AMB)</span></p><p><b>subject</b>: <a href=\"patient-example-xcda.html\">Patient/xcda</a> &quot;Henry LEVIN&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-xcda1.html\">Practitioner/xcda1</a> &quot;Sherry DOPPLEMEYER&quot;</td></tr></table><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Arm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (eventCodes#T-D8200)</span></td></tr></table></blockquote></div>"
+  },
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http://healthcare.example.org/identifiers/enocunter",
+    "value" : "1234213.52345873"
+  }],
+  "status" : "completed",
+  "class" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code" : "AMB",
+      "display" : "ambulatory"
+    }]
+  }],
+  "subject" : {
+    "reference" : "Patient/xcda"
+  },
+  "participant" : [{
+    "actor" : {
+      "reference" : "Practitioner/xcda1"
+    }
+  }],
+  "reason" : [{
+    "value" : [{
+      "concept" : {
+        "coding" : [{
+          "system" : "http://ihe.net/xds/connectathon/eventCodes",
+          "code" : "T-D8200",
+          "display" : "Arm"
+        }]
+      }
+    }]
+  }]
+}

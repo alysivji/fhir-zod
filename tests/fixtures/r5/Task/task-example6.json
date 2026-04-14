@@ -1,0 +1,95 @@
+{
+  "resourceType" : "Task",
+  "id" : "example6",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Task</b><a name=\"example6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Task &quot;example6&quot; </p></div><p><b>identifier</b>: id:\u00a020170201-001\u00a0(use:\u00a0OFFICIAL)</p><p><b>basedOn</b>: <span>: General Wellness Careplan</span></p><p><b>groupIdentifier</b>: id:\u00a0G20170201-001\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: completed</p><p><b>businessStatus</b>: <span title=\" fictive business status populated for this example  \">test completed and posted <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></span></p><p><b>intent</b>: order</p><p><b>priority</b>: routine</p><p><b>code</b>: <span title=\" fictive code and description elements populated for this example  \">Fulfill the focal request <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-task-code.html\">Task Codes</a>#fulfill)</span></span></p><p><b>description</b>: Create order for getting specimen, Set up inhouse testing,  generate order for any sendouts and submit with specimen</p><p><b>focus</b>: <span title=\" \tUse the lipid servicerequest example  \"><a href=\"servicerequest-example-lipid.html\">ServiceRequest/lipid: Lipid Panel Request</a></span></p><p><b>for</b>: <span title=\" \twho the task is for\n \"><a href=\"patient-example.html\">Patient/example: Peter James Chalmers</a> &quot;Peter CHALMERS&quot;</span></p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example: Example In-Patient Encounter</a></p><p><b>executionPeriod</b>: <span title=\" \tLots of dates  \">2016-10-31T08:25:05+10:00 --&gt; 2016-10-31T18:45:05+10:00</span></p><p><b>authoredOn</b>: 2016-10-31T08:25:05+10:00</p><p><b>lastModified</b>: <span title=\" \tupdated last modified date to track task activity \">2016-10-31T18:45:05+10:00</span></p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p><h3>RequestedPerformers</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"broken-link.html\">PractitionerRole/f202</a></td></tr></table><p><b>owner</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Clinical Laboratory @ Acme Hospital</a> &quot;Clinical Lab&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The Task.reason should only be included if there is no Task.focus or if it differs from the reason indicated on the focus <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>note</b>: This is an example to demonstrate using task for actioning a servicerequest and to illustrate how to populate many of the task elements - this is the parent task that will be broken into subtask to grab the specimen and a sendout lab test</p><h3>Restrictions</h3><table class=\"grid\"><tr><td>-</td><td><b>Repetitions</b></td><td><b>Period</b></td></tr><tr><td>*</td><td>1</td><td>?? --&gt; 2016-11-02T09:45:05+10:00</td></tr></table><blockquote><p><b>output</b></p><p><b>type</b>: DiagnosticReport generated <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: <a href=\"bundle-lipids.html\">DiagnosticReport/lipids</a></p></blockquote><blockquote><p><b>output</b></p><p><b>type</b>: collected specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: <a href=\"specimen-example.html\">Specimen/101</a></p></blockquote></div>"
+  },
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http:/goodhealth.org/identifiers",
+    "value" : "20170201-001"
+  }],
+  "basedOn" : [{
+    "display" : "General Wellness Careplan"
+  }],
+  "groupIdentifier" : {
+    "use" : "official",
+    "system" : "http:/goodhealth.org/accession/identifiers",
+    "value" : "G20170201-001"
+  },
+  "status" : "completed",
+  "businessStatus" : {
+    "text" : "test completed and posted"
+  },
+  "intent" : "order",
+  "priority" : "routine",
+  "code" : {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/CodeSystem/task-code",
+      "code" : "fulfill"
+    }]
+  },
+  "description" : "Create order for getting specimen, Set up inhouse testing,  generate order for any sendouts and submit with specimen",
+  "focus" : {
+    "reference" : "ServiceRequest/lipid",
+    "display" : "Lipid Panel Request"
+  },
+  "for" : {
+    "reference" : "Patient/example",
+    "display" : "Peter James Chalmers"
+  },
+  "encounter" : {
+    "reference" : "Encounter/example",
+    "display" : "Example In-Patient Encounter"
+  },
+  "executionPeriod" : {
+    "start" : "2016-10-31T08:25:05+10:00",
+    "end" : "2016-10-31T18:45:05+10:00"
+  },
+  "authoredOn" : "2016-10-31T08:25:05+10:00",
+  "lastModified" : "2016-10-31T18:45:05+10:00",
+  "requester" : {
+    "reference" : "Practitioner/example",
+    "display" : "Dr Adam Careful"
+  },
+  "requestedPerformer" : [{
+    "reference" : {
+      "reference" : "PractitionerRole/f202"
+    }
+  }],
+  "owner" : {
+    "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+    "display" : "Clinical Laboratory @ Acme Hospital"
+  },
+  "reason" : [{
+    "concept" : {
+      "text" : "The Task.reason should only be included if there is no Task.focus or if it differs from the reason indicated on the focus"
+    }
+  }],
+  "note" : [{
+    "text" : "This is an example to demonstrate using task for actioning a servicerequest and to illustrate how to populate many of the task elements - this is the parent task that will be broken into subtask to grab the specimen and a sendout lab test"
+  }],
+  "restriction" : {
+    "repetitions" : 1,
+    "period" : {
+      "end" : "2016-11-02T09:45:05+10:00"
+    }
+  },
+  "output" : [{
+    "type" : {
+      "text" : "DiagnosticReport generated"
+    },
+    "valueReference" : {
+      "reference" : "DiagnosticReport/lipids"
+    }
+  },
+  {
+    "type" : {
+      "text" : "collected specimen"
+    },
+    "valueReference" : {
+      "reference" : "Specimen/101"
+    }
+  }]
+}

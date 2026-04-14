@@ -1,0 +1,142 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "medrx0322",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0322\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0322&quot; </p></div><p><b>identifier</b>: id:\u00a012345689\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0317\"> </a></span><blockquote><p/><p><a name=\"med0317\"> </a></p><p><b>doseForm</b>: Injection Solution (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385219001)</span></p><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Potassium Chloride <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#204520)</span></td></tr></table><p><b>strength</b>: 2 meq<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code meq = 'meq')</span>/1 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Sodium Chloride 0.9% injectable solution <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#313002)</span></td></tr></table><p><b>strength</b>: 0.9 g<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g = 'g')</span>/100 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Disorder of Electrolytes (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#237840007)</span></td></tr></table><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: KCl 20 mEq in 1 L 0.9%NS IV at 100 ml/hr</p><p><b>timing</b>: Once per 1 hours</p><p><b>route</b>: Intravenous route (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#47625008)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0317",
+    "doseForm" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "385219001",
+        "display" : "Injection Solution (qualifier value)"
+      }],
+      "text" : "Injection Solution (qualifier value)"
+    },
+    "ingredient" : [{
+      "item" : {
+        "concept" : {
+          "coding" : [{
+            "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
+            "code" : "204520",
+            "display" : "Potassium Chloride"
+          }]
+        }
+      },
+      "strengthRatio" : {
+        "numerator" : {
+          "value" : 2,
+          "system" : "http://unitsofmeasure.org",
+          "code" : "meq"
+        },
+        "denominator" : {
+          "value" : 1,
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mL"
+        }
+      }
+    },
+    {
+      "item" : {
+        "concept" : {
+          "coding" : [{
+            "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
+            "code" : "313002",
+            "display" : "Sodium Chloride 0.9% injectable solution"
+          }]
+        }
+      },
+      "strengthRatio" : {
+        "numerator" : {
+          "value" : 0.9,
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g"
+        },
+        "denominator" : {
+          "value" : 100,
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mL"
+        }
+      }
+    }]
+  }],
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http://www.bmc.nl/portal/prescriptions",
+    "value" : "12345689"
+  }],
+  "status" : "completed",
+  "intent" : "order",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0317",
+      "display" : "Potassium Chloride 20mEq in 1L Normal Saline"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "authoredOn" : "2015-01-15",
+  "requester" : {
+    "reference" : "Practitioner/f007",
+    "display" : "Patrick Pump"
+  },
+  "reason" : [{
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "237840007",
+        "display" : "Disorder of Electrolytes (disorder)"
+      }]
+    }
+  }],
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "KCl 20 mEq in 1 L 0.9%NS IV at 100 ml/hr",
+    "timing" : {
+      "repeat" : {
+        "frequency" : 1,
+        "period" : 1,
+        "periodUnit" : "h"
+      }
+    },
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "47625008",
+        "display" : "Intravenous route (qualifier value)"
+      }]
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 20,
+        "unit" : "meq",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "meq"
+      },
+      "rateRatio" : {
+        "numerator" : {
+          "value" : 100,
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mL"
+        },
+        "denominator" : {
+          "value" : 1,
+          "system" : "http://unitsofmeasure.org",
+          "code" : "h"
+        }
+      }
+    }]
+  }]
+}

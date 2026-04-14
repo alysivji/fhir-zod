@@ -1,0 +1,28 @@
+{
+  "resourceType" : "RegulatedAuthorization",
+  "id" : "basic-drug-auth",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: RegulatedAuthorization</b><a name=\"basic-drug-auth\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource RegulatedAuthorization &quot;basic-drug-auth&quot; </p></div><p><b>subject</b>: <a href=\"broken-link.html\">MedicinalProductDefinition/equilidem</a></p><p><b>type</b>: Regulatory Drug Marketing Approval <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>status</b>: active <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#active)</span></p><p><b>statusDate</b>: 2016-01-01</p><p><b>holder</b>: <a href=\"broken-link.html\">Organization/EqlidrugCo: EquiliDrugCo Holdings Inc.</a></p><p><b>regulator</b>: <a href=\"broken-link.html\">Organization/FDA: FDA</a></p></div>"
+  },
+  "subject" : [{
+    "reference" : "MedicinalProductDefinition/equilidem"
+  }],
+  "type" : {
+    "text" : "Regulatory Drug Marketing Approval"
+  },
+  "status" : {
+    "coding" : [{
+      "code" : "active"
+    }]
+  },
+  "statusDate" : "2016-01-01",
+  "holder" : {
+    "reference" : "Organization/EqlidrugCo",
+    "display" : "EquiliDrugCo Holdings Inc."
+  },
+  "regulator" : {
+    "reference" : "Organization/FDA",
+    "display" : "FDA"
+  }
+}

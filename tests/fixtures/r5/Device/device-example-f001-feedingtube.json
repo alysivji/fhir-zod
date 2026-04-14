@@ -1,0 +1,13 @@
+{
+  "resourceType" : "Device",
+  "id" : "f001",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"f001\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;f001&quot; </p></div><p><b>identifier</b>: id:\u00a012345</p><p><b>status</b>: <span title=\" \n\t&lt;udiCarrier&gt;\n\t\t&lt;system value=&quot;urn:oid:2.16.840.1.113883.3.3719&quot;/&gt;\n\t\t &amp;#10;  FDA UDI root - urn:oid:2.16.840.1.113883.3.3719  Add following udi system URN to fhir identifier registry : &amp;#10; \n\t\t&lt;value value=&quot;(01)00000123000017(10)ABC123(17)120415&quot;/&gt;\n\t\t &amp;#10;  this udi is fictitious and will be updated when more information and better examples of UDI's become active   &amp;#10; \n\t&lt;/udiCarrier&gt;\n\n \">active</span></p></div>"
+  },
+  "identifier" : [{
+    "system" : "http:/goodhealthhospital/identifier/devices",
+    "value" : "12345"
+  }],
+  "status" : "active"
+}

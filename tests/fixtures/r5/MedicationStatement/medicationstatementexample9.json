@@ -1,0 +1,48 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "example009",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationStatement</b><a name=\"example009\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationStatement &quot;example009&quot; </p></div><p><b>partOf</b>: <a href=\"medicationstatementexample8.html\">MedicationStatement/example008</a></p><p><b>status</b>: recorded</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0315\"> </a></span><blockquote><p/><p><a name=\"med0315\"> </a></p><p><b>code</b>: Nigroglycerin patch <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#358793)</span></p><p><b>doseForm</b>: Nitroglycerin 200 microgram/hour prolonged-release transdermal patch <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#376251004)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>effective</b>: 2015-01-23</p><p><b>dateAsserted</b>: 2015-02-22</p><p><b>informationSource</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>note</b>: Patient reports they used the medication patch on this day.</p></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0315",
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/sid/ndc",
+        "code" : "358793",
+        "display" : "Nigroglycerin patch"
+      }]
+    },
+    "doseForm" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "376251004",
+        "display" : "Nitroglycerin 200 microgram/hour prolonged-release transdermal patch"
+      }]
+    }
+  }],
+  "partOf" : [{
+    "reference" : "MedicationStatement/example008"
+  }],
+  "status" : "recorded",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0315"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "effectiveDateTime" : "2015-01-23",
+  "dateAsserted" : "2015-02-22",
+  "informationSource" : [{
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  }],
+  "note" : [{
+    "text" : "Patient reports they used the medication patch on this day."
+  }]
+}

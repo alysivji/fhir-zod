@@ -1,0 +1,89 @@
+{
+  "resourceType" : "MedicationDispense",
+  "id" : "meddisp0326",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationDispense</b><a name=\"meddisp0326\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationDispense &quot;meddisp0326&quot; </p></div><p><b>status</b>: in-progress</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Azithromycin 500mg oral tablet (Zithromax) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#226827)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f006-rvdb.html\">Practitioner/f006</a> &quot;Rob VAN DEN BERK&quot;</td></tr></table><p><b>authorizingPrescription</b>: <a href=\"medicationrequest0313.html\">MedicationRequest/medrx0313</a></p><p><b>type</b>: trial Fill <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#TF)</span></p><p><b>quantity</b>: 5(unit TAB from http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm)<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code TAB = 'Tablet')</span></p><p><b>daysSupply</b>: 5 Day<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></p><p><b>whenPrepared</b>: 2015-01-15T10:20:00Z</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 500mg daily for 5 days</p><p><b>additionalInstruction</b>: Until finished - dosing instruction fragment (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421984009)</span></p><p><b>timing</b>: Once per 1 days</p><p><b>route</b>: Oral Route (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26643006)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  },
+  "status" : "in-progress",
+  "medication" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code" : "226827",
+        "display" : "Azithromycin 500mg oral tablet (Zithromax)"
+      }]
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "performer" : [{
+    "actor" : {
+      "reference" : "Practitioner/f006"
+    }
+  }],
+  "authorizingPrescription" : [{
+    "reference" : "MedicationRequest/medrx0313"
+  }],
+  "type" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code" : "TF",
+      "display" : "trial Fill"
+    }]
+  },
+  "quantity" : {
+    "value" : 5,
+    "system" : "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+    "code" : "TAB"
+  },
+  "daysSupply" : {
+    "value" : 5,
+    "unit" : "Day",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "d"
+  },
+  "whenPrepared" : "2015-01-15T10:20:00Z",
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "500mg daily for 5 days",
+    "additionalInstruction" : [{
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "421984009",
+        "display" : "Until finished - dosing instruction fragment (qualifier value)"
+      }]
+    }],
+    "timing" : {
+      "repeat" : {
+        "frequency" : 1,
+        "period" : 1,
+        "periodUnit" : "d"
+      }
+    },
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "26643006",
+        "display" : "Oral Route (qualifier value)"
+      }]
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 500,
+        "unit" : "mg",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mg"
+      }
+    }]
+  }]
+}

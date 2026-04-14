@@ -1,0 +1,175 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "example-anon0",
+  "meta" : {
+    "lastUpdated" : "2014-08-18T01:43:30Z",
+    "security" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+      "code" : "V"
+    },
+    {
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+      "code" : "PSEUDED"
+    }]
+  },
+  "type" : "searchset",
+  "link" : [{
+    "relation" : "self",
+    "url" : "https://example.com/fhir/Patient/anon0/$everything"
+  }],
+  "entry" : [{
+    "fullUrl" : "http://example.org/fhir/Provenance/anon0",
+    "resource" : {
+      "resourceType" : "Provenance",
+      "id" : "anon0",
+      "meta" : {
+        "security" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+          "code" : "V"
+        },
+        {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+          "code" : "PSEUDED"
+        }]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Provenance</b><a name=\"anon0\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Provenance &quot;anon0&quot; </p><p style=\"margin-bottom: 0px\">Security Labels: <span title=\"{http://terminology.hl7.org/CodeSystem/v3-Confidentiality http://terminology.hl7.org/CodeSystem/v3-Confidentiality}\">http://terminology.hl7.org/CodeSystem/v3-Confidentiality</span>, <span title=\"{http://terminology.hl7.org/CodeSystem/v3-ObservationValue http://terminology.hl7.org/CodeSystem/v3-ObservationValue}\">http://terminology.hl7.org/CodeSystem/v3-ObservationValue</span></p></div><p><b>target</b>: <a href=\"broken-link.html\">http://example.org/fhir/Patient/anon0</a></p><p><b>recorded</b>: 27 June 2015, 8:39:24 am</p><p><b>policy</b>: <span title=\"  policy would indicate the rules used for De-Identification, and appropriate purposes of use of the data  \"><a href=\"http://example.org/policies/666\">http://example.org/policies/666</a></span></p><p><b>activity</b>: De-Identify (Anononymize) Record Lifecycle Event <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-iso-21089-lifecycle.html\">ISO 21089 2017 Health Record Lifecycle Events</a>#deidentify)</span></p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>Assembler <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#assembler)</span></td><td><span>: Device/software</span></td></tr></table><h3>Entities</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>What</b></td></tr><tr><td>*</td><td>source</td><td><a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</td></tr></table></div>"
+      },
+      "target" : [{
+        "reference" : "http://example.org/fhir/Patient/anon0"
+      }],
+      "recorded" : "2015-06-27T08:39:24+10:00",
+      "policy" : ["http://example.org/policies/666"],
+      "activity" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle",
+          "code" : "deidentify"
+        }]
+      },
+      "agent" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+            "code" : "assembler"
+          }]
+        },
+        "who" : {
+          "display" : "Device/software"
+        }
+      }],
+      "entity" : [{
+        "role" : "source",
+        "what" : {
+          "reference" : "Patient/example"
+        }
+      }]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  },
+  {
+    "fullUrl" : "http://example.org/fhir/Patient/anon0",
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "anon0",
+      "meta" : {
+        "security" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+          "code" : "L"
+        },
+        {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+          "code" : "PSEUDED"
+        }]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>First-0 Anon-0 </b> male, DoB: 1974-12-01</p><hr/></div>"
+      },
+      "name" : [{
+        "family" : "Anon-0",
+        "given" : ["First-0"]
+      }],
+      "gender" : "male",
+      "birthDate" : "1974-12-01"
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  },
+  {
+    "fullUrl" : "http://example.org/fhir/Condition/anon0",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "anon0",
+      "meta" : {
+        "security" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+          "code" : "L"
+        },
+        {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+          "code" : "PSEUDED"
+        }]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Condition</b><a name=\"anon0\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Condition &quot;anon0&quot; </p><p style=\"margin-bottom: 0px\">Security Labels: <span title=\"{http://terminology.hl7.org/CodeSystem/v3-Confidentiality http://terminology.hl7.org/CodeSystem/v3-Confidentiality}\">http://terminology.hl7.org/CodeSystem/v3-Confidentiality</span>, <span title=\"{http://terminology.hl7.org/CodeSystem/v3-ObservationValue http://terminology.hl7.org/CodeSystem/v3-ObservationValue}\">http://terminology.hl7.org/CodeSystem/v3-ObservationValue</span></p></div><p><b>clinicalStatus</b>: Active <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-clinical.html\">Condition Clinical Status Codes</a>#active)</span></p><p><b>verificationStatus</b>: Confirmed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-ver-status.html\">ConditionVerificationStatus</a>#confirmed)</span></p><p><b>category</b>: Encounter Diagnosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-category.html\">Condition Category Codes</a>#encounter-diagnosis; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#439401001 &quot;Diagnosis&quot;)</span></p><p><b>severity</b>: Severe <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#24484000)</span></p><p><b>code</b>: Burn of ear <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#39065001)</span></p><p><b>bodySite</b>: Left external ear structure <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#49521004)</span></p><p><b>subject</b>: <a href=\"broken-link.html\">Patient/anon0</a></p><p><b>onset</b>: <span title=\"  dates aligned to first of month  \">2012-05-01</span></p></div>"
+      },
+      "clinicalStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code" : "active"
+        }]
+      },
+      "verificationStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "code" : "confirmed"
+        }]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code" : "encounter-diagnosis",
+          "display" : "Encounter Diagnosis"
+        },
+        {
+          "system" : "http://snomed.info/sct",
+          "code" : "439401001",
+          "display" : "Diagnosis"
+        }]
+      }],
+      "severity" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "24484000",
+          "display" : "Severe"
+        }]
+      },
+      "code" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "39065001",
+          "display" : "Burn of ear"
+        }]
+      },
+      "bodySite" : [{
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "49521004",
+          "display" : "Left external ear structure"
+        }]
+      }],
+      "subject" : {
+        "reference" : "Patient/anon0"
+      },
+      "onsetDateTime" : "2012-05-01"
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }]
+}

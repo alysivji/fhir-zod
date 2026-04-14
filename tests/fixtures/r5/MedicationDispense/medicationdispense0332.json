@@ -1,0 +1,134 @@
+{
+  "resourceType" : "MedicationDispense",
+  "id" : "meddisp0332",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationDispense</b><a name=\"meddisp0332\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationDispense &quot;meddisp0332&quot; </p></div><p><b>status</b>: in-progress</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0318\"> </a><blockquote><p/><p><a name=\"med0318\"> </a></p><p><b>doseForm</b>: Injection emulsion <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385221006)</span></p><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Clinimix 4.25/10 sulfite-free (4.25% Amino Acid in 10% Dextrose) Injection, 1000ml <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#0338-1134-03)</span></td></tr></table></blockquote><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>TPN Electrolytes SODIUM CHLORIDE, CALCIUM CHLORIDE, POTASSIUM CHLORIDE, MAGNESIUM CHLORIDE, and SODIUM ACETATE ANHYDROUS | INJECTION, SOLUTION, CONCENTRATE | 321 mg/20mL, 331 mg/20mL, 1491 mg/20mL, 508 mg/20mL, 2420 mg/20mL <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#0409-5779-01)</span></td></tr></table></blockquote><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Intralipid 20% IV Fat Emulsion <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#0338-0519-02)</span></td></tr></table></blockquote></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f006-rvdb.html\">Practitioner/f006</a> &quot;Rob VAN DEN BERK&quot;</td></tr></table><p><b>authorizingPrescription</b>: <a href=\"medicationrequest0323.html\">MedicationRequest/medrx0323</a></p><p><b>quantity</b>: 1000 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ml = 'ml')</span></p><p><b>daysSupply</b>: 1 Day<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 1000mL infused at 50ml/hour for 4 hours - hang at 2200 hours</p><p><b>timing</b>: Events: 2020-01-15T22:00:00+11:00, Starting 2020-01-15, Once per 24 hours, Until 2020-01-20</p><p><b>route</b>: Intravenous <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#255560000)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0318",
+    "doseForm" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "385221006",
+        "display" : "Injection emulsion"
+      }]
+    },
+    "ingredient" : [{
+      "item" : {
+        "concept" : {
+          "coding" : [{
+            "system" : "http://hl7.org/fhir/sid/ndc",
+            "code" : "0338-1134-03",
+            "display" : "Clinimix 4.25/10 sulfite-free (4.25% Amino Acid in 10% Dextrose) Injection, 1000ml"
+          }]
+        }
+      }
+    },
+    {
+      "item" : {
+        "concept" : {
+          "coding" : [{
+            "system" : "http://hl7.org/fhir/sid/ndc",
+            "code" : "0409-5779-01",
+            "display" : "TPN Electrolytes SODIUM CHLORIDE, CALCIUM CHLORIDE, POTASSIUM CHLORIDE, MAGNESIUM CHLORIDE, and SODIUM ACETATE ANHYDROUS | INJECTION, SOLUTION, CONCENTRATE | 321 mg/20mL, 331 mg/20mL, 1491 mg/20mL, 508 mg/20mL, 2420 mg/20mL"
+          }]
+        }
+      }
+    },
+    {
+      "item" : {
+        "concept" : {
+          "coding" : [{
+            "system" : "http://hl7.org/fhir/sid/ndc",
+            "code" : "0338-0519-02",
+            "display" : "Intralipid 20% IV Fat Emulsion"
+          }]
+        }
+      }
+    }]
+  }],
+  "status" : "in-progress",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0318",
+      "display" : "TPN Solution"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "performer" : [{
+    "actor" : {
+      "reference" : "Practitioner/f006"
+    }
+  }],
+  "authorizingPrescription" : [{
+    "reference" : "MedicationRequest/medrx0323"
+  }],
+  "quantity" : {
+    "value" : 1000,
+    "system" : "http://unitsofmeasure.org",
+    "code" : "ml"
+  },
+  "daysSupply" : {
+    "value" : 1,
+    "unit" : "Day",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "d"
+  },
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "1000mL infused at 50ml/hour for 4 hours - hang at 2200 hours",
+    "timing" : {
+      "event" : ["2020-01-15T22:00:00+11:00"],
+      "repeat" : {
+        "boundsPeriod" : {
+          "start" : "2020-01-15",
+          "end" : "2020-01-20"
+        },
+        "frequency" : 1,
+        "period" : 24,
+        "periodUnit" : "h"
+      }
+    },
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "255560000",
+        "display" : "Intravenous"
+      }]
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 1000,
+        "unit" : "mL",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mL"
+      },
+      "rateRatio" : {
+        "numerator" : {
+          "value" : 50,
+          "unit" : "mL",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mL"
+        },
+        "denominator" : {
+          "value" : 1,
+          "unit" : "h",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "h"
+        }
+      }
+    }]
+  }]
+}

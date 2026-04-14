@@ -1,0 +1,41 @@
+{
+  "resourceType" : "MolecularSequence",
+  "id" : "molecularsequence-focus-example",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MolecularSequence</b><a name=\"molecularsequence-focus-example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MolecularSequence &quot;molecularsequence-focus-example&quot; </p></div><p><b>type</b>: dna</p><p><b>subject</b>: <a href=\"broken-link.html\">Patient/infant</a></p><p><b>focus</b>: <a href=\"patient-example-infant-mom.html\">Patient/infant-mom</a> &quot;Leia SOLO&quot;</p><blockquote><p><b>relative</b></p><p><b>coordinateSystem</b>: 0-based interval counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30100-4)</span></p><h3>StartingSequences</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence[x]</b></td><td><b>WindowStart</b></td><td><b>WindowEnd</b></td></tr><tr><td>*</td><td>NC_000007.14 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (#NC_000007.14)</span></td><td>87627610</td><td>87627635</td></tr></table><h3>Edits</h3><table class=\"grid\"><tr><td>-</td><td><b>Start</b></td><td><b>End</b></td><td><b>ReplacementSequence</b></td><td><b>ReplacedSequence</b></td></tr><tr><td>*</td><td>87627621</td><td>87642522</td><td>T</td><td>A</td></tr></table></blockquote></div>"
+  },
+  "type" : "dna",
+  "subject" : {
+    "reference" : "Patient/infant"
+  },
+  "focus" : [{
+    "reference" : "Patient/infant-mom"
+  }],
+  "relative" : [{
+    "coordinateSystem" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "LA30100-4",
+        "display" : "0-based interval counting"
+      }]
+    },
+    "startingSequence" : {
+      "sequenceCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://www.ncbi.nlm.nih.gov/nuccore/",
+          "code" : "NC_000007.14"
+        }],
+        "text" : "NC_000007.14"
+      },
+      "windowStart" : 87627610,
+      "windowEnd" : 87627635
+    },
+    "edit" : [{
+      "start" : 87627621,
+      "end" : 87642522,
+      "replacementSequence" : "T",
+      "replacedSequence" : "A"
+    }]
+  }]
+}

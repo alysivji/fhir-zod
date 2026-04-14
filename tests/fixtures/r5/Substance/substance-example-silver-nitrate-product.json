@@ -1,0 +1,37 @@
+{
+  "resourceType" : "Substance",
+  "id" : "f204",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Substance</b><a name=\"f204\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Substance &quot;f204&quot; </p></div><p><b>identifier</b>: id:\u00a0AB94687</p><p><b>instance</b>: true</p><p><b>category</b>: Chemical <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-substance-category.html\">Substance Category Codes</a>#chemical)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Silver nitrate 20% solution (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#333346007)</span></td></tr></table><p><b>description</b>: Solution for silver nitrate stain</p><p><b>expiry</b>: 2018-01-01</p><p><b>quantity</b>: 100 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></div>"
+  },
+  "identifier" : [{
+    "system" : "http://acme.org/identifiers/substances/lot",
+    "value" : "AB94687"
+  }],
+  "instance" : true,
+  "category" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/substance-category",
+      "code" : "chemical",
+      "display" : "Chemical"
+    }]
+  }],
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "333346007",
+        "display" : "Silver nitrate 20% solution (product)"
+      }]
+    }
+  },
+  "description" : "Solution for silver nitrate stain",
+  "expiry" : "2018-01-01",
+  "quantity" : {
+    "value" : 100,
+    "unit" : "mL",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "mL"
+  }
+}

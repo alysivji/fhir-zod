@@ -1,0 +1,81 @@
+{
+  "resourceType" : "DeviceRequest",
+  "id" : "right-lens",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: DeviceRequest</b><a name=\"right-lens\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource DeviceRequest &quot;right-lens&quot; </p></div><p><b>identifier</b>: id:\u00a015013R</p><p><b>groupIdentifier</b>: <span title=\"  insert contents here  \">id:\u00a015013</span></p><p><b>status</b>: completed</p><p><b>intent</b>: original-order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Lens <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-ex-visionprescriptionproduct.html\">Example Vision Prescription Product Codes</a>#lens)</span></td></tr></table><blockquote><p><b>parameter</b></p><p><b>code</b>: sphere, right lens <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#28826-6 &quot;Sphere distance Glasses prescription.lens - right&quot;)</span></p><p><b>value</b>: -2.00 Diopter<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code [diop] = 'diop')</span></p></blockquote><blockquote><p><b>parameter</b></p><p><b>code</b>: prisms, right lens <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#28829-0 &quot;Prism base distance Glasses prescription.lens - right&quot;)</span></p><p><b>value</b>: -2.00 Diopter<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code [diop] = 'diop')</span></p></blockquote><blockquote><p><b>parameter</b></p><p><b>code</b>: add, right lens <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#28810-0 &quot;Add 1 LM glasses lens - right&quot;)</span></p><p><b>value</b>: 2.00 Diopter<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code [diop] = 'diop')</span></p></blockquote><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>occurrence</b>: 2014-06-15</p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></div>"
+  },
+  "identifier" : [{
+    "system" : "http://www.happysight.com/prescription",
+    "value" : "15013R"
+  }],
+  "groupIdentifier" : {
+    "system" : "http://acme.org",
+    "value" : "15013"
+  },
+  "status" : "completed",
+  "intent" : "original-order",
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/ex-visionprescriptionproduct",
+        "code" : "lens"
+      }]
+    }
+  },
+  "parameter" : [{
+    "code" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "28826-6",
+        "display" : "Sphere distance Glasses prescription.lens - right"
+      }],
+      "text" : "sphere, right lens"
+    },
+    "valueQuantity" : {
+      "value" : -2.00,
+      "unit" : "Diopter",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "[diop]"
+    }
+  },
+  {
+    "code" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "28829-0",
+        "display" : "Prism base distance Glasses prescription.lens - right"
+      }],
+      "text" : "prisms, right lens"
+    },
+    "valueQuantity" : {
+      "value" : -2.00,
+      "unit" : "Diopter",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "[diop]"
+    }
+  },
+  {
+    "code" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "28810-0",
+        "display" : "Add 1 LM glasses lens - right"
+      }],
+      "text" : "add, right lens"
+    },
+    "valueQuantity" : {
+      "value" : 2.00,
+      "unit" : "Diopter",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "[diop]"
+    }
+  }],
+  "subject" : {
+    "reference" : "Patient/example"
+  },
+  "occurrenceDateTime" : "2014-06-15",
+  "requester" : {
+    "reference" : "Practitioner/example"
+  }
+}

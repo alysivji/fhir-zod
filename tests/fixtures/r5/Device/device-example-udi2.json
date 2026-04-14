@@ -1,0 +1,25 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-udi2",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-udi2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-udi2&quot; </p></div><p><b>identifier</b>: A99971312345600</p><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td></tr><tr><td>*</td><td>A9999XYZ100T0474</td><td><a href=\"http://hl7.org/fhir/NamingSystem/iccbba-other\">http://hl7.org/fhir/NamingSystem/iccbba-other</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td></tr></table><p><b>status</b>: inactive</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>manufactureDate</b>: 2013-02-01</p><p><b>expirationDate</b>: <span title=\" \t013032 = this is the manufacturing date expressed in YYYDDD (three digit year, three digit day number) \">2014-02-01</span></p></div>"
+  },
+  "identifier" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/NamingSystem/iccbba-din"
+      }]
+    },
+    "value" : "A99971312345600"
+  }],
+  "udiCarrier" : [{
+    "deviceIdentifier" : "A9999XYZ100T0474",
+    "issuer" : "http://hl7.org/fhir/NamingSystem/iccbba-other",
+    "jurisdiction" : "http://hl7.org/fhir/NamingSystem/fda-udi"
+  }],
+  "status" : "inactive",
+  "manufacturer" : "Acme Devices, Inc",
+  "manufactureDate" : "2013-02-01",
+  "expirationDate" : "2014-02-01"
+}

@@ -1,0 +1,24 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-software",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-software\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-software&quot; </p></div><p><b>identifier</b>: id:\u00a0goodhealth</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>type</b>: EHR <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>Versions</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td></tr><tr><td>*</td><td>10.23-23423</td></tr></table><p><b>contact</b>: <a href=\"http://acme.com\">http://acme.com</a></p><p><b>url</b>: <a href=\"http://acme.com/goodhealth/ehr/\">http://acme.com/goodhealth/ehr/</a></p></div>"
+  },
+  "identifier" : [{
+    "system" : "http://acme.com/ehr/client-ids",
+    "value" : "goodhealth"
+  }],
+  "manufacturer" : "Acme Devices, Inc",
+  "type" : [{
+    "text" : "EHR"
+  }],
+  "version" : [{
+    "value" : "10.23-23423"
+  }],
+  "contact" : [{
+    "system" : "url",
+    "value" : "http://acme.com"
+  }],
+  "url" : "http://acme.com/goodhealth/ehr/"
+}

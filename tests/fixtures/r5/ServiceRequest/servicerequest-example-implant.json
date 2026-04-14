@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ServiceRequest",
+  "id" : "example-implant",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"example-implant\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;example-implant&quot; </p></div><p><b>status</b>: <span title=\"  Example of a device manipulation service request \">completed</span></p><p><b>intent</b>: order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Implant Pacemaker <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#25267002 &quot;Insertion of intracardiac pacemaker (procedure)&quot;)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>authoredOn</b>: 2015-03-30</p><p><b>requester</b>: <a href=\"practitioner-examples-general.html\">Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809: Dr. Beverly Crusher</a></p><p><b>performer</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Cecil Surgeon</a> &quot;Adam CAREFUL&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Bradycardia <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></div>"
+  },
+  "status" : "completed",
+  "intent" : "order",
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "25267002",
+        "display" : "Insertion of intracardiac pacemaker (procedure)"
+      }],
+      "text" : "Implant Pacemaker"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/example"
+  },
+  "authoredOn" : "2015-03-30",
+  "requester" : {
+    "reference" : "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809",
+    "display" : "Dr. Beverly Crusher"
+  },
+  "performer" : [{
+    "reference" : "Practitioner/example",
+    "display" : "Dr Cecil Surgeon"
+  }],
+  "reason" : [{
+    "concept" : {
+      "text" : "Bradycardia"
+    }
+  }]
+}

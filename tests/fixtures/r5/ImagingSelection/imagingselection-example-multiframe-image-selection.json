@@ -1,0 +1,44 @@
+{
+  "resourceType" : "ImagingSelection",
+  "id" : "example-multiframe-image-selection",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ImagingSelection</b><a name=\"example-multiframe-image-selection\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ImagingSelection &quot;example-multiframe-image-selection&quot; </p></div><p><b>identifier</b>: id:\u00a0urn:oid:1.2.840.113747.20080222.307765875869300980245024554221747.2.1</p><p><b>status</b>: available</p><p><b>subject</b>: <span/></p><p><b>code</b>: Key Frames <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>studyUid</b>: 1.2.840.113747.20080222.307765875869300489345024554221747</p><p><b>derivedFrom</b>: <span/></p><p><b>seriesUid</b>: 1.2.840.113747.20080222.307765875869300489245024554221747.1</p><p><b>frameOfReferenceUid</b>: 1.2.840.113747.20080222.307765875869350980245024554221747.0</p><h3>Instances</h3><table class=\"grid\"><tr><td>-</td><td><b>Uid</b></td><td><b>SopClass</b></td><td><b>Subset</b></td></tr><tr><td>*</td><td>1.2.840.113747.20080222.307765875869300489355024554221747.1.0</td><td>urn:oid:1.2.840.10008.5.1.4.1.1.2.1 (Details: urn:ietf:rfc:3986 code urn:oid:1.2.840.10008.5.1.4.1.1.2.1 = 'urn:oid:1.2.840.10008.5.1.4.1.1.2.1', stated as 'null')</td><td>1, 2, 3, 4</td></tr></table></div>"
+  },
+  "identifier" : [{
+    "system" : "urn:dicom:uid",
+    "value" : "urn:oid:1.2.840.113747.20080222.307765875869300980245024554221747.2.1"
+  }],
+  "status" : "available",
+  "subject" : {
+    "type" : "Patient",
+    "identifier" : {
+      "system" : "https://fhirhospital.org",
+      "value" : "MNSOIISABIDCHRCY"
+    }
+  },
+  "code" : {
+    "text" : "Key Frames"
+  },
+  "studyUid" : "1.2.840.113747.20080222.307765875869300489345024554221747",
+  "derivedFrom" : [{
+    "type" : "ImagingStudy",
+    "identifier" : {
+      "system" : "urn:dicom:uid",
+      "value" : "urn:oid:1.2.840.113747.20080222.307765875889350980245024554221747"
+    }
+  }],
+  "seriesUid" : "1.2.840.113747.20080222.307765875869300489245024554221747.1",
+  "frameOfReferenceUid" : "1.2.840.113747.20080222.307765875869350980245024554221747.0",
+  "instance" : [{
+    "uid" : "1.2.840.113747.20080222.307765875869300489355024554221747.1.0",
+    "sopClass" : {
+      "system" : "urn:ietf:rfc:3986",
+      "code" : "urn:oid:1.2.840.10008.5.1.4.1.1.2.1"
+    },
+    "subset" : ["1",
+    "2",
+    "3",
+    "4"]
+  }]
+}

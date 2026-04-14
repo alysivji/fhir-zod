@@ -1,0 +1,46 @@
+{
+  "resourceType" : "Organization",
+  "id" : "f003",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Organization</b><a name=\"f003\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Organization &quot;f003&quot; </p></div><p><b>active</b>: true</p><p><b>type</b>: Hospital Department <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-organization-type.html\">Organization type</a>#dept)</span></p><p><b>name</b>: Burgers UMC Ear,Nose,Throat unit</p><h3>Contacts</h3><table class=\"grid\"><tr><td>-</td><td><b>Purpose</b></td><td><b>Name</b></td><td><b>Telecom</b></td><td><b>Address</b></td></tr><tr><td>*</td><td>Administrative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-contactentity-type.html\">Contact entity type</a>#ADMIN)</span></td><td>mr. F. de Hond</td><td>ph: 022-655 7654, <a href=\"mailto:KNO@burgersumc.nl\">KNO@burgersumc.nl</a>, fax: 022-655 0998</td><td>West Wing, floor 5 </td></tr></table><p><b>partOf</b>: <a href=\"organization-example-f001-burgers.html\">Organization/f001</a> &quot;Burgers University Medical Center&quot;</p></div>"
+  },
+  "active" : true,
+  "type" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/organization-type",
+      "code" : "dept",
+      "display" : "Hospital Department"
+    }]
+  }],
+  "name" : "Burgers UMC Ear,Nose,Throat unit",
+  "contact" : [{
+    "purpose" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/contactentity-type",
+        "code" : "ADMIN"
+      }]
+    },
+    "name" : [{
+      "text" : "mr. F. de Hond"
+    }],
+    "telecom" : [{
+      "system" : "phone",
+      "value" : "022-655 7654"
+    },
+    {
+      "system" : "email",
+      "value" : "KNO@burgersumc.nl"
+    },
+    {
+      "system" : "fax",
+      "value" : "022-655 0998"
+    }],
+    "address" : {
+      "line" : ["West Wing, floor 5"]
+    }
+  }],
+  "partOf" : {
+    "reference" : "Organization/f001"
+  }
+}

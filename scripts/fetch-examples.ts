@@ -250,9 +250,10 @@ function fetchResourceExamples(resourceName: string): boolean {
 	const discoveredExamples = discoverJsonExamples(resourceName, pageHtml);
 
 	if (discoveredExamples.length === 0) {
-		throw new Error(
-			`No JSON examples discovered on ${pageUrl}. Page structure may have changed.`,
+		console.warn(
+			`No JSON examples discovered for ${version.toUpperCase()} ${resourceName} on ${pageUrl}; leaving fixtures unchanged.`,
 		);
+		return false;
 	}
 
 	const outputDir = clearFixtureDirectory(resourceName);
@@ -275,6 +276,7 @@ function main(): void {
 	const failures: string[] = [];
 	const skipped: string[] = [];
 	const fetched: string[] = [];
+	const noExamples: string[] = [];
 	const selectedResources =
 		limit === null ? requestedResources : requestedResources.slice(0, limit);
 
@@ -288,8 +290,11 @@ function main(): void {
 		}
 
 		try {
-			fetchResourceExamples(resourceName);
-			fetched.push(resourceName);
+			if (fetchResourceExamples(resourceName)) {
+				fetched.push(resourceName);
+			} else {
+				noExamples.push(resourceName);
+			}
 		} catch (error) {
 			const detail =
 				error instanceof Error
@@ -321,7 +326,7 @@ function main(): void {
 	}
 
 	console.log(
-		`Finished ${version.toUpperCase()} example fetch. fetched=${fetched.length} skipped=${skipped.length} requests=${requestCount}`,
+		`Finished ${version.toUpperCase()} example fetch. fetched=${fetched.length} skipped=${skipped.length} noExamples=${noExamples.length} requests=${requestCount}`,
 	);
 }
 

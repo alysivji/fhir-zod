@@ -1,0 +1,81 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "medrx0309",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0309\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0309&quot; </p></div><p><b>identifier</b>: id:\u00a012345689\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0321\"> </a><blockquote><p/><p><a name=\"med0321\"> </a></p><p><b>code</b>: Capecitabine (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#108761006)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f001-heart.html\">Encounter/f001: encounter who leads to this prescription</a></p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 1000 mg/m2 orally twice daily from days 1-14 of cycle</p><p><b>timing</b>: Starting 2016-01-22, Once per 2 days, Until 2016-02-04</p><p><b>route</b>: Oral Route <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26643006)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0321",
+    "code" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "108761006",
+        "display" : "Capecitabine (product)"
+      }]
+    }
+  }],
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http://www.bmc.nl/portal/prescriptions",
+    "value" : "12345689"
+  }],
+  "status" : "active",
+  "intent" : "order",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0321"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "encounter" : {
+    "reference" : "Encounter/f001",
+    "display" : "encounter who leads to this prescription"
+  },
+  "authoredOn" : "2015-01-15",
+  "requester" : {
+    "reference" : "Practitioner/f007",
+    "display" : "Patrick Pump"
+  },
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "1000 mg/m2 orally twice daily from days 1-14 of cycle",
+    "timing" : {
+      "repeat" : {
+        "boundsPeriod" : {
+          "start" : "2016-01-22",
+          "end" : "2016-02-04"
+        },
+        "frequency" : 1,
+        "period" : 2,
+        "periodUnit" : "d"
+      }
+    },
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "26643006",
+        "display" : "Oral Route"
+      }]
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 1000,
+        "unit" : "mg/m2",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mg/m2"
+      }
+    }]
+  }]
+}

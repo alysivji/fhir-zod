@@ -1,0 +1,41 @@
+{
+  "resourceType" : "ServiceRequest",
+  "id" : "ambulation",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"ambulation\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;ambulation&quot; </p></div><p><b>identifier</b>: <span title=\"  Example of ambulation service request \">id:\u00a045678</span></p><p><b>basedOn</b>: <a href=\"careplan-example-pregnancy.html\">CarePlan/preg: Maternity care plan</a></p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Ambulation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#62013009 &quot;Ambulating patient (procedure)&quot;)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>authoredOn</b>: 2017-03-05</p><p><b>requester</b>: <a href=\"practitioner-examples-general.html\">Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809: Dr. Beverly Crusher</a></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"observation-example-bloodpressure.html\">Observation/blood-pressure: Blood Pressure</a></td></tr></table></div>"
+  },
+  "identifier" : [{
+    "value" : "45678"
+  }],
+  "basedOn" : [{
+    "reference" : "CarePlan/preg",
+    "display" : "Maternity care plan"
+  }],
+  "status" : "completed",
+  "intent" : "order",
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "62013009",
+        "display" : "Ambulating patient (procedure)"
+      }],
+      "text" : "Ambulation"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/example"
+  },
+  "authoredOn" : "2017-03-05",
+  "requester" : {
+    "reference" : "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809",
+    "display" : "Dr. Beverly Crusher"
+  },
+  "reason" : [{
+    "reference" : {
+      "reference" : "Observation/blood-pressure",
+      "display" : "Blood Pressure"
+    }
+  }]
+}

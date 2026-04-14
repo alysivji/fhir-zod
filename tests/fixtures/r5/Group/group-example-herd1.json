@@ -1,0 +1,46 @@
+{
+  "resourceType" : "Group",
+  "id" : "herd1",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Group</b><a name=\"herd1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Group &quot;herd1&quot; </p></div><p><b>identifier</b>: <span title=\"  diagnostic lab's identifier  \">id:\u00a020171120-1234</span></p><p><b>active</b>: true</p><p><b>type</b>: animal</p><p><b>membership</b>: enumerated</p><p><b>code</b>: <span title=\"  describes a bunch of female breeding sows  added a translation from US APHIS codes to SNOMED CT \">Porcine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#388393002 &quot;Genus Sus (organism)&quot;; www.aphis.usda.gov#POR &quot;porcine&quot;)</span></span></p><p><b>name</b>: Breeding herd</p><p><b>quantity</b>: 2500</p><h3>Characteristics</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td><td><b>Exclude</b></td></tr><tr><td>*</td><td>gender <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td>female <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td><span title=\"  required element - false means they are all sows  \">false</span></td></tr></table></div>"
+  },
+  "extension" : [{
+    "url" : "http://example.org/fhir/StructureDefinition/owner",
+    "valueReference" : {
+      "reference" : "RelatedPerson/peter",
+      "display" : "Peter Chalmers"
+    }
+  }],
+  "identifier" : [{
+    "system" : "https://vetmed.iastate.edu/vdl",
+    "value" : "20171120-1234"
+  }],
+  "active" : true,
+  "type" : "animal",
+  "membership" : "enumerated",
+  "code" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "388393002",
+      "display" : "Genus Sus (organism)"
+    },
+    {
+      "system" : "https://www.aphis.usda.gov",
+      "code" : "POR",
+      "display" : "porcine"
+    }],
+    "text" : "Porcine"
+  },
+  "name" : "Breeding herd",
+  "quantity" : 2500,
+  "characteristic" : [{
+    "code" : {
+      "text" : "gender"
+    },
+    "valueCodeableConcept" : {
+      "text" : "female"
+    },
+    "exclude" : false
+  }]
+}

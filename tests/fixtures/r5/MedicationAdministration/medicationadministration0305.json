@@ -1,0 +1,90 @@
+{
+  "resourceType" : "MedicationAdministration",
+  "id" : "medadmin0305",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationAdministration</b><a name=\"medadmin0305\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationAdministration &quot;medadmin0305&quot; </p></div><p><b>status</b>: completed</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0306\"> </a><blockquote><p/><p><a name=\"med0306\"> </a></p><p><b>code</b>: Adcetris <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#51144-050-01)</span></p><p><b>marketingAuthorizationHolder</b>: <a href=\"organization-example-mmanu.html\">Organization/mmanu</a> &quot;Acme Corporation&quot;</p><p><b>doseForm</b>: Lyophilized powder for injectable solution (qualifier value)  <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421637006)</span></p><h3>Batches</h3><table class=\"grid\"><tr><td>-</td><td><b>LotNumber</b></td><td><b>ExpirationDate</b></td></tr><tr><td>*</td><td>12345</td><td>2019-10-31</td></tr></table></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f001-heart.html\">Encounter/f001: encounter who leads to this prescription</a></p><p><b>occurence</b>: 2015-01-15T04:30:00+01:00 --&gt; 2015-01-15T14:30:00+01:00</p><blockquote><p><b>performer</b></p><h3>Actors</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</td></tr></table></blockquote><p><b>request</b>: <a href=\"medicationrequest0316.html\">MedicationRequest/medrx0316</a></p><h3>Dosages</h3><table class=\"grid\"><tr><td>-</td><td><b>Text</b></td><td><b>Route</b></td><td><b>Dose</b></td><td><b>Rate[x]</b></td></tr><tr><td>*</td><td>1.8 mg/kg IV infusion over 30 minutes</td><td>Intravenous <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#255560000)</span></td><td>1.8 mg/kg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg/kg = 'mg/kg')</span></td><td>250 ml/30 min</td></tr></table></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0306",
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/sid/ndc",
+        "code" : "51144-050-01",
+        "display" : "Adcetris"
+      }]
+    },
+    "marketingAuthorizationHolder" : {
+      "reference" : "Organization/mmanu"
+    },
+    "doseForm" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "421637006",
+        "display" : "Lyophilized powder for injectable solution (qualifier value) "
+      }]
+    },
+    "batch" : {
+      "lotNumber" : "12345",
+      "expirationDate" : "2019-10-31"
+    }
+  }],
+  "status" : "completed",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0306"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "encounter" : {
+    "reference" : "Encounter/f001",
+    "display" : "encounter who leads to this prescription"
+  },
+  "occurencePeriod" : {
+    "start" : "2015-01-15T04:30:00+01:00",
+    "end" : "2015-01-15T14:30:00+01:00"
+  },
+  "performer" : [{
+    "actor" : {
+      "reference" : {
+        "reference" : "Practitioner/f007",
+        "display" : "Patrick Pump"
+      }
+    }
+  }],
+  "request" : {
+    "reference" : "MedicationRequest/medrx0316"
+  },
+  "dosage" : {
+    "text" : "1.8 mg/kg IV infusion over 30 minutes",
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "255560000",
+        "display" : "Intravenous"
+      }]
+    },
+    "dose" : {
+      "value" : 1.8,
+      "unit" : "mg/kg",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mg/kg"
+    },
+    "rateRatio" : {
+      "numerator" : {
+        "value" : 250,
+        "unit" : "ml",
+        "system" : "http://unitsofmeasure.org"
+      },
+      "denominator" : {
+        "value" : 30,
+        "unit" : "min",
+        "system" : "http://unitsofmeasure.org"
+      }
+    }
+  }
+}
