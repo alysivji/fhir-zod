@@ -137,15 +137,7 @@ Track the work needed to align the repository with the current README.
   `BiologicallyDerivedProduct/biologicallyderivedproduct-example-autologousHCT.json`
   `DocumentReference/documentreference-example-xray.json`
   `Encounter/encounter-example.json`
-  `GraphDefinition/graphdefinition-example.json`
-  `OperationDefinition/operationdefinition-example-query-high-risk.json`
-  `OperationDefinition/operationdefinition-example.json`
   `QuestionnaireResponse/questionnaireresponse-example-f201-lifelines.json`
-  `SearchParameter/searchparameter-example-constraint.json`
-  `SearchParameter/searchparameter-example-extension.json`
-  `SearchParameter/searchparameter-example-reference.json`
-  `SearchParameter/searchparameter-example.json`
-  `SearchParameter/searchparameter-filter.json`
   `Transport/transport-example.json`
   Follow-up:
   trace each example back to the pinned StructureDefinitions and decide whether
