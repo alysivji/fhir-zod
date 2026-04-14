@@ -24,6 +24,7 @@ Current repository status:
 
 - TypeScript library scaffold is set up
 - versioned subpath exports are wired
+- package output is tree-shakeable ESM with side-effect-free metadata
 - R4 generation is implemented and checked in under `src/r4`
 - default R4 generation covers the canonical core-resource set plus required dependencies
 - build, lint, format, coverage, and test commands are configured
@@ -60,11 +61,14 @@ Target package shape:
 
 - export generated TypeScript interfaces/types for FHIR model shapes
 - export separate generated Zod schemas for runtime validation
+- emit versioned ESM modules in a tree-shakeable package shape
 - avoid making `z.output<typeof Schema>` the primary public type story
 
 Current state:
 
 - generated R4 output follows this split today
+- package builds use unbundled ESM output and `sideEffects: false`
+- tree-shaking behavior is tested by bundling a consumer import of one R4 schema and checking unrelated schemas are dropped
 - additional generated versions still need to adopt the same public surface as generation expands beyond R4
 
 ## Development
