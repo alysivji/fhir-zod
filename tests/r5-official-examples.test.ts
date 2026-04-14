@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import * as r5Schemas from "@fhir-zod/core/r5";
 import { describe, expect, it } from "vitest";
-import { r5ExampleSkips } from "./r5-example-skips.ts";
+import { r5ExampleExpectedFailures } from "./r5-example-expected-failures.ts";
 
 const fixturesRoot = resolve(process.cwd(), "tests", "fixtures", "r5");
 
@@ -98,8 +98,8 @@ describe("R5 official examples", () => {
 
 			const fixturePath = join(resourceDir, entry.name);
 			const fixtureKey = relative(fixturesRoot, fixturePath);
-			const skipReason = r5ExampleSkips.get(fixtureKey);
-			const testFn = skipReason ? it.skip : it;
+			const expectedFailure = r5ExampleExpectedFailures.get(fixtureKey);
+			const testFn = expectedFailure ? it.fails : it;
 
 			testFn(`parses ${fixtureKey}`, () => {
 				const input = JSON.parse(readFileSync(fixturePath, "utf8")) as unknown;

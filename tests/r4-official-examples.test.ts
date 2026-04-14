@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import * as r4Schemas from "@fhir-zod/core/r4";
 import { describe, expect, it } from "vitest";
-import { r4ExampleSkips } from "./r4-example-skips.ts";
+import { r4ExampleExpectedFailures } from "./r4-example-expected-failures.ts";
 
 const fixturesRoot = resolve(process.cwd(), "tests", "fixtures", "r4");
 
@@ -98,8 +98,8 @@ describe("R4 official examples", () => {
 
 			const fixturePath = join(resourceDir, entry.name);
 			const fixtureKey = relative(fixturesRoot, fixturePath);
-			const skipReason = r4ExampleSkips.get(fixtureKey);
-			const testFn = skipReason ? it.skip : it;
+			const expectedFailure = r4ExampleExpectedFailures.get(fixtureKey);
+			const testFn = expectedFailure ? it.fails : it;
 
 			testFn(`parses ${fixtureKey}`, () => {
 				const input = JSON.parse(readFileSync(fixturePath, "utf8")) as unknown;

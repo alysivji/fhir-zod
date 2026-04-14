@@ -1,15 +1,19 @@
 // Keep this empty unless a specific official example is confirmed to be
 // incompatible with the current structural validation scope.
 //
-// Current skips are all mirrored from the official HL7 R4 example pages, but
-// they reference resource types outside the base target constraints emitted by
-// this generator from the pinned R4 StructureDefinitions. These are documented
-// here so future work can trace whether the mismatch comes from:
+// Expected failures are still executed with Vitest's it.fails. If one starts
+// passing unexpectedly, remove it from this map and investigate whether the
+// schema behavior changed intentionally.
+//
+// Current expected failures are all mirrored from the official HL7 R4 example
+// pages, but they reference resource types outside the base target constraints
+// emitted by this generator from the pinned R4 StructureDefinitions. These are
+// documented here so future work can trace whether the mismatch comes from:
 // - an inconsistency between the official examples and the base definitions
 // - a generator bug while extracting targetProfile constraints
 // - a deliberate decision to accept a broader compatibility surface than the
 //   base structural rules currently enforce
-export const r4ExampleSkips = new Map<string, string>([
+export const r4ExampleExpectedFailures = new Map<string, string>([
 	[
 		"DeviceMetric/devicemetric-example.json",
 		"Official example references DeviceDefinition in parent, but the base R4 DeviceMetric constraint allows only Device.",
