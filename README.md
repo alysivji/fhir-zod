@@ -132,6 +132,29 @@ npm run fetch-spec
 
 before running the full generator-oriented test suite with `npm test`.
 
+### Official example fixtures
+
+Official HL7 example fixtures are refreshed with:
+
+```bash
+npm run fetch-examples
+```
+
+The fetcher defaults to R4 resources. It also supports the current R5 Patient
+fixture set:
+
+```bash
+npm run fetch-examples -- r5 Patient
+```
+
+The HL7 site may rate-limit or require human verification during automation.
+Use `--delay-ms` for long refreshes, and rerun the resume command printed by
+the script if fetching stops partway through.
+
+Broader R5 fixture downloads should wait until R5 has target discovery matching
+the R4 target inventory. Until then, the R5 fetch path intentionally knows only
+`Patient`.
+
 ## Pre-release
 
 This repository is still pre-release.
