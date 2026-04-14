@@ -1,4 +1,5 @@
 import { generateR4 } from "../src/generator/r4.ts";
+import { generateR4B } from "../src/generator/r4b.ts";
 import { generateR5 } from "../src/generator/r5.ts";
 import { listR4GenerationTargetNames } from "../src/generator/targets/r4.ts";
 
@@ -11,13 +12,15 @@ for (const version of versions) {
 			? generateR4({
 					scopeNames: listR4GenerationTargetNames(),
 				})
-			: version === "r5"
-				? generateR5()
-				: null;
+			: version === "r4b"
+				? generateR4B()
+				: version === "r5"
+					? generateR5()
+					: null;
 
 	if (!result) {
 		throw new Error(
-			`Unknown generation target "${version}". Supported versions: r4, r5.`,
+			`Unknown generation target "${version}". Supported versions: r4, r4b, r5.`,
 		);
 	}
 

@@ -70,7 +70,7 @@ Track the work needed to align the repository with the current README.
 - [x] Generate shared primitives/helpers needed by emitted schemas
 - [ ] Generate first real STU3 schema set
 - [x] Generate first real R4 schema set
-- [ ] Generate first real R4B schema set
+- [x] Generate first real R4B schema set
 - [x] Generate first real R5 schema set
 - [x] Export generated schemas by version without mixing versions
 - [x] Keep generated schemas Zod-first with no wrapper layer
@@ -83,19 +83,19 @@ Track the work needed to align the repository with the current README.
   extend the same public surface pattern to additional generated versions.
 - [x] Decide the public model strategy for generated declarations in additional versions
   Current state:
-  generated R4 and R5 output use named TypeScript models for the public surface
+  generated R4, R4B, and R5 output use named TypeScript models for the public surface
   and separate `*Schema` exports for runtime validation. Object-like FHIR
   definitions prefer interfaces, with type aliases retained where unions or
   recursive composition make that cleaner.
-- [x] Teach the generator to emit named TypeScript models for generated R4 definitions
+- [x] Teach the generator to emit named TypeScript models for generated definitions
   Current state:
-  generated R4 declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
+  generated R4 and R4B declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
   Follow-up:
-  carry the same emission strategy into additional generated versions.
+  carry the same emission strategy into STU3 when generation expands to that version.
 - [x] Rename generated R4 schema exports to `*Schema` alongside the separate public model layer
 - [x] Preserve spec-defined inheritance relationships in generated TS models and schema exports where runtime initialization is safe
   Current state:
-  generated R4 and R5 output preserve base relationships such as `Resource`
+  generated R4, R4B, and R5 output preserve base relationships such as `Resource`
   extending `Base`, `DomainResource` extending `Resource`, and concrete
   resources extending their spec-defined base types when those relationships can
   be emitted without triggering cyclic ESM initialization failures.

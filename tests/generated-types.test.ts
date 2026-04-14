@@ -17,6 +17,8 @@ import {
 	PractitionerSchema,
 	ValueSetSchema,
 } from "@fhir-zod/core/r4";
+import type { Patient as R4BPatient } from "@fhir-zod/core/r4b";
+import { PatientSchema as R4BPatientSchema } from "@fhir-zod/core/r4b";
 import { describe, expect, it } from "vitest";
 
 describe("generated model types", () => {
@@ -86,5 +88,13 @@ describe("generated model types", () => {
 		expect(practitioner.resourceType).toBe("Practitioner");
 		expect(bundle.entry?.[0]?.resource).toEqual(patient);
 		expect(valueSet.resourceType).toBe("ValueSet");
+	});
+
+	it("exports R4B model types with separate schemas", () => {
+		const patient: R4BPatient = R4BPatientSchema.parse({
+			resourceType: "Patient",
+		});
+
+		expect(patient.resourceType).toBe("Patient");
 	});
 });
