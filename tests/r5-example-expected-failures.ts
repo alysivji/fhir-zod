@@ -4,6 +4,9 @@
 // Expected failures are still executed with Vitest's it.fails. If one starts
 // passing unexpectedly, remove it from this map and investigate whether the
 // schema behavior changed intentionally.
+// Each entry is also surfaced as a skipped tracking test in
+// official-example-expected-failures.test.ts so this investigation debt remains
+// visible in test summaries.
 //
 // Current expected failures are all mirrored from the official HL7 R5 example
 // pages, but they conflict with constraints emitted by this generator from the
