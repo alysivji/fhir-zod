@@ -34,40 +34,8 @@ export const r5ExampleExpectedFailures = new Map<string, string>([
 		"Official example references Encounter in careTeam, but the base R5 constraint allows only CareTeam.",
 	],
 	[
-		"GraphDefinition/graphdefinition-example.json",
-		"Official example uses resource type enum values outside the currently emitted GraphDefinition constraints.",
-	],
-	[
-		"OperationDefinition/operationdefinition-example-query-high-risk.json",
-		"Official example uses resource type enum values outside the currently emitted OperationDefinition constraints.",
-	],
-	[
-		"OperationDefinition/operationdefinition-example.json",
-		"Official example uses resource type enum values outside the currently emitted OperationDefinition constraints.",
-	],
-	[
 		"QuestionnaireResponse/questionnaireresponse-example-f201-lifelines.json",
 		"Official example omits questionnaire, but the base R5 QuestionnaireResponse definition requires it.",
-	],
-	[
-		"SearchParameter/searchparameter-example-constraint.json",
-		"Official example uses resource type enum values outside the currently emitted SearchParameter constraints.",
-	],
-	[
-		"SearchParameter/searchparameter-example-extension.json",
-		"Official example uses resource type enum values outside the currently emitted SearchParameter constraints.",
-	],
-	[
-		"SearchParameter/searchparameter-example-reference.json",
-		"Official example uses resource type enum values outside the currently emitted SearchParameter constraints.",
-	],
-	[
-		"SearchParameter/searchparameter-example.json",
-		"Official example uses resource type enum values outside the currently emitted SearchParameter constraints.",
-	],
-	[
-		"SearchParameter/searchparameter-filter.json",
-		"Official example uses resource type enum values outside the currently emitted SearchParameter constraints.",
 	],
 	[
 		"Transport/transport-example.json",
