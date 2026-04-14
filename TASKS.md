@@ -22,6 +22,11 @@ Track the work needed to align the repository with the current README.
 - [x] Export versioned subpaths for `./r4b`
 - [x] Export versioned subpaths for `./r5`
 - [x] Verify subpath import works for `@fhir-zod/core/r4`
+- [x] Emit package output in a tree-shakeable shape
+  Current state:
+  package builds use unbundled ESM output with `sideEffects: false`, and a
+  consumer-bundle regression test verifies importing one R4 schema does not
+  retain unrelated R4 schema modules.
 
 ## Repository Structure
 
@@ -123,6 +128,11 @@ Track the work needed to align the repository with the current README.
   R5 target discovery exists, committed R5 official example fixtures are
   checked in under `tests/fixtures/r5/`, and the generic R5 official-example
   suite validates them with known mismatches tracked as expected failures.
+- [x] Add package tree-shaking regression test
+  Current state:
+  `tests/tree-shaking.test.ts` builds a temporary package and bundles a consumer
+  import of `PatientSchema` from `@fhir-zod/core/r4`, asserting unrelated R4
+  schema internals are absent from the consumer bundle.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
 - [ ] Investigate official example expected failures that violate emitted structural constraints
   Current handling:
