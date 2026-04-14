@@ -1,9 +1,11 @@
 import { describe, it } from "vitest";
 import { r4ExampleExpectedFailures } from "./r4-example-expected-failures.ts";
+import { r4bExampleExpectedFailures } from "./r4b-example-expected-failures.ts";
 import { r5ExampleExpectedFailures } from "./r5-example-expected-failures.ts";
 
 const expectedFailureGroups = [
 	["R4", r4ExampleExpectedFailures],
+	["R4B", r4bExampleExpectedFailures],
 	["R5", r5ExampleExpectedFailures],
 ] as const;
 
