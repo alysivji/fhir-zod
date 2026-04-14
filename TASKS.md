@@ -121,14 +121,36 @@ Track the work needed to align the repository with the current README.
   refresh fixtures slowly with `npm run fetch-examples -- r5 --delay-ms 1500`
   to avoid HL7 site rate limits.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
-- [ ] Investigate the four skipped official R4 examples that violate emitted base reference-target constraints
-  Current skips:
+- [ ] Investigate official example expected failures that violate emitted structural constraints
+  Current handling:
+  expected-failure fixtures still execute in the R4/R5 official-example suites
+  via Vitest `it.fails`, and each entry is also surfaced as a skipped tracking
+  test in `tests/official-example-expected-failures.test.ts` so the unresolved
+  investigation debt remains visible in `npm test` summaries.
+  Current R4 expected failures:
   `DeviceMetric/devicemetric-example.json`
   `DeviceUseStatement/deviceusestatement-example.json`
   `MedicationRequest/medicationrequest0301.json`
   `Observation/observation-example-clinical-gender.json`
+  Current R5 expected failures:
+  `BiologicallyDerivedProduct/biologicallyderivedproduct-example-allogeneicHCT.json`
+  `BiologicallyDerivedProduct/biologicallyderivedproduct-example-autologousHCT.json`
+  `DocumentReference/documentreference-example-xray.json`
+  `Encounter/encounter-example.json`
+  `GraphDefinition/graphdefinition-example.json`
+  `OperationDefinition/operationdefinition-example-query-high-risk.json`
+  `OperationDefinition/operationdefinition-example.json`
+  `QuestionnaireResponse/questionnaireresponse-example-f201-lifelines.json`
+  `SearchParameter/searchparameter-example-constraint.json`
+  `SearchParameter/searchparameter-example-extension.json`
+  `SearchParameter/searchparameter-example-reference.json`
+  `SearchParameter/searchparameter-example.json`
+  `SearchParameter/searchparameter-filter.json`
+  `Transport/transport-example.json`
   Follow-up:
-  trace each example back to the pinned R4 StructureDefinitions and decide whether the mismatch is a spec/example inconsistency, a generator extraction bug, or an intentional compatibility gap.
+  trace each example back to the pinned StructureDefinitions and decide whether
+  the mismatch is a spec/example inconsistency, a generator extraction bug, or
+  an intentional compatibility gap.
 
 ## Documentation
 

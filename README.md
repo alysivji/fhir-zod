@@ -160,6 +160,24 @@ To refresh a single R5 resource:
 npm run fetch-examples -- r5 Patient --force --delay-ms 1500
 ```
 
+Known official-example mismatches are tracked in:
+
+- `tests/r4-example-expected-failures.ts`
+- `tests/r5-example-expected-failures.ts`
+
+Each known mismatch appears in two places in the test output:
+
+- the version-specific official-example suite still runs the fixture under
+  Vitest's `it.fails`, so an unexpected pass fails the suite and signals that
+  the expected-failure entry should be removed or re-investigated
+- `tests/official-example-expected-failures.test.ts` adds one skipped tracking
+  test per known mismatch, so unresolved investigation debt remains visible in
+  the overall `npm test` summary
+
+Do not replace these entries with plain `it.skip` in the official-example
+validation suites; that would stop executing the known-bad fixtures and hide
+unexpected passes.
+
 ## Pre-release
 
 This repository is still pre-release.
