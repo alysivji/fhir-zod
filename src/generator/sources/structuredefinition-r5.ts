@@ -16,6 +16,7 @@ import {
 	normalizeTargetProfiles,
 	sortProperties,
 } from "../model.ts";
+import { listR5GenerationTargetNames } from "../targets/r5.ts";
 
 type StructureDefinition = {
 	abstract?: boolean;
@@ -50,6 +51,7 @@ type ValueSet = {
 type ValueSetInclude = {
 	concept?: ValueSetConcept[];
 	system?: string;
+	valueSet?: string[];
 };
 
 type ValueSetConcept = {
@@ -135,7 +137,7 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 ]);
 
 export function buildStructureDefinitionR5Definitions(
-	scopeNames: Iterable<string> = ["Patient"],
+	scopeNames: Iterable<string> = listR5GenerationTargetNames(),
 ): StructureDefinitionBuildResult {
 	const packageRoot = resolveRequiredSpecPackageRoot("r5");
 	const index = loadStructureDefinitionIndex(packageRoot);
@@ -821,6 +823,22 @@ function resolveBindingEnumValues(
 		return null;
 	}
 
+	const codes = collectValueSetCodes(
+		valueSet,
+		terminology,
+		new Set([valueSetUrl]),
+	);
+
+	return codes.size > 0
+		? [...codes].sort((left, right) => left.localeCompare(right))
+		: null;
+}
+
+function collectValueSetCodes(
+	valueSet: ValueSet,
+	terminology: TerminologyIndex,
+	visitedValueSetUrls: Set<string>,
+): Set<string> {
 	const codes = new Set<string>();
 
 	for (const include of valueSet.compose?.include ?? []) {
@@ -837,15 +855,37 @@ function resolveBindingEnumValues(
 				codes.add(code);
 			}
 		}
+
+		for (const importedValueSetUrl of include.valueSet ?? []) {
+			const normalizedUrl = normalizeCanonicalUrl(importedValueSetUrl);
+
+			if (!normalizedUrl || visitedValueSetUrls.has(normalizedUrl)) {
+				continue;
+			}
+
+			const importedValueSet = terminology.valueSetsByUrl.get(normalizedUrl);
+
+			if (!importedValueSet) {
+				continue;
+			}
+
+			visitedValueSetUrls.add(normalizedUrl);
+
+			for (const code of collectValueSetCodes(
+				importedValueSet,
+				terminology,
+				visitedValueSetUrls,
+			)) {
+				codes.add(code);
+			}
+		}
 	}
 
 	for (const code of collectExpansionCodes(valueSet.expansion?.contains)) {
 		codes.add(code);
 	}
 
-	return codes.size > 0
-		? [...codes].sort((left, right) => left.localeCompare(right))
-		: null;
+	return codes;
 }
 
 function normalizeCanonicalUrl(url: string | null): string | null {

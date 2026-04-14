@@ -1,0 +1,104 @@
+{
+  "resourceType" : "Device",
+  "id" : "RocheGlucoseMonitor",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"RocheGlucoseMonitor\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;RocheGlucoseMonitor&quot; </p></div><p><b>identifier</b>: System Identifier: 00-60-19-00-01-0E-92-34, Bluetooth Address: F4-5E-AB-A8-08-32</p><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td><td><b>CarrierHRF</b></td><td><b>EntryType</b></td></tr><tr><td>*</td><td>26868744401925</td><td><a href=\"http://hl7.org/fhir/NamingSystem/gs1-di\">http://hl7.org/fhir/NamingSystem/gs1-di</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td><td>(01)26868744401925(21)92300365108</td><td>unknown</td></tr></table><p><b>manufacturer</b>: Roche</p><p><b>serialNumber</b>: 92300365108</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>meter+00365108</td><td>user-friendly-name</td></tr></table><p><b>modelNumber</b>: 923</p><p><b>type</b>: MDC_MOC_VMS_MDS_SIMP: Personal Health Device <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#65573 &quot;MDC_MOC_VMS_MDS_SIMP&quot;)</span></p><h3>Versions</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value</b></td></tr><tr><td>*</td><td>MDC_ID_PROD_SPEC_FW: Firmware revision <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#531976)</span></td><td>v1.8.3</td></tr></table><h3>ConformsTos</h3><table class=\"grid\"><tr><td>-</td><td><b>Specification</b></td><td><b>Version</b></td></tr><tr><td>*</td><td>MDC_DEV_SPEC_PROFILE_GLUCOSE: Glucose Meter <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#528401)</span></td><td>2</td></tr></table><blockquote><p><b>property</b></p><p><b>type</b>: MDC_TIME_SYNC_PROTOCOL: Time synchronization protocol <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#68220)</span></p><p><b>value</b>: MDC_TIME_SYNC_NONE: No time synchronization <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#532224)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: mds-time-capab-real-time-clock <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ASN1ToHL7#68219.0)</span></p><p><b>value</b>: real time clock supported <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (v2-0136#Y)</span></p></blockquote></div>"
+  },
+  "identifier" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/ContinuaDeviceIdentifiers",
+        "code" : "SYSID",
+        "display" : "System Identifier"
+      }]
+    },
+    "system" : "urn:oid:1.2.840.10004.1.1.1.0.0.1.0.0.1.2680",
+    "value" : "00-60-19-00-01-0E-92-34"
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/ContinuaDeviceIdentifiers",
+        "code" : "BTMAC",
+        "display" : "Bluetooth Address"
+      }]
+    },
+    "system" : "http://hl7.org/fhir/sid/eui-48",
+    "value" : "F4-5E-AB-A8-08-32"
+  }],
+  "udiCarrier" : [{
+    "deviceIdentifier" : "26868744401925",
+    "issuer" : "http://hl7.org/fhir/NamingSystem/gs1-di",
+    "jurisdiction" : "http://hl7.org/fhir/NamingSystem/fda-udi",
+    "carrierHRF" : "(01)26868744401925(21)92300365108",
+    "entryType" : "unknown"
+  }],
+  "manufacturer" : "Roche",
+  "serialNumber" : "92300365108",
+  "name" : [{
+    "value" : "meter+00365108",
+    "type" : "user-friendly-name"
+  }],
+  "modelNumber" : "923",
+  "type" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:11073:10101",
+      "code" : "65573",
+      "display" : "MDC_MOC_VMS_MDS_SIMP"
+    }],
+    "text" : "MDC_MOC_VMS_MDS_SIMP: Personal Health Device"
+  }],
+  "version" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "urn:iso:std:iso:11073:10101",
+        "code" : "531976"
+      }],
+      "text" : "MDC_ID_PROD_SPEC_FW: Firmware revision"
+    },
+    "value" : "v1.8.3"
+  }],
+  "conformsTo" : [{
+    "specification" : {
+      "coding" : [{
+        "system" : "urn:iso:std:iso:11073:10101",
+        "code" : "528401"
+      }],
+      "text" : "MDC_DEV_SPEC_PROFILE_GLUCOSE: Glucose Meter"
+    },
+    "version" : "2"
+  }],
+  "property" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "urn:iso:std:iso:11073:10101",
+        "code" : "68220"
+      }],
+      "text" : "MDC_TIME_SYNC_PROTOCOL: Time synchronization protocol"
+    },
+    "valueCodeableConcept" : {
+      "coding" : [{
+        "system" : "urn:iso:std:iso:11073:10101",
+        "code" : "532224"
+      }],
+      "text" : "MDC_TIME_SYNC_NONE: No time synchronization"
+    }
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/ASN1ToHL7",
+        "code" : "68219.0"
+      }],
+      "text" : "mds-time-capab-real-time-clock"
+    },
+    "valueCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/v2-0136",
+        "code" : "Y"
+      }],
+      "text" : "real time clock supported"
+    }
+  }]
+}

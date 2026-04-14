@@ -1,0 +1,56 @@
+{
+  "resourceType" : "Provenance",
+  "id" : "signature",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Provenance</b><a name=\"signature\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Provenance &quot;signature&quot; </p></div><p><b>target</b>: <span title=\" \n\t&lt;text&gt;\n\t\t&lt;status value=&quot;extensions&quot;/&gt;\n\t\t&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June&lt;/div&gt;\n\t&lt;/text&gt;\n &amp;#10;  \n    where possible, provenance targets should be version specific,\n    so that there is no ambiguity about which version of the \n    record this relates to\n   \"><a href=\"documentreference-example.html\">DocumentReference/example/_history/4</a></span></p><p><b>recorded</b>: 27 Aug 2015, 8:39:24 am</p><h3>Authorizations</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>treatment <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActReason.html\">ActReason</a>#TREAT)</span></td></tr></table><p><b>activity</b>: authenticated <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-DocumentCompletion.html\">DocumentCompletion</a>#AU)</span></p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>Verifier <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-contractsignertypecodes.html\">Contract Signer Type Codes</a>#VERF)</span></td><td><span title=\"  very often, the user won't have a known system - these aren't available \n      for security system log ons. But where you can define it, you should.\n      Most of the time the userId is fully qualfied such as an email address\t   \"><span/></span></td></tr></table><h3>Signatures</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>When</b></td><td><b>Who</b></td><td><b>TargetFormat</b></td><td><b>SigFormat</b></td><td><b>Data</b></td></tr><tr><td>*</td><td><span title=\"  verification signature  \">Verification Signature (Details: urn:iso-astm:E1762-95:2013 code 1.2.840.10065.1.12.1.5 = 'Verification Signature', stated as 'Verification Signature')</span></td><td>27 Aug 2015, 8:39:24 am</td><td><a href=\"practitioner-example-xcda-author.html\">Practitioner/xcda-author</a> &quot;Harold HIPPOCRATES&quot;</td><td>application/fhir+xml</td><td>application/signature+xml</td><td>Li4u</td></tr></table></div>"
+  },
+  "target" : [{
+    "reference" : "DocumentReference/example/_history/4"
+  }],
+  "recorded" : "2015-08-27T08:39:24+10:00",
+  "authorization" : [{
+    "concept" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+        "code" : "TREAT",
+        "display" : "treatment"
+      }]
+    }
+  }],
+  "activity" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-DocumentCompletion",
+      "code" : "AU",
+      "display" : "authenticated"
+    }]
+  },
+  "agent" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/contractsignertypecodes",
+        "code" : "VERF"
+      }]
+    },
+    "who" : {
+      "identifier" : {
+        "system" : "urn:ietf:rfc:3986",
+        "value" : "mailto://hhd@ssa.gov"
+      }
+    }
+  }],
+  "signature" : [{
+    "type" : [{
+      "system" : "urn:iso-astm:E1762-95:2013",
+      "code" : "1.2.840.10065.1.12.1.5",
+      "display" : "Verification Signature"
+    }],
+    "when" : "2015-08-27T08:39:24+10:00",
+    "who" : {
+      "reference" : "Practitioner/xcda-author"
+    },
+    "targetFormat" : "application/fhir+xml",
+    "sigFormat" : "application/signature+xml",
+    "data" : "Li4u"
+  }]
+}

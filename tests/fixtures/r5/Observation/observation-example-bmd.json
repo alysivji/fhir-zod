@@ -1,0 +1,37 @@
+{
+  "resourceType" : "Observation",
+  "id" : "bmd",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"bmd\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;bmd&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: BMD - Left Femur <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#24701-5 &quot;Femur DXA Bone density&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <span title=\"       well, actually. this isn't the patient, but it'll do for now       \"><a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Imaging Diagnostics</a> &quot;Clinical Lab&quot;</span></p><p><b>value</b>: 0.887 g/cm²<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/cm-2 = 'g/cm-2')</span></p><p><b>bodySite</b>: Left Femur <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#71341001:272741003=7771000)</span></p></div>"
+  },
+  "status" : "final",
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "24701-5",
+      "display" : "Femur DXA Bone density"
+    }],
+    "text" : "BMD - Left Femur"
+  },
+  "subject" : {
+    "reference" : "Patient/pat2"
+  },
+  "performer" : [{
+    "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+    "display" : "Acme Imaging Diagnostics"
+  }],
+  "valueQuantity" : {
+    "value" : 0.887,
+    "unit" : "g/cm²",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "g/cm-2"
+  },
+  "bodySite" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "71341001:272741003=7771000"
+    }],
+    "text" : "Left Femur"
+  }
+}

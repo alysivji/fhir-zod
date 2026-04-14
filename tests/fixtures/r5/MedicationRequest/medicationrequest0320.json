@@ -1,0 +1,94 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "medrx0320",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0320\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0320&quot; </p></div><p><b>identifier</b>: id:\u00a012345689\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Lantus 100 unit/ml injectable solution <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#285018)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>On subcutaneous insulin for diabetes mellitus (finding) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#473189005)</span></td></tr></table><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 20 Units SC three times daily</p><p><b>timing</b>: 3 per 1 days</p><p><b>route</b>: Subcutaneous (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#263887005)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote><blockquote><p><b>dispenseRequest</b></p><p><b>validityPeriod</b>: 2015-01-15 --&gt; 2016-01-15</p><p><b>numberOfRepeatsAllowed</b>: 6</p><p><b>quantity</b>: 10 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p><h3>ExpectedSupplyDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>30</td><td>days</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>d</td></tr></table></blockquote></div>"
+  },
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http://www.bmc.nl/portal/prescriptions",
+    "value" : "12345689"
+  }],
+  "status" : "completed",
+  "intent" : "order",
+  "medication" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code" : "285018",
+        "display" : "Lantus 100 unit/ml injectable solution"
+      }]
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "authoredOn" : "2015-01-15",
+  "requester" : {
+    "reference" : "Practitioner/f007",
+    "display" : "Patrick Pump"
+  },
+  "reason" : [{
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "473189005",
+        "display" : "On subcutaneous insulin for diabetes mellitus (finding)"
+      }]
+    }
+  }],
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "20 Units SC three times daily",
+    "timing" : {
+      "repeat" : {
+        "frequency" : 3,
+        "period" : 1,
+        "periodUnit" : "d"
+      }
+    },
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "263887005",
+        "display" : "Subcutaneous (qualifier value)"
+      }]
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 20,
+        "unit" : "U",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "U"
+      }
+    }]
+  }],
+  "dispenseRequest" : {
+    "validityPeriod" : {
+      "start" : "2015-01-15",
+      "end" : "2016-01-15"
+    },
+    "numberOfRepeatsAllowed" : 6,
+    "quantity" : {
+      "value" : 10,
+      "unit" : "mL",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "mL"
+    },
+    "expectedSupplyDuration" : {
+      "value" : 30,
+      "unit" : "days",
+      "system" : "http://unitsofmeasure.org",
+      "code" : "d"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "example004",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationStatement</b><a name=\"example004\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationStatement &quot;example004&quot; </p></div><p><b>status</b>: recorded</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Amoxicillin (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#27658006)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>effective</b>: 2014-01-23</p><p><b>dateAsserted</b>: 2015-02-22</p><p><b>informationSource</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>note</b>: Patient indicates they miss the occasional dose</p><h3>Dosages</h3><table class=\"grid\"><tr><td>-</td><td><b>Text</b></td><td><b>Timing</b></td><td><b>AsNeeded</b></td><td><b>Route</b></td><td><b>MaxDosePerPeriod</b></td></tr><tr><td>*</td><td>one capsule three times daily</td><td>3 per 1 days</td><td>false</td><td>Oral <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260548002)</span></td><td>3 capsules<span style=\"background: LightGoldenRodYellow\"> (Details: SNOMED CT code 385055001 = 'Tablet')</span>/1 d<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></td></tr></table><h3>Adherences</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Reason</b></td></tr><tr><td>*</td><td>Not Taking <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-medication-statement-adherence.html\">MedicationStatement Adherence Codes</a>#not-taking)</span></td><td>Drugs not taken/completed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#266710000)</span></td></tr></table></div>"
+  },
+  "status" : "recorded",
+  "medication" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "27658006",
+        "display" : "Amoxicillin (product)"
+      }]
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "effectiveDateTime" : "2014-01-23",
+  "dateAsserted" : "2015-02-22",
+  "informationSource" : [{
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  }],
+  "note" : [{
+    "text" : "Patient indicates they miss the occasional dose"
+  }],
+  "dosage" : [{
+    "text" : "one capsule three times daily",
+    "timing" : {
+      "repeat" : {
+        "frequency" : 3,
+        "period" : 1,
+        "periodUnit" : "d"
+      }
+    },
+    "asNeeded" : false,
+    "route" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "260548002",
+        "display" : "Oral"
+      }]
+    },
+    "maxDosePerPeriod" : [{
+      "numerator" : {
+        "value" : 3,
+        "unit" : "capsules",
+        "system" : "http://snomed.info/sct",
+        "code" : "385055001"
+      },
+      "denominator" : {
+        "value" : 1,
+        "system" : "http://unitsofmeasure.org",
+        "code" : "d"
+      }
+    }]
+  }],
+  "adherence" : {
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/CodeSystem/medication-statement-adherence",
+        "code" : "not-taking",
+        "display" : "Not Taking"
+      }]
+    },
+    "reason" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "266710000",
+        "display" : "Drugs not taken/completed"
+      }]
+    }
+  }
+}

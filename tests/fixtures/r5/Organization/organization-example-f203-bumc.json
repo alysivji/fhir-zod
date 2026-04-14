@@ -1,0 +1,43 @@
+{
+  "resourceType" : "Organization",
+  "id" : "f203",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Organization</b><a name=\"f203\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Organization &quot;f203&quot; </p></div><p><b>identifier</b>: Zorginstelling naam:\u00a0Blijdorp MC\u00a0(use:\u00a0OFFICIAL)</p><p><b>active</b>: <span title=\"     &lt;accreditation&gt;\n      &lt;!-\\-NIAZ Accreditatie-\\-&gt;\n      &lt;identifier&gt;\n         &lt;!-\\-Identifier for the accreditation -\\-&gt;\n         &lt;system value=&quot;http://www.niaz.nl/&quot;/&gt;\n         &lt;value value=&quot;NIAZ accreditation&quot;/&gt;\n      &lt;/identifier&gt;\n      &lt;period&gt;\n         &lt;start value=&quot;2008-11-07&quot;/&gt;\n         &lt;end value=&quot;2013-11-07&quot;/&gt;\n      &lt;/period&gt;\n   &lt;/accreditation&gt;  &amp;#10;  The BMC is in active use  \">true</span></p><p><b>type</b>: Academic Medical Center <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#405608006; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-organization-type.html\">Organization type</a>#prov)</span></p><p><b>name</b>: Blijdorp Medisch Centrum (BUMC)</p><h3>Contacts</h3><table class=\"grid\"><tr><td>-</td><td><b>Telecom</b></td><td><b>Address</b></td></tr><tr><td>*</td><td><a href=\"tel:+31107040704\">+31107040704</a></td><td>apenrots 230 Blijdorp 3056BE NLD (WORK)</td></tr></table></div>"
+  },
+  "identifier" : [{
+    "use" : "official",
+    "type" : {
+      "text" : "Zorginstelling naam"
+    },
+    "system" : "http://www.zorgkaartnederland.nl/",
+    "value" : "Blijdorp MC"
+  }],
+  "active" : true,
+  "type" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "405608006",
+      "display" : "Academic Medical Center"
+    },
+    {
+      "system" : "http://terminology.hl7.org/CodeSystem/organization-type",
+      "code" : "prov"
+    }]
+  }],
+  "name" : "Blijdorp Medisch Centrum (BUMC)",
+  "contact" : [{
+    "telecom" : [{
+      "system" : "phone",
+      "value" : "+31107040704",
+      "use" : "work"
+    }],
+    "address" : {
+      "use" : "work",
+      "line" : ["apenrots 230"],
+      "city" : "Blijdorp",
+      "postalCode" : "3056BE",
+      "country" : "NLD"
+    }
+  }]
+}

@@ -1,0 +1,74 @@
+{
+  "resourceType" : "Task",
+  "id" : "example2",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Task</b><a name=\"example2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Task &quot;example2&quot; </p></div><p><b>identifier</b>: id:\u00a020170201-002\u00a0(use:\u00a0OFFICIAL)</p><p><b>groupIdentifier</b>: id:\u00a0G20170201-001\u00a0(use:\u00a0OFFICIAL)</p><p><b>partOf</b>: <span title=\" \tThis Task is a child task of the submitted lipid panel requet\n \"><a href=\"task-example1.html\">Task/example1: Lipid Panel</a></span></p><p><b>status</b>: accepted</p><p><b>businessStatus</b>: <span title=\" fictive business status populated for this example \">waiting for patient <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></span></p><p><b>intent</b>: filler-order</p><p><b>priority</b>: routine</p><p><b>code</b>: <span title=\" fictive code and description elements populated for this example  \">Fulfill the focal request <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-task-code.html\">Task Codes</a>#fulfill)</span></span></p><p><b>focus</b>: <span title=\" \tFiller generated order using a fictive  servicerequest to complete the loop \"><span>: BloodDraw ServiceRequest</span></span></p><p><b>for</b>: <span title=\" \twho the task is for\n \"><a href=\"patient-example.html\">Patient/example: Peter James Chalmers</a> &quot;Peter CHALMERS&quot;</span></p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example: Example In-Patient Encounter</a></p><p><b>executionPeriod</b>: <span title=\" \tLots of dates  \">2016-10-31T08:45:05+10:00 --&gt; (ongoing)</span></p><p><b>authoredOn</b>: 2016-10-31T08:45:05+10:00</p><p><b>lastModified</b>: 2016-10-31T09:45:05+10:00</p><p><b>requester</b>: <span title=\" requester is filler \"><a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Clinical Laboratory @ Acme Hospital</a> &quot;Clinical Lab&quot;</span></p><h3>RequestedPerformers</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Performer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#18850004 &quot;Laboratory hematologist&quot;)</span></td></tr></table><p><b>owner</b>: <span title=\" assume at draw station \"><a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Clinical Laboratory @ Acme Hospital</a> &quot;Clinical Lab&quot;</span></p><h3>Restrictions</h3><table class=\"grid\"><tr><td>-</td><td><b>Repetitions</b></td><td><b>Period</b></td></tr><tr><td>*</td><td>1</td><td>?? --&gt; 2016-11-01T09:45:05+10:00</td></tr></table></div>"
+  },
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http:/goodhealth.org/identifiers",
+    "value" : "20170201-002"
+  }],
+  "groupIdentifier" : {
+    "use" : "official",
+    "system" : "http:/goodhealth.org/accession/identifiers",
+    "value" : "G20170201-001"
+  },
+  "partOf" : [{
+    "reference" : "Task/example1",
+    "display" : "Lipid Panel"
+  }],
+  "status" : "accepted",
+  "businessStatus" : {
+    "text" : "waiting for patient"
+  },
+  "intent" : "filler-order",
+  "priority" : "routine",
+  "code" : {
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/CodeSystem/task-code",
+      "code" : "fulfill"
+    }]
+  },
+  "focus" : {
+    "display" : "BloodDraw ServiceRequest"
+  },
+  "for" : {
+    "reference" : "Patient/example",
+    "display" : "Peter James Chalmers"
+  },
+  "encounter" : {
+    "reference" : "Encounter/example",
+    "display" : "Example In-Patient Encounter"
+  },
+  "executionPeriod" : {
+    "start" : "2016-10-31T08:45:05+10:00"
+  },
+  "authoredOn" : "2016-10-31T08:45:05+10:00",
+  "lastModified" : "2016-10-31T09:45:05+10:00",
+  "requester" : {
+    "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+    "display" : "Clinical Laboratory @ Acme Hospital"
+  },
+  "requestedPerformer" : [{
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "18850004",
+        "display" : "Laboratory hematologist"
+      }],
+      "text" : "Performer"
+    }
+  }],
+  "owner" : {
+    "reference" : "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
+    "display" : "Clinical Laboratory @ Acme Hospital"
+  },
+  "restriction" : {
+    "repetitions" : 1,
+    "period" : {
+      "end" : "2016-11-01T09:45:05+10:00"
+    }
+  }
+}

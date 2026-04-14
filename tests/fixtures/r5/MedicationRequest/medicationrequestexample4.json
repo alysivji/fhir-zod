@@ -1,0 +1,80 @@
+{
+  "resourceType" : "MedicationRequest",
+  "id" : "medrx004",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx004\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx004&quot; </p></div><p><b>identifier</b>: id:\u00a012345689\u00a0(use:\u00a0OFFICIAL)</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0312\"> </a><blockquote><p/><p><a name=\"med0312\"> </a></p><p><b>code</b>: GAMMAGARD Liquid <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#0944-2700)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: Administer in 100cc NS as follows: First treatment infuse over 90 minutes, if no reaction then second treatment infuse over 60 minutes, if no reaction then on third and following treatments give over 30 minutes.</p><p><b>timing</b>: Events: 2023-01-18T00:00:00Z</p><p><b>route</b>: IV <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Route#IV)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0312",
+    "code" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "0944-2700",
+        "display" : "GAMMAGARD Liquid"
+      }]
+    }
+  }],
+  "identifier" : [{
+    "use" : "official",
+    "system" : "http://www.bmc.nl/portal/prescriptions",
+    "value" : "12345689"
+  }],
+  "status" : "completed",
+  "intent" : "order",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0312",
+      "display" : "Nystatin 100,000 u/ml oral suspension"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "authoredOn" : "2015-01-15",
+  "requester" : {
+    "reference" : "Practitioner/f007",
+    "display" : "Patrick Pump"
+  },
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "Administer in 100cc NS as follows: First treatment infuse over 90 minutes, if no reaction then second treatment infuse over 60 minutes, if no reaction then on third and following treatments give over 30 minutes.",
+    "timing" : {
+      "event" : ["2023-01-18T00:00:00.000Z"]
+    },
+    "route" : {
+      "coding" : [{
+        "system" : "http://flatiron.com/CodeSystem/Route",
+        "code" : "IV"
+      }]
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 5,
+        "unit" : "mg/kg"
+      }
+    },
+    {
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "calculated",
+          "display" : "Calculated"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 340,
+        "unit" : "mg"
+      }
+    }]
+  }]
+}

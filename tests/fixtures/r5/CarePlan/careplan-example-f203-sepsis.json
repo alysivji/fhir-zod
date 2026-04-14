@@ -1,0 +1,97 @@
+{
+  "resourceType" : "CarePlan",
+  "id" : "f203",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: CarePlan</b><a name=\"f203\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource CarePlan &quot;f203&quot; </p></div><p><b>status</b>: completed</p><p><b>intent</b>: plan</p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>period</b>: 2013-04-14 --&gt; 2013-04-21</p><p><b>careTeam</b>: <a name=\"careteam\"> </a></p><blockquote><p/><p><a name=\"careteam\"> </a></p><blockquote><p><b>participant</b></p><p><b>role</b>: Review of care plan <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#425268008)</span></p><p><b>member</b>: <a href=\"practitioner-example-f201-ab.html\">Practitioner/f201: Dokter Bronsig</a> &quot;Dokter Bronsig&quot;</p></blockquote><blockquote><p><b>participant</b></p><p><b>role</b>: Radiographic imaging <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#278110001)</span></p><p><b>member</b>: <a href=\"practitioner-example-f202-lm.html\">Practitioner/f202: Luigi Maas</a> &quot;Luigi Maas&quot;</p></blockquote></blockquote><h3>Addresses</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"condition-example-f203-sepsis.html\">Condition/f203: Roel's sepsis</a></td></tr></table><p><b>goal</b>: <a name=\"goal\"> </a></p><blockquote><p/><p><a name=\"goal\"> </a></p><p><b>lifecycleStatus</b>: cancelled</p><p><b>description</b>: Check whether further treatment of sepsis/pulmonary abcess is required <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p></blockquote><h3>Activities</h3><table class=\"grid\"><tr><td>-</td><td><b>PlannedActivityReference</b></td></tr><tr><td>*</td><td><a name=\"activity\"> </a><blockquote><p/><p><a name=\"activity\"> </a></p><p><b>status</b>: active</p><p><b>intent</b>: order</p><p><b>doNotPerform</b>: false</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>High resolution computed tomography of lungs <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#241541005)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p></blockquote></td></tr></table></div>"
+  },
+  "contained" : [{
+    "resourceType" : "CareTeam",
+    "id" : "careteam",
+    "participant" : [{
+      "role" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "425268008",
+          "display" : "Review of care plan"
+        }]
+      },
+      "member" : {
+        "reference" : "Practitioner/f201",
+        "display" : "Dokter Bronsig"
+      }
+    },
+    {
+      "role" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "278110001",
+          "display" : "Radiographic imaging"
+        }]
+      },
+      "member" : {
+        "reference" : "Practitioner/f202",
+        "display" : "Luigi Maas"
+      }
+    }]
+  },
+  {
+    "resourceType" : "Goal",
+    "id" : "goal",
+    "lifecycleStatus" : "cancelled",
+    "description" : {
+      "text" : "Check whether further treatment of sepsis/pulmonary abcess is required"
+    },
+    "subject" : {
+      "reference" : "Patient/f201",
+      "display" : "Roel"
+    }
+  },
+  {
+    "resourceType" : "ServiceRequest",
+    "id" : "activity",
+    "status" : "active",
+    "intent" : "order",
+    "doNotPerform" : false,
+    "code" : {
+      "concept" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "241541005",
+          "display" : "High resolution computed tomography of lungs"
+        }]
+      }
+    },
+    "subject" : {
+      "reference" : "Patient/f201",
+      "display" : "Roel"
+    }
+  }],
+  "status" : "completed",
+  "intent" : "plan",
+  "subject" : {
+    "reference" : "Patient/f201",
+    "display" : "Roel"
+  },
+  "period" : {
+    "start" : "2013-04-14",
+    "end" : "2013-04-21"
+  },
+  "careTeam" : [{
+    "reference" : "#careteam"
+  }],
+  "addresses" : [{
+    "reference" : {
+      "reference" : "Condition/f203",
+      "display" : "Roel's sepsis"
+    }
+  }],
+  "goal" : [{
+    "reference" : "#goal"
+  }],
+  "activity" : [{
+    "plannedActivityReference" : {
+      "reference" : "#activity"
+    }
+  }]
+}

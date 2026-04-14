@@ -1,7 +1,7 @@
 {
 	"scripts": {
-		"setup": "make install",
-		"run": "make test"
+		"setup": "just install",
+		"run": "just test"
 	},
 	"runScriptMode": "nonconcurrent"
 }

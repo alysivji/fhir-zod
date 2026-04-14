@@ -1,0 +1,38 @@
+{
+  "resourceType" : "Requirements",
+  "id" : "example2",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Requirements</b><a name=\"example2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Requirements &quot;example2&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/Requirements/example2</code></p><p><b>identifier</b>: id:\u00a0urn:oid:2.16.840.1.113883.4.642.18.2</p><p><b>name</b>: ExampleRequirements2</p><p><b>title</b>: Example Requirements Set 2</p><p><b>status</b>: active</p><p><b>date</b>: 2021-11-02T14:31:30.239Z</p><p><b>description</b>: Example Requirements Set 2</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/Requirements/example2\">http://hl7.org/fhir/Requirements/example2</a></p><p><b>actor</b>: <a href=\"http://hl7.org/fhir/ActorDefinition/server\">http://hl7.org/fhir/ActorDefinition/server</a></p><blockquote><p><b>statement</b></p><p><b>key</b>: 44595579-fa13-42a5-bd24-0515cde96963</p><p><b>label</b>: requirement-B1</p><p><b>conformance</b>: SHOULD</p><p><b>requirement</b>: Operations based on the SNOMED-CT should use the current version within 24 hours of each release</p><p><b>source</b>: <span>: Lloyd Mackenzie</span></p></blockquote><blockquote><p><b>statement</b></p><p><b>key</b>: 46f77dcd-d51e-4738-b61f-22506d0cb0ac</p><p><b>label</b>: requirement-2/a</p><p><b>conformance</b>: SHALL</p><p><b>requirement</b>: ValueSet expansion and validation SHALL have the same result whether or not underlying CodeSystem resources have relationships represented explicitly as properties or implicitly using the CodeSystem resource hierarchy</p><p><b>source</b>: <span>: Robert Hausam</span></p></blockquote></div>"
+  },
+  "url" : "http://hl7.org/fhir/Requirements/example2",
+  "identifier" : [{
+    "system" : "urn:ietf:rfc:3986",
+    "value" : "urn:oid:2.16.840.1.113883.4.642.18.2"
+  }],
+  "name" : "ExampleRequirements2",
+  "title" : "Example Requirements Set 2",
+  "status" : "active",
+  "date" : "2021-11-02T14:31:30.239Z",
+  "description" : "Example Requirements Set 2",
+  "derivedFrom" : ["http://hl7.org/fhir/Requirements/example2"],
+  "actor" : ["http://hl7.org/fhir/ActorDefinition/server"],
+  "statement" : [{
+    "key" : "44595579-fa13-42a5-bd24-0515cde96963",
+    "label" : "requirement-B1",
+    "conformance" : ["SHOULD"],
+    "requirement" : "Operations based on the SNOMED-CT should use the current version within 24 hours of each release",
+    "source" : [{
+      "display" : "Lloyd Mackenzie"
+    }]
+  },
+  {
+    "key" : "46f77dcd-d51e-4738-b61f-22506d0cb0ac",
+    "label" : "requirement-2/a",
+    "conformance" : ["SHALL"],
+    "requirement" : "ValueSet expansion and validation SHALL have the same result whether or not underlying CodeSystem resources have relationships represented explicitly as properties or implicitly using the CodeSystem resource hierarchy",
+    "source" : [{
+      "display" : "Robert Hausam"
+    }]
+  }]
+}

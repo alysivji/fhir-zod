@@ -1,0 +1,17 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-udi4",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-udi4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-udi4&quot; </p></div><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td><td><b>CarrierHRF</b></td></tr><tr><td>*</td><td>A4599XQZ990T0474</td><td><a href=\"http://hl7.org/fhir/NamingSystem/iccbba-blood\">http://hl7.org/fhir/NamingSystem/iccbba-blood</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td><td>=)1TE123456A&amp;)RZ12345678</td></tr></table><p><b>status</b>: inactive</p><p><b>manufacturer</b>: GlobalMed, Inc</p><p><b>lotNumber</b>: RZ12345678</p></div>"
+  },
+  "udiCarrier" : [{
+    "deviceIdentifier" : "A4599XQZ990T0474",
+    "issuer" : "http://hl7.org/fhir/NamingSystem/iccbba-blood",
+    "jurisdiction" : "http://hl7.org/fhir/NamingSystem/fda-udi",
+    "carrierHRF" : "=)1TE123456A&)RZ12345678"
+  }],
+  "status" : "inactive",
+  "manufacturer" : "GlobalMed, Inc",
+  "lotNumber" : "RZ12345678"
+}

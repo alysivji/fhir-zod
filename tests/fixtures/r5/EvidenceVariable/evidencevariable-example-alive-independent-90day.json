@@ -1,0 +1,66 @@
+{
+  "resourceType" : "EvidenceVariable",
+  "id" : "example-alive-independent-90day",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>\n        &quot;Alive and not functionally dependent at 90 days&quot; is an outcome used in expressing what an Evidence is about.\n      </p>\n\t\n    </div>"
+  },
+  "name" : "AliveAndNotFunctionallyDependentAt90Days",
+  "title" : "Alive and not functionally dependent at 90 days",
+  "status" : "draft",
+  "description" : "Alive and not functionally dependent at 90 days",
+  "actual" : false,
+  "characteristic" : [{
+    "description" : "not functionally dependent at 90 days",
+    "exclude" : true,
+    "definitionCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "718705001",
+        "display" : "Functionally dependent (finding)"
+      }]
+    },
+    "timeFromEvent" : [{
+      "eventCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/evidence-variable-event",
+          "code" : "study-start",
+          "display" : "Study Start"
+        }]
+      },
+      "quantity" : {
+        "value" : 90,
+        "unit" : "day",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "d"
+      }
+    }]
+  },
+  {
+    "description" : "alive at 90 days",
+    "exclude" : true,
+    "definitionCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "419099009",
+        "display" : "Dead (finding)"
+      }]
+    },
+    "timeFromEvent" : [{
+      "eventCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/evidence-variable-event",
+          "code" : "study-start",
+          "display" : "Study Start"
+        }]
+      },
+      "quantity" : {
+        "value" : 90,
+        "unit" : "day",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "d"
+      }
+    }]
+  }],
+  "handling" : "dichotomous"
+}

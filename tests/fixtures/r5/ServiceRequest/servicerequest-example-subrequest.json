@@ -1,0 +1,54 @@
+{
+  "resourceType" : "ServiceRequest",
+  "id" : "subrequest",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"subrequest\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;subrequest&quot; </p></div><p><b>basedOn</b>: <span title=\" \t&lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/bodysitecode&quot;&gt;\n\t\t&lt;valueCodeableConcept&gt;\n\t\t\t&lt;coding&gt;\n\t\t\t\t&lt;system value=&quot;http://snomed.info/sct&quot;/&gt;\n\t\t\t\t&lt;code value=&quot;51185008&quot;/&gt;\n\t\t\t\t&lt;display value=&quot;Thoracic structure&quot;/&gt;\n\t\t\t&lt;/coding&gt;\n\t\t&lt;/valueCodeableConcept&gt;\n&lt;/extension&gt;\n\t \"><span>: Original Request</span></span></p><p><b>replaces</b>: <span>: Previous allergy test</span></p><p><b>requisition</b>: id:\u00a0A13848392</p><p><b>status</b>: active</p><p><b>intent</b>: instance-order</p><p><b>priority</b>: routine</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Peanut IgG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#35542-0)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-dicom.html\">Patient/dicom</a> &quot; MINT_TEST&quot;</p><p><b>occurrence</b>: 2013-05-08T09:33:27+07:00</p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr. Adam Careful</a> &quot;Adam CAREFUL&quot;</p><p><b>performerType</b>: Nurse <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated] &quot;Qualified nurse&quot;)</span></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Check for Peanut Allergy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>bodySite</b>: Right arm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated])</span></p></div>"
+  },
+  "basedOn" : [{
+    "display" : "Original Request"
+  }],
+  "replaces" : [{
+    "display" : "Previous allergy test"
+  }],
+  "requisition" : {
+    "value" : "A13848392"
+  },
+  "status" : "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "35542-0"
+      }],
+      "text" : "Peanut IgG"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/dicom"
+  },
+  "occurrenceDateTime" : "2013-05-08T09:33:27+07:00",
+  "requester" : {
+    "reference" : "Practitioner/example",
+    "display" : "Dr. Adam Careful"
+  },
+  "performerType" : {
+    "coding" : [{
+      "display" : "Qualified nurse"
+    }],
+    "text" : "Nurse"
+  },
+  "reason" : [{
+    "concept" : {
+      "text" : "Check for Peanut Allergy"
+    }
+  }],
+  "bodySite" : [{
+    "coding" : [{
+      "display" : "Right arm"
+    }],
+    "text" : "Right arm"
+  }]
+}

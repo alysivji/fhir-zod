@@ -1,0 +1,78 @@
+{
+  "resourceType" : "EvidenceVariable",
+  "id" : "example-fatal-ICH-in-7-days",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>\n        &quot;Fatal Intracranial Hemorrhage Within Seven Days&quot; is an outcome used in expressing what an Evidence is about.\n      </p>\n\t\n    </div>"
+  },
+  "name" : "FatalIntracranialHemorrhageWithinSevenDays",
+  "title" : "Fatal Intracranial Hemorrhage Within Seven Days",
+  "status" : "draft",
+  "description" : "Fatal Intracranial Hemorrhage Within Seven Days",
+  "note" : [{
+    "text" : "Death must be due to intracranial hemorrhage"
+  }],
+  "actual" : true,
+  "characteristic" : [{
+    "description" : "intracranial hemorrhage within 7 days",
+    "definitionCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "1386000",
+        "display" : "Intracranial hemorrhage (disorder)"
+      }]
+    },
+    "timeFromEvent" : [{
+      "description" : "within 7 days",
+      "eventCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/evidence-variable-event",
+          "code" : "study-start",
+          "display" : "Study Start"
+        }]
+      },
+      "range" : {
+        "low" : {
+          "value" : 0,
+          "unit" : "day",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "d"
+        },
+        "high" : {
+          "value" : 7,
+          "unit" : "day",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "d"
+        }
+      }
+    }]
+  },
+  {
+    "description" : "death within 7 days",
+    "definitionCodeableConcept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "419620001",
+        "display" : "Death (event)"
+      }]
+    },
+    "timeFromEvent" : [{
+      "description" : "within 7 days",
+      "range" : {
+        "low" : {
+          "value" : 0,
+          "unit" : "day",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "d"
+        },
+        "high" : {
+          "value" : 7,
+          "unit" : "day",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "d"
+        }
+      }
+    }]
+  }],
+  "handling" : "dichotomous"
+}

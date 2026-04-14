@@ -1,0 +1,53 @@
+{
+  "resourceType" : "PackagedProductDefinition",
+  "id" : "package-with-liquid-and-syringe",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: PackagedProductDefinition</b><a name=\"package-with-liquid-and-syringe\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource PackagedProductDefinition &quot;package-with-liquid-and-syringe&quot; </p></div><p><b>packageFor</b>: <span title=\"  the product for which this is one available package type (possibly one package type of several for this product)  \"><a href=\"broken-link.html\">MedicinalProductDefinition/ProductThatHasThisPackType</a></span></p><blockquote><p><b>packaging</b></p><blockquote><p><b>containedItem</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"liquidItem\"> </a><blockquote><p/><p><a name=\"liquidItem\"> </a></p><p><b>status</b>: active</p><p><b>manufacturedDoseForm</b>: solution for injection <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (doseform#solution for injection)</span></p></blockquote></td></tr></table><p><b>amount</b>: 20 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><blockquote><p><b>containedItem</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"syringeDevice\"> </a><blockquote><p/><p><a name=\"syringeDevice\"> </a></p><h3>Classifications</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td></tr><tr><td>*</td><td>syringe <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote></td></tr></table></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "DeviceDefinition",
+    "id" : "syringeDevice",
+    "classification" : [{
+      "type" : {
+        "text" : "syringe"
+      }
+    }]
+  },
+  {
+    "resourceType" : "ManufacturedItemDefinition",
+    "id" : "liquidItem",
+    "status" : "active",
+    "manufacturedDoseForm" : {
+      "coding" : [{
+        "system" : "http://example.org.uk/fhir/doseform",
+        "code" : "solution for injection"
+      }]
+    }
+  }],
+  "packageFor" : [{
+    "reference" : "MedicinalProductDefinition/ProductThatHasThisPackType"
+  }],
+  "packaging" : {
+    "containedItem" : [{
+      "item" : {
+        "reference" : {
+          "reference" : "#liquidItem"
+        }
+      },
+      "amount" : {
+        "value" : 20,
+        "unit" : "ml",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mL"
+      }
+    },
+    {
+      "item" : {
+        "reference" : {
+          "reference" : "#syringeDevice"
+        }
+      }
+    }]
+  }
+}

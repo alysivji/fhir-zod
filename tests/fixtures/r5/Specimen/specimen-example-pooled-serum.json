@@ -1,0 +1,38 @@
+{
+  "resourceType" : "Specimen",
+  "id" : "pooled-serum",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"pooled-serum\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;pooled-serum&quot; </p></div><p><b>accessionIdentifier</b>: <span title=\"   the accessionId assigned by the lab \">id:\u00a020171120-1234</span></p><p><b>type</b>: <span title=\"  Pooled serum sample from 30 individuals in the herd- no Snomed Code for this - used a made up local code \">Pooled serum sample <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (vdl#Serum sample, pooled &quot;Serum sample, pooled&quot;)</span></span></p><p><b>subject</b>: <span title=\"  subject is a herd of breeding sows  \"><a href=\"group-example-herd1.html\">Group/herd1</a> &quot;Breeding herd&quot;</span></p><p><b>combined</b>: pooled</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><span>: James Herriot, FRCVS</span></td><td>2017-11-14</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-red-top-vacutainer.html\">Device/device-example-specimen-container-red-top-vacutainer</a></td></tr></table><p><b>note</b>: Pooled serum sample from 30 individuals</p></div>"
+  },
+  "accessionIdentifier" : {
+    "system" : "https://vetmed.iastate.edu/vdl",
+    "value" : "20171120-1234"
+  },
+  "type" : {
+    "coding" : [{
+      "system" : "https://vetmed.iastate.edu/vdl",
+      "code" : "Serum sample, pooled",
+      "display" : "Serum sample, pooled"
+    }],
+    "text" : "Pooled serum sample"
+  },
+  "subject" : {
+    "reference" : "Group/herd1"
+  },
+  "combined" : "pooled",
+  "collection" : {
+    "collector" : {
+      "display" : "James Herriot, FRCVS"
+    },
+    "collectedDateTime" : "2017-11-14"
+  },
+  "container" : [{
+    "device" : {
+      "reference" : "Device/device-example-specimen-container-red-top-vacutainer"
+    }
+  }],
+  "note" : [{
+    "text" : "Pooled serum sample from 30 individuals"
+  }]
+}

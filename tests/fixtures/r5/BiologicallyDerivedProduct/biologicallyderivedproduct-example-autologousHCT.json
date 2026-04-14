@@ -1,0 +1,101 @@
+{
+  "resourceType" : "BiologicallyDerivedProduct",
+  "id" : "autologousHCT",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: BiologicallyDerivedProduct</b><a name=\"autologousHCT\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource BiologicallyDerivedProduct &quot;autologousHCT&quot; </p></div><p><b>productCategory</b>: <span title=\"  &lt;text&gt;\n    &lt;status value=&quot;generated&quot; /&gt;\n    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[Put rendering here]&lt;/div&gt;\n  &lt;/text&gt;  \">cells (Details: [not stated] code cells = 'cells', stated as 'null')</span></p><p><b>productCode</b>: S1128 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#S1128)</span></p><p><b>request</b>: <a href=\"broken-link.html\">BiologicallyDerivedProduct/HCTcollection-servicerequest: Service Request for HCT Collection</a></p><p><b>identifier</b>: id:\u00a0PL001499Z549917123456 A00T041600320171231</p><p><b>biologicalSourceEvent</b>: id:\u00a0W000022000687</p><p><b>processingFacility</b>: <a href=\"broken-link.html\">Organization/Example</a></p><p><b>division</b>: A00000</p><p><b>productStatus</b>: available (Details: [not stated] code available = 'available', stated as 'null')</p><p><b>expirationDate</b>: 2028-08-02T23:59:00-05:00</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Source</b></td></tr><tr><td>*</td><td><a href=\"broken-link.html\">Patient/example-a: HCT Collection</a></td></tr></table><p><b>storageTempRequirements</b>: ?--120</p><blockquote><p><b>property</b></p><p><b>type</b>: ABORhD <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#ABORhD)</span></p><p><b>value</b>: A RhD Positive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ABORhD#62)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: CollectionType <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#CollectionType)</span></p><p><b>value</b>: For Autologous Use Only <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (CollectionType#1)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: BagVolume <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#BagVolume)</span></p><p><b>value</b>: 50 mL</p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: 74838-4 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#74838-4)</span></p><p><b>value</b>: 2.6 10*6/mL</p></blockquote></div>"
+  },
+  "productCategory" : {
+    "code" : "cells"
+  },
+  "productCode" : {
+    "coding" : [{
+      "code" : "S1128"
+    }]
+  },
+  "request" : [{
+    "reference" : "BiologicallyDerivedProduct/HCTcollection-servicerequest",
+    "display" : "Service Request for HCT Collection"
+  }],
+  "identifier" : [{
+    "system" : "https://www.isbt128.org/uri/SingleEuropeanCode",
+    "value" : "PL001499Z549917123456 A00T041600320171231"
+  }],
+  "biologicalSourceEvent" : {
+    "system" : "https://www.isbt128.org/uri/DonationIdentificationNumber",
+    "value" : "W000022000687"
+  },
+  "processingFacility" : [{
+    "reference" : "Organization/Example"
+  }],
+  "division" : "A00000",
+  "productStatus" : {
+    "code" : "available"
+  },
+  "expirationDate" : "2028-08-02T23:59:00-05:00",
+  "collection" : {
+    "source" : {
+      "reference" : "Patient/example-a",
+      "display" : "HCT Collection"
+    }
+  },
+  "storageTempRequirements" : {
+    "high" : {
+      "value" : -120,
+      "unit" : "degrees C",
+      "system" : "http://unitsofmeasure.org"
+    }
+  },
+  "property" : [{
+    "type" : {
+      "coding" : [{
+        "code" : "ABORhD"
+      }]
+    },
+    "valueCodeableConcept" : {
+      "coding" : [{
+        "system" : "https://www.isbt128.org/uri/ABORhD",
+        "code" : "62",
+        "display" : "A RhD Positive"
+      }]
+    }
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "code" : "CollectionType"
+      }]
+    },
+    "valueCodeableConcept" : {
+      "coding" : [{
+        "system" : "https://www.isbt128.org/uri/CollectionType",
+        "code" : "1",
+        "display" : "For Autologous Use Only"
+      }]
+    }
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "code" : "BagVolume"
+      }]
+    },
+    "valueQuantity" : {
+      "value" : 50,
+      "unit" : "mL",
+      "system" : "http://unitsofmeasure.org"
+    }
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "code" : "74838-4"
+      }]
+    },
+    "valueQuantity" : {
+      "value" : 2.6,
+      "unit" : "10*6/mL",
+      "system" : "https://ucum.org/"
+    }
+  }]
+}

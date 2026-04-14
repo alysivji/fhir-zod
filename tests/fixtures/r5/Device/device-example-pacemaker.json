@@ -1,0 +1,29 @@
+{
+  "resourceType" : "Device",
+  "id" : "example-pacemaker",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-pacemaker\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-pacemaker&quot; </p></div><p><b>identifier</b>: id:\u00a01234-5678-90AB-CDEF</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>lotNumber</b>: 1234-5678</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>PM/Octane 2014</td><td>user-friendly-name</td></tr></table><p><b>type</b>: Performance pace maker for high octane patients <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (devices#octane2014)</span></p><p><b>contact</b>: <span title=\"  &lt;association&gt;\n\t  &lt;status&gt; \n\t     &lt;coding&gt;\n\t\t   &lt;system value=&quot;http://terminology.hl7.org/CodeSystem/device-associationstatus&quot; /&gt;\n           &lt;code value=&quot;attached&quot;/&gt;\n\t\t &lt;/coding&gt;\n\t  &lt;/status&gt;\n      &lt;humanSubject&gt;\n\t\t&lt;reference value=&quot;Patient/example&quot;/&gt;\n\t  &lt;/humanSubject&gt;\n\t&lt;/association&gt;  \">ph: ext 4352</span></p></div>"
+  },
+  "identifier" : [{
+    "system" : "http://acme.com/devices/pacemakers/octane/serial",
+    "value" : "1234-5678-90AB-CDEF"
+  }],
+  "manufacturer" : "Acme Devices, Inc",
+  "lotNumber" : "1234-5678",
+  "name" : [{
+    "value" : "PM/Octane 2014",
+    "type" : "user-friendly-name"
+  }],
+  "type" : [{
+    "coding" : [{
+      "system" : "http://acme.com/devices",
+      "code" : "octane2014",
+      "display" : "Performance pace maker for high octane patients"
+    }]
+  }],
+  "contact" : [{
+    "system" : "phone",
+    "value" : "ext 4352"
+  }]
+}

@@ -1,0 +1,113 @@
+{
+  "resourceType" : "MeasureReport",
+  "id" : "general-example-of-report",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MeasureReport</b><a name=\"general-example-of-report\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MeasureReport &quot;general-example-of-report&quot; </p></div><p><b>status</b>: complete</p><p><b>type</b>: individual</p><p><b>measure</b>: <a href=\"http://ohie.org/Measure/hiv-indicators\">http://ohie.org/Measure/hiv-indicators</a></p><p><b>subject</b>: <a name=\"patient-new\"> </a></p><blockquote><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Duck Donald (OFFICIAL)</b> male, DoB: 1976-05-17</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Detail:</td><td colspan=\"3\">1234 Main Street DC 20001 USA (HOME)</td></tr></table></blockquote><p><b>period</b>: 2018-01-01 --&gt; 2018-12-31</p><blockquote><p><b>group</b></p><p><b>code</b>: QRPH_ADX_ART5_N <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#QRPH_ADX_ART5_N)</span></p><p><b>measureScore</b>: 1</p><blockquote><p><b>stratifier</b></p><p><b>code</b>: AGE_GROUP:SEX <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#AGE_GROUP:SEX)</span></p><blockquote><p><b>stratum</b></p><p><b>value</b>: P0Y--P20Y:F <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#P0Y--P20Y:F)</span></p><p><b>measureScore</b>: 0</p></blockquote><blockquote><p><b>stratum</b></p><p><b>value</b>: P0Y--P20Y:M <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#P0Y--P20Y:M)</span></p><p><b>measureScore</b>: 0</p></blockquote><blockquote><p><b>stratum</b></p><p><b>value</b>: P20Y--P40Y:F <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#P20Y--P40Y:F)</span></p><p><b>measureScore</b>: 0</p></blockquote><blockquote><p><b>stratum</b></p><p><b>value</b>: P20Y--P40Y:M <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#P20Y--P40Y:M)</span></p><p><b>measureScore</b>: 0</p></blockquote><blockquote><p><b>stratum</b></p><p><b>value</b>: P40Y--P65Y:F <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#P40Y--P65Y:F)</span></p><p><b>measureScore</b>: 0</p></blockquote><blockquote><p><b>stratum</b></p><p><b>value</b>: P40Y--P65Y:M <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#P40Y--P65Y:M)</span></p><p><b>measureScore</b>: 1</p></blockquote></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Patient",
+    "id" : "patient-new",
+    "name" : [{
+      "use" : "official",
+      "family" : "Donald",
+      "given" : ["Duck"]
+    }],
+    "gender" : "male",
+    "birthDate" : "1976-05-17",
+    "address" : [{
+      "use" : "home",
+      "line" : ["1234 Main Street"],
+      "city" : "DC",
+      "postalCode" : "20001",
+      "country" : "USA"
+    }]
+  }],
+  "status" : "complete",
+  "type" : "individual",
+  "measure" : "http://ohie.org/Measure/hiv-indicators",
+  "subject" : {
+    "reference" : "#patient-new"
+  },
+  "period" : {
+    "start" : "2018-01-01",
+    "end" : "2018-12-31"
+  },
+  "group" : [{
+    "code" : {
+      "coding" : [{
+        "code" : "QRPH_ADX_ART5_N"
+      }]
+    },
+    "measureScoreQuantity" : {
+      "value" : 1
+    },
+    "stratifier" : [{
+      "code" : {
+        "coding" : [{
+          "code" : "AGE_GROUP:SEX"
+        }]
+      },
+      "stratum" : [{
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "code" : "P0Y--P20Y:F"
+          }]
+        },
+        "measureScoreQuantity" : {
+          "value" : 0
+        }
+      },
+      {
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "code" : "P0Y--P20Y:M"
+          }]
+        },
+        "measureScoreQuantity" : {
+          "value" : 0
+        }
+      },
+      {
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "code" : "P20Y--P40Y:F"
+          }]
+        },
+        "measureScoreQuantity" : {
+          "value" : 0
+        }
+      },
+      {
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "code" : "P20Y--P40Y:M"
+          }]
+        },
+        "measureScoreQuantity" : {
+          "value" : 0
+        }
+      },
+      {
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "code" : "P40Y--P65Y:F"
+          }]
+        },
+        "measureScoreQuantity" : {
+          "value" : 0
+        }
+      },
+      {
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "code" : "P40Y--P65Y:M"
+          }]
+        },
+        "measureScoreQuantity" : {
+          "value" : 1
+        }
+      }]
+    }]
+  }]
+}

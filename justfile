@@ -1,0 +1,51 @@
+[private]
+default:
+    @just --list
+
+# Show available commands
+help:
+    @just --list
+
+# Install project dependencies
+install:
+    npm install
+
+# Build the library
+build:
+    npm run build
+
+# Run the test suite
+test:
+    npm test
+
+# Run tests with coverage
+coverage:
+    npm run coverage
+
+# Run Biome linter
+lint:
+    npm run lint
+
+# Format files with Biome
+format:
+    npm run format
+
+# Run Biome checks
+check:
+    npm run check
+
+# Download pinned FHIR spec inputs into .local
+fetch-spec:
+    npm run fetch-spec
+
+# Run the generator entrypoint
+generate:
+    npm run generate
+
+# List concrete R4 resources and final generation targets
+list-r4-targets:
+    npm run list:r4-targets
+
+# List concrete R5 resources and final generation targets
+list-r5-targets:
+    npm run list:r5-targets

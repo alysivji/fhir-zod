@@ -1,0 +1,69 @@
+{
+  "resourceType" : "DeviceRequest",
+  "id" : "insulinpump",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: DeviceRequest</b><a name=\"insulinpump\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource DeviceRequest &quot;insulinpump&quot; </p></div><p><b>identifier</b>: <span title=\" \t&lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/bodysitecode&quot;&gt;\n  &lt;valueCodeableConcept&gt;\n    &lt;coding&gt;\n      &lt;system value=&quot;http://snomed.info/sct&quot;/&gt;\n      &lt;code value=&quot;51185008&quot;/&gt;\n      &lt;display value=&quot;Thoracic structure&quot;/&gt;\n    &lt;/coding&gt;\n  &lt;/valueCodeableConcept&gt;\n&lt;/extension&gt;\t \">id:\u00a0ip_request1.1</span></p><p><b>instantiatesCanonical</b>: <a href=\"http://motivemi.com/artifacts/PlanDefinition/low-suicide-risk-order-set\">http://motivemi.com/artifacts/PlanDefinition/low-suicide-risk-order-set</a></p><p><b>basedOn</b>: <span>: Homecare - DM follow-up</span></p><p><b>replaces</b>: <span>: CGM ambulatory</span></p><p><b>groupIdentifier</b>: id:\u00a0ip_request1</p><p><b>status</b>: active</p><p><b>intent</b>: instance-order</p><p><b>priority</b>: routine</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Insulin delivery device panel <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#43148-6)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-dicom.html\">Patient/dicom</a> &quot; MINT_TEST&quot;</p><p><b>encounter</b>: <span>: Encounter 1</span></p><p><b>occurrence</b>: 2013-05-08T09:33:27+07:00</p><p><b>authoredOn</b>: 2013-05-08T09:33:27+07:00</p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr. Adam Careful</a> &quot;Adam CAREFUL&quot;</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span>: Nurse Rossignol</span></td></tr></table><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td><td><b>Reference</b></td></tr><tr><td>*</td><td>gastroparesis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td> </td></tr><tr><td>*</td><td> </td><td><span>: Gastroparesis</span></td></tr></table><p><b>supportingInfo</b>: <span>: Previous results</span></p><p><b>note</b>: this is the right device brand and model</p><p><b>relevantHistory</b>: <span>: Request for unspecified device</span></p></div>"
+  },
+  "identifier" : [{
+    "value" : "ip_request1.1"
+  }],
+  "instantiatesCanonical" : ["http://motivemi.com/artifacts/PlanDefinition/low-suicide-risk-order-set"],
+  "basedOn" : [{
+    "display" : "Homecare - DM follow-up"
+  }],
+  "replaces" : [{
+    "display" : "CGM ambulatory"
+  }],
+  "groupIdentifier" : {
+    "value" : "ip_request1"
+  },
+  "status" : "active",
+  "intent" : "instance-order",
+  "priority" : "routine",
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://loinc.org",
+        "code" : "43148-6"
+      }],
+      "text" : "Insulin delivery device panel"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/dicom"
+  },
+  "encounter" : {
+    "display" : "Encounter 1"
+  },
+  "occurrenceDateTime" : "2013-05-08T09:33:27+07:00",
+  "authoredOn" : "2013-05-08T09:33:27+07:00",
+  "requester" : {
+    "reference" : "Practitioner/example",
+    "display" : "Dr. Adam Careful"
+  },
+  "performer" : {
+    "reference" : {
+      "display" : "Nurse Rossignol"
+    }
+  },
+  "reason" : [{
+    "concept" : {
+      "text" : "gastroparesis"
+    }
+  },
+  {
+    "reference" : {
+      "display" : "Gastroparesis"
+    }
+  }],
+  "supportingInfo" : [{
+    "display" : "Previous results"
+  }],
+  "note" : [{
+    "text" : "this is the right device brand and model"
+  }],
+  "relevantHistory" : [{
+    "display" : "Request for unspecified device"
+  }]
+}

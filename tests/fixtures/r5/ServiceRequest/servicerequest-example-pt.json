@@ -1,0 +1,52 @@
+{
+  "resourceType" : "ServiceRequest",
+  "id" : "physical-therapy",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"physical-therapy\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;physical-therapy&quot; </p></div><p><b>status</b>: <span title=\"  insert contents here  \">completed</span></p><p><b>intent</b>: order</p><p><b>category</b>: Evaluation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#386053000 &quot;Evaluation procedure (procedure)&quot;)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Assessment of passive range of motion <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#710830005 &quot;Assessment of passive range of motion (procedure)&quot;)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>occurrence</b>: 2016-09-27</p><p><b>authoredOn</b>: 2016-09-20</p><p><b>requester</b>: <span>: Ollie Ortho, MD</span></p><p><b>performer</b>: <span>: Paul Therapist, PT</span></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>assessment of mobility limitations due to osteoarthritis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>bodySite</b>: Both knees <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#36701003 &quot;Both knees (body structure)&quot;)</span></p></div>"
+  },
+  "status" : "completed",
+  "intent" : "order",
+  "category" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "386053000",
+      "display" : "Evaluation procedure (procedure)"
+    }],
+    "text" : "Evaluation"
+  }],
+  "code" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "710830005",
+        "display" : "Assessment of passive range of motion (procedure)"
+      }],
+      "text" : "Assessment of passive range of motion"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/example"
+  },
+  "occurrenceDateTime" : "2016-09-27",
+  "authoredOn" : "2016-09-20",
+  "requester" : {
+    "display" : "Ollie Ortho, MD"
+  },
+  "performer" : [{
+    "display" : "Paul Therapist, PT"
+  }],
+  "reason" : [{
+    "concept" : {
+      "text" : "assessment of mobility limitations due to osteoarthritis"
+    }
+  }],
+  "bodySite" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "36701003",
+      "display" : "Both knees (body structure)"
+    }],
+    "text" : "Both knees"
+  }]
+}

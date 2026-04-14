@@ -78,14 +78,15 @@ npm install
 Common commands:
 
 ```bash
-make help
-make build
-make check
-make coverage
-make fetch-spec
-make test
-make generate
-make list-r4-targets
+just help
+just build
+just check
+just coverage
+just fetch-spec
+just test
+just generate
+just list-r4-targets
+just list-r5-targets
 ```
 
 Equivalent npm scripts:
@@ -101,6 +102,7 @@ npm run coverage
 npm test
 npm run generate
 npm run list:r4-targets -- --summary
+npm run list:r5-targets -- --summary
 ```
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
@@ -132,6 +134,50 @@ npm run fetch-spec
 
 before running the full generator-oriented test suite with `npm test`.
 
+### Official example fixtures
+
+Official HL7 example fixtures are refreshed with:
+
+```bash
+npm run fetch-examples
+```
+
+The fetcher defaults to R4 resources. It also supports R5 resources after the
+R5 spec package has been fetched:
+
+```bash
+npm run fetch-spec -- r5
+npm run fetch-examples -- r5 --delay-ms 1500
+```
+
+The HL7 site may rate-limit or require human verification during automation.
+Use `--delay-ms` for long refreshes, and rerun the resume command printed by
+the script if fetching stops partway through.
+
+To refresh a single R5 resource:
+
+```bash
+npm run fetch-examples -- r5 Patient --force --delay-ms 1500
+```
+
+Known official-example mismatches are tracked in:
+
+- `tests/r4-example-expected-failures.ts`
+- `tests/r5-example-expected-failures.ts`
+
+Each known mismatch appears in two places in the test output:
+
+- the version-specific official-example suite still runs the fixture under
+  Vitest's `it.fails`, so an unexpected pass fails the suite and signals that
+  the expected-failure entry should be removed or re-investigated
+- `tests/official-example-expected-failures.test.ts` adds one skipped tracking
+  test per known mismatch, so unresolved investigation debt remains visible in
+  the overall `npm test` summary
+
+Do not replace these entries with plain `it.skip` in the official-example
+validation suites; that would stop executing the known-bad fixtures and hide
+unexpected passes.
+
 ## Pre-release
 
 This repository is still pre-release.
@@ -143,9 +189,9 @@ There are no customers and no compatibility promises yet. Breaking changes are a
 - package shape
 - long-term maintainability
 
-## Inspecting R4 Targets
+## Inspecting Generation Targets
 
-Use the R4 target listing script to inspect which `StructureDefinition` entries are:
+Use the target listing scripts to inspect which `StructureDefinition` entries are:
 
 - core canonical resources
 - profile-like resource definitions
@@ -159,6 +205,8 @@ npm run list:r4-targets -- --summary
 npm run list:r4-targets -- --category core-resource --names-only
 npm run list:r4-targets -- --category profile-resource --names-only
 npm run list:r4-targets -- --category generation-target --names-only
+npm run list:r5-targets -- --summary
+npm run list:r5-targets -- --category core-resource --names-only
 ```
 
 Supported categories:
@@ -179,8 +227,9 @@ Supported output modes:
 Current generation policy:
 
 - `npm run generate` emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
+- `npm run generate -- r5` emits all canonical R5 core resources plus the abstract base whitelist and required dependencies
 - profile-resource definitions are intentionally excluded from generation for now
-- `profile-resource` entries are deferred because some pinned R4 profile names are not unique enough for the current name-based file emission strategy
+- `profile-resource` entries are deferred because some pinned profile names are not unique enough for the current name-based file emission strategy
 
 ## Design Principles
 

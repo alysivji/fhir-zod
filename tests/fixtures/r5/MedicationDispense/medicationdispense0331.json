@@ -1,0 +1,86 @@
+{
+  "resourceType" : "MedicationDispense",
+  "id" : "meddisp0331",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationDispense</b><a name=\"meddisp0331\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationDispense &quot;meddisp0331&quot; </p></div><p><b>status</b>: in-progress</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0352\"> </a></span><blockquote><p/><p><a name=\"med0352\"> </a></p><p><b>code</b>: Coumadin 2mg tablet <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#0056-0170-70)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f006-rvdb.html\">Practitioner/f006</a> &quot;Rob VAN DEN BERK&quot;</td></tr></table><p><b>authorizingPrescription</b>: <a href=\"medicationrequest0331.html\">MedicationRequest/medrx0331</a></p><p><b>type</b>: Daily Fill <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#DF)</span></p><p><b>quantity</b>: 1(unit 415818006 from http://snomed.info/sct)<span style=\"background: LightGoldenRodYellow\"> (Details: SNOMED CT code 415818006 = 'Vial')</span></p><p><b>daysSupply</b>: 1 Day<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></p><p><b>whenPrepared</b>: 2015-01-15T10:20:00Z</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 7mg (=one 5mg tablet PLUS one 2mg tablet) once daily</p><p><b>additionalInstruction</b>: Take along with one 2mg Coumadin tablet for a total daily dose of 7mg as prescribed by physician <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>timing</b>: Once per 1 days</p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Medication",
+    "id" : "med0352",
+    "code" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/sid/ndc",
+        "code" : "0056-0170-70",
+        "display" : "Coumadin 2mg tablet"
+      }]
+    }
+  }],
+  "status" : "in-progress",
+  "medication" : {
+    "reference" : {
+      "reference" : "#med0352",
+      "display" : "Coumadin 2mg tablet"
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "performer" : [{
+    "actor" : {
+      "reference" : "Practitioner/f006"
+    }
+  }],
+  "authorizingPrescription" : [{
+    "reference" : "MedicationRequest/medrx0331"
+  }],
+  "type" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code" : "DF",
+      "display" : "Daily Fill"
+    }]
+  },
+  "quantity" : {
+    "value" : 1,
+    "system" : "http://snomed.info/sct",
+    "code" : "415818006"
+  },
+  "daysSupply" : {
+    "value" : 1,
+    "unit" : "Day",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "d"
+  },
+  "whenPrepared" : "2015-01-15T10:20:00Z",
+  "dosageInstruction" : [{
+    "sequence" : 1,
+    "text" : "7mg (=one 5mg tablet PLUS one 2mg tablet) once daily",
+    "additionalInstruction" : [{
+      "text" : "Take along with one 2mg Coumadin tablet for a total daily dose of 7mg as prescribed by physician"
+    }],
+    "timing" : {
+      "repeat" : {
+        "frequency" : 1,
+        "period" : 1,
+        "periodUnit" : "d"
+      }
+    },
+    "doseAndRate" : [{
+      "type" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+          "code" : "ordered",
+          "display" : "Ordered"
+        }]
+      },
+      "doseQuantity" : {
+        "value" : 2,
+        "unit" : "mg",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mg"
+      }
+    }]
+  }]
+}

@@ -1,0 +1,34 @@
+{
+  "resourceType" : "MedicationStatement",
+  "id" : "example005",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationStatement</b><a name=\"example005\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationStatement &quot;example005&quot; </p></div><p><b>status</b>: entered-in-error</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Amoxicillin (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#27658006)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f203-20130311.html\">Encounter/f203</a></p><p><b>effective</b>: 2014-01-23</p><p><b>dateAsserted</b>: 2015-02-22</p><p><b>informationSource</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>note</b>: Patient indicated that they thought it was Amoxicillin they were taking but it was really Erythromycin</p></div>"
+  },
+  "status" : "entered-in-error",
+  "medication" : {
+    "concept" : {
+      "coding" : [{
+        "system" : "http://snomed.info/sct",
+        "code" : "27658006",
+        "display" : "Amoxicillin (product)"
+      }]
+    }
+  },
+  "subject" : {
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  },
+  "encounter" : {
+    "reference" : "Encounter/f203"
+  },
+  "effectiveDateTime" : "2014-01-23",
+  "dateAsserted" : "2015-02-22",
+  "informationSource" : [{
+    "reference" : "Patient/pat1",
+    "display" : "Donald Duck"
+  }],
+  "note" : [{
+    "text" : "Patient indicated that they thought it was Amoxicillin they were taking but it was really Erythromycin"
+  }]
+}

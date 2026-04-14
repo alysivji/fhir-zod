@@ -1,0 +1,82 @@
+{
+  "resourceType" : "Questionnaire",
+  "id" : "example-practitioner-info",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Questionnaire</b><a name=\"example-practitioner-info\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Questionnaire &quot;example-practitioner-info&quot; </p></div><p><b>status</b>: draft</p><blockquote><p><b>item</b></p><p><b>linkId</b>: core-props</p><p><b>type</b>: group</p><p><b>repeats</b>: false</p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>LinkId</b></td><td><b>Definition</b></td><td><b>Text</b></td><td><b>Type</b></td><td><b>Repeats</b></td></tr><tr><td>*</td><td>Practitioner.active</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Active</td><td>boolean</td><td> </td></tr><tr><td>*</td><td>Practitioner.gender</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Gender</td><td>coding</td><td> </td></tr><tr><td>*</td><td>Practitioner.birthDate</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Birth Date</td><td>date</td><td> </td></tr><tr><td>*</td><td>Practitioner.name.text</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Name</td><td>string</td><td> </td></tr><tr><td>*</td><td>Practitioner.address.line</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Address</td><td>string</td><td>true</td></tr><tr><td>*</td><td>Practitioner.address.postalCode</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Post Code</td><td>string</td><td> </td></tr></table></blockquote><blockquote><p><b>item</b></p><p><b>linkId</b>: Practitioner.qualification</p><p><b>definition</b>: <a href=\"practitioner.html\">Practitioner</a></p><p><b>text</b>: Qualifications</p><p><b>type</b>: group</p><p><b>repeats</b>: true</p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>LinkId</b></td><td><b>Definition</b></td><td><b>Text</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>Practitioner.qualification.code.coding.code</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Code</td><td>string</td></tr><tr><td>*</td><td>Practitioner.qualification.code.coding.display</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Display</td><td>string</td></tr><tr><td>*</td><td>Practitioner.qualification.period.end</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Completion Year</td><td>dateTime</td></tr><tr><td>*</td><td>Practitioner.qualification.issuer.display</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Issued by</td><td>string</td></tr></table></blockquote></div>"
+  },
+  "status" : "draft",
+  "item" : [{
+    "linkId" : "core-props",
+    "type" : "group",
+    "repeats" : false,
+    "item" : [{
+      "linkId" : "Practitioner.active",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.active",
+      "text" : "Active",
+      "type" : "boolean"
+    },
+    {
+      "linkId" : "Practitioner.gender",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.gender",
+      "text" : "Gender",
+      "type" : "coding"
+    },
+    {
+      "linkId" : "Practitioner.birthDate",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.birthDate",
+      "text" : "Birth Date",
+      "type" : "date"
+    },
+    {
+      "linkId" : "Practitioner.name.text",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.name.text",
+      "text" : "Name",
+      "type" : "string"
+    },
+    {
+      "linkId" : "Practitioner.address.line",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.address.line",
+      "text" : "Address",
+      "type" : "string",
+      "repeats" : true
+    },
+    {
+      "linkId" : "Practitioner.address.postalCode",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.address.postalCode",
+      "text" : "Post Code",
+      "type" : "string"
+    }]
+  },
+  {
+    "linkId" : "Practitioner.qualification",
+    "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification",
+    "text" : "Qualifications",
+    "type" : "group",
+    "repeats" : true,
+    "item" : [{
+      "linkId" : "Practitioner.qualification.code.coding.code",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.code.coding.code",
+      "text" : "Code",
+      "type" : "string"
+    },
+    {
+      "linkId" : "Practitioner.qualification.code.coding.display",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.code.coding.display",
+      "text" : "Display",
+      "type" : "string"
+    },
+    {
+      "linkId" : "Practitioner.qualification.period.end",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.period.end",
+      "text" : "Completion Year",
+      "type" : "dateTime"
+    },
+    {
+      "linkId" : "Practitioner.qualification.issuer.display",
+      "definition" : "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.issuer.display",
+      "text" : "Issued by",
+      "type" : "string"
+    }]
+  }]
+}

@@ -45,10 +45,8 @@ Track the work needed to align the repository with the current README.
 ## Spec Inputs
 
 - [x] Decide how official HL7 artifacts will be stored under `src/spec`
-- [ ] Add initial raw FHIR spec files for STU3
-- [ ] Add initial raw FHIR spec files for R4
-- [ ] Add initial raw FHIR spec files for R4B
-- [ ] Add initial raw FHIR spec files for R5
+- [x] Store pinned official HL7 package metadata in version manifests instead of committing raw extracted spec files
+- [x] Fetch extracted upstream package contents into `.local/spec-cache/<version>/package` on demand
 - [x] Document expected spec file layout
 
 ## Generator
@@ -73,7 +71,7 @@ Track the work needed to align the repository with the current README.
 - [ ] Generate first real STU3 schema set
 - [x] Generate first real R4 schema set
 - [ ] Generate first real R4B schema set
-- [ ] Generate first real R5 schema set
+- [x] Generate first real R5 schema set
 - [x] Export generated schemas by version without mixing versions
 - [x] Keep generated schemas Zod-first with no wrapper layer
 - [x] Add a short-term workaround for generated schemas that exceed TypeScript's serialized inferred type limit
@@ -83,16 +81,24 @@ Track the work needed to align the repository with the current README.
   generated R4 exports `Patient` as the public TS model and `PatientSchema` as the runtime validator.
   Follow-up:
   extend the same public surface pattern to additional generated versions.
-- [ ] Decide the public model strategy for generated declarations in additional versions
-  Open choice:
-  prefer interfaces for object-like FHIR definitions where possible, but use type aliases where unions or recursive composition make that cleaner.
+- [x] Decide the public model strategy for generated declarations in additional versions
+  Current state:
+  generated R4 and R5 output use named TypeScript models for the public surface
+  and separate `*Schema` exports for runtime validation. Object-like FHIR
+  definitions prefer interfaces, with type aliases retained where unions or
+  recursive composition make that cleaner.
 - [x] Teach the generator to emit named TypeScript models for generated R4 definitions
   Current state:
   generated R4 declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
   Follow-up:
   carry the same emission strategy into additional generated versions.
 - [x] Rename generated R4 schema exports to `*Schema` alongside the separate public model layer
-- [ ] Preserve spec-defined inheritance relationships in both generated TS models and schema exports for each generated version independently
+- [x] Preserve spec-defined inheritance relationships in generated TS models and schema exports where runtime initialization is safe
+  Current state:
+  generated R4 and R5 output preserve base relationships such as `Resource`
+  extending `Base`, `DomainResource` extending `Resource`, and concrete
+  resources extending their spec-defined base types when those relationships can
+  be emitted without triggering cyclic ESM initialization failures.
 - [ ] Audit inheritance/codegen gaps for abstract schemas and cyclic dependencies
   Current state: safe cases now emit `Base.extend({...})` for abstract types such as `Resource`, `DomainResource`, and some concrete resources.
   Current shortfall: definitions that participate in dependency cycles still fall back to flattened one-shot schemas to avoid ESM initialization failures.
@@ -104,22 +110,52 @@ Track the work needed to align the repository with the current README.
 - [x] Add tests for rejecting invalid structures
 - [x] Add tests for required field enforcement
 - [x] Add tests for choice field constraints
-- [ ] Add version-specific test coverage
+- [x] Add version-specific test coverage
 - [x] Add tests for generator determinism
 - [x] Fail clearly or skip intentionally when extracted spec cache is missing
 - [x] Add a schema test that rejects unknown top-level Patient fields
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 - [x] Add R4 target-inventory regression tests
+- [x] Add R5 target-inventory regression tests
 - [x] Add generic official-example tests for generated R4 fixtures
+- [x] Download broader official R5 example fixtures
+  Current state:
+  R5 target discovery exists, committed R5 official example fixtures are
+  checked in under `tests/fixtures/r5/`, and the generic R5 official-example
+  suite validates them with known mismatches tracked as expected failures.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
-- [ ] Investigate the four skipped official R4 examples that violate emitted base reference-target constraints
-  Current skips:
+- [ ] Investigate official example expected failures that violate emitted structural constraints
+  Current handling:
+  expected-failure fixtures still execute in the R4/R5 official-example suites
+  via Vitest `it.fails`, and each entry is also surfaced as a skipped tracking
+  test in `tests/official-example-expected-failures.test.ts` so the unresolved
+  investigation debt remains visible in `npm test` summaries.
+  Resolved R5 generator issue:
+  R5 `ResourceType` enum failures in `GraphDefinition`, `OperationDefinition`,
+  and `SearchParameter` were caused by the generator not following imported
+  ValueSets such as `version-independent-all-resource-types -> all-resource-types`.
+  That is fixed by recursive ValueSet import resolution; those fixtures now pass
+  and are no longer expected failures.
+  Current R4 expected failures:
   `DeviceMetric/devicemetric-example.json`
   `DeviceUseStatement/deviceusestatement-example.json`
   `MedicationRequest/medicationrequest0301.json`
   `Observation/observation-example-clinical-gender.json`
+  Current R5 expected failures:
+  `BiologicallyDerivedProduct/biologicallyderivedproduct-example-allogeneicHCT.json`
+  `BiologicallyDerivedProduct/biologicallyderivedproduct-example-autologousHCT.json`
+  `DocumentReference/documentreference-example-xray.json`
+  `Encounter/encounter-example.json`
+  `QuestionnaireResponse/questionnaireresponse-example-f201-lifelines.json`
+  `Transport/transport-example.json`
+  Current R5 classification:
+  the remaining R5 expected failures match the pinned base StructureDefinition
+  constraints emitted by the generator. They appear to be official-example/base
+  spec mismatches or validation-scope decisions, not known generator bugs.
   Follow-up:
-  trace each example back to the pinned R4 StructureDefinitions and decide whether the mismatch is a spec/example inconsistency, a generator extraction bug, or an intentional compatibility gap.
+  trace each example back to the pinned StructureDefinitions and decide whether
+  the mismatch is a spec/example inconsistency, a generator extraction bug, or
+  an intentional compatibility gap.
 
 ## Documentation
 
@@ -143,7 +179,7 @@ Track the work needed to align the repository with the current README.
 
 ## Reference Follow-Up
 
-- [ ] Reuse the shared reference-target runtime validation in additional generated versions beyond R4
+- [x] Reuse the shared reference-target runtime validation in additional generated versions beyond R4
 - [ ] Add direct unit tests for `src/shared/fhir-reference-validation.ts`
 - [ ] Decide whether constrained reference validation should surface richer errors for internal references when the containing `contained` resources are available
 - [ ] Document the supported FHIR reference forms and current ambiguity behavior in the README or generator docs

@@ -1,0 +1,28 @@
+{
+  "resourceType" : "Device",
+  "id" : "ihe-pcd",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"ihe-pcd\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;ihe-pcd&quot; </p></div><p><b>identifier</b>: Serial Number:\u00a0AMID-123-456</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>lotNumber</b>: 12345</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>Acme Patient Monitor</td><td>user-friendly-name</td></tr></table><p><b>modelNumber</b>: A.1.1</p><p><b>type</b>: Vital Signs Monitor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></div>"
+  },
+  "identifier" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+        "code" : "SNO"
+      }],
+      "text" : "Serial Number"
+    },
+    "value" : "AMID-123-456"
+  }],
+  "manufacturer" : "Acme Devices, Inc",
+  "lotNumber" : "12345",
+  "name" : [{
+    "value" : "Acme Patient Monitor",
+    "type" : "user-friendly-name"
+  }],
+  "modelNumber" : "A.1.1",
+  "type" : [{
+    "text" : "Vital Signs Monitor"
+  }]
+}

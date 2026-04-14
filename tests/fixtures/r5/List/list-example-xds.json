@@ -1,0 +1,58 @@
+{
+  "resourceType" : "List",
+  "id" : "example-xds",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>Physical</h2><table class=\"clstu\"><tr><td>Date: 26 Dec 2004, 3:50:50 pmMode: workingStatus: currentCode: History and Physical</td></tr><tr><td>Subject: <a href=\"patient-example-xcda.html\">Patient/xcda</a> &quot;Henry LEVIN&quot;Source: (null)</td></tr></table><table class=\"grid\"><tr style=\"backgound-color: #eeeeee\"><td><b>Items</b></td></tr><tr><td><a href=\"documentreference-example.html\">DocumentReference/example</a></td></tr></table></div>"
+  },
+  "contained" : [{
+    "resourceType" : "Practitioner",
+    "id" : "a1",
+    "name" : [{
+      "family" : "Dopplemeyer",
+      "given" : ["Sherry"]
+    }],
+    "telecom" : [{
+      "system" : "email",
+      "value" : "john.doe@healthcare.example.org"
+    }]
+  }],
+  "identifier" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://ihe.net/fhir/CodeSystem/identifier-type",
+        "code" : "master"
+      }]
+    },
+    "system" : "http://example.org/documents",
+    "value" : "23425234234-2346"
+  },
+  {
+    "type" : {
+      "coding" : [{
+        "system" : "http://ihe.net/fhir/CodeSystem/identifier-type",
+        "code" : "set"
+      }]
+    },
+    "system" : "http://example.org/documents",
+    "value" : "23425234234-2347"
+  }],
+  "status" : "current",
+  "mode" : "working",
+  "title" : "Physical",
+  "code" : {
+    "text" : "History and Physical"
+  },
+  "subject" : [{
+    "reference" : "Patient/xcda"
+  }],
+  "date" : "2004-12-25T23:50:50-05:00",
+  "source" : {
+    "reference" : "#a1"
+  },
+  "entry" : [{
+    "item" : {
+      "reference" : "DocumentReference/example"
+    }
+  }]
+}

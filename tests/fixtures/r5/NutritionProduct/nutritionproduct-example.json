@@ -1,0 +1,27 @@
+{
+  "resourceType" : "NutritionProduct",
+  "id" : "example",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>"
+  },
+  "code" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "227507002"
+    }]
+  },
+  "status" : "active",
+  "category" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "227313005"
+    }]
+  }],
+  "instance" : [{
+    "identifier" : [{
+      "system" : "http://example.org/foodserials",
+      "value" : "77239487"
+    }]
+  }]
+}

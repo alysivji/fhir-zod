@@ -1,0 +1,27 @@
+{
+  "resourceType" : "Provenance",
+  "id" : "example2",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Provenance</b><a name=\"example2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Provenance &quot;example2&quot; </p></div><p><b>target</b>: <span title=\"  \n    Got the patient's nickname from his partner\n   \"><a href=\"patient-example-c.html\">Patient/pat3/_history/1</a> &quot;Simon NOTSOWELL&quot;(#n2)</span></p><p><b>recorded</b>: 8 Dec 2021, 4:54:24 pm</p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>informant <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ParticipationType.html\">ParticipationType</a>#INF)</span></td><td><a href=\"relatedperson-example-f001-sarah.html\">RelatedPerson/f001</a> &quot;Sarah ABELS&quot;</td></tr></table></div>"
+  },
+  "target" : [{
+    "extension" : [{
+      "url" : "http://hl7.org/fhir/StructureDefinition/targetElement",
+      "valueUri" : "n2"
+    }],
+    "reference" : "Patient/pat3/_history/1"
+  }],
+  "recorded" : "2021-12-08T16:54:24+11:00",
+  "agent" : [{
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+        "code" : "INF"
+      }]
+    },
+    "who" : {
+      "reference" : "RelatedPerson/f001"
+    }
+  }]
+}

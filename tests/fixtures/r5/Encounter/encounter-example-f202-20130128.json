@@ -1,0 +1,87 @@
+{
+  "resourceType" : "Encounter",
+  "id" : "f202",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"f202\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;f202&quot; </p></div><p><b>identifier</b>: id:\u00a0Encounter_Roel_20130128\u00a0(use:\u00a0TEMP)</p><p><b>status</b>: completed</p><p><b>class</b>: <span title=\" Encounter has finished \">ambulatory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#AMB)</span></span></p><p><b>priority</b>: Urgent <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#103391001)</span></p><p><b>type</b>: Chemotherapy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#367336001)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>serviceProvider</b>: <a href=\"organization-example-f201-aumc.html\">Organization/f201</a> &quot;Artis University Medical Center (AUMC)&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</td></tr></table><h3>Lengths</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>56</td><td>minutes</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>min</td></tr></table><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The patient is treated for a tumor. <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p><b>diagnosis</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Complications from Roel's TPF chemotherapy on January 28th, 2013 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>use</b>: Admission diagnosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diagnosis-role.html\">Diagnosis Role</a>#AD)</span></p></blockquote><blockquote><p><b>diagnosis</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The patient is treated for a tumor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>use</b>: Chief complaint <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diagnosis-role.html\">Diagnosis Role</a>#CC)</span></p></blockquote></div>"
+  },
+  "identifier" : [{
+    "use" : "temp",
+    "value" : "Encounter_Roel_20130128"
+  }],
+  "status" : "completed",
+  "class" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code" : "AMB",
+      "display" : "ambulatory"
+    }]
+  }],
+  "priority" : {
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "103391001",
+      "display" : "Urgent"
+    }]
+  },
+  "type" : [{
+    "coding" : [{
+      "system" : "http://snomed.info/sct",
+      "code" : "367336001",
+      "display" : "Chemotherapy"
+    }]
+  }],
+  "subject" : {
+    "reference" : "Patient/f201",
+    "display" : "Roel"
+  },
+  "serviceProvider" : {
+    "reference" : "Organization/f201"
+  },
+  "participant" : [{
+    "actor" : {
+      "reference" : "Practitioner/f201"
+    }
+  }],
+  "length" : {
+    "value" : 56,
+    "unit" : "minutes",
+    "system" : "http://unitsofmeasure.org",
+    "code" : "min"
+  },
+  "reason" : [{
+    "value" : [{
+      "concept" : {
+        "text" : "The patient is treated for a tumor."
+      }
+    }]
+  }],
+  "diagnosis" : [{
+    "condition" : [{
+      "concept" : {
+        "text" : "Complications from Roel's TPF chemotherapy on January 28th, 2013"
+      }
+    }],
+    "use" : [{
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+        "code" : "AD",
+        "display" : "Admission diagnosis"
+      }]
+    }]
+  },
+  {
+    "condition" : [{
+      "concept" : {
+        "text" : "The patient is treated for a tumor"
+      }
+    }],
+    "use" : [{
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+        "code" : "CC",
+        "display" : "Chief complaint"
+      }]
+    }]
+  }]
+}
