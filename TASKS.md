@@ -127,6 +127,12 @@ Track the work needed to align the repository with the current README.
   via Vitest `it.fails`, and each entry is also surfaced as a skipped tracking
   test in `tests/official-example-expected-failures.test.ts` so the unresolved
   investigation debt remains visible in `npm test` summaries.
+  Resolved R5 generator issue:
+  R5 `ResourceType` enum failures in `GraphDefinition`, `OperationDefinition`,
+  and `SearchParameter` were caused by the generator not following imported
+  ValueSets such as `version-independent-all-resource-types -> all-resource-types`.
+  That is fixed by recursive ValueSet import resolution; those fixtures now pass
+  and are no longer expected failures.
   Current R4 expected failures:
   `DeviceMetric/devicemetric-example.json`
   `DeviceUseStatement/deviceusestatement-example.json`
@@ -139,6 +145,10 @@ Track the work needed to align the repository with the current README.
   `Encounter/encounter-example.json`
   `QuestionnaireResponse/questionnaireresponse-example-f201-lifelines.json`
   `Transport/transport-example.json`
+  Current R5 classification:
+  the remaining R5 expected failures match the pinned base StructureDefinition
+  constraints emitted by the generator. They appear to be official-example/base
+  spec mismatches or validation-scope decisions, not known generator bugs.
   Follow-up:
   trace each example back to the pinned StructureDefinitions and decide whether
   the mismatch is a spec/example inconsistency, a generator extraction bug, or
