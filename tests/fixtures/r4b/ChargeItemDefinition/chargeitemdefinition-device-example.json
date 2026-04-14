@@ -1,0 +1,72 @@
+{
+  "resourceType" : "ChargeItemDefinition",
+  "id" : "device",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;device&quot; </p></div><p><b>url</b>: <code>http://sap.org/ChargeItemDefinition/device-123</code></p><p><b>status</b>: active</p><p><b>description</b>: Financial details for  custom made device</p><p><b>instance</b>: <a href=\"todo.html\">Device/12345</a></p><h3>Applicabilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>Verify ChargeItem pertains to Device 12345</td><td>text/fhirpath</td><td>%context.service.suppliedItem='Device/12345'</td></tr></table><blockquote><p><b>propertyGroup</b></p><blockquote><p><b>priceComponent</b></p><p><b>type</b>: base</p><p><b>code</b>: Verkaufspreis (netto) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (billing-attributes#VK)</span></p></blockquote></blockquote><blockquote><p><b>propertyGroup</b></p><h3>Applicabilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>Gültigkeit Steuersatz</td><td>text/fhirpath</td><td>%context.occurenceDateTime &gt; '2018-04-01'</td></tr></table><h3>PriceComponents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Code</b></td><td><b>Factor</b></td></tr><tr><td>*</td><td>tax</td><td>Mehrwersteuersatz <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (billing-attributes#MWST)</span></td><td>1.19</td></tr></table></blockquote><blockquote><p><b>propertyGroup</b></p><h3>Applicabilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>Gültigkeit Steuersatz</td><td>text/fhirpath</td><td>%context.occurenceDateTime &lt;= '2018-04-01'</td></tr></table><h3>PriceComponents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Code</b></td><td><b>Factor</b></td></tr><tr><td>*</td><td>tax</td><td>Mehrwersteuersatz <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (billing-attributes#MWST)</span></td><td>1.07</td></tr></table></blockquote></div>"
+  },
+  "url" : "http://sap.org/ChargeItemDefinition/device-123",
+  "status" : "active",
+  "experimental" : true,
+  "description" : "Financial details for  custom made device",
+  "instance" : [{
+    "reference" : "Device/12345"
+  }],
+  "applicability" : [{
+    "description" : "Verify ChargeItem pertains to Device 12345",
+    "language" : "text/fhirpath",
+    "expression" : "%context.service.suppliedItem='Device/12345'"
+  }],
+  "propertyGroup" : [{
+    "priceComponent" : [{
+      "type" : "base",
+      "code" : {
+        "coding" : [{
+          "system" : "http://fhir.de/CodeSystem/billing-attributes",
+          "code" : "VK",
+          "display" : "Verkaufspreis (netto)"
+        }]
+      },
+      "amount" : {
+        "value" : 67.44,
+        "currency" : "EUR"
+      }
+    }]
+  },
+  {
+    "applicability" : [{
+      "description" : "Gültigkeit Steuersatz",
+      "language" : "text/fhirpath",
+      "expression" : "%context.occurenceDateTime > '2018-04-01'"
+    }],
+    "priceComponent" : [{
+      "type" : "tax",
+      "code" : {
+        "coding" : [{
+          "system" : "http://fhir.de/CodeSystem/billing-attributes",
+          "code" : "MWST",
+          "display" : "Mehrwersteuersatz"
+        }]
+      },
+      "factor" : 1.19
+    }]
+  },
+  {
+    "applicability" : [{
+      "description" : "Gültigkeit Steuersatz",
+      "language" : "text/fhirpath",
+      "expression" : "%context.occurenceDateTime <= '2018-04-01'"
+    }],
+    "priceComponent" : [{
+      "type" : "tax",
+      "code" : {
+        "coding" : [{
+          "system" : "http://fhir.de/CodeSystem/billing-attributes",
+          "code" : "MWST",
+          "display" : "Mehrwersteuersatz"
+        }]
+      },
+      "factor" : 1.07
+    }]
+  }]
+}

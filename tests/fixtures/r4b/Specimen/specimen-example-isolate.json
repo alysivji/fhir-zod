@@ -1,0 +1,88 @@
+{
+  "resourceType": "Specimen",
+  "id": "isolate",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;isolate&quot; </p></div><p><b>accessionIdentifier</b>: id: X352356-ISO1</p><p><b>status</b>: available</p><p><b>type</b>: Bacterial isolate specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#429951000124103)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>receivedTime</b>: 2015-08-18T07:03:00Z</p><p><b>parent</b>: <a name=\"stool\"> </a></p><blockquote><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;stool&quot; </p></div><p><b>accessionIdentifier</b>: id: X352356</p><p><b>status</b>: unavailable</p><p><b>type</b>: Stool specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119339001)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>receivedTime</b>: 2015-08-16T07:03:00Z</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td><td><b>Method</b></td></tr><tr><td>*</td><td><span>: Patient</span></td><td>2011-08-16T06:15:00Z</td><td>Line, Venous <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v2-0488.html\">specimenCollectionMethod</a>#LNV)</span></td></tr></table></blockquote><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td><td><b>Method</b></td></tr><tr><td>*</td><td><a href=\"practitioner-f202.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T07:03:00Z</td><td>Plates, Blood Agar <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v2-0488.html\">specimenCollectionMethod</a>#BAP)</span></td></tr></table><p><b>note</b>: Patient dropped off specimen</p></div>"
+  },
+  "contained": [
+    {
+      "resourceType": "Specimen",
+      "id": "stool",
+      "accessionIdentifier": {
+        "system": "http://lab.acme.org/specimens/2015",
+        "value": "X352356"
+      },
+      "status": "unavailable",
+      "type": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "119339001",
+            "display": "Stool specimen"
+          }
+        ]
+      },
+      "subject": {
+        "reference": "Patient/example"
+      },
+      "receivedTime": "2015-08-16T07:03:00Z",
+      "collection": {
+        "collector": {
+          "display": "Patient"
+        },
+        "collectedDateTime": "2011-08-16T06:15:00Z",
+        "method": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0488",
+              "code": "LNV"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "accessionIdentifier": {
+    "system": "http://lab.acme.org/specimens/2011",
+    "value": "X352356-ISO1"
+  },
+  "status": "available",
+  "type": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "429951000124103",
+        "display": "Bacterial isolate specimen"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "receivedTime": "2015-08-18T07:03:00Z",
+  "parent": [
+    {
+      "reference": "#stool"
+    }
+  ],
+  "collection": {
+    "collector": {
+      "reference": "Practitioner/f202"
+    },
+    "collectedDateTime": "2015-08-16T07:03:00Z",
+    "method": {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v2-0488",
+          "code": "BAP"
+        }
+      ]
+    }
+  },
+  "note": [
+    {
+      "text": "Patient dropped off specimen"
+    }
+  ]
+}

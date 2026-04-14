@@ -1,0 +1,54 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "vent",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;vent&quot; </p></div><p><b>status</b>: completed</p><p><b>intent</b>: order</p><p><b>code</b>: Mechanical Ventilation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#40617009 &quot;Artificial respiration (procedure)&quot;)</span></p><p><b>orderDetail</b>: IPPB <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#243144002 &quot;Patient triggered inspiratory assistance (procedure)&quot;)</span>,  Initial Settings : Sens: -1 cm H20 Pressure 15 cm H2O moderate flow:  Monitor VS every 15 minutes x 4 at the start of mechanical ventilation, then routine for unit OR every 5 hr <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>authoredOn</b>: 2018-02-20</p><p><b>requester</b>: <a href=\"practitioner-3ad0687e-f477-468c-afd5-fcc2bf897809.html\">Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809: Dr. Beverly Crusher</a></p><p><b>performer</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Cecil Surgeon</a> &quot;Adam CAREFUL&quot;</p><p><b>reasonCode</b>: chronic obstructive lung disease (COLD) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></div>"
+  },
+  "status": "completed",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "40617009",
+        "display": "Artificial respiration (procedure)"
+      }
+    ],
+    "text": "Mechanical Ventilation"
+  },
+  "orderDetail": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "243144002",
+          "display": "Patient triggered inspiratory assistance (procedure)"
+        }
+      ],
+      "text": "IPPB"
+    },
+    {
+      "text": " Initial Settings : Sens: -1 cm H20 Pressure 15 cm H2O moderate flow:  Monitor VS every 15 minutes x 4 at the start of mechanical ventilation, then routine for unit OR every 5 hr"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "authoredOn": "2018-02-20",
+  "requester": {
+    "reference": "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809",
+    "display": "Dr. Beverly Crusher"
+  },
+  "performer": [
+    {
+      "reference": "Practitioner/example",
+      "display": "Dr Cecil Surgeon"
+    }
+  ],
+  "reasonCode": [
+    {
+      "text": "chronic obstructive lung disease (COLD)"
+    }
+  ]
+}

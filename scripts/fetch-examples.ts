@@ -40,6 +40,7 @@ const forceRefresh = hasFlag("--force");
 const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
 const limit = parseNumberFlag("--limit");
 const requestedResources = selectResourceNames(resourceArgs);
+const fetchMaxBufferBytes = 64 * 1024 * 1024;
 
 let requestCount = 0;
 
@@ -130,6 +131,7 @@ function fetchText(url: string): string {
 	return execFileSync("curl", ["-L", "-sS", url], {
 		cwd: repoRoot,
 		encoding: "utf8",
+		maxBuffer: fetchMaxBufferBytes,
 	});
 }
 

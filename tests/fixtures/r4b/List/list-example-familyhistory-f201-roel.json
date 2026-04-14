@@ -1,0 +1,115 @@
+{
+  "resourceType": "List",
+  "id": "f201",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table class=\"clstu\"><tr><td>Mode: snapshotStatus: currentCode: History of family member diseases</td></tr><tr><td>Subject: <a href=\"patient-f201.html\">Patient/f201: Roel</a> &quot;Roel&quot;</td></tr></table><table class=\"grid\"><tr style=\"backgound-color: #eeeeee\"><td><b>Items</b></td></tr><tr><td><a href=\"#fmh-1\">#fmh-1</a></td></tr><tr><td><a href=\"#fmh-2\">#fmh-2</a></td></tr></table></div>"
+  },
+  "contained": [
+    {
+      "resourceType": "FamilyMemberHistory",
+      "id": "fmh-1",
+      "status": "completed",
+      "patient": {
+        "reference": "Patient/f201",
+        "display": "Roel"
+      },
+      "relationship": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "72705000",
+            "display": "Mother"
+          }
+        ]
+      },
+      "deceasedBoolean": false,
+      "condition": [
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "39839004",
+                "display": "Diaphragmatic hernia"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "resourceType": "FamilyMemberHistory",
+      "id": "fmh-2",
+      "status": "completed",
+      "patient": {
+        "reference": "Patient/f201",
+        "display": "Roel"
+      },
+      "relationship": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "38048003",
+            "display": "Uncle"
+          }
+        ]
+      },
+      "deceasedBoolean": true,
+      "condition": [
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "115665000",
+                "display": "Atopy"
+              }
+            ]
+          },
+          "outcome": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "419099009",
+                "display": "Died"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "status": "current",
+  "mode": "snapshot",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "8670-2",
+        "display": "History of family member diseases"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/f201",
+    "display": "Roel"
+  },
+  "note": [
+    {
+      "text": "Both parents, both brothers and both children (twin) are still alive."
+    }
+  ],
+  "entry": [
+    {
+      "item": {
+        "reference": "#fmh-1"
+      }
+    },
+    {
+      "item": {
+        "reference": "#fmh-2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "resourceType": "BodyStructure",
+  "id": "skin-patch",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;skin-patch&quot; </p></div><p><b>identifier</b>: id: 12345</p><p><b>active</b>: false</p><p><b>morphology</b>: Skin patch <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>location</b>: Forearm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#14975008)</span></p><p><b>locationQualifier</b>: Left <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#419161000 &quot;Unilateral left&quot;)</span>, Volar <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#263929005)</span></p><p><b>description</b>: inner surface (volar) of the left forearm</p><p><b>patient</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p></div>"
+  },
+  "identifier": [
+    {
+      "system": "http://goodhealth.org/bodystructure/identifiers",
+      "value": "12345"
+    }
+  ],
+  "active": false,
+  "morphology": {
+    "text": "Skin patch"
+  },
+  "location": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "14975008",
+        "display": "Forearm"
+      }
+    ],
+    "text": "Forearm"
+  },
+  "locationQualifier": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "419161000",
+          "display": "Unilateral left"
+        }
+      ],
+      "text": "Left"
+    },
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "263929005",
+          "display": "Volar"
+        }
+      ],
+      "text": "Volar"
+    }
+  ],
+  "description": "inner surface (volar) of the left forearm",
+  "patient": {
+    "reference": "Patient/example"
+  }
+}
