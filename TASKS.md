@@ -110,16 +110,16 @@ Track the work needed to align the repository with the current README.
 - [x] Add a schema test that rejects unknown top-level Patient fields
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 - [x] Add R4 target-inventory regression tests
+- [x] Add R5 target-inventory regression tests
 - [x] Add generic official-example tests for generated R4 fixtures
-- [ ] Download broader official R5 example fixtures after R5 target discovery exists
+- [ ] Download broader official R5 example fixtures
   Current state:
-  `scripts/fetch-examples.ts` supports `npm run fetch-examples -- r5 Patient`
-  and committed R5 Patient fixtures are covered by tests.
+  R5 target discovery exists, `scripts/fetch-examples.ts` can select R5 core
+  resources from the pinned spec package, and committed R5 Patient fixtures are
+  covered by tests.
   Follow-up:
-  once R5 has a target inventory equivalent to R4, update the example fetch
-  script to use generated R5 target names instead of the temporary Patient-only
-  list, then refresh fixtures slowly with `--delay-ms` to avoid HL7 site rate
-  limits.
+  refresh fixtures slowly with `npm run fetch-examples -- r5 --delay-ms 1500`
+  to avoid HL7 site rate limits.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
 - [ ] Investigate the four skipped official R4 examples that violate emitted base reference-target constraints
   Current skips:

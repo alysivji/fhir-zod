@@ -16,7 +16,7 @@ export type GenerateR5Options = {
 
 export function generateR5(options: GenerateR5Options = {}): GenerationResult {
 	const structureDefinitionResult = buildStructureDefinitionR5Definitions(
-		options.scopeNames ?? ["Patient"],
+		options.scopeNames,
 	);
 	const outputDir = options.outputDir ?? resolve(repoRoot, "src", "r5");
 	const generatedAt = options.generatedAt ?? new Date().toISOString();

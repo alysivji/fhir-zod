@@ -102,6 +102,7 @@ npm run coverage
 npm test
 npm run generate
 npm run list:r4-targets -- --summary
+npm run list:r5-targets -- --summary
 ```
 
 Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
@@ -141,20 +142,23 @@ Official HL7 example fixtures are refreshed with:
 npm run fetch-examples
 ```
 
-The fetcher defaults to R4 resources. It also supports the current R5 Patient
-fixture set:
+The fetcher defaults to R4 resources. It also supports R5 resources after the
+R5 spec package has been fetched:
 
 ```bash
-npm run fetch-examples -- r5 Patient
+npm run fetch-spec -- r5
+npm run fetch-examples -- r5 --delay-ms 1500
 ```
 
 The HL7 site may rate-limit or require human verification during automation.
 Use `--delay-ms` for long refreshes, and rerun the resume command printed by
 the script if fetching stops partway through.
 
-Broader R5 fixture downloads should wait until R5 has target discovery matching
-the R4 target inventory. Until then, the R5 fetch path intentionally knows only
-`Patient`.
+To refresh a single R5 resource:
+
+```bash
+npm run fetch-examples -- r5 Patient --force --delay-ms 1500
+```
 
 ## Pre-release
 
@@ -167,9 +171,9 @@ There are no customers and no compatibility promises yet. Breaking changes are a
 - package shape
 - long-term maintainability
 
-## Inspecting R4 Targets
+## Inspecting Generation Targets
 
-Use the R4 target listing script to inspect which `StructureDefinition` entries are:
+Use the target listing scripts to inspect which `StructureDefinition` entries are:
 
 - core canonical resources
 - profile-like resource definitions
@@ -183,6 +187,8 @@ npm run list:r4-targets -- --summary
 npm run list:r4-targets -- --category core-resource --names-only
 npm run list:r4-targets -- --category profile-resource --names-only
 npm run list:r4-targets -- --category generation-target --names-only
+npm run list:r5-targets -- --summary
+npm run list:r5-targets -- --category core-resource --names-only
 ```
 
 Supported categories:
@@ -203,8 +209,9 @@ Supported output modes:
 Current generation policy:
 
 - `npm run generate` emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
+- `npm run generate -- r5` emits all canonical R5 core resources plus the abstract base whitelist and required dependencies
 - profile-resource definitions are intentionally excluded from generation for now
-- `profile-resource` entries are deferred because some pinned R4 profile names are not unique enough for the current name-based file emission strategy
+- `profile-resource` entries are deferred because some pinned profile names are not unique enough for the current name-based file emission strategy
 
 ## Design Principles
 

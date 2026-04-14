@@ -9,6 +9,7 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { listR4CoreResourceNames } from "../src/generator/targets/r4.ts";
+import { listR5CoreResourceNames } from "../src/generator/targets/r5.ts";
 
 type SupportedVersion = "r4" | "r5";
 
@@ -29,7 +30,7 @@ const resourceArgs = requestedVersion
 	: positionalArgs;
 const fixturesRoot = join(repoRoot, "tests", "fixtures", version);
 const knownResourceNames =
-	version === "r4" ? listR4CoreResourceNames() : ["Patient"];
+	version === "r4" ? listR4CoreResourceNames() : listR5CoreResourceNames();
 const forceRefresh = hasFlag("--force");
 const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
 const limit = parseNumberFlag("--limit");

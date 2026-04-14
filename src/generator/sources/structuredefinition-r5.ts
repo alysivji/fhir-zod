@@ -16,6 +16,7 @@ import {
 	normalizeTargetProfiles,
 	sortProperties,
 } from "../model.ts";
+import { listR5GenerationTargetNames } from "../targets/r5.ts";
 
 type StructureDefinition = {
 	abstract?: boolean;
@@ -135,7 +136,7 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 ]);
 
 export function buildStructureDefinitionR5Definitions(
-	scopeNames: Iterable<string> = ["Patient"],
+	scopeNames: Iterable<string> = listR5GenerationTargetNames(),
 ): StructureDefinitionBuildResult {
 	const packageRoot = resolveRequiredSpecPackageRoot("r5");
 	const index = loadStructureDefinitionIndex(packageRoot);
