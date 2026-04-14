@@ -45,10 +45,6 @@ export const r4bExampleExpectedFailures = new Map<string, string>([
 		"Official example references Evidence in characteristic.definitionReference, but the base R4B EvidenceVariable constraint allows only EvidenceVariable or Group.",
 	],
 	[
-		"Library/library-fhir-model-definition.json",
-		"Official example currently overflows the recursive generated Library validation graph.",
-	],
-	[
 		"Observation/observation-example-clinical-gender.json",
 		"Official example uses Encounter as performer, but the base R4B Observation performer targets exclude Encounter.",
 	],

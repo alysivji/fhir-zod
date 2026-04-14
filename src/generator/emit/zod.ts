@@ -1110,7 +1110,7 @@ function primitiveHelperName(type: string | null): string | null {
 	}
 }
 
-function primitiveHelper(type: string): (() => z.ZodString) | null {
+function primitiveHelper(type: string): (() => z.ZodType<string>) | null {
 	switch (type) {
 		case "base64Binary":
 			return fhirBase64Binary;

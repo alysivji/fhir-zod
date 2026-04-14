@@ -105,6 +105,7 @@ describe("FHIR primitives", () => {
 	describe("regex-backed string primitives", () => {
 		it("accepts valid values for shared string primitive helpers", () => {
 			expect(fhirBase64Binary().safeParse("Zm9v").success).toBe(true);
+			expect(fhirBase64Binary().safeParse("Zg==").success).toBe(true);
 			expect(
 				fhirCanonical().safeParse("http://example.com/ValueSet/foo").success,
 			).toBe(true);
@@ -121,6 +122,7 @@ describe("FHIR primitives", () => {
 
 		it("rejects invalid values for shared string primitive helpers", () => {
 			expect(fhirBase64Binary().safeParse("*").success).toBe(false);
+			expect(fhirBase64Binary().safeParse("Zm9v=").success).toBe(false);
 			expect(fhirCode().safeParse(" ").success).toBe(false);
 			expect(fhirOid().safeParse("1.2.840.10008").success).toBe(false);
 			expect(fhirString().safeParse("").success).toBe(false);
@@ -128,6 +130,12 @@ describe("FHIR primitives", () => {
 				fhirUuid().safeParse("urn:uuid:123E4567-E89B-12D3-A456-426614174000")
 					.success,
 			).toBe(false);
+		});
+
+		it("validates large base64Binary payloads without overflowing", () => {
+			const payload = "Zm9v".repeat(200_000);
+
+			expect(fhirBase64Binary().safeParse(payload).success).toBe(true);
 		});
 	});
 
