@@ -78,14 +78,15 @@ npm install
 Common commands:
 
 ```bash
-make help
-make build
-make check
-make coverage
-make fetch-spec
-make test
-make generate
-make list-r4-targets
+just help
+just build
+just check
+just coverage
+just fetch-spec
+just test
+just generate
+just list-r4-targets
+just list-r5-targets
 ```
 
 Equivalent npm scripts:
