@@ -36,7 +36,8 @@ export default defineConfig({
 	},
 	test: {
 		coverage: {
-			reporter: ["text", "lcov"],
+			include: ["src/**/*.ts", "scripts/**/*.ts", "tsdown.config.ts"],
+			reporter: ["text", "lcov", "json-summary"],
 		},
 		environment: "node",
 		outputFile: {

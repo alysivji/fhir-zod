@@ -1,5 +1,9 @@
 import { pathToFileURL } from "node:url";
-import type { FhirVersionId, TargetEntry } from "../src/generator/versions.ts";
+import type {
+	FhirRelease,
+	FhirVersionId,
+	TargetEntry,
+} from "../src/generator/versions.ts";
 import {
 	getFhirRelease,
 	supportedFhirVersions,
@@ -23,14 +27,24 @@ const categoryFilters = new Set<string>([
 	"profile-resource",
 ]);
 
-export function runListTargetsCli(defaultVersion?: FhirVersionId): void {
-	const args = process.argv.slice(2);
+export function runListTargetsCli(
+	defaultVersion?: FhirVersionId,
+	options: {
+		argv?: string[];
+		getRelease?: (version: string) => FhirRelease | null;
+		log?: (message: string) => void;
+	} = {},
+): void {
+	const args = options.argv ?? process.argv.slice(2);
+	const getRelease = options.getRelease ?? getFhirRelease;
+	const log = options.log ?? console.log;
 	const positionalArgs = collectPositionalArgs(args);
 	const firstArgVersion = positionalArgs[0]
-		? getFhirRelease(positionalArgs[0])
+		? getRelease(positionalArgs[0])
 		: null;
-	const version = firstArgVersion?.id ?? defaultVersion ?? "r4";
-	const release = getFhirRelease(version);
+	const version =
+		firstArgVersion?.id ?? positionalArgs[0] ?? defaultVersion ?? "r4";
+	const release = getRelease(version);
 
 	if (!release) {
 		throw new Error(
@@ -75,7 +89,7 @@ export function runListTargetsCli(defaultVersion?: FhirVersionId): void {
 	const filteredNames = filteredEntries.map((entry) => entry.name);
 
 	if (outputMode === "summary") {
-		console.log(
+		log(
 			JSON.stringify(
 				{
 					categoryFilter,
@@ -92,11 +106,11 @@ export function runListTargetsCli(defaultVersion?: FhirVersionId): void {
 	}
 
 	if (outputMode === "names") {
-		console.log(filteredNames.join("\n"));
+		log(filteredNames.join("\n"));
 		return;
 	}
 
-	console.log(
+	log(
 		JSON.stringify(
 			{
 				categoryFilter,

@@ -1,0 +1,421 @@
+import {
+	existsSync,
+	mkdirSync,
+	mkdtempSync,
+	readdirSync,
+	readFileSync,
+	rmSync,
+	writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+import {
+	assertNotHumanVerification,
+	collectPositionalArgs,
+	decodeHtmlEntities,
+	discoverJsonExamples,
+	normalizeTextFileContent,
+	parseFetchExamplesOptions,
+	parseNumberFlag,
+	runFetchExamplesCli,
+	selectResourceNames,
+} from "../scripts/fetch-examples.ts";
+import {
+	basenameFromUrl,
+	ensureJsonSchema,
+	ensurePackage,
+	type FetchSpecDependencies,
+	isPackageReady,
+	loadManifests,
+	runFetchSpecCli,
+	type SpecManifest,
+} from "../scripts/fetch-spec.ts";
+import { runGenerateCli } from "../scripts/generate.ts";
+import { runListTargetsCli } from "../scripts/list-targets.ts";
+import type { FhirRelease, TargetEntry } from "../src/generator/versions.ts";
+
+function manifest(overrides: Partial<SpecManifest> = {}): SpecManifest {
+	return {
+		fhirVersion: "4.0.1",
+		packageName: "hl7.fhir.r4.core",
+		packageRoot: ".local/spec-cache/r4/package",
+		packageVersion: "4.0.1",
+		sourceUrl: "https://example.test/package.tgz",
+		structureDefinitionGlob: "StructureDefinition-*.json",
+		...overrides,
+	};
+}
+
+function fakeRelease(id = "r4"): FhirRelease {
+	const entries: TargetEntry[] = [
+		{
+			abstract: true,
+			baseDefinition: null,
+			category: "abstract-whitelist",
+			kind: "complex-type",
+			name: "Element",
+			shouldGenerate: true,
+			type: "Element",
+			url: null,
+		},
+		{
+			abstract: false,
+			baseDefinition: null,
+			category: "core-resource",
+			kind: "resource",
+			name: "Patient",
+			shouldGenerate: true,
+			type: "Patient",
+			url: null,
+		},
+		{
+			abstract: false,
+			baseDefinition: null,
+			category: "profile-resource",
+			kind: "resource",
+			name: "ExampleProfile",
+			shouldGenerate: false,
+			type: "Patient",
+			url: null,
+		},
+		{
+			abstract: false,
+			baseDefinition: null,
+			category: "other",
+			kind: "complex-type",
+			name: "Address",
+			shouldGenerate: false,
+			type: "Address",
+			url: null,
+		},
+	];
+
+	return {
+		abstractTargetNames: ["Element"],
+		exampleResourcePageUrl: (resourceName: string) =>
+			`https://example.test/${id}/${resourceName.toLowerCase()}-examples.html`,
+		generate: () => ({ files: [`src/${id}/Patient.ts`] }),
+		id,
+		label: id.toUpperCase(),
+		listCoreResourceNames: () => ["Patient", "Observation"],
+		loadTargetEntries: () => entries,
+		nestedBackboneTypeCodes: ["Element"],
+		summarizeTargets: () => ({
+			abstractGenerationWhitelist: ["Element"],
+			concreteResourceCount: 2,
+			coreResourceCount: 1,
+			generationTargetCount: 2,
+			profileResourceCount: 1,
+		}),
+	} as unknown as FhirRelease;
+}
+
+describe("list-targets script", () => {
+	it("defaults to R4, supports wrappers, filters, and names-only output", () => {
+		const logs: string[] = [];
+		const getRelease = (version: string) =>
+			version === "r4" || version === "r4b" ? fakeRelease(version) : null;
+
+		runListTargetsCli(undefined, {
+			argv: ["--summary"],
+			getRelease,
+			log: (message) => logs.push(message),
+		});
+		expect(JSON.parse(logs.at(-1) ?? "{}")).toMatchObject({
+			outputMode: "summary",
+			version: "r4",
+		});
+
+		runListTargetsCli("r4b", {
+			argv: ["--names-only", "--category", "core-resource"],
+			getRelease,
+			log: (message) => logs.push(message),
+		});
+		expect(logs.at(-1)).toBe("Patient");
+
+		runListTargetsCli(undefined, {
+			argv: ["r4", "--category=not-real"],
+			getRelease,
+			log: (message) => logs.push(message),
+		});
+		expect(JSON.parse(logs.at(-1) ?? "{}")).toMatchObject({
+			categoryFilter: "all",
+			filteredCount: 4,
+		});
+	});
+
+	it("throws a clear error for unknown versions", () => {
+		expect(() =>
+			runListTargetsCli(undefined, {
+				argv: ["r6"],
+				getRelease: () => null,
+				log: () => undefined,
+			}),
+		).toThrow('Unknown target inventory version "r6"');
+	});
+});
+
+describe("fetch-spec script", () => {
+	it("selects R4 by default and explicit versions when requested", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-spec-"));
+		for (const version of ["r4", "r5"]) {
+			const specDir = join(repoRoot, "src", "spec", version);
+			mkdirSync(specDir, { recursive: true });
+			writeFileSync(
+				join(specDir, "manifest.json"),
+				JSON.stringify(
+					manifest({ packageRoot: `.local/spec-cache/${version}/package` }),
+				),
+				"utf8",
+			);
+		}
+
+		expect(loadManifests({ repoRoot }).map((item) => item.version)).toEqual([
+			"r4",
+		]);
+		expect(
+			loadManifests({ repoRoot, requestedVersions: ["r5"] }).map(
+				(item) => item.version,
+			),
+		).toEqual(["r5"]);
+	});
+
+	it("detects package readiness from Patient StructureDefinition and JSON schema output", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-spec-"));
+		const packageDir = join(repoRoot, ".local", "spec-cache", "r4", "package");
+		mkdirSync(packageDir, { recursive: true });
+
+		expect(isPackageReady(packageDir, manifest(), { repoRoot })).toBe(false);
+		writeFileSync(
+			join(packageDir, "StructureDefinition-Patient.json"),
+			"{}",
+			"utf8",
+		);
+		expect(isPackageReady(packageDir, manifest(), { repoRoot })).toBe(true);
+		expect(
+			isPackageReady(
+				packageDir,
+				manifest({ jsonSchemaOutputPath: ".local/schema/fhir.schema.json" }),
+				{ repoRoot },
+			),
+		).toBe(false);
+	});
+
+	it("uses cached JSON schema and builds archive names from URLs", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-spec-"));
+		const outputPath = join(repoRoot, ".local", "schema", "fhir.schema.json");
+		mkdirSync(join(repoRoot, ".local", "schema"), { recursive: true });
+		writeFileSync(outputPath, "{}", "utf8");
+		const execCalls: string[] = [];
+
+		ensureJsonSchema(
+			join(repoRoot, ".local", "downloads"),
+			manifest({
+				jsonSchemaArchiveEntry: "fhir.schema.json",
+				jsonSchemaOutputPath: ".local/schema/fhir.schema.json",
+				jsonSchemaSourceUrl: "https://example.test/path/fhir-json.zip",
+			}),
+			{
+				deps: {
+					...makeFetchSpecDeps(execCalls),
+				},
+				repoRoot,
+			},
+		);
+
+		expect(execCalls).toEqual([]);
+		expect(basenameFromUrl("https://example.test/path/fhir-json.zip")).toBe(
+			"fhir-json.zip",
+		);
+	});
+
+	it("downloads package archives only on cache misses", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-spec-"));
+		const execCalls: string[] = [];
+		const deps = makeFetchSpecDeps(execCalls);
+
+		ensurePackage("r4", "manifest.json", manifest(), { deps, repoRoot });
+
+		expect(execCalls).toEqual(["curl", "tar"]);
+	});
+
+	it("runs the CLI through injected dependencies", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-spec-"));
+		const specDir = join(repoRoot, "src", "spec", "r4");
+		const packageDir = join(repoRoot, ".local", "spec-cache", "r4", "package");
+		const execCalls: string[] = [];
+		mkdirSync(specDir, { recursive: true });
+		mkdirSync(packageDir, { recursive: true });
+		writeFileSync(
+			join(packageDir, "StructureDefinition-Patient.json"),
+			"{}",
+			"utf8",
+		);
+		writeFileSync(
+			join(specDir, "manifest.json"),
+			JSON.stringify(manifest()),
+			"utf8",
+		);
+
+		runFetchSpecCli([], {
+			deps: makeFetchSpecDeps(execCalls),
+			repoRoot,
+		});
+
+		expect(execCalls).toEqual([]);
+	});
+});
+
+describe("fetch-examples script", () => {
+	it("parses args, flags, and invalid numeric values", () => {
+		const deps = { getRelease: () => fakeRelease() };
+
+		expect(
+			parseFetchExamplesOptions(
+				["r4", "patient", "--force", "--delay-ms=0", "--limit", "1"],
+				deps,
+			),
+		).toMatchObject({
+			delayMs: 0,
+			forceRefresh: true,
+			limit: 1,
+			requestedResources: ["Patient"],
+			version: "r4",
+		});
+		expect(collectPositionalArgs(["r4", "--limit", "1", "patient"])).toEqual([
+			"r4",
+			"patient",
+		]);
+		expect(() => parseNumberFlag(["--limit=no"], "--limit")).toThrow(
+			"Expected --limit to be a non-negative integer",
+		);
+	});
+
+	it("discovers JSON links and decodes HTML entities", () => {
+		const release = fakeRelease();
+		const links = discoverJsonExamples(
+			release,
+			"Patient",
+			'<a href="patient-example.json.html">one</a><a href="/Patient-two.json.html?x=1&amp;y=2">two</a>',
+		);
+
+		expect(links.map((link) => link.filename)).toEqual([
+			"patient-example.json",
+		]);
+		expect(decodeHtmlEntities("a&amp;b&quot;c&#39;d&lt;e&gt;")).toBe(
+			"a&b\"c'd<e>",
+		);
+		expect(normalizeTextFileContent("x\r\n\n")).toBe("x\n");
+	});
+
+	it("validates resource names and human-verification pages", () => {
+		expect(selectResourceNames(["patient"], ["Patient"], "r4")).toEqual([
+			"Patient",
+		]);
+		expect(() => selectResourceNames(["Missing"], ["Patient"], "r4")).toThrow(
+			"Unknown R4 resource",
+		);
+		expect(() =>
+			assertNotHumanVerification(
+				"<title>Human Verification</title>",
+				"https://example.test",
+			),
+		).toThrow("Human verification blocked automated fetches");
+	});
+
+	it("leaves fixture dirs untouched when no examples are discovered", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-examples-"));
+		const logs: string[] = [];
+		const warnings: string[] = [];
+		const rmCalls: string[] = [];
+
+		runFetchExamplesCli(["r4", "Patient", "--force", "--delay-ms=0"], {
+			deps: {
+				execFileSync: (() => "<html>No examples</html>") as never,
+				getRelease: () => fakeRelease(),
+				log: (message) => logs.push(message),
+				rmSync: (path) => rmCalls.push(String(path)),
+				warn: (message) => warnings.push(message),
+			},
+			repoRoot,
+		});
+
+		expect(rmCalls).toEqual([]);
+		expect(warnings.join("\n")).toContain("No JSON examples discovered");
+		expect(logs.at(-1)).toContain("noExamples=1");
+	});
+
+	it("clears and rewrites fixture dirs when examples are fetched", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-examples-"));
+		const responses = [
+			'<a href="patient-example.json.html">example</a>',
+			'{"resourceType":"Patient"}',
+		];
+
+		runFetchExamplesCli(["r4", "Patient", "--force", "--delay-ms=0"], {
+			deps: {
+				execFileSync: (() => responses.shift() ?? "") as never,
+				getRelease: () => fakeRelease(),
+				log: () => undefined,
+				warn: () => undefined,
+			},
+			repoRoot,
+		});
+
+		expect(
+			readFileSync(
+				join(
+					repoRoot,
+					"tests",
+					"fixtures",
+					"r4",
+					"Patient",
+					"patient-example.json",
+				),
+				"utf8",
+			),
+		).toBe('{"resourceType":"Patient"}\n');
+	});
+});
+
+describe("generate script", () => {
+	it("defaults to R4, accepts multiple versions, logs files, and rejects unknown versions", () => {
+		const requestedVersions: string[] = [];
+		const logs: string[] = [];
+		const getRelease = (version: string) => {
+			requestedVersions.push(version);
+			return version === "r6" ? null : fakeRelease(version);
+		};
+
+		runGenerateCli([], { getRelease, log: (message) => logs.push(message) });
+		runGenerateCli(["r4b", "r5"], {
+			getRelease,
+			log: (message) => logs.push(message),
+		});
+
+		expect(requestedVersions).toEqual(["r4", "r4b", "r5"]);
+		expect(logs).toEqual([
+			"generated src/r4/Patient.ts",
+			"generated src/r4b/Patient.ts",
+			"generated src/r5/Patient.ts",
+		]);
+		expect(() => runGenerateCli(["r6"], { getRelease })).toThrow(
+			'Unknown generation target "r6"',
+		);
+	});
+});
+
+function makeFetchSpecDeps(execCalls: string[]): FetchSpecDependencies {
+	return {
+		execFileSync: ((command) => {
+			execCalls.push(String(command));
+			return Buffer.from("");
+		}) as FetchSpecDependencies["execFileSync"],
+		existsSync,
+		mkdirSync,
+		readdirSync,
+		readFileSync,
+		rmSync,
+	};
+}
