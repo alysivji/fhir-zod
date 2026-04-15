@@ -4,6 +4,8 @@ Generated TypeScript models and Zod schemas for HL7 FHIR.
 
 ![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple)
 
+![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white)
+
 [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
 
 `fhir-zod` gives you type-safe FHIR models for your editor and Zod schemas for your runtime. The generated output is versioned by FHIR release, so STU3, R4, R4B, and R5 stay explicit in your imports.
@@ -31,7 +33,7 @@ The install command below describes the intended public package shape. The proje
 npm install fhir-zod zod
 ```
 
-`zod` is a peer dependency. Install `zod@^3.25.1 || ^4.0.0` alongside `fhir-zod` in applications and libraries that use the generated schemas.
+Works with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
 
 ## Quick start
 
@@ -56,7 +58,7 @@ if (!result.success) {
 
 Use the TypeScript model when constructing or consuming known FHIR shapes, and use the schema when data crosses a trust boundary.
 
-The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. The package supports Zod 3.25.1 and newer Zod 4 releases through the same generated schema surface:
+The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. `fhir-zod` works with Zod 3.25.x and 4.x.x through the same generated schema surface:
 
 ```ts
 import { PatientSchema } from "fhir-zod/r4"
