@@ -36,7 +36,17 @@ export default defineConfig({
 	},
 	test: {
 		coverage: {
-			include: ["src/**/*.ts", "scripts/**/*.ts", "tsdown.config.ts"],
+			exclude: [
+				"scripts/list-*-targets.ts",
+				"src/generator/{index,r4,r4b,r5,stu3}.ts",
+				"src/generator/sources/structuredefinition-{r4,r4b,r5,stu3}.ts",
+				"src/generator/targets/*.ts",
+			],
+			include: [
+				"src/generator/**/*.ts",
+				"src/shared/**/*.ts",
+				"scripts/**/*.ts",
+			],
 			reporter: ["text", "lcov", "json-summary"],
 		},
 		environment: "node",
