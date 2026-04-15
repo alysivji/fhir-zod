@@ -64,12 +64,27 @@ export const fhirInstantPattern =
 export const fhirInteger64Pattern = /[0]|[-+]?[1-9][0-9]*/;
 export const fhirOidPattern = /urn:oid:[0-2](\.(0|[1-9][0-9]*))+/;
 export const fhirStringPattern = /[ \r\n\t\S]+/;
+export const fhirStringAllowEmptyPattern = /^$|[ \r\n\t\S]+/;
 export const fhirTimePattern =
 	/^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$/;
 export const fhirUriPattern = /\S*/;
 export const fhirUrlPattern = /\S*/;
 export const fhirUuidPattern =
 	/^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+export interface FhirStringConfiguration {
+	allowEmpty: boolean;
+}
+
+let fhirStringConfiguration: FhirStringConfiguration = {
+	allowEmpty: false,
+};
+
+export function configureFhirString(
+	configuration: FhirStringConfiguration,
+): void {
+	fhirStringConfiguration = { ...configuration };
+}
 
 export function fhirBase64Binary(): z.ZodType<string> {
 	return z.string().refine(isFhirBase64Binary);
@@ -108,7 +123,11 @@ export function fhirOid(): z.ZodString {
 }
 
 export function fhirString(): z.ZodString {
-	return withPattern(fhirStringPattern);
+	return withPattern(
+		fhirStringConfiguration.allowEmpty
+			? fhirStringAllowEmptyPattern
+			: fhirStringPattern,
+	);
 }
 
 export function fhirTime(): z.ZodString {

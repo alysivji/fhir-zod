@@ -1,6 +1,7 @@
+import { configureFhirString } from "@fhir-zod/core";
 import * as r4Schemas from "@fhir-zod/core/r4";
 import * as r4bSchemas from "@fhir-zod/core/r4b";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import {
 	fhirBase64Binary,
 	fhirCanonical,
@@ -18,6 +19,10 @@ import {
 } from "../src/shared/fhir-primitives.ts";
 
 describe("FHIR primitives", () => {
+	afterEach(() => {
+		configureFhirString({ allowEmpty: false });
+	});
+
 	describe("fhirId", () => {
 		it("accepts valid FHIR id values", () => {
 			const schema = fhirId();
@@ -127,6 +132,7 @@ describe("FHIR primitives", () => {
 			expect(fhirCode().safeParse(" ").success).toBe(false);
 			expect(fhirOid().safeParse("1.2.840.10008").success).toBe(false);
 			expect(fhirString().safeParse("").success).toBe(false);
+			expect(fhirString().safeParse("\v").success).toBe(false);
 			expect(
 				fhirUuid().safeParse("urn:uuid:123E4567-E89B-12D3-A456-426614174000")
 					.success,
@@ -137,6 +143,33 @@ describe("FHIR primitives", () => {
 			const payload = "Zm9v".repeat(200_000);
 
 			expect(fhirBase64Binary().safeParse(payload).success).toBe(true);
+		});
+	});
+
+	describe("fhirString empty-string configuration", () => {
+		it("rejects empty strings by default", () => {
+			expect(fhirString().safeParse("").success).toBe(false);
+		});
+
+		it("allows empty strings for newly constructed fhirString schemas after configuration", () => {
+			const strictSchema = fhirString();
+
+			configureFhirString({ allowEmpty: true });
+
+			expect(strictSchema.safeParse("").success).toBe(false);
+			expect(fhirString().safeParse("").success).toBe(true);
+		});
+
+		it("does not allow empty strings for other primitives", () => {
+			configureFhirString({ allowEmpty: true });
+
+			expect(fhirDate().safeParse("").success).toBe(false);
+		});
+
+		it("still rejects non-empty invalid fhirString values", () => {
+			configureFhirString({ allowEmpty: true });
+
+			expect(fhirString().safeParse("\v").success).toBe(false);
 		});
 	});
 
