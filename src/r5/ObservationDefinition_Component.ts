@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ObservationDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -30,9 +31,10 @@ export interface ObservationDefinition_Component extends BackboneElement {
 		| "SampledData"
 		| "string"
 		| "time"
+		| null
 	>;
 	/** Extensions for permittedDataType */
-	_permittedDataType?: Array<Element>;
+	_permittedDataType?: Array<Element | null>;
 	/** Units allowed for the valueQuantity element in the instance observations conforming to this ObservationDefinition. */
 	permittedUnit?: Array<Coding>;
 	/** A set of qualified values associated with a context and a set of conditions -  provides a range for quantitative and ordinal observations and a collection of value sets for qualitative observations. */
@@ -64,12 +66,24 @@ export const ObservationDefinition_ComponentSchemaInternal =
 				"string",
 				"time",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_permittedDataType: z.lazy(getElementSchema).array().optional(),
+		_permittedDataType: z.lazy(getElementSchema).nullable().array().optional(),
 		permittedUnit: z.lazy(getCodingSchema).array().optional(),
 		qualifiedValue: z.unknown().array().optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.permittedDataType,
+				record._permittedDataType,
+				"permittedDataType",
+				"_permittedDataType",
+				ctx,
+			);
+		});
 
 export const ObservationDefinition_ComponentSchema =
 	ObservationDefinition_ComponentSchemaInternal as z.ZodType<ObservationDefinition_Component>;

@@ -1,0 +1,77 @@
+{
+  "resourceType": "Procedure",
+  "id": "f002",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;f002&quot; </p></div><p><b>status</b>: completed</p><p><b>code</b>: Partial lobectomy of lung <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#359615001)</span></p><p><b>subject</b>: <a href=\"patient-f001.html\">Patient/f001: P. van de Heuvel</a> &quot;Pieter VAN DE HEUVEL&quot;</p><p><b>encounter</b>: <a href=\"encounter-f002.html\">Encounter/f002</a></p><p><b>performed</b>: 2013-03-08T09:00:10+01:00 --&gt; 2013-03-08T09:30:10+01:00</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Function</b></td><td><b>Actor</b></td></tr><tr><td>*</td><td>Care role <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#01.000 &quot;Arts&quot;)</span></td><td><a href=\"practitioner-f003.html\">Practitioner/f003: M.I.M. Versteegh</a> &quot;Marc VERSTEEGH&quot;</td></tr></table><p><b>reasonCode</b>: Malignant tumor of lung <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>bodySite</b>: Lung structure <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#39607008)</span></p><p><b>outcome</b>: improved blood circulation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>report</b>: <a href=\"diagnosticreport-f001.html\">DiagnosticReport/f001: Lab results blood test</a></p><p><b>followUp</b>: described in care plan <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></div>"
+  },
+  "status": "completed",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "359615001",
+        "display": "Partial lobectomy of lung"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/f001",
+    "display": "P. van de Heuvel"
+  },
+  "encounter": {
+    "reference": "Encounter/f002"
+  },
+  "performedPeriod": {
+    "start": "2013-03-08T09:00:10+01:00",
+    "end": "2013-03-08T09:30:10+01:00"
+  },
+  "performer": [
+    {
+      "function": {
+        "coding": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.4.15.111",
+            "code": "01.000",
+            "display": "Arts"
+          }
+        ],
+        "text": "Care role"
+      },
+      "actor": {
+        "reference": "Practitioner/f003",
+        "display": "M.I.M. Versteegh"
+      }
+    }
+  ],
+  "reasonCode": [
+    {
+      "text": "Malignant tumor of lung"
+    }
+  ],
+  "bodySite": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "39607008",
+          "display": "Lung structure"
+        }
+      ]
+    }
+  ],
+  "outcome": {
+    "text": "improved blood circulation"
+  },
+  "report": [
+    {
+      "reference": "DiagnosticReport/f001",
+      "display": "Lab results blood test"
+    }
+  ],
+  "followUp": [
+    {
+      "text": "described in care plan"
+    }
+  ]
+}

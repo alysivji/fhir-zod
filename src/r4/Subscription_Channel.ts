@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Subscription
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode, fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -17,9 +18,9 @@ export interface Subscription_Channel extends BackboneElement {
 	/** Extensions for endpoint */
 	_endpoint?: Element;
 	/** Additional headers / information to send as part of the notification. */
-	header?: Array<string>;
+	header?: Array<string | null>;
 	/** Extensions for header */
-	_header?: Array<Element>;
+	_header?: Array<Element | null>;
 	/** The mime type to send the payload in - either application/fhir+xml, or application/fhir+json. If the payload is not present, then there is no payload in the notification, just a notification. The mime type "text/plain" may also be used for Email and SMS subscriptions. */
 	payload?: string;
 	/** Extensions for payload */
@@ -38,13 +39,24 @@ export const Subscription_ChannelSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		endpoint: fhirUrl().optional(),
 		_endpoint: z.lazy(getElementSchema).optional(),
-		header: fhirString().array().optional(),
-		_header: z.lazy(getElementSchema).array().optional(),
+		header: fhirString().nullable().array().optional(),
+		_header: z.lazy(getElementSchema).nullable().array().optional(),
 		payload: fhirCode().optional(),
 		_payload: z.lazy(getElementSchema).optional(),
 		type: z.enum(["email", "message", "rest-hook", "sms", "websocket"]),
 		_type: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.header,
+				record._header,
+				"header",
+				"_header",
+				ctx,
+			);
+		});
 
 export const Subscription_ChannelSchema =
 	Subscription_ChannelSchemaInternal as z.ZodType<Subscription_Channel>;

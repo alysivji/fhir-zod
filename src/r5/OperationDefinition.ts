@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:50:51.842Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirCode,
@@ -380,9 +381,10 @@ export interface OperationDefinition extends DomainResource {
 		| "VirtualServiceDetail"
 		| "VisionPrescription"
 		| "xhtml"
+		| null
 	>;
 	/** Extensions for resource */
-	_resource?: Array<Element>;
+	_resource?: Array<Element | null>;
 	/** This is a OperationDefinition resource. */
 	resourceType: "OperationDefinition";
 	/** The current state of this operation definition. */
@@ -768,9 +770,10 @@ export const OperationDefinitionSchemaInternal =
 				"VisionPrescription",
 				"xhtml",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_resource: z.lazy(getElementSchema).array().optional(),
+		_resource: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("OperationDefinition"),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
@@ -804,6 +807,13 @@ export const OperationDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.resource,
+				record._resource,
+				"resource",
+				"_resource",
+				ctx,
+			);
 		});
 
 export const OperationDefinitionSchema =

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImagingSelection
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -19,9 +20,9 @@ export interface ImagingSelection_Instance_ImageRegion2D
 	 * The coordinates describing the image region. Encoded as a set of (column, row) pairs that denote positions in the selected image / frames specified with sub-pixel resolution.
 	 *        The origin at the TLHC of the TLHC pixel is 0.0\0.0, the BRHC of the TLHC pixel is 1.0\1.0, and the BRHC of the BRHC pixel is the number of columns\rows in the image / frames. The values must be within the range 0\0 to the number of columns\rows in the image / frames.
 	 */
-	coordinate: Array<number>;
+	coordinate: Array<number | null>;
 	/** Extensions for coordinate */
-	_coordinate?: Array<Element>;
+	_coordinate?: Array<Element | null>;
 	/** Specifies the type of image region. */
 	regionType: "circle" | "ellipse" | "interpolated" | "point" | "polyline";
 	/** Extensions for regionType */
@@ -34,8 +35,8 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ImagingSelection_Instance_ImageRegion2DSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		coordinate: z.number().array(),
-		_coordinate: z.lazy(getElementSchema).array().optional(),
+		coordinate: z.number().nullable().array(),
+		_coordinate: z.lazy(getElementSchema).nullable().array().optional(),
 		regionType: z.enum([
 			"circle",
 			"ellipse",
@@ -44,7 +45,18 @@ export const ImagingSelection_Instance_ImageRegion2DSchemaInternal =
 			"polyline",
 		]),
 		_regionType: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.coordinate,
+				record._coordinate,
+				"coordinate",
+				"_coordinate",
+				ctx,
+			);
+		});
 
 export const ImagingSelection_Instance_ImageRegion2DSchema =
 	ImagingSelection_Instance_ImageRegion2DSchemaInternal as z.ZodType<ImagingSelection_Instance_ImageRegion2D>;

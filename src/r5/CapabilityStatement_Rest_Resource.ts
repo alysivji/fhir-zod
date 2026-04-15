@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -60,24 +61,24 @@ export interface CapabilityStatement_Rest_Resource extends BackboneElement {
 	_readHistory?: Element;
 	/** A set of flags that defines how references are supported. */
 	referencePolicy?: Array<
-		"enforced" | "literal" | "local" | "logical" | "resolves"
+		"enforced" | "literal" | "local" | "logical" | "resolves" | null
 	>;
 	/** Extensions for referencePolicy */
-	_referencePolicy?: Array<Element>;
+	_referencePolicy?: Array<Element | null>;
 	/** A list of _include values supported by the server. */
-	searchInclude?: Array<string>;
+	searchInclude?: Array<string | null>;
 	/** Extensions for searchInclude */
-	_searchInclude?: Array<Element>;
+	_searchInclude?: Array<Element | null>;
 	/** Search parameters for implementations to support and/or make use of - either references to ones defined in the specification, or additional ones defined for/by the implementation. */
 	searchParam?: Array<CapabilityStatement_Rest_Resource_SearchParam>;
 	/** A list of _revinclude (reverse include) values supported by the server. */
-	searchRevInclude?: Array<string>;
+	searchRevInclude?: Array<string | null>;
 	/** Extensions for searchRevInclude */
-	_searchRevInclude?: Array<Element>;
+	_searchRevInclude?: Array<Element | null>;
 	/** A list of profiles representing different use cases the system hosts/produces. A supported profile is a statement about the functionality of the data and services provided by the server (or the client) for supported use cases. For example, a system can define and declare multiple Observation profiles for laboratory observations, vital sign observations, etc. By declaring supported profiles, systems provide a way to determine whether individual resources are conformant. See further discussion in [Using Profiles](profiling.html#profile-uses). */
-	supportedProfile?: Array<string>;
+	supportedProfile?: Array<string | null>;
 	/** Extensions for supportedProfile */
-	_supportedProfile?: Array<Element>;
+	_supportedProfile?: Array<Element | null>;
 	/** A type of resource exposed via the restful interface. */
 	type:
 		| "Account"
@@ -371,19 +372,20 @@ export const CapabilityStatement_Rest_ResourceSchemaInternal =
 		_readHistory: z.lazy(getElementSchema).optional(),
 		referencePolicy: z
 			.enum(["enforced", "literal", "local", "logical", "resolves"])
+			.nullable()
 			.array()
 			.optional(),
-		_referencePolicy: z.lazy(getElementSchema).array().optional(),
-		searchInclude: fhirString().array().optional(),
-		_searchInclude: z.lazy(getElementSchema).array().optional(),
+		_referencePolicy: z.lazy(getElementSchema).nullable().array().optional(),
+		searchInclude: fhirString().nullable().array().optional(),
+		_searchInclude: z.lazy(getElementSchema).nullable().array().optional(),
 		searchParam: z
 			.lazy(getCapabilityStatement_Rest_Resource_SearchParamSchema)
 			.array()
 			.optional(),
-		searchRevInclude: fhirString().array().optional(),
-		_searchRevInclude: z.lazy(getElementSchema).array().optional(),
-		supportedProfile: fhirCanonical().array().optional(),
-		_supportedProfile: z.lazy(getElementSchema).array().optional(),
+		searchRevInclude: fhirString().nullable().array().optional(),
+		_searchRevInclude: z.lazy(getElementSchema).nullable().array().optional(),
+		supportedProfile: fhirCanonical().nullable().array().optional(),
+		_supportedProfile: z.lazy(getElementSchema).nullable().array().optional(),
 		type: z.enum([
 			"Account",
 			"ActivityDefinition",
@@ -624,7 +626,39 @@ export const CapabilityStatement_Rest_ResourceSchemaInternal =
 			.enum(["no-version", "versioned", "versioned-update"])
 			.optional(),
 		_versioning: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.referencePolicy,
+				record._referencePolicy,
+				"referencePolicy",
+				"_referencePolicy",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.searchInclude,
+				record._searchInclude,
+				"searchInclude",
+				"_searchInclude",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.searchRevInclude,
+				record._searchRevInclude,
+				"searchRevInclude",
+				"_searchRevInclude",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.supportedProfile,
+				record._supportedProfile,
+				"supportedProfile",
+				"_supportedProfile",
+				ctx,
+			);
+		});
 
 export const CapabilityStatement_Rest_ResourceSchema =
 	CapabilityStatement_Rest_ResourceSchemaInternal as z.ZodType<CapabilityStatement_Rest_Resource>;

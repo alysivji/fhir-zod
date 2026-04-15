@@ -17,6 +17,14 @@ import {
 	PractitionerSchema,
 	ValueSetSchema,
 } from "@fhir-zod/core/r4";
+import type {
+	Patient as R4BPatient,
+	Timing as R4BTiming,
+} from "@fhir-zod/core/r4b";
+import {
+	PatientSchema as R4BPatientSchema,
+	TimingSchema as R4BTimingSchema,
+} from "@fhir-zod/core/r4b";
 import { describe, expect, it } from "vitest";
 
 describe("generated model types", () => {
@@ -86,5 +94,32 @@ describe("generated model types", () => {
 		expect(practitioner.resourceType).toBe("Practitioner");
 		expect(bundle.entry?.[0]?.resource).toEqual(patient);
 		expect(valueSet.resourceType).toBe("ValueSet");
+	});
+
+	it("exports R4B model types with separate schemas", () => {
+		const patient: R4BPatient = R4BPatientSchema.parse({
+			resourceType: "Patient",
+		});
+
+		expect(patient.resourceType).toBe("Patient");
+	});
+
+	it("types FHIR primitive array null placeholders", () => {
+		const timing: R4BTiming = R4BTimingSchema.parse({
+			_event: [
+				{
+					extension: [
+						{
+							url: "http://example.test/fhir/StructureDefinition/computed-event",
+							valueString: "computed",
+						},
+					],
+				},
+			],
+			event: [null],
+		});
+
+		expect(timing.event?.[0]).toBeNull();
+		expect(timing._event?.[0]?.extension?.[0]?.valueString).toBe("computed");
 	});
 });

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubscriptionTopic
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -14,10 +15,10 @@ import { ElementSchemaInternal } from "./Element";
 export interface SubscriptionTopic_CanFilterBy extends BackboneElement {
 	/** Comparators allowed for the filter parameter. */
 	comparator?: Array<
-		"ap" | "eb" | "eq" | "ge" | "gt" | "le" | "lt" | "ne" | "sa"
+		"ap" | "eb" | "eq" | "ge" | "gt" | "le" | "lt" | "ne" | "sa" | null
 	>;
 	/** Extensions for comparator */
-	_comparator?: Array<Element>;
+	_comparator?: Array<Element | null>;
 	/** Description of how this filtering parameter is intended to be used. */
 	description?: string;
 	/** Extensions for description */
@@ -47,9 +48,10 @@ export interface SubscriptionTopic_CanFilterBy extends BackboneElement {
 		| "text"
 		| "text-advanced"
 		| "type"
+		| null
 	>;
 	/** Extensions for modifier */
-	_modifier?: Array<Element>;
+	_modifier?: Array<Element | null>;
 	/** URL of the Resource that is the type used in this filter. This is the "focus" of the topic (or one of them if there are more than one). It will be the same, a generality, or a specificity of SubscriptionTopic.resourceTrigger.resource or SubscriptionTopic.eventTrigger.resource when they are present. */
 	resource?: string;
 	/** Extensions for resource */
@@ -64,9 +66,10 @@ export const SubscriptionTopic_CanFilterBySchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		comparator: z
 			.enum(["ap", "eb", "eq", "ge", "gt", "le", "lt", "ne", "sa"])
+			.nullable()
 			.array()
 			.optional(),
-		_comparator: z.lazy(getElementSchema).array().optional(),
+		_comparator: z.lazy(getElementSchema).nullable().array().optional(),
 		description: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -94,12 +97,31 @@ export const SubscriptionTopic_CanFilterBySchemaInternal =
 				"text-advanced",
 				"type",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_modifier: z.lazy(getElementSchema).array().optional(),
+		_modifier: z.lazy(getElementSchema).nullable().array().optional(),
 		resource: fhirUri().optional(),
 		_resource: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.comparator,
+				record._comparator,
+				"comparator",
+				"_comparator",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.modifier,
+				record._modifier,
+				"modifier",
+				"_modifier",
+				ctx,
+			);
+		});
 
 export const SubscriptionTopic_CanFilterBySchema =
 	SubscriptionTopic_CanFilterBySchemaInternal as z.ZodType<SubscriptionTopic_CanFilterBy>;

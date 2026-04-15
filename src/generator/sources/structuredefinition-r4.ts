@@ -121,6 +121,12 @@ export type StructureDefinitionBuildResult = {
 	primitivePatterns: Map<string, string>;
 };
 
+type StructureDefinitionBuildOptions = {
+	releaseLabel: string;
+	scopeNames: Iterable<string>;
+	version: "r4" | "r4b";
+};
+
 type TerminologyIndex = {
 	codeSystemsByUrl: Map<string, CodeSystem>;
 	valueSetsByUrl: Map<string, ValueSet>;
@@ -139,12 +145,22 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 export function buildStructureDefinitionR4Definitions(
 	scopeNames: Iterable<string> = listR4GenerationTargetNames(),
 ): StructureDefinitionBuildResult {
-	const packageRoot = resolveRequiredSpecPackageRoot("r4");
+	return buildStructureDefinitionsFromSpec({
+		releaseLabel: "R4",
+		scopeNames,
+		version: "r4",
+	});
+}
+
+export function buildStructureDefinitionsFromSpec(
+	options: StructureDefinitionBuildOptions,
+): StructureDefinitionBuildResult {
+	const packageRoot = resolveRequiredSpecPackageRoot(options.version);
 	const index = loadStructureDefinitionIndex(packageRoot);
 	const terminology = loadTerminologyIndex(packageRoot);
 	const primitivePatterns = loadPrimitivePatterns(index);
 	const normalized = new Map<string, NormalizedDefinition>();
-	const desiredNames = expandScopeNames(scopeNames, index);
+	const desiredNames = expandScopeNames(options.scopeNames, index);
 
 	for (const name of [...desiredNames].sort((left, right) =>
 		left.localeCompare(right),
@@ -154,6 +170,7 @@ export function buildStructureDefinitionR4Definitions(
 			desiredNames,
 			index,
 			terminology,
+			options.releaseLabel,
 		);
 
 		if (!definition) {
@@ -354,12 +371,25 @@ function buildDefinitionByName(
 	scopeNames: Set<string>,
 	index: Map<string, StructureDefinition>,
 	terminology: TerminologyIndex,
+	releaseLabel: string,
 ): NormalizedDefinition | null {
 	if (name.includes("_")) {
-		return buildSyntheticDefinition(name, scopeNames, index, terminology);
+		return buildSyntheticDefinition(
+			name,
+			scopeNames,
+			index,
+			terminology,
+			releaseLabel,
+		);
 	}
 
-	return buildRootDefinition(name, scopeNames, index, terminology);
+	return buildRootDefinition(
+		name,
+		scopeNames,
+		index,
+		terminology,
+		releaseLabel,
+	);
 }
 
 function buildRootDefinition(
@@ -367,6 +397,7 @@ function buildRootDefinition(
 	scopeNames: Set<string>,
 	index: Map<string, StructureDefinition>,
 	terminology: TerminologyIndex,
+	releaseLabel: string,
 ): NormalizedDefinition | null {
 	const definition = index.get(name);
 
@@ -428,7 +459,7 @@ function buildRootDefinition(
 		resourceTypeLiteral,
 		sourceMetadata: {
 			profileUrl: definition.url ?? null,
-			releaseLabel: "R4",
+			releaseLabel,
 			version: definition.version ?? definition.fhirVersion ?? null,
 		},
 	};
@@ -439,6 +470,7 @@ function buildSyntheticDefinition(
 	scopeNames: Set<string>,
 	index: Map<string, StructureDefinition>,
 	terminology: TerminologyIndex,
+	releaseLabel: string,
 ): NormalizedDefinition | null {
 	const fhirPath = definitionNameToFhirPath(name);
 	const rootName = fhirPath.split(".")[0];
@@ -481,7 +513,7 @@ function buildSyntheticDefinition(
 		resourceTypeLiteral: null,
 		sourceMetadata: {
 			profileUrl: definition.url ?? null,
-			releaseLabel: "R4",
+			releaseLabel,
 			version: definition.version ?? definition.fhirVersion ?? null,
 		},
 	};

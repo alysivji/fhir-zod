@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationRequest
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -60,13 +61,13 @@ export interface MedicationRequest extends DomainResource {
 	/** Identifiers associated with this medication request that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this resource by the performer or other systems and remain constant as the resource is updated and propagates from server to server. */
 	identifier?: Array<Identifier>;
 	/** The URL pointing to a protocol, guideline, orderset, or other definition that is adhered to in whole or in part by this MedicationRequest. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this MedicationRequest. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be required for delivering the requested service. */
 	insurance?: Array<Reference>;
 	/** Whether the request is a proposal, plan, or an original order. */
@@ -173,10 +174,14 @@ export const MedicationRequestSchemaInternal =
 		eventHistory: z.lazy(getReferenceSchema).array().optional(),
 		groupIdentifier: z.lazy(getIdentifierSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiatesCanonical: fhirCanonical().array().optional(),
-		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: fhirUri().array().optional(),
-		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+		instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+		_instantiatesCanonical: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		instantiatesUri: fhirUri().nullable().array().optional(),
+		_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 		insurance: z.lazy(getReferenceSchema).array().optional(),
 		intent: z.enum([
 			"filler-order",
@@ -256,6 +261,20 @@ export const MedicationRequestSchemaInternal =
 					path: [reported_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.instantiatesCanonical,
+				record._instantiatesCanonical,
+				"instantiatesCanonical",
+				"_instantiatesCanonical",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.instantiatesUri,
+				record._instantiatesUri,
+				"instantiatesUri",
+				"_instantiatesUri",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.basedOn,
 				"basedOn",

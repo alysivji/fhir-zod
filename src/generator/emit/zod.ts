@@ -10,6 +10,7 @@ import {
 import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation.ts";
 import {
 	fhirBase64Binary,
 	fhirCanonical,
@@ -45,6 +46,11 @@ type ChoiceGroup = {
 	choiceGroup: string;
 	fields: string[];
 	requiresValue: boolean;
+};
+
+type PrimitiveArrayPair = {
+	elementField: string;
+	valueField: string;
 };
 
 export function buildRuntimeSchemas(
@@ -196,8 +202,10 @@ function emitDefinitionFile(
 	const typeImports = new Set<string>();
 	const valueImports = new Set<string>();
 	const helperImports = new Set<string>();
-	const sharedImports = new Set<string>();
+	const primitiveArrayImports = new Set<string>();
+	const referenceImports = new Set<string>();
 	const lazySchemaHelpers = new Set<string>();
+	const primitiveArrayPairs = collectPrimitiveArrayPairs(definition);
 	const referenceConstraints = collectReferenceConstraints(definition);
 	const runtimeBaseDefinition = resolveRuntimeBaseDefinition(
 		definition,
@@ -247,7 +255,11 @@ function emitDefinitionFile(
 	}
 
 	if (referenceConstraints.length > 0) {
-		sharedImports.add("validateReferenceTarget");
+		referenceImports.add("validateReferenceTarget");
+	}
+
+	if (primitiveArrayPairs.length > 0) {
+		primitiveArrayImports.add("validatePrimitiveArrayPair");
 	}
 
 	const refinementLines = emitChoiceGroupRefinement(definition);
@@ -268,9 +280,14 @@ function emitDefinitionFile(
 					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitives";`,
 				]
 			: []),
-		...(sharedImports.size > 0
+		...(primitiveArrayImports.size > 0
 			? [
-					`import { ${[...sharedImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-reference-validation";`,
+					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitive-array-validation";`,
+				]
+			: []),
+		...(referenceImports.size > 0
+			? [
+					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-reference-validation";`,
 				]
 			: []),
 		...[...valueImports]
@@ -324,6 +341,13 @@ function emitModelDeclaration(
 	const properties = modelBaseName
 		? getDirectProperties(definition, definitions)
 		: definition.properties;
+	if (!modelBaseName && properties.length === 0) {
+		return [
+			...emitJsDoc(definition.description),
+			`export type ${definition.name} = Record<never, never>;`,
+		];
+	}
+
 	const declaration = modelBaseName
 		? `export interface ${definition.name} extends ${modelBaseName} {`
 		: `export interface ${definition.name} {`;
@@ -379,6 +403,10 @@ function emitModelPropertyType(
 	let baseType = emitModelBaseType(definition, property, definitions);
 
 	if (property.isArray) {
+		if (isNullablePrimitiveArraySlot(definition, property)) {
+			baseType = `${baseType} | null`;
+		}
+
 		baseType = `Array<${baseType}>`;
 	}
 
@@ -634,6 +662,10 @@ function emitPropertyExpression(
 	);
 
 	if (property.isArray) {
+		if (isNullablePrimitiveArraySlot(definition, property)) {
+			baseExpression = `${baseExpression}.nullable()`;
+		}
+
 		baseExpression = `${baseExpression}.array()`;
 	}
 
@@ -711,6 +743,10 @@ function buildRuntimePropertySchema(
 	}
 
 	if (property.isArray) {
+		if (isNullablePrimitiveArraySlot(definition, property)) {
+			baseSchema = baseSchema.nullable();
+		}
+
 		baseSchema = baseSchema.array();
 	}
 
@@ -726,9 +762,14 @@ function applyChoiceGroupRefinement(
 	definition: NormalizedDefinition,
 ): z.ZodTypeAny {
 	const choiceGroups = collectChoiceGroups(definition);
+	const primitiveArrayPairs = collectPrimitiveArrayPairs(definition);
 	const referenceConstraints = collectReferenceConstraints(definition);
 
-	if (choiceGroups.length === 0 && referenceConstraints.length === 0) {
+	if (
+		choiceGroups.length === 0 &&
+		primitiveArrayPairs.length === 0 &&
+		referenceConstraints.length === 0
+	) {
 		return schema;
 	}
 
@@ -761,6 +802,16 @@ function applyChoiceGroupRefinement(
 				message: `Only one of ${presentVariants.join(", ")} may be present for ${group.choiceGroup}`,
 				path: [presentVariants[0]],
 			});
+		}
+
+		for (const pair of primitiveArrayPairs) {
+			validatePrimitiveArrayPair(
+				record[pair.valueField],
+				record[pair.elementField],
+				pair.valueField,
+				pair.elementField,
+				ctx,
+			);
 		}
 
 		for (const constraint of referenceConstraints) {
@@ -801,9 +852,14 @@ function collectChoiceGroups(definition: NormalizedDefinition): ChoiceGroup[] {
 
 function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
 	const choiceGroups = collectChoiceGroups(definition);
+	const primitiveArrayPairs = collectPrimitiveArrayPairs(definition);
 	const referenceConstraints = collectReferenceConstraints(definition);
 
-	if (choiceGroups.length === 0 && referenceConstraints.length === 0) {
+	if (
+		choiceGroups.length === 0 &&
+		primitiveArrayPairs.length === 0 &&
+		referenceConstraints.length === 0
+	) {
 		return [];
 	}
 
@@ -835,11 +891,51 @@ function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
 				"\t\t}",
 			];
 		}),
+		...primitiveArrayPairs.map(
+			(pair) =>
+				`\t\tvalidatePrimitiveArrayPair(${emitRecordAccess("record", pair.valueField)}, ${emitRecordAccess("record", pair.elementField)}, ${JSON.stringify(pair.valueField)}, ${JSON.stringify(pair.elementField)}, ctx);`,
+		),
 		...referenceConstraints.flatMap((constraint) => [
 			`\t\tvalidateReferenceTarget(${emitRecordAccess("record", constraint.field)}, ${JSON.stringify(constraint.field)}, [${constraint.allowedCanonicalTypes.map((type) => JSON.stringify(type)).join(", ")}], [${constraint.allowedResourceTypes.map((type) => JSON.stringify(type)).join(", ")}], ctx);`,
 		]),
 		"\t})",
 	];
+}
+
+function collectPrimitiveArrayPairs(
+	definition: NormalizedDefinition,
+): PrimitiveArrayPair[] {
+	const propertiesByName = new Map(
+		definition.properties.map((property) => [property.jsonName, property]),
+	);
+
+	return definition.properties
+		.filter(
+			(property) =>
+				property.primitiveType !== null &&
+				property.isArray &&
+				!property.jsonName.startsWith("_"),
+		)
+		.map((property) => ({
+			elementField: `_${property.jsonName}`,
+			valueField: property.jsonName,
+		}))
+		.filter((pair) => {
+			const elementProperty = propertiesByName.get(pair.elementField);
+			return elementProperty?.typeRef === "Element" && elementProperty.isArray;
+		})
+		.sort((left, right) => left.valueField.localeCompare(right.valueField));
+}
+
+function isNullablePrimitiveArraySlot(
+	definition: NormalizedDefinition,
+	property: NormalizedProperty,
+): boolean {
+	return collectPrimitiveArrayPairs(definition).some(
+		(pair) =>
+			pair.valueField === property.jsonName ||
+			pair.elementField === property.jsonName,
+	);
 }
 
 type ReferenceConstraint = {
@@ -1110,7 +1206,7 @@ function primitiveHelperName(type: string | null): string | null {
 	}
 }
 
-function primitiveHelper(type: string): (() => z.ZodString) | null {
+function primitiveHelper(type: string): (() => z.ZodType<string>) | null {
 	switch (type) {
 		case "base64Binary":
 			return fhirBase64Binary;

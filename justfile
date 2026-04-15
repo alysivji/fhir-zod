@@ -46,6 +46,10 @@ generate:
 list-r4-targets:
     npm run list:r4-targets
 
+# List concrete R4B resources and final generation targets
+list-r4b-targets:
+    npm run list:r4b-targets
+
 # List concrete R5 resources and final generation targets
 list-r5-targets:
     npm run list:r5-targets

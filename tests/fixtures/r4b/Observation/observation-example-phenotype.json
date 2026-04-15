@@ -1,0 +1,54 @@
+{
+  "resourceType": "Observation",
+  "id": "example-phenotype",
+  "text": {
+    "status": "extensions",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;example-phenotype&quot; </p></div><p><b>Gene</b>: CYP2C9 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v3-hgnc.html\">HUGO Gene Nomenclature</a>#2623)</span></p><p><b>status</b>: final</p><p><b>code</b>: The material on this page will be removed in a future release. This content is deprecated and SHOULD NOT be used. Implementers are instead directed to the ([Genomics Reporting Implementation Guide](http://hl7.org/fhir/uv/genomics-reporting/index.html)) for guidance. CYP2C9 gene product metabolic activity interpretation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#79716-7)</span></p><p><b>subject</b>: <a href=\"todo.html\">Patient/727127: J*********** C***********</a></p><p><b>effective</b>: 2013-04-03T15:30:10+01:00</p><p><b>value</b>: Normal metabolizer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA25391-6)</span></p><p><b>device</b>: <a href=\"device-example.html\">Device/example</a></p><p><b>derivedFrom</b>: <a href=\"observation-example-diplotype1.html\">Observation/example-diplotype1</a></p></div>"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://www.genenames.org",
+            "code": "2623",
+            "display": "CYP2C9"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "79716-7",
+        "display": "The material on this page will be removed in a future release. This content is deprecated and SHOULD NOT be used. Implementers are instead directed to the ([Genomics Reporting Implementation Guide](http://hl7.org/fhir/uv/genomics-reporting/index.html)) for guidance. CYP2C9 gene product metabolic activity interpretation"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/727127",
+    "display": "J*********** C***********"
+  },
+  "effectiveDateTime": "2013-04-03T15:30:10+01:00",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "LA25391-6",
+        "display": "Normal metabolizer"
+      }
+    ]
+  },
+  "device": {
+    "reference": "Device/example"
+  },
+  "derivedFrom": [
+    {
+      "reference": "Observation/example-diplotype1"
+    }
+  ]
+}

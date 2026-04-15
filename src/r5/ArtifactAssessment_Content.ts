@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ArtifactAssessment
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -42,9 +43,9 @@ export interface ArtifactAssessment_Content extends BackboneElement {
 	/** Extensions for informationType */
 	_informationType?: Element;
 	/** A URI that points to what the comment is about, such as a line of text in the CQL, or a specific element in a resource. */
-	path?: Array<string>;
+	path?: Array<string | null>;
 	/** Extensions for path */
-	_path?: Array<Element>;
+	_path?: Array<Element | null>;
 	/** A quantitative rating of the artifact. */
 	quantity?: Quantity;
 	/** Additional related artifacts that provide supporting documentation, additional evidence, or further information related to the content. */
@@ -87,8 +88,8 @@ export const ArtifactAssessment_ContentSchemaInternal =
 			])
 			.optional(),
 		_informationType: z.lazy(getElementSchema).optional(),
-		path: fhirUri().array().optional(),
-		_path: z.lazy(getElementSchema).array().optional(),
+		path: fhirUri().nullable().array().optional(),
+		_path: z.lazy(getElementSchema).nullable().array().optional(),
 		quantity: z.lazy(getQuantitySchema).optional(),
 		relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
 		summary: z
@@ -101,6 +102,13 @@ export const ArtifactAssessment_ContentSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.path,
+				record._path,
+				"path",
+				"_path",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.author,
 				"author",

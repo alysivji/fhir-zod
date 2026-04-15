@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImagingSelection
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -13,9 +14,9 @@ import { ElementSchemaInternal } from "./Element";
 export interface ImagingSelection_Instance_ImageRegion3D
 	extends BackboneElement {
 	/** The coordinates describing the image region. Encoded as an ordered set of (x,y,z) triplets (in mm and may be negative) that define a region of interest in the patient-relative Reference Coordinate System defined by ImagingSelection.frameOfReferenceUid element. */
-	coordinate: Array<number>;
+	coordinate: Array<number | null>;
 	/** Extensions for coordinate */
-	_coordinate?: Array<Element>;
+	_coordinate?: Array<Element | null>;
 	/** Specifies the type of image region. */
 	regionType:
 		| "ellipse"
@@ -34,8 +35,8 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ImagingSelection_Instance_ImageRegion3DSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		coordinate: z.number().array(),
-		_coordinate: z.lazy(getElementSchema).array().optional(),
+		coordinate: z.number().nullable().array(),
+		_coordinate: z.lazy(getElementSchema).nullable().array().optional(),
 		regionType: z.enum([
 			"ellipse",
 			"ellipsoid",
@@ -45,7 +46,18 @@ export const ImagingSelection_Instance_ImageRegion3DSchemaInternal =
 			"polyline",
 		]),
 		_regionType: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.coordinate,
+				record._coordinate,
+				"coordinate",
+				"_coordinate",
+				ctx,
+			);
+		});
 
 export const ImagingSelection_Instance_ImageRegion3DSchema =
 	ImagingSelection_Instance_ImageRegion3DSchemaInternal as z.ZodType<ImagingSelection_Instance_ImageRegion3D>;

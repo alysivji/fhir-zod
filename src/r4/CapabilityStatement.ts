@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirCode,
@@ -81,23 +82,23 @@ export interface CapabilityStatement extends DomainResource {
 	/** Extensions for fhirVersion */
 	_fhirVersion?: Element;
 	/** A list of the formats supported by this implementation using their content types. */
-	format: Array<string>;
+	format: Array<string | null>;
 	/** Extensions for format */
-	_format?: Array<Element>;
+	_format?: Array<Element | null>;
 	/** Identifies a specific implementation instance that is described by the capability statement - i.e. a particular installation, rather than the capabilities of a software program. */
 	implementation?: CapabilityStatement_Implementation;
 	/** A list of implementation guides that the server does (or should) support in their entirety. */
-	implementationGuide?: Array<string>;
+	implementationGuide?: Array<string | null>;
 	/** Extensions for implementationGuide */
-	_implementationGuide?: Array<Element>;
+	_implementationGuide?: Array<Element | null>;
 	/** Reference to a canonical URL of another CapabilityStatement that this software adds to. The capability statement automatically includes everything in the other statement, and it is not duplicated, though the server may repeat the same resources, interactions and operations to add additional details to them. */
-	imports?: Array<string>;
+	imports?: Array<string | null>;
 	/** Extensions for imports */
-	_imports?: Array<Element>;
+	_imports?: Array<Element | null>;
 	/** Reference to a canonical URL of another CapabilityStatement that this software implements. This capability statement is a published API description that corresponds to a business service. The server may actually implement a subset of the capability statement it claims to implement, so the capability statement must specify the full capability details. */
-	instantiates?: Array<string>;
+	instantiates?: Array<string | null>;
 	/** Extensions for instantiates */
-	_instantiates?: Array<Element>;
+	_instantiates?: Array<Element | null>;
 	/** A legal or geographic region in which the capability statement is intended to be used. */
 	jurisdiction?: Array<CodeableConcept>;
 	/** The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase). */
@@ -111,9 +112,9 @@ export interface CapabilityStatement extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** A list of the patch formats supported by this implementation using their content types. */
-	patchFormat?: Array<string>;
+	patchFormat?: Array<string | null>;
 	/** Extensions for patchFormat */
-	_patchFormat?: Array<Element>;
+	_patchFormat?: Array<Element | null>;
 	/** The name of the organization or individual that published the capability statement. */
 	publisher?: string;
 	/** Extensions for publisher */
@@ -210,17 +211,21 @@ export const CapabilityStatementSchemaInternal =
 			"4.0.1",
 		]),
 		_fhirVersion: z.lazy(getElementSchema).optional(),
-		format: fhirCode().array(),
-		_format: z.lazy(getElementSchema).array().optional(),
+		format: fhirCode().nullable().array(),
+		_format: z.lazy(getElementSchema).nullable().array().optional(),
 		implementation: z
 			.lazy(getCapabilityStatement_ImplementationSchema)
 			.optional(),
-		implementationGuide: fhirCanonical().array().optional(),
-		_implementationGuide: z.lazy(getElementSchema).array().optional(),
-		imports: fhirCanonical().array().optional(),
-		_imports: z.lazy(getElementSchema).array().optional(),
-		instantiates: fhirCanonical().array().optional(),
-		_instantiates: z.lazy(getElementSchema).array().optional(),
+		implementationGuide: fhirCanonical().nullable().array().optional(),
+		_implementationGuide: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		imports: fhirCanonical().nullable().array().optional(),
+		_imports: z.lazy(getElementSchema).nullable().array().optional(),
+		instantiates: fhirCanonical().nullable().array().optional(),
+		_instantiates: z.lazy(getElementSchema).nullable().array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		kind: z.enum(["capability", "instance", "requirements"]),
 		_kind: z.lazy(getElementSchema).optional(),
@@ -230,8 +235,8 @@ export const CapabilityStatementSchemaInternal =
 			.optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		patchFormat: fhirCode().array().optional(),
-		_patchFormat: z.lazy(getElementSchema).array().optional(),
+		patchFormat: fhirCode().nullable().array().optional(),
+		_patchFormat: z.lazy(getElementSchema).nullable().array().optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
@@ -248,7 +253,46 @@ export const CapabilityStatementSchemaInternal =
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
 		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.format,
+				record._format,
+				"format",
+				"_format",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.implementationGuide,
+				record._implementationGuide,
+				"implementationGuide",
+				"_implementationGuide",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.imports,
+				record._imports,
+				"imports",
+				"_imports",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.instantiates,
+				record._instantiates,
+				"instantiates",
+				"_instantiates",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.patchFormat,
+				record._patchFormat,
+				"patchFormat",
+				"_patchFormat",
+				ctx,
+			);
+		});
 
 export const CapabilityStatementSchema =
 	CapabilityStatementSchemaInternal as z.ZodType<CapabilityStatement>;

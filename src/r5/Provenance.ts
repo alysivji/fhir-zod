@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Provenance
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirInstant, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -50,9 +51,9 @@ export interface Provenance extends DomainResource {
 	/** The patient element is available to enable deterministic tracking of activities that involve the patient as the subject of the data used in an activity. */
 	patient?: Reference;
 	/** Policy or plan the activity was defined by. Typically, a single activity may have multiple applicable policy documents, such as patient consent, guarantor funding, etc. */
-	policy?: Array<string>;
+	policy?: Array<string | null>;
 	/** Extensions for policy */
-	_policy?: Array<Element>;
+	_policy?: Array<Element | null>;
 	/** The instant of time at which the activity was recorded. */
 	recorded?: string;
 	/** Extensions for recorded */
@@ -95,8 +96,8 @@ export const ProvenanceSchemaInternal = DomainResourceSchemaInternal.extend({
 	_occurredDateTime: z.lazy(getElementSchema).optional(),
 	occurredPeriod: z.lazy(getPeriodSchema).optional(),
 	patient: z.lazy(getReferenceSchema).optional(),
-	policy: fhirUri().array().optional(),
-	_policy: z.lazy(getElementSchema).array().optional(),
+	policy: fhirUri().nullable().array().optional(),
+	_policy: z.lazy(getElementSchema).nullable().array().optional(),
 	recorded: fhirInstant().optional(),
 	_recorded: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("Provenance"),
@@ -117,6 +118,13 @@ export const ProvenanceSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [occurred_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.policy,
+			record._policy,
+			"policy",
+			"_policy",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.basedOn,
 			"basedOn",

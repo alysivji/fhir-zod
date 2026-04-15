@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -52,9 +53,9 @@ export interface OperationDefinition_Parameter extends BackboneElement {
 	/** Extensions for searchType */
 	_searchType?: Element;
 	/** Used when the type is "Reference" or "canonical", and identifies a profile structure or implementation Guide that applies to the target of the reference this parameter refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide. */
-	targetProfile?: Array<string>;
+	targetProfile?: Array<string | null>;
 	/** Extensions for targetProfile */
-	_targetProfile?: Array<Element>;
+	_targetProfile?: Array<Element | null>;
 	/** The type for this parameter. */
 	type?:
 		| "Account"
@@ -318,8 +319,8 @@ export const OperationDefinition_ParameterSchemaInternal =
 			])
 			.optional(),
 		_searchType: z.lazy(getElementSchema).optional(),
-		targetProfile: fhirCanonical().array().optional(),
-		_targetProfile: z.lazy(getElementSchema).array().optional(),
+		targetProfile: fhirCanonical().nullable().array().optional(),
+		_targetProfile: z.lazy(getElementSchema).nullable().array().optional(),
 		type: z
 			.enum([
 				"Account",
@@ -540,7 +541,18 @@ export const OperationDefinition_ParameterSchemaInternal =
 		_type: z.lazy(getElementSchema).optional(),
 		use: z.enum(["in", "out"]),
 		_use: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.targetProfile,
+				record._targetProfile,
+				"targetProfile",
+				"_targetProfile",
+				ctx,
+			);
+		});
 
 export const OperationDefinition_ParameterSchema =
 	OperationDefinition_ParameterSchemaInternal as z.ZodType<OperationDefinition_Parameter>;

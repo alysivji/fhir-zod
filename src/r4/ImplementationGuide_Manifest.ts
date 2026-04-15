@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -17,13 +18,13 @@ import { ImplementationGuide_Manifest_ResourceSchemaInternal } from "./Implement
 /** Information about an assembled implementation guide, created by the publication tooling. */
 export interface ImplementationGuide_Manifest extends BackboneElement {
 	/** Indicates a relative path to an image that exists within the IG. */
-	image?: Array<string>;
+	image?: Array<string | null>;
 	/** Extensions for image */
-	_image?: Array<Element>;
+	_image?: Array<Element | null>;
 	/** Indicates the relative path of an additional non-page, non-image file that is part of the IG - e.g. zip, jar and similar files that could be the target of a hyperlink in a derived IG. */
-	other?: Array<string>;
+	other?: Array<string | null>;
 	/** Extensions for other */
-	_other?: Array<Element>;
+	_other?: Array<Element | null>;
 	/** Information about a page within the IG. */
 	page?: Array<ImplementationGuide_Manifest_Page>;
 	/** A pointer to official web page, PDF or other rendering of the implementation guide. */
@@ -46,15 +47,33 @@ const getImplementationGuide_Manifest_ResourceSchema =
 /** @internal */
 export const ImplementationGuide_ManifestSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		image: fhirString().array().optional(),
-		_image: z.lazy(getElementSchema).array().optional(),
-		other: fhirString().array().optional(),
-		_other: z.lazy(getElementSchema).array().optional(),
+		image: fhirString().nullable().array().optional(),
+		_image: z.lazy(getElementSchema).nullable().array().optional(),
+		other: fhirString().nullable().array().optional(),
+		_other: z.lazy(getElementSchema).nullable().array().optional(),
 		page: z.lazy(getImplementationGuide_Manifest_PageSchema).array().optional(),
 		rendering: fhirUrl().optional(),
 		_rendering: z.lazy(getElementSchema).optional(),
 		resource: z.lazy(getImplementationGuide_Manifest_ResourceSchema).array(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.image,
+				record._image,
+				"image",
+				"_image",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.other,
+				record._other,
+				"other",
+				"_other",
+				ctx,
+			);
+		});
 
 export const ImplementationGuide_ManifestSchema =
 	ImplementationGuide_ManifestSchemaInternal as z.ZodType<ImplementationGuide_Manifest>;

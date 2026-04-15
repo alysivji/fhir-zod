@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirDateTime,
 	fhirId,
@@ -120,9 +121,10 @@ export interface ImplementationGuide extends DomainResource {
 		| "5.0.0-snapshot1"
 		| "5.0.0-snapshot2"
 		| "5.0.0-snapshot3"
+		| null
 	>;
 	/** Extensions for fhirVersion */
-	_fhirVersion?: Array<Element>;
+	_fhirVersion?: Array<Element | null>;
 	/** A set of profiles that all resources covered by this implementation guide must conform to. */
 	global?: Array<ImplementationGuide_Global>;
 	/** A formal identifier that is used to identify this implementation guide when it is represented in other formats, or referenced in a specification, model, design or an instance. */
@@ -635,8 +637,9 @@ export const ImplementationGuideSchemaInternal =
 				"5.0.0-snapshot2",
 				"5.0.0-snapshot3",
 			])
+			.nullable()
 			.array(),
-		_fhirVersion: z.lazy(getElementSchema).array().optional(),
+		_fhirVersion: z.lazy(getElementSchema).nullable().array().optional(),
 		global: z.lazy(getImplementationGuide_GlobalSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
@@ -1032,6 +1035,13 @@ export const ImplementationGuideSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.fhirVersion,
+				record._fhirVersion,
+				"fhirVersion",
+				"_fhirVersion",
+				ctx,
+			);
 		});
 
 export const ImplementationGuideSchema =

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -249,9 +250,10 @@ export interface OperationDefinition_Parameter extends BackboneElement {
 		| "VirtualServiceDetail"
 		| "VisionPrescription"
 		| "xhtml"
+		| null
 	>;
 	/** Extensions for allowedType */
-	_allowedType?: Array<Element>;
+	_allowedType?: Array<Element | null>;
 	/** Binds to a value set if this parameter is coded (code, Coding, CodeableConcept). */
 	binding?: OperationDefinition_Parameter_Binding;
 	/** Describes the meaning or use of this parameter. */
@@ -275,9 +277,9 @@ export interface OperationDefinition_Parameter extends BackboneElement {
 	/** Identifies other resource parameters within the operation invocation that are expected to resolve to this resource. */
 	referencedFrom?: Array<OperationDefinition_Parameter_ReferencedFrom>;
 	/** If present, indicates that the parameter applies when the operation is being invoked at the specified level. */
-	scope?: Array<"instance" | "system" | "type">;
+	scope?: Array<"instance" | "system" | "type" | null>;
 	/** Extensions for scope */
-	_scope?: Array<Element>;
+	_scope?: Array<Element | null>;
 	/** How the parameter is understood if/when it used as search parameter. This is only used if the parameter is a string. */
 	searchType?:
 		| "composite"
@@ -292,9 +294,9 @@ export interface OperationDefinition_Parameter extends BackboneElement {
 	/** Extensions for searchType */
 	_searchType?: Element;
 	/** Used when the type is "Reference" or "canonical", and identifies a profile structure or implementation Guide that applies to the target of the reference this parameter refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide. */
-	targetProfile?: Array<string>;
+	targetProfile?: Array<string | null>;
 	/** Extensions for targetProfile */
-	_targetProfile?: Array<Element>;
+	_targetProfile?: Array<Element | null>;
 	/** The type for this parameter. */
 	type?:
 		| "Account"
@@ -782,9 +784,10 @@ export const OperationDefinition_ParameterSchemaInternal =
 				"VisionPrescription",
 				"xhtml",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_allowedType: z.lazy(getElementSchema).array().optional(),
+		_allowedType: z.lazy(getElementSchema).nullable().array().optional(),
 		binding: z.lazy(getOperationDefinition_Parameter_BindingSchema).optional(),
 		documentation: z
 			.string()
@@ -802,8 +805,8 @@ export const OperationDefinition_ParameterSchemaInternal =
 			.lazy(getOperationDefinition_Parameter_ReferencedFromSchema)
 			.array()
 			.optional(),
-		scope: z.enum(["instance", "system", "type"]).array().optional(),
-		_scope: z.lazy(getElementSchema).array().optional(),
+		scope: z.enum(["instance", "system", "type"]).nullable().array().optional(),
+		_scope: z.lazy(getElementSchema).nullable().array().optional(),
 		searchType: z
 			.enum([
 				"composite",
@@ -818,8 +821,8 @@ export const OperationDefinition_ParameterSchemaInternal =
 			])
 			.optional(),
 		_searchType: z.lazy(getElementSchema).optional(),
-		targetProfile: fhirCanonical().array().optional(),
-		_targetProfile: z.lazy(getElementSchema).array().optional(),
+		targetProfile: fhirCanonical().nullable().array().optional(),
+		_targetProfile: z.lazy(getElementSchema).nullable().array().optional(),
 		type: z
 			.enum([
 				"Account",
@@ -1058,7 +1061,32 @@ export const OperationDefinition_ParameterSchemaInternal =
 		_type: z.lazy(getElementSchema).optional(),
 		use: z.enum(["in", "out"]),
 		_use: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.allowedType,
+				record._allowedType,
+				"allowedType",
+				"_allowedType",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.scope,
+				record._scope,
+				"scope",
+				"_scope",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.targetProfile,
+				record._targetProfile,
+				"targetProfile",
+				"_targetProfile",
+				ctx,
+			);
+		});
 
 export const OperationDefinition_ParameterSchema =
 	OperationDefinition_ParameterSchemaInternal as z.ZodType<OperationDefinition_Parameter>;

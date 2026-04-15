@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Permission
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { DomainResource } from "./DomainResource";
@@ -34,9 +35,9 @@ export interface Permission extends DomainResource {
 	/** Extensions for combining */
 	_combining?: Element;
 	/** The date that permission was asserted. */
-	date?: Array<string>;
+	date?: Array<string | null>;
 	/** Extensions for date */
-	_date?: Array<Element>;
+	_date?: Array<Element | null>;
 	/** The asserted justification for using the data. */
 	justification?: Permission_Justification;
 	/** This is a Permission resource. */
@@ -75,8 +76,8 @@ export const PermissionSchemaInternal = DomainResourceSchemaInternal.extend({
 		"permit-unless-deny",
 	]),
 	_combining: z.lazy(getElementSchema).optional(),
-	date: fhirDateTime().array().optional(),
-	_date: z.lazy(getElementSchema).array().optional(),
+	date: fhirDateTime().nullable().array().optional(),
+	_date: z.lazy(getElementSchema).nullable().array().optional(),
 	justification: z.lazy(getPermission_JustificationSchema).optional(),
 	resourceType: z.literal("Permission"),
 	rule: z.lazy(getPermission_RuleSchema).array().optional(),
@@ -87,6 +88,7 @@ export const PermissionSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(record.date, record._date, "date", "_date", ctx);
 		validateReferenceTarget(
 			record.asserter,
 			"asserter",

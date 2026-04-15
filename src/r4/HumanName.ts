@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HumanName
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
@@ -19,19 +20,19 @@ export interface HumanName extends Element {
 	/** Extensions for family */
 	_family?: Element;
 	/** Given name. */
-	given?: Array<string>;
+	given?: Array<string | null>;
 	/** Extensions for given */
-	_given?: Array<Element>;
+	_given?: Array<Element | null>;
 	/** Indicates the period of time when this name was valid for the named person. */
 	period?: Period;
 	/** Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name. */
-	prefix?: Array<string>;
+	prefix?: Array<string | null>;
 	/** Extensions for prefix */
-	_prefix?: Array<Element>;
+	_prefix?: Array<Element | null>;
 	/** Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name. */
-	suffix?: Array<string>;
+	suffix?: Array<string | null>;
 	/** Extensions for suffix */
-	_suffix?: Array<Element>;
+	_suffix?: Array<Element | null>;
 	/** Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts. */
 	text?: string;
 	/** Extensions for text */
@@ -62,15 +63,15 @@ export const HumanNameSchemaInternal = z
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		family: fhirString().optional(),
 		_family: z.lazy(getElementSchema).optional(),
-		given: fhirString().array().optional(),
-		_given: z.lazy(getElementSchema).array().optional(),
+		given: fhirString().nullable().array().optional(),
+		_given: z.lazy(getElementSchema).nullable().array().optional(),
 		id: fhirString().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		period: z.lazy(getPeriodSchema).optional(),
-		prefix: fhirString().array().optional(),
-		_prefix: z.lazy(getElementSchema).array().optional(),
-		suffix: fhirString().array().optional(),
-		_suffix: z.lazy(getElementSchema).array().optional(),
+		prefix: fhirString().nullable().array().optional(),
+		_prefix: z.lazy(getElementSchema).nullable().array().optional(),
+		suffix: fhirString().nullable().array().optional(),
+		_suffix: z.lazy(getElementSchema).nullable().array().optional(),
 		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		use: z
@@ -86,6 +87,30 @@ export const HumanNameSchemaInternal = z
 			.optional(),
 		_use: z.lazy(getElementSchema).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.given,
+			record._given,
+			"given",
+			"_given",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.prefix,
+			record._prefix,
+			"prefix",
+			"_prefix",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.suffix,
+			record._suffix,
+			"suffix",
+			"_suffix",
+			ctx,
+		);
+	});
 
 export const HumanNameSchema = HumanNameSchemaInternal as z.ZodType<HumanName>;

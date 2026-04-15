@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirCode,
@@ -242,9 +243,10 @@ export interface OperationDefinition extends DomainResource {
 		| "ValueSet"
 		| "VerificationResult"
 		| "VisionPrescription"
+		| null
 	>;
 	/** Extensions for resource */
-	_resource?: Array<Element>;
+	_resource?: Array<Element | null>;
 	/** This is a OperationDefinition resource. */
 	resourceType: "OperationDefinition";
 	/** The status of this operation definition. Enables tracking the life-cycle of the content. */
@@ -479,9 +481,10 @@ export const OperationDefinitionSchemaInternal =
 				"VerificationResult",
 				"VisionPrescription",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_resource: z.lazy(getElementSchema).array().optional(),
+		_resource: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("OperationDefinition"),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
@@ -496,7 +499,18 @@ export const OperationDefinitionSchemaInternal =
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
 		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.resource,
+				record._resource,
+				"resource",
+				"_resource",
+				ctx,
+			);
+		});
 
 export const OperationDefinitionSchema =
 	OperationDefinitionSchemaInternal as z.ZodType<OperationDefinition>;

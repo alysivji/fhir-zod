@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DataRequirement
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-05T15:32:44.350Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirId, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -39,13 +40,13 @@ export interface DataRequirement extends DataType {
 	 *
 	 * The value of mustSupport SHALL be a FHIRPath resolvable on the type of the DataRequirement. The path SHALL consist only of identifiers, constant indexers, and .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
 	 */
-	mustSupport?: Array<string>;
+	mustSupport?: Array<string | null>;
 	/** Extensions for mustSupport */
-	_mustSupport?: Array<Element>;
+	_mustSupport?: Array<Element | null>;
 	/** The profile of the required data, specified as the uri of the profile definition. */
-	profile?: Array<string>;
+	profile?: Array<string | null>;
 	/** Extensions for profile */
-	_profile?: Array<Element>;
+	_profile?: Array<Element | null>;
 	/** Specifies the order of the results to be returned. */
 	sort?: Array<DataRequirement_Sort>;
 	/** The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed. */
@@ -321,10 +322,10 @@ export const DataRequirementSchemaInternal = z
 		_id: z.lazy(getElementSchema).optional(),
 		limit: z.number().int().positive().optional(),
 		_limit: z.lazy(getElementSchema).optional(),
-		mustSupport: fhirString().array().optional(),
-		_mustSupport: z.lazy(getElementSchema).array().optional(),
-		profile: fhirCanonical().array().optional(),
-		_profile: z.lazy(getElementSchema).array().optional(),
+		mustSupport: fhirString().nullable().array().optional(),
+		_mustSupport: z.lazy(getElementSchema).nullable().array().optional(),
+		profile: fhirCanonical().nullable().array().optional(),
+		_profile: z.lazy(getElementSchema).nullable().array().optional(),
 		sort: z.lazy(getDataRequirement_SortSchema).array().optional(),
 		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		subjectReference: z.lazy(getReferenceSchema).optional(),
@@ -582,6 +583,20 @@ export const DataRequirementSchemaInternal = z
 				path: [subject_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.mustSupport,
+			record._mustSupport,
+			"mustSupport",
+			"_mustSupport",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.profile,
+			record._profile,
+			"profile",
+			"_profile",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.subjectReference,
 			"subjectReference",

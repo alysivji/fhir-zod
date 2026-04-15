@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -36,9 +37,9 @@ export interface ExplanationOfBenefit_Item_Detail_SubDetail
 	/** The total amount claimed for the line item.detail.subDetail. Net = unit price * quantity * factor. */
 	net?: Money;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** The amount paid by the patient, in total at the claim claim level or specifically for the item and detail level, to the provider for goods and services. */
 	patientPaid?: Money;
 	/** When the value is a group code then this item collects a set of related item details, otherwise this contains the product, service, drug or other billing code for the item. This element may be the start of a range of .productOrService codes used in conjunction with .productOrServiceEnd or it may be a solo element where .productOrServiceEnd is not used. */
@@ -89,8 +90,8 @@ export const ExplanationOfBenefit_Item_Detail_SubDetailSchemaInternal =
 		_factor: z.lazy(getElementSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		patientPaid: z.lazy(getMoneySchema).optional(),
 		productOrService: z.lazy(getCodeableConceptSchema).optional(),
 		productOrServiceEnd: z.lazy(getCodeableConceptSchema).optional(),
@@ -108,6 +109,13 @@ export const ExplanationOfBenefit_Item_Detail_SubDetailSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.udi,
 				"udi",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -25,9 +26,9 @@ export interface SubstancePolymer extends DomainResource {
 	/** Todo. */
 	geometry?: CodeableConcept;
 	/** Todo. */
-	modification?: Array<string>;
+	modification?: Array<string | null>;
 	/** Extensions for modification */
-	_modification?: Array<Element>;
+	_modification?: Array<Element | null>;
 	/** Todo. */
 	monomerSet?: Array<SubstancePolymer_MonomerSet>;
 	/** Todo. */
@@ -53,12 +54,23 @@ export const SubstancePolymerSchemaInternal =
 		class: z.lazy(getCodeableConceptSchema).optional(),
 		copolymerConnectivity: z.lazy(getCodeableConceptSchema).array().optional(),
 		geometry: z.lazy(getCodeableConceptSchema).optional(),
-		modification: fhirString().array().optional(),
-		_modification: z.lazy(getElementSchema).array().optional(),
+		modification: fhirString().nullable().array().optional(),
+		_modification: z.lazy(getElementSchema).nullable().array().optional(),
 		monomerSet: z.lazy(getSubstancePolymer_MonomerSetSchema).array().optional(),
 		repeat: z.lazy(getSubstancePolymer_RepeatSchema).array().optional(),
 		resourceType: z.literal("SubstancePolymer"),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.modification,
+				record._modification,
+				"modification",
+				"_modification",
+				ctx,
+			);
+		});
 
 export const SubstancePolymerSchema =
 	SubstancePolymerSchemaInternal as z.ZodType<SubstancePolymer>;

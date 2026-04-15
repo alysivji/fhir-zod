@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/VirtualServiceDetail
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
@@ -19,9 +20,9 @@ import { ExtendedContactDetailSchemaInternal } from "./ExtendedContactDetail";
 /** VirtualServiceDetail Type: Virtual Service Contact Details. */
 export interface VirtualServiceDetail extends DataType {
 	/** Address to see alternative connection details. */
-	additionalInfo?: Array<string>;
+	additionalInfo?: Array<string | null>;
 	/** Extensions for additionalInfo */
-	_additionalInfo?: Array<Element>;
+	_additionalInfo?: Array<Element | null>;
 	/** What address or number needs to be used for a user to connect to the virtual service to join. The channelType informs as to which datatype is appropriate to use (requires knowledge of the specific type). */
 	addressContactPoint?: ContactPoint;
 	/** What address or number needs to be used for a user to connect to the virtual service to join. The channelType informs as to which datatype is appropriate to use (requires knowledge of the specific type). */
@@ -58,8 +59,8 @@ const getExtendedContactDetailSchema = (): z.ZodType<ExtendedContactDetail> =>
 /** @internal */
 export const VirtualServiceDetailSchemaInternal = DataTypeSchemaInternal.extend(
 	{
-		additionalInfo: fhirUrl().array().optional(),
-		_additionalInfo: z.lazy(getElementSchema).array().optional(),
+		additionalInfo: fhirUrl().nullable().array().optional(),
+		_additionalInfo: z.lazy(getElementSchema).nullable().array().optional(),
 		addressContactPoint: z.lazy(getContactPointSchema).optional(),
 		addressExtendedContactDetail: z
 			.lazy(getExtendedContactDetailSchema)
@@ -92,6 +93,13 @@ export const VirtualServiceDetailSchemaInternal = DataTypeSchemaInternal.extend(
 				path: [address_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.additionalInfo,
+			record._additionalInfo,
+			"additionalInfo",
+			"_additionalInfo",
+			ctx,
+		);
 	});
 
 export const VirtualServiceDetailSchema =

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubscriptionTopic
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -48,9 +49,10 @@ export interface SubscriptionTopic_ResourceTrigger extends BackboneElement {
 		| "transaction"
 		| "update"
 		| "vread"
+		| null
 	>;
 	/** Extensions for supportedInteraction */
-	_supportedInteraction?: Array<Element>;
+	_supportedInteraction?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -95,10 +97,26 @@ export const SubscriptionTopic_ResourceTriggerSchemaInternal =
 				"update",
 				"vread",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_supportedInteraction: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		_supportedInteraction: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.supportedInteraction,
+				record._supportedInteraction,
+				"supportedInteraction",
+				"_supportedInteraction",
+				ctx,
+			);
+		});
 
 export const SubscriptionTopic_ResourceTriggerSchema =
 	SubscriptionTopic_ResourceTriggerSchemaInternal as z.ZodType<SubscriptionTopic_ResourceTrigger>;

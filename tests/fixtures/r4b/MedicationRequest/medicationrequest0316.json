@@ -1,0 +1,124 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "medrx0316",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;medrx0316&quot; </p></div><p><b>identifier</b>: id: 12345689 (OFFICIAL)</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><p><b>medication</b>: <a name=\"med0306\"> </a></p><blockquote><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;med0306&quot; </p></div><p><b>code</b>: Adcetris <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#51144-050-01)</span></p><p><b>form</b>: Lyophilized powder for injectable solution (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421637006)</span></p><h3>Batches</h3><table class=\"grid\"><tr><td>-</td><td><b>LotNumber</b></td><td><b>ExpirationDate</b></td></tr><tr><td>*</td><td>12345</td><td>2019-10-31</td></tr></table></blockquote><p><b>subject</b>: <a href=\"patient-pat1.html\">Patient/pat1: Donald Duck</a> &quot;Duck DONALD&quot;</p><p><b>encounter</b>: <a href=\"encounter-f001.html\">Encounter/f001: encounter who leads to this prescription</a></p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-f007.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><p><b>instantiatesUri</b>: <a href=\"http://www.bccancer.bc.ca/chemotherapy-protocols-site/Documents/Lymphoma-Myeloma/ULYBRENTUX%20Protocol_1Jun2017.pdf\">http://www.bccancer.bc.ca/chemotherapy-protocols-site/Documents/Lymphoma-Myeloma/ULYBRENTUX%20Protocol_1Jun2017.pdf</a></p></div>"
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "med0306",
+      "code": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/ndc",
+            "code": "51144-050-01",
+            "display": "Adcetris"
+          }
+        ]
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "421637006",
+            "display": "Lyophilized powder for injectable solution (qualifier value)"
+          }
+        ]
+      },
+      "batch": {
+        "lotNumber": "12345",
+        "expirationDate": "2019-10-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "system": "http://www.bmc.nl/portal/prescriptions",
+      "value": "12345689"
+    }
+  ],
+  "status": "completed",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "#med0306"
+  },
+  "subject": {
+    "reference": "Patient/pat1",
+    "display": "Donald Duck"
+  },
+  "encounter": {
+    "reference": "Encounter/f001",
+    "display": "encounter who leads to this prescription"
+  },
+  "authoredOn": "2015-01-15",
+  "requester": {
+    "reference": "Practitioner/f007",
+    "display": "Patrick Pump"
+  },
+  "instantiatesUri": [
+    "http://www.bccancer.bc.ca/chemotherapy-protocols-site/Documents/Lymphoma-Myeloma/ULYBRENTUX%20Protocol_1Jun2017.pdf"
+  ],
+  "dosageInstruction": [
+    {
+      "sequence": 1,
+      "text": "1.8 mg/kg IV infusion over 20 minutes every 3 weeks for 16 cycles",
+      "timing": {
+        "repeat": {
+          "count": 16,
+          "frequency": 1,
+          "period": 3,
+          "periodUnit": "wk"
+        }
+      },
+      "route": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "255560000",
+            "display": "Intravenous"
+          }
+        ]
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+                "code": "ordered",
+                "display": "Ordered"
+              }
+            ]
+          },
+          "doseQuantity": {
+            "value": 1.8,
+            "unit": "mg/kg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg/kg"
+          },
+          "rateRatio": {
+            "numerator": {
+              "value": 1.8,
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/kg"
+            },
+            "denominator": {
+              "value": 20,
+              "system": "http://unitsofmeasure.org",
+              "code": "min"
+            }
+          }
+        }
+      ],
+      "maxDosePerLifetime": {
+        "value": 400,
+        "unit": "mg",
+        "system": "http://unitsofmeasure.org",
+        "code": "mg"
+      }
+    }
+  ]
+}

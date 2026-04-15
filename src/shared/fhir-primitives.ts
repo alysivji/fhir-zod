@@ -4,7 +4,54 @@ function withPattern(pattern: RegExp): z.ZodString {
 	return z.string().regex(pattern);
 }
 
-export const fhirBase64BinaryPattern = /(\s*([0-9a-zA-Z+/=]){4}\s*)+/;
+function isBase64Character(value: string): boolean {
+	return (
+		(value >= "A" && value <= "Z") ||
+		(value >= "a" && value <= "z") ||
+		(value >= "0" && value <= "9") ||
+		value === "+" ||
+		value === "/"
+	);
+}
+
+function isWhitespace(value: string): boolean {
+	return value === " " || value === "\r" || value === "\n" || value === "\t";
+}
+
+function isFhirBase64Binary(value: string): boolean {
+	let length = 0;
+	let padding = 0;
+	let seenPadding = false;
+
+	for (const character of value) {
+		if (isWhitespace(character)) {
+			continue;
+		}
+
+		if (character === "=") {
+			seenPadding = true;
+			padding += 1;
+			length += 1;
+
+			if (padding > 2) {
+				return false;
+			}
+
+			continue;
+		}
+
+		if (seenPadding || !isBase64Character(character)) {
+			return false;
+		}
+
+		length += 1;
+	}
+
+	return length > 0 && length % 4 === 0;
+}
+
+export const fhirBase64BinaryPattern =
+	/^(?=\s*[0-9A-Za-z+/])(?:\s*[0-9A-Za-z+/]{4}\s*)*(?:\s*(?:[0-9A-Za-z+/]{2}==|[0-9A-Za-z+/]{3}=)\s*)?$/;
 export const fhirCanonicalPattern = /\S*/;
 export const fhirCodePattern = /[^\s]+(\s[^\s]+)*/;
 export const fhirDatePattern =
@@ -24,8 +71,8 @@ export const fhirUrlPattern = /\S*/;
 export const fhirUuidPattern =
 	/^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
-export function fhirBase64Binary(): z.ZodString {
-	return withPattern(fhirBase64BinaryPattern);
+export function fhirBase64Binary(): z.ZodType<string> {
+	return z.string().refine(isFhirBase64Binary);
 }
 
 export function fhirCanonical(): z.ZodString {

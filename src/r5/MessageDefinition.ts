@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -84,9 +85,9 @@ export interface MessageDefinition extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** Identifies a protocol or workflow that this MessageDefinition represents a step in. */
-	parent?: Array<string>;
+	parent?: Array<string | null>;
 	/** Extensions for parent */
-	_parent?: Array<Element>;
+	_parent?: Array<Element | null>;
 	/** The name of the organization or individual responsible for the release and ongoing maintenance of the message definition. */
 	publisher?: string;
 	/** Extensions for publisher */
@@ -96,9 +97,9 @@ export interface MessageDefinition extends DomainResource {
 	/** Extensions for purpose */
 	_purpose?: Element;
 	/** A MessageDefinition that is superseded by this definition. */
-	replaces?: Array<string>;
+	replaces?: Array<string | null>;
 	/** Extensions for replaces */
-	_replaces?: Array<Element>;
+	_replaces?: Array<Element | null>;
 	/** This is a MessageDefinition resource. */
 	resourceType: "MessageDefinition";
 	/** Declare at a message definition level whether a response is required or only upon error or success, or never. */
@@ -188,8 +189,8 @@ export const MessageDefinitionSchemaInternal =
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		parent: fhirCanonical().array().optional(),
-		_parent: z.lazy(getElementSchema).array().optional(),
+		parent: fhirCanonical().nullable().array().optional(),
+		_parent: z.lazy(getElementSchema).nullable().array().optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z
@@ -197,8 +198,8 @@ export const MessageDefinitionSchemaInternal =
 			.regex(/^[\s\S]+$/)
 			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
-		replaces: fhirCanonical().array().optional(),
-		_replaces: z.lazy(getElementSchema).array().optional(),
+		replaces: fhirCanonical().nullable().array().optional(),
+		_replaces: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("MessageDefinition"),
 		responseRequired: z
 			.enum(["always", "never", "on-error", "on-success"])
@@ -250,6 +251,20 @@ export const MessageDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.parent,
+				record._parent,
+				"parent",
+				"_parent",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.replaces,
+				record._replaces,
+				"replaces",
+				"_replaces",
+				ctx,
+			);
 		});
 
 export const MessageDefinitionSchema =

@@ -1,0 +1,49 @@
+{
+  "resourceType": "MedicinalProductDefinition",
+  "id": "product-with-contained-package-and-ingredient",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;product-with-contained-package-and-ingredient&quot; </p></div><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>ProductName</b></td></tr><tr><td>*</td><td>Exampleocillin</td></tr></table></div>"
+  },
+  "contained": [
+    {
+      "resourceType": "PackagedProductDefinition",
+      "id": "ppd1",
+      "packageFor": [
+        {
+          "reference": "#"
+        }
+      ],
+      "description": "A full text description with markup can go here"
+    },
+    {
+      "resourceType": "Ingredient",
+      "id": "i1",
+      "status": "active",
+      "for": [
+        {
+          "reference": "#"
+        }
+      ],
+      "role": {
+        "coding": [
+          {
+            "code": "component"
+          }
+        ]
+      },
+      "substance": {
+        "code": {
+          "reference": {
+            "reference": "SubstanceDefinition/componentSubstance"
+          }
+        }
+      }
+    }
+  ],
+  "name": [
+    {
+      "productName": "Exampleocillin"
+    }
+  ]
+}

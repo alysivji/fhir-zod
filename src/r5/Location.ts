@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Location
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
@@ -34,9 +35,9 @@ export interface Location extends DomainResource {
 	/** Physical location. */
 	address?: Address;
 	/** A list of alternate names that the location is known as, or was known as, in the past. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** Collection of characteristics (attributes). */
 	characteristic?: Array<CodeableConcept>;
 	/** The contact details of communication devices available at the location. This can include addresses, phone numbers, fax numbers, mobile numbers, email addresses and web sites. */
@@ -105,8 +106,8 @@ const getVirtualServiceDetailSchema = (): z.ZodType<VirtualServiceDetail> =>
 /** @internal */
 export const LocationSchemaInternal = DomainResourceSchemaInternal.extend({
 	address: z.lazy(getAddressSchema).optional(),
-	alias: fhirString().array().optional(),
-	_alias: z.lazy(getElementSchema).array().optional(),
+	alias: fhirString().nullable().array().optional(),
+	_alias: z.lazy(getElementSchema).nullable().array().optional(),
 	characteristic: z.lazy(getCodeableConceptSchema).array().optional(),
 	contact: z.lazy(getExtendedContactDetailSchema).array().optional(),
 	description: z
@@ -135,6 +136,13 @@ export const LocationSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.alias,
+			record._alias,
+			"alias",
+			"_alias",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.endpoint,
 			"endpoint",

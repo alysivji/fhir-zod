@@ -174,7 +174,18 @@ describeR4Spec(
 			expect(content).toContain("fhirInstant");
 			expect(content).toContain("fhirString");
 			expect(content).toContain("fhirUri");
-			expect(content).toContain("profile: fhirCanonical().array().optional(),");
+			expect(content).toContain(
+				'import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";',
+			);
+			expect(content).toContain(
+				"profile: fhirCanonical().nullable().array().optional(),",
+			);
+			expect(content).toContain(
+				"_profile: z.lazy(getElementSchema).nullable().array().optional(),",
+			);
+			expect(content).toMatch(
+				/validatePrimitiveArrayPair\(\s*record\.profile,\s*record\._profile,\s*"profile",\s*"_profile",\s*ctx,\s*\);/,
+			);
 			expect(content).toContain("id: fhirString().optional(),");
 			expect(content).toContain("source: fhirUri().optional(),");
 		});

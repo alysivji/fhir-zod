@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -39,9 +40,9 @@ export interface CoverageEligibilityRequest_Item extends BackboneElement {
 	/** The number of repetitions of a service or product. */
 	quantity?: Quantity;
 	/** Exceptions, special conditions and supporting information applicable for this service or product line. */
-	supportingInfoSequence?: Array<number>;
+	supportingInfoSequence?: Array<number | null>;
 	/** Extensions for supportingInfoSequence */
-	_supportingInfoSequence?: Array<Element>;
+	_supportingInfoSequence?: Array<Element | null>;
 	/** The amount charged to the patient by the provider for a single unit. */
 	unitPrice?: Money;
 }
@@ -74,13 +75,30 @@ export const CoverageEligibilityRequest_ItemSchemaInternal =
 		productOrService: z.lazy(getCodeableConceptSchema).optional(),
 		provider: z.lazy(getReferenceSchema).optional(),
 		quantity: z.lazy(getQuantitySchema).optional(),
-		supportingInfoSequence: z.number().int().positive().array().optional(),
-		_supportingInfoSequence: z.lazy(getElementSchema).array().optional(),
+		supportingInfoSequence: z
+			.number()
+			.int()
+			.positive()
+			.nullable()
+			.array()
+			.optional(),
+		_supportingInfoSequence: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		unitPrice: z.lazy(getMoneySchema).optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.supportingInfoSequence,
+				record._supportingInfoSequence,
+				"supportingInfoSequence",
+				"_supportingInfoSequence",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.detail,
 				"detail",

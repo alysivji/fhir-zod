@@ -1,0 +1,59 @@
+{
+  "resourceType": "PackagedProductDefinition",
+  "id": "package-with-liquid-and-syringe",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;package-with-liquid-and-syringe&quot; </p></div><p><b>packageFor</b>: <a href=\"todo.html\">MedicinalProductDefinition/ProductThatHasThisPackType</a></p><blockquote><p><b>package</b></p><blockquote><p><b>containedItem</b></p><p><b>amount</b>: 20 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><blockquote><p><b>containedItem</b></p></blockquote></blockquote></div>"
+  },
+  "contained": [
+    {
+      "resourceType": "DeviceDefinition",
+      "id": "syringeDevice",
+      "type": {
+        "text": "syringe"
+      }
+    },
+    {
+      "resourceType": "ManufacturedItemDefinition",
+      "id": "liquidItem",
+      "status": "active",
+      "manufacturedDoseForm": {
+        "coding": [
+          {
+            "system": "http://example.org.uk/fhir/doseform",
+            "code": "solution for injection"
+          }
+        ]
+      }
+    }
+  ],
+  "packageFor": [
+    {
+      "reference": "MedicinalProductDefinition/ProductThatHasThisPackType"
+    }
+  ],
+  "package": {
+    "containedItem": [
+      {
+        "item": {
+          "reference": {
+            "reference": "#liquidItem"
+          }
+        },
+        "amount": {
+          "value": 20,
+          "unit": "ml",
+          "system": "http://unitsofmeasure.org",
+          "code": "mL"
+        }
+      },
+      {
+        "item": {
+          "reference": {
+            "reference": "#syringeDevice"
+          }
+        }
+      }
+    ]
+  }
+}

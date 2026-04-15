@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationOutcome
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -56,17 +57,17 @@ export interface OperationOutcome_Issue extends BackboneElement {
 	/** Extensions for diagnostics */
 	_diagnostics?: Element;
 	/** A [simple subset of FHIRPath](fhirpath.html#simple) limited to element names, repetition indicators and the default child accessor that identifies one of the elements in the resource that caused this issue to be raised. */
-	expression?: Array<string>;
+	expression?: Array<string | null>;
 	/** Extensions for expression */
-	_expression?: Array<Element>;
+	_expression?: Array<Element | null>;
 	/**
 	 * This element is deprecated because it is XML specific. It is replaced by issue.expression, which is format independent, and simpler to parse.
 	 *
 	 * For resource issues, this will be a simple XPath limited to element names, repetition indicators and the default child accessor that identifies one of the elements in the resource that caused this issue to be raised.  For HTTP errors, will be "http." + the parameter name.
 	 */
-	location?: Array<string>;
+	location?: Array<string | null>;
 	/** Extensions for location */
-	_location?: Array<Element>;
+	_location?: Array<Element | null>;
 	/** Indicates whether the issue indicates a variation from successful processing. */
 	severity: "error" | "fatal" | "information" | "warning";
 	/** Extensions for severity */
@@ -118,13 +119,31 @@ export const OperationOutcome_IssueSchemaInternal =
 		details: z.lazy(getCodeableConceptSchema).optional(),
 		diagnostics: fhirString().optional(),
 		_diagnostics: z.lazy(getElementSchema).optional(),
-		expression: fhirString().array().optional(),
-		_expression: z.lazy(getElementSchema).array().optional(),
-		location: fhirString().array().optional(),
-		_location: z.lazy(getElementSchema).array().optional(),
+		expression: fhirString().nullable().array().optional(),
+		_expression: z.lazy(getElementSchema).nullable().array().optional(),
+		location: fhirString().nullable().array().optional(),
+		_location: z.lazy(getElementSchema).nullable().array().optional(),
 		severity: z.enum(["error", "fatal", "information", "warning"]),
 		_severity: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.expression,
+				record._expression,
+				"expression",
+				"_expression",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.location,
+				record._location,
+				"location",
+				"_location",
+				ctx,
+			);
+		});
 
 export const OperationOutcome_IssueSchema =
 	OperationOutcome_IssueSchemaInternal as z.ZodType<OperationOutcome_Issue>;

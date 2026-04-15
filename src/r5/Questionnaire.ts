@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -53,9 +54,9 @@ export interface Questionnaire extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** The URL of a Questionnaire that this Questionnaire is based on. */
-	derivedFrom?: Array<string>;
+	derivedFrom?: Array<string | null>;
 	/** Extensions for derivedFrom */
-	_derivedFrom?: Array<Element>;
+	_derivedFrom?: Array<Element | null>;
 	/** A free text natural language description of the questionnaire from a consumer's perspective. */
 	description?: string;
 	/** Extensions for description */
@@ -327,9 +328,10 @@ export interface Questionnaire extends DomainResource {
 		| "VirtualServiceDetail"
 		| "VisionPrescription"
 		| "xhtml"
+		| null
 	>;
 	/** Extensions for subjectType */
-	_subjectType?: Array<Element>;
+	_subjectType?: Array<Element | null>;
 	/** A short, descriptive, user-friendly title for the questionnaire. */
 	title?: string;
 	/** Extensions for title */
@@ -384,8 +386,8 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 	_copyrightLabel: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	derivedFrom: fhirCanonical().array().optional(),
-	_derivedFrom: z.lazy(getElementSchema).array().optional(),
+	derivedFrom: fhirCanonical().nullable().array().optional(),
+	_derivedFrom: z.lazy(getElementSchema).nullable().array().optional(),
 	description: z
 		.string()
 		.regex(/^[\s\S]+$/)
@@ -645,9 +647,10 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 			"VisionPrescription",
 			"xhtml",
 		])
+		.nullable()
 		.array()
 		.optional(),
-	_subjectType: z.lazy(getElementSchema).array().optional(),
+	_subjectType: z.lazy(getElementSchema).nullable().array().optional(),
 	title: fhirString().optional(),
 	_title: z.lazy(getElementSchema).optional(),
 	url: fhirUri().optional(),
@@ -674,6 +677,20 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [versionAlgorithm_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.derivedFrom,
+			record._derivedFrom,
+			"derivedFrom",
+			"_derivedFrom",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.subjectType,
+			record._subjectType,
+			"subjectType",
+			"_subjectType",
+			ctx,
+		);
 	});
 
 export const QuestionnaireSchema =

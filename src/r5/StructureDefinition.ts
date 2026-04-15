@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -48,9 +49,9 @@ export interface StructureDefinition extends DomainResource {
 	/** Identifies the types of resource or data type elements to which the extension can be applied. For more guidance on using the 'context' element, see the [defining extensions page](defining-extensions.html#context). */
 	context?: Array<StructureDefinition_Context>;
 	/** A set of rules as FHIRPath Invariants about when the extension can be used (e.g. co-occurrence variants for the extension). All the rules must be true. */
-	contextInvariant?: Array<string>;
+	contextInvariant?: Array<string | null>;
 	/** Extensions for contextInvariant */
-	_contextInvariant?: Array<Element>;
+	_contextInvariant?: Array<Element | null>;
 	/** A copyright statement relating to the structure definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure definition.  The short copyright declaration (e.g. (c) '2015+ xyz organization' should be sent in the copyrightLabel element. */
 	copyright?: string;
 	/** Extensions for copyright */
@@ -230,8 +231,8 @@ export const StructureDefinitionSchemaInternal =
 		_baseDefinition: z.lazy(getElementSchema).optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		context: z.lazy(getStructureDefinition_ContextSchema).array().optional(),
-		contextInvariant: fhirString().array().optional(),
-		_contextInvariant: z.lazy(getElementSchema).array().optional(),
+		contextInvariant: fhirString().nullable().array().optional(),
+		_contextInvariant: z.lazy(getElementSchema).nullable().array().optional(),
 		copyright: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -360,6 +361,13 @@ export const StructureDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.contextInvariant,
+				record._contextInvariant,
+				"contextInvariant",
+				"_contextInvariant",
+				ctx,
+			);
 		});
 
 export const StructureDefinitionSchema =

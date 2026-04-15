@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImagingSelection
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -39,9 +40,9 @@ export interface ImagingSelection_Instance extends BackboneElement {
 	 *        - A list of segment numbers selected from a segmentation SOP Instance.
 	 *        - A list of Region of Interest (ROI) numbers selected from a radiotherapy structure set SOP Instance.
 	 */
-	subset?: Array<string>;
+	subset?: Array<string | null>;
 	/** Extensions for subset */
-	_subset?: Array<Element>;
+	_subset?: Array<Element | null>;
 	/** The SOP Instance UID for the selected DICOM instance. */
 	uid: string;
 	/** Extensions for uid */
@@ -73,11 +74,22 @@ export const ImagingSelection_InstanceSchemaInternal =
 		number: z.number().int().nonnegative().optional(),
 		_number: z.lazy(getElementSchema).optional(),
 		sopClass: z.lazy(getCodingSchema).optional(),
-		subset: fhirString().array().optional(),
-		_subset: z.lazy(getElementSchema).array().optional(),
+		subset: fhirString().nullable().array().optional(),
+		_subset: z.lazy(getElementSchema).nullable().array().optional(),
 		uid: fhirId(),
 		_uid: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.subset,
+				record._subset,
+				"subset",
+				"_subset",
+				ctx,
+			);
+		});
 
 export const ImagingSelection_InstanceSchema =
 	ImagingSelection_InstanceSchemaInternal as z.ZodType<ImagingSelection_Instance>;

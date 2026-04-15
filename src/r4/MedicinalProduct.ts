@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicinalProduct
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -68,9 +69,9 @@ export interface MedicinalProduct extends DomainResource {
 	/** Indicates if the medicinal product has an orphan designation for the treatment of a rare disease. */
 	specialDesignation?: Array<MedicinalProduct_SpecialDesignation>;
 	/** Whether the Medicinal Product is subject to special measures for regulatory reasons. */
-	specialMeasures?: Array<string>;
+	specialMeasures?: Array<string | null>;
 	/** Extensions for specialMeasures */
-	_specialMeasures?: Array<Element>;
+	_specialMeasures?: Array<Element | null>;
 	/** Regulatory type, e.g. Investigational or Authorized. */
 	type?: CodeableConcept;
 }
@@ -124,13 +125,20 @@ export const MedicinalProductSchemaInternal =
 			.lazy(getMedicinalProduct_SpecialDesignationSchema)
 			.array()
 			.optional(),
-		specialMeasures: fhirString().array().optional(),
-		_specialMeasures: z.lazy(getElementSchema).array().optional(),
+		specialMeasures: fhirString().nullable().array().optional(),
+		_specialMeasures: z.lazy(getElementSchema).nullable().array().optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.specialMeasures,
+				record._specialMeasures,
+				"specialMeasures",
+				"_specialMeasures",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.attachedDocument,
 				"attachedDocument",

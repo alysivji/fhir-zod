@@ -75,7 +75,7 @@ Track the work needed to align the repository with the current README.
 - [x] Generate shared primitives/helpers needed by emitted schemas
 - [ ] Generate first real STU3 schema set
 - [x] Generate first real R4 schema set
-- [ ] Generate first real R4B schema set
+- [x] Generate first real R4B schema set
 - [x] Generate first real R5 schema set
 - [x] Export generated schemas by version without mixing versions
 - [x] Keep generated schemas Zod-first with no wrapper layer
@@ -88,19 +88,19 @@ Track the work needed to align the repository with the current README.
   extend the same public surface pattern to additional generated versions.
 - [x] Decide the public model strategy for generated declarations in additional versions
   Current state:
-  generated R4 and R5 output use named TypeScript models for the public surface
+  generated R4, R4B, and R5 output use named TypeScript models for the public surface
   and separate `*Schema` exports for runtime validation. Object-like FHIR
   definitions prefer interfaces, with type aliases retained where unions or
   recursive composition make that cleaner.
-- [x] Teach the generator to emit named TypeScript models for generated R4 definitions
+- [x] Teach the generator to emit named TypeScript models for generated definitions
   Current state:
-  generated R4 declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
+  generated R4 and R4B declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
   Follow-up:
-  carry the same emission strategy into additional generated versions.
+  carry the same emission strategy into STU3 when generation expands to that version.
 - [x] Rename generated R4 schema exports to `*Schema` alongside the separate public model layer
 - [x] Preserve spec-defined inheritance relationships in generated TS models and schema exports where runtime initialization is safe
   Current state:
-  generated R4 and R5 output preserve base relationships such as `Resource`
+  generated R4, R4B, and R5 output preserve base relationships such as `Resource`
   extending `Base`, `DomainResource` extending `Resource`, and concrete
   resources extending their spec-defined base types when those relationships can
   be emitted without triggering cyclic ESM initialization failures.
@@ -128,6 +128,11 @@ Track the work needed to align the repository with the current README.
   R5 target discovery exists, committed R5 official example fixtures are
   checked in under `tests/fixtures/r5/`, and the generic R5 official-example
   suite validates them with known mismatches tracked as expected failures.
+- [x] Download official R4B example fixtures
+  Current state:
+  R4B target discovery exists, committed R4B official example fixtures are
+  checked in under `tests/fixtures/r4b/`, and the generic R4B official-example
+  suite validates them with known mismatches tracked as expected failures.
 - [x] Add package tree-shaking regression test
   Current state:
   `tests/tree-shaking.test.ts` builds a temporary package and bundles a consumer
@@ -136,7 +141,7 @@ Track the work needed to align the repository with the current README.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
 - [ ] Investigate official example expected failures that violate emitted structural constraints
   Current handling:
-  expected-failure fixtures still execute in the R4/R5 official-example suites
+  expected-failure fixtures still execute in the R4/R4B/R5 official-example suites
   via Vitest `it.fails`, and each entry is also surfaced as a skipped tracking
   test in `tests/official-example-expected-failures.test.ts` so the unresolved
   investigation debt remains visible in `npm test` summaries.

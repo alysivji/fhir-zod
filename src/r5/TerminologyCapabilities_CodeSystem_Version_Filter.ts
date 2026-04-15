@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -18,9 +19,9 @@ export interface TerminologyCapabilities_CodeSystem_Version_Filter
 	/** Extensions for code */
 	_code?: Element;
 	/** Operations supported for the property. */
-	op: Array<string>;
+	op: Array<string | null>;
 	/** Extensions for op */
-	_op?: Array<Element>;
+	_op?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -31,9 +32,14 @@ export const TerminologyCapabilities_CodeSystem_Version_FilterSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		code: fhirCode(),
 		_code: z.lazy(getElementSchema).optional(),
-		op: fhirCode().array(),
-		_op: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		op: fhirCode().nullable().array(),
+		_op: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(record.op, record._op, "op", "_op", ctx);
+		});
 
 export const TerminologyCapabilities_CodeSystem_Version_FilterSchema =
 	TerminologyCapabilities_CodeSystem_Version_FilterSchemaInternal as z.ZodType<TerminologyCapabilities_CodeSystem_Version_Filter>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -84,13 +85,13 @@ export interface FamilyMemberHistory extends DomainResource {
 	/** Business identifiers assigned to this family member history by the performer or other systems which remain constant as the resource is updated and propagates from server to server. */
 	identifier?: Array<Identifier>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this FamilyMemberHistory. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this FamilyMemberHistory. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** This will either be a name or a description; e.g. "Aunt Susan", "my cousin with the red hair". */
 	name?: string;
 	/** Extensions for name */
@@ -164,10 +165,14 @@ export const FamilyMemberHistorySchemaInternal =
 		estimatedAge: z.boolean().optional(),
 		_estimatedAge: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiatesCanonical: fhirCanonical().array().optional(),
-		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: fhirUri().array().optional(),
-		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+		instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+		_instantiatesCanonical: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		instantiatesUri: fhirUri().nullable().array().optional(),
+		_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
@@ -225,6 +230,20 @@ export const FamilyMemberHistorySchemaInternal =
 					path: [deceased_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.instantiatesCanonical,
+				record._instantiatesCanonical,
+				"instantiatesCanonical",
+				"_instantiatesCanonical",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.instantiatesUri,
+				record._instantiatesUri,
+				"instantiatesUri",
+				"_instantiatesUri",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.patient,
 				"patient",

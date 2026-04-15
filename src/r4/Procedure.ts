@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Procedure
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -59,13 +60,13 @@ export interface Procedure extends DomainResource {
 	/** Business identifiers assigned to this procedure by the performer or other systems which remain constant as the resource is updated and is propagated from server to server. */
 	identifier?: Array<Identifier>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, order set or other definition that is adhered to in whole or in part by this Procedure. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, order set or other definition that is adhered to in whole or in part by this Procedure. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** The location where the procedure actually happened.  E.g. a newborn at home, a tracheostomy at a restaurant. */
 	location?: Reference;
 	/** Any other notes and comments about the procedure. */
@@ -155,10 +156,14 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 	focalDevice: z.lazy(getProcedure_FocalDeviceSchema).array().optional(),
 	followUp: z.lazy(getCodeableConceptSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	instantiatesCanonical: fhirCanonical().array().optional(),
-	_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-	instantiatesUri: fhirUri().array().optional(),
-	_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+	instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+	_instantiatesCanonical: z
+		.lazy(getElementSchema)
+		.nullable()
+		.array()
+		.optional(),
+	instantiatesUri: fhirUri().nullable().array().optional(),
+	_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 	location: z.lazy(getReferenceSchema).optional(),
 	note: z.lazy(getAnnotationSchema).array().optional(),
 	outcome: z.lazy(getCodeableConceptSchema).optional(),
@@ -210,6 +215,20 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [performed_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.instantiatesCanonical,
+			record._instantiatesCanonical,
+			"instantiatesCanonical",
+			"_instantiatesCanonical",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.instantiatesUri,
+			record._instantiatesUri,
+			"instantiatesUri",
+			"_instantiatesUri",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.asserter,
 			"asserter",

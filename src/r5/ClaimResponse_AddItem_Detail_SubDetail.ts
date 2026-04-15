@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -31,9 +32,9 @@ export interface ClaimResponse_AddItem_Detail_SubDetail
 	/** The total amount claimed for the addItem.detail.subDetail. Net = unit price * quantity * factor. */
 	net?: Money;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** When the value is a group code then this item collects a set of related item details, otherwise this contains the product, service, drug or other billing code for the item. This element may be the start of a range of .productOrService codes used in conjunction with .productOrServiceEnd or it may be a solo element where .productOrServiceEnd is not used. */
 	productOrService?: CodeableConcept;
 	/** This contains the end of a range of product, service, drug or other billing codes for the item. This element is not used when the .productOrService is a group code. This value may only be present when a .productOfService code has been provided to convey the start of the range. Typically this value may be used only with preauthorizations and not with claims. */
@@ -71,8 +72,8 @@ export const ClaimResponse_AddItem_Detail_SubDetailSchemaInternal =
 		_factor: z.lazy(getElementSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		productOrService: z.lazy(getCodeableConceptSchema).optional(),
 		productOrServiceEnd: z.lazy(getCodeableConceptSchema).optional(),
 		quantity: z.lazy(getQuantitySchema).optional(),
@@ -81,7 +82,18 @@ export const ClaimResponse_AddItem_Detail_SubDetailSchemaInternal =
 		tax: z.lazy(getMoneySchema).optional(),
 		traceNumber: z.lazy(getIdentifierSchema).array().optional(),
 		unitPrice: z.lazy(getMoneySchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
+		});
 
 export const ClaimResponse_AddItem_Detail_SubDetailSchema =
 	ClaimResponse_AddItem_Detail_SubDetailSchemaInternal as z.ZodType<ClaimResponse_AddItem_Detail_SubDetail>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ActivityDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -362,9 +363,9 @@ export interface ActivityDefinition extends DomainResource {
 	/** Extensions for lastReviewDate */
 	_lastReviewDate?: Element;
 	/** A reference to a Library resource containing any formal logic used by the activity definition. */
-	library?: Array<string>;
+	library?: Array<string | null>;
 	/** Extensions for library */
-	_library?: Array<Element>;
+	_library?: Array<Element | null>;
 	/** Identifies the facility where the activity will occur; e.g. home, hospital, specific clinic, etc. */
 	location?: CodeableReference;
 	/** A natural language name identifying the activity definition. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
@@ -372,13 +373,13 @@ export interface ActivityDefinition extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** Defines observation requirements for the action to be performed, such as body weight or surface area. */
-	observationRequirement?: Array<string>;
+	observationRequirement?: Array<string | null>;
 	/** Extensions for observationRequirement */
-	_observationRequirement?: Array<Element>;
+	_observationRequirement?: Array<Element | null>;
 	/** Defines the observations that are expected to be produced by the action. */
-	observationResultRequirement?: Array<string>;
+	observationResultRequirement?: Array<string | null>;
 	/** Extensions for observationResultRequirement */
-	_observationResultRequirement?: Array<Element>;
+	_observationResultRequirement?: Array<Element | null>;
 	/** Indicates who should participate in performing the action described. */
 	participant?: Array<ActivityDefinition_Participant>;
 	/** Indicates how quickly the activity  should be addressed with respect to other requests. */
@@ -410,9 +411,9 @@ export interface ActivityDefinition extends DomainResource {
 	/** An individual or organization asserted by the publisher to be primarily responsible for review of some aspect of the content. */
 	reviewer?: Array<ContactDetail>;
 	/** Defines specimen requirements for the action to be performed, such as required specimens for a lab test. */
-	specimenRequirement?: Array<string>;
+	specimenRequirement?: Array<string | null>;
 	/** Extensions for specimenRequirement */
-	_specimenRequirement?: Array<Element>;
+	_specimenRequirement?: Array<Element | null>;
 	/** The status of this activity definition. Enables tracking the life-cycle of the content. */
 	status: "active" | "draft" | "retired" | "unknown";
 	/** Extensions for status */
@@ -799,15 +800,23 @@ export const ActivityDefinitionSchemaInternal =
 		_kind: z.lazy(getElementSchema).optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		library: fhirCanonical().array().optional(),
-		_library: z.lazy(getElementSchema).array().optional(),
+		library: fhirCanonical().nullable().array().optional(),
+		_library: z.lazy(getElementSchema).nullable().array().optional(),
 		location: z.lazy(getCodeableReferenceSchema).optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		observationRequirement: fhirCanonical().array().optional(),
-		_observationRequirement: z.lazy(getElementSchema).array().optional(),
-		observationResultRequirement: fhirCanonical().array().optional(),
-		_observationResultRequirement: z.lazy(getElementSchema).array().optional(),
+		observationRequirement: fhirCanonical().nullable().array().optional(),
+		_observationRequirement: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		observationResultRequirement: fhirCanonical().nullable().array().optional(),
+		_observationResultRequirement: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		participant: z
 			.lazy(getActivityDefinition_ParticipantSchema)
 			.array()
@@ -829,8 +838,12 @@ export const ActivityDefinitionSchemaInternal =
 		relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
 		resourceType: z.literal("ActivityDefinition"),
 		reviewer: z.lazy(getContactDetailSchema).array().optional(),
-		specimenRequirement: fhirCanonical().array().optional(),
-		_specimenRequirement: z.lazy(getElementSchema).array().optional(),
+		specimenRequirement: fhirCanonical().nullable().array().optional(),
+		_specimenRequirement: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
 		subjectCanonical: fhirCanonical().optional(),
@@ -928,6 +941,34 @@ export const ActivityDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.library,
+				record._library,
+				"library",
+				"_library",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.observationRequirement,
+				record._observationRequirement,
+				"observationRequirement",
+				"_observationRequirement",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.observationResultRequirement,
+				record._observationResultRequirement,
+				"observationResultRequirement",
+				"_observationResultRequirement",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.specimenRequirement,
+				record._specimenRequirement,
+				"specimenRequirement",
+				"_specimenRequirement",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.productReference,
 				"productReference",

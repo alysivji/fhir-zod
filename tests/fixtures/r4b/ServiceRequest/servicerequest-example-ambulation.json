@@ -1,0 +1,45 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "ambulation",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;ambulation&quot; </p></div><p><b>identifier</b>: id: 45678</p><p><b>basedOn</b>: <a href=\"careplan-preg.html\">CarePlan/preg: Maternity care plan</a></p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><p><b>code</b>: Ambulation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#62013009 &quot;Ambulating patient (procedure)&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>authoredOn</b>: 2017-03-05</p><p><b>requester</b>: <a href=\"practitioner-3ad0687e-f477-468c-afd5-fcc2bf897809.html\">Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809: Dr. Beverly Crusher</a></p><p><b>reasonReference</b>: <a href=\"observation-blood-pressure.html\">Observation/blood-pressure: Blood Pressure</a></p></div>"
+  },
+  "identifier": [
+    {
+      "value": "45678"
+    }
+  ],
+  "basedOn": [
+    {
+      "reference": "CarePlan/preg",
+      "display": "Maternity care plan"
+    }
+  ],
+  "status": "completed",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "62013009",
+        "display": "Ambulating patient (procedure)"
+      }
+    ],
+    "text": "Ambulation"
+  },
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "authoredOn": "2017-03-05",
+  "requester": {
+    "reference": "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809",
+    "display": "Dr. Beverly Crusher"
+  },
+  "reasonReference": [
+    {
+      "reference": "Observation/blood-pressure",
+      "display": "Blood Pressure"
+    }
+  ]
+}

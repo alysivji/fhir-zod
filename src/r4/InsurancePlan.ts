@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/InsurancePlan
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -30,9 +31,9 @@ export interface InsurancePlan extends DomainResource {
 	/** An organization which administer other services such as underwriting, customer service and/or claims processing on behalf of the health insurance product owner. */
 	administeredBy?: Reference;
 	/** A list of alternate names that the product is known as, or was known as in the past. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** The contact for the health insurance product for a certain purpose. */
 	contact?: Array<InsurancePlan_Contact>;
 	/** Details about the coverage offered by the insurance product. */
@@ -85,8 +86,8 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const InsurancePlanSchemaInternal = DomainResourceSchemaInternal.extend({
 	administeredBy: z.lazy(getReferenceSchema).optional(),
-	alias: fhirString().array().optional(),
-	_alias: z.lazy(getElementSchema).array().optional(),
+	alias: fhirString().nullable().array().optional(),
+	_alias: z.lazy(getElementSchema).nullable().array().optional(),
 	contact: z.lazy(getInsurancePlan_ContactSchema).array().optional(),
 	coverage: z.lazy(getInsurancePlan_CoverageSchema).array().optional(),
 	coverageArea: z.lazy(getReferenceSchema).array().optional(),
@@ -106,6 +107,13 @@ export const InsurancePlanSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.alias,
+			record._alias,
+			"alias",
+			"_alias",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.administeredBy,
 			"administeredBy",

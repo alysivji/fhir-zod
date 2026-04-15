@@ -1,0 +1,38 @@
+{
+  "resourceType": "Observation",
+  "id": "656",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;656&quot; </p></div><p><b>identifier</b>: id: patientId-urn:oid:1.2.4~0000000000000000~152584~20170503155426~820</p><p><b>status</b>: final</p><p><b>code</b>: MDC_FLOW_AWAY_EXP_FORCED_PEAK <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#152584)</span></p><p><b>subject</b>: <a href=\"todo.html\">Patient/PatientId-patientId</a></p><p><b>effective</b>: 2017-05-03T15:54:26-04:00</p><p><b>performer</b>: <a href=\"todo.html\">Patient/PatientId-patientId</a></p><p><b>value</b>: 820 cL/s<span style=\"background: LightGoldenRodYellow\"> (Details: urn:iso:std:iso:11073:10101 code 265201 = '265201')</span></p></div>"
+  },
+  "identifier": [
+    {
+      "value": "patientId-urn:oid:1.2.4~0000000000000000~152584~20170503155426~820"
+    }
+  ],
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "urn:iso:std:iso:11073:10101",
+        "code": "152584",
+        "display": "MDC_FLOW_AWAY_EXP_FORCED_PEAK"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/PatientId-patientId"
+  },
+  "effectiveDateTime": "2017-05-03T15:54:26-04:00",
+  "performer": [
+    {
+      "reference": "Patient/PatientId-patientId"
+    }
+  ],
+  "valueQuantity": {
+    "value": 820,
+    "unit": "cL/s",
+    "system": "urn:iso:std:iso:11073:10101",
+    "code": "265201"
+  }
+}

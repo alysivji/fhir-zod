@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Meta
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirId,
@@ -25,9 +26,9 @@ export interface Meta extends Element {
 	/** Extensions for lastUpdated */
 	_lastUpdated?: Element;
 	/** A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url). */
-	profile?: Array<string>;
+	profile?: Array<string | null>;
 	/** Extensions for profile */
-	_profile?: Array<Element>;
+	_profile?: Array<Element | null>;
 	/** Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. */
 	security?: Array<Coding>;
 	/** A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. */
@@ -57,8 +58,8 @@ export const MetaSchemaInternal = z
 		_id: z.lazy(getElementSchema).optional(),
 		lastUpdated: fhirInstant().optional(),
 		_lastUpdated: z.lazy(getElementSchema).optional(),
-		profile: fhirCanonical().array().optional(),
-		_profile: z.lazy(getElementSchema).array().optional(),
+		profile: fhirCanonical().nullable().array().optional(),
+		_profile: z.lazy(getElementSchema).nullable().array().optional(),
 		security: z.lazy(getCodingSchema).array().optional(),
 		source: fhirUri().optional(),
 		_source: z.lazy(getElementSchema).optional(),
@@ -66,6 +67,16 @@ export const MetaSchemaInternal = z
 		versionId: fhirId().optional(),
 		_versionId: z.lazy(getElementSchema).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.profile,
+			record._profile,
+			"profile",
+			"_profile",
+			ctx,
+		);
+	});
 
 export const MetaSchema = MetaSchemaInternal as z.ZodType<Meta>;

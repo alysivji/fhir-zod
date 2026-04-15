@@ -1,0 +1,27 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "ft4",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;ft4&quot; </p></div><p><b>status</b>: active</p><p><b>intent</b>: reflex-order</p><p><b>code</b>: Free T4 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#3024-7 &quot;Thyroxine (T4) free [Mass/​volume] in Serum or Plasma&quot;)</span></p><p><b>subject</b>: <a href=\"patient-pat2.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>occurrence</b>: 2015-08-27T09:33:27+07:00</p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></div>"
+  },
+  "status": "active",
+  "intent": "reflex-order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "3024-7",
+        "display": "Thyroxine (T4) free [Mass/​volume] in Serum or Plasma"
+      }
+    ],
+    "text": "Free T4"
+  },
+  "subject": {
+    "reference": "Patient/pat2"
+  },
+  "occurrenceDateTime": "2015-08-27T09:33:27+07:00",
+  "requester": {
+    "reference": "Practitioner/example"
+  }
+}

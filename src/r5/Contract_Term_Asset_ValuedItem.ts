@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -38,9 +39,9 @@ export interface Contract_Term_Asset_ValuedItem extends BackboneElement {
 	/** Identifies a Contract Valued Item instance. */
 	identifier?: Identifier;
 	/** Id  of the clause or question text related to the context of this valuedItem in the referenced form or QuestionnaireResponse. */
-	linkId?: Array<string>;
+	linkId?: Array<string | null>;
 	/** Extensions for linkId */
-	_linkId?: Array<Element>;
+	_linkId?: Array<Element | null>;
 	/** Expresses the product of the Contract Valued Item unitQuantity and the unitPriceAmt. For example, the formula: unit Quantity * unit Price (Cost per Point) * factor Number  * points = net Amount. Quantity, factor and points are assumed to be 1 if not supplied. */
 	net?: Money;
 	/** Terms of valuation. */
@@ -62,9 +63,9 @@ export interface Contract_Term_Asset_ValuedItem extends BackboneElement {
 	/** Who will make payment. */
 	responsible?: Reference;
 	/** A set of security labels that define which terms are controlled by this condition. */
-	securityLabelNumber?: Array<number>;
+	securityLabelNumber?: Array<number | null>;
 	/** Extensions for securityLabelNumber */
-	_securityLabelNumber?: Array<Element>;
+	_securityLabelNumber?: Array<Element | null>;
 	/** A Contract Valued Item unit valuation measure. */
 	unitPrice?: Money;
 }
@@ -92,8 +93,8 @@ export const Contract_Term_Asset_ValuedItemSchemaInternal =
 		factor: z.number().optional(),
 		_factor: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).optional(),
-		linkId: fhirString().array().optional(),
-		_linkId: z.lazy(getElementSchema).array().optional(),
+		linkId: fhirString().nullable().array().optional(),
+		_linkId: z.lazy(getElementSchema).nullable().array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
 		payment: fhirString().optional(),
 		_payment: z.lazy(getElementSchema).optional(),
@@ -104,8 +105,18 @@ export const Contract_Term_Asset_ValuedItemSchemaInternal =
 		quantity: z.lazy(getQuantitySchema).optional(),
 		recipient: z.lazy(getReferenceSchema).optional(),
 		responsible: z.lazy(getReferenceSchema).optional(),
-		securityLabelNumber: z.number().int().nonnegative().array().optional(),
-		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),
+		securityLabelNumber: z
+			.number()
+			.int()
+			.nonnegative()
+			.nullable()
+			.array()
+			.optional(),
+		_securityLabelNumber: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		unitPrice: z.lazy(getMoneySchema).optional(),
 	})
 		.strict()
@@ -123,6 +134,20 @@ export const Contract_Term_Asset_ValuedItemSchemaInternal =
 					path: [entity_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.linkId,
+				record._linkId,
+				"linkId",
+				"_linkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.securityLabelNumber,
+				record._securityLabelNumber,
+				"securityLabelNumber",
+				"_securityLabelNumber",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.entityReference,
 				"entityReference",

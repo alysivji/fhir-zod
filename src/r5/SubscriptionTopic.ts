@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubscriptionTopic
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -59,9 +60,9 @@ export interface SubscriptionTopic extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** The canonical URL pointing to another FHIR-defined SubscriptionTopic that is adhered to in whole or in part by this SubscriptionTopic. */
-	derivedFrom?: Array<string>;
+	derivedFrom?: Array<string | null>;
 	/** Extensions for derivedFrom */
-	_derivedFrom?: Array<Element>;
+	_derivedFrom?: Array<Element | null>;
 	/** A free text natural language description of the Topic from the consumer's perspective. */
 	description?: string;
 	/** Extensions for description */
@@ -172,8 +173,8 @@ export const SubscriptionTopicSchemaInternal =
 		_copyrightLabel: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		derivedFrom: fhirCanonical().array().optional(),
-		_derivedFrom: z.lazy(getElementSchema).array().optional(),
+		derivedFrom: fhirCanonical().nullable().array().optional(),
+		_derivedFrom: z.lazy(getElementSchema).nullable().array().optional(),
 		description: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -236,6 +237,13 @@ export const SubscriptionTopicSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.derivedFrom,
+				record._derivedFrom,
+				"derivedFrom",
+				"_derivedFrom",
+				ctx,
+			);
 		});
 
 export const SubscriptionTopicSchema =

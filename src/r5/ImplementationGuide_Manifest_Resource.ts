@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -20,9 +21,9 @@ export interface ImplementationGuide_Manifest_Resource extends BackboneElement {
 	/** Extensions for isExample */
 	_isExample?: Element;
 	/** If present, indicates profile(s) the instance is valid against. */
-	profile?: Array<string>;
+	profile?: Array<string | null>;
 	/** Extensions for profile */
-	_profile?: Array<Element>;
+	_profile?: Array<Element | null>;
 	/** Where this resource is found. */
 	reference: Reference;
 	/** The relative path for primary page for this resource within the IG. */
@@ -41,8 +42,8 @@ export const ImplementationGuide_Manifest_ResourceSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		isExample: z.boolean().optional(),
 		_isExample: z.lazy(getElementSchema).optional(),
-		profile: fhirCanonical().array().optional(),
-		_profile: z.lazy(getElementSchema).array().optional(),
+		profile: fhirCanonical().nullable().array().optional(),
+		_profile: z.lazy(getElementSchema).nullable().array().optional(),
 		reference: z.lazy(getReferenceSchema),
 		relativePath: fhirUrl().optional(),
 		_relativePath: z.lazy(getElementSchema).optional(),
@@ -50,6 +51,13 @@ export const ImplementationGuide_Manifest_ResourceSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.profile,
+				record._profile,
+				"profile",
+				"_profile",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.reference,
 				"reference",

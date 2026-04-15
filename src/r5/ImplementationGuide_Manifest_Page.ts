@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -13,9 +14,9 @@ import { ElementSchemaInternal } from "./Element";
 /** Information about a page within the IG. */
 export interface ImplementationGuide_Manifest_Page extends BackboneElement {
 	/** The name of an anchor available on the page. */
-	anchor?: Array<string>;
+	anchor?: Array<string | null>;
 	/** Extensions for anchor */
-	_anchor?: Array<Element>;
+	_anchor?: Array<Element | null>;
 	/** Relative path to the page. */
 	name: string;
 	/** Extensions for name */
@@ -32,13 +33,24 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ImplementationGuide_Manifest_PageSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		anchor: fhirString().array().optional(),
-		_anchor: z.lazy(getElementSchema).array().optional(),
+		anchor: fhirString().nullable().array().optional(),
+		_anchor: z.lazy(getElementSchema).nullable().array().optional(),
 		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		title: fhirString().optional(),
 		_title: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.anchor,
+				record._anchor,
+				"anchor",
+				"_anchor",
+				ctx,
+			);
+		});
 
 export const ImplementationGuide_Manifest_PageSchema =
 	ImplementationGuide_Manifest_PageSchemaInternal as z.ZodType<ImplementationGuide_Manifest_Page>;

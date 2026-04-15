@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Organization
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
@@ -32,9 +33,9 @@ export interface Organization extends DomainResource {
 	/** An address for the organization. */
 	address?: Array<Address>;
 	/** A list of alternate names that the organization is known as, or was known as in the past. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** Contact for the organization for a certain purpose. */
 	contact?: Array<Organization_Contact>;
 	/** Technical endpoints providing access to services operated for the organization. */
@@ -75,8 +76,8 @@ export const OrganizationSchemaInternal = DomainResourceSchemaInternal.extend({
 	active: z.boolean().optional(),
 	_active: z.lazy(getElementSchema).optional(),
 	address: z.lazy(getAddressSchema).array().optional(),
-	alias: fhirString().array().optional(),
-	_alias: z.lazy(getElementSchema).array().optional(),
+	alias: fhirString().nullable().array().optional(),
+	_alias: z.lazy(getElementSchema).nullable().array().optional(),
 	contact: z.lazy(getOrganization_ContactSchema).array().optional(),
 	endpoint: z.lazy(getReferenceSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
@@ -90,6 +91,13 @@ export const OrganizationSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.alias,
+			record._alias,
+			"alias",
+			"_alias",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.endpoint,
 			"endpoint",

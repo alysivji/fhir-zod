@@ -24,12 +24,12 @@ Current repository status:
 
 - TypeScript library scaffold is set up
 - versioned subpath exports are wired
+- R4, R4B, and R5 generation are implemented and checked in under `src/r4`, `src/r4b`, and `src/r5`
 - package output is tree-shakeable ESM with side-effect-free metadata
-- R4 generation is implemented and checked in under `src/r4`
 - default R4 generation covers the canonical core-resource set plus required dependencies
 - build, lint, format, coverage, and test commands are configured
 - spec manifests are pinned for `stu3`, `r4`, `r4b`, and `r5`
-- real generated schema output currently exists for `r4`
+- real generated schema output currently exists for `r4`, `r4b`, and `r5`
 - the project is pre-release, with no compatibility guarantees yet
 
 ## Installation
@@ -66,10 +66,10 @@ Target package shape:
 
 Current state:
 
-- generated R4 output follows this split today
+- generated R4, R4B, and R5 output follow this split today
 - package builds use unbundled ESM output and `sideEffects: false`
 - tree-shaking behavior is tested by bundling a consumer import of one R4 schema and checking unrelated schemas are dropped
-- additional generated versions still need to adopt the same public surface as generation expands beyond R4
+- STU3 still needs to adopt the same public surface when generation expands to that version
 
 ## Development
 
@@ -90,6 +90,7 @@ just fetch-spec
 just test
 just generate
 just list-r4-targets
+just list-r4b-targets
 just list-r5-targets
 ```
 
@@ -106,6 +107,7 @@ npm run coverage
 npm test
 npm run generate
 npm run list:r4-targets -- --summary
+npm run list:r4b-targets -- --summary
 npm run list:r5-targets -- --summary
 ```
 
@@ -121,19 +123,20 @@ Treat these areas as handwritten source:
 - `tests/`
 - `src/spec/`
 
-Treat `src/r4/` as generated output.
+Treat `src/r4/`, `src/r4b/`, and `src/r5/` as generated output.
 
-If generated R4 files are wrong, fix the generator or source normalization first, then regenerate and review the emitted diff.
+If generated versioned files are wrong, fix the generator or source normalization first, then regenerate and review the emitted diff.
 
 ### Spec-dependent tests
 
-Some generator-side tests validate behavior against pinned extracted R4 spec inputs
-under `.local/spec-cache/r4/package`.
+Some generator-side tests validate behavior against pinned extracted spec inputs
+under `.local/spec-cache/<version>/package`.
 
 Those extracted inputs are not committed. On a clean checkout, run:
 
 ```bash
 npm run fetch-spec
+npm run fetch-spec -- r4b r5
 ```
 
 before running the full generator-oriented test suite with `npm test`.
@@ -146,10 +149,12 @@ Official HL7 example fixtures are refreshed with:
 npm run fetch-examples
 ```
 
-The fetcher defaults to R4 resources. It also supports R5 resources after the
-R5 spec package has been fetched:
+The fetcher defaults to R4 resources. It also supports R4B and R5 resources
+after the matching spec package has been fetched:
 
 ```bash
+npm run fetch-spec -- r4b
+npm run fetch-examples -- r4b --delay-ms 1500
 npm run fetch-spec -- r5
 npm run fetch-examples -- r5 --delay-ms 1500
 ```
@@ -158,15 +163,17 @@ The HL7 site may rate-limit or require human verification during automation.
 Use `--delay-ms` for long refreshes, and rerun the resume command printed by
 the script if fetching stops partway through.
 
-To refresh a single R5 resource:
+To refresh a single R4B or R5 resource:
 
 ```bash
+npm run fetch-examples -- r4b Patient --force --delay-ms 1500
 npm run fetch-examples -- r5 Patient --force --delay-ms 1500
 ```
 
 Known official-example mismatches are tracked in:
 
 - `tests/r4-example-expected-failures.ts`
+- `tests/r4b-example-expected-failures.ts`
 - `tests/r5-example-expected-failures.ts`
 
 Each known mismatch appears in two places in the test output:
@@ -209,6 +216,8 @@ npm run list:r4-targets -- --summary
 npm run list:r4-targets -- --category core-resource --names-only
 npm run list:r4-targets -- --category profile-resource --names-only
 npm run list:r4-targets -- --category generation-target --names-only
+npm run list:r4b-targets -- --summary
+npm run list:r4b-targets -- --category core-resource --names-only
 npm run list:r5-targets -- --summary
 npm run list:r5-targets -- --category core-resource --names-only
 ```
@@ -231,6 +240,7 @@ Supported output modes:
 Current generation policy:
 
 - `npm run generate` emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
+- `npm run generate -- r4b` emits all canonical R4B core resources plus the abstract base whitelist and required dependencies
 - `npm run generate -- r5` emits all canonical R5 core resources plus the abstract base whitelist and required dependencies
 - profile-resource definitions are intentionally excluded from generation for now
 - `profile-resource` entries are deferred because some pinned profile names are not unique enough for the current name-based file emission strategy

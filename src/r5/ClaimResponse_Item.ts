@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { ClaimResponse_Item_Adjudication } from "./ClaimResponse_Item_Adjudication";
@@ -28,9 +29,9 @@ export interface ClaimResponse_Item extends BackboneElement {
 	/** Extensions for itemSequence */
 	_itemSequence?: Element;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** The high-level results of the adjudication if adjudication has been performed. */
 	reviewOutcome?: ClaimResponse_Item_ReviewOutcome;
 	/** Trace number for tracking purposes. May be defined at the jurisdiction level or between trading partners. */
@@ -61,11 +62,22 @@ export const ClaimResponse_ItemSchemaInternal =
 		detail: z.lazy(getClaimResponse_Item_DetailSchema).array().optional(),
 		itemSequence: z.number().int().positive(),
 		_itemSequence: z.lazy(getElementSchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		reviewOutcome: z.lazy(getClaimResponse_Item_ReviewOutcomeSchema).optional(),
 		traceNumber: z.lazy(getIdentifierSchema).array().optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
+		});
 
 export const ClaimResponse_ItemSchema =
 	ClaimResponse_ItemSchemaInternal as z.ZodType<ClaimResponse_Item>;

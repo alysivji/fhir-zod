@@ -1,0 +1,43 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "colonoscopy",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;colonoscopy&quot; </p></div><p><b>identifier</b>: id: 45678</p><p><b>requisition</b>: id: req12345</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><p><b>code</b>: Colonoscopy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#73761001 &quot;Colonoscopy (procedure)&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>authoredOn</b>: 2017-03-05</p><p><b>requester</b>: <a href=\"practitioner-3ad0687e-f477-468c-afd5-fcc2bf897809.html\">Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809: Dr. Beverly Crusher</a></p><p><b>performer</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p></div>"
+  },
+  "identifier": [
+    {
+      "value": "45678"
+    }
+  ],
+  "requisition": {
+    "system": "http://bumc.org/requisitions",
+    "value": "req12345"
+  },
+  "status": "completed",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "73761001",
+        "display": "Colonoscopy (procedure)"
+      }
+    ],
+    "text": "Colonoscopy"
+  },
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "authoredOn": "2017-03-05",
+  "requester": {
+    "reference": "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809",
+    "display": "Dr. Beverly Crusher"
+  },
+  "performer": [
+    {
+      "reference": "Practitioner/example",
+      "display": "Dr Adam Careful"
+    }
+  ]
+}

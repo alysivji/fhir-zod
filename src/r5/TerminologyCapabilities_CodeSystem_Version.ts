@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -113,13 +114,14 @@ export interface TerminologyCapabilities_CodeSystem_Version
 		| "zh-HK"
 		| "zh-SG"
 		| "zh-TW"
+		| null
 	>;
 	/** Extensions for language */
-	_language?: Array<Element>;
+	_language?: Array<Element | null>;
 	/** Properties supported for $lookup. */
-	property?: Array<string>;
+	property?: Array<string | null>;
 	/** Extensions for property */
-	_property?: Array<Element>;
+	_property?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -226,12 +228,31 @@ export const TerminologyCapabilities_CodeSystem_VersionSchemaInternal =
 				"zh-SG",
 				"zh-TW",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_language: z.lazy(getElementSchema).array().optional(),
-		property: fhirCode().array().optional(),
-		_property: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		_language: z.lazy(getElementSchema).nullable().array().optional(),
+		property: fhirCode().nullable().array().optional(),
+		_property: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.language,
+				record._language,
+				"language",
+				"_language",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.property,
+				record._property,
+				"property",
+				"_property",
+				ctx,
+			);
+		});
 
 export const TerminologyCapabilities_CodeSystem_VersionSchema =
 	TerminologyCapabilities_CodeSystem_VersionSchemaInternal as z.ZodType<TerminologyCapabilities_CodeSystem_Version>;

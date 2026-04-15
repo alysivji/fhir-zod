@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
@@ -36,9 +37,9 @@ import { ReferenceSchemaInternal } from "./Reference";
 /** Legally enforceable, formally recorded unilateral or bilateral directive i.e., a policy or agreement. */
 export interface Contract extends DomainResource {
 	/** Alternative representation of the title for this Contract definition, derivative, or instance in any legal state., e.g., a domain specific contract number related to legislation. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** Relevant time or time-period when this Contract is applicable. */
 	applies?: Period;
 	/** The individual or organization that authored the Contract definition, derivative, or instance in any legal state. */
@@ -170,8 +171,8 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 
 /** @internal */
 export const ContractSchemaInternal = DomainResourceSchemaInternal.extend({
-	alias: fhirString().array().optional(),
-	_alias: z.lazy(getElementSchema).array().optional(),
+	alias: fhirString().nullable().array().optional(),
+	_alias: z.lazy(getElementSchema).nullable().array().optional(),
 	applies: z.lazy(getPeriodSchema).optional(),
 	author: z.lazy(getReferenceSchema).optional(),
 	authority: z.lazy(getReferenceSchema).array().optional(),
@@ -260,6 +261,13 @@ export const ContractSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [topic_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.alias,
+			record._alias,
+			"alias",
+			"_alias",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.author,
 			"author",

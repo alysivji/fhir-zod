@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -21,9 +22,9 @@ export interface ClaimResponse_Error extends BackboneElement {
 	/** Extensions for detailSequence */
 	_detailSequence?: Element;
 	/** A [simple subset of FHIRPath](fhirpath.html#simple) limited to element names, repetition indicators and the default child accessor that identifies one of the elements in the resource that caused this issue to be raised. */
-	expression?: Array<string>;
+	expression?: Array<string | null>;
 	/** Extensions for expression */
-	_expression?: Array<Element>;
+	_expression?: Array<Element | null>;
 	/** The sequence number of the line item submitted which contains the error. This value is omitted when the error occurs outside of the item structure. */
 	itemSequence?: number;
 	/** Extensions for itemSequence */
@@ -45,13 +46,24 @@ export const ClaimResponse_ErrorSchemaInternal =
 		code: z.lazy(getCodeableConceptSchema),
 		detailSequence: z.number().int().positive().optional(),
 		_detailSequence: z.lazy(getElementSchema).optional(),
-		expression: fhirString().array().optional(),
-		_expression: z.lazy(getElementSchema).array().optional(),
+		expression: fhirString().nullable().array().optional(),
+		_expression: z.lazy(getElementSchema).nullable().array().optional(),
 		itemSequence: z.number().int().positive().optional(),
 		_itemSequence: z.lazy(getElementSchema).optional(),
 		subDetailSequence: z.number().int().positive().optional(),
 		_subDetailSequence: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.expression,
+				record._expression,
+				"expression",
+				"_expression",
+				ctx,
+			);
+		});
 
 export const ClaimResponse_ErrorSchema =
 	ClaimResponse_ErrorSchemaInternal as z.ZodType<ClaimResponse_Error>;

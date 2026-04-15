@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NutritionIntake
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -50,13 +51,13 @@ export interface NutritionIntake extends DomainResource {
 	/** Total nutrient amounts for the whole meal, product, serving, etc. */
 	ingredientLabel?: Array<NutritionIntake_IngredientLabel>;
 	/** Instantiates FHIR protocol or definition. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** Instantiates external protocol or definition. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** Where the intake occurred. */
 	location?: Reference;
 	/** Provides extra information about the Nutrition Intake that is not conveyed by the other attributes. */
@@ -140,10 +141,14 @@ export const NutritionIntakeSchemaInternal =
 			.lazy(getNutritionIntake_IngredientLabelSchema)
 			.array()
 			.optional(),
-		instantiatesCanonical: fhirCanonical().array().optional(),
-		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: fhirUri().array().optional(),
-		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+		instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+		_instantiatesCanonical: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		instantiatesUri: fhirUri().nullable().array().optional(),
+		_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 		location: z.lazy(getReferenceSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		occurrenceDateTime: fhirDateTime().optional(),
@@ -199,6 +204,20 @@ export const NutritionIntakeSchemaInternal =
 					path: [reported_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.instantiatesCanonical,
+				record._instantiatesCanonical,
+				"instantiatesCanonical",
+				"_instantiatesCanonical",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.instantiatesUri,
+				record._instantiatesUri,
+				"instantiatesUri",
+				"_instantiatesUri",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.basedOn,
 				"basedOn",
