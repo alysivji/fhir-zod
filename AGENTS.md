@@ -69,6 +69,8 @@ npm run fetch-spec -- stu3 r4b r5
 npm run list:stu3-targets -- --summary
 npm run list:r4-targets -- --summary
 npm run list:r4b-targets -- --summary
+npm run list:r5-targets -- --summary
+npm run list:targets -- r4 --summary
 npm run generate
 npm test
 npm run typecheck
@@ -76,10 +78,13 @@ npm run typecheck
 
 Important implementation facts:
 
-- `scripts/generate.ts` generates `stu3`, `r4`, `r4b`, and `r5`
+- `src/generator/versions.ts` is the central release registry for `stu3`, `r4`, `r4b`, and `r5`
+- `scripts/generate.ts`, `scripts/list-targets.ts`, and `scripts/fetch-examples.ts` resolve versions through the release registry
 - the default STU3 generation scope is all `core-resource` targets reported by `npm run list:stu3-targets -- --summary`, plus the abstract whitelist
 - the default R4 generation scope is all `core-resource` targets reported by `npm run list:r4-targets -- --summary`, plus the abstract whitelist
 - the default R4B generation scope is all `core-resource` targets reported by `npm run list:r4b-targets -- --summary`, plus the abstract whitelist
+- the default R5 generation scope is all `core-resource` targets reported by `npm run list:r5-targets -- --summary`, plus the abstract whitelist
+- target inventory, generation, example-page URL construction, and shared StructureDefinition normalization are implemented once on `FhirRelease` or its shared source normalizer
 - `scripts/fetch-spec.ts` defaults to fetching `r4` only
 - `scripts/fetch-examples.ts` refreshes committed STU3, R4, R4B, and R5 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
 - manifests are committed; extracted upstream package contents in `.local/` are not
@@ -176,6 +181,7 @@ When making changes, prefer:
 - deterministic output
 - explicit tests for schema behavior
 - updating docs when project reality changes
+- adding future FHIR versions through a small `FhirRelease` subclass plus thin compatibility wrappers, instead of copying version-specific generator logic
 
 If you change the pipeline, also consider updating:
 
@@ -188,7 +194,7 @@ If you change the pipeline, also consider updating:
 
 These are active areas, not settled design:
 
-- generating additional versions beyond R4
+- adding future FHIR versions beyond STU3, R4, R4B, and R5 through the release registry
 - handling inheritance safely in the presence of dependency cycles
 - replacing the current mixed type/schema export story with generated public TS models plus separate schema exports
 - deciding how primitive underscore fields should be modeled long-term

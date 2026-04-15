@@ -52,8 +52,16 @@ On a clean checkout without extracted spec inputs, runtime/generated-output test
 pass, while spec-dependent generator suites skip with a message telling you to run
 `npm run fetch-spec`.
 
-Once `r4` has been fetched into `.local/spec-cache/r4/package`, the full current test
-suite runs, including the generator-side R4 inventory and provenance coverage.
+Fetch every pinned version before running the full spec-dependent generator suite:
+
+```bash
+npm run fetch-spec
+npm run fetch-spec -- stu3 r4b r5
+```
+
+Once the relevant version has been fetched into `.local/spec-cache/<version>/package`,
+that version's generator-side inventory, provenance, and example-refresh tooling can
+read the pinned package inputs.
 
 After refreshing:
 
