@@ -45,7 +45,7 @@ jobs:
         run: npm ci
 
       - name: Select Zod version
-        run: npm install --no-save zod@${{ matrix.zod-version }}
+        run: npm install --no-save --package-lock=false zod@${{ matrix.zod-version }}
 
       - name: Fetch spec artifacts
         run: npm run fetch-spec -- stu3 r4 r4b r5

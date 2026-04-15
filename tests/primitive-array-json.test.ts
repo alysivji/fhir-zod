@@ -1,10 +1,6 @@
 import { HumanNameSchema, TimingSchema } from "fhir-zod/r4b";
 import { describe, expect, it } from "vitest";
 
-const primitiveArraySchemaSurfaces = [
-	["auto", HumanNameSchema, TimingSchema],
-] as const;
-
 describe("FHIR primitive array JSON representation", () => {
 	it("accepts null value slots when the matching primitive metadata slot has content", () => {
 		const result = TimingSchema.safeParse({
@@ -102,45 +98,42 @@ describe("FHIR primitive array JSON representation", () => {
 		expect(result.success).toBe(false);
 	});
 
-	it.each(primitiveArraySchemaSurfaces)(
-		"%s validates primitive array value and metadata pairs",
-		(_, humanNameSchema, timingSchema) => {
-			expect(
-				humanNameSchema.safeParse({
-					given: ["Jane", null],
-					_given: [
-						null,
-						{
-							extension: [
-								{
-									url: "http://example.test/fhir/StructureDefinition/missing-name",
-									valueString: "withheld",
-								},
-							],
-						},
-					],
-				}).success,
-			).toBe(true);
+	it("validates primitive array value and metadata pairs", () => {
+		expect(
+			HumanNameSchema.safeParse({
+				given: ["Jane", null],
+				_given: [
+					null,
+					{
+						extension: [
+							{
+								url: "http://example.test/fhir/StructureDefinition/missing-name",
+								valueString: "withheld",
+							},
+						],
+					},
+				],
+			}).success,
+		).toBe(true);
 
-			const result = timingSchema.safeParse({
-				event: [null],
-			});
+		const result = TimingSchema.safeParse({
+			event: [null],
+		});
 
-			expect(result.success).toBe(false);
-			if (result.success) {
-				throw new Error("Expected validation failure");
-			}
-			expect(result.error.issues).toEqual(
-				expect.arrayContaining([
-					expect.objectContaining({
-						code: "custom",
-						message: expect.stringContaining(
-							"event[0] has neither a primitive value nor _event[0] metadata",
-						),
-						path: ["event", 0],
-					}),
-				]),
-			);
-		},
-	);
+		expect(result.success).toBe(false);
+		if (result.success) {
+			throw new Error("Expected validation failure");
+		}
+		expect(result.error.issues).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					code: "custom",
+					message: expect.stringContaining(
+						"event[0] has neither a primitive value nor _event[0] metadata",
+					),
+					path: ["event", 0],
+				}),
+			]),
+		);
+	});
 });
