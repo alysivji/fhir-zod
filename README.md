@@ -1,8 +1,14 @@
 # FHIR Zod
 
+Canonical, versioned, generated TypeScript models and Zod schemas for the FHIR specification.
+
+![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue)  ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple)
+
 [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
 
-Canonical, versioned, generated TypeScript models and Zod schemas for the FHIR specification.
+## Standards Coverage
+
+FHIR STU3, R4, R4B, and R5 interfaces and Zod schemas are generated from the official FHIR specifications and tested against official FHIR examples.
 
 ## Goal
 
@@ -533,3 +539,7 @@ No manual edits to generated schemas.
 
 - https://zod.dev/library-authors
 - https://github.com/nazrulworld/fhir.resources
+
+## Trademark Notice
+
+FHIR® is a registered trademark of Health Level Seven International (HL7). Use of the FHIR® name does not imply endorsement by HL7.
