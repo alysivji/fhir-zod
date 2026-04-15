@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RelatedArtifact
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirCanonical, fhirString, fhirUrl } from "../shared/fhir-primitives";
@@ -60,7 +60,10 @@ const getExtensionSchema = (): z.ZodType<Extension> =>
 /** @internal */
 export const RelatedArtifactSchemaInternal = z
 	.object({
-		citation: z.string().optional(),
+		citation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_citation: z.lazy(getElementSchema).optional(),
 		display: fhirString().optional(),
 		_display: z.lazy(getElementSchema).optional(),

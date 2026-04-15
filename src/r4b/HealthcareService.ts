@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HealthcareService
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -139,7 +139,10 @@ export const HealthcareServiceSchemaInternal =
 			.array()
 			.optional(),
 		endpoint: z.lazy(getReferenceSchema).array().optional(),
-		extraDetails: z.string().optional(),
+		extraDetails: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_extraDetails: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		location: z.lazy(getReferenceSchema).array().optional(),

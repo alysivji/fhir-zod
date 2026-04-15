@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/RegulatedAuthorization
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -82,7 +82,10 @@ export const RegulatedAuthorizationSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		basis: z.lazy(getCodeableConceptSchema).array().optional(),
 		case: z.lazy(getRegulatedAuthorization_CaseSchema).optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		holder: z.lazy(getReferenceSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import {
@@ -378,7 +378,10 @@ export const StructureMap_Group_Rule_SourceSchemaInternal =
 		_defaultValueInstant: z.lazy(getElementSchema).optional(),
 		defaultValueInteger: z.number().int().optional(),
 		_defaultValueInteger: z.lazy(getElementSchema).optional(),
-		defaultValueMarkdown: z.string().optional(),
+		defaultValueMarkdown: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_defaultValueMarkdown: z.lazy(getElementSchema).optional(),
 		defaultValueMeta: z.lazy(getMetaSchema).optional(),
 		defaultValueMoney: z.lazy(getMoneySchema).optional(),

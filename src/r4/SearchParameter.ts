@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SearchParameter
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-15T00:02:07.682Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -637,7 +637,7 @@ export const SearchParameterSchemaInternal =
 		_date: z.lazy(getElementSchema).optional(),
 		derivedFrom: fhirCanonical().optional(),
 		_derivedFrom: z.lazy(getElementSchema).optional(),
-		description: z.string(),
+		description: z.string().regex(/[ \r\n\t\S]+/),
 		_description: z.lazy(getElementSchema).optional(),
 		experimental: z.boolean().optional(),
 		_experimental: z.lazy(getElementSchema).optional(),
@@ -671,7 +671,10 @@ export const SearchParameterSchemaInternal =
 		_name: z.lazy(getElementSchema).optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
-		purpose: z.string().optional(),
+		purpose: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
 		resourceType: z.literal("SearchParameter"),
 		status: z.enum(["active", "draft", "retired", "unknown"]),

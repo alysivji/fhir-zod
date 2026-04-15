@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ResearchStudy
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -128,7 +128,10 @@ export const ResearchStudySchemaInternal = DomainResourceSchemaInternal.extend({
 	category: z.lazy(getCodeableConceptSchema).array().optional(),
 	condition: z.lazy(getCodeableConceptSchema).array().optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	enrollment: z.lazy(getReferenceSchema).array().optional(),
 	focus: z.lazy(getCodeableConceptSchema).array().optional(),

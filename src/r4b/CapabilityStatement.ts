@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -182,11 +182,17 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 export const CapabilityStatementSchemaInternal =
 	DomainResourceSchemaInternal.extend({
 		contact: z.lazy(getContactDetailSchema).array().optional(),
-		copyright: z.string().optional(),
+		copyright: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		document: z.lazy(getCapabilityStatement_DocumentSchema).array().optional(),
 		experimental: z.boolean().optional(),
@@ -249,7 +255,10 @@ export const CapabilityStatementSchemaInternal =
 		_patchFormat: z.lazy(getElementSchema).nullable().array().optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
-		purpose: z.string().optional(),
+		purpose: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
 		resourceType: z.literal("CapabilityStatement"),
 		rest: z.lazy(getCapabilityStatement_RestSchema).array().optional(),

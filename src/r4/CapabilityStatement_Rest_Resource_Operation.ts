@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
@@ -35,7 +35,10 @@ export const CapabilityStatement_Rest_Resource_OperationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		definition: fhirCanonical(),
 		_definition: z.lazy(getElementSchema).optional(),
-		documentation: z.string().optional(),
+		documentation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),

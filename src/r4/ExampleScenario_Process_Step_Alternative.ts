@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -31,7 +31,10 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const ExampleScenario_Process_Step_AlternativeSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		step: z.unknown().array().optional(),
 		title: fhirString(),

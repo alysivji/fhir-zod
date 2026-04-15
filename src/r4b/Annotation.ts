@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Annotation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirId, fhirString } from "../shared/fhir-primitives";
@@ -47,7 +47,7 @@ export const AnnotationSchemaInternal = z
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		text: z.string(),
+		text: z.string().regex(/[ \r\n\t\S]+/),
 		_text: z.lazy(getElementSchema).optional(),
 		time: fhirDateTime().optional(),
 		_time: z.lazy(getElementSchema).optional(),

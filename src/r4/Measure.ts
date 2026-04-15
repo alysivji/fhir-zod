@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Measure
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-15T00:02:07.682Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -199,19 +199,36 @@ export const MeasureSchemaInternal = DomainResourceSchemaInternal.extend({
 	approvalDate: fhirDate().optional(),
 	_approvalDate: z.lazy(getElementSchema).optional(),
 	author: z.lazy(getContactDetailSchema).array().optional(),
-	clinicalRecommendationStatement: z.string().optional(),
+	clinicalRecommendationStatement: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_clinicalRecommendationStatement: z.lazy(getElementSchema).optional(),
 	compositeScoring: z.lazy(getCodeableConceptSchema).optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
-	copyright: z.string().optional(),
+	copyright: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_copyright: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	definition: z.string().nullable().array().optional(),
+	definition: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.nullable()
+		.array()
+		.optional(),
 	_definition: z.lazy(getElementSchema).nullable().array().optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
-	disclaimer: z.string().optional(),
+	disclaimer: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_disclaimer: z.lazy(getElementSchema).optional(),
 	editor: z.lazy(getContactDetailSchema).array().optional(),
 	effectivePeriod: z.lazy(getPeriodSchema).optional(),
@@ -219,7 +236,10 @@ export const MeasureSchemaInternal = DomainResourceSchemaInternal.extend({
 	experimental: z.boolean().optional(),
 	_experimental: z.lazy(getElementSchema).optional(),
 	group: z.lazy(getMeasure_GroupSchema).array().optional(),
-	guidance: z.string().optional(),
+	guidance: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_guidance: z.lazy(getElementSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	improvementNotation: z.lazy(getCodeableConceptSchema).optional(),
@@ -232,11 +252,17 @@ export const MeasureSchemaInternal = DomainResourceSchemaInternal.extend({
 	_name: z.lazy(getElementSchema).optional(),
 	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
-	purpose: z.string().optional(),
+	purpose: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
 	rateAggregation: fhirString().optional(),
 	_rateAggregation: z.lazy(getElementSchema).optional(),
-	rationale: z.string().optional(),
+	rationale: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_rationale: z.lazy(getElementSchema).optional(),
 	relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
 	resourceType: z.literal("Measure"),

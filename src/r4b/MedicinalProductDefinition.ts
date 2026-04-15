@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicinalProductDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -154,12 +154,18 @@ export const MedicinalProductDefinitionSchemaInternal =
 			.lazy(getMedicinalProductDefinition_CrossReferenceSchema)
 			.array()
 			.optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		domain: z.lazy(getCodeableConceptSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		impurity: z.lazy(getCodeableReferenceSchema).array().optional(),
-		indication: z.string().optional(),
+		indication: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_indication: z.lazy(getElementSchema).optional(),
 		ingredient: z.lazy(getCodeableConceptSchema).array().optional(),
 		legalStatusOfSupply: z.lazy(getCodeableConceptSchema).optional(),

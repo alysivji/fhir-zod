@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Invoice
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -100,7 +100,10 @@ export const InvoiceSchemaInternal = DomainResourceSchemaInternal.extend({
 	lineItem: z.lazy(getInvoice_LineItemSchema).array().optional(),
 	note: z.lazy(getAnnotationSchema).array().optional(),
 	participant: z.lazy(getInvoice_ParticipantSchema).array().optional(),
-	paymentTerms: z.string().optional(),
+	paymentTerms: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_paymentTerms: z.lazy(getElementSchema).optional(),
 	recipient: z.lazy(getReferenceSchema).optional(),
 	resourceType: z.literal("Invoice"),

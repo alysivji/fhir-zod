@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -1402,7 +1402,10 @@ export const ElementDefinitionSchemaInternal =
 		base: z.lazy(getElementDefinition_BaseSchema).optional(),
 		binding: z.lazy(getElementDefinition_BindingSchema).optional(),
 		code: z.lazy(getCodingSchema).array().optional(),
-		comment: z.string().optional(),
+		comment: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_comment: z.lazy(getElementSchema).optional(),
 		condition: fhirId().nullable().array().optional(),
 		_condition: z.lazy(getElementSchema).nullable().array().optional(),
@@ -1452,7 +1455,10 @@ export const ElementDefinitionSchemaInternal =
 		_defaultValueInstant: z.lazy(getElementSchema).optional(),
 		defaultValueInteger: z.number().int().optional(),
 		_defaultValueInteger: z.lazy(getElementSchema).optional(),
-		defaultValueMarkdown: z.string().optional(),
+		defaultValueMarkdown: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_defaultValueMarkdown: z.lazy(getElementSchema).optional(),
 		defaultValueMoney: z.lazy(getMoneySchema).optional(),
 		defaultValueOid: fhirOid().optional(),
@@ -1488,7 +1494,10 @@ export const ElementDefinitionSchemaInternal =
 		defaultValueUsageContext: z.lazy(getUsageContextSchema).optional(),
 		defaultValueUuid: fhirUuid().optional(),
 		_defaultValueUuid: z.lazy(getElementSchema).optional(),
-		definition: z.string().optional(),
+		definition: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_definition: z.lazy(getElementSchema).optional(),
 		example: z.lazy(getElementDefinition_ExampleSchema).array().optional(),
 		fixedAddress: z.lazy(getAddressSchema).optional(),
@@ -1529,7 +1538,10 @@ export const ElementDefinitionSchemaInternal =
 		_fixedInstant: z.lazy(getElementSchema).optional(),
 		fixedInteger: z.number().int().optional(),
 		_fixedInteger: z.lazy(getElementSchema).optional(),
-		fixedMarkdown: z.string().optional(),
+		fixedMarkdown: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_fixedMarkdown: z.lazy(getElementSchema).optional(),
 		fixedMoney: z.lazy(getMoneySchema).optional(),
 		fixedOid: fhirOid().optional(),
@@ -1591,7 +1603,10 @@ export const ElementDefinitionSchemaInternal =
 		_maxValueTime: z.lazy(getElementSchema).optional(),
 		maxValueUnsignedInt: z.number().int().nonnegative().optional(),
 		_maxValueUnsignedInt: z.lazy(getElementSchema).optional(),
-		meaningWhenMissing: z.string().optional(),
+		meaningWhenMissing: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_meaningWhenMissing: z.lazy(getElementSchema).optional(),
 		min: z.number().int().nonnegative().optional(),
 		_min: z.lazy(getElementSchema).optional(),
@@ -1656,7 +1671,10 @@ export const ElementDefinitionSchemaInternal =
 		_patternInstant: z.lazy(getElementSchema).optional(),
 		patternInteger: z.number().int().optional(),
 		_patternInteger: z.lazy(getElementSchema).optional(),
-		patternMarkdown: z.string().optional(),
+		patternMarkdown: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_patternMarkdown: z.lazy(getElementSchema).optional(),
 		patternMoney: z.lazy(getMoneySchema).optional(),
 		patternOid: fhirOid().optional(),
@@ -1694,7 +1712,10 @@ export const ElementDefinitionSchemaInternal =
 			.array()
 			.optional(),
 		_representation: z.lazy(getElementSchema).nullable().array().optional(),
-		requirements: z.string().optional(),
+		requirements: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_requirements: z.lazy(getElementSchema).optional(),
 		short: fhirString().optional(),
 		_short: z.lazy(getElementSchema).optional(),

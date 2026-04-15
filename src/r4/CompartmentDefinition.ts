@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CompartmentDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -96,7 +96,10 @@ export const CompartmentDefinitionSchemaInternal =
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		experimental: z.boolean().optional(),
 		_experimental: z.lazy(getElementSchema).optional(),
@@ -104,7 +107,10 @@ export const CompartmentDefinitionSchemaInternal =
 		_name: z.lazy(getElementSchema).optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
-		purpose: z.string().optional(),
+		purpose: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
 		resource: z
 			.lazy(getCompartmentDefinition_ResourceSchema)

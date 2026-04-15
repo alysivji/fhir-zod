@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import {
@@ -336,7 +336,10 @@ export const ElementDefinition_ExampleSchemaInternal =
 		_valueInstant: z.lazy(getElementSchema).optional(),
 		valueInteger: z.number().int().optional(),
 		_valueInteger: z.lazy(getElementSchema).optional(),
-		valueMarkdown: z.string().optional(),
+		valueMarkdown: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_valueMarkdown: z.lazy(getElementSchema).optional(),
 		valueMeta: z.lazy(getMetaSchema).optional(),
 		valueMoney: z.lazy(getMoneySchema).optional(),

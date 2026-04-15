@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestReport
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirUri } from "../shared/fhir-primitives";
@@ -34,7 +34,10 @@ export const TestReport_Setup_Action_OperationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		detail: fhirUri().optional(),
 		_detail: z.lazy(getElementSchema).optional(),
-		message: z.string().optional(),
+		message: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_message: z.lazy(getElementSchema).optional(),
 		result: z.enum(["error", "fail", "pass", "skip", "warning"]),
 		_result: z.lazy(getElementSchema).optional(),

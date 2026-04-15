@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -77,7 +77,10 @@ export const Citation_CitedArtifact_PublicationFormSchemaInternal =
 		_accessionNumber: z.lazy(getElementSchema).optional(),
 		articleDate: fhirDateTime().optional(),
 		_articleDate: z.lazy(getElementSchema).optional(),
-		copyright: z.string().optional(),
+		copyright: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		firstPage: fhirString().optional(),
 		_firstPage: z.lazy(getElementSchema).optional(),

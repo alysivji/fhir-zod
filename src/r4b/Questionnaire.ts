@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -279,13 +279,19 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 	_approvalDate: z.lazy(getElementSchema).optional(),
 	code: z.lazy(getCodingSchema).array().optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
-	copyright: z.string().optional(),
+	copyright: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_copyright: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
 	derivedFrom: fhirCanonical().nullable().array().optional(),
 	_derivedFrom: z.lazy(getElementSchema).nullable().array().optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	effectivePeriod: z.lazy(getPeriodSchema).optional(),
 	experimental: z.boolean().optional(),
@@ -299,7 +305,10 @@ export const QuestionnaireSchemaInternal = DomainResourceSchemaInternal.extend({
 	_name: z.lazy(getElementSchema).optional(),
 	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
-	purpose: z.string().optional(),
+	purpose: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("Questionnaire"),
 	status: z.enum(["active", "draft", "retired", "unknown"]),

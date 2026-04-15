@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -60,7 +60,10 @@ export const CapabilityStatement_RestSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		compartment: fhirCanonical().nullable().array().optional(),
 		_compartment: z.lazy(getElementSchema).nullable().array().optional(),
-		documentation: z.string().optional(),
+		documentation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		interaction: z
 			.lazy(getCapabilityStatement_Rest_InteractionSchema)

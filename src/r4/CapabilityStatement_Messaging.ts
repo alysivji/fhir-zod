@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -41,7 +41,10 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CapabilityStatement_MessagingSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		documentation: z.string().optional(),
+		documentation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		endpoint: z
 			.lazy(getCapabilityStatement_Messaging_EndpointSchema)
