@@ -8,7 +8,7 @@ on:
 
 jobs:
   test-node:
-    name: Node 24 / ${{ matrix.zod-version }}
+    name: Node 24 / Zod ${{ matrix.zod-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
