@@ -1,0 +1,214 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/AllergyIntolerance
+// Release: STU3
+// Version: 3.0.2
+// Last generated: 2026-04-15T01:26:20.392Z
+
+import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
+import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
+import { validateReferenceTarget } from "../shared/fhir-reference-validation";
+import type { Age } from "./Age";
+import { AgeSchemaInternal } from "./Age";
+import type { AllergyIntolerance_Reaction } from "./AllergyIntolerance_Reaction";
+import { AllergyIntolerance_ReactionSchemaInternal } from "./AllergyIntolerance_Reaction";
+import type { Annotation } from "./Annotation";
+import { AnnotationSchemaInternal } from "./Annotation";
+import type { CodeableConcept } from "./CodeableConcept";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { DomainResource } from "./DomainResource";
+import { DomainResourceSchemaInternal } from "./DomainResource";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { Identifier } from "./Identifier";
+import { IdentifierSchemaInternal } from "./Identifier";
+import type { Period } from "./Period";
+import { PeriodSchemaInternal } from "./Period";
+import type { Range } from "./Range";
+import { RangeSchemaInternal } from "./Range";
+import type { Reference } from "./Reference";
+import { ReferenceSchemaInternal } from "./Reference";
+
+/** Base StructureDefinition for AllergyIntolerance Resource */
+export interface AllergyIntolerance extends DomainResource {
+	/** The date on which the existance of the AllergyIntolerance was first asserted or acknowledged. */
+	assertedDate?: string;
+	/** Extensions for assertedDate */
+	_assertedDate?: Element;
+	/** The source of the information about the allergy that is recorded. */
+	asserter?: Reference;
+	/** Category of the identified substance. */
+	category?: Array<"biologic" | "environment" | "food" | "medication" | null>;
+	/** Extensions for category */
+	_category?: Array<Element | null>;
+	/** The clinical status of the allergy or intolerance. */
+	clinicalStatus?: "active" | "inactive" | "resolved";
+	/** Extensions for clinicalStatus */
+	_clinicalStatus?: Element;
+	/** Code for an allergy or intolerance statement (either a positive or a negated/excluded statement).  This may be a code for a substance or pharmaceutical product that is considered to be responsible for the adverse reaction risk (e.g., "Latex"), an allergy or intolerance condition (e.g., "Latex allergy"), or a negated/excluded code for a specific substance or class (e.g., "No latex allergy") or a general or categorical negated statement (e.g.,  "No known allergy", "No known drug allergies"). */
+	code?: CodeableConcept;
+	/** Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance. */
+	criticality?: "high" | "low" | "unable-to-assess";
+	/** Extensions for criticality */
+	_criticality?: Element;
+	/** This records identifiers associated with this allergy/intolerance concern that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation). */
+	identifier?: Array<Identifier>;
+	/** Represents the date and/or time of the last known occurrence of a reaction event. */
+	lastOccurrence?: string;
+	/** Extensions for lastOccurrence */
+	_lastOccurrence?: Element;
+	/** Additional narrative about the propensity for the Adverse Reaction, not captured in other fields. */
+	note?: Array<Annotation>;
+	/** Estimated or actual date,  date-time, or age when allergy or intolerance was identified. */
+	onsetAge?: Age;
+	/** Estimated or actual date,  date-time, or age when allergy or intolerance was identified. */
+	onsetDateTime?: string;
+	/** Extensions for onsetDateTime */
+	_onsetDateTime?: Element;
+	/** Estimated or actual date,  date-time, or age when allergy or intolerance was identified. */
+	onsetPeriod?: Period;
+	/** Estimated or actual date,  date-time, or age when allergy or intolerance was identified. */
+	onsetRange?: Range;
+	/** Estimated or actual date,  date-time, or age when allergy or intolerance was identified. */
+	onsetString?: string;
+	/** Extensions for onsetString */
+	_onsetString?: Element;
+	/** The patient who has the allergy or intolerance. */
+	patient: Reference;
+	/** Details about each adverse reaction event linked to exposure to the identified substance. */
+	reaction?: Array<AllergyIntolerance_Reaction>;
+	/** Individual who recorded the record and takes responsibility for its content. */
+	recorder?: Reference;
+	/** This is a AllergyIntolerance resource. */
+	resourceType: "AllergyIntolerance";
+	/** Identification of the underlying physiological mechanism for the reaction risk. */
+	type?: "allergy" | "intolerance";
+	/** Extensions for type */
+	_type?: Element;
+	/** Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance (including pharmaceutical product). */
+	verificationStatus:
+		| "confirmed"
+		| "entered-in-error"
+		| "refuted"
+		| "unconfirmed";
+	/** Extensions for verificationStatus */
+	_verificationStatus?: Element;
+}
+
+const getAgeSchema = (): z.ZodType<Age> => AgeSchemaInternal as z.ZodType<Age>;
+const getAllergyIntolerance_ReactionSchema =
+	(): z.ZodType<AllergyIntolerance_Reaction> =>
+		AllergyIntolerance_ReactionSchemaInternal as z.ZodType<AllergyIntolerance_Reaction>;
+const getAnnotationSchema = (): z.ZodType<Annotation> =>
+	AnnotationSchemaInternal as z.ZodType<Annotation>;
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getIdentifierSchema = (): z.ZodType<Identifier> =>
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
+const getPeriodSchema = (): z.ZodType<Period> =>
+	PeriodSchemaInternal as z.ZodType<Period>;
+const getRangeSchema = (): z.ZodType<Range> =>
+	RangeSchemaInternal as z.ZodType<Range>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
+
+/** @internal */
+export const AllergyIntoleranceSchemaInternal =
+	DomainResourceSchemaInternal.extend({
+		assertedDate: fhirDateTime().optional(),
+		_assertedDate: z.lazy(getElementSchema).optional(),
+		asserter: z.lazy(getReferenceSchema).optional(),
+		category: z
+			.enum(["biologic", "environment", "food", "medication"])
+			.nullable()
+			.array()
+			.optional(),
+		_category: z.lazy(getElementSchema).nullable().array().optional(),
+		clinicalStatus: z.enum(["active", "inactive", "resolved"]).optional(),
+		_clinicalStatus: z.lazy(getElementSchema).optional(),
+		code: z.lazy(getCodeableConceptSchema).optional(),
+		criticality: z.enum(["high", "low", "unable-to-assess"]).optional(),
+		_criticality: z.lazy(getElementSchema).optional(),
+		identifier: z.lazy(getIdentifierSchema).array().optional(),
+		lastOccurrence: fhirDateTime().optional(),
+		_lastOccurrence: z.lazy(getElementSchema).optional(),
+		note: z.lazy(getAnnotationSchema).array().optional(),
+		onsetAge: z.lazy(getAgeSchema).optional(),
+		onsetDateTime: fhirDateTime().optional(),
+		_onsetDateTime: z.lazy(getElementSchema).optional(),
+		onsetPeriod: z.lazy(getPeriodSchema).optional(),
+		onsetRange: z.lazy(getRangeSchema).optional(),
+		onsetString: fhirString().optional(),
+		_onsetString: z.lazy(getElementSchema).optional(),
+		patient: z.lazy(getReferenceSchema),
+		reaction: z.lazy(getAllergyIntolerance_ReactionSchema).array().optional(),
+		recorder: z.lazy(getReferenceSchema).optional(),
+		resourceType: z.literal("AllergyIntolerance"),
+		type: z.enum(["allergy", "intolerance"]).optional(),
+		_type: z.lazy(getElementSchema).optional(),
+		verificationStatus: z.enum([
+			"confirmed",
+			"entered-in-error",
+			"refuted",
+			"unconfirmed",
+		]),
+		_verificationStatus: z.lazy(getElementSchema).optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			const onset_x_Present = [
+				"onsetAge",
+				"onsetDateTime",
+				"onsetPeriod",
+				"onsetRange",
+				"onsetString",
+			].filter((field) => record[field] !== undefined);
+			if (onset_x_Present.length > 1) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message:
+						"Only one of onsetAge, onsetDateTime, onsetPeriod, onsetRange, onsetString may be present for onset[x]",
+					path: [onset_x_Present[0]],
+				});
+			}
+			validatePrimitiveArrayPair(
+				record.category,
+				record._category,
+				"category",
+				"_category",
+				ctx,
+			);
+			validateReferenceTarget(
+				record.asserter,
+				"asserter",
+				[
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+				],
+				["Patient", "Practitioner", "RelatedPerson"],
+				ctx,
+			);
+			validateReferenceTarget(
+				record.patient,
+				"patient",
+				["http://hl7.org/fhir/StructureDefinition/Patient"],
+				["Patient"],
+				ctx,
+			);
+			validateReferenceTarget(
+				record.recorder,
+				"recorder",
+				[
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				],
+				["Patient", "Practitioner"],
+				ctx,
+			);
+		});
+
+export const AllergyIntoleranceSchema =
+	AllergyIntoleranceSchemaInternal as z.ZodType<AllergyIntolerance>;

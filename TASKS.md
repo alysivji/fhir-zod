@@ -73,7 +73,7 @@ Track the work needed to align the repository with the current README.
 ## Generated Schema Output
 
 - [x] Generate shared primitives/helpers needed by emitted schemas
-- [ ] Generate first real STU3 schema set
+- [x] Generate first real STU3 schema set
 - [x] Generate first real R4 schema set
 - [x] Generate first real R4B schema set
 - [x] Generate first real R5 schema set
@@ -83,24 +83,22 @@ Track the work needed to align the repository with the current README.
   Current workaround: annotate oversized generated schema shapes to unblock DTS builds.
 - [x] Split the public generated surface into TypeScript models and separate Zod schemas for generated R4 output
   Current state:
-  generated R4 exports `Patient` as the public TS model and `PatientSchema` as the runtime validator.
-  Follow-up:
-  extend the same public surface pattern to additional generated versions.
+  generated STU3, R4, R4B, and R5 output export `Patient` as the public TS
+  model and `PatientSchema` as the runtime validator.
 - [x] Decide the public model strategy for generated declarations in additional versions
   Current state:
-  generated R4, R4B, and R5 output use named TypeScript models for the public surface
+  generated STU3, R4, R4B, and R5 output use named TypeScript models for the public surface
   and separate `*Schema` exports for runtime validation. Object-like FHIR
   definitions prefer interfaces, with type aliases retained where unions or
   recursive composition make that cleaner.
 - [x] Teach the generator to emit named TypeScript models for generated definitions
   Current state:
-  generated R4 and R4B declaration tests assert named interfaces and `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
-  Follow-up:
-  carry the same emission strategy into STU3 when generation expands to that version.
+  generated STU3, R4, and R4B declaration tests assert named interfaces and
+  `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
 - [x] Rename generated R4 schema exports to `*Schema` alongside the separate public model layer
 - [x] Preserve spec-defined inheritance relationships in generated TS models and schema exports where runtime initialization is safe
   Current state:
-  generated R4, R4B, and R5 output preserve base relationships such as `Resource`
+  generated STU3, R4, R4B, and R5 output preserve base relationships such as `Resource`
   extending `Base`, `DomainResource` extending `Resource`, and concrete
   resources extending their spec-defined base types when those relationships can
   be emitted without triggering cyclic ESM initialization failures.
@@ -120,9 +118,15 @@ Track the work needed to align the repository with the current README.
 - [x] Fail clearly or skip intentionally when extracted spec cache is missing
 - [x] Add a schema test that rejects unknown top-level Patient fields
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
+- [x] Add STU3 target-inventory regression tests
 - [x] Add R4 target-inventory regression tests
 - [x] Add R5 target-inventory regression tests
 - [x] Add generic official-example tests for generated R4 fixtures
+- [x] Download official STU3 example fixtures
+  Current state:
+  STU3 target discovery exists, committed STU3 official example fixtures are
+  checked in under `tests/fixtures/stu3/`, and the generic STU3 official-example
+  suite validates them with known mismatches tracked as expected failures.
 - [x] Download broader official R5 example fixtures
   Current state:
   R5 target discovery exists, committed R5 official example fixtures are
@@ -178,7 +182,7 @@ Track the work needed to align the repository with the current README.
 - [x] Document how to refresh spec files
 - [x] Document how to run the generator
 - [x] Document expectations around generated vs handwritten files
-- [ ] Document how BackboneElement behavior is represented in generated schemas
+- [x] Document how BackboneElement behavior is represented in generated schemas
 - [x] Document the current split between public TS models and runtime Zod schemas
 - [ ] Document the future layering for convenience builders above core
 - [x] Carry source descriptions into generated schema fields where practical

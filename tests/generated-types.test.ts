@@ -25,6 +25,8 @@ import {
 	PatientSchema as R4BPatientSchema,
 	TimingSchema as R4BTimingSchema,
 } from "@fhir-zod/core/r4b";
+import type { Patient as STU3Patient } from "@fhir-zod/core/stu3";
+import { PatientSchema as STU3PatientSchema } from "@fhir-zod/core/stu3";
 import { describe, expect, it } from "vitest";
 
 describe("generated model types", () => {
@@ -98,6 +100,14 @@ describe("generated model types", () => {
 
 	it("exports R4B model types with separate schemas", () => {
 		const patient: R4BPatient = R4BPatientSchema.parse({
+			resourceType: "Patient",
+		});
+
+		expect(patient.resourceType).toBe("Patient");
+	});
+
+	it("exports STU3 model types with separate schemas", () => {
+		const patient: STU3Patient = STU3PatientSchema.parse({
 			resourceType: "Patient",
 		});
 
