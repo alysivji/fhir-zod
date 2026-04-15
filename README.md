@@ -57,6 +57,22 @@ const patient: Patient = {
 }
 ```
 
+### Empty FHIR Strings
+
+FHIR `string` values reject empty strings by default. To accept real-world
+payloads that use empty strings for the FHIR `string` primitive, configure the
+root package before constructing or importing schemas that use `fhirString()`:
+
+```ts
+import { configureFhirString } from "@fhir-zod/core"
+
+configureFhirString({ allowEmpty: true })
+```
+
+This only affects the FHIR `string` primitive. Other primitives such as `date`,
+`dateTime`, `base64Binary`, `code`, `id`, and `uri` keep their default
+validation behavior.
+
 Target package shape:
 
 - export generated TypeScript interfaces/types for FHIR model shapes

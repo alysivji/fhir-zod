@@ -207,9 +207,11 @@ Track the work needed to align the repository with the current README.
 
 - [x] Confirm whether `animal` should remain in the generated R4 Patient schema based on the pinned HL7 source artifacts
 - [ ] Model primitive underscore fields as FHIR primitive extensions and compare the approach with `fhir.resources`
-- [ ] Decide whether to support lenient parsing of empty-string primitive values seen in real-world data even when they are invalid FHIR
-  Follow-up:
-  determine whether this belongs in core schema validation, an opt-in compatibility mode, or a separate normalization layer before validation.
+- [x] Decide whether to support lenient parsing of empty-string primitive values seen in real-world data even when they are invalid FHIR
+  Decision:
+  support this as an opt-in compatibility mode for only the FHIR `string`
+  primitive via `configureFhirString({ allowEmpty: true })`; other primitives
+  keep their default validation behavior.
 - [x] Validate whether `Reference` fields should stay generic or be constrained by the HL7 source definitions
 
 ## Reference Follow-Up
