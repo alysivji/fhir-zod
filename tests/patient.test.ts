@@ -1,4 +1,4 @@
-import { PatientSchema } from "@fhir-zod/core/r4";
+import { PatientSchema } from "fhir-zod/r4";
 import { describe, expect, it } from "vitest";
 
 describe("Patient", () => {

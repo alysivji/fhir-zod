@@ -75,7 +75,7 @@ describe("package tree shaking", () => {
 				platform: "neutral",
 				stdin: {
 					contents: [
-						'import { PatientSchema } from "@fhir-zod/core/r4";',
+						'import { PatientSchema } from "fhir-zod/r4";',
 						"console.log(PatientSchema);",
 					].join("\n"),
 					loader: "js",

@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import * as r4bSchemas from "@fhir-zod/core/r4b";
+import * as r4bSchemas from "fhir-zod/r4b";
 import { describeOfficialExamplesSuite } from "./helpers/official-examples-suite.ts";
 import { r4bExampleExpectedFailures } from "./r4b-example-expected-failures.ts";
 

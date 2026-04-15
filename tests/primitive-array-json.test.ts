@@ -1,4 +1,4 @@
-import { HumanNameSchema, TimingSchema } from "@fhir-zod/core/r4b";
+import { HumanNameSchema, TimingSchema } from "fhir-zod/r4b";
 import { describe, expect, it } from "vitest";
 
 describe("FHIR primitive array JSON representation", () => {
