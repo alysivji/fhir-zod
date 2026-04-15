@@ -38,4 +38,5 @@ Create PR notes that follow the repo template exactly:
 - Mention follow-up work only when it is real and not part of the current PR.
 - Do not paste huge command output; summarize the meaningful result.
 - Prefer writing PR notes to `.context/pr-notes.md` when the user asks for notes but does not ask to open a PR.
-- When creating a PR with `gh pr create`, pass the completed notes with `--body-file` and use the target branch `main` unless the user says otherwise.
+- When the user approves the saved PR notes or asks to open the PR, create it with `gh pr create --base main --title "<title>" --body-file .context/pr-notes.md` unless the user says otherwise.
+- After creating the PR, report the URL and whether the working tree is clean.
