@@ -150,8 +150,8 @@ Official HL7 example fixtures are refreshed with:
 npm run fetch-examples
 ```
 
-The fetcher defaults to R4 resources. It also supports R4B and R5 resources
-after the matching spec package has been fetched:
+The fetcher defaults to R4 resources. It also supports STU3, R4B, and R5
+resources after the matching spec package has been fetched:
 
 ```bash
 npm run fetch-spec -- stu3
@@ -363,8 +363,11 @@ The current pipeline is:
 Current implementation notes:
 
 - `npm run fetch-spec` defaults to `r4`
-- `npm run generate` currently generates `r4`
+- `npm run generate` defaults to `r4`
 - `npm run generate -- stu3` generates STU3
+- `npm run generate -- r4` generates R4
+- `npm run generate -- r4b` generates R4B
+- `npm run generate -- r5` generates R5
 - manifests are committed, but extracted upstream package contents in `.local/` are not
 
 ## Example Output
@@ -416,7 +419,20 @@ Examples:
 
 This keeps shared FHIR structure visible and avoids duplicating common fields everywhere.
 
-Some definitions still fall back to flattened one-shot schemas when dependency cycles would create ESM initialization problems.
+The public TypeScript model surface mirrors those relationships where practical:
+for example, `BackboneElement` extends `Element`, nested backbone definitions
+extend `BackboneElement`, `DomainResource` extends `Resource`, and `Patient`
+extends `DomainResource`.
+
+The runtime schemas use the same shape when it is safe to initialize as ESM:
+for example, `BackboneElementSchemaInternal` is emitted with
+`ElementSchemaInternal.extend(...)`, and `PatientSchemaInternal` extends
+`DomainResourceSchemaInternal`.
+
+Some definitions still fall back to flattened one-shot schemas when dependency
+cycles would create ESM initialization problems. That fallback is an emission
+detail; the intended model remains the spec-defined base relationship when it
+can be represented safely.
 
 ## Zod Version Strategy
 

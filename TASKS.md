@@ -182,7 +182,7 @@ Track the work needed to align the repository with the current README.
 - [x] Document how to refresh spec files
 - [x] Document how to run the generator
 - [x] Document expectations around generated vs handwritten files
-- [ ] Document how BackboneElement behavior is represented in generated schemas
+- [x] Document how BackboneElement behavior is represented in generated schemas
 - [x] Document the current split between public TS models and runtime Zod schemas
 - [ ] Document the future layering for convenience builders above core
 - [x] Carry source descriptions into generated schema fields where practical

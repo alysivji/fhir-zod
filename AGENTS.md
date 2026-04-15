@@ -27,17 +27,17 @@ Breaking changes are acceptable if they improve the generator, emitted schemas, 
 
 ## Current Reality
 
-Do not rely on the README alone for status. It is partially stale.
+The README and `TASKS.md` describe the current branch status, but prefer the
+code paths below when behavior and docs disagree.
 
 As of this branch:
 
 - STU3, R4, R4B, and R5 generation are implemented and checked in under `src/stu3/`, `src/r4/`, `src/r4b/`, and `src/r5/`
-- default R4 and R4B generation target the canonical core-resource set plus required dependencies
+- default STU3, R4, R4B, and R5 generation target the canonical core-resource set plus required dependencies
 - spec manifests exist for `stu3`, `r4`, `r4b`, and `r5`
 - the default fetch flow only downloads `r4`
 - real generated schema output exists for `stu3`, `r4`, `r4b`, and `r5`
-- R4 profile-resource definitions are still excluded from generation because the current emitted file identity is name-based and some profile names collide
-- some docs still describe the generator as unimplemented; trust the code and `TASKS.md`
+- profile-resource definitions are still excluded from generation because the current emitted file identity is name-based and some profile names collide
 
 ## Source of Truth
 
