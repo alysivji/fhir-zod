@@ -91,31 +91,58 @@ export function describeOfficialExamplesSuite(
 	}
 
 	describe(`${options.label} official examples`, () => {
-		for (const resourceName of readdirSync(options.fixturesRoot).sort()) {
-			const resourceDir = join(options.fixturesRoot, resourceName);
-			const entries = readdirSync(resourceDir, { withFileTypes: true });
+		const resourceDirs = readdirSync(options.fixturesRoot, {
+			withFileTypes: true,
+		})
+			.filter((entry) => entry.isDirectory())
+			.sort((left, right) => left.name.localeCompare(right.name));
 
-			for (const entry of entries.sort((left, right) =>
-				left.name.localeCompare(right.name),
-			)) {
-				if (!entry.isFile() || !entry.name.endsWith(".json")) {
-					continue;
-				}
+		for (const resourceEntry of resourceDirs) {
+			const resourceName = resourceEntry.name;
 
-				const fixturePath = join(resourceDir, entry.name);
-				const fixtureKey = relative(options.fixturesRoot, fixturePath);
-				const expectedFailure = options.expectedFailures.get(fixtureKey);
-				const testFn = expectedFailure ? it.fails : it;
+			it(`parses ${resourceName} examples`, () => {
+				const resourceDir = join(options.fixturesRoot, resourceName);
+				const entries = readdirSync(resourceDir, { withFileTypes: true });
+				const failures: Array<string> = [];
 
-				testFn(`parses ${fixtureKey}`, () => {
+				for (const entry of entries.sort((left, right) =>
+					left.name.localeCompare(right.name),
+				)) {
+					if (!entry.isFile() || !entry.name.endsWith(".json")) {
+						continue;
+					}
+
+					const fixturePath = join(resourceDir, entry.name);
+					const fixtureKey = relative(options.fixturesRoot, fixturePath);
+					const expectedFailure = options.expectedFailures.get(fixtureKey);
 					const input = JSON.parse(
 						readFileSync(fixturePath, "utf8"),
 					) as unknown;
 					const result = validateResourcePayload(input, fixtureKey);
 
-					expect(result.success, JSON.stringify(result, null, 2)).toBe(true);
-				});
-			}
+					if (expectedFailure) {
+						if (result.success) {
+							failures.push(
+								`${fixtureKey} parsed successfully but is still listed as an expected failure: ${expectedFailure}`,
+							);
+						}
+
+						continue;
+					}
+
+					if (!result.success) {
+						failures.push(
+							`${fixtureKey} failed unexpectedly:\n${JSON.stringify(
+								result,
+								null,
+								2,
+							)}`,
+						);
+					}
+				}
+
+				expect(failures, failures.join("\n\n")).toEqual([]);
+			});
 		}
 	});
 }
