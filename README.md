@@ -137,8 +137,6 @@ npm run list:r4b-targets -- --summary
 npm run list:r5-targets -- --summary
 ```
 
-Tracked implementation work lives in [`TASKS.md`](./TASKS.md).
-
 ### Generated vs Handwritten Code
 
 Treat these areas as handwritten source:

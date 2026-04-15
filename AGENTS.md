@@ -27,8 +27,8 @@ Breaking changes are acceptable if they improve the generator, emitted schemas, 
 
 ## Current Reality
 
-The README and `TASKS.md` describe the current branch status, but prefer the
-code paths below when behavior and docs disagree.
+The README describes the current branch status, but prefer the code paths below
+when behavior and docs disagree.
 
 As of this branch:
 
@@ -47,8 +47,7 @@ When there is tension between docs and code, use this order:
 2. `src/generator/`
 3. `src/spec/*/manifest.json`
 4. generated output in `src/stu3/`, `src/r4/`, `src/r4b/`, and `src/r5/`
-5. `TASKS.md`
-6. `README.md`
+5. `README.md`
 
 ## Generation Pipeline
 
@@ -186,7 +185,6 @@ When making changes, prefer:
 If you change the pipeline, also consider updating:
 
 - `README.md`
-- `TASKS.md`
 - this file
 - any scripts or tests that encode generator assumptions
 
