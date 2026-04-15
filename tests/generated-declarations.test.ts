@@ -14,9 +14,10 @@ describe("generated declarations", () => {
 			const outDir = mkdtempSync(join(tmpdir(), "fhir-zod-dts-"));
 
 			execFileSync(
-				"npx",
+				process.execPath,
 				[
-					"tsc",
+					"--max-old-space-size=8192",
+					"./node_modules/typescript/bin/tsc",
 					"--noEmit",
 					"false",
 					"--emitDeclarationOnly",

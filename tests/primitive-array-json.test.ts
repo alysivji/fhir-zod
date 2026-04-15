@@ -97,4 +97,43 @@ describe("FHIR primitive array JSON representation", () => {
 
 		expect(result.success).toBe(false);
 	});
+
+	it("validates primitive array value and metadata pairs", () => {
+		expect(
+			HumanNameSchema.safeParse({
+				given: ["Jane", null],
+				_given: [
+					null,
+					{
+						extension: [
+							{
+								url: "http://example.test/fhir/StructureDefinition/missing-name",
+								valueString: "withheld",
+							},
+						],
+					},
+				],
+			}).success,
+		).toBe(true);
+
+		const result = TimingSchema.safeParse({
+			event: [null],
+		});
+
+		expect(result.success).toBe(false);
+		if (result.success) {
+			throw new Error("Expected validation failure");
+		}
+		expect(result.error.issues).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					code: "custom",
+					message: expect.stringContaining(
+						"event[0] has neither a primitive value nor _event[0] metadata",
+					),
+					path: ["event", 0],
+				}),
+			]),
+		);
+	});
 });

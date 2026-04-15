@@ -1,4 +1,10 @@
-import * as z from "zod";
+type RefinementContext = {
+	addIssue(issue: {
+		code: "custom";
+		message: string;
+		path: (number | string)[];
+	}): void;
+};
 
 function hasPrimitiveMetadata(value: unknown): boolean {
 	return (
@@ -13,7 +19,7 @@ export function validatePrimitiveArrayPair(
 	elementArray: unknown,
 	valueField: string,
 	elementField: string,
-	ctx: z.RefinementCtx,
+	ctx: RefinementContext,
 ): void {
 	const values = Array.isArray(valueArray) ? valueArray : undefined;
 	const elements = Array.isArray(elementArray) ? elementArray : undefined;
@@ -33,7 +39,7 @@ export function validatePrimitiveArrayPair(
 		}
 
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: `${valueField}[${index}] has neither a primitive value nor ${elementField}[${index}] metadata`,
 			path: values ? [valueField, index] : [elementField, index],
 		});

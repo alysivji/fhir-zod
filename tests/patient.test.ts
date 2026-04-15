@@ -322,6 +322,37 @@ describe("Patient", () => {
 		});
 	});
 
+	it("parses a minimal patient resource", () => {
+		expect(PatientSchema.safeParse({ resourceType: "Patient" }).success).toBe(
+			true,
+		);
+	});
+
+	it("rejects references that use the wrong target resource type", () => {
+		const result = PatientSchema.safeParse({
+			managingOrganization: {
+				reference: "Patient/example",
+			},
+			resourceType: "Patient",
+		});
+
+		expect(result.success).toBe(false);
+		if (result.success) {
+			throw new Error("Expected validation failure");
+		}
+		expect(result.error.issues).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					code: "custom",
+					message: expect.stringContaining(
+						"Expected managingOrganization to reference one of: Organization",
+					),
+					path: ["managingOrganization", "reference"],
+				}),
+			]),
+		);
+	});
+
 	describe("multipleBirth[x]", () => {
 		it("accepts a single choice", () => {
 			const result = PatientSchema.safeParse({

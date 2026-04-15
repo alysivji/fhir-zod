@@ -8,7 +8,7 @@ import {
 	writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, join, relative, resolve, sep } from "node:path";
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation.ts";
 import {
@@ -158,6 +158,7 @@ function buildNormalizedZodFiles(options: {
 				options.definitions,
 				options.generatedAt,
 				options.primitivePatterns,
+				options.outputDir,
 			),
 			path: join(options.outputDir, `${definition.name}.ts`),
 		}),
@@ -190,6 +191,7 @@ function emitDefinitionFile(
 	definitions: Map<string, NormalizedDefinition>,
 	generatedAt: string,
 	primitivePatterns: Map<string, string>,
+	outputDir: string,
 ): string {
 	const modelBaseName = resolveModelBaseName(definition, definitions);
 	const runtimeShouldExtend = shouldExtendDefinition(definition, definitions);
@@ -277,17 +279,17 @@ function emitDefinitionFile(
 			.map((name) => `import type { ${name} } from "./${name}";`),
 		...(helperImports.size > 0
 			? [
-					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitives";`,
+					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-primitives"))};`,
 				]
 			: []),
 		...(primitiveArrayImports.size > 0
 			? [
-					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitive-array-validation";`,
+					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-primitive-array-validation"))};`,
 				]
 			: []),
 		...(referenceImports.size > 0
 			? [
-					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-reference-validation";`,
+					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-reference-validation"))};`,
 				]
 			: []),
 		...[...valueImports]
@@ -316,6 +318,12 @@ function emitDefinitionFile(
 	];
 
 	return lines.join("\n");
+}
+
+function sharedImportPath(outputDir: string, moduleName: string): string {
+	const target = resolve(repoRoot, "src", "shared", moduleName);
+	const importPath = relative(resolve(outputDir), target).split(sep).join("/");
+	return importPath.startsWith(".") ? importPath : `./${importPath}`;
 }
 
 function buildGeneratedHeader(options: {
