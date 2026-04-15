@@ -1,0 +1,26 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/TestScript
+// Release: STU3
+// Version: 3.0.2
+// Last generated: 2026-04-15T06:47:52.729Z
+
+import * as z from "zod/v4";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+
+/** Action would contain either an operation or an assertion. */
+export interface TestScript_Test_Action extends BackboneElement {
+	/** Evaluates the results of previous operations to determine if the server under test behaves appropriately. */
+	assert?: unknown;
+	/** An operation would involve a REST request to a server. */
+	operation?: unknown;
+}
+
+/** @internal */
+export const TestScript_Test_ActionSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		assert: z.unknown().optional(),
+		operation: z.unknown().optional(),
+	}).strict();
+
+export const TestScript_Test_ActionSchema =
+	TestScript_Test_ActionSchemaInternal as z.ZodType<TestScript_Test_Action>;

@@ -1,0 +1,76 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/Medication
+// Release: R5
+// Version: 5.0.0
+// Last generated: 2026-04-15T06:48:04.891Z
+
+import * as z from "zod/v3";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { CodeableReference } from "./CodeableReference";
+import { CodeableReferenceSchemaInternal } from "./CodeableReference";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { Quantity } from "./Quantity";
+import { QuantitySchemaInternal } from "./Quantity";
+import type { Ratio } from "./Ratio";
+import { RatioSchemaInternal } from "./Ratio";
+
+/** Identifies a particular constituent of interest in the product. */
+export interface Medication_Ingredient extends BackboneElement {
+	/** Indication of whether this ingredient affects the therapeutic action of the drug. */
+	isActive?: boolean;
+	/** Extensions for isActive */
+	_isActive?: Element;
+	/** The ingredient (substance or medication) that the ingredient.strength relates to.  This is represented as a concept from a code system or described in another resource (Substance or Medication). */
+	item: CodeableReference;
+	/** Specifies how many (or how much) of the items there are in this Medication.  For example, 250 mg per tablet.  This is expressed as a ratio where the numerator is 250mg and the denominator is 1 tablet but can also be expressed a quantity when the denominator is assumed to be 1 tablet. */
+	strengthCodeableConcept?: CodeableConcept;
+	/** Specifies how many (or how much) of the items there are in this Medication.  For example, 250 mg per tablet.  This is expressed as a ratio where the numerator is 250mg and the denominator is 1 tablet but can also be expressed a quantity when the denominator is assumed to be 1 tablet. */
+	strengthQuantity?: Quantity;
+	/** Specifies how many (or how much) of the items there are in this Medication.  For example, 250 mg per tablet.  This is expressed as a ratio where the numerator is 250mg and the denominator is 1 tablet but can also be expressed a quantity when the denominator is assumed to be 1 tablet. */
+	strengthRatio?: Ratio;
+}
+
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getCodeableReferenceSchema = (): z.ZodType<CodeableReference> =>
+	CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getQuantitySchema = (): z.ZodType<Quantity> =>
+	QuantitySchemaInternal as z.ZodType<Quantity>;
+const getRatioSchema = (): z.ZodType<Ratio> =>
+	RatioSchemaInternal as z.ZodType<Ratio>;
+
+/** @internal */
+export const Medication_IngredientSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		isActive: z.boolean().optional(),
+		_isActive: z.lazy(getElementSchema).optional(),
+		item: z.lazy(getCodeableReferenceSchema),
+		strengthCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+		strengthQuantity: z.lazy(getQuantitySchema).optional(),
+		strengthRatio: z.lazy(getRatioSchema).optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			const strength_x_Present = [
+				"strengthCodeableConcept",
+				"strengthQuantity",
+				"strengthRatio",
+			].filter((field) => record[field] !== undefined);
+			if (strength_x_Present.length > 1) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message:
+						"Only one of strengthCodeableConcept, strengthQuantity, strengthRatio may be present for strength[x]",
+					path: [strength_x_Present[0]],
+				});
+			}
+		});
+
+export const Medication_IngredientSchema =
+	Medication_IngredientSchemaInternal as z.ZodType<Medication_Ingredient>;

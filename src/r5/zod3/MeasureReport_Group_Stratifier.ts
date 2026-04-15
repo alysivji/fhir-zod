@@ -1,0 +1,50 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/MeasureReport
+// Release: R5
+// Version: 5.0.0
+// Last generated: 2026-04-15T06:48:04.891Z
+
+import * as z from "zod/v3";
+import { fhirString } from "../../shared/fhir-primitives-zod3";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { MeasureReport_Group_Stratifier_Stratum } from "./MeasureReport_Group_Stratifier_Stratum";
+import { MeasureReport_Group_Stratifier_StratumSchemaInternal } from "./MeasureReport_Group_Stratifier_Stratum";
+
+/** When a measure includes multiple stratifiers, there will be a stratifier group for each stratifier defined by the measure. */
+export interface MeasureReport_Group_Stratifier extends BackboneElement {
+	/** The meaning of this stratifier, as defined in the measure definition. */
+	code?: CodeableConcept;
+	/** The stratifier from the Measure that corresponds to this stratifier in the MeasureReport resource. */
+	linkId?: string;
+	/** Extensions for linkId */
+	_linkId?: Element;
+	/** This element contains the results for a single stratum within the stratifier. For example, when stratifying on administrative gender, there will be four strata, one for each possible gender value. */
+	stratum?: Array<MeasureReport_Group_Stratifier_Stratum>;
+}
+
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getMeasureReport_Group_Stratifier_StratumSchema =
+	(): z.ZodType<MeasureReport_Group_Stratifier_Stratum> =>
+		MeasureReport_Group_Stratifier_StratumSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum>;
+
+/** @internal */
+export const MeasureReport_Group_StratifierSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		code: z.lazy(getCodeableConceptSchema).optional(),
+		linkId: fhirString().optional(),
+		_linkId: z.lazy(getElementSchema).optional(),
+		stratum: z
+			.lazy(getMeasureReport_Group_Stratifier_StratumSchema)
+			.array()
+			.optional(),
+	}).strict();
+
+export const MeasureReport_Group_StratifierSchema =
+	MeasureReport_Group_StratifierSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier>;

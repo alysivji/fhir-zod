@@ -168,15 +168,13 @@ describeR4Spec(
 			const definitionPath = join(outputDir, "Meta.ts");
 			const content = readFileSync(definitionPath, "utf8");
 
-			expect(content).toContain('from "../shared/fhir-primitives";');
+			expect(content).toContain('fhir-primitives";');
 			expect(content).toContain("fhirCanonical");
 			expect(content).toContain("fhirId");
 			expect(content).toContain("fhirInstant");
 			expect(content).toContain("fhirString");
 			expect(content).toContain("fhirUri");
-			expect(content).toContain(
-				'import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";',
-			);
+			expect(content).toContain('fhir-primitive-array-validation";');
 			expect(content).toContain(
 				"profile: fhirCanonical().nullable().array().optional(),",
 			);

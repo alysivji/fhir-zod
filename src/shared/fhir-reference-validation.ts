@@ -1,4 +1,10 @@
-import * as z from "zod";
+type RefinementContext = {
+	addIssue(issue: {
+		code: "custom";
+		message: string;
+		path: (number | string)[];
+	}): void;
+};
 
 export function normalizeReferenceCanonicalUrl(targetProfile: string): string {
 	return targetProfile.split("|")[0] ?? targetProfile;
@@ -19,7 +25,7 @@ export function validateReferenceTarget(
 	field: string,
 	allowedCanonicalTypes: string[],
 	allowedResourceTypes: string[],
-	ctx: z.RefinementCtx,
+	ctx: RefinementContext,
 ): void {
 	if (allowedResourceTypes.includes("Resource")) {
 		return;
@@ -55,7 +61,7 @@ export function validateReferenceTarget(
 			!allowedCanonicalTypes.includes(normalizedTypeCanonical)
 		) {
 			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
+				code: "custom",
 				message: `Expected ${field}.type to be one of: ${allowedResourceTypes.join(", ")}; got ${normalizedType}`,
 				path: referenceIssuePath(value, field, index, "type"),
 			});
@@ -67,7 +73,7 @@ export function validateReferenceTarget(
 			targetProfileToResourceType(normalizedTypeCanonical) !== inferredType
 		) {
 			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
+				code: "custom",
 				message: `Reference.type and reference disagree for ${field}: type=${normalizedType}, reference=${reference}`,
 				path: referenceIssuePath(value, field, index, "reference"),
 			});
@@ -75,7 +81,7 @@ export function validateReferenceTarget(
 
 		if (inferredType && !allowedResourceTypes.includes(inferredType)) {
 			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
+				code: "custom",
 				message: `Expected ${field} to reference one of: ${allowedResourceTypes.join(", ")}; got ${inferredType} from reference=${reference}`,
 				path: referenceIssuePath(value, field, index, "reference"),
 			});

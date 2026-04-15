@@ -1,5 +1,13 @@
 import { PatientSchema } from "fhir-zod/r4";
+import { PatientSchema as PatientSchemaZod3 } from "fhir-zod/r4/zod3";
+import { PatientSchema as PatientSchemaZod4 } from "fhir-zod/r4/zod4";
 import { describe, expect, it } from "vitest";
+
+const patientSchemaSurfaces = [
+	["auto", PatientSchema],
+	["zod3", PatientSchemaZod3],
+	["zod4", PatientSchemaZod4],
+] as const;
 
 describe("Patient", () => {
 	it("parses a basic patient resource", () => {
@@ -302,25 +310,66 @@ describe("Patient", () => {
 	});
 
 	describe("deceased[x]", () => {
-		it("accepts a single choice", () => {
-			const result = PatientSchema.safeParse({
-				deceasedBoolean: true,
-				resourceType: "Patient",
-			});
+		it.each(patientSchemaSurfaces)(
+			"%s accepts a single choice",
+			(_, schema) => {
+				const result = schema.safeParse({
+					deceasedBoolean: true,
+					resourceType: "Patient",
+				});
 
-			expect(result.success).toBe(true);
-		});
+				expect(result.success).toBe(true);
+			},
+		);
 
-		it("rejects multiple choices", () => {
-			const result = PatientSchema.safeParse({
-				deceasedBoolean: true,
-				deceasedDateTime: "2020-01-01T00:00:00Z",
+		it.each(patientSchemaSurfaces)(
+			"%s rejects multiple choices",
+			(_, schema) => {
+				const result = schema.safeParse({
+					deceasedBoolean: true,
+					deceasedDateTime: "2020-01-01T00:00:00Z",
+					resourceType: "Patient",
+				});
+
+				expect(result.success).toBe(false);
+			},
+		);
+	});
+
+	it.each(patientSchemaSurfaces)(
+		"%s parses a minimal patient resource",
+		(_, schema) => {
+			expect(schema.safeParse({ resourceType: "Patient" }).success).toBe(true);
+		},
+	);
+
+	it.each(patientSchemaSurfaces)(
+		"%s rejects references that use the wrong target resource type",
+		(_, schema) => {
+			const result = schema.safeParse({
+				managingOrganization: {
+					reference: "Patient/example",
+				},
 				resourceType: "Patient",
 			});
 
 			expect(result.success).toBe(false);
-		});
-	});
+			if (result.success) {
+				throw new Error("Expected validation failure");
+			}
+			expect(result.error.issues).toEqual(
+				expect.arrayContaining([
+					expect.objectContaining({
+						code: "custom",
+						message: expect.stringContaining(
+							"Expected managingOrganization to reference one of: Organization",
+						),
+						path: ["managingOrganization", "reference"],
+					}),
+				]),
+			);
+		},
+	);
 
 	describe("multipleBirth[x]", () => {
 		it("accepts a single choice", () => {

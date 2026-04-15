@@ -17,6 +17,16 @@ import {
 	fhirUrl,
 	fhirUuid,
 } from "../src/shared/fhir-primitives.ts";
+import {
+	fhirBase64Binary as fhirBase64BinaryZod3,
+	fhirDate as fhirDateZod3,
+	fhirString as fhirStringZod3,
+} from "../src/shared/fhir-primitives-zod3.ts";
+import {
+	fhirBase64Binary as fhirBase64BinaryZod4,
+	fhirDate as fhirDateZod4,
+	fhirString as fhirStringZod4,
+} from "../src/shared/fhir-primitives-zod4.ts";
 
 describe("FHIR primitives", () => {
 	afterEach(() => {
@@ -143,6 +153,25 @@ describe("FHIR primitives", () => {
 			const payload = "Zm9v".repeat(200_000);
 
 			expect(fhirBase64Binary().safeParse(payload).success).toBe(true);
+		});
+	});
+
+	describe("explicit Zod flavor primitive helpers", () => {
+		it("keeps regex and base64 behavior aligned across Zod surfaces", () => {
+			const helperSets = [
+				[fhirBase64Binary, fhirDate, fhirString],
+				[fhirBase64BinaryZod3, fhirDateZod3, fhirStringZod3],
+				[fhirBase64BinaryZod4, fhirDateZod4, fhirStringZod4],
+			] as const;
+
+			for (const [base64, date, string] of helperSets) {
+				expect(base64().safeParse("Zm9v").success).toBe(true);
+				expect(base64().safeParse("*").success).toBe(false);
+				expect(date().safeParse("1980-01-01").success).toBe(true);
+				expect(date().safeParse("1980-13").success).toBe(false);
+				expect(string().safeParse("hello").success).toBe(true);
+				expect(string().safeParse("").success).toBe(false);
+			}
 		});
 	});
 

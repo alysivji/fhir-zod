@@ -1,0 +1,62 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/SubstanceDefinition
+// Release: R4B
+// Version: 4.3.0
+// Last generated: 2026-04-15T06:48:00.815Z
+
+import * as z from "zod/v4";
+import { fhirString } from "../../shared/fhir-primitives-zod4";
+import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { CodeableConcept } from "./CodeableConcept";
+import { CodeableConceptSchemaInternal } from "./CodeableConcept";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { Reference } from "./Reference";
+import { ReferenceSchemaInternal } from "./Reference";
+
+/** A depiction of the structure or characterization of the substance. */
+export interface SubstanceDefinition_Structure_Representation
+	extends BackboneElement {
+	/** An attached file with the structural representation or characterization e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file. */
+	document?: Reference;
+	/** The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF. The logical content type rather than the physical file format of a document. */
+	format?: CodeableConcept;
+	/** The structural representation or characterization as a text string in a standard format. */
+	representation?: string;
+	/** Extensions for representation */
+	_representation?: Element;
+	/** The kind of structural representation (e.g. full, partial). */
+	type?: CodeableConcept;
+}
+
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
+
+/** @internal */
+export const SubstanceDefinition_Structure_RepresentationSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		document: z.lazy(getReferenceSchema).optional(),
+		format: z.lazy(getCodeableConceptSchema).optional(),
+		representation: fhirString().optional(),
+		_representation: z.lazy(getElementSchema).optional(),
+		type: z.lazy(getCodeableConceptSchema).optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validateReferenceTarget(
+				record.document,
+				"document",
+				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+				["DocumentReference"],
+				ctx,
+			);
+		});
+
+export const SubstanceDefinition_Structure_RepresentationSchema =
+	SubstanceDefinition_Structure_RepresentationSchemaInternal as z.ZodType<SubstanceDefinition_Structure_Representation>;

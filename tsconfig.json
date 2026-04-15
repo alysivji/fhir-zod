@@ -20,9 +20,17 @@
 		"paths": {
 			"fhir-zod": ["./src/index.ts"],
 			"fhir-zod/r4": ["./src/r4/index.ts"],
+			"fhir-zod/r4/zod3": ["./src/r4/zod3/index.ts"],
+			"fhir-zod/r4/zod4": ["./src/r4/zod4/index.ts"],
 			"fhir-zod/r4b": ["./src/r4b/index.ts"],
+			"fhir-zod/r4b/zod3": ["./src/r4b/zod3/index.ts"],
+			"fhir-zod/r4b/zod4": ["./src/r4b/zod4/index.ts"],
 			"fhir-zod/r5": ["./src/r5/index.ts"],
-			"fhir-zod/stu3": ["./src/stu3/index.ts"]
+			"fhir-zod/r5/zod3": ["./src/r5/zod3/index.ts"],
+			"fhir-zod/r5/zod4": ["./src/r5/zod4/index.ts"],
+			"fhir-zod/stu3": ["./src/stu3/index.ts"],
+			"fhir-zod/stu3/zod3": ["./src/stu3/zod3/index.ts"],
+			"fhir-zod/stu3/zod4": ["./src/stu3/zod4/index.ts"]
 		}
 	},
 	"include": ["src", "scripts", "tests", "tsdown.config.ts", "vitest.config.ts"]

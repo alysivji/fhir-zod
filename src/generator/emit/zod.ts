@@ -8,7 +8,7 @@ import {
 	writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, join, relative, resolve, sep } from "node:path";
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation.ts";
 import {
@@ -53,6 +53,8 @@ type PrimitiveArrayPair = {
 	valueField: string;
 };
 
+export type ZodSchemaFlavor = "auto" | "zod3" | "zod4";
+
 export function buildRuntimeSchemas(
 	definitions: Map<string, NormalizedDefinition>,
 	primitivePatterns: Map<string, string>,
@@ -92,6 +94,7 @@ export function writeNormalizedZodDefinitions(options: {
 	outputDir: string;
 	prune?: boolean;
 	primitivePatterns: Map<string, string>;
+	schemaFlavor?: ZodSchemaFlavor;
 }): string[] {
 	const files = formatBuiltFiles(buildNormalizedZodFiles(options));
 
@@ -150,7 +153,9 @@ function buildNormalizedZodFiles(options: {
 	generatedAt: string;
 	outputDir: string;
 	primitivePatterns: Map<string, string>;
+	schemaFlavor?: ZodSchemaFlavor;
 }): BuiltFile[] {
+	const schemaFlavor = options.schemaFlavor ?? "auto";
 	const builtFiles = sortDefinitions(options.definitions.values()).map(
 		(definition) => ({
 			content: emitDefinitionFile(
@@ -158,6 +163,8 @@ function buildNormalizedZodFiles(options: {
 				options.definitions,
 				options.generatedAt,
 				options.primitivePatterns,
+				schemaFlavor,
+				options.outputDir,
 			),
 			path: join(options.outputDir, `${definition.name}.ts`),
 		}),
@@ -190,6 +197,8 @@ function emitDefinitionFile(
 	definitions: Map<string, NormalizedDefinition>,
 	generatedAt: string,
 	primitivePatterns: Map<string, string>,
+	schemaFlavor: ZodSchemaFlavor,
+	outputDir: string,
 ): string {
 	const modelBaseName = resolveModelBaseName(definition, definitions);
 	const runtimeShouldExtend = shouldExtendDefinition(definition, definitions);
@@ -271,23 +280,23 @@ function emitDefinitionFile(
 			releaseLabel: definition.sourceMetadata.releaseLabel,
 			version: definition.sourceMetadata.version,
 		}),
-		'import * as z from "zod";',
+		`import * as z from ${JSON.stringify(zodImportPath(schemaFlavor))};`,
 		...[...typeImports]
 			.sort((left, right) => left.localeCompare(right))
 			.map((name) => `import type { ${name} } from "./${name}";`),
 		...(helperImports.size > 0
 			? [
-					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitives";`,
+					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, primitiveHelperModule(schemaFlavor)))};`,
 				]
 			: []),
 		...(primitiveArrayImports.size > 0
 			? [
-					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-primitive-array-validation";`,
+					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-primitive-array-validation"))};`,
 				]
 			: []),
 		...(referenceImports.size > 0
 			? [
-					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from "../shared/fhir-reference-validation";`,
+					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-reference-validation"))};`,
 				]
 			: []),
 		...[...valueImports]
@@ -316,6 +325,34 @@ function emitDefinitionFile(
 	];
 
 	return lines.join("\n");
+}
+
+function zodImportPath(schemaFlavor: ZodSchemaFlavor): string {
+	switch (schemaFlavor) {
+		case "zod3":
+			return "zod/v3";
+		case "zod4":
+			return "zod/v4";
+		default:
+			return "zod";
+	}
+}
+
+function primitiveHelperModule(schemaFlavor: ZodSchemaFlavor): string {
+	switch (schemaFlavor) {
+		case "zod3":
+			return "fhir-primitives-zod3";
+		case "zod4":
+			return "fhir-primitives-zod4";
+		default:
+			return "fhir-primitives";
+	}
+}
+
+function sharedImportPath(outputDir: string, moduleName: string): string {
+	const target = resolve(repoRoot, "src", "shared", moduleName);
+	const importPath = relative(resolve(outputDir), target).split(sep).join("/");
+	return importPath.startsWith(".") ? importPath : `./${importPath}`;
 }
 
 function buildGeneratedHeader(options: {

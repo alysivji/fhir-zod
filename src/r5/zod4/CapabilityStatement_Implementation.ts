@@ -1,0 +1,57 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
+// Release: R5
+// Version: 5.0.0
+// Last generated: 2026-04-15T06:48:04.891Z
+
+import * as z from "zod/v4";
+import { fhirUrl } from "../../shared/fhir-primitives-zod4";
+import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { BackboneElement } from "./BackboneElement";
+import { BackboneElementSchemaInternal } from "./BackboneElement";
+import type { Element } from "./Element";
+import { ElementSchemaInternal } from "./Element";
+import type { Reference } from "./Reference";
+import { ReferenceSchemaInternal } from "./Reference";
+
+/** Identifies a specific implementation instance that is described by the capability statement - i.e. a particular installation, rather than the capabilities of a software program. */
+export interface CapabilityStatement_Implementation extends BackboneElement {
+	/** The organization responsible for the management of the instance and oversight of the data on the server at the specified URL. */
+	custodian?: Reference;
+	/** Information about the specific installation that this capability statement relates to. */
+	description: string;
+	/** Extensions for description */
+	_description?: Element;
+	/** An absolute base URL for the implementation.  This forms the base for REST interfaces as well as the mailbox and document interfaces. */
+	url?: string;
+	/** Extensions for url */
+	_url?: Element;
+}
+
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+const getReferenceSchema = (): z.ZodType<Reference> =>
+	ReferenceSchemaInternal as z.ZodType<Reference>;
+
+/** @internal */
+export const CapabilityStatement_ImplementationSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		custodian: z.lazy(getReferenceSchema).optional(),
+		description: z.string().regex(/^[\s\S]+$/),
+		_description: z.lazy(getElementSchema).optional(),
+		url: fhirUrl().optional(),
+		_url: z.lazy(getElementSchema).optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validateReferenceTarget(
+				record.custodian,
+				"custodian",
+				["http://hl7.org/fhir/StructureDefinition/Organization"],
+				["Organization"],
+				ctx,
+			);
+		});
+
+export const CapabilityStatement_ImplementationSchema =
+	CapabilityStatement_ImplementationSchemaInternal as z.ZodType<CapabilityStatement_Implementation>;
