@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -23,9 +24,9 @@ export interface DeviceDefinition_ConformsTo extends BackboneElement {
 	/** Code that identifies the specific standard, specification, protocol, formal guidance, regulation, legislation, or certification scheme to which the device adheres. */
 	specification: CodeableConcept;
 	/** Identifies the specific form or variant of the standard, specification, or formal guidance. This may be a 'version number', release, document edition, publication year, or other label. */
-	version?: Array<string>;
+	version?: Array<string | null>;
 	/** Extensions for version */
-	_version?: Array<Element>;
+	_version?: Array<Element | null>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
@@ -41,9 +42,20 @@ export const DeviceDefinition_ConformsToSchemaInternal =
 		category: z.lazy(getCodeableConceptSchema).optional(),
 		source: z.lazy(getRelatedArtifactSchema).array().optional(),
 		specification: z.lazy(getCodeableConceptSchema),
-		version: fhirString().array().optional(),
-		_version: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		version: fhirString().nullable().array().optional(),
+		_version: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.version,
+				record._version,
+				"version",
+				"_version",
+				ctx,
+			);
+		});
 
 export const DeviceDefinition_ConformsToSchema =
 	DeviceDefinition_ConformsToSchemaInternal as z.ZodType<DeviceDefinition_ConformsTo>;

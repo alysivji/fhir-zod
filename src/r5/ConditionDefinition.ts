@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ConditionDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -46,9 +47,9 @@ export interface ConditionDefinition extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** Formal definitions of the condition. These may be references to ontologies, published clinical protocols or research papers. */
-	definition?: Array<string>;
+	definition?: Array<string | null>;
 	/** Extensions for definition */
-	_definition?: Array<Element>;
+	_definition?: Array<Element | null>;
 	/** A free text natural language description of the condition definition from a consumer's perspective. */
 	description?: string;
 	/** Extensions for description */
@@ -167,8 +168,8 @@ export const ConditionDefinitionSchemaInternal =
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		definition: fhirUri().array().optional(),
-		_definition: z.lazy(getElementSchema).array().optional(),
+		definition: fhirUri().nullable().array().optional(),
+		_definition: z.lazy(getElementSchema).nullable().array().optional(),
 		description: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -239,6 +240,13 @@ export const ConditionDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.definition,
+				record._definition,
+				"definition",
+				"_definition",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.team,
 				"team",

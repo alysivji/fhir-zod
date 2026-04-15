@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NutritionOrder
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -48,17 +49,17 @@ export interface NutritionOrder extends DomainResource {
 	/** Identifiers assigned to this order by the order sender or by the order receiver. */
 	identifier?: Array<Identifier>;
 	/** The URL pointing to a protocol, guideline, orderset or other definition that is adhered to in whole or in part by this NutritionOrder. */
-	instantiates?: Array<string>;
+	instantiates?: Array<string | null>;
 	/** Extensions for instantiates */
-	_instantiates?: Array<Element>;
+	_instantiates?: Array<Element | null>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this NutritionOrder. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this NutritionOrder. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** Indicates the level of authority/intentionality associated with the NutrionOrder and where the request fits into the workflow chain. */
 	intent:
 		| "directive"
@@ -128,12 +129,16 @@ export const NutritionOrderSchemaInternal = DomainResourceSchemaInternal.extend(
 		excludeFoodModifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		foodPreferenceModifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiates: fhirUri().array().optional(),
-		_instantiates: z.lazy(getElementSchema).array().optional(),
-		instantiatesCanonical: fhirCanonical().array().optional(),
-		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: fhirUri().array().optional(),
-		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+		instantiates: fhirUri().nullable().array().optional(),
+		_instantiates: z.lazy(getElementSchema).nullable().array().optional(),
+		instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+		_instantiatesCanonical: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		instantiatesUri: fhirUri().nullable().array().optional(),
+		_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 		intent: z.enum([
 			"directive",
 			"filler-order",
@@ -167,6 +172,27 @@ export const NutritionOrderSchemaInternal = DomainResourceSchemaInternal.extend(
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.instantiates,
+			record._instantiates,
+			"instantiates",
+			"_instantiates",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.instantiatesCanonical,
+			record._instantiatesCanonical,
+			"instantiatesCanonical",
+			"_instantiatesCanonical",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.instantiatesUri,
+			record._instantiatesUri,
+			"instantiatesUri",
+			"_instantiatesUri",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.allergyIntolerance,
 			"allergyIntolerance",

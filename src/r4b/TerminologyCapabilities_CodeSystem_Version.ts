@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -30,13 +31,13 @@ export interface TerminologyCapabilities_CodeSystem_Version
 	/** Extensions for isDefault */
 	_isDefault?: Element;
 	/** Language Displays supported. */
-	language?: Array<string>;
+	language?: Array<string | null>;
 	/** Extensions for language */
-	_language?: Array<Element>;
+	_language?: Array<Element | null>;
 	/** Properties supported for $lookup. */
-	property?: Array<string>;
+	property?: Array<string | null>;
 	/** Extensions for property */
-	_property?: Array<Element>;
+	_property?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -58,11 +59,29 @@ export const TerminologyCapabilities_CodeSystem_VersionSchemaInternal =
 			.optional(),
 		isDefault: z.boolean().optional(),
 		_isDefault: z.lazy(getElementSchema).optional(),
-		language: fhirCode().array().optional(),
-		_language: z.lazy(getElementSchema).array().optional(),
-		property: fhirCode().array().optional(),
-		_property: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		language: fhirCode().nullable().array().optional(),
+		_language: z.lazy(getElementSchema).nullable().array().optional(),
+		property: fhirCode().nullable().array().optional(),
+		_property: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.language,
+				record._language,
+				"language",
+				"_language",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.property,
+				record._property,
+				"property",
+				"_property",
+				ctx,
+			);
+		});
 
 export const TerminologyCapabilities_CodeSystem_VersionSchema =
 	TerminologyCapabilities_CodeSystem_VersionSchemaInternal as z.ZodType<TerminologyCapabilities_CodeSystem_Version>;

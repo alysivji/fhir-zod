@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubscriptionTopic
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -41,9 +42,10 @@ export interface SubscriptionTopic_CanFilterBy extends BackboneElement {
 		| "not-in"
 		| "of-type"
 		| "sa"
+		| null
 	>;
 	/** Extensions for modifier */
-	_modifier?: Array<Element>;
+	_modifier?: Array<Element | null>;
 	/** URL of the Resource that is the type used in this filter. This is the "focus" of the topic (or one of them if there are more than one). It will be the same, a generality, or a specificity of SubscriptionTopic.resourceTrigger.resource or SubscriptionTopic.eventTrigger.resource when they are present. */
 	resource?: string;
 	/** Extensions for resource */
@@ -80,12 +82,24 @@ export const SubscriptionTopic_CanFilterBySchemaInternal =
 				"of-type",
 				"sa",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_modifier: z.lazy(getElementSchema).array().optional(),
+		_modifier: z.lazy(getElementSchema).nullable().array().optional(),
 		resource: fhirUri().optional(),
 		_resource: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.modifier,
+				record._modifier,
+				"modifier",
+				"_modifier",
+				ctx,
+			);
+		});
 
 export const SubscriptionTopic_CanFilterBySchema =
 	SubscriptionTopic_CanFilterBySchemaInternal as z.ZodType<SubscriptionTopic_CanFilterBy>;

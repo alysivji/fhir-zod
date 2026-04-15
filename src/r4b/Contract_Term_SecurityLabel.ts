@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Coding } from "./Coding";
@@ -20,9 +21,9 @@ export interface Contract_Term_SecurityLabel extends BackboneElement {
 	/** Security label privacy tag that species the manner in which term and/or term elements are to be protected. */
 	control?: Array<Coding>;
 	/** Number used to link this term or term element to the applicable Security Label. */
-	number?: Array<number>;
+	number?: Array<number | null>;
 	/** Extensions for number */
-	_number?: Array<Element>;
+	_number?: Array<Element | null>;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
@@ -36,9 +37,20 @@ export const Contract_Term_SecurityLabelSchemaInternal =
 		category: z.lazy(getCodingSchema).array().optional(),
 		classification: z.lazy(getCodingSchema),
 		control: z.lazy(getCodingSchema).array().optional(),
-		number: z.number().int().nonnegative().array().optional(),
-		_number: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		number: z.number().int().nonnegative().nullable().array().optional(),
+		_number: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.number,
+				record._number,
+				"number",
+				"_number",
+				ctx,
+			);
+		});
 
 export const Contract_Term_SecurityLabelSchema =
 	Contract_Term_SecurityLabelSchemaInternal as z.ZodType<Contract_Term_SecurityLabel>;

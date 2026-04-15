@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
@@ -28,9 +29,9 @@ export interface Contract_Term_Action extends BackboneElement {
 	/** Encounter or Episode with primary association to specified term activity. */
 	context?: Reference;
 	/** Id [identifier??] of the clause or question text related to the requester of this action in the referenced form or QuestionnaireResponse. */
-	contextLinkId?: Array<string>;
+	contextLinkId?: Array<string | null>;
 	/** Extensions for contextLinkId */
-	_contextLinkId?: Array<Element>;
+	_contextLinkId?: Array<Element | null>;
 	/** True if the term prohibits the  action. */
 	doNotPerform?: boolean;
 	/** Extensions for doNotPerform */
@@ -38,9 +39,9 @@ export interface Contract_Term_Action extends BackboneElement {
 	/** Reason or purpose for the action stipulated by this Contract Provision. */
 	intent: CodeableConcept;
 	/** Id [identifier??] of the clause or question text related to this action in the referenced form or QuestionnaireResponse. */
-	linkId?: Array<string>;
+	linkId?: Array<string | null>;
 	/** Extensions for linkId */
-	_linkId?: Array<Element>;
+	_linkId?: Array<Element | null>;
 	/** Comments made about the term action made by the requester, performer, subject or other participants. */
 	note?: Array<Annotation>;
 	/** When action happens. */
@@ -54,35 +55,35 @@ export interface Contract_Term_Action extends BackboneElement {
 	/** Indicates who or what is being asked to perform (or not perform) the ction. */
 	performer?: Reference;
 	/** Id [identifier??] of the clause or question text related to the reason type or reference of this  action in the referenced form or QuestionnaireResponse. */
-	performerLinkId?: Array<string>;
+	performerLinkId?: Array<string | null>;
 	/** Extensions for performerLinkId */
-	_performerLinkId?: Array<Element>;
+	_performerLinkId?: Array<Element | null>;
 	/** The type of role or competency of an individual desired or required to perform or not perform the action. */
 	performerRole?: CodeableConcept;
 	/** The type of individual that is desired or required to perform or not perform the action. */
 	performerType?: Array<CodeableConcept>;
 	/** Describes why the action is to be performed or not performed in textual form. */
-	reason?: Array<string>;
+	reason?: Array<string | null>;
 	/** Extensions for reason */
-	_reason?: Array<Element>;
+	_reason?: Array<Element | null>;
 	/** Rationale for the action to be performed or not performed. Describes why the action is permitted or prohibited. */
 	reasonCode?: Array<CodeableConcept>;
 	/** Id [identifier??] of the clause or question text related to the reason type or reference of this  action in the referenced form or QuestionnaireResponse. */
-	reasonLinkId?: Array<string>;
+	reasonLinkId?: Array<string | null>;
 	/** Extensions for reasonLinkId */
-	_reasonLinkId?: Array<Element>;
+	_reasonLinkId?: Array<Element | null>;
 	/** Indicates another resource whose existence justifies permitting or not permitting this action. */
 	reasonReference?: Array<Reference>;
 	/** Who or what initiated the action and has responsibility for its activation. */
 	requester?: Array<Reference>;
 	/** Id [identifier??] of the clause or question text related to the requester of this action in the referenced form or QuestionnaireResponse. */
-	requesterLinkId?: Array<string>;
+	requesterLinkId?: Array<string | null>;
 	/** Extensions for requesterLinkId */
-	_requesterLinkId?: Array<Element>;
+	_requesterLinkId?: Array<Element | null>;
 	/** Security labels that protects the action. */
-	securityLabelNumber?: Array<number>;
+	securityLabelNumber?: Array<number | null>;
 	/** Extensions for securityLabelNumber */
-	_securityLabelNumber?: Array<Element>;
+	_securityLabelNumber?: Array<Element | null>;
 	/** Current state of the term action. */
 	status: CodeableConcept;
 	/** Entity of the action. */
@@ -111,34 +112,44 @@ const getTimingSchema = (): z.ZodType<Timing> =>
 export const Contract_Term_ActionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		context: z.lazy(getReferenceSchema).optional(),
-		contextLinkId: fhirString().array().optional(),
-		_contextLinkId: z.lazy(getElementSchema).array().optional(),
+		contextLinkId: fhirString().nullable().array().optional(),
+		_contextLinkId: z.lazy(getElementSchema).nullable().array().optional(),
 		doNotPerform: z.boolean().optional(),
 		_doNotPerform: z.lazy(getElementSchema).optional(),
 		intent: z.lazy(getCodeableConceptSchema),
-		linkId: fhirString().array().optional(),
-		_linkId: z.lazy(getElementSchema).array().optional(),
+		linkId: fhirString().nullable().array().optional(),
+		_linkId: z.lazy(getElementSchema).nullable().array().optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
 		occurrenceDateTime: fhirDateTime().optional(),
 		_occurrenceDateTime: z.lazy(getElementSchema).optional(),
 		occurrencePeriod: z.lazy(getPeriodSchema).optional(),
 		occurrenceTiming: z.lazy(getTimingSchema).optional(),
 		performer: z.lazy(getReferenceSchema).optional(),
-		performerLinkId: fhirString().array().optional(),
-		_performerLinkId: z.lazy(getElementSchema).array().optional(),
+		performerLinkId: fhirString().nullable().array().optional(),
+		_performerLinkId: z.lazy(getElementSchema).nullable().array().optional(),
 		performerRole: z.lazy(getCodeableConceptSchema).optional(),
 		performerType: z.lazy(getCodeableConceptSchema).array().optional(),
-		reason: fhirString().array().optional(),
-		_reason: z.lazy(getElementSchema).array().optional(),
+		reason: fhirString().nullable().array().optional(),
+		_reason: z.lazy(getElementSchema).nullable().array().optional(),
 		reasonCode: z.lazy(getCodeableConceptSchema).array().optional(),
-		reasonLinkId: fhirString().array().optional(),
-		_reasonLinkId: z.lazy(getElementSchema).array().optional(),
+		reasonLinkId: fhirString().nullable().array().optional(),
+		_reasonLinkId: z.lazy(getElementSchema).nullable().array().optional(),
 		reasonReference: z.lazy(getReferenceSchema).array().optional(),
 		requester: z.lazy(getReferenceSchema).array().optional(),
-		requesterLinkId: fhirString().array().optional(),
-		_requesterLinkId: z.lazy(getElementSchema).array().optional(),
-		securityLabelNumber: z.number().int().nonnegative().array().optional(),
-		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),
+		requesterLinkId: fhirString().nullable().array().optional(),
+		_requesterLinkId: z.lazy(getElementSchema).nullable().array().optional(),
+		securityLabelNumber: z
+			.number()
+			.int()
+			.nonnegative()
+			.nullable()
+			.array()
+			.optional(),
+		_securityLabelNumber: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		status: z.lazy(getCodeableConceptSchema),
 		subject: z.lazy(getContract_Term_Action_SubjectSchema).array().optional(),
 		type: z.lazy(getCodeableConceptSchema),
@@ -159,6 +170,55 @@ export const Contract_Term_ActionSchemaInternal =
 					path: [occurrence_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.contextLinkId,
+				record._contextLinkId,
+				"contextLinkId",
+				"_contextLinkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.linkId,
+				record._linkId,
+				"linkId",
+				"_linkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.performerLinkId,
+				record._performerLinkId,
+				"performerLinkId",
+				"_performerLinkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.reason,
+				record._reason,
+				"reason",
+				"_reason",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.reasonLinkId,
+				record._reasonLinkId,
+				"reasonLinkId",
+				"_reasonLinkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.requesterLinkId,
+				record._requesterLinkId,
+				"requesterLinkId",
+				"_requesterLinkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.securityLabelNumber,
+				record._securityLabelNumber,
+				"securityLabelNumber",
+				"_securityLabelNumber",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.context,
 				"context",

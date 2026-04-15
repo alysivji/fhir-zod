@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirBase64Binary,
 	fhirCanonical,
@@ -105,9 +106,9 @@ import { UsageContextSchemaInternal } from "./UsageContext";
 /** Base StructureDefinition for ElementDefinition Type: Captures constraints on each element within the resource, profile, or extension. */
 export interface ElementDefinition extends BackboneElement {
 	/** Identifies additional names by which this element might also be known. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of the element through the derived and related profiles. When the element definition is not the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the information in provided in the element definition may be different to the base definition. On the original definition of the element, it will be same. */
 	base?: ElementDefinition_Base;
 	/** Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri). */
@@ -119,9 +120,9 @@ export interface ElementDefinition extends BackboneElement {
 	/** Extensions for comment */
 	_comment?: Element;
 	/** A reference to an invariant that may make additional statements about the cardinality or value in the instance. */
-	condition?: Array<string>;
+	condition?: Array<string | null>;
 	/** Extensions for condition */
-	_condition?: Array<Element>;
+	_condition?: Array<Element | null>;
 	/** Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context of the instance. */
 	constraint?: Array<ElementDefinition_Constraint>;
 	/** Identifies an element defined elsewhere in the definition whose content rules should be applied to the current element. ContentReferences bring across all the rules that are in the ElementDefinition for the element, including definitions, cardinality constraints, bindings, invariants etc. */
@@ -1282,10 +1283,10 @@ export interface ElementDefinition extends BackboneElement {
 	_patternUuid?: Element;
 	/** Codes that define how this element is represented in instances, when the deviation varies from the normal case. */
 	representation?: Array<
-		"cdaText" | "typeAttr" | "xhtml" | "xmlAttr" | "xmlText"
+		"cdaText" | "typeAttr" | "xhtml" | "xmlAttr" | "xmlText" | null
 	>;
 	/** Extensions for representation */
-	_representation?: Array<Element>;
+	_representation?: Array<Element | null>;
 	/** This element is for traceability of why the element was created and why the constraints exist as they do. This may be used to point to source materials or specifications that drove the structure of this element. */
 	requirements?: string;
 	/** Extensions for requirements */
@@ -1396,15 +1397,15 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 /** @internal */
 export const ElementDefinitionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		alias: fhirString().array().optional(),
-		_alias: z.lazy(getElementSchema).array().optional(),
+		alias: fhirString().nullable().array().optional(),
+		_alias: z.lazy(getElementSchema).nullable().array().optional(),
 		base: z.lazy(getElementDefinition_BaseSchema).optional(),
 		binding: z.lazy(getElementDefinition_BindingSchema).optional(),
 		code: z.lazy(getCodingSchema).array().optional(),
 		comment: z.string().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
-		condition: fhirId().array().optional(),
-		_condition: z.lazy(getElementSchema).array().optional(),
+		condition: fhirId().nullable().array().optional(),
+		_condition: z.lazy(getElementSchema).nullable().array().optional(),
 		constraint: z
 			.lazy(getElementDefinition_ConstraintSchema)
 			.array()
@@ -1689,9 +1690,10 @@ export const ElementDefinitionSchemaInternal =
 		_patternUuid: z.lazy(getElementSchema).optional(),
 		representation: z
 			.enum(["cdaText", "typeAttr", "xhtml", "xmlAttr", "xmlText"])
+			.nullable()
 			.array()
 			.optional(),
-		_representation: z.lazy(getElementSchema).array().optional(),
+		_representation: z.lazy(getElementSchema).nullable().array().optional(),
 		requirements: z.string().optional(),
 		_requirements: z.lazy(getElementSchema).optional(),
 		short: fhirString().optional(),
@@ -1927,6 +1929,27 @@ export const ElementDefinitionSchemaInternal =
 					path: [pattern_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.alias,
+				record._alias,
+				"alias",
+				"_alias",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.condition,
+				record._condition,
+				"condition",
+				"_condition",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.representation,
+				record._representation,
+				"representation",
+				"_representation",
+				ctx,
+			);
 		});
 
 export const ElementDefinitionSchema =

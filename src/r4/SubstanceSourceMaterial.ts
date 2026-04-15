@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -29,9 +30,9 @@ export interface SubstanceSourceMaterial extends DomainResource {
 	/** Many complex materials are fractions of parts of plants, animals, or minerals. Fraction elements are often necessary to define both Substances and Specified Group 1 Substances. For substances derived from Plants, fraction information will be captured at the Substance information level ( . Oils, Juices and Exudates). Additional information for Extracts, such as extraction solvent composition, will be captured at the Specified Substance Group 1 information level. For plasma-derived products fraction information will be captured at the Substance and the Specified Substance Group 1 levels. */
 	fractionDescription?: Array<SubstanceSourceMaterial_FractionDescription>;
 	/** The place/region where the plant is harvested or the places/regions where the animal source material has its habitat. */
-	geographicalLocation?: Array<string>;
+	geographicalLocation?: Array<string | null>;
 	/** Extensions for geographicalLocation */
-	_geographicalLocation?: Array<Element>;
+	_geographicalLocation?: Array<Element | null>;
 	/** This subclause describes the organism which the substance is derived from. For vaccines, the parent organism shall be specified based on these subclause elements. As an example, full taxonomy will be described for the Substance Name: ., Leaf. */
 	organism?: SubstanceSourceMaterial_Organism;
 	/** The unique identifier associated with the source material parent organism shall be specified. */
@@ -43,9 +44,9 @@ export interface SubstanceSourceMaterial extends DomainResource {
 	/** The parent of the herbal drug Ginkgo biloba, Leaf is the substance ID of the substance (fresh) of Ginkgo biloba L. or Ginkgo biloba L. (Whole plant). */
 	parentSubstanceId?: Array<Identifier>;
 	/** The parent substance of the Herbal Drug, or Herbal preparation. */
-	parentSubstanceName?: Array<string>;
+	parentSubstanceName?: Array<string | null>;
 	/** Extensions for parentSubstanceName */
-	_parentSubstanceName?: Array<Element>;
+	_parentSubstanceName?: Array<Element | null>;
 	/** To do. */
 	partDescription?: Array<SubstanceSourceMaterial_PartDescription>;
 	/** This is a SubstanceSourceMaterial resource. */
@@ -83,15 +84,23 @@ export const SubstanceSourceMaterialSchemaInternal =
 			.lazy(getSubstanceSourceMaterial_FractionDescriptionSchema)
 			.array()
 			.optional(),
-		geographicalLocation: fhirString().array().optional(),
-		_geographicalLocation: z.lazy(getElementSchema).array().optional(),
+		geographicalLocation: fhirString().nullable().array().optional(),
+		_geographicalLocation: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		organism: z.lazy(getSubstanceSourceMaterial_OrganismSchema).optional(),
 		organismId: z.lazy(getIdentifierSchema).optional(),
 		organismName: fhirString().optional(),
 		_organismName: z.lazy(getElementSchema).optional(),
 		parentSubstanceId: z.lazy(getIdentifierSchema).array().optional(),
-		parentSubstanceName: fhirString().array().optional(),
-		_parentSubstanceName: z.lazy(getElementSchema).array().optional(),
+		parentSubstanceName: fhirString().nullable().array().optional(),
+		_parentSubstanceName: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		partDescription: z
 			.lazy(getSubstanceSourceMaterial_PartDescriptionSchema)
 			.array()
@@ -100,7 +109,25 @@ export const SubstanceSourceMaterialSchemaInternal =
 		sourceMaterialClass: z.lazy(getCodeableConceptSchema).optional(),
 		sourceMaterialState: z.lazy(getCodeableConceptSchema).optional(),
 		sourceMaterialType: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.geographicalLocation,
+				record._geographicalLocation,
+				"geographicalLocation",
+				"_geographicalLocation",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.parentSubstanceName,
+				record._parentSubstanceName,
+				"parentSubstanceName",
+				"_parentSubstanceName",
+				ctx,
+			);
+		});
 
 export const SubstanceSourceMaterialSchema =
 	SubstanceSourceMaterialSchemaInternal as z.ZodType<SubstanceSourceMaterial>;

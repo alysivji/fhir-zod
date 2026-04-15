@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CompartmentDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -256,9 +257,9 @@ export interface CompartmentDefinition_Resource extends BackboneElement {
 	/** Extensions for endParam */
 	_endParam?: Element;
 	/** The name of a search parameter that represents the link to the compartment. More than one may be listed because a resource may be linked to a compartment in more than one way,. */
-	param?: Array<string>;
+	param?: Array<string | null>;
 	/** Extensions for param */
-	_param?: Array<Element>;
+	_param?: Array<Element | null>;
 	/** Search Parameter for mapping requests made with $everything.start (e.g. on [Patient.$everything](patient-operation-everything.html)). */
 	startParam?: string;
 	/** Extensions for startParam */
@@ -509,11 +510,22 @@ export const CompartmentDefinition_ResourceSchemaInternal =
 		_documentation: z.lazy(getElementSchema).optional(),
 		endParam: fhirUri().optional(),
 		_endParam: z.lazy(getElementSchema).optional(),
-		param: fhirString().array().optional(),
-		_param: z.lazy(getElementSchema).array().optional(),
+		param: fhirString().nullable().array().optional(),
+		_param: z.lazy(getElementSchema).nullable().array().optional(),
 		startParam: fhirUri().optional(),
 		_startParam: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.param,
+				record._param,
+				"param",
+				"_param",
+				ctx,
+			);
+		});
 
 export const CompartmentDefinition_ResourceSchema =
 	CompartmentDefinition_ResourceSchemaInternal as z.ZodType<CompartmentDefinition_Resource>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -84,9 +85,9 @@ export interface TestScript extends DomainResource {
 	/** An abstract server used in operations within this test script in the origin element. */
 	origin?: Array<TestScript_Origin>;
 	/** Reference to the profile to be used for validation. */
-	profile?: Array<string>;
+	profile?: Array<string | null>;
 	/** Extensions for profile */
-	_profile?: Array<Element>;
+	_profile?: Array<Element | null>;
 	/** The name of the organization or individual responsible for the release and ongoing maintenance of the test script. */
 	publisher?: string;
 	/** Extensions for publisher */
@@ -191,8 +192,8 @@ export const TestScriptSchemaInternal = DomainResourceSchemaInternal.extend({
 	name: fhirString(),
 	_name: z.lazy(getElementSchema).optional(),
 	origin: z.lazy(getTestScript_OriginSchema).array().optional(),
-	profile: fhirCanonical().array().optional(),
-	_profile: z.lazy(getElementSchema).array().optional(),
+	profile: fhirCanonical().nullable().array().optional(),
+	_profile: z.lazy(getElementSchema).nullable().array().optional(),
 	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
 	purpose: z
@@ -234,6 +235,13 @@ export const TestScriptSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [versionAlgorithm_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.profile,
+			record._profile,
+			"profile",
+			"_profile",
+			ctx,
+		);
 	});
 
 export const TestScriptSchema =

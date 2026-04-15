@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirId, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -52,9 +53,10 @@ export interface ImplementationGuide_Definition_Resource
 		| "3.5.0"
 		| "4.0.0"
 		| "4.0.1"
+		| null
 	>;
 	/** Extensions for fhirVersion */
-	_fhirVersion?: Array<Element>;
+	_fhirVersion?: Array<Element | null>;
 	/** Reference to the id of the grouping this resource appears in. */
 	groupingId?: string;
 	/** Extensions for groupingId */
@@ -106,9 +108,10 @@ export const ImplementationGuide_Definition_ResourceSchemaInternal =
 				"4.0.0",
 				"4.0.1",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_fhirVersion: z.lazy(getElementSchema).array().optional(),
+		_fhirVersion: z.lazy(getElementSchema).nullable().array().optional(),
 		groupingId: fhirId().optional(),
 		_groupingId: z.lazy(getElementSchema).optional(),
 		name: fhirString().optional(),
@@ -129,6 +132,13 @@ export const ImplementationGuide_Definition_ResourceSchemaInternal =
 					path: [example_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.fhirVersion,
+				record._fhirVersion,
+				"fhirVersion",
+				"_fhirVersion",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.reference,
 				"reference",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceProtein
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { CodeableConcept } from "./CodeableConcept";
 import { CodeableConceptSchemaInternal } from "./CodeableConcept";
@@ -17,9 +18,9 @@ import { SubstanceProtein_SubunitSchemaInternal } from "./SubstanceProtein_Subun
 /** A SubstanceProtein is defined as a single unit of a linear amino acid sequence, or a combination of subunits that are either covalently linked or have a defined invariant stoichiometric relationship. This includes all synthetic, recombinant and purified SubstanceProteins of defined sequence, whether the use is therapeutic or prophylactic. This set of elements will be used to describe albumins, coagulation factors, cytokines, growth factors, peptide/SubstanceProtein hormones, enzymes, toxins, toxoids, recombinant vaccines, and immunomodulators. */
 export interface SubstanceProtein extends DomainResource {
 	/** The disulphide bond between two cysteine residues either on the same subunit or on two different subunits shall be described. The position of the disulfide bonds in the SubstanceProtein shall be listed in increasing order of subunit number and position within subunit followed by the abbreviation of the amino acids involved. The disulfide linkage positions shall actually contain the amino acid Cysteine at the respective positions. */
-	disulfideLinkage?: Array<string>;
+	disulfideLinkage?: Array<string | null>;
 	/** Extensions for disulfideLinkage */
-	_disulfideLinkage?: Array<Element>;
+	_disulfideLinkage?: Array<Element | null>;
 	/** Number of linear sequences of amino acids linked through peptide bonds. The number of subunits constituting the SubstanceProtein shall be described. It is possible that the number of subunits can be variable. */
 	numberOfSubunits?: number;
 	/** Extensions for numberOfSubunits */
@@ -43,14 +44,25 @@ const getSubstanceProtein_SubunitSchema =
 /** @internal */
 export const SubstanceProteinSchemaInternal =
 	DomainResourceSchemaInternal.extend({
-		disulfideLinkage: fhirString().array().optional(),
-		_disulfideLinkage: z.lazy(getElementSchema).array().optional(),
+		disulfideLinkage: fhirString().nullable().array().optional(),
+		_disulfideLinkage: z.lazy(getElementSchema).nullable().array().optional(),
 		numberOfSubunits: z.number().int().optional(),
 		_numberOfSubunits: z.lazy(getElementSchema).optional(),
 		resourceType: z.literal("SubstanceProtein"),
 		sequenceType: z.lazy(getCodeableConceptSchema).optional(),
 		subunit: z.lazy(getSubstanceProtein_SubunitSchema).array().optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.disulfideLinkage,
+				record._disulfideLinkage,
+				"disulfideLinkage",
+				"_disulfideLinkage",
+				ctx,
+			);
+		});
 
 export const SubstanceProteinSchema =
 	SubstanceProteinSchemaInternal as z.ZodType<SubstanceProtein>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Consent
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -18,9 +19,9 @@ import { ReferenceSchemaInternal } from "./Reference";
 /** Whether a treatment instruction (e.g. artificial respiration: yes or no) was verified with the patient, his/her family or another authorized person. */
 export interface Consent_Verification extends BackboneElement {
 	/** Date(s) verification was collected. */
-	verificationDate?: Array<string>;
+	verificationDate?: Array<string | null>;
 	/** Extensions for verificationDate */
-	_verificationDate?: Array<Element>;
+	_verificationDate?: Array<Element | null>;
 	/** Extensible list of verification type starting with verification and re-validation. */
 	verificationType?: CodeableConcept;
 	/** Has the instruction been verified. */
@@ -43,8 +44,8 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const Consent_VerificationSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		verificationDate: fhirDateTime().array().optional(),
-		_verificationDate: z.lazy(getElementSchema).array().optional(),
+		verificationDate: fhirDateTime().nullable().array().optional(),
+		_verificationDate: z.lazy(getElementSchema).nullable().array().optional(),
 		verificationType: z.lazy(getCodeableConceptSchema).optional(),
 		verified: z.boolean(),
 		_verified: z.lazy(getElementSchema).optional(),
@@ -54,6 +55,13 @@ export const Consent_VerificationSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.verificationDate,
+				record._verificationDate,
+				"verificationDate",
+				"_verificationDate",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.verifiedBy,
 				"verifiedBy",

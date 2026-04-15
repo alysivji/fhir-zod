@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationAdministration
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
@@ -46,9 +47,9 @@ export interface MedicationAdministration extends DomainResource {
 	/** Identifiers associated with this Medication Administration that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this resource by the performer or other systems and remain constant as the resource is updated and propagates from server to server. */
 	identifier?: Array<Identifier>;
 	/** A protocol, guideline, orderset, or other definition that was adhered to in whole or in part by this event. */
-	instantiates?: Array<string>;
+	instantiates?: Array<string | null>;
 	/** Extensions for instantiates */
-	_instantiates?: Array<Element>;
+	_instantiates?: Array<Element | null>;
 	/** Identifies the medication that was administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications. */
 	medicationCodeableConcept?: CodeableConcept;
 	/** Identifies the medication that was administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications. */
@@ -117,8 +118,8 @@ export const MedicationAdministrationSchemaInternal =
 		effectivePeriod: z.lazy(getPeriodSchema).optional(),
 		eventHistory: z.lazy(getReferenceSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		instantiates: fhirUri().array().optional(),
-		_instantiates: z.lazy(getElementSchema).array().optional(),
+		instantiates: fhirUri().nullable().array().optional(),
+		_instantiates: z.lazy(getElementSchema).nullable().array().optional(),
 		medicationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		medicationReference: z.lazy(getReferenceSchema).optional(),
 		note: z.lazy(getAnnotationSchema).array().optional(),
@@ -188,6 +189,13 @@ export const MedicationAdministrationSchemaInternal =
 					path: [medication_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.instantiates,
+				record._instantiates,
+				"instantiates",
+				"_instantiates",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.context,
 				"context",

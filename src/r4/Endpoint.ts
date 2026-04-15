@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Endpoint
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode, fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -34,9 +35,9 @@ export interface Endpoint extends DomainResource {
 	/** Contact details for a human to contact about the subscription. The primary use of this for system administrator troubleshooting. */
 	contact?: Array<ContactPoint>;
 	/** Additional headers / information to send as part of the notification. */
-	header?: Array<string>;
+	header?: Array<string | null>;
 	/** Extensions for header */
-	_header?: Array<Element>;
+	_header?: Array<Element | null>;
 	/** Identifier for the organization that is used to identify the endpoint across multiple disparate systems. */
 	identifier?: Array<Identifier>;
 	/** The organization that manages this endpoint (even if technically another organization is hosting this in the cloud, it is the organization associated with the data). */
@@ -46,9 +47,9 @@ export interface Endpoint extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** The mime type to send the payload in - e.g. application/fhir+xml, application/fhir+json. If the mime type is not specified, then the sender could send any content (including no content depending on the connectionType). */
-	payloadMimeType?: Array<string>;
+	payloadMimeType?: Array<string | null>;
 	/** Extensions for payloadMimeType */
-	_payloadMimeType?: Array<Element>;
+	_payloadMimeType?: Array<Element | null>;
 	/** The payload type describes the acceptable content that can be communicated on the endpoint. */
 	payloadType: Array<CodeableConcept>;
 	/** The interval during which the endpoint is expected to be operational. */
@@ -88,14 +89,14 @@ export const EndpointSchemaInternal = DomainResourceSchemaInternal.extend({
 	_address: z.lazy(getElementSchema).optional(),
 	connectionType: z.lazy(getCodingSchema),
 	contact: z.lazy(getContactPointSchema).array().optional(),
-	header: fhirString().array().optional(),
-	_header: z.lazy(getElementSchema).array().optional(),
+	header: fhirString().nullable().array().optional(),
+	_header: z.lazy(getElementSchema).nullable().array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	managingOrganization: z.lazy(getReferenceSchema).optional(),
 	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
-	payloadMimeType: fhirCode().array().optional(),
-	_payloadMimeType: z.lazy(getElementSchema).array().optional(),
+	payloadMimeType: fhirCode().nullable().array().optional(),
+	_payloadMimeType: z.lazy(getElementSchema).nullable().array().optional(),
 	payloadType: z.lazy(getCodeableConceptSchema).array(),
 	period: z.lazy(getPeriodSchema).optional(),
 	resourceType: z.literal("Endpoint"),
@@ -112,6 +113,20 @@ export const EndpointSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.header,
+			record._header,
+			"header",
+			"_header",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.payloadMimeType,
+			record._payloadMimeType,
+			"payloadMimeType",
+			"_payloadMimeType",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.managingOrganization,
 			"managingOrganization",

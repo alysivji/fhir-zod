@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { ClaimResponse_Item_Detail_SubDetail } from "./ClaimResponse_Item_Detail_SubDetail";
@@ -20,9 +21,9 @@ export interface ClaimResponse_Item_Detail extends BackboneElement {
 	/** Extensions for detailSequence */
 	_detailSequence?: Element;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** A sub-detail adjudication of a simple product or service. */
 	subDetail?: Array<ClaimResponse_Item_Detail_SubDetail>;
 }
@@ -39,13 +40,24 @@ export const ClaimResponse_Item_DetailSchemaInternal =
 		adjudication: z.custom<unknown>((value) => value !== undefined).array(),
 		detailSequence: z.number().int().positive(),
 		_detailSequence: z.lazy(getElementSchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		subDetail: z
 			.lazy(getClaimResponse_Item_Detail_SubDetailSchema)
 			.array()
 			.optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
+		});
 
 export const ClaimResponse_Item_DetailSchema =
 	ClaimResponse_Item_DetailSchemaInternal as z.ZodType<ClaimResponse_Item_Detail>;

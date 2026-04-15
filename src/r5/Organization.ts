@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Organization
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -28,9 +29,9 @@ export interface Organization extends DomainResource {
 	/** Extensions for active */
 	_active?: Element;
 	/** A list of alternate names that the organization is known as, or was known as in the past. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** The contact details of communication devices available relevant to the specific Organization. This can include addresses, phone numbers, fax numbers, mobile numbers, email addresses and web sites. */
 	contact?: Array<ExtendedContactDetail>;
 	/** Description of the organization, which helps provide additional general context on the organization to ensure that the correct organization is selected. */
@@ -73,8 +74,8 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 export const OrganizationSchemaInternal = DomainResourceSchemaInternal.extend({
 	active: z.boolean().optional(),
 	_active: z.lazy(getElementSchema).optional(),
-	alias: fhirString().array().optional(),
-	_alias: z.lazy(getElementSchema).array().optional(),
+	alias: fhirString().nullable().array().optional(),
+	_alias: z.lazy(getElementSchema).nullable().array().optional(),
 	contact: z.lazy(getExtendedContactDetailSchema).array().optional(),
 	description: z
 		.string()
@@ -93,6 +94,13 @@ export const OrganizationSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.alias,
+			record._alias,
+			"alias",
+			"_alias",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.endpoint,
 			"endpoint",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AllergyIntolerance
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Age } from "./Age";
@@ -32,9 +33,9 @@ export interface AllergyIntolerance extends DomainResource {
 	/** The source of the information about the allergy that is recorded. */
 	asserter?: Reference;
 	/** Category of the identified substance. */
-	category?: Array<"biologic" | "environment" | "food" | "medication">;
+	category?: Array<"biologic" | "environment" | "food" | "medication" | null>;
 	/** Extensions for category */
-	_category?: Array<Element>;
+	_category?: Array<Element | null>;
 	/** The clinical status of the allergy or intolerance. */
 	clinicalStatus?: CodeableConcept;
 	/** Code for an allergy or intolerance statement (either a positive or a negated/excluded statement).  This may be a code for a substance or pharmaceutical product that is considered to be responsible for the adverse reaction risk (e.g., "Latex"), an allergy or intolerance condition (e.g., "Latex allergy"), or a negated/excluded code for a specific substance or class (e.g., "No latex allergy") or a general or categorical negated statement (e.g.,  "No known allergy", "No known drug allergies").  Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the 'code' and ignore the 'reaction.substance'.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance. */
@@ -112,9 +113,10 @@ export const AllergyIntoleranceSchemaInternal =
 		asserter: z.lazy(getReferenceSchema).optional(),
 		category: z
 			.enum(["biologic", "environment", "food", "medication"])
+			.nullable()
 			.array()
 			.optional(),
-		_category: z.lazy(getElementSchema).array().optional(),
+		_category: z.lazy(getElementSchema).nullable().array().optional(),
 		clinicalStatus: z.lazy(getCodeableConceptSchema).optional(),
 		code: z.lazy(getCodeableConceptSchema).optional(),
 		criticality: z.enum(["high", "low", "unable-to-assess"]).optional(),
@@ -159,6 +161,13 @@ export const AllergyIntoleranceSchemaInternal =
 					path: [onset_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.category,
+				record._category,
+				"category",
+				"_category",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.asserter,
 				"asserter",

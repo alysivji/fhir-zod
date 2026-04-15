@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Requirements
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirId, fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -20,9 +21,9 @@ export interface Requirements_Statement extends BackboneElement {
 	/** Extensions for conditionality */
 	_conditionality?: Element;
 	/** A short human usable label for this statement. */
-	conformance?: Array<"MAY" | "SHALL" | "SHOULD" | "SHOULD-NOT">;
+	conformance?: Array<"MAY" | "SHALL" | "SHOULD" | "SHOULD-NOT" | null>;
 	/** Extensions for conformance */
-	_conformance?: Array<Element>;
+	_conformance?: Array<Element | null>;
 	/** Another statement on one of the requirements that this requirement clarifies or restricts. */
 	derivedFrom?: string;
 	/** Extensions for derivedFrom */
@@ -40,17 +41,17 @@ export interface Requirements_Statement extends BackboneElement {
 	/** Extensions for parent */
 	_parent?: Element;
 	/** A reference to another artifact that created this requirement. This could be a Profile, etc., or external regulation, or business requirements expressed elsewhere. */
-	reference?: Array<string>;
+	reference?: Array<string | null>;
 	/** Extensions for reference */
-	_reference?: Array<Element>;
+	_reference?: Array<Element | null>;
 	/** The actual requirement for human consumption. */
 	requirement: string;
 	/** Extensions for requirement */
 	_requirement?: Element;
 	/** A reference to another artifact that satisfies this requirement. This could be a Profile, extension, or an element in one of those, or a CapabilityStatement, OperationDefinition, SearchParameter, CodeSystem(/code), ValueSet, Libary etc. */
-	satisfiedBy?: Array<string>;
+	satisfiedBy?: Array<string | null>;
 	/** Extensions for satisfiedBy */
-	_satisfiedBy?: Array<Element>;
+	_satisfiedBy?: Array<Element | null>;
 	/** Who asked for this statement to be a requirement. By default, it's assumed that the publisher knows who it is if it matters. */
 	source?: Array<Reference>;
 }
@@ -67,9 +68,10 @@ export const Requirements_StatementSchemaInternal =
 		_conditionality: z.lazy(getElementSchema).optional(),
 		conformance: z
 			.enum(["MAY", "SHALL", "SHOULD", "SHOULD-NOT"])
+			.nullable()
 			.array()
 			.optional(),
-		_conformance: z.lazy(getElementSchema).array().optional(),
+		_conformance: z.lazy(getElementSchema).nullable().array().optional(),
 		derivedFrom: fhirString().optional(),
 		_derivedFrom: z.lazy(getElementSchema).optional(),
 		key: fhirId(),
@@ -78,17 +80,38 @@ export const Requirements_StatementSchemaInternal =
 		_label: z.lazy(getElementSchema).optional(),
 		parent: fhirString().optional(),
 		_parent: z.lazy(getElementSchema).optional(),
-		reference: fhirUrl().array().optional(),
-		_reference: z.lazy(getElementSchema).array().optional(),
+		reference: fhirUrl().nullable().array().optional(),
+		_reference: z.lazy(getElementSchema).nullable().array().optional(),
 		requirement: z.string().regex(/^[\s\S]+$/),
 		_requirement: z.lazy(getElementSchema).optional(),
-		satisfiedBy: fhirUrl().array().optional(),
-		_satisfiedBy: z.lazy(getElementSchema).array().optional(),
+		satisfiedBy: fhirUrl().nullable().array().optional(),
+		_satisfiedBy: z.lazy(getElementSchema).nullable().array().optional(),
 		source: z.lazy(getReferenceSchema).array().optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.conformance,
+				record._conformance,
+				"conformance",
+				"_conformance",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.reference,
+				record._reference,
+				"reference",
+				"_reference",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.satisfiedBy,
+				record._satisfiedBy,
+				"satisfiedBy",
+				"_satisfiedBy",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.source,
 				"source",

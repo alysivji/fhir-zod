@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CarePlan
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -38,13 +39,13 @@ export interface CarePlan_Activity_Detail extends BackboneElement {
 	/** Internal reference that identifies the goals that this activity is intended to contribute towards meeting. */
 	goal?: Array<Reference>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, questionnaire or other definition that is adhered to in whole or in part by this CarePlan activity. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, questionnaire or other definition that is adhered to in whole or in part by this CarePlan activity. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** A description of the kind of resource the in-line definition of a care plan activity is representing.  The CarePlan.activity.detail is an in-line definition when a resource is not referenced using CarePlan.activity.reference.  For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest. */
 	kind?:
 		| "Account"
@@ -254,10 +255,14 @@ export const CarePlan_Activity_DetailSchemaInternal =
 		doNotPerform: z.boolean().optional(),
 		_doNotPerform: z.lazy(getElementSchema).optional(),
 		goal: z.lazy(getReferenceSchema).array().optional(),
-		instantiatesCanonical: fhirCanonical().array().optional(),
-		_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-		instantiatesUri: fhirUri().array().optional(),
-		_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+		instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+		_instantiatesCanonical: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		instantiatesUri: fhirUri().nullable().array().optional(),
+		_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 		kind: z
 			.enum([
 				"Account",
@@ -459,6 +464,20 @@ export const CarePlan_Activity_DetailSchemaInternal =
 					path: [scheduled_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.instantiatesCanonical,
+				record._instantiatesCanonical,
+				"instantiatesCanonical",
+				"_instantiatesCanonical",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.instantiatesUri,
+				record._instantiatesUri,
+				"instantiatesUri",
+				"_instantiatesUri",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.goal,
 				"goal",

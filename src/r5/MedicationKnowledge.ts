@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -64,9 +65,9 @@ export interface MedicationKnowledge extends DomainResource {
 	/** Associated documentation about the medication. */
 	monograph?: Array<MedicationKnowledge_Monograph>;
 	/** All of the names for a medication, for example, the name(s) given to a medication in different countries.  For example, acetaminophen and paracetamol or salbutamol and albuterol. */
-	name?: Array<string>;
+	name?: Array<string | null>;
 	/** Extensions for name */
-	_name?: Array<Element>;
+	_name?: Array<Element | null>;
 	/** Information that only applies to packages (not products). */
 	packaging?: Array<MedicationKnowledge_Packaging>;
 	/** The instructions for preparing the medication. */
@@ -155,8 +156,8 @@ export const MedicationKnowledgeSchemaInternal =
 			.lazy(getMedicationKnowledge_MonographSchema)
 			.array()
 			.optional(),
-		name: fhirString().array().optional(),
-		_name: z.lazy(getElementSchema).array().optional(),
+		name: fhirString().nullable().array().optional(),
+		_name: z.lazy(getElementSchema).nullable().array().optional(),
 		packaging: z
 			.lazy(getMedicationKnowledge_PackagingSchema)
 			.array()
@@ -186,6 +187,13 @@ export const MedicationKnowledgeSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.name,
+				record._name,
+				"name",
+				"_name",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.associatedMedication,
 				"associatedMedication",

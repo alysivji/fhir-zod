@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Claim
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -32,9 +33,9 @@ export interface Claim_Insurance extends BackboneElement {
 	/** The business identifier to be used when the claim is sent for adjudication against this insurance policy. */
 	identifier?: Identifier;
 	/** Reference numbers previously provided by the insurer to the provider to be quoted on subsequent claims containing services or products related to the prior authorization. */
-	preAuthRef?: Array<string>;
+	preAuthRef?: Array<string | null>;
 	/** Extensions for preAuthRef */
-	_preAuthRef?: Array<Element>;
+	_preAuthRef?: Array<Element | null>;
 	/** A number to uniquely identify insurance entries and provide a sequence of coverages to convey coordination of benefit order. */
 	sequence: number;
 	/** Extensions for sequence */
@@ -58,14 +59,21 @@ export const Claim_InsuranceSchemaInternal =
 		focal: z.boolean(),
 		_focal: z.lazy(getElementSchema).optional(),
 		identifier: z.lazy(getIdentifierSchema).optional(),
-		preAuthRef: fhirString().array().optional(),
-		_preAuthRef: z.lazy(getElementSchema).array().optional(),
+		preAuthRef: fhirString().nullable().array().optional(),
+		_preAuthRef: z.lazy(getElementSchema).nullable().array().optional(),
 		sequence: z.number().int().positive(),
 		_sequence: z.lazy(getElementSchema).optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.preAuthRef,
+				record._preAuthRef,
+				"preAuthRef",
+				"_preAuthRef",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.claimResponse,
 				"claimResponse",

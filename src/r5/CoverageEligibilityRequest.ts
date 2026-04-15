@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDate, fhirDateTime } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -54,9 +55,11 @@ export interface CoverageEligibilityRequest extends DomainResource {
 	/** The provider which is responsible for the request. */
 	provider?: Reference;
 	/** Code to specify whether requesting: prior authorization requirements for some service categories or billing codes; benefits for coverages specified or discovered; discovery and return of coverages for the patient; and/or validation that the specified coverage is in-force at the date/period specified or 'now' if not specified. */
-	purpose: Array<"auth-requirements" | "benefits" | "discovery" | "validation">;
+	purpose: Array<
+		"auth-requirements" | "benefits" | "discovery" | "validation" | null
+	>;
 	/** Extensions for purpose */
-	_purpose?: Array<Element>;
+	_purpose?: Array<Element | null>;
 	/** This is a CoverageEligibilityRequest resource. */
 	resourceType: "CoverageEligibilityRequest";
 	/** The date or dates when the enclosed suite of services were performed or completed. */
@@ -116,8 +119,9 @@ export const CoverageEligibilityRequestSchemaInternal =
 		provider: z.lazy(getReferenceSchema).optional(),
 		purpose: z
 			.enum(["auth-requirements", "benefits", "discovery", "validation"])
+			.nullable()
 			.array(),
-		_purpose: z.lazy(getElementSchema).array().optional(),
+		_purpose: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("CoverageEligibilityRequest"),
 		servicedDate: fhirDate().optional(),
 		_servicedDate: z.lazy(getElementSchema).optional(),
@@ -143,6 +147,13 @@ export const CoverageEligibilityRequestSchemaInternal =
 					path: [serviced_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.purpose,
+				record._purpose,
+				"purpose",
+				"_purpose",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.enterer,
 				"enterer",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Attachment } from "./Attachment";
@@ -126,9 +127,9 @@ export interface ExplanationOfBenefit extends DomainResource {
 	/** Payment details for the adjudication of the claim. */
 	payment?: ExplanationOfBenefit_Payment;
 	/** Reference from the Insurer which is used in later communications which refers to this adjudication. */
-	preAuthRef?: Array<string>;
+	preAuthRef?: Array<string | null>;
 	/** Extensions for preAuthRef */
-	_preAuthRef?: Array<Element>;
+	_preAuthRef?: Array<Element | null>;
 	/** The timeframe during which the supplied preauthorization reference may be quoted on claims to obtain the adjudication as provided. */
 	preAuthRefPeriod?: Array<Period>;
 	/** This indicates the relative order of a series of EOBs related to different coverages for the same suite of services. */
@@ -278,8 +279,8 @@ export const ExplanationOfBenefitSchemaInternal =
 		patientPaid: z.lazy(getMoneySchema).optional(),
 		payee: z.lazy(getExplanationOfBenefit_PayeeSchema).optional(),
 		payment: z.lazy(getExplanationOfBenefit_PaymentSchema).optional(),
-		preAuthRef: fhirString().array().optional(),
-		_preAuthRef: z.lazy(getElementSchema).array().optional(),
+		preAuthRef: fhirString().nullable().array().optional(),
+		_preAuthRef: z.lazy(getElementSchema).nullable().array().optional(),
 		preAuthRefPeriod: z.lazy(getPeriodSchema).array().optional(),
 		precedence: z.number().int().positive().optional(),
 		_precedence: z.lazy(getElementSchema).optional(),
@@ -313,6 +314,13 @@ export const ExplanationOfBenefitSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.preAuthRef,
+				record._preAuthRef,
+				"preAuthRef",
+				"_preAuthRef",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.claim,
 				"claim",

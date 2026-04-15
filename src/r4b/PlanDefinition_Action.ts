@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PlanDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -74,9 +75,9 @@ export interface PlanDefinition_Action extends BackboneElement {
 	/** Customizations that should be applied to the statically defined resource. For example, if the dosage of a medication must be computed based on the patient's weight, a customization would be used to specify an expression that calculated the weight, and the path on the resource that would contain the result. */
 	dynamicValue?: Array<PlanDefinition_Action_DynamicValue>;
 	/** Identifies goals that this action supports. The reference must be to a goal element defined within this plan definition. In pharmaceutical quality, a goal represents acceptance criteria (Goal) for a given action (Test), so the goalId would be the unique id of a defined goal element establishing the acceptance criteria for the action. */
-	goalId?: Array<string>;
+	goalId?: Array<string | null>;
 	/** Extensions for goalId */
-	_goalId?: Array<Element>;
+	_goalId?: Array<Element | null>;
 	/** Defines the grouping behavior for the action and its children. */
 	groupingBehavior?: "logical-group" | "sentence-group" | "visual-group";
 	/** Extensions for groupingBehavior */
@@ -213,8 +214,8 @@ export const PlanDefinition_ActionSchemaInternal =
 			.lazy(getPlanDefinition_Action_DynamicValueSchema)
 			.array()
 			.optional(),
-		goalId: fhirId().array().optional(),
-		_goalId: z.lazy(getElementSchema).array().optional(),
+		goalId: fhirId().nullable().array().optional(),
+		_goalId: z.lazy(getElementSchema).nullable().array().optional(),
 		groupingBehavior: z
 			.enum(["logical-group", "sentence-group", "visual-group"])
 			.optional(),
@@ -315,6 +316,13 @@ export const PlanDefinition_ActionSchemaInternal =
 					path: [timing_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.goalId,
+				record._goalId,
+				"goalId",
+				"_goalId",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.subjectReference,
 				"subjectReference",

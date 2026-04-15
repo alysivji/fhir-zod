@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirDateTime,
 	fhirId,
@@ -77,9 +78,10 @@ export interface ImplementationGuide extends DomainResource {
 		| "3.5.0"
 		| "4.0.0"
 		| "4.0.1"
+		| null
 	>;
 	/** Extensions for fhirVersion */
-	_fhirVersion?: Array<Element>;
+	_fhirVersion?: Array<Element | null>;
 	/** A set of profiles that all resources covered by this implementation guide must conform to. */
 	global?: Array<ImplementationGuide_Global>;
 	/** A legal or geographic region in which the implementation guide is intended to be used. */
@@ -533,8 +535,9 @@ export const ImplementationGuideSchemaInternal =
 				"4.0.0",
 				"4.0.1",
 			])
+			.nullable()
 			.array(),
-		_fhirVersion: z.lazy(getElementSchema).array().optional(),
+		_fhirVersion: z.lazy(getElementSchema).nullable().array().optional(),
 		global: z.lazy(getImplementationGuide_GlobalSchema).array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		license: z
@@ -905,7 +908,18 @@ export const ImplementationGuideSchemaInternal =
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
 		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.fhirVersion,
+				record._fhirVersion,
+				"fhirVersion",
+				"_fhirVersion",
+				ctx,
+			);
+		});
 
 export const ImplementationGuideSchema =
 	ImplementationGuideSchemaInternal as z.ZodType<ImplementationGuide>;

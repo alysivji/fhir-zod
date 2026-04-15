@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/VerificationResult
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDate, fhirDateTime, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -62,9 +63,9 @@ export interface VerificationResult extends DomainResource {
 	/** A resource that was validated. */
 	target?: Array<Reference>;
 	/** The fhirpath location(s) within the resource that was validated. */
-	targetLocation?: Array<string>;
+	targetLocation?: Array<string | null>;
 	/** Extensions for targetLocation */
-	_targetLocation?: Array<Element>;
+	_targetLocation?: Array<Element | null>;
 	/** The primary process by which the target is validated (edit check; value set; primary source; multiple sources; standalone; in context). */
 	validationProcess?: Array<CodeableConcept>;
 	/** What the target is validated against (nothing; primary source; multiple sources). */
@@ -119,8 +120,8 @@ export const VerificationResultSchemaInternal =
 		statusDate: fhirDateTime().optional(),
 		_statusDate: z.lazy(getElementSchema).optional(),
 		target: z.lazy(getReferenceSchema).array().optional(),
-		targetLocation: fhirString().array().optional(),
-		_targetLocation: z.lazy(getElementSchema).array().optional(),
+		targetLocation: fhirString().nullable().array().optional(),
+		_targetLocation: z.lazy(getElementSchema).nullable().array().optional(),
 		validationProcess: z.lazy(getCodeableConceptSchema).array().optional(),
 		validationType: z.lazy(getCodeableConceptSchema).optional(),
 		validator: z.lazy(getVerificationResult_ValidatorSchema).array().optional(),
@@ -128,6 +129,13 @@ export const VerificationResultSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.targetLocation,
+				record._targetLocation,
+				"targetLocation",
+				"_targetLocation",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.target,
 				"target",

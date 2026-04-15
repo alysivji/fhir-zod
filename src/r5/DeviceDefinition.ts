@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
@@ -105,9 +106,10 @@ export interface DeviceDefinition extends DomainResource {
 		| "manufactured-date"
 		| "serial-number"
 		| "software-version"
+		| null
 	>;
 	/** Extensions for productionIdentifierInUDI */
-	_productionIdentifierInUDI?: Array<Element>;
+	_productionIdentifierInUDI?: Array<Element | null>;
 	/** Static or essentially fixed characteristics or features of this kind of device that are otherwise not captured in more specific attributes, e.g., time or timing attributes, resolution, accuracy, and physical attributes. */
 	property?: Array<DeviceDefinition_Property>;
 	/** Identifier associated with the regulatory documentation (certificates, technical documentation, post-market surveillance documentation and reports) of a set of device models sharing the same intended purpose, risk class and essential design and manufacturing characteristics. One example is the Basic UDI-DI in Europe. */
@@ -222,9 +224,14 @@ export const DeviceDefinitionSchemaInternal =
 				"serial-number",
 				"software-version",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_productionIdentifierInUDI: z.lazy(getElementSchema).array().optional(),
+		_productionIdentifierInUDI: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		property: z.lazy(getDeviceDefinition_PropertySchema).array().optional(),
 		regulatoryIdentifier: z
 			.lazy(getDeviceDefinition_RegulatoryIdentifierSchema)
@@ -242,6 +249,13 @@ export const DeviceDefinitionSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.productionIdentifierInUDI,
+				record._productionIdentifierInUDI,
+				"productionIdentifierInUDI",
+				"_productionIdentifierInUDI",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.manufacturer,
 				"manufacturer",

@@ -9,34 +9,6 @@
 // visible in test summaries.
 export const r4bExampleExpectedFailures = new Map<string, string>([
 	[
-		"ActivityDefinition/activitydefinition-administer-zika-virus-exposure-assessment.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
-		"ActivityDefinition/activitydefinition-example.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
-		"ActivityDefinition/activitydefinition-order-serum-dengue-virus-igm.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
-		"ActivityDefinition/activitydefinition-order-serum-zika-dengue-virus-igm.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
-		"ActivityDefinition/activitydefinition-predecessor-example.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
-		"ActivityDefinition/activitydefinition-provide-mosquito-prevention-advice.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
-		"ActivityDefinition/activitydefinition-servicerequest-example.json",
-		"Official example uses null in timingTiming.event[0], but the base R4B Timing.event definition requires dateTime strings.",
-	],
-	[
 		"DeviceMetric/devicemetric-example.json",
 		"Official example references DeviceDefinition in parent, but the base R4B DeviceMetric constraint allows only Device.",
 	],

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDate } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
@@ -34,17 +35,17 @@ export interface ExplanationOfBenefit_AddItem extends BackboneElement {
 	/** The second-tier service adjudications for payor added services. */
 	detail?: Array<ExplanationOfBenefit_AddItem_Detail>;
 	/** The sequence number of the details within the claim item which this line is intended to replace. */
-	detailSequence?: Array<number>;
+	detailSequence?: Array<number | null>;
 	/** Extensions for detailSequence */
-	_detailSequence?: Array<Element>;
+	_detailSequence?: Array<Element | null>;
 	/** A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount. */
 	factor?: number;
 	/** Extensions for factor */
 	_factor?: Element;
 	/** Claim items which this service line is intended to replace. */
-	itemSequence?: Array<number>;
+	itemSequence?: Array<number | null>;
 	/** Extensions for itemSequence */
-	_itemSequence?: Array<Element>;
+	_itemSequence?: Array<Element | null>;
 	/** Where the product or service was provided. */
 	locationAddress?: Address;
 	/** Where the product or service was provided. */
@@ -56,9 +57,9 @@ export interface ExplanationOfBenefit_AddItem extends BackboneElement {
 	/** The quantity times the unit price for an additional service or product or charge. */
 	net?: Money;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item. */
 	productOrService: CodeableConcept;
 	/** Identifies the program under which this may be recovered. */
@@ -74,9 +75,9 @@ export interface ExplanationOfBenefit_AddItem extends BackboneElement {
 	/** The date or dates when the service or product was supplied, performed or completed. */
 	servicedPeriod?: Period;
 	/** The sequence number of the sub-details woithin the details within the claim item which this line is intended to replace. */
-	subDetailSequence?: Array<number>;
+	subDetailSequence?: Array<number | null>;
 	/** Extensions for subDetailSequence */
-	_subDetailSequence?: Array<Element>;
+	_subDetailSequence?: Array<Element | null>;
 	/** A region or surface of the bodySite, e.g. limb region or tooth surface(s). */
 	subSite?: Array<CodeableConcept>;
 	/** If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group. */
@@ -110,19 +111,19 @@ export const ExplanationOfBenefit_AddItemSchemaInternal =
 			.lazy(getExplanationOfBenefit_AddItem_DetailSchema)
 			.array()
 			.optional(),
-		detailSequence: z.number().int().positive().array().optional(),
-		_detailSequence: z.lazy(getElementSchema).array().optional(),
+		detailSequence: z.number().int().positive().nullable().array().optional(),
+		_detailSequence: z.lazy(getElementSchema).nullable().array().optional(),
 		factor: z.number().optional(),
 		_factor: z.lazy(getElementSchema).optional(),
-		itemSequence: z.number().int().positive().array().optional(),
-		_itemSequence: z.lazy(getElementSchema).array().optional(),
+		itemSequence: z.number().int().positive().nullable().array().optional(),
+		_itemSequence: z.lazy(getElementSchema).nullable().array().optional(),
 		locationAddress: z.lazy(getAddressSchema).optional(),
 		locationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		locationReference: z.lazy(getReferenceSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		productOrService: z.lazy(getCodeableConceptSchema),
 		programCode: z.lazy(getCodeableConceptSchema).array().optional(),
 		provider: z.lazy(getReferenceSchema).array().optional(),
@@ -130,8 +131,14 @@ export const ExplanationOfBenefit_AddItemSchemaInternal =
 		servicedDate: fhirDate().optional(),
 		_servicedDate: z.lazy(getElementSchema).optional(),
 		servicedPeriod: z.lazy(getPeriodSchema).optional(),
-		subDetailSequence: z.number().int().positive().array().optional(),
-		_subDetailSequence: z.lazy(getElementSchema).array().optional(),
+		subDetailSequence: z
+			.number()
+			.int()
+			.positive()
+			.nullable()
+			.array()
+			.optional(),
+		_subDetailSequence: z.lazy(getElementSchema).nullable().array().optional(),
 		subSite: z.lazy(getCodeableConceptSchema).array().optional(),
 		unitPrice: z.lazy(getMoneySchema).optional(),
 	})
@@ -162,6 +169,34 @@ export const ExplanationOfBenefit_AddItemSchemaInternal =
 					path: [serviced_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.detailSequence,
+				record._detailSequence,
+				"detailSequence",
+				"_detailSequence",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.itemSequence,
+				record._itemSequence,
+				"itemSequence",
+				"_itemSequence",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.subDetailSequence,
+				record._subDetailSequence,
+				"subDetailSequence",
+				"_subDetailSequence",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.locationReference,
 				"locationReference",

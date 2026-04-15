@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ActorDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -47,9 +48,9 @@ export interface ActorDefinition extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** A url that identifies the definition of this actor in another IG (which IG must be listed in the dependencies). This actor inherits all the obligations etc. as defined in the other IG. */
-	derivedFrom?: Array<string>;
+	derivedFrom?: Array<string | null>;
 	/** Extensions for derivedFrom */
-	_derivedFrom?: Array<Element>;
+	_derivedFrom?: Array<Element | null>;
 	/** A free text natural language description of the actor. */
 	description?: string;
 	/** Extensions for description */
@@ -79,9 +80,9 @@ export interface ActorDefinition extends DomainResource {
 	/** Extensions for purpose */
 	_purpose?: Element;
 	/** A reference to additional documentation about the actor, but description and documentation. */
-	reference?: Array<string>;
+	reference?: Array<string | null>;
 	/** Extensions for reference */
-	_reference?: Array<Element>;
+	_reference?: Array<Element | null>;
 	/** This is a ActorDefinition resource. */
 	resourceType: "ActorDefinition";
 	/** The status of this actor definition. Enables tracking the life-cycle of the content. */
@@ -142,8 +143,8 @@ export const ActorDefinitionSchemaInternal =
 		_copyrightLabel: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		derivedFrom: fhirCanonical().array().optional(),
-		_derivedFrom: z.lazy(getElementSchema).array().optional(),
+		derivedFrom: fhirCanonical().nullable().array().optional(),
+		_derivedFrom: z.lazy(getElementSchema).nullable().array().optional(),
 		description: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -167,8 +168,8 @@ export const ActorDefinitionSchemaInternal =
 			.regex(/^[\s\S]+$/)
 			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
-		reference: fhirUrl().array().optional(),
-		_reference: z.lazy(getElementSchema).array().optional(),
+		reference: fhirUrl().nullable().array().optional(),
+		_reference: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("ActorDefinition"),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
@@ -200,6 +201,20 @@ export const ActorDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.derivedFrom,
+				record._derivedFrom,
+				"derivedFrom",
+				"_derivedFrom",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.reference,
+				record._reference,
+				"reference",
+				"_reference",
+				ctx,
+			);
 		});
 
 export const ActorDefinitionSchema =

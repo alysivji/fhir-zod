@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirCode,
@@ -39,9 +40,9 @@ import { UsageContextSchemaInternal } from "./UsageContext";
 /** A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server or Client for a particular version of FHIR that may be used as a statement of actual server functionality or a statement of required or desired server implementation. */
 export interface CapabilityStatement extends DomainResource {
 	/** A list of the languages supported by this implementation that are usefully supported in the ```Accept-Language``` header. */
-	acceptLanguage?: Array<string>;
+	acceptLanguage?: Array<string | null>;
 	/** Extensions for acceptLanguage */
-	_acceptLanguage?: Array<Element>;
+	_acceptLanguage?: Array<Element | null>;
 	/** Contact details to assist a user in finding and communicating with the publisher. */
 	contact?: Array<ContactDetail>;
 	/** A copyright statement relating to the capability statement and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the capability statement. */
@@ -128,25 +129,25 @@ export interface CapabilityStatement extends DomainResource {
 	/** Extensions for fhirVersion */
 	_fhirVersion?: Element;
 	/** A list of the formats supported by this implementation using their content types. */
-	format: Array<string>;
+	format: Array<string | null>;
 	/** Extensions for format */
-	_format?: Array<Element>;
+	_format?: Array<Element | null>;
 	/** A formal identifier that is used to identify this CapabilityStatement when it is represented in other formats, or referenced in a specification, model, design or an instance. */
 	identifier?: Array<Identifier>;
 	/** Identifies a specific implementation instance that is described by the capability statement - i.e. a particular installation, rather than the capabilities of a software program. */
 	implementation?: CapabilityStatement_Implementation;
 	/** A list of implementation guides that the server does (or should) support in their entirety. */
-	implementationGuide?: Array<string>;
+	implementationGuide?: Array<string | null>;
 	/** Extensions for implementationGuide */
-	_implementationGuide?: Array<Element>;
+	_implementationGuide?: Array<Element | null>;
 	/** Reference to a canonical URL of another CapabilityStatement that this software adds to. The capability statement automatically includes everything in the other statement, and it is not duplicated, though the server may repeat the same resources, interactions and operations to add additional details to them. */
-	imports?: Array<string>;
+	imports?: Array<string | null>;
 	/** Extensions for imports */
-	_imports?: Array<Element>;
+	_imports?: Array<Element | null>;
 	/** Reference to a canonical URL of another CapabilityStatement that this software implements. This capability statement is a published API description that corresponds to a business service. The server may actually implement a subset of the capability statement it claims to implement, so the capability statement must specify the full capability details. */
-	instantiates?: Array<string>;
+	instantiates?: Array<string | null>;
 	/** Extensions for instantiates */
-	_instantiates?: Array<Element>;
+	_instantiates?: Array<Element | null>;
 	/** A legal or geographic region in which the capability statement is intended to be used. */
 	jurisdiction?: Array<CodeableConcept>;
 	/** The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase). */
@@ -160,9 +161,9 @@ export interface CapabilityStatement extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** A list of the patch formats supported by this implementation using their content types. */
-	patchFormat?: Array<string>;
+	patchFormat?: Array<string | null>;
 	/** Extensions for patchFormat */
-	_patchFormat?: Array<Element>;
+	_patchFormat?: Array<Element | null>;
 	/** The name of the organization or individual responsible for the release and ongoing maintenance of the capability statement. */
 	publisher?: string;
 	/** Extensions for publisher */
@@ -234,8 +235,8 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 /** @internal */
 export const CapabilityStatementSchemaInternal =
 	DomainResourceSchemaInternal.extend({
-		acceptLanguage: fhirCode().array().optional(),
-		_acceptLanguage: z.lazy(getElementSchema).array().optional(),
+		acceptLanguage: fhirCode().nullable().array().optional(),
+		_acceptLanguage: z.lazy(getElementSchema).nullable().array().optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		copyright: z
 			.string()
@@ -314,18 +315,22 @@ export const CapabilityStatementSchemaInternal =
 			"5.0.0-snapshot3",
 		]),
 		_fhirVersion: z.lazy(getElementSchema).optional(),
-		format: fhirCode().array(),
-		_format: z.lazy(getElementSchema).array().optional(),
+		format: fhirCode().nullable().array(),
+		_format: z.lazy(getElementSchema).nullable().array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		implementation: z
 			.lazy(getCapabilityStatement_ImplementationSchema)
 			.optional(),
-		implementationGuide: fhirCanonical().array().optional(),
-		_implementationGuide: z.lazy(getElementSchema).array().optional(),
-		imports: fhirCanonical().array().optional(),
-		_imports: z.lazy(getElementSchema).array().optional(),
-		instantiates: fhirCanonical().array().optional(),
-		_instantiates: z.lazy(getElementSchema).array().optional(),
+		implementationGuide: fhirCanonical().nullable().array().optional(),
+		_implementationGuide: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		imports: fhirCanonical().nullable().array().optional(),
+		_imports: z.lazy(getElementSchema).nullable().array().optional(),
+		instantiates: fhirCanonical().nullable().array().optional(),
+		_instantiates: z.lazy(getElementSchema).nullable().array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		kind: z.enum(["capability", "instance", "requirements"]),
 		_kind: z.lazy(getElementSchema).optional(),
@@ -335,8 +340,8 @@ export const CapabilityStatementSchemaInternal =
 			.optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		patchFormat: fhirCode().array().optional(),
-		_patchFormat: z.lazy(getElementSchema).array().optional(),
+		patchFormat: fhirCode().nullable().array().optional(),
+		_patchFormat: z.lazy(getElementSchema).nullable().array().optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z
@@ -375,6 +380,48 @@ export const CapabilityStatementSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.acceptLanguage,
+				record._acceptLanguage,
+				"acceptLanguage",
+				"_acceptLanguage",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.format,
+				record._format,
+				"format",
+				"_format",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.implementationGuide,
+				record._implementationGuide,
+				"implementationGuide",
+				"_implementationGuide",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.imports,
+				record._imports,
+				"imports",
+				"_imports",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.instantiates,
+				record._instantiates,
+				"instantiates",
+				"_instantiates",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.patchFormat,
+				record._patchFormat,
+				"patchFormat",
+				"_patchFormat",
+				ctx,
+			);
 		});
 
 export const CapabilityStatementSchema =

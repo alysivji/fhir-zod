@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { AuditEvent_Agent_Network } from "./AuditEvent_Agent_Network";
@@ -36,9 +37,9 @@ export interface AuditEvent_Agent extends BackboneElement {
 	/** Logical network location for application activity, if the activity has a network location. */
 	network?: AuditEvent_Agent_Network;
 	/** The policy or plan that authorized the activity being recorded. Typically, a single activity may have multiple applicable policies, such as patient consent, guarantor funding, etc. The policy would also indicate the security token used. */
-	policy?: Array<string>;
+	policy?: Array<string | null>;
 	/** Extensions for policy */
-	_policy?: Array<Element>;
+	_policy?: Array<Element | null>;
 	/** The reason (purpose of use), specific to this agent, that was used during the event being recorded. */
 	purposeOfUse?: Array<CodeableConcept>;
 	/** Indicator that the user is or is not the requestor, or initiator, for the event being audited. */
@@ -75,8 +76,8 @@ export const AuditEvent_AgentSchemaInternal =
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		network: z.lazy(getAuditEvent_Agent_NetworkSchema).optional(),
-		policy: fhirUri().array().optional(),
-		_policy: z.lazy(getElementSchema).array().optional(),
+		policy: fhirUri().nullable().array().optional(),
+		_policy: z.lazy(getElementSchema).nullable().array().optional(),
 		purposeOfUse: z.lazy(getCodeableConceptSchema).array().optional(),
 		requestor: z.boolean(),
 		_requestor: z.lazy(getElementSchema).optional(),
@@ -87,6 +88,13 @@ export const AuditEvent_AgentSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.policy,
+				record._policy,
+				"policy",
+				"_policy",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.location,
 				"location",

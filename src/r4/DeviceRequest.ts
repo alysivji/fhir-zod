@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceRequest
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -48,13 +49,13 @@ export interface DeviceRequest extends DomainResource {
 	/** Identifiers assigned to this order by the orderer or by the receiver. */
 	identifier?: Array<Identifier>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this DeviceRequest. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this DeviceRequest. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be required for delivering the requested service. */
 	insurance?: Array<Reference>;
 	/** Whether the request is a proposal, plan, an original order or a reflex order. */
@@ -147,10 +148,14 @@ export const DeviceRequestSchemaInternal = DomainResourceSchemaInternal.extend({
 	encounter: z.lazy(getReferenceSchema).optional(),
 	groupIdentifier: z.lazy(getIdentifierSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	instantiatesCanonical: fhirCanonical().array().optional(),
-	_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-	instantiatesUri: fhirUri().array().optional(),
-	_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+	instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+	_instantiatesCanonical: z
+		.lazy(getElementSchema)
+		.nullable()
+		.array()
+		.optional(),
+	instantiatesUri: fhirUri().nullable().array().optional(),
+	_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 	insurance: z.lazy(getReferenceSchema).array().optional(),
 	intent: z.enum([
 		"directive",
@@ -230,6 +235,20 @@ export const DeviceRequestSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [occurrence_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.instantiatesCanonical,
+			record._instantiatesCanonical,
+			"instantiatesCanonical",
+			"_instantiatesCanonical",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.instantiatesUri,
+			record._instantiatesUri,
+			"instantiatesUri",
+			"_instantiatesUri",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.basedOn,
 			"basedOn",

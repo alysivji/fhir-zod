@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalImpression
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
@@ -64,9 +65,9 @@ export interface ClinicalImpression extends DomainResource {
 	/** RiskAssessment expressing likely outcome. */
 	prognosisReference?: Array<Reference>;
 	/** Reference to a specific published clinical protocol that was followed during this assessment, and/or that provides evidence in support of the diagnosis. */
-	protocol?: Array<string>;
+	protocol?: Array<string | null>;
 	/** Extensions for protocol */
-	_protocol?: Array<Element>;
+	_protocol?: Array<Element | null>;
 	/** This is a ClinicalImpression resource. */
 	resourceType: "ClinicalImpression";
 	/** Identifies the workflow status of the assessment. */
@@ -139,8 +140,8 @@ export const ClinicalImpressionSchemaInternal =
 			.array()
 			.optional(),
 		prognosisReference: z.lazy(getReferenceSchema).array().optional(),
-		protocol: fhirUri().array().optional(),
-		_protocol: z.lazy(getElementSchema).array().optional(),
+		protocol: fhirUri().nullable().array().optional(),
+		_protocol: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("ClinicalImpression"),
 		status: z.enum([
 			"completed",
@@ -174,6 +175,13 @@ export const ClinicalImpressionSchemaInternal =
 					path: [effective_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.protocol,
+				record._protocol,
+				"protocol",
+				"_protocol",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.assessor,
 				"assessor",

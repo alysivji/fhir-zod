@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -32,9 +33,9 @@ export interface AuditEvent_Agent extends BackboneElement {
 	/** Extensions for networkUri */
 	_networkUri?: Element;
 	/** Where the policy(ies) are known that authorized the agent participation in the event. Typically, a single activity may have multiple applicable policies, such as patient consent, guarantor funding, etc. The policy would also indicate the security token used. */
-	policy?: Array<string>;
+	policy?: Array<string | null>;
 	/** Extensions for policy */
-	_policy?: Array<Element>;
+	_policy?: Array<Element | null>;
 	/** Indicator that the user is or is not the requestor, or initiator, for the event being audited. */
 	requestor?: boolean;
 	/** Extensions for requestor */
@@ -64,8 +65,8 @@ export const AuditEvent_AgentSchemaInternal =
 		_networkString: z.lazy(getElementSchema).optional(),
 		networkUri: fhirUri().optional(),
 		_networkUri: z.lazy(getElementSchema).optional(),
-		policy: fhirUri().array().optional(),
-		_policy: z.lazy(getElementSchema).array().optional(),
+		policy: fhirUri().nullable().array().optional(),
+		_policy: z.lazy(getElementSchema).nullable().array().optional(),
 		requestor: z.boolean().optional(),
 		_requestor: z.lazy(getElementSchema).optional(),
 		role: z.lazy(getCodeableConceptSchema).array().optional(),
@@ -88,6 +89,13 @@ export const AuditEvent_AgentSchemaInternal =
 					path: [network_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.policy,
+				record._policy,
+				"policy",
+				"_policy",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.location,
 				"location",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ObservationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -54,9 +55,10 @@ export interface ObservationDefinition extends DomainResource {
 		| "SampledData"
 		| "string"
 		| "time"
+		| null
 	>;
 	/** Extensions for permittedDataType */
-	_permittedDataType?: Array<Element>;
+	_permittedDataType?: Array<Element | null>;
 	/** The preferred name to be used when reporting the results of observations conforming to this ObservationDefinition. */
 	preferredReportName?: string;
 	/** Extensions for preferredReportName */
@@ -112,9 +114,10 @@ export const ObservationDefinitionSchemaInternal =
 				"string",
 				"time",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_permittedDataType: z.lazy(getElementSchema).array().optional(),
+		_permittedDataType: z.lazy(getElementSchema).nullable().array().optional(),
 		preferredReportName: fhirString().optional(),
 		_preferredReportName: z.lazy(getElementSchema).optional(),
 		qualifiedInterval: z
@@ -130,6 +133,13 @@ export const ObservationDefinitionSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.permittedDataType,
+				record._permittedDataType,
+				"permittedDataType",
+				"_permittedDataType",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.abnormalCodedValueSet,
 				"abnormalCodedValueSet",

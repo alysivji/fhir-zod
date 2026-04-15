@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CarePlan
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -59,13 +60,13 @@ export interface CarePlan extends DomainResource {
 	/** Business identifiers assigned to this care plan by the performer or other systems which remain constant as the resource is updated and propagates from server to server. */
 	identifier?: Array<Identifier>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, questionnaire or other definition that is adhered to in whole or in part by this CarePlan. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, questionnaire or other definition that is adhered to in whole or in part by this CarePlan. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain. */
 	intent:
 		| "directive"
@@ -141,10 +142,14 @@ export const CarePlanSchemaInternal = DomainResourceSchemaInternal.extend({
 	encounter: z.lazy(getReferenceSchema).optional(),
 	goal: z.lazy(getReferenceSchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	instantiatesCanonical: fhirCanonical().array().optional(),
-	_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-	instantiatesUri: fhirUri().array().optional(),
-	_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+	instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+	_instantiatesCanonical: z
+		.lazy(getElementSchema)
+		.nullable()
+		.array()
+		.optional(),
+	instantiatesUri: fhirUri().nullable().array().optional(),
+	_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 	intent: z.enum([
 		"directive",
 		"filler-order",
@@ -180,6 +185,20 @@ export const CarePlanSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.instantiatesCanonical,
+			record._instantiatesCanonical,
+			"instantiatesCanonical",
+			"_instantiatesCanonical",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.instantiatesUri,
+			record._instantiatesUri,
+			"instantiatesUri",
+			"_instantiatesUri",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.addresses,
 			"addresses",

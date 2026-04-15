@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
@@ -96,9 +97,9 @@ export interface DeviceDefinition extends DomainResource {
 	/** Extensions for url */
 	_url?: Element;
 	/** The available versions of the device, e.g., software versions. */
-	version?: Array<string>;
+	version?: Array<string | null>;
 	/** Extensions for version */
-	_version?: Array<Element>;
+	_version?: Array<Element | null>;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
@@ -174,8 +175,8 @@ export const DeviceDefinitionSchemaInternal =
 			.optional(),
 		url: fhirUri().optional(),
 		_url: z.lazy(getElementSchema).optional(),
-		version: fhirString().array().optional(),
-		_version: z.lazy(getElementSchema).array().optional(),
+		version: fhirString().nullable().array().optional(),
+		_version: z.lazy(getElementSchema).nullable().array().optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
@@ -192,6 +193,13 @@ export const DeviceDefinitionSchemaInternal =
 					path: [manufacturer_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.version,
+				record._version,
+				"version",
+				"_version",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.manufacturerReference,
 				"manufacturerReference",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CompartmentDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -169,9 +170,9 @@ export interface CompartmentDefinition_Resource extends BackboneElement {
 	/** Extensions for documentation */
 	_documentation?: Element;
 	/** The name of a search parameter that represents the link to the compartment. More than one may be listed because a resource may be linked to a compartment in more than one way,. */
-	param?: Array<string>;
+	param?: Array<string | null>;
 	/** Extensions for param */
-	_param?: Array<Element>;
+	_param?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -333,9 +334,20 @@ export const CompartmentDefinition_ResourceSchemaInternal =
 		_code: z.lazy(getElementSchema).optional(),
 		documentation: fhirString().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
-		param: fhirString().array().optional(),
-		_param: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		param: fhirString().nullable().array().optional(),
+		_param: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.param,
+				record._param,
+				"param",
+				"_param",
+				ctx,
+			);
+		});
 
 export const CompartmentDefinition_ResourceSchema =
 	CompartmentDefinition_ResourceSchemaInternal as z.ZodType<CompartmentDefinition_Resource>;

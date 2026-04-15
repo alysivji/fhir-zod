@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -34,9 +35,9 @@ export interface Contract_Term_Asset extends BackboneElement {
 	/** Circumstance of the asset. */
 	context?: Array<Contract_Term_Asset_Context>;
 	/** Id [identifier??] of the clause or question text about the asset in the referenced form or QuestionnaireResponse. */
-	linkId?: Array<string>;
+	linkId?: Array<string | null>;
 	/** Extensions for linkId */
-	_linkId?: Array<Element>;
+	_linkId?: Array<Element | null>;
 	/** Asset relevant contractual time period. */
 	period?: Array<Period>;
 	/** Type of Asset availability for use or ownership. */
@@ -46,9 +47,9 @@ export interface Contract_Term_Asset extends BackboneElement {
 	/** Differentiates the kind of the asset . */
 	scope?: CodeableConcept;
 	/** Security labels that protects the asset. */
-	securityLabelNumber?: Array<number>;
+	securityLabelNumber?: Array<number | null>;
 	/** Extensions for securityLabelNumber */
-	_securityLabelNumber?: Array<Element>;
+	_securityLabelNumber?: Array<Element | null>;
 	/** May be a subtype or part of an offered asset. */
 	subtype?: Array<CodeableConcept>;
 	/** Clause or question text (Prose Object) concerning the asset in a linked form, such as a QuestionnaireResponse used in the formation of the contract. */
@@ -89,14 +90,24 @@ export const Contract_Term_AssetSchemaInternal =
 		condition: fhirString().optional(),
 		_condition: z.lazy(getElementSchema).optional(),
 		context: z.lazy(getContract_Term_Asset_ContextSchema).array().optional(),
-		linkId: fhirString().array().optional(),
-		_linkId: z.lazy(getElementSchema).array().optional(),
+		linkId: fhirString().nullable().array().optional(),
+		_linkId: z.lazy(getElementSchema).nullable().array().optional(),
 		period: z.lazy(getPeriodSchema).array().optional(),
 		periodType: z.lazy(getCodeableConceptSchema).array().optional(),
 		relationship: z.lazy(getCodingSchema).optional(),
 		scope: z.lazy(getCodeableConceptSchema).optional(),
-		securityLabelNumber: z.number().int().nonnegative().array().optional(),
-		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),
+		securityLabelNumber: z
+			.number()
+			.int()
+			.nonnegative()
+			.nullable()
+			.array()
+			.optional(),
+		_securityLabelNumber: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		subtype: z.lazy(getCodeableConceptSchema).array().optional(),
 		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
@@ -111,6 +122,20 @@ export const Contract_Term_AssetSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.linkId,
+				record._linkId,
+				"linkId",
+				"_linkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.securityLabelNumber,
+				record._securityLabelNumber,
+				"securityLabelNumber",
+				"_securityLabelNumber",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.typeReference,
 				"typeReference",

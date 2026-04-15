@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -48,9 +49,9 @@ export interface StructureDefinition extends DomainResource {
 	/** Identifies the types of resource or data type elements to which the extension can be applied. */
 	context?: Array<StructureDefinition_Context>;
 	/** A set of rules as FHIRPath Invariants about when the extension can be used (e.g. co-occurrence variants for the extension). All the rules must be true. */
-	contextInvariant?: Array<string>;
+	contextInvariant?: Array<string | null>;
 	/** Extensions for contextInvariant */
-	_contextInvariant?: Array<Element>;
+	_contextInvariant?: Array<Element | null>;
 	/** A copyright statement relating to the structure definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure definition. */
 	copyright?: string;
 	/** Extensions for copyright */
@@ -190,8 +191,8 @@ export const StructureDefinitionSchemaInternal =
 		_baseDefinition: z.lazy(getElementSchema).optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		context: z.lazy(getStructureDefinition_ContextSchema).array().optional(),
-		contextInvariant: fhirString().array().optional(),
-		_contextInvariant: z.lazy(getElementSchema).array().optional(),
+		contextInvariant: fhirString().nullable().array().optional(),
+		_contextInvariant: z.lazy(getElementSchema).nullable().array().optional(),
 		copyright: z.string().optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
@@ -260,7 +261,18 @@ export const StructureDefinitionSchemaInternal =
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
 		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.contextInvariant,
+				record._contextInvariant,
+				"contextInvariant",
+				"_contextInvariant",
+				ctx,
+			);
+		});
 
 export const StructureDefinitionSchema =
 	StructureDefinitionSchemaInternal as z.ZodType<StructureDefinition>;

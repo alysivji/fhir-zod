@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -17,9 +18,9 @@ export interface OperationDefinition_Overload extends BackboneElement {
 	/** Extensions for comment */
 	_comment?: Element;
 	/** Name of parameter to include in overload. */
-	parameterName?: Array<string>;
+	parameterName?: Array<string | null>;
 	/** Extensions for parameterName */
-	_parameterName?: Array<Element>;
+	_parameterName?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -30,9 +31,20 @@ export const OperationDefinition_OverloadSchemaInternal =
 	BackboneElementSchemaInternal.extend({
 		comment: fhirString().optional(),
 		_comment: z.lazy(getElementSchema).optional(),
-		parameterName: fhirString().array().optional(),
-		_parameterName: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		parameterName: fhirString().nullable().array().optional(),
+		_parameterName: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.parameterName,
+				record._parameterName,
+				"parameterName",
+				"_parameterName",
+				ctx,
+			);
+		});
 
 export const OperationDefinition_OverloadSchema =
 	OperationDefinition_OverloadSchemaInternal as z.ZodType<OperationDefinition_Overload>;

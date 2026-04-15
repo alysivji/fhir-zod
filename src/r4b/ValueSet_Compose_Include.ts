@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirString, fhirUri } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -25,9 +26,9 @@ export interface ValueSet_Compose_Include extends BackboneElement {
 	/** Extensions for system */
 	_system?: Element;
 	/** Selects the concepts found in this value set (based on its value set definition). This is an absolute URI that is a reference to ValueSet.url.  If multiple value sets are specified this includes the union of the contents of all of the referenced value sets. */
-	valueSet?: Array<string>;
+	valueSet?: Array<string | null>;
 	/** Extensions for valueSet */
-	_valueSet?: Array<Element>;
+	_valueSet?: Array<Element | null>;
 	/** The version of the code system that the codes are selected from, or the special version '*' for all versions. */
 	version?: string;
 	/** Extensions for version */
@@ -53,11 +54,22 @@ export const ValueSet_Compose_IncludeSchemaInternal =
 		filter: z.lazy(getValueSet_Compose_Include_FilterSchema).array().optional(),
 		system: fhirUri().optional(),
 		_system: z.lazy(getElementSchema).optional(),
-		valueSet: fhirCanonical().array().optional(),
-		_valueSet: z.lazy(getElementSchema).array().optional(),
+		valueSet: fhirCanonical().nullable().array().optional(),
+		_valueSet: z.lazy(getElementSchema).nullable().array().optional(),
 		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.valueSet,
+				record._valueSet,
+				"valueSet",
+				"_valueSet",
+				ctx,
+			);
+		});
 
 export const ValueSet_Compose_IncludeSchema =
 	ValueSet_Compose_IncludeSchemaInternal as z.ZodType<ValueSet_Compose_Include>;

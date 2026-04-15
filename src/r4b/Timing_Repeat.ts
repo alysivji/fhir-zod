@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirTime } from "../shared/fhir-primitives";
 import type { Duration } from "./Duration";
 import { DurationSchemaInternal } from "./Duration";
@@ -33,9 +34,11 @@ export interface Timing_Repeat extends Element {
 	/** Extensions for countMax */
 	_countMax?: Element;
 	/** If one or more days of week is provided, then the action happens only on the specified day(s). */
-	dayOfWeek?: Array<"fri" | "mon" | "sat" | "sun" | "thu" | "tue" | "wed">;
+	dayOfWeek?: Array<
+		"fri" | "mon" | "sat" | "sun" | "thu" | "tue" | "wed" | null
+	>;
 	/** Extensions for dayOfWeek */
-	_dayOfWeek?: Array<Element>;
+	_dayOfWeek?: Array<Element | null>;
 	/** How long this thing happens for when it happens. If durationMax is present, this element indicates the lower bound of the allowed range of the duration. */
 	duration?: number;
 	/** Extensions for duration */
@@ -73,9 +76,9 @@ export interface Timing_Repeat extends Element {
 	/** Extensions for periodUnit */
 	_periodUnit?: Element;
 	/** Specified time of day for action to take place. */
-	timeOfDay?: Array<string>;
+	timeOfDay?: Array<string | null>;
 	/** Extensions for timeOfDay */
-	_timeOfDay?: Array<Element>;
+	_timeOfDay?: Array<Element | null>;
 	/** An approximate time period during the day, potentially linked to an event of daily living that indicates when the action should occur. */
 	when?: Array<
 		| "AC"
@@ -104,9 +107,10 @@ export interface Timing_Repeat extends Element {
 		| "PCV"
 		| "PHS"
 		| "WAKE"
+		| null
 	>;
 	/** Extensions for when */
-	_when?: Array<Element>;
+	_when?: Array<Element | null>;
 }
 
 const getDurationSchema = (): z.ZodType<Duration> =>
@@ -132,9 +136,10 @@ export const Timing_RepeatSchemaInternal = z
 		_countMax: z.lazy(getElementSchema).optional(),
 		dayOfWeek: z
 			.enum(["fri", "mon", "sat", "sun", "thu", "tue", "wed"])
+			.nullable()
 			.array()
 			.optional(),
-		_dayOfWeek: z.lazy(getElementSchema).array().optional(),
+		_dayOfWeek: z.lazy(getElementSchema).nullable().array().optional(),
 		duration: z.number().optional(),
 		_duration: z.lazy(getElementSchema).optional(),
 		durationMax: z.number().optional(),
@@ -156,8 +161,8 @@ export const Timing_RepeatSchemaInternal = z
 		_periodMax: z.lazy(getElementSchema).optional(),
 		periodUnit: z.enum(["a", "d", "h", "min", "mo", "s", "wk"]).optional(),
 		_periodUnit: z.lazy(getElementSchema).optional(),
-		timeOfDay: fhirTime().array().optional(),
-		_timeOfDay: z.lazy(getElementSchema).array().optional(),
+		timeOfDay: fhirTime().nullable().array().optional(),
+		_timeOfDay: z.lazy(getElementSchema).nullable().array().optional(),
 		when: z
 			.enum([
 				"AC",
@@ -187,9 +192,10 @@ export const Timing_RepeatSchemaInternal = z
 				"PHS",
 				"WAKE",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_when: z.lazy(getElementSchema).array().optional(),
+		_when: z.lazy(getElementSchema).nullable().array().optional(),
 	})
 	.strict()
 	.superRefine((value, ctx) => {
@@ -207,6 +213,21 @@ export const Timing_RepeatSchemaInternal = z
 				path: [bounds_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.dayOfWeek,
+			record._dayOfWeek,
+			"dayOfWeek",
+			"_dayOfWeek",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.timeOfDay,
+			record._timeOfDay,
+			"timeOfDay",
+			"_timeOfDay",
+			ctx,
+		);
+		validatePrimitiveArrayPair(record.when, record._when, "when", "_when", ctx);
 	});
 
 export const Timing_RepeatSchema =

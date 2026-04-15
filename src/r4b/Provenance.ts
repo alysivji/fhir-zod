@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Provenance
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirInstant, fhirUri } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -40,9 +41,9 @@ export interface Provenance extends DomainResource {
 	/** The period during which the activity occurred. */
 	occurredPeriod?: Period;
 	/** Policy or plan the activity was defined by. Typically, a single activity may have multiple applicable policy documents, such as patient consent, guarantor funding, etc. */
-	policy?: Array<string>;
+	policy?: Array<string | null>;
 	/** Extensions for policy */
-	_policy?: Array<Element>;
+	_policy?: Array<Element | null>;
 	/** The reason that the activity was taking place. */
 	reason?: Array<CodeableConcept>;
 	/** The instant of time at which the activity was recorded. */
@@ -81,8 +82,8 @@ export const ProvenanceSchemaInternal = DomainResourceSchemaInternal.extend({
 	occurredDateTime: fhirDateTime().optional(),
 	_occurredDateTime: z.lazy(getElementSchema).optional(),
 	occurredPeriod: z.lazy(getPeriodSchema).optional(),
-	policy: fhirUri().array().optional(),
-	_policy: z.lazy(getElementSchema).array().optional(),
+	policy: fhirUri().nullable().array().optional(),
+	_policy: z.lazy(getElementSchema).nullable().array().optional(),
 	reason: z.lazy(getCodeableConceptSchema).array().optional(),
 	recorded: fhirInstant(),
 	_recorded: z.lazy(getElementSchema).optional(),
@@ -104,6 +105,13 @@ export const ProvenanceSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [occurred_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.policy,
+			record._policy,
+			"policy",
+			"_policy",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.location,
 			"location",

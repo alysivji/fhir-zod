@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -68,9 +69,9 @@ export interface MessageDefinition extends DomainResource {
 	/** Identifies the resource (or resources) that are being addressed by the event.  For example, the Encounter for an admit message or two Account records for a merge. */
 	focus?: Array<MessageDefinition_Focus>;
 	/** Canonical reference to a GraphDefinition. If a URL is provided, it is the canonical reference to a [GraphDefinition](graphdefinition.html) that it controls what resources are to be added to the bundle when building the document. The GraphDefinition can also specify profiles that apply to the various resources. */
-	graph?: Array<string>;
+	graph?: Array<string | null>;
 	/** Extensions for graph */
-	_graph?: Array<Element>;
+	_graph?: Array<Element | null>;
 	/** A formal identifier that is used to identify this message definition when it is represented in other formats, or referenced in a specification, model, design or an instance. */
 	identifier?: Array<Identifier>;
 	/** A legal or geographic region in which the message definition is intended to be used. */
@@ -80,9 +81,9 @@ export interface MessageDefinition extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** Identifies a protocol or workflow that this MessageDefinition represents a step in. */
-	parent?: Array<string>;
+	parent?: Array<string | null>;
 	/** Extensions for parent */
-	_parent?: Array<Element>;
+	_parent?: Array<Element | null>;
 	/** The name of the organization or individual that published the message definition. */
 	publisher?: string;
 	/** Extensions for publisher */
@@ -92,9 +93,9 @@ export interface MessageDefinition extends DomainResource {
 	/** Extensions for purpose */
 	_purpose?: Element;
 	/** A MessageDefinition that is superseded by this definition. */
-	replaces?: Array<string>;
+	replaces?: Array<string | null>;
 	/** Extensions for replaces */
-	_replaces?: Array<Element>;
+	_replaces?: Array<Element | null>;
 	/** This is a MessageDefinition resource. */
 	resourceType: "MessageDefinition";
 	/** Declare at a message definition level whether a response is required or only upon error or success, or never. */
@@ -164,20 +165,20 @@ export const MessageDefinitionSchemaInternal =
 		experimental: z.boolean().optional(),
 		_experimental: z.lazy(getElementSchema).optional(),
 		focus: z.lazy(getMessageDefinition_FocusSchema).array().optional(),
-		graph: fhirCanonical().array().optional(),
-		_graph: z.lazy(getElementSchema).array().optional(),
+		graph: fhirCanonical().nullable().array().optional(),
+		_graph: z.lazy(getElementSchema).nullable().array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		parent: fhirCanonical().array().optional(),
-		_parent: z.lazy(getElementSchema).array().optional(),
+		parent: fhirCanonical().nullable().array().optional(),
+		_parent: z.lazy(getElementSchema).nullable().array().optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
 		purpose: z.string().optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
-		replaces: fhirCanonical().array().optional(),
-		_replaces: z.lazy(getElementSchema).array().optional(),
+		replaces: fhirCanonical().nullable().array().optional(),
+		_replaces: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("MessageDefinition"),
 		responseRequired: z
 			.enum(["always", "never", "on-error", "on-success"])
@@ -214,6 +215,27 @@ export const MessageDefinitionSchemaInternal =
 					path: [event_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.graph,
+				record._graph,
+				"graph",
+				"_graph",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.parent,
+				record._parent,
+				"parent",
+				"_parent",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.replaces,
+				record._replaces,
+				"replaces",
+				"_replaces",
+				ctx,
+			);
 		});
 
 export const MessageDefinitionSchema =

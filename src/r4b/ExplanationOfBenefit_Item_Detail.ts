@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -35,9 +36,9 @@ export interface ExplanationOfBenefit_Item_Detail extends BackboneElement {
 	/** The quantity times the unit price for an additional service or product or charge. */
 	net?: Money;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item. */
 	productOrService: CodeableConcept;
 	/** Identifies the program under which this may be recovered. */
@@ -81,8 +82,8 @@ export const ExplanationOfBenefit_Item_DetailSchemaInternal =
 		_factor: z.lazy(getElementSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		productOrService: z.lazy(getCodeableConceptSchema),
 		programCode: z.lazy(getCodeableConceptSchema).array().optional(),
 		quantity: z.lazy(getQuantitySchema).optional(),
@@ -99,6 +100,13 @@ export const ExplanationOfBenefit_Item_DetailSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.udi,
 				"udi",

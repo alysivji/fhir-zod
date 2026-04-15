@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Timing
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -20,9 +21,9 @@ export interface Timing extends BackboneElement {
 	/** A code for the timing schedule (or just text in code.text). Some codes such as BID are ubiquitous, but many institutions define their own additional codes. If a code is provided, the code is understood to be a complete statement of whatever is specified in the structured timing data, and either the code or the data may be used to interpret the Timing, with the exception that .repeat.bounds still applies over the code (and is not contained in the code). */
 	code?: CodeableConcept;
 	/** Identifies specific times when the event occurs. */
-	event?: Array<string>;
+	event?: Array<string | null>;
 	/** Extensions for event */
-	_event?: Array<Element>;
+	_event?: Array<Element | null>;
 	/** A set of rules that describe when the event is scheduled. */
 	repeat?: Timing_Repeat;
 }
@@ -40,14 +41,24 @@ const getTiming_RepeatSchema = (): z.ZodType<Timing_Repeat> =>
 export const TimingSchemaInternal = z
 	.object({
 		code: z.lazy(getCodeableConceptSchema).optional(),
-		event: fhirDateTime().array().optional(),
-		_event: z.lazy(getElementSchema).array().optional(),
+		event: fhirDateTime().nullable().array().optional(),
+		_event: z.lazy(getElementSchema).nullable().array().optional(),
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
 		modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 		repeat: z.lazy(getTiming_RepeatSchema).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.event,
+			record._event,
+			"event",
+			"_event",
+			ctx,
+		);
+	});
 
 export const TimingSchema = TimingSchemaInternal as z.ZodType<Timing>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDate, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -27,9 +28,9 @@ export interface ValueSet_Compose extends BackboneElement {
 	/** Extensions for lockedDate */
 	_lockedDate?: Element;
 	/** A property to return in the expansion, if the client doesn't ask for any particular properties. May be either a code from the code system definition (convenient) or a the formal URI that refers to the property. The special value '*' means all properties known to the server. */
-	property?: Array<string>;
+	property?: Array<string | null>;
 	/** Extensions for property */
-	_property?: Array<Element>;
+	_property?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -47,9 +48,20 @@ export const ValueSet_ComposeSchemaInternal =
 		include: z.lazy(getValueSet_Compose_IncludeSchema).array(),
 		lockedDate: fhirDate().optional(),
 		_lockedDate: z.lazy(getElementSchema).optional(),
-		property: fhirString().array().optional(),
-		_property: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		property: fhirString().nullable().array().optional(),
+		_property: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.property,
+				record._property,
+				"property",
+				"_property",
+				ctx,
+			);
+		});
 
 export const ValueSet_ComposeSchema =
 	ValueSet_ComposeSchemaInternal as z.ZodType<ValueSet_Compose>;

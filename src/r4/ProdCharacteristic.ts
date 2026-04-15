@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ProdCharacteristic
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { Attachment } from "./Attachment";
 import { AttachmentSchemaInternal } from "./Attachment";
@@ -19,9 +20,9 @@ import { QuantitySchemaInternal } from "./Quantity";
 /** Base StructureDefinition for ProdCharacteristic Type: The marketing status describes the date when a medicinal product is actually put on the market or the date as of which it is no longer available. */
 export interface ProdCharacteristic extends BackboneElement {
 	/** Where applicable, the color can be specified An appropriate controlled vocabulary shall be used The term and the term identifier shall be used. */
-	color?: Array<string>;
+	color?: Array<string | null>;
 	/** Extensions for color */
-	_color?: Array<Element>;
+	_color?: Array<Element | null>;
 	/** Where applicable, the depth can be specified using a numerical value and its unit of measurement The unit of measurement shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be used. */
 	depth?: Quantity;
 	/** Where applicable, the external diameter can be specified using a numerical value and its unit of measurement The unit of measurement shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be used. */
@@ -31,9 +32,9 @@ export interface ProdCharacteristic extends BackboneElement {
 	/** Where applicable, the image can be provided The format of the image attachment shall be specified by regional implementations. */
 	image?: Array<Attachment>;
 	/** Where applicable, the imprint can be specified as text. */
-	imprint?: Array<string>;
+	imprint?: Array<string | null>;
 	/** Extensions for imprint */
-	_imprint?: Array<Element>;
+	_imprint?: Array<Element | null>;
 	/** Where applicable, the nominal volume can be specified using a numerical value and its unit of measurement The unit of measurement shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be used. */
 	nominalVolume?: Quantity;
 	/** Where applicable, the scoring can be specified An appropriate controlled vocabulary shall be used The term and the term identifier shall be used. */
@@ -60,21 +61,39 @@ const getQuantitySchema = (): z.ZodType<Quantity> =>
 /** @internal */
 export const ProdCharacteristicSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		color: fhirString().array().optional(),
-		_color: z.lazy(getElementSchema).array().optional(),
+		color: fhirString().nullable().array().optional(),
+		_color: z.lazy(getElementSchema).nullable().array().optional(),
 		depth: z.lazy(getQuantitySchema).optional(),
 		externalDiameter: z.lazy(getQuantitySchema).optional(),
 		height: z.lazy(getQuantitySchema).optional(),
 		image: z.lazy(getAttachmentSchema).array().optional(),
-		imprint: fhirString().array().optional(),
-		_imprint: z.lazy(getElementSchema).array().optional(),
+		imprint: fhirString().nullable().array().optional(),
+		_imprint: z.lazy(getElementSchema).nullable().array().optional(),
 		nominalVolume: z.lazy(getQuantitySchema).optional(),
 		scoring: z.lazy(getCodeableConceptSchema).optional(),
 		shape: fhirString().optional(),
 		_shape: z.lazy(getElementSchema).optional(),
 		weight: z.lazy(getQuantitySchema).optional(),
 		width: z.lazy(getQuantitySchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.color,
+				record._color,
+				"color",
+				"_color",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.imprint,
+				record._imprint,
+				"imprint",
+				"_imprint",
+				ctx,
+			);
+		});
 
 export const ProdCharacteristicSchema =
 	ProdCharacteristicSchemaInternal as z.ZodType<ProdCharacteristic>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Claim
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDate } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
@@ -34,17 +35,17 @@ export interface Claim_Item extends BackboneElement {
 	/** Physical location where the service is performed or applies. */
 	bodySite?: Array<Claim_Item_BodySite>;
 	/** CareTeam members related to this service or product. */
-	careTeamSequence?: Array<number>;
+	careTeamSequence?: Array<number | null>;
 	/** Extensions for careTeamSequence */
-	_careTeamSequence?: Array<Element>;
+	_careTeamSequence?: Array<Element | null>;
 	/** Code to identify the general type of benefits under which products and services are provided. */
 	category?: CodeableConcept;
 	/** A claim detail line. Either a simple (a product or service) or a 'group' of sub-details which are simple items. */
 	detail?: Array<Claim_Item_Detail>;
 	/** Diagnosis applicable for this service or product. */
-	diagnosisSequence?: Array<number>;
+	diagnosisSequence?: Array<number | null>;
 	/** Extensions for diagnosisSequence */
-	_diagnosisSequence?: Array<Element>;
+	_diagnosisSequence?: Array<Element | null>;
 	/** Healthcare encounters related to this claim. */
 	encounter?: Array<Reference>;
 	/** A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount. */
@@ -52,9 +53,9 @@ export interface Claim_Item extends BackboneElement {
 	/** Extensions for factor */
 	_factor?: Element;
 	/** Exceptions, special conditions and supporting information applicable for this service or product. */
-	informationSequence?: Array<number>;
+	informationSequence?: Array<number | null>;
 	/** Extensions for informationSequence */
-	_informationSequence?: Array<Element>;
+	_informationSequence?: Array<Element | null>;
 	/** Where the product or service was provided. */
 	locationAddress?: Address;
 	/** Where the product or service was provided. */
@@ -68,9 +69,9 @@ export interface Claim_Item extends BackboneElement {
 	/** The amount paid by the patient, in total at the claim claim level or specifically for the item and detail level, to the provider for goods and services. */
 	patientPaid?: Money;
 	/** Procedures applicable for this service or product. */
-	procedureSequence?: Array<number>;
+	procedureSequence?: Array<number | null>;
 	/** Extensions for procedureSequence */
-	_procedureSequence?: Array<Element>;
+	_procedureSequence?: Array<Element | null>;
 	/** When the value is a group code then this item collects a set of related item details, otherwise this contains the product, service, drug or other billing code for the item. This element may be the start of a range of .productOrService codes used in conjunction with .productOrServiceEnd or it may be a solo element where .productOrServiceEnd is not used. */
 	productOrService?: CodeableConcept;
 	/** This contains the end of a range of product, service, drug or other billing codes for the item. This element is not used when the .productOrService is a group code. This value may only be present when a .productOfService code has been provided to convey the start of the range. Typically this value may be used only with preauthorizations and not with claims. */
@@ -127,25 +128,31 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const Claim_ItemSchemaInternal = BackboneElementSchemaInternal.extend({
 	bodySite: z.lazy(getClaim_Item_BodySiteSchema).array().optional(),
-	careTeamSequence: z.number().int().positive().array().optional(),
-	_careTeamSequence: z.lazy(getElementSchema).array().optional(),
+	careTeamSequence: z.number().int().positive().nullable().array().optional(),
+	_careTeamSequence: z.lazy(getElementSchema).nullable().array().optional(),
 	category: z.lazy(getCodeableConceptSchema).optional(),
 	detail: z.lazy(getClaim_Item_DetailSchema).array().optional(),
-	diagnosisSequence: z.number().int().positive().array().optional(),
-	_diagnosisSequence: z.lazy(getElementSchema).array().optional(),
+	diagnosisSequence: z.number().int().positive().nullable().array().optional(),
+	_diagnosisSequence: z.lazy(getElementSchema).nullable().array().optional(),
 	encounter: z.lazy(getReferenceSchema).array().optional(),
 	factor: z.number().optional(),
 	_factor: z.lazy(getElementSchema).optional(),
-	informationSequence: z.number().int().positive().array().optional(),
-	_informationSequence: z.lazy(getElementSchema).array().optional(),
+	informationSequence: z
+		.number()
+		.int()
+		.positive()
+		.nullable()
+		.array()
+		.optional(),
+	_informationSequence: z.lazy(getElementSchema).nullable().array().optional(),
 	locationAddress: z.lazy(getAddressSchema).optional(),
 	locationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 	locationReference: z.lazy(getReferenceSchema).optional(),
 	modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 	net: z.lazy(getMoneySchema).optional(),
 	patientPaid: z.lazy(getMoneySchema).optional(),
-	procedureSequence: z.number().int().positive().array().optional(),
-	_procedureSequence: z.lazy(getElementSchema).array().optional(),
+	procedureSequence: z.number().int().positive().nullable().array().optional(),
+	_procedureSequence: z.lazy(getElementSchema).nullable().array().optional(),
 	productOrService: z.lazy(getCodeableConceptSchema).optional(),
 	productOrServiceEnd: z.lazy(getCodeableConceptSchema).optional(),
 	programCode: z.lazy(getCodeableConceptSchema).array().optional(),
@@ -189,6 +196,34 @@ export const Claim_ItemSchemaInternal = BackboneElementSchemaInternal.extend({
 				path: [serviced_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.careTeamSequence,
+			record._careTeamSequence,
+			"careTeamSequence",
+			"_careTeamSequence",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.diagnosisSequence,
+			record._diagnosisSequence,
+			"diagnosisSequence",
+			"_diagnosisSequence",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.informationSequence,
+			record._informationSequence,
+			"informationSequence",
+			"_informationSequence",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.procedureSequence,
+			record._procedureSequence,
+			"procedureSequence",
+			"_procedureSequence",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.encounter,
 			"encounter",

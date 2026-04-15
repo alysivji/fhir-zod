@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ChargeItem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -47,13 +48,13 @@ export interface ChargeItem extends DomainResource {
 	/** The financial cost center permits the tracking of charge attribution. */
 	costCenter?: Reference;
 	/** References the source of pricing information, rules of application for the code this ChargeItem uses. */
-	definitionCanonical?: Array<string>;
+	definitionCanonical?: Array<string | null>;
 	/** Extensions for definitionCanonical */
-	_definitionCanonical?: Array<Element>;
+	_definitionCanonical?: Array<Element | null>;
 	/** References the (external) source of pricing information, rules of application for the code this ChargeItem uses. */
-	definitionUri?: Array<string>;
+	definitionUri?: Array<string | null>;
 	/** Extensions for definitionUri */
-	_definitionUri?: Array<Element>;
+	_definitionUri?: Array<Element | null>;
 	/** Date the charge item was entered. */
 	enteredDate?: string;
 	/** Extensions for enteredDate */
@@ -147,10 +148,10 @@ export const ChargeItemSchemaInternal = DomainResourceSchemaInternal.extend({
 	code: z.lazy(getCodeableConceptSchema),
 	context: z.lazy(getReferenceSchema).optional(),
 	costCenter: z.lazy(getReferenceSchema).optional(),
-	definitionCanonical: fhirCanonical().array().optional(),
-	_definitionCanonical: z.lazy(getElementSchema).array().optional(),
-	definitionUri: fhirUri().array().optional(),
-	_definitionUri: z.lazy(getElementSchema).array().optional(),
+	definitionCanonical: fhirCanonical().nullable().array().optional(),
+	_definitionCanonical: z.lazy(getElementSchema).nullable().array().optional(),
+	definitionUri: fhirUri().nullable().array().optional(),
+	_definitionUri: z.lazy(getElementSchema).nullable().array().optional(),
 	enteredDate: fhirDateTime().optional(),
 	_enteredDate: z.lazy(getElementSchema).optional(),
 	enterer: z.lazy(getReferenceSchema).optional(),
@@ -216,6 +217,20 @@ export const ChargeItemSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [product_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.definitionCanonical,
+			record._definitionCanonical,
+			"definitionCanonical",
+			"_definitionCanonical",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.definitionUri,
+			record._definitionUri,
+			"definitionUri",
+			"_definitionUri",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.account,
 			"account",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Measure
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -265,9 +266,9 @@ export interface Measure_Group extends BackboneElement {
 	/** Information on whether an increase or decrease in score is the preferred result (e.g., a higher score indicates better quality OR a lower score indicates better quality OR quality is within a range). */
 	improvementNotation?: CodeableConcept;
 	/** A reference to a Library resource containing the formal logic used by the measure group. */
-	library?: Array<string>;
+	library?: Array<string | null>;
 	/** Extensions for library */
-	_library?: Array<Element>;
+	_library?: Array<Element | null>;
 	/** An identifier that is unique within the Measure allowing linkage to the equivalent item in a MeasureReport resource. */
 	linkId?: string;
 	/** Extensions for linkId */
@@ -551,8 +552,8 @@ export const Measure_GroupSchemaInternal = BackboneElementSchemaInternal.extend(
 			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		improvementNotation: z.lazy(getCodeableConceptSchema).optional(),
-		library: fhirCanonical().array().optional(),
-		_library: z.lazy(getElementSchema).array().optional(),
+		library: fhirCanonical().nullable().array().optional(),
+		_library: z.lazy(getElementSchema).nullable().array().optional(),
 		linkId: fhirString().optional(),
 		_linkId: z.lazy(getElementSchema).optional(),
 		population: z.lazy(getMeasure_Group_PopulationSchema).array().optional(),
@@ -584,6 +585,13 @@ export const Measure_GroupSchemaInternal = BackboneElementSchemaInternal.extend(
 				path: [subject_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.library,
+			record._library,
+			"library",
+			"_library",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.subjectReference,
 			"subjectReference",

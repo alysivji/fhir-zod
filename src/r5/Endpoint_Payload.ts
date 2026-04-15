@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Endpoint
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -15,9 +16,9 @@ import { ElementSchemaInternal } from "./Element";
 /** The set of payloads that are provided/available at this endpoint. */
 export interface Endpoint_Payload extends BackboneElement {
 	/** The mime type to send the payload in - e.g. application/fhir+xml, application/fhir+json. If the mime type is not specified, then the sender could send any content (including no content depending on the connectionType). */
-	mimeType?: Array<string>;
+	mimeType?: Array<string | null>;
 	/** Extensions for mimeType */
-	_mimeType?: Array<Element>;
+	_mimeType?: Array<Element | null>;
 	/** The payload type describes the acceptable content that can be communicated on the endpoint. */
 	type?: Array<CodeableConcept>;
 }
@@ -30,10 +31,21 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Endpoint_PayloadSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		mimeType: fhirCode().array().optional(),
-		_mimeType: z.lazy(getElementSchema).array().optional(),
+		mimeType: fhirCode().nullable().array().optional(),
+		_mimeType: z.lazy(getElementSchema).nullable().array().optional(),
 		type: z.lazy(getCodeableConceptSchema).array().optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.mimeType,
+				record._mimeType,
+				"mimeType",
+				"_mimeType",
+				ctx,
+			);
+		});
 
 export const Endpoint_PayloadSchema =
 	Endpoint_PayloadSchemaInternal as z.ZodType<Endpoint_Payload>;

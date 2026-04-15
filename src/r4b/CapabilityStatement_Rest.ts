@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -19,9 +20,9 @@ import { ElementSchemaInternal } from "./Element";
 /** A definition of the restful capabilities of the solution, if any. */
 export interface CapabilityStatement_Rest extends BackboneElement {
 	/** An absolute URI which is a reference to the definition of a compartment that the system supports. The reference is to a CompartmentDefinition resource by its canonical URL . */
-	compartment?: Array<string>;
+	compartment?: Array<string | null>;
 	/** Extensions for compartment */
-	_compartment?: Array<Element>;
+	_compartment?: Array<Element | null>;
 	/** Information about the system's restful capabilities that apply across all applications, such as security. */
 	documentation?: string;
 	/** Extensions for documentation */
@@ -57,8 +58,8 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CapabilityStatement_RestSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		compartment: fhirCanonical().array().optional(),
-		_compartment: z.lazy(getElementSchema).array().optional(),
+		compartment: fhirCanonical().nullable().array().optional(),
+		_compartment: z.lazy(getElementSchema).nullable().array().optional(),
 		documentation: z.string().optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		interaction: z
@@ -74,7 +75,18 @@ export const CapabilityStatement_RestSchemaInternal =
 			.optional(),
 		searchParam: z.unknown().array().optional(),
 		security: z.lazy(getCapabilityStatement_Rest_SecuritySchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.compartment,
+				record._compartment,
+				"compartment",
+				"_compartment",
+				ctx,
+			);
+		});
 
 export const CapabilityStatement_RestSchema =
 	CapabilityStatement_RestSchemaInternal as z.ZodType<CapabilityStatement_Rest>;

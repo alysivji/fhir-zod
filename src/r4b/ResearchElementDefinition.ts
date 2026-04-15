@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -44,9 +45,9 @@ export interface ResearchElementDefinition extends DomainResource {
 	/** A characteristic that defines the members of the research element. Multiple characteristics are applied with "and" semantics. */
 	characteristic: Array<ResearchElementDefinition_Characteristic>;
 	/** A human-readable string to clarify or explain concepts about the resource. */
-	comment?: Array<string>;
+	comment?: Array<string | null>;
 	/** Extensions for comment */
-	_comment?: Array<Element>;
+	_comment?: Array<Element | null>;
 	/** Contact details to assist a user in finding and communicating with the publisher. */
 	contact?: Array<ContactDetail>;
 	/** A copyright statement relating to the research element definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the research element definition. */
@@ -80,9 +81,9 @@ export interface ResearchElementDefinition extends DomainResource {
 	/** Extensions for lastReviewDate */
 	_lastReviewDate?: Element;
 	/** A reference to a Library resource containing the formal logic used by the ResearchElementDefinition. */
-	library?: Array<string>;
+	library?: Array<string | null>;
 	/** Extensions for library */
-	_library?: Array<Element>;
+	_library?: Array<Element | null>;
 	/** A natural language name identifying the research element definition. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
 	name?: string;
 	/** Extensions for name */
@@ -176,8 +177,8 @@ export const ResearchElementDefinitionSchemaInternal =
 		characteristic: z
 			.lazy(getResearchElementDefinition_CharacteristicSchema)
 			.array(),
-		comment: fhirString().array().optional(),
-		_comment: z.lazy(getElementSchema).array().optional(),
+		comment: fhirString().nullable().array().optional(),
+		_comment: z.lazy(getElementSchema).nullable().array().optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		copyright: z.string().optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
@@ -194,8 +195,8 @@ export const ResearchElementDefinitionSchemaInternal =
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		library: fhirCanonical().array().optional(),
-		_library: z.lazy(getElementSchema).array().optional(),
+		library: fhirCanonical().nullable().array().optional(),
+		_library: z.lazy(getElementSchema).nullable().array().optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		publisher: fhirString().optional(),
@@ -245,6 +246,20 @@ export const ResearchElementDefinitionSchemaInternal =
 					path: [subject_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.comment,
+				record._comment,
+				"comment",
+				"_comment",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.library,
+				record._library,
+				"library",
+				"_library",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.subjectReference,
 				"subjectReference",

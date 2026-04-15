@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -23,9 +24,9 @@ export interface StructureMap_Group_Rule_Target extends BackboneElement {
 	/** Extensions for element */
 	_element?: Element;
 	/** If field is a list, how to manage the list. */
-	listMode?: Array<"first" | "last" | "share" | "single">;
+	listMode?: Array<"first" | "last" | "share" | "single" | null>;
 	/** Extensions for listMode */
-	_listMode?: Array<Element>;
+	_listMode?: Array<Element | null>;
 	/** Internal rule reference for shared list items. */
 	listRuleId?: string;
 	/** Extensions for listRuleId */
@@ -72,8 +73,12 @@ export const StructureMap_Group_Rule_TargetSchemaInternal =
 		_context: z.lazy(getElementSchema).optional(),
 		element: fhirString().optional(),
 		_element: z.lazy(getElementSchema).optional(),
-		listMode: z.enum(["first", "last", "share", "single"]).array().optional(),
-		_listMode: z.lazy(getElementSchema).array().optional(),
+		listMode: z
+			.enum(["first", "last", "share", "single"])
+			.nullable()
+			.array()
+			.optional(),
+		_listMode: z.lazy(getElementSchema).nullable().array().optional(),
 		listRuleId: fhirId().optional(),
 		_listRuleId: z.lazy(getElementSchema).optional(),
 		parameter: z
@@ -104,7 +109,18 @@ export const StructureMap_Group_Rule_TargetSchemaInternal =
 		_transform: z.lazy(getElementSchema).optional(),
 		variable: fhirId().optional(),
 		_variable: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.listMode,
+				record._listMode,
+				"listMode",
+				"_listMode",
+				ctx,
+			);
+		});
 
 export const StructureMap_Group_Rule_TargetSchema =
 	StructureMap_Group_Rule_TargetSchemaInternal as z.ZodType<StructureMap_Group_Rule_Target>;

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -84,9 +85,9 @@ export interface ExampleScenario extends DomainResource {
 	/** Extensions for version */
 	_version?: Element;
 	/** Another nested workflow. */
-	workflow?: Array<string>;
+	workflow?: Array<string | null>;
 	/** Extensions for workflow */
-	_workflow?: Array<Element>;
+	_workflow?: Array<Element | null>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
@@ -137,9 +138,20 @@ export const ExampleScenarioSchemaInternal =
 		useContext: z.lazy(getUsageContextSchema).array().optional(),
 		version: fhirString().optional(),
 		_version: z.lazy(getElementSchema).optional(),
-		workflow: fhirCanonical().array().optional(),
-		_workflow: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		workflow: fhirCanonical().nullable().array().optional(),
+		_workflow: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.workflow,
+				record._workflow,
+				"workflow",
+				"_workflow",
+				ctx,
+			);
+		});
 
 export const ExampleScenarioSchema =
 	ExampleScenarioSchemaInternal as z.ZodType<ExampleScenario>;

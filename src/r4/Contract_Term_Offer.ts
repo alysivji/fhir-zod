@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { BackboneElement } from "./BackboneElement";
@@ -32,15 +33,15 @@ export interface Contract_Term_Offer extends BackboneElement {
 	/** Unique identifier for this particular Contract Provision. */
 	identifier?: Array<Identifier>;
 	/** The id of the clause or question text of the offer in the referenced questionnaire/response. */
-	linkId?: Array<string>;
+	linkId?: Array<string | null>;
 	/** Extensions for linkId */
-	_linkId?: Array<Element>;
+	_linkId?: Array<Element | null>;
 	/** Offer Recipient. */
 	party?: Array<Contract_Term_Offer_Party>;
 	/** Security labels that protects the offer. */
-	securityLabelNumber?: Array<number>;
+	securityLabelNumber?: Array<number | null>;
 	/** Extensions for securityLabelNumber */
-	_securityLabelNumber?: Array<Element>;
+	_securityLabelNumber?: Array<Element | null>;
 	/** Human readable form of this Contract Offer. */
 	text?: string;
 	/** Extensions for text */
@@ -73,11 +74,21 @@ export const Contract_Term_OfferSchemaInternal =
 		decision: z.lazy(getCodeableConceptSchema).optional(),
 		decisionMode: z.lazy(getCodeableConceptSchema).array().optional(),
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		linkId: fhirString().array().optional(),
-		_linkId: z.lazy(getElementSchema).array().optional(),
+		linkId: fhirString().nullable().array().optional(),
+		_linkId: z.lazy(getElementSchema).nullable().array().optional(),
 		party: z.lazy(getContract_Term_Offer_PartySchema).array().optional(),
-		securityLabelNumber: z.number().int().nonnegative().array().optional(),
-		_securityLabelNumber: z.lazy(getElementSchema).array().optional(),
+		securityLabelNumber: z
+			.number()
+			.int()
+			.nonnegative()
+			.nullable()
+			.array()
+			.optional(),
+		_securityLabelNumber: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		text: fhirString().optional(),
 		_text: z.lazy(getElementSchema).optional(),
 		topic: z.lazy(getReferenceSchema).optional(),
@@ -86,6 +97,20 @@ export const Contract_Term_OfferSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.linkId,
+				record._linkId,
+				"linkId",
+				"_linkId",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.securityLabelNumber,
+				record._securityLabelNumber,
+				"securityLabelNumber",
+				"_securityLabelNumber",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.topic,
 				"topic",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SpecimenDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -56,13 +57,13 @@ export interface SpecimenDefinition extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** The canonical URL pointing to another FHIR-defined SpecimenDefinition that is adhered to in whole or in part by this definition. */
-	derivedFromCanonical?: Array<string>;
+	derivedFromCanonical?: Array<string | null>;
 	/** Extensions for derivedFromCanonical */
-	_derivedFromCanonical?: Array<Element>;
+	_derivedFromCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally-defined type of specimen, guideline or other definition that is adhered to in whole or in part by this definition. */
-	derivedFromUri?: Array<string>;
+	derivedFromUri?: Array<string | null>;
 	/** Extensions for derivedFromUri */
-	_derivedFromUri?: Array<Element>;
+	_derivedFromUri?: Array<Element | null>;
 	/** A free text natural language description of the SpecimenDefinition from the consumer's perspective. */
 	description?: string;
 	/** Extensions for description */
@@ -171,10 +172,14 @@ export const SpecimenDefinitionSchemaInternal =
 		_copyrightLabel: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		derivedFromCanonical: fhirCanonical().array().optional(),
-		_derivedFromCanonical: z.lazy(getElementSchema).array().optional(),
-		derivedFromUri: fhirUri().array().optional(),
-		_derivedFromUri: z.lazy(getElementSchema).array().optional(),
+		derivedFromCanonical: fhirCanonical().nullable().array().optional(),
+		_derivedFromCanonical: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
+		derivedFromUri: fhirUri().nullable().array().optional(),
+		_derivedFromUri: z.lazy(getElementSchema).nullable().array().optional(),
 		description: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -247,6 +252,20 @@ export const SpecimenDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.derivedFromCanonical,
+				record._derivedFromCanonical,
+				"derivedFromCanonical",
+				"_derivedFromCanonical",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.derivedFromUri,
+				record._derivedFromUri,
+				"derivedFromUri",
+				"_derivedFromUri",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.subjectReference,
 				"subjectReference",

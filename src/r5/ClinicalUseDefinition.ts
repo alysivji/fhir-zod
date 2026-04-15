@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalUseDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCanonical } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { ClinicalUseDefinition_Contraindication } from "./ClinicalUseDefinition_Contraindication";
@@ -40,9 +41,9 @@ export interface ClinicalUseDefinition extends DomainResource {
 	/** Specifics for when this is an interaction. */
 	interaction?: ClinicalUseDefinition_Interaction;
 	/** Logic used by the clinical use definition. */
-	library?: Array<string>;
+	library?: Array<string | null>;
 	/** Extensions for library */
-	_library?: Array<Element>;
+	_library?: Array<Element | null>;
 	/** The population group to which this applies. */
 	population?: Array<Reference>;
 	/** This is a ClinicalUseDefinition resource. */
@@ -100,8 +101,8 @@ export const ClinicalUseDefinitionSchemaInternal =
 		identifier: z.lazy(getIdentifierSchema).array().optional(),
 		indication: z.lazy(getClinicalUseDefinition_IndicationSchema).optional(),
 		interaction: z.lazy(getClinicalUseDefinition_InteractionSchema).optional(),
-		library: fhirCanonical().array().optional(),
-		_library: z.lazy(getElementSchema).array().optional(),
+		library: fhirCanonical().nullable().array().optional(),
+		_library: z.lazy(getElementSchema).nullable().array().optional(),
 		population: z.lazy(getReferenceSchema).array().optional(),
 		resourceType: z.literal("ClinicalUseDefinition"),
 		status: z.lazy(getCodeableConceptSchema).optional(),
@@ -122,6 +123,13 @@ export const ClinicalUseDefinitionSchemaInternal =
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.library,
+				record._library,
+				"library",
+				"_library",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.population,
 				"population",

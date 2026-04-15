@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -62,9 +63,9 @@ export interface StructureMap extends DomainResource {
 	/** A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance. */
 	identifier?: Array<Identifier>;
 	/** Other maps used by this map (canonical URLs). */
-	import?: Array<string>;
+	import?: Array<string | null>;
 	/** Extensions for import */
-	_import?: Array<Element>;
+	_import?: Array<Element | null>;
 	/** A legal or geographic region in which the structure map is intended to be used. */
 	jurisdiction?: Array<CodeableConcept>;
 	/** A natural language name identifying the structure map. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
@@ -150,8 +151,8 @@ export const StructureMapSchemaInternal = DomainResourceSchemaInternal.extend({
 	_experimental: z.lazy(getElementSchema).optional(),
 	group: z.lazy(getStructureMap_GroupSchema).array(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	import: fhirCanonical().array().optional(),
-	_import: z.lazy(getElementSchema).array().optional(),
+	import: fhirCanonical().nullable().array().optional(),
+	_import: z.lazy(getElementSchema).nullable().array().optional(),
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 	name: fhirString(),
 	_name: z.lazy(getElementSchema).optional(),
@@ -192,6 +193,13 @@ export const StructureMapSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [versionAlgorithm_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.import,
+			record._import,
+			"import",
+			"_import",
+			ctx,
+		);
 	});
 
 export const StructureMapSchema =

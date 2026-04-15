@@ -105,6 +105,10 @@ describe("generated declarations", () => {
 			join(outDir, "src", "r4b", "Quantity.d.ts"),
 			"utf8",
 		);
+		const r4bTimingDts = readFileSync(
+			join(outDir, "src", "r4b", "Timing.d.ts"),
+			"utf8",
+		);
 
 		expect(r4bBundleDts).toContain("export interface Bundle extends Resource");
 		expect(r4bBundleDts).toContain(
@@ -120,6 +124,8 @@ describe("generated declarations", () => {
 		expect(r4bQuantityDts).toContain(
 			"export interface Quantity extends Element",
 		);
+		expect(r4bTimingDts).toContain("event?: Array<string | null>;");
+		expect(r4bTimingDts).toContain("_event?: Array<Element | null>;");
 		expect(r4bIndexDts).toContain('export type { Patient } from "./Patient";');
 		expect(r4bIndexDts).toContain('export { PatientSchema } from "./Patient";');
 	}, 30_000);

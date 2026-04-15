@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -90,9 +91,9 @@ export interface MedicationKnowledge extends DomainResource {
 	/** Extensions for status */
 	_status?: Element;
 	/** Additional names for a medication, for example, the name(s) given to a medication in different countries.  For example, acetaminophen and paracetamol or salbutamol and albuterol. */
-	synonym?: Array<string>;
+	synonym?: Array<string | null>;
 	/** Extensions for synonym */
-	_synonym?: Array<Element>;
+	_synonym?: Array<Element | null>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
@@ -188,12 +189,19 @@ export const MedicationKnowledgeSchemaInternal =
 		resourceType: z.literal("MedicationKnowledge"),
 		status: z.enum(["active", "entered-in-error", "inactive"]).optional(),
 		_status: z.lazy(getElementSchema).optional(),
-		synonym: fhirString().array().optional(),
-		_synonym: z.lazy(getElementSchema).array().optional(),
+		synonym: fhirString().nullable().array().optional(),
+		_synonym: z.lazy(getElementSchema).nullable().array().optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
 			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.synonym,
+				record._synonym,
+				"synonym",
+				"_synonym",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.associatedMedication,
 				"associatedMedication",

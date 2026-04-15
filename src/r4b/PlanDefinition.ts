@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PlanDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -80,9 +81,9 @@ export interface PlanDefinition extends DomainResource {
 	/** Extensions for lastReviewDate */
 	_lastReviewDate?: Element;
 	/** A reference to a Library resource containing any formal logic used by the plan definition. */
-	library?: Array<string>;
+	library?: Array<string | null>;
 	/** Extensions for library */
-	_library?: Array<Element>;
+	_library?: Array<Element | null>;
 	/** A natural language name identifying the plan definition. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
 	name?: string;
 	/** Extensions for name */
@@ -186,8 +187,8 @@ export const PlanDefinitionSchemaInternal = DomainResourceSchemaInternal.extend(
 		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 		lastReviewDate: fhirDate().optional(),
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		library: fhirCanonical().array().optional(),
-		_library: z.lazy(getElementSchema).array().optional(),
+		library: fhirCanonical().nullable().array().optional(),
+		_library: z.lazy(getElementSchema).nullable().array().optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
 		publisher: fhirString().optional(),
@@ -234,6 +235,13 @@ export const PlanDefinitionSchemaInternal = DomainResourceSchemaInternal.extend(
 				path: [subject_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.library,
+			record._library,
+			"library",
+			"_library",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.subjectReference,
 			"subjectReference",

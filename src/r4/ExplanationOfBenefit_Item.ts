@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirDate } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
@@ -34,17 +35,17 @@ export interface ExplanationOfBenefit_Item extends BackboneElement {
 	/** Physical service site on the patient (limb, tooth, etc.). */
 	bodySite?: CodeableConcept;
 	/** Care team members related to this service or product. */
-	careTeamSequence?: Array<number>;
+	careTeamSequence?: Array<number | null>;
 	/** Extensions for careTeamSequence */
-	_careTeamSequence?: Array<Element>;
+	_careTeamSequence?: Array<Element | null>;
 	/** Code to identify the general type of benefits under which products and services are provided. */
 	category?: CodeableConcept;
 	/** Second-tier of goods and services. */
 	detail?: Array<ExplanationOfBenefit_Item_Detail>;
 	/** Diagnoses applicable for this service or product. */
-	diagnosisSequence?: Array<number>;
+	diagnosisSequence?: Array<number | null>;
 	/** Extensions for diagnosisSequence */
-	_diagnosisSequence?: Array<Element>;
+	_diagnosisSequence?: Array<Element | null>;
 	/** A billed item may include goods or services provided in multiple encounters. */
 	encounter?: Array<Reference>;
 	/** A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount. */
@@ -52,9 +53,9 @@ export interface ExplanationOfBenefit_Item extends BackboneElement {
 	/** Extensions for factor */
 	_factor?: Element;
 	/** Exceptions, special conditions and supporting information applicable for this service or product. */
-	informationSequence?: Array<number>;
+	informationSequence?: Array<number | null>;
 	/** Extensions for informationSequence */
-	_informationSequence?: Array<Element>;
+	_informationSequence?: Array<Element | null>;
 	/** Where the product or service was provided. */
 	locationAddress?: Address;
 	/** Where the product or service was provided. */
@@ -66,13 +67,13 @@ export interface ExplanationOfBenefit_Item extends BackboneElement {
 	/** The quantity times the unit price for an additional service or product or charge. */
 	net?: Money;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** Procedures applicable for this service or product. */
-	procedureSequence?: Array<number>;
+	procedureSequence?: Array<number | null>;
 	/** Extensions for procedureSequence */
-	_procedureSequence?: Array<Element>;
+	_procedureSequence?: Array<Element | null>;
 	/** When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item. */
 	productOrService: CodeableConcept;
 	/** Identifies the program under which this may be recovered. */
@@ -128,29 +129,51 @@ export const ExplanationOfBenefit_ItemSchemaInternal =
 			.array()
 			.optional(),
 		bodySite: z.lazy(getCodeableConceptSchema).optional(),
-		careTeamSequence: z.number().int().positive().array().optional(),
-		_careTeamSequence: z.lazy(getElementSchema).array().optional(),
+		careTeamSequence: z.number().int().positive().nullable().array().optional(),
+		_careTeamSequence: z.lazy(getElementSchema).nullable().array().optional(),
 		category: z.lazy(getCodeableConceptSchema).optional(),
 		detail: z
 			.lazy(getExplanationOfBenefit_Item_DetailSchema)
 			.array()
 			.optional(),
-		diagnosisSequence: z.number().int().positive().array().optional(),
-		_diagnosisSequence: z.lazy(getElementSchema).array().optional(),
+		diagnosisSequence: z
+			.number()
+			.int()
+			.positive()
+			.nullable()
+			.array()
+			.optional(),
+		_diagnosisSequence: z.lazy(getElementSchema).nullable().array().optional(),
 		encounter: z.lazy(getReferenceSchema).array().optional(),
 		factor: z.number().optional(),
 		_factor: z.lazy(getElementSchema).optional(),
-		informationSequence: z.number().int().positive().array().optional(),
-		_informationSequence: z.lazy(getElementSchema).array().optional(),
+		informationSequence: z
+			.number()
+			.int()
+			.positive()
+			.nullable()
+			.array()
+			.optional(),
+		_informationSequence: z
+			.lazy(getElementSchema)
+			.nullable()
+			.array()
+			.optional(),
 		locationAddress: z.lazy(getAddressSchema).optional(),
 		locationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		locationReference: z.lazy(getReferenceSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
-		procedureSequence: z.number().int().positive().array().optional(),
-		_procedureSequence: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
+		procedureSequence: z
+			.number()
+			.int()
+			.positive()
+			.nullable()
+			.array()
+			.optional(),
+		_procedureSequence: z.lazy(getElementSchema).nullable().array().optional(),
 		productOrService: z.lazy(getCodeableConceptSchema),
 		programCode: z.lazy(getCodeableConceptSchema).array().optional(),
 		quantity: z.lazy(getQuantitySchema).optional(),
@@ -191,6 +214,41 @@ export const ExplanationOfBenefit_ItemSchemaInternal =
 					path: [serviced_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.careTeamSequence,
+				record._careTeamSequence,
+				"careTeamSequence",
+				"_careTeamSequence",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.diagnosisSequence,
+				record._diagnosisSequence,
+				"diagnosisSequence",
+				"_diagnosisSequence",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.informationSequence,
+				record._informationSequence,
+				"informationSequence",
+				"_informationSequence",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.procedureSequence,
+				record._procedureSequence,
+				"procedureSequence",
+				"_procedureSequence",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.encounter,
 				"encounter",

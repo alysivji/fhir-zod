@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CodeSystem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirCode, fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -31,9 +32,10 @@ export interface CodeSystem_Filter extends BackboneElement {
 		| "is-not-a"
 		| "not-in"
 		| "regex"
+		| null
 	>;
 	/** Extensions for operator */
-	_operator?: Array<Element>;
+	_operator?: Array<Element | null>;
 	/** A description of what the value for the filter should be. */
 	value: string;
 	/** Extensions for value */
@@ -62,11 +64,23 @@ export const CodeSystem_FilterSchemaInternal =
 				"not-in",
 				"regex",
 			])
+			.nullable()
 			.array(),
-		_operator: z.lazy(getElementSchema).array().optional(),
+		_operator: z.lazy(getElementSchema).nullable().array().optional(),
 		value: fhirString(),
 		_value: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.operator,
+				record._operator,
+				"operator",
+				"_operator",
+				ctx,
+			);
+		});
 
 export const CodeSystem_FilterSchema =
 	CodeSystem_FilterSchemaInternal as z.ZodType<CodeSystem_Filter>;

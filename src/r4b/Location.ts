@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Location
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Address } from "./Address";
@@ -32,9 +33,9 @@ export interface Location extends DomainResource {
 	/** Physical location. */
 	address?: Address;
 	/** A list of alternate names that the location is known as, or was known as, in the past. */
-	alias?: Array<string>;
+	alias?: Array<string | null>;
 	/** Extensions for alias */
-	_alias?: Array<Element>;
+	_alias?: Array<Element | null>;
 	/** A description of when the locations opening ours are different to normal, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as detailed in the opening hours Times. */
 	availabilityExceptions?: string;
 	/** Extensions for availabilityExceptions */
@@ -102,8 +103,8 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const LocationSchemaInternal = DomainResourceSchemaInternal.extend({
 	address: z.lazy(getAddressSchema).optional(),
-	alias: fhirString().array().optional(),
-	_alias: z.lazy(getElementSchema).array().optional(),
+	alias: fhirString().nullable().array().optional(),
+	_alias: z.lazy(getElementSchema).nullable().array().optional(),
 	availabilityExceptions: fhirString().optional(),
 	_availabilityExceptions: z.lazy(getElementSchema).optional(),
 	description: fhirString().optional(),
@@ -132,6 +133,13 @@ export const LocationSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.alias,
+			record._alias,
+			"alias",
+			"_alias",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.endpoint,
 			"endpoint",

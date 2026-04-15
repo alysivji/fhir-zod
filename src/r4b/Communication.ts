@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Communication
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -40,13 +41,13 @@ export interface Communication extends DomainResource {
 	/** Prior communication that this communication is in response to. */
 	inResponseTo?: Array<Reference>;
 	/** The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Communication. */
-	instantiatesCanonical?: Array<string>;
+	instantiatesCanonical?: Array<string | null>;
 	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element>;
+	_instantiatesCanonical?: Array<Element | null>;
 	/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Communication. */
-	instantiatesUri?: Array<string>;
+	instantiatesUri?: Array<string | null>;
 	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element>;
+	_instantiatesUri?: Array<Element | null>;
 	/** A channel that was used for this communication (e.g. email, fax). */
 	medium?: Array<CodeableConcept>;
 	/** Additional notes or commentary about the communication by the sender, receiver or other interested parties. */
@@ -118,10 +119,14 @@ export const CommunicationSchemaInternal = DomainResourceSchemaInternal.extend({
 	encounter: z.lazy(getReferenceSchema).optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	inResponseTo: z.lazy(getReferenceSchema).array().optional(),
-	instantiatesCanonical: fhirCanonical().array().optional(),
-	_instantiatesCanonical: z.lazy(getElementSchema).array().optional(),
-	instantiatesUri: fhirUri().array().optional(),
-	_instantiatesUri: z.lazy(getElementSchema).array().optional(),
+	instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+	_instantiatesCanonical: z
+		.lazy(getElementSchema)
+		.nullable()
+		.array()
+		.optional(),
+	instantiatesUri: fhirUri().nullable().array().optional(),
+	_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
 	medium: z.lazy(getCodeableConceptSchema).array().optional(),
 	note: z.lazy(getAnnotationSchema).array().optional(),
 	partOf: z.lazy(getReferenceSchema).array().optional(),
@@ -155,6 +160,20 @@ export const CommunicationSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.instantiatesCanonical,
+			record._instantiatesCanonical,
+			"instantiatesCanonical",
+			"_instantiatesCanonical",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.instantiatesUri,
+			record._instantiatesUri,
+			"instantiatesUri",
+			"_instantiatesUri",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.about,
 			"about",

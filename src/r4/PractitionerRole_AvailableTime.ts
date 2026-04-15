@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PractitionerRole
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T00:02:07.682Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirTime } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -25,9 +26,11 @@ export interface PractitionerRole_AvailableTime extends BackboneElement {
 	/** Extensions for availableStartTime */
 	_availableStartTime?: Element;
 	/** Indicates which days of the week are available between the start and end Times. */
-	daysOfWeek?: Array<"fri" | "mon" | "sat" | "sun" | "thu" | "tue" | "wed">;
+	daysOfWeek?: Array<
+		"fri" | "mon" | "sat" | "sun" | "thu" | "tue" | "wed" | null
+	>;
 	/** Extensions for daysOfWeek */
-	_daysOfWeek?: Array<Element>;
+	_daysOfWeek?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
@@ -44,10 +47,22 @@ export const PractitionerRole_AvailableTimeSchemaInternal =
 		_availableStartTime: z.lazy(getElementSchema).optional(),
 		daysOfWeek: z
 			.enum(["fri", "mon", "sat", "sun", "thu", "tue", "wed"])
+			.nullable()
 			.array()
 			.optional(),
-		_daysOfWeek: z.lazy(getElementSchema).array().optional(),
-	}).strict();
+		_daysOfWeek: z.lazy(getElementSchema).nullable().array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.daysOfWeek,
+				record._daysOfWeek,
+				"daysOfWeek",
+				"_daysOfWeek",
+				ctx,
+			);
+		});
 
 export const PractitionerRole_AvailableTimeSchema =
 	PractitionerRole_AvailableTimeSchemaInternal as z.ZodType<PractitionerRole_AvailableTime>;

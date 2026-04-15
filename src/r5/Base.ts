@@ -1,12 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Base
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-05T15:32:44.350Z
+// Last generated: 2026-04-15T00:08:33.059Z
 
 import * as z from "zod";
 
 /** Base Type: Base definition for all types defined in FHIR type system. */
-export type Base = {};
+export type Base = Record<never, never>;
 
 /** @internal */
 export const BaseSchemaInternal = z.object({}).strict();

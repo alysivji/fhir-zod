@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { ClaimResponse_AddItem_Detail_SubDetail } from "./ClaimResponse_AddItem_Detail_SubDetail";
@@ -30,9 +31,9 @@ export interface ClaimResponse_AddItem_Detail extends BackboneElement {
 	/** The quantity times the unit price for an additional service or product or charge. */
 	net?: Money;
 	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number>;
+	noteNumber?: Array<number | null>;
 	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element>;
+	_noteNumber?: Array<Element | null>;
 	/** When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item. */
 	productOrService: CodeableConcept;
 	/** The number of repetitions of a service or product. */
@@ -63,8 +64,8 @@ export const ClaimResponse_AddItem_DetailSchemaInternal =
 		_factor: z.lazy(getElementSchema).optional(),
 		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
 		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).array().optional(),
+		noteNumber: z.number().int().positive().nullable().array().optional(),
+		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
 		productOrService: z.lazy(getCodeableConceptSchema),
 		quantity: z.lazy(getQuantitySchema).optional(),
 		subDetail: z
@@ -72,7 +73,18 @@ export const ClaimResponse_AddItem_DetailSchemaInternal =
 			.array()
 			.optional(),
 		unitPrice: z.lazy(getMoneySchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.noteNumber,
+				record._noteNumber,
+				"noteNumber",
+				"_noteNumber",
+				ctx,
+			);
+		});
 
 export const ClaimResponse_AddItem_DetailSchema =
 	ClaimResponse_AddItem_DetailSchemaInternal as z.ZodType<ClaimResponse_AddItem_Detail>;

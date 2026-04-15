@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Address
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirId, fhirString } from "../shared/fhir-primitives";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
@@ -27,9 +28,9 @@ export interface Address extends Element {
 	/** Extensions for district */
 	_district?: Element;
 	/** This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information. */
-	line?: Array<string>;
+	line?: Array<string | null>;
 	/** Extensions for line */
-	_line?: Array<Element>;
+	_line?: Array<Element | null>;
 	/** Time period when address was/is in use. */
 	period?: Period;
 	/** A postal code designating a region defined by the postal service. */
@@ -73,8 +74,8 @@ export const AddressSchemaInternal = z
 		extension: z.lazy(getExtensionSchema).array().optional(),
 		id: fhirId().optional(),
 		_id: z.lazy(getElementSchema).optional(),
-		line: fhirString().array().optional(),
-		_line: z.lazy(getElementSchema).array().optional(),
+		line: fhirString().nullable().array().optional(),
+		_line: z.lazy(getElementSchema).nullable().array().optional(),
 		period: z.lazy(getPeriodSchema).optional(),
 		postalCode: fhirString().optional(),
 		_postalCode: z.lazy(getElementSchema).optional(),
@@ -87,6 +88,10 @@ export const AddressSchemaInternal = z
 		use: z.enum(["billing", "home", "old", "temp", "work"]).optional(),
 		_use: z.lazy(getElementSchema).optional(),
 	})
-	.strict();
+	.strict()
+	.superRefine((value, ctx) => {
+		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(record.line, record._line, "line", "_line", ctx);
+	});
 
 export const AddressSchema = AddressSchemaInternal as z.ZodType<Address>;

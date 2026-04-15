@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -58,9 +59,9 @@ export interface ChargeItemDefinition extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** The URL pointing to an externally-defined charge item definition that is adhered to in whole or in part by this definition. */
-	derivedFromUri?: Array<string>;
+	derivedFromUri?: Array<string | null>;
 	/** Extensions for derivedFromUri */
-	_derivedFromUri?: Array<Element>;
+	_derivedFromUri?: Array<Element | null>;
 	/** A free text natural language description of the charge item definition from a consumer's perspective. */
 	description?: string;
 	/** Extensions for description */
@@ -84,9 +85,9 @@ export interface ChargeItemDefinition extends DomainResource {
 	/** Extensions for name */
 	_name?: Element;
 	/** A larger definition of which this particular definition is a component or step. */
-	partOf?: Array<string>;
+	partOf?: Array<string | null>;
 	/** Extensions for partOf */
-	_partOf?: Array<Element>;
+	_partOf?: Array<Element | null>;
 	/** Group of properties which are applicable under the same conditions. If no applicability rules are established for the group, then all properties always apply. */
 	propertyGroup?: Array<ChargeItemDefinition_PropertyGroup>;
 	/** The name of the organization or individual responsible for the release and ongoing maintenance of the charge item definition. */
@@ -98,9 +99,9 @@ export interface ChargeItemDefinition extends DomainResource {
 	/** Extensions for purpose */
 	_purpose?: Element;
 	/** As new versions of a protocol or guideline are defined, allows identification of what versions are replaced by a new instance. */
-	replaces?: Array<string>;
+	replaces?: Array<string | null>;
 	/** Extensions for replaces */
-	_replaces?: Array<Element>;
+	_replaces?: Array<Element | null>;
 	/** This is a ChargeItemDefinition resource. */
 	resourceType: "ChargeItemDefinition";
 	/** The current state of the ChargeItemDefinition. */
@@ -170,8 +171,8 @@ export const ChargeItemDefinitionSchemaInternal =
 		_copyrightLabel: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		derivedFromUri: fhirUri().array().optional(),
-		_derivedFromUri: z.lazy(getElementSchema).array().optional(),
+		derivedFromUri: fhirUri().nullable().array().optional(),
+		_derivedFromUri: z.lazy(getElementSchema).nullable().array().optional(),
 		description: z
 			.string()
 			.regex(/^[\s\S]+$/)
@@ -186,8 +187,8 @@ export const ChargeItemDefinitionSchemaInternal =
 		_lastReviewDate: z.lazy(getElementSchema).optional(),
 		name: fhirString().optional(),
 		_name: z.lazy(getElementSchema).optional(),
-		partOf: fhirCanonical().array().optional(),
-		_partOf: z.lazy(getElementSchema).array().optional(),
+		partOf: fhirCanonical().nullable().array().optional(),
+		_partOf: z.lazy(getElementSchema).nullable().array().optional(),
 		propertyGroup: z
 			.lazy(getChargeItemDefinition_PropertyGroupSchema)
 			.array()
@@ -199,8 +200,8 @@ export const ChargeItemDefinitionSchemaInternal =
 			.regex(/^[\s\S]+$/)
 			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
-		replaces: fhirCanonical().array().optional(),
-		_replaces: z.lazy(getElementSchema).array().optional(),
+		replaces: fhirCanonical().nullable().array().optional(),
+		_replaces: z.lazy(getElementSchema).nullable().array().optional(),
 		resourceType: z.literal("ChargeItemDefinition"),
 		status: z.enum(["active", "draft", "retired", "unknown"]),
 		_status: z.lazy(getElementSchema).optional(),
@@ -230,6 +231,27 @@ export const ChargeItemDefinitionSchemaInternal =
 					path: [versionAlgorithm_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.derivedFromUri,
+				record._derivedFromUri,
+				"derivedFromUri",
+				"_derivedFromUri",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.partOf,
+				record._partOf,
+				"partOf",
+				"_partOf",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.replaces,
+				record._replaces,
+				"replaces",
+				"_replaces",
+				ctx,
+			);
 			validateReferenceTarget(
 				record.instance,
 				"instance",

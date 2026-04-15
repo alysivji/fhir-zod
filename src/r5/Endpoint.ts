@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Endpoint
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString, fhirUrl } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { CodeableConcept } from "./CodeableConcept";
@@ -40,9 +41,9 @@ export interface Endpoint extends DomainResource {
 	/** The type of environment(s) exposed at this endpoint (dev, prod, test, etc.). */
 	environmentType?: Array<CodeableConcept>;
 	/** Additional headers / information to send as part of the notification. */
-	header?: Array<string>;
+	header?: Array<string | null>;
 	/** Extensions for header */
-	_header?: Array<Element>;
+	_header?: Array<Element | null>;
 	/** Identifier for the organization that is used to identify the endpoint across multiple disparate systems. */
 	identifier?: Array<Identifier>;
 	/** The organization that manages this endpoint (even if technically another organization is hosting this in the cloud, it is the organization associated with the data). */
@@ -87,8 +88,8 @@ export const EndpointSchemaInternal = DomainResourceSchemaInternal.extend({
 	description: fhirString().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	environmentType: z.lazy(getCodeableConceptSchema).array().optional(),
-	header: fhirString().array().optional(),
-	_header: z.lazy(getElementSchema).array().optional(),
+	header: fhirString().nullable().array().optional(),
+	_header: z.lazy(getElementSchema).nullable().array().optional(),
 	identifier: z.lazy(getIdentifierSchema).array().optional(),
 	managingOrganization: z.lazy(getReferenceSchema).optional(),
 	name: fhirString().optional(),
@@ -102,6 +103,13 @@ export const EndpointSchemaInternal = DomainResourceSchemaInternal.extend({
 	.strict()
 	.superRefine((value, ctx) => {
 		const record = value as Record<string, unknown>;
+		validatePrimitiveArrayPair(
+			record.header,
+			record._header,
+			"header",
+			"_header",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.managingOrganization,
 			"managingOrganization",

@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Requirements
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-15T00:02:33.197Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDateTime,
@@ -31,9 +32,9 @@ import { UsageContextSchemaInternal } from "./UsageContext";
 /** The Requirements resource is used to describe an actor - a human or an application that plays a role in data exchange, and that may have obligations associated with the role the actor plays. */
 export interface Requirements extends DomainResource {
 	/** An actor these requirements are in regard to. */
-	actor?: Array<string>;
+	actor?: Array<string | null>;
 	/** Extensions for actor */
-	_actor?: Array<Element>;
+	_actor?: Array<Element | null>;
 	/** Contact details to assist a user in finding and communicating with the publisher. */
 	contact?: Array<ContactDetail>;
 	/** A copyright statement relating to the Requirements and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the Requirements. */
@@ -49,9 +50,9 @@ export interface Requirements extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** Another set of Requirements that this set of Requirements builds on and updates. */
-	derivedFrom?: Array<string>;
+	derivedFrom?: Array<string | null>;
 	/** Extensions for derivedFrom */
-	_derivedFrom?: Array<Element>;
+	_derivedFrom?: Array<Element | null>;
 	/** A free text natural language description of the requirements. */
 	description?: string;
 	/** Extensions for description */
@@ -77,9 +78,9 @@ export interface Requirements extends DomainResource {
 	/** Extensions for purpose */
 	_purpose?: Element;
 	/** A reference to another artifact that created this set of requirements. This could be a Profile, etc., or external regulation, or business requirements expressed elsewhere. */
-	reference?: Array<string>;
+	reference?: Array<string | null>;
 	/** Extensions for reference */
-	_reference?: Array<Element>;
+	_reference?: Array<Element | null>;
 	/** This is a Requirements resource. */
 	resourceType: "Requirements";
 	/** The actual statement of requirement, in markdown format. */
@@ -127,8 +128,8 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 
 /** @internal */
 export const RequirementsSchemaInternal = DomainResourceSchemaInternal.extend({
-	actor: fhirCanonical().array().optional(),
-	_actor: z.lazy(getElementSchema).array().optional(),
+	actor: fhirCanonical().nullable().array().optional(),
+	_actor: z.lazy(getElementSchema).nullable().array().optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
 	copyright: z
 		.string()
@@ -139,8 +140,8 @@ export const RequirementsSchemaInternal = DomainResourceSchemaInternal.extend({
 	_copyrightLabel: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	derivedFrom: fhirCanonical().array().optional(),
-	_derivedFrom: z.lazy(getElementSchema).array().optional(),
+	derivedFrom: fhirCanonical().nullable().array().optional(),
+	_derivedFrom: z.lazy(getElementSchema).nullable().array().optional(),
 	description: z
 		.string()
 		.regex(/^[\s\S]+$/)
@@ -159,8 +160,8 @@ export const RequirementsSchemaInternal = DomainResourceSchemaInternal.extend({
 		.regex(/^[\s\S]+$/)
 		.optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
-	reference: fhirUrl().array().optional(),
-	_reference: z.lazy(getElementSchema).array().optional(),
+	reference: fhirUrl().nullable().array().optional(),
+	_reference: z.lazy(getElementSchema).nullable().array().optional(),
 	resourceType: z.literal("Requirements"),
 	statement: z.lazy(getRequirements_StatementSchema).array().optional(),
 	status: z.enum(["active", "draft", "retired", "unknown"]),
@@ -191,6 +192,27 @@ export const RequirementsSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [versionAlgorithm_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.actor,
+			record._actor,
+			"actor",
+			"_actor",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.derivedFrom,
+			record._derivedFrom,
+			"derivedFrom",
+			"_derivedFrom",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.reference,
+			record._reference,
+			"reference",
+			"_reference",
+			ctx,
+		);
 	});
 
 export const RequirementsSchema =

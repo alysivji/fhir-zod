@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import { fhirString } from "../shared/fhir-primitives";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
@@ -22,9 +23,9 @@ export interface MedicationKnowledge_AdministrationGuidelines_PatientCharacteris
 	/** Specific characteristic that is relevant to the administration guideline (e.g. height, weight, gender). */
 	characteristicQuantity?: Quantity;
 	/** The specific characteristic (e.g. height, weight, gender, etc.). */
-	value?: Array<string>;
+	value?: Array<string | null>;
 	/** Extensions for value */
-	_value?: Array<Element>;
+	_value?: Array<Element | null>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
@@ -39,8 +40,8 @@ export const MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
 	BackboneElementSchemaInternal.extend({
 		characteristicCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
 		characteristicQuantity: z.lazy(getQuantitySchema).optional(),
-		value: fhirString().array().optional(),
-		_value: z.lazy(getElementSchema).array().optional(),
+		value: fhirString().nullable().array().optional(),
+		_value: z.lazy(getElementSchema).nullable().array().optional(),
 	})
 		.strict()
 		.superRefine((value, ctx) => {
@@ -65,6 +66,13 @@ export const MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
 					path: [characteristic_x_Present[0]],
 				});
 			}
+			validatePrimitiveArrayPair(
+				record.value,
+				record._value,
+				"value",
+				"_value",
+				ctx,
+			);
 		});
 
 export const MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsSchema =

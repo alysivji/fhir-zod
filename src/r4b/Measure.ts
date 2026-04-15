@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Measure
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirDate,
@@ -60,9 +61,9 @@ export interface Measure extends DomainResource {
 	/** Extensions for date */
 	_date?: Element;
 	/** Provides a description of an individual term used within the measure. */
-	definition?: Array<string>;
+	definition?: Array<string | null>;
 	/** Extensions for definition */
-	_definition?: Array<Element>;
+	_definition?: Array<Element | null>;
 	/** A free text natural language description of the measure from a consumer's perspective. */
 	description?: string;
 	/** Extensions for description */
@@ -98,9 +99,9 @@ export interface Measure extends DomainResource {
 	/** Extensions for lastReviewDate */
 	_lastReviewDate?: Element;
 	/** A reference to a Library resource containing the formal logic used by the measure. */
-	library?: Array<string>;
+	library?: Array<string | null>;
 	/** Extensions for library */
-	_library?: Array<Element>;
+	_library?: Array<Element | null>;
 	/** A natural language name identifying the measure. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
 	name?: string;
 	/** Extensions for name */
@@ -206,8 +207,8 @@ export const MeasureSchemaInternal = DomainResourceSchemaInternal.extend({
 	_copyright: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	definition: z.string().array().optional(),
-	_definition: z.lazy(getElementSchema).array().optional(),
+	definition: z.string().nullable().array().optional(),
+	_definition: z.lazy(getElementSchema).nullable().array().optional(),
 	description: z.string().optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	disclaimer: z.string().optional(),
@@ -225,8 +226,8 @@ export const MeasureSchemaInternal = DomainResourceSchemaInternal.extend({
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 	lastReviewDate: fhirDate().optional(),
 	_lastReviewDate: z.lazy(getElementSchema).optional(),
-	library: fhirCanonical().array().optional(),
-	_library: z.lazy(getElementSchema).array().optional(),
+	library: fhirCanonical().nullable().array().optional(),
+	_library: z.lazy(getElementSchema).nullable().array().optional(),
 	name: fhirString().optional(),
 	_name: z.lazy(getElementSchema).optional(),
 	publisher: fhirString().optional(),
@@ -280,6 +281,20 @@ export const MeasureSchemaInternal = DomainResourceSchemaInternal.extend({
 				path: [subject_x_Present[0]],
 			});
 		}
+		validatePrimitiveArrayPair(
+			record.definition,
+			record._definition,
+			"definition",
+			"_definition",
+			ctx,
+		);
+		validatePrimitiveArrayPair(
+			record.library,
+			record._library,
+			"library",
+			"_library",
+			ctx,
+		);
 		validateReferenceTarget(
 			record.subjectReference,
 			"subjectReference",

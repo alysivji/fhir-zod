@@ -1,9 +1,10 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SearchParameter
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T00:02:13.224Z
 
 import * as z from "zod";
+import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
 	fhirCanonical,
 	fhirCode,
@@ -171,23 +172,24 @@ export interface SearchParameter extends DomainResource {
 		| "ValueSet"
 		| "VerificationResult"
 		| "VisionPrescription"
+		| null
 	>;
 	/** Extensions for base */
-	_base?: Array<Element>;
+	_base?: Array<Element | null>;
 	/** Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type. */
-	chain?: Array<string>;
+	chain?: Array<string | null>;
 	/** Extensions for chain */
-	_chain?: Array<Element>;
+	_chain?: Array<Element | null>;
 	/** The code used in the URL or the parameter name in a parameters resource for this search parameter. */
 	code: string;
 	/** Extensions for code */
 	_code?: Element;
 	/** Comparators supported for the search parameter. */
 	comparator?: Array<
-		"ap" | "eb" | "eq" | "ge" | "gt" | "le" | "lt" | "ne" | "sa"
+		"ap" | "eb" | "eq" | "ge" | "gt" | "le" | "lt" | "ne" | "sa" | null
 	>;
 	/** Extensions for comparator */
-	_comparator?: Array<Element>;
+	_comparator?: Array<Element | null>;
 	/** Used to define the parts of a composite search parameter. */
 	component?: Array<SearchParameter_Component>;
 	/** Contact details to assist a user in finding and communicating with the publisher. */
@@ -228,9 +230,10 @@ export interface SearchParameter extends DomainResource {
 		| "ofType"
 		| "text"
 		| "type"
+		| null
 	>;
 	/** Extensions for modifier */
-	_modifier?: Array<Element>;
+	_modifier?: Array<Element | null>;
 	/** Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match. */
 	multipleAnd?: boolean;
 	/** Extensions for multipleAnd */
@@ -402,9 +405,10 @@ export interface SearchParameter extends DomainResource {
 		| "ValueSet"
 		| "VerificationResult"
 		| "VisionPrescription"
+		| null
 	>;
 	/** Extensions for target */
-	_target?: Array<Element>;
+	_target?: Array<Element | null>;
 	/** The type of value that a search parameter may contain, and how the content is interpreted. */
 	type:
 		| "composite"
@@ -599,17 +603,19 @@ export const SearchParameterSchemaInternal =
 				"VerificationResult",
 				"VisionPrescription",
 			])
+			.nullable()
 			.array(),
-		_base: z.lazy(getElementSchema).array().optional(),
-		chain: fhirString().array().optional(),
-		_chain: z.lazy(getElementSchema).array().optional(),
+		_base: z.lazy(getElementSchema).nullable().array().optional(),
+		chain: fhirString().nullable().array().optional(),
+		_chain: z.lazy(getElementSchema).nullable().array().optional(),
 		code: fhirCode(),
 		_code: z.lazy(getElementSchema).optional(),
 		comparator: z
 			.enum(["ap", "eb", "eq", "ge", "gt", "le", "lt", "ne", "sa"])
+			.nullable()
 			.array()
 			.optional(),
-		_comparator: z.lazy(getElementSchema).array().optional(),
+		_comparator: z.lazy(getElementSchema).nullable().array().optional(),
 		component: z.lazy(getSearchParameter_ComponentSchema).array().optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		date: fhirDateTime().optional(),
@@ -638,9 +644,10 @@ export const SearchParameterSchemaInternal =
 				"text",
 				"type",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_modifier: z.lazy(getElementSchema).array().optional(),
+		_modifier: z.lazy(getElementSchema).nullable().array().optional(),
 		multipleAnd: z.boolean().optional(),
 		_multipleAnd: z.lazy(getElementSchema).optional(),
 		multipleOr: z.boolean().optional(),
@@ -800,9 +807,10 @@ export const SearchParameterSchemaInternal =
 				"VerificationResult",
 				"VisionPrescription",
 			])
+			.nullable()
 			.array()
 			.optional(),
-		_target: z.lazy(getElementSchema).array().optional(),
+		_target: z.lazy(getElementSchema).nullable().array().optional(),
 		type: z.enum([
 			"composite",
 			"date",
@@ -826,7 +834,46 @@ export const SearchParameterSchemaInternal =
 			.enum(["distance", "nearby", "normal", "other", "phonetic"])
 			.optional(),
 		_xpathUsage: z.lazy(getElementSchema).optional(),
-	}).strict();
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validatePrimitiveArrayPair(
+				record.base,
+				record._base,
+				"base",
+				"_base",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.chain,
+				record._chain,
+				"chain",
+				"_chain",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.comparator,
+				record._comparator,
+				"comparator",
+				"_comparator",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.modifier,
+				record._modifier,
+				"modifier",
+				"_modifier",
+				ctx,
+			);
+			validatePrimitiveArrayPair(
+				record.target,
+				record._target,
+				"target",
+				"_target",
+				ctx,
+			);
+		});
 
 export const SearchParameterSchema =
 	SearchParameterSchemaInternal as z.ZodType<SearchParameter>;
