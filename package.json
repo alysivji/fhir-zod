@@ -36,6 +36,7 @@
 	"scripts": {
 		"build": "npm run typecheck && tsdown",
 		"check": "biome check . && npm run typecheck",
+		"codecov:bundle": "bundle-analyzer ./dist --bundle-name=fhir-zod --ignore-patterns '**/*.map' --upload-token=$BUNDLE_ANALYZER_UPLOAD_TOKEN",
 		"coverage": "vitest run --coverage",
 		"fetch-examples": "node scripts/fetch-examples.ts",
 		"fetch-spec": "node scripts/fetch-spec.ts",
@@ -56,6 +57,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.3",
+		"@codecov/bundle-analyzer": "^2.0.0",
 		"@types/node": "^25.5.0",
 		"@vitest/coverage-v8": "^3.2.4",
 		"esbuild": "^0.27.4",
