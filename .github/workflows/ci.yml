@@ -45,13 +45,31 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Upload bundle analysis to Codecov
+        env:
+          BUNDLE_ANALYZER_UPLOAD_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: |
+          if [ -z "$BUNDLE_ANALYZER_UPLOAD_TOKEN" ]; then
+            echo "Skipping bundle analysis upload because CODECOV_TOKEN is not set."
+            exit 0
+          fi
+          npm run codecov:bundle
+
       - name: Test with coverage
         run: npm run coverage
 
       - name: Upload coverage reports to Codecov
-        if: ${{ success() }}
+        if: ${{ !cancelled() }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
+          fail_ci_if_error: false
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./test-results/vitest.junit.xml
           fail_ci_if_error: false

@@ -39,5 +39,9 @@ export default defineConfig({
 			reporter: ["text", "lcov"],
 		},
 		environment: "node",
+		outputFile: {
+			junit: "./test-results/vitest.junit.xml",
+		},
+		reporters: process.env.CI ? ["default", "junit"] : ["default"],
 	},
 });
