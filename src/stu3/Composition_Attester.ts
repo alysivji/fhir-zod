@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Composition
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -58,8 +58,12 @@ export const Composition_AttesterSchemaInternal =
 			validateReferenceTarget(
 				record.party,
 				"party",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Organization",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				],
+				["Organization", "Patient", "Practitioner"],
 				ctx,
 			);
 		});

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DocumentManifest
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -101,22 +101,38 @@ export const DocumentManifestSchemaInternal =
 			validateReferenceTarget(
 				record.author,
 				"author",
-				["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-				["Practitioner"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Device",
+					"http://hl7.org/fhir/StructureDefinition/Organization",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+				],
+				["Device", "Organization", "Patient", "Practitioner", "RelatedPerson"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.recipient,
 				"recipient",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Organization",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+				],
+				["Organization", "Patient", "Practitioner", "RelatedPerson"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.subject,
 				"subject",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Device",
+					"http://hl7.org/fhir/StructureDefinition/Group",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				],
+				["Device", "Group", "Patient", "Practitioner"],
 				ctx,
 			);
 		});

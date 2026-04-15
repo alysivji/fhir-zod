@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DiagnosticReport
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -37,8 +37,11 @@ export const DiagnosticReport_PerformerSchemaInternal =
 			validateReferenceTarget(
 				record.actor,
 				"actor",
-				["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-				["Practitioner"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Organization",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				],
+				["Organization", "Practitioner"],
 				ctx,
 			);
 		});

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AdverseEvent
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -63,15 +63,30 @@ export const AdverseEvent_SuspectEntitySchemaInternal =
 			validateReferenceTarget(
 				record.causalityAuthor,
 				"causalityAuthor",
-				["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-				["Practitioner"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+					"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+				],
+				["Practitioner", "PractitionerRole"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.instance,
 				"instance",
-				["http://hl7.org/fhir/StructureDefinition/Substance"],
-				["Substance"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Device",
+					"http://hl7.org/fhir/StructureDefinition/Medication",
+					"http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+					"http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+					"http://hl7.org/fhir/StructureDefinition/Substance",
+				],
+				[
+					"Device",
+					"Medication",
+					"MedicationAdministration",
+					"MedicationStatement",
+					"Substance",
+				],
 				ctx,
 			);
 		});

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Group
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -46,8 +46,14 @@ export const Group_MemberSchemaInternal = BackboneElementSchemaInternal.extend({
 		validateReferenceTarget(
 			record.entity,
 			"entity",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Medication",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/Substance",
+			],
+			["Device", "Medication", "Patient", "Practitioner", "Substance"],
 			ctx,
 		);
 	});

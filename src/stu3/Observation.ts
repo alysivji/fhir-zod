@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Observation
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import {
@@ -256,29 +256,56 @@ export const ObservationSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.basedOn,
 			"basedOn",
-			["http://hl7.org/fhir/StructureDefinition/CarePlan"],
-			["CarePlan"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/CarePlan",
+				"http://hl7.org/fhir/StructureDefinition/DeviceRequest",
+				"http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+				"http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+				"http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+				"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+				"http://hl7.org/fhir/StructureDefinition/ReferralRequest",
+			],
+			[
+				"CarePlan",
+				"DeviceRequest",
+				"ImmunizationRecommendation",
+				"MedicationRequest",
+				"NutritionOrder",
+				"ProcedureRequest",
+				"ReferralRequest",
+			],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.device,
 			"device",
-			["http://hl7.org/fhir/StructureDefinition/Device"],
-			["Device"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/DeviceMetric",
+			],
+			["Device", "DeviceMetric"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.performer,
 			"performer",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Organization", "Patient", "Practitioner", "RelatedPerson"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -291,8 +318,13 @@ export const ObservationSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.subject,
 			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/Location",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+			],
+			["Device", "Group", "Location", "Patient"],
 			ctx,
 		);
 	});

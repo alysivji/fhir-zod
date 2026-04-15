@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDate, fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -222,8 +222,11 @@ export const FamilyMemberHistorySchemaInternal =
 			validateReferenceTarget(
 				record.definition,
 				"definition",
-				["http://hl7.org/fhir/StructureDefinition/PlanDefinition"],
-				["PlanDefinition"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/PlanDefinition",
+					"http://hl7.org/fhir/StructureDefinition/Questionnaire",
+				],
+				["PlanDefinition", "Questionnaire"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -236,8 +239,18 @@ export const FamilyMemberHistorySchemaInternal =
 			validateReferenceTarget(
 				record.reasonReference,
 				"reasonReference",
-				["http://hl7.org/fhir/StructureDefinition/Condition"],
-				["Condition"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+					"http://hl7.org/fhir/StructureDefinition/Condition",
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+					"http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+				],
+				[
+					"AllergyIntolerance",
+					"Condition",
+					"Observation",
+					"QuestionnaireResponse",
+				],
 				ctx,
 			);
 		});

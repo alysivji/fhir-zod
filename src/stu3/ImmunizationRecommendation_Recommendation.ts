@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -92,8 +92,11 @@ export const ImmunizationRecommendation_RecommendationSchemaInternal =
 			validateReferenceTarget(
 				record.supportingPatientInformation,
 				"supportingPatientInformation",
-				["http://hl7.org/fhir/StructureDefinition/Observation"],
-				["Observation"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+				],
+				["AllergyIntolerance", "Observation"],
 				ctx,
 			);
 		});

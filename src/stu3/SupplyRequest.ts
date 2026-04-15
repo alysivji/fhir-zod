@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SupplyRequest
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -159,15 +159,22 @@ export const SupplyRequestSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.deliverFrom,
 			"deliverFrom",
-			["http://hl7.org/fhir/StructureDefinition/Organization"],
-			["Organization"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Location",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+			],
+			["Location", "Organization"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.deliverTo,
 			"deliverTo",
-			["http://hl7.org/fhir/StructureDefinition/Organization"],
-			["Organization"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Location",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+			],
+			["Location", "Organization", "Patient"],
 			ctx,
 		);
 		validateReferenceTarget(

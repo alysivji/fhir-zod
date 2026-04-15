@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Person
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -39,8 +39,13 @@ export const Person_LinkSchemaInternal = BackboneElementSchemaInternal.extend({
 		validateReferenceTarget(
 			record.target,
 			"target",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Person",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Patient", "Person", "Practitioner", "RelatedPerson"],
 			ctx,
 		);
 	});

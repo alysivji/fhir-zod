@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Media
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -148,15 +148,21 @@ export const MediaSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.device,
 			"device",
-			["http://hl7.org/fhir/StructureDefinition/Device"],
-			["Device"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/DeviceMetric",
+			],
+			["Device", "DeviceMetric"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -169,8 +175,14 @@ export const MediaSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.subject,
 			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/Specimen",
+			],
+			["Device", "Group", "Patient", "Practitioner", "Specimen"],
 			ctx,
 		);
 	});

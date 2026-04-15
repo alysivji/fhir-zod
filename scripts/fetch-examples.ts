@@ -11,8 +11,9 @@ import { fileURLToPath } from "node:url";
 import { listR4CoreResourceNames } from "../src/generator/targets/r4.ts";
 import { listR4BCoreResourceNames } from "../src/generator/targets/r4b.ts";
 import { listR5CoreResourceNames } from "../src/generator/targets/r5.ts";
+import { listSTU3CoreResourceNames } from "../src/generator/targets/stu3.ts";
 
-type SupportedVersion = "r4" | "r4b" | "r5";
+type SupportedVersion = "stu3" | "r4" | "r4b" | "r5";
 
 type ExampleLink = {
 	filename: string;
@@ -31,11 +32,13 @@ const resourceArgs = requestedVersion
 	: positionalArgs;
 const fixturesRoot = join(repoRoot, "tests", "fixtures", version);
 const knownResourceNames =
-	version === "r4"
-		? listR4CoreResourceNames()
-		: version === "r4b"
-			? listR4BCoreResourceNames()
-			: listR5CoreResourceNames();
+	version === "stu3"
+		? listSTU3CoreResourceNames()
+		: version === "r4"
+			? listR4CoreResourceNames()
+			: version === "r4b"
+				? listR4BCoreResourceNames()
+				: listR5CoreResourceNames();
 const forceRefresh = hasFlag("--force");
 const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
 const limit = parseNumberFlag("--limit");
@@ -45,7 +48,7 @@ const fetchMaxBufferBytes = 64 * 1024 * 1024;
 let requestCount = 0;
 
 function parseVersion(value: string | undefined): SupportedVersion | null {
-	if (value === "r4" || value === "r4b" || value === "r5") {
+	if (value === "stu3" || value === "r4" || value === "r4b" || value === "r5") {
 		return value;
 	}
 

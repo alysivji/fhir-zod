@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Consent
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirUri } from "../shared/fhir-primitives";
@@ -165,8 +165,13 @@ export const ConsentSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.consentingParty,
 			"consentingParty",
-			["http://hl7.org/fhir/StructureDefinition/Organization"],
-			["Organization"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Organization", "Patient", "Practitioner", "RelatedPerson"],
 			ctx,
 		);
 		validateReferenceTarget(

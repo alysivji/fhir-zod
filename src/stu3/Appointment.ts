@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Appointment
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import {
@@ -163,8 +163,11 @@ export const AppointmentSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.indication,
 			"indication",
-			["http://hl7.org/fhir/StructureDefinition/Condition"],
-			["Condition"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Condition",
+				"http://hl7.org/fhir/StructureDefinition/Procedure",
+			],
+			["Condition", "Procedure"],
 			ctx,
 		);
 		validateReferenceTarget(

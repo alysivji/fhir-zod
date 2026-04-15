@@ -81,7 +81,7 @@ Important implementation facts:
 - the default R4 generation scope is all `core-resource` targets reported by `npm run list:r4-targets -- --summary`, plus the abstract whitelist
 - the default R4B generation scope is all `core-resource` targets reported by `npm run list:r4b-targets -- --summary`, plus the abstract whitelist
 - `scripts/fetch-spec.ts` defaults to fetching `r4` only
-- `scripts/fetch-examples.ts` refreshes committed R4, R4B, and R5 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
+- `scripts/fetch-examples.ts` refreshes committed STU3, R4, R4B, and R5 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
 - manifests are committed; extracted upstream package contents in `.local/` are not
 - code paths that require extracted spec inputs now fail with an explicit `MissingSpecPackageError` that tells the user to run `npm run fetch-spec`
 - spec-dependent generator suites skip cleanly on a fresh checkout when `.local/spec-cache/<version>/package` is absent; fetching the relevant version enables the full generator-side test coverage

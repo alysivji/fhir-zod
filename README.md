@@ -154,6 +154,8 @@ The fetcher defaults to R4 resources. It also supports R4B and R5 resources
 after the matching spec package has been fetched:
 
 ```bash
+npm run fetch-spec -- stu3
+npm run fetch-examples -- stu3 --delay-ms 1500
 npm run fetch-spec -- r4b
 npm run fetch-examples -- r4b --delay-ms 1500
 npm run fetch-spec -- r5
@@ -164,9 +166,10 @@ The HL7 site may rate-limit or require human verification during automation.
 Use `--delay-ms` for long refreshes, and rerun the resume command printed by
 the script if fetching stops partway through.
 
-To refresh a single R4B or R5 resource:
+To refresh a single STU3, R4B, or R5 resource:
 
 ```bash
+npm run fetch-examples -- stu3 Patient --force --delay-ms 1500
 npm run fetch-examples -- r4b Patient --force --delay-ms 1500
 npm run fetch-examples -- r5 Patient --force --delay-ms 1500
 ```
@@ -176,6 +179,7 @@ Known official-example mismatches are tracked in:
 - `tests/r4-example-expected-failures.ts`
 - `tests/r4b-example-expected-failures.ts`
 - `tests/r5-example-expected-failures.ts`
+- `tests/stu3-example-expected-failures.ts`
 
 Each known mismatch appears in two places in the test output:
 

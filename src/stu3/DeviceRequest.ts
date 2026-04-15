@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceRequest
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -206,22 +206,42 @@ export const DeviceRequestSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.definition,
 			"definition",
-			["http://hl7.org/fhir/StructureDefinition/ActivityDefinition"],
-			["ActivityDefinition"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/ActivityDefinition",
+				"http://hl7.org/fhir/StructureDefinition/PlanDefinition",
+			],
+			["ActivityDefinition", "PlanDefinition"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.performer,
 			"performer",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			[
+				"Device",
+				"HealthcareService",
+				"Organization",
+				"Patient",
+				"Practitioner",
+				"RelatedPerson",
+			],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -248,8 +268,13 @@ export const DeviceRequestSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.subject,
 			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/Location",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+			],
+			["Device", "Group", "Location", "Patient"],
 			ctx,
 		);
 		validateReferenceTarget(

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationDispense
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -209,8 +209,11 @@ export const MedicationDispenseSchemaInternal =
 			validateReferenceTarget(
 				record.context,
 				"context",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Encounter",
+					"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+				],
+				["Encounter", "EpisodeOfCare"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -258,15 +261,21 @@ export const MedicationDispenseSchemaInternal =
 			validateReferenceTarget(
 				record.receiver,
 				"receiver",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				],
+				["Patient", "Practitioner"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.subject,
 				"subject",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Group",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+				],
+				["Group", "Patient"],
 				ctx,
 			);
 			validateReferenceTarget(

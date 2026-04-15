@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DetectedIssue
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -112,8 +112,11 @@ export const DetectedIssueSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.author,
 			"author",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+			],
+			["Device", "Practitioner"],
 			ctx,
 		);
 		validateReferenceTarget(

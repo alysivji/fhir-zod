@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GuidanceResponse
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirId } from "../shared/fhir-primitives";
@@ -130,8 +130,11 @@ export const GuidanceResponseSchemaInternal =
 			validateReferenceTarget(
 				record.context,
 				"context",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Encounter",
+					"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+				],
+				["Encounter", "EpisodeOfCare"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -172,15 +175,21 @@ export const GuidanceResponseSchemaInternal =
 			validateReferenceTarget(
 				record.result,
 				"result",
-				["http://hl7.org/fhir/StructureDefinition/CarePlan"],
-				["CarePlan"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/CarePlan",
+					"http://hl7.org/fhir/StructureDefinition/RequestGroup",
+				],
+				["CarePlan", "RequestGroup"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.subject,
 				"subject",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Group",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+				],
+				["Group", "Patient"],
 				ctx,
 			);
 		});

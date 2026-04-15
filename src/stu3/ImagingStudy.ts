@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImagingStudy
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirOid, fhirString } from "../shared/fhir-primitives";
@@ -6440,15 +6440,22 @@ export const ImagingStudySchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.basedOn,
 			"basedOn",
-			["http://hl7.org/fhir/StructureDefinition/ReferralRequest"],
-			["ReferralRequest"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/CarePlan",
+				"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+				"http://hl7.org/fhir/StructureDefinition/ReferralRequest",
+			],
+			["CarePlan", "ProcedureRequest", "ReferralRequest"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SupplyDelivery
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -131,8 +131,11 @@ export const SupplyDeliverySchemaInternal = DomainResourceSchemaInternal.extend(
 		validateReferenceTarget(
 			record.partOf,
 			"partOf",
-			["http://hl7.org/fhir/StructureDefinition/SupplyDelivery"],
-			["SupplyDelivery"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Contract",
+				"http://hl7.org/fhir/StructureDefinition/SupplyDelivery",
+			],
+			["Contract", "SupplyDelivery"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -152,8 +155,11 @@ export const SupplyDeliverySchemaInternal = DomainResourceSchemaInternal.extend(
 		validateReferenceTarget(
 			record.supplier,
 			"supplier",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+			],
+			["Organization", "Practitioner"],
 			ctx,
 		);
 	});

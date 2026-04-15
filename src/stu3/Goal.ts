@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Goal
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDate, fhirString } from "../shared/fhir-primitives";
@@ -148,15 +148,33 @@ export const GoalSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.addresses,
 			"addresses",
-			["http://hl7.org/fhir/StructureDefinition/Condition"],
-			["Condition"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Condition",
+				"http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+				"http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+				"http://hl7.org/fhir/StructureDefinition/Observation",
+				"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+				"http://hl7.org/fhir/StructureDefinition/RiskAssessment",
+			],
+			[
+				"Condition",
+				"MedicationStatement",
+				"NutritionOrder",
+				"Observation",
+				"ProcedureRequest",
+				"RiskAssessment",
+			],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.expressedBy,
 			"expressedBy",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Patient", "Practitioner", "RelatedPerson"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -169,8 +187,12 @@ export const GoalSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.subject,
 			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+			],
+			["Group", "Organization", "Patient"],
 			ctx,
 		);
 	});

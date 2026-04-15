@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Condition
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -37,8 +37,12 @@ export const Condition_StageSchemaInternal =
 			validateReferenceTarget(
 				record.assessment,
 				"assessment",
-				["http://hl7.org/fhir/StructureDefinition/ClinicalImpression"],
-				["ClinicalImpression"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/ClinicalImpression",
+					"http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+				],
+				["ClinicalImpression", "DiagnosticReport", "Observation"],
 				ctx,
 			);
 		});

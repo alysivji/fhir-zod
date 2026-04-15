@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CarePlan
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -62,8 +62,30 @@ export const CarePlan_ActivitySchemaInternal =
 			validateReferenceTarget(
 				record.reference,
 				"reference",
-				["http://hl7.org/fhir/StructureDefinition/Appointment"],
-				["Appointment"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Appointment",
+					"http://hl7.org/fhir/StructureDefinition/CommunicationRequest",
+					"http://hl7.org/fhir/StructureDefinition/DeviceRequest",
+					"http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+					"http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+					"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+					"http://hl7.org/fhir/StructureDefinition/ReferralRequest",
+					"http://hl7.org/fhir/StructureDefinition/RequestGroup",
+					"http://hl7.org/fhir/StructureDefinition/Task",
+					"http://hl7.org/fhir/StructureDefinition/VisionPrescription",
+				],
+				[
+					"Appointment",
+					"CommunicationRequest",
+					"DeviceRequest",
+					"MedicationRequest",
+					"NutritionOrder",
+					"ProcedureRequest",
+					"ReferralRequest",
+					"RequestGroup",
+					"Task",
+					"VisionPrescription",
+				],
 				ctx,
 			);
 		});

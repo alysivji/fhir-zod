@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalImpression
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -165,8 +165,20 @@ export const ClinicalImpressionSchemaInternal =
 			validateReferenceTarget(
 				record.action,
 				"action",
-				["http://hl7.org/fhir/StructureDefinition/ReferralRequest"],
-				["ReferralRequest"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Appointment",
+					"http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+					"http://hl7.org/fhir/StructureDefinition/Procedure",
+					"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+					"http://hl7.org/fhir/StructureDefinition/ReferralRequest",
+				],
+				[
+					"Appointment",
+					"MedicationRequest",
+					"Procedure",
+					"ProcedureRequest",
+					"ReferralRequest",
+				],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -179,8 +191,11 @@ export const ClinicalImpressionSchemaInternal =
 			validateReferenceTarget(
 				record.context,
 				"context",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Encounter",
+					"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+				],
+				["Encounter", "EpisodeOfCare"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -193,8 +208,11 @@ export const ClinicalImpressionSchemaInternal =
 			validateReferenceTarget(
 				record.problem,
 				"problem",
-				["http://hl7.org/fhir/StructureDefinition/Condition"],
-				["Condition"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+					"http://hl7.org/fhir/StructureDefinition/Condition",
+				],
+				["AllergyIntolerance", "Condition"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -207,8 +225,11 @@ export const ClinicalImpressionSchemaInternal =
 			validateReferenceTarget(
 				record.subject,
 				"subject",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Group",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+				],
+				["Group", "Patient"],
 				ctx,
 			);
 		});

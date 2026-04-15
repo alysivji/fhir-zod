@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Procedure
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -174,8 +174,12 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.basedOn,
 			"basedOn",
-			["http://hl7.org/fhir/StructureDefinition/CarePlan"],
-			["CarePlan"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/CarePlan",
+				"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+				"http://hl7.org/fhir/StructureDefinition/ReferralRequest",
+			],
+			["CarePlan", "ProcedureRequest", "ReferralRequest"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -188,15 +192,22 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.definition,
 			"definition",
-			["http://hl7.org/fhir/StructureDefinition/PlanDefinition"],
-			["PlanDefinition"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/ActivityDefinition",
+				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
+				"http://hl7.org/fhir/StructureDefinition/PlanDefinition",
+			],
+			["ActivityDefinition", "HealthcareService", "PlanDefinition"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -209,15 +220,22 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.partOf,
 			"partOf",
-			["http://hl7.org/fhir/StructureDefinition/Procedure"],
-			["Procedure"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+				"http://hl7.org/fhir/StructureDefinition/Observation",
+				"http://hl7.org/fhir/StructureDefinition/Procedure",
+			],
+			["MedicationAdministration", "Observation", "Procedure"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.reasonReference,
 			"reasonReference",
-			["http://hl7.org/fhir/StructureDefinition/Condition"],
-			["Condition"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Condition",
+				"http://hl7.org/fhir/StructureDefinition/Observation",
+			],
+			["Condition", "Observation"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -230,15 +248,22 @@ export const ProcedureSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.subject,
 			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+			],
+			["Group", "Patient"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.usedReference,
 			"usedReference",
-			["http://hl7.org/fhir/StructureDefinition/Device"],
-			["Device"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Medication",
+				"http://hl7.org/fhir/StructureDefinition/Substance",
+			],
+			["Device", "Medication", "Substance"],
 			ctx,
 		);
 	});

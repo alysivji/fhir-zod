@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -94,29 +94,44 @@ export const QuestionnaireResponseSchemaInternal =
 			validateReferenceTarget(
 				record.author,
 				"author",
-				["http://hl7.org/fhir/StructureDefinition/Device"],
-				["Device"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Device",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+				],
+				["Device", "Patient", "Practitioner", "RelatedPerson"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.basedOn,
 				"basedOn",
-				["http://hl7.org/fhir/StructureDefinition/ReferralRequest"],
-				["ReferralRequest"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/CarePlan",
+					"http://hl7.org/fhir/StructureDefinition/ProcedureRequest",
+					"http://hl7.org/fhir/StructureDefinition/ReferralRequest",
+				],
+				["CarePlan", "ProcedureRequest", "ReferralRequest"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.context,
 				"context",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Encounter",
+					"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+				],
+				["Encounter", "EpisodeOfCare"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.parent,
 				"parent",
-				["http://hl7.org/fhir/StructureDefinition/Observation"],
-				["Observation"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+					"http://hl7.org/fhir/StructureDefinition/Procedure",
+				],
+				["Observation", "Procedure"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -129,8 +144,12 @@ export const QuestionnaireResponseSchemaInternal =
 			validateReferenceTarget(
 				record.source,
 				"source",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+					"http://hl7.org/fhir/StructureDefinition/Practitioner",
+					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+				],
+				["Patient", "Practitioner", "RelatedPerson"],
 				ctx,
 			);
 			validateReferenceTarget(

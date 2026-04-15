@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ChargeItem
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -202,15 +202,24 @@ export const ChargeItemSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.enterer,
 			"enterer",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Device", "Organization", "Patient", "Practitioner", "RelatedPerson"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -237,15 +246,36 @@ export const ChargeItemSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.service,
 			"service",
-			["http://hl7.org/fhir/StructureDefinition/DiagnosticReport"],
-			["DiagnosticReport"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+				"http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+				"http://hl7.org/fhir/StructureDefinition/Immunization",
+				"http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+				"http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+				"http://hl7.org/fhir/StructureDefinition/Observation",
+				"http://hl7.org/fhir/StructureDefinition/Procedure",
+				"http://hl7.org/fhir/StructureDefinition/SupplyDelivery",
+			],
+			[
+				"DiagnosticReport",
+				"ImagingStudy",
+				"Immunization",
+				"MedicationAdministration",
+				"MedicationDispense",
+				"Observation",
+				"Procedure",
+				"SupplyDelivery",
+			],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.subject,
 			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Group",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+			],
+			["Group", "Patient"],
 			ctx,
 		);
 		validateReferenceTarget(

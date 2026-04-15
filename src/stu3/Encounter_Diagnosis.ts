@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Encounter
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -47,8 +47,11 @@ export const Encounter_DiagnosisSchemaInternal =
 			validateReferenceTarget(
 				record.condition,
 				"condition",
-				["http://hl7.org/fhir/StructureDefinition/Condition"],
-				["Condition"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Condition",
+					"http://hl7.org/fhir/StructureDefinition/Procedure",
+				],
+				["Condition", "Procedure"],
 				ctx,
 			);
 		});

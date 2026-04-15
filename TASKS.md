@@ -122,6 +122,11 @@ Track the work needed to align the repository with the current README.
 - [x] Add R4 target-inventory regression tests
 - [x] Add R5 target-inventory regression tests
 - [x] Add generic official-example tests for generated R4 fixtures
+- [x] Download official STU3 example fixtures
+  Current state:
+  STU3 target discovery exists, committed STU3 official example fixtures are
+  checked in under `tests/fixtures/stu3/`, and the generic STU3 official-example
+  suite validates them with known mismatches tracked as expected failures.
 - [x] Download broader official R5 example fixtures
   Current state:
   R5 target discovery exists, committed R5 official example fixtures are

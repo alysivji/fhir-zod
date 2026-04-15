@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageHeader
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirInstant } from "../shared/fhir-primitives";
@@ -115,22 +115,31 @@ export const MessageHeaderSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.receiver,
 			"receiver",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+			],
+			["Organization", "Practitioner"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.responsible,
 			"responsible",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+			],
+			["Organization", "Practitioner"],
 			ctx,
 		);
 		validateReferenceTarget(
 			record.sender,
 			"sender",
-			["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-			["Practitioner"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+			],
+			["Organization", "Practitioner"],
 			ctx,
 		);
 	});

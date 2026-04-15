@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Claim
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -229,8 +229,11 @@ export const ClaimSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.prescription,
 			"prescription",
-			["http://hl7.org/fhir/StructureDefinition/MedicationRequest"],
-			["MedicationRequest"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+				"http://hl7.org/fhir/StructureDefinition/VisionPrescription",
+			],
+			["MedicationRequest", "VisionPrescription"],
 			ctx,
 		);
 		validateReferenceTarget(

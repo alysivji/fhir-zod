@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Task
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -232,8 +232,11 @@ export const TaskSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.context,
 			"context",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Encounter",
+				"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+			],
+			["Encounter", "EpisodeOfCare"],
 			ctx,
 		);
 		validateReferenceTarget(
@@ -260,8 +263,14 @@ export const TaskSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.owner,
 			"owner",
-			["http://hl7.org/fhir/StructureDefinition/Device"],
-			["Device"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/Organization",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			["Device", "Organization", "Patient", "Practitioner", "RelatedPerson"],
 			ctx,
 		);
 		validateReferenceTarget(

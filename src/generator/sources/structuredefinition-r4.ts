@@ -588,11 +588,7 @@ function inferSyntheticBaseName(
 		return directTypeCode;
 	}
 
-	const normalizedType = normalizeStructureType(
-		element,
-		element.type?.[0],
-		elements,
-	);
+	const normalizedType = normalizeElementType(element, elements);
 
 	return normalizedType.typeRef ?? normalizedType.primitiveType ?? null;
 }
@@ -618,11 +614,7 @@ function normalizeElementProperties(
 	}
 
 	const properties: NormalizedProperty[] = [];
-	const normalizedType = normalizeStructureType(
-		element,
-		element.type?.[0],
-		elements,
-	);
+	const normalizedType = normalizeElementType(element, elements);
 	const description = element.definition ?? element.short ?? null;
 
 	if (normalizedType.typeRef && !scopeNames.has(normalizedType.typeRef)) {
@@ -745,6 +737,42 @@ function mergeUniqueStrings(left: string[], right: string[]): string[] {
 	return [...new Set([...left, ...right])].sort((leftValue, rightValue) =>
 		leftValue.localeCompare(rightValue),
 	);
+}
+
+function normalizeElementType(
+	element: StructureElement,
+	elements: StructureElement[],
+): {
+	primitiveType: string | null;
+	targetProfiles: string[];
+	typeRef: string | null;
+} {
+	const types = element.type ?? [];
+	const firstType = normalizeStructureType(element, types[0], elements);
+
+	if (types.length <= 1) {
+		return firstType;
+	}
+
+	const mergedType = { ...firstType };
+
+	for (const type of types.slice(1)) {
+		const normalizedType = normalizeStructureType(element, type, elements);
+
+		if (
+			normalizedType.primitiveType !== mergedType.primitiveType ||
+			normalizedType.typeRef !== mergedType.typeRef
+		) {
+			continue;
+		}
+
+		mergedType.targetProfiles = mergeUniqueStrings(
+			mergedType.targetProfiles,
+			normalizedType.targetProfiles,
+		);
+	}
+
+	return mergedType;
 }
 
 function buildPrimitiveCompanionProperty(

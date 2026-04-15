@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalImpression
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -37,8 +37,22 @@ export const ClinicalImpression_InvestigationSchemaInternal =
 			validateReferenceTarget(
 				record.item,
 				"item",
-				["http://hl7.org/fhir/StructureDefinition/Observation"],
-				["Observation"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+					"http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory",
+					"http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+					"http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+					"http://hl7.org/fhir/StructureDefinition/RiskAssessment",
+				],
+				[
+					"DiagnosticReport",
+					"FamilyMemberHistory",
+					"ImagingStudy",
+					"Observation",
+					"QuestionnaireResponse",
+					"RiskAssessment",
+				],
 				ctx,
 			);
 		});

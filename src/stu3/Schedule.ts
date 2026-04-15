@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Schedule
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -76,8 +76,24 @@ export const ScheduleSchemaInternal = DomainResourceSchemaInternal.extend({
 		validateReferenceTarget(
 			record.actor,
 			"actor",
-			["http://hl7.org/fhir/StructureDefinition/Patient"],
-			["Patient"],
+			[
+				"http://hl7.org/fhir/StructureDefinition/Device",
+				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
+				"http://hl7.org/fhir/StructureDefinition/Location",
+				"http://hl7.org/fhir/StructureDefinition/Patient",
+				"http://hl7.org/fhir/StructureDefinition/Practitioner",
+				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+			],
+			[
+				"Device",
+				"HealthcareService",
+				"Location",
+				"Patient",
+				"Practitioner",
+				"PractitionerRole",
+				"RelatedPerson",
+			],
 			ctx,
 		);
 	});

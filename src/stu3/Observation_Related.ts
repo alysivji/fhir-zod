@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Observation
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -55,8 +55,12 @@ export const Observation_RelatedSchemaInternal =
 			validateReferenceTarget(
 				record.target,
 				"target",
-				["http://hl7.org/fhir/StructureDefinition/Observation"],
-				["Observation"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+					"http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+					"http://hl7.org/fhir/StructureDefinition/Sequence",
+				],
+				["Observation", "QuestionnaireResponse", "Sequence"],
 				ctx,
 			);
 		});

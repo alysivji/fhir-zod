@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationAdministration
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-15T01:26:20.392Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -192,15 +192,21 @@ export const MedicationAdministrationSchemaInternal =
 			validateReferenceTarget(
 				record.context,
 				"context",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Encounter",
+					"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+				],
+				["Encounter", "EpisodeOfCare"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.definition,
 				"definition",
-				["http://hl7.org/fhir/StructureDefinition/PlanDefinition"],
-				["PlanDefinition"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/ActivityDefinition",
+					"http://hl7.org/fhir/StructureDefinition/PlanDefinition",
+				],
+				["ActivityDefinition", "PlanDefinition"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -227,8 +233,11 @@ export const MedicationAdministrationSchemaInternal =
 			validateReferenceTarget(
 				record.partOf,
 				"partOf",
-				["http://hl7.org/fhir/StructureDefinition/MedicationAdministration"],
-				["MedicationAdministration"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+					"http://hl7.org/fhir/StructureDefinition/Procedure",
+				],
+				["MedicationAdministration", "Procedure"],
 				ctx,
 			);
 			validateReferenceTarget(
@@ -241,15 +250,21 @@ export const MedicationAdministrationSchemaInternal =
 			validateReferenceTarget(
 				record.reasonReference,
 				"reasonReference",
-				["http://hl7.org/fhir/StructureDefinition/Condition"],
-				["Condition"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Condition",
+					"http://hl7.org/fhir/StructureDefinition/Observation",
+				],
+				["Condition", "Observation"],
 				ctx,
 			);
 			validateReferenceTarget(
 				record.subject,
 				"subject",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
+				[
+					"http://hl7.org/fhir/StructureDefinition/Group",
+					"http://hl7.org/fhir/StructureDefinition/Patient",
+				],
+				["Group", "Patient"],
 				ctx,
 			);
 			validateReferenceTarget(
