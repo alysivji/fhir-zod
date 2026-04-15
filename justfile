@@ -42,6 +42,10 @@ fetch-spec:
 generate:
     npm run generate
 
+# List concrete STU3 resources and final generation targets
+list-stu3-targets:
+    npm run list:stu3-targets
+
 # List concrete R4 resources and final generation targets
 list-r4-targets:
     npm run list:r4-targets

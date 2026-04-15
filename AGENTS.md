@@ -31,11 +31,11 @@ Do not rely on the README alone for status. It is partially stale.
 
 As of this branch:
 
-- R4, R4B, and R5 generation are implemented and checked in under `src/r4/`, `src/r4b/`, and `src/r5/`
+- STU3, R4, R4B, and R5 generation are implemented and checked in under `src/stu3/`, `src/r4/`, `src/r4b/`, and `src/r5/`
 - default R4 and R4B generation target the canonical core-resource set plus required dependencies
 - spec manifests exist for `stu3`, `r4`, `r4b`, and `r5`
 - the default fetch flow only downloads `r4`
-- real generated schema output exists for `r4`, `r4b`, and `r5`
+- real generated schema output exists for `stu3`, `r4`, `r4b`, and `r5`
 - R4 profile-resource definitions are still excluded from generation because the current emitted file identity is name-based and some profile names collide
 - some docs still describe the generator as unimplemented; trust the code and `TASKS.md`
 
@@ -46,7 +46,7 @@ When there is tension between docs and code, use this order:
 1. `scripts/` entrypoints
 2. `src/generator/`
 3. `src/spec/*/manifest.json`
-4. generated output in `src/r4/`, `src/r4b/`, and `src/r5/`
+4. generated output in `src/stu3/`, `src/r4/`, `src/r4b/`, and `src/r5/`
 5. `TASKS.md`
 6. `README.md`
 
@@ -65,7 +65,8 @@ Primary commands:
 
 ```bash
 npm run fetch-spec
-npm run fetch-spec -- r4b r5
+npm run fetch-spec -- stu3 r4b r5
+npm run list:stu3-targets -- --summary
 npm run list:r4-targets -- --summary
 npm run list:r4b-targets -- --summary
 npm run generate
@@ -75,7 +76,8 @@ npm run typecheck
 
 Important implementation facts:
 
-- `scripts/generate.ts` generates `r4`, `r4b`, and `r5`
+- `scripts/generate.ts` generates `stu3`, `r4`, `r4b`, and `r5`
+- the default STU3 generation scope is all `core-resource` targets reported by `npm run list:stu3-targets -- --summary`, plus the abstract whitelist
 - the default R4 generation scope is all `core-resource` targets reported by `npm run list:r4-targets -- --summary`, plus the abstract whitelist
 - the default R4B generation scope is all `core-resource` targets reported by `npm run list:r4b-targets -- --summary`, plus the abstract whitelist
 - `scripts/fetch-spec.ts` defaults to fetching `r4` only
@@ -90,7 +92,7 @@ Important implementation facts:
 Treat these areas differently:
 
 - `src/generator/`, `src/shared/`, `scripts/`, `tests/`, and `src/spec/` are handwritten
-- `src/r4/` is generated output and should usually be changed by editing the generator, not by hand
+- `src/stu3/`, `src/r4/`, `src/r4b/`, and `src/r5/` are generated output and should usually be changed by editing the generator, not by hand
 
 If generated output is wrong:
 

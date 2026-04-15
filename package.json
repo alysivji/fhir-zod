@@ -42,6 +42,7 @@
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
 		"inspect:choice-groups": "node scripts/inspect-choice-groups.ts",
+		"list:stu3-targets": "node scripts/list-stu3-targets.ts",
 		"list:r4-targets": "node scripts/list-r4-targets.ts",
 		"list:r4b-targets": "node scripts/list-r4b-targets.ts",
 		"list:r5-targets": "node scripts/list-r5-targets.ts",

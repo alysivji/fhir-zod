@@ -126,11 +126,11 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 
 		execFileSync("npx", ["biome", "format", "--write", ...stagedPaths], {
 			cwd: repoRoot,
-			stdio: "ignore",
+			stdio: "inherit",
 		});
 		execFileSync("npx", ["biome", "check", "--write", ...stagedPaths], {
 			cwd: repoRoot,
-			stdio: "ignore",
+			stdio: "inherit",
 		});
 
 		return files.map((file) => {

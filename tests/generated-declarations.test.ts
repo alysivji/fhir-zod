@@ -128,5 +128,45 @@ describe("generated declarations", () => {
 		expect(r4bTimingDts).toContain("_event?: Array<Element | null>;");
 		expect(r4bIndexDts).toContain('export type { Patient } from "./Patient";');
 		expect(r4bIndexDts).toContain('export { PatientSchema } from "./Patient";');
+
+		const stu3BundleDts = readFileSync(
+			join(outDir, "src", "stu3", "Bundle.d.ts"),
+			"utf8",
+		);
+		const stu3IndexDts = readFileSync(
+			join(outDir, "src", "stu3", "index.d.ts"),
+			"utf8",
+		);
+		const stu3PatientDts = readFileSync(
+			join(outDir, "src", "stu3", "Patient.d.ts"),
+			"utf8",
+		);
+		const stu3PatientContactDts = readFileSync(
+			join(outDir, "src", "stu3", "Patient_Contact.d.ts"),
+			"utf8",
+		);
+		const stu3QuantityDts = readFileSync(
+			join(outDir, "src", "stu3", "Quantity.d.ts"),
+			"utf8",
+		);
+
+		expect(stu3BundleDts).toContain("export interface Bundle extends Resource");
+		expect(stu3BundleDts).toContain(
+			"export declare const BundleSchema: z.ZodType<Bundle",
+		);
+		expect(stu3PatientDts).toContain(
+			"export interface Patient extends DomainResource",
+		);
+		expect(stu3PatientDts).not.toContain("z.output<typeof");
+		expect(stu3PatientContactDts).toContain(
+			"export interface Patient_Contact extends BackboneElement",
+		);
+		expect(stu3QuantityDts).toContain(
+			"export interface Quantity extends Element",
+		);
+		expect(stu3IndexDts).toContain('export type { Patient } from "./Patient";');
+		expect(stu3IndexDts).toContain(
+			'export { PatientSchema } from "./Patient";',
+		);
 	}, 30_000);
 });

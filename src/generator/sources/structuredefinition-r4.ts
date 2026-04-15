@@ -124,7 +124,7 @@ export type StructureDefinitionBuildResult = {
 type StructureDefinitionBuildOptions = {
 	releaseLabel: string;
 	scopeNames: Iterable<string>;
-	version: "r4" | "r4b";
+	version: "stu3" | "r4" | "r4b";
 };
 
 type TerminologyIndex = {
@@ -303,13 +303,38 @@ function loadStructureDefinitionIndex(
 		}
 
 		const definition = JSON.parse(
-			readFileSync(join(packageRoot, filename), "utf8"),
+			stripJsonBom(readFileSync(join(packageRoot, filename), "utf8")),
 		) as StructureDefinition;
 
-		index.set(definition.name, definition);
+		const existingDefinition = index.get(definition.name);
+
+		if (
+			!existingDefinition ||
+			shouldReplaceIndexedDefinition(existingDefinition, definition)
+		) {
+			index.set(definition.name, definition);
+		}
 	}
 
 	return index;
+}
+
+function shouldReplaceIndexedDefinition(
+	existingDefinition: StructureDefinition,
+	candidateDefinition: StructureDefinition,
+): boolean {
+	if (isCanonicalDefinition(candidateDefinition)) {
+		return !isCanonicalDefinition(existingDefinition);
+	}
+
+	return false;
+}
+
+function isCanonicalDefinition(definition: StructureDefinition): boolean {
+	return (
+		definition.url ===
+		`http://hl7.org/fhir/StructureDefinition/${definition.name}`
+	);
 }
 
 function loadPrimitivePatterns(
@@ -348,7 +373,7 @@ function loadTerminologyIndex(packageRoot: string): TerminologyIndex {
 		}
 
 		const resource = JSON.parse(
-			readFileSync(join(packageRoot, filename), "utf8"),
+			stripJsonBom(readFileSync(join(packageRoot, filename), "utf8")),
 		) as ValueSet | CodeSystem | StructureDefinition;
 
 		if (resource.resourceType === "ValueSet" && resource.url) {
@@ -364,6 +389,10 @@ function loadTerminologyIndex(packageRoot: string): TerminologyIndex {
 		codeSystemsByUrl,
 		valueSetsByUrl,
 	};
+}
+
+function stripJsonBom(content: string): string {
+	return content.charCodeAt(0) === 0xfeff ? content.slice(1) : content;
 }
 
 function buildDefinitionByName(
@@ -656,11 +685,22 @@ function normalizeChoiceElementProperties(
 			normalizedType.typeRef ??
 			normalizeTypeCode(type.code);
 		const jsonName = `${baseSegment}${choiceSuffixForType(choiceVariant)}`;
+		const existingProperty = properties.find(
+			(property) => property.jsonName === jsonName,
+		);
 
 		if (normalizedType.typeRef && !scopeNames.has(normalizedType.typeRef)) {
 			notes.push(
 				`${element.path} references ${normalizedType.typeRef}, which is outside the comparison scope.`,
 			);
+		}
+
+		if (existingProperty) {
+			existingProperty.targetProfiles = mergeUniqueStrings(
+				existingProperty.targetProfiles,
+				normalizedType.targetProfiles,
+			);
+			continue;
 		}
 
 		properties.push({
@@ -699,6 +739,12 @@ function normalizeChoiceElementProperties(
 	}
 
 	return properties;
+}
+
+function mergeUniqueStrings(left: string[], right: string[]): string[] {
+	return [...new Set([...left, ...right])].sort((leftValue, rightValue) =>
+		leftValue.localeCompare(rightValue),
+	);
 }
 
 function buildPrimitiveCompanionProperty(
