@@ -211,7 +211,13 @@ The package is designed for unbundled ESM output with `sideEffects: false`, so b
 
 The generated models and schemas come from pinned official HL7 artifacts. Generated output is checked into this repository under `src/stu3`, `src/r4`, `src/r4b`, and `src/r5` so changes are reviewable.
 
-The generator is part of the repository for transparency, and official FHIR example fixtures are used in tests to catch regressions against real spec examples.
+The generator is part of the repository for transparency. Official FHIR example fixtures are checked into the test suite and used to validate generated schemas against real spec examples across supported releases.
+
+## AI coding disclosure
+
+This project has been developed with help from AI coding tools, including OpenAI Codex. AI assistance is used as part of an engineering workflow centered on developer experience, test-driven development, generated output, and reviewable changes.
+
+Human judgment remains responsible for project direction, architecture, validation scope, tests, and release decisions. Generated FHIR models and schemas are derived from pinned official HL7 artifacts, not from AI-generated FHIR definitions.
 
 ## Development
 
