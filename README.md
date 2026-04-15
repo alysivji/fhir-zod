@@ -26,7 +26,7 @@ Current repository status:
 - versioned subpath exports are wired
 - STU3, R4, R4B, and R5 generation are implemented and checked in under `src/stu3`, `src/r4`, `src/r4b`, and `src/r5`
 - package output is tree-shakeable ESM with side-effect-free metadata
-- default R4 generation covers the canonical core-resource set plus required dependencies
+- default generation for each supported FHIR version covers the canonical core-resource set plus required dependencies
 - build, lint, format, coverage, and test commands are configured
 - spec manifests are pinned for `stu3`, `r4`, `r4b`, and `r5`
 - real generated schema output currently exists for `stu3`, `r4`, `r4b`, and `r5`
@@ -106,6 +106,7 @@ npm run lint
 npm run coverage
 npm test
 npm run generate
+npm run list:targets -- r4 --summary
 npm run list:stu3-targets -- --summary
 npm run list:r4-targets -- --summary
 npm run list:r4b-targets -- --summary
@@ -207,7 +208,8 @@ There are no customers and no compatibility promises yet. Breaking changes are a
 
 ## Inspecting Generation Targets
 
-Use the target listing scripts to inspect which `StructureDefinition` entries are:
+Use the shared target listing script to inspect which `StructureDefinition`
+entries are:
 
 - core canonical resources
 - profile-like resource definitions
@@ -215,6 +217,21 @@ Use the target listing scripts to inspect which `StructureDefinition` entries ar
 - final generation targets
 
 Examples:
+
+```bash
+npm run list:targets -- stu3 --summary
+npm run list:targets -- stu3 --category core-resource --names-only
+npm run list:targets -- r4 --summary
+npm run list:targets -- r4 --category core-resource --names-only
+npm run list:targets -- r4 --category profile-resource --names-only
+npm run list:targets -- r4 --category generation-target --names-only
+npm run list:targets -- r4b --summary
+npm run list:targets -- r4b --category core-resource --names-only
+npm run list:targets -- r5 --summary
+npm run list:targets -- r5 --category core-resource --names-only
+```
+
+The version-specific wrappers remain available:
 
 ```bash
 npm run list:stu3-targets -- --summary
@@ -246,8 +263,9 @@ Supported output modes:
 
 Current generation policy:
 
-- `npm run generate` emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
+- `npm run generate` defaults to R4 and emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
 - `npm run generate -- stu3` emits all canonical STU3 core resources plus the abstract base whitelist and required dependencies
+- `npm run generate -- r4` emits all canonical R4 core resources plus the abstract base whitelist and required dependencies
 - `npm run generate -- r4b` emits all canonical R4B core resources plus the abstract base whitelist and required dependencies
 - `npm run generate -- r5` emits all canonical R5 core resources plus the abstract base whitelist and required dependencies
 - profile-resource definitions are intentionally excluded from generation for now
@@ -320,7 +338,7 @@ Possible future convenience layers such as builders should live above core, not 
 
 ```console
 /src
-  /generator        # codegen logic
+  /generator        # codegen logic, including the FhirRelease registry
   /spec             # raw FHIR definitions
   /r4
   /r4b
@@ -330,6 +348,7 @@ Possible future convenience layers such as builders should live above core, not 
 
 /scripts
   generate.ts
+  list-targets.ts
 
 /tests
 ```
@@ -364,6 +383,9 @@ Current implementation notes:
 
 - `npm run fetch-spec` defaults to `r4`
 - `npm run generate` defaults to `r4`
+- `scripts/generate.ts`, `scripts/list-targets.ts`, and `scripts/fetch-examples.ts` select versions through `src/generator/versions.ts`
+- `src/generator/versions.ts` owns release-specific target classification, abstract generation whitelists, example page URLs, and version-specific normalizer options
+- the StructureDefinition normalizer is shared across STU3, R4, R4B, and R5, with version wrapper files kept for import compatibility
 - `npm run generate -- stu3` generates STU3
 - `npm run generate -- r4` generates R4
 - `npm run generate -- r4b` generates R4B

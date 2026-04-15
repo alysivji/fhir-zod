@@ -68,6 +68,12 @@ Track the work needed to align the repository with the current README.
 - [x] Implement generation entrypoint in `scripts/generate.ts`
 - [x] Replace the hand-maintained Patient-first R4 seed list with shared target discovery
 - [x] Default R4 generation to all canonical core resources plus required dependencies
+- [x] Default STU3, R4B, and R5 generation to all canonical core resources plus required dependencies
+- [x] Share generation, target inventory, example fetching, and StructureDefinition normalization through release classes
+  Current state:
+  `src/generator/versions.ts` defines the STU3, R4, R4B, and R5 release registry.
+  Version-specific generator, target, and StructureDefinition modules are now
+  thin compatibility adapters over the shared `FhirRelease` workflow.
 - [x] Exclude profile-resource definitions from generation until canonical-url-based naming is implemented
 
 ## Generated Schema Output
@@ -93,7 +99,7 @@ Track the work needed to align the repository with the current README.
   recursive composition make that cleaner.
 - [x] Teach the generator to emit named TypeScript models for generated definitions
   Current state:
-  generated STU3, R4, and R4B declaration tests assert named interfaces and
+  generated STU3, R4, R4B, and R5 declaration tests assert named interfaces and
   `z.ZodType<Model>` schema exports instead of `z.output<typeof Schema>`.
 - [x] Rename generated R4 schema exports to `*Schema` alongside the separate public model layer
 - [x] Preserve spec-defined inheritance relationships in generated TS models and schema exports where runtime initialization is safe
@@ -120,8 +126,18 @@ Track the work needed to align the repository with the current README.
 - [x] Validate generated Patient fields directly against the pinned HL7 R4 StructureDefinition inputs
 - [x] Add STU3 target-inventory regression tests
 - [x] Add R4 target-inventory regression tests
+- [x] Add R4B target-inventory regression tests
 - [x] Add R5 target-inventory regression tests
+- [x] Consolidate repeated target-inventory tests behind shared helpers
+  Current state:
+  version-specific target inventory suites call `tests/helpers/target-inventory-suite.ts`
+  with per-version expectations, while preserving separate STU3, R4, R4B, and R5
+  test files.
 - [x] Add generic official-example tests for generated R4 fixtures
+- [x] Consolidate repeated official-example validation behind shared helpers
+  Current state:
+  version-specific official-example suites call `tests/helpers/official-examples-suite.ts`
+  and share spec-cache availability checks through `tests/helpers/spec-availability.ts`.
 - [x] Download official STU3 example fixtures
   Current state:
   STU3 target discovery exists, committed STU3 official example fixtures are
