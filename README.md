@@ -233,6 +233,7 @@ Useful commands:
 npm test
 npm run typecheck
 npm run fetch-spec
+npm run fetch-spec:all
 npm run generate
 ```
 

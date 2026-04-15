@@ -24,6 +24,7 @@ export type SpecManifest = {
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
+const allVersionsSelector = "all";
 const defaultVersions = new Set(["r4"]);
 
 export type FetchSpecDependencies = {
@@ -59,10 +60,12 @@ export function loadManifests(
 	const root = options.repoRoot ?? repoRoot;
 	const specRoot = join(root, "src", "spec");
 	const requestedVersions = new Set(options.requestedVersions ?? []);
+	const includeAllVersions = requestedVersions.has(allVersionsSelector);
 
 	return deps
 		.readdirSync(specRoot, { withFileTypes: true })
 		.filter((entry: Dirent) => entry.isDirectory())
+		.sort((left, right) => left.name.localeCompare(right.name))
 		.map((entry) => ({
 			version: entry.name,
 			manifestPath: join(specRoot, entry.name, "manifest.json"),
@@ -70,6 +73,10 @@ export function loadManifests(
 		.filter(({ manifestPath, version }) => {
 			if (!deps.existsSync(manifestPath)) {
 				return false;
+			}
+
+			if (includeAllVersions) {
+				return true;
 			}
 
 			if (requestedVersions.size === 0) {

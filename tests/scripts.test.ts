@@ -157,9 +157,9 @@ describe("list-targets script", () => {
 });
 
 describe("fetch-spec script", () => {
-	it("selects R4 by default and explicit versions when requested", () => {
+	it("selects R4 by default, all manifests, and explicit versions when requested", () => {
 		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-fetch-spec-"));
-		for (const version of ["r4", "r5"]) {
+		for (const version of ["r4", "r4b", "r5", "stu3"]) {
 			const specDir = join(repoRoot, "src", "spec", version);
 			mkdirSync(specDir, { recursive: true });
 			writeFileSync(
@@ -174,6 +174,11 @@ describe("fetch-spec script", () => {
 		expect(loadManifests({ repoRoot }).map((item) => item.version)).toEqual([
 			"r4",
 		]);
+		expect(
+			loadManifests({ repoRoot, requestedVersions: ["all"] }).map(
+				(item) => item.version,
+			),
+		).toEqual(["r4", "r4b", "r5", "stu3"]);
 		expect(
 			loadManifests({ repoRoot, requestedVersions: ["r5"] }).map(
 				(item) => item.version,

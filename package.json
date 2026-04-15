@@ -62,6 +62,7 @@
 		"coverage": "vitest run --coverage",
 		"fetch-examples": "node scripts/fetch-examples.ts",
 		"fetch-spec": "node scripts/fetch-spec.ts",
+		"fetch-spec:all": "node scripts/fetch-spec.ts all",
 		"format": "biome format --write .",
 		"generate": "node scripts/generate.ts",
 		"inspect:choice-groups": "node scripts/inspect-choice-groups.ts",
