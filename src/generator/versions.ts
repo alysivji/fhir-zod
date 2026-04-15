@@ -147,33 +147,15 @@ export abstract class FhirRelease {
 		);
 		const outputDir = options.outputDir ?? resolve(repoRoot, "src", this.id);
 		const generatedAt = options.generatedAt ?? new Date().toISOString();
-		const autoFiles = writeNormalizedZodDefinitions({
-			definitions: structureDefinitionResult.definitions,
-			generatedAt,
-			outputDir,
-			prune: options.prune ?? true,
-			primitivePatterns: structureDefinitionResult.primitivePatterns,
-			schemaFlavor: "auto",
-		});
-		const zod3Files = writeNormalizedZodDefinitions({
-			definitions: structureDefinitionResult.definitions,
-			generatedAt,
-			outputDir: join(outputDir, "zod3"),
-			prune: options.prune ?? true,
-			primitivePatterns: structureDefinitionResult.primitivePatterns,
-			schemaFlavor: "zod3",
-		});
-		const zod4Files = writeNormalizedZodDefinitions({
-			definitions: structureDefinitionResult.definitions,
-			generatedAt,
-			outputDir: join(outputDir, "zod4"),
-			prune: options.prune ?? true,
-			primitivePatterns: structureDefinitionResult.primitivePatterns,
-			schemaFlavor: "zod4",
-		});
 
 		return {
-			files: [...autoFiles, ...zod3Files, ...zod4Files],
+			files: writeNormalizedZodDefinitions({
+				definitions: structureDefinitionResult.definitions,
+				generatedAt,
+				outputDir,
+				prune: options.prune ?? true,
+				primitivePatterns: structureDefinitionResult.primitivePatterns,
+			}),
 		};
 	}
 

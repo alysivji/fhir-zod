@@ -56,15 +56,11 @@ if (!result.success) {
 
 Use the TypeScript model when constructing or consuming known FHIR shapes, and use the schema when data crosses a trust boundary.
 
-The main versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. Deterministic Zod-major entrypoints are also generated:
+The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. The package supports Zod 3.25.1 and newer Zod 4 releases through the same generated schema surface:
 
 ```ts
 import { PatientSchema } from "fhir-zod/r4"
-import { PatientSchema as PatientSchemaZod3 } from "fhir-zod/r4/zod3"
-import { PatientSchema as PatientSchemaZod4 } from "fhir-zod/r4/zod4"
 ```
-
-Use the explicit `zod3` or `zod4` paths in libraries or applications where the Zod schema major must be stable regardless of the consumer's bare `zod` resolution.
 
 ## Common use cases
 
@@ -177,17 +173,9 @@ What generated schemas do not do:
 | FHIR release | Import path |
 | --- | --- |
 | STU3 | `fhir-zod/stu3` |
-| STU3 with explicit Zod 3 | `fhir-zod/stu3/zod3` |
-| STU3 with explicit Zod 4 | `fhir-zod/stu3/zod4` |
 | R4 | `fhir-zod/r4` |
-| R4 with explicit Zod 3 | `fhir-zod/r4/zod3` |
-| R4 with explicit Zod 4 | `fhir-zod/r4/zod4` |
 | R4B | `fhir-zod/r4b` |
-| R4B with explicit Zod 3 | `fhir-zod/r4b/zod3` |
-| R4B with explicit Zod 4 | `fhir-zod/r4b/zod4` |
 | R5 | `fhir-zod/r5` |
-| R5 with explicit Zod 3 | `fhir-zod/r5/zod3` |
-| R5 with explicit Zod 4 | `fhir-zod/r5/zod4` |
 
 Each version exports generated TypeScript models and matching Zod schemas:
 
@@ -205,7 +193,7 @@ import { configureFhirString } from "fhir-zod"
 configureFhirString({ allowEmpty: true })
 ```
 
-This affects all generated schema surfaces, including explicit `zod3` and `zod4` entrypoints. It only changes the FHIR `string` primitive. Other primitives such as `date`, `dateTime`, `base64Binary`, `code`, `id`, and `uri` keep their default validation behavior.
+This affects all generated schemas. It only changes the FHIR `string` primitive. Other primitives such as `date`, `dateTime`, `base64Binary`, `code`, `id`, and `uri` keep their default validation behavior.
 
 ## Bundle size and imports
 
@@ -254,8 +242,6 @@ Generated output lives in:
 - `src/r4/`
 - `src/r4b/`
 - `src/r5/`
-
-Each generated version directory includes the default bare-Zod surface plus explicit `zod3/` and `zod4/` schema surfaces.
 
 If generated output is wrong, fix the generator or source normalization first, then regenerate and review the emitted diff. Avoid one-off manual edits in generated files.
 

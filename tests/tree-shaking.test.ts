@@ -85,58 +85,12 @@ describe("package tree shaking", () => {
 
 			const result = await build({
 				bundle: true,
-				external: ["zod", "zod/v3", "zod/v4"],
+				external: ["zod"],
 				format: "esm",
 				platform: "neutral",
 				stdin: {
 					contents: [
 						'import { PatientSchema } from "fhir-zod/r4";',
-						"console.log(PatientSchema);",
-					].join("\n"),
-					loader: "js",
-					resolveDir: packageRoot,
-				},
-				treeShaking: true,
-				tsconfigRaw: JSON.stringify({
-					compilerOptions: {
-						moduleResolution: "Bundler",
-					},
-				}),
-				write: false,
-			});
-
-			const outputFile = result.outputFiles?.[0];
-			expect(outputFile).toBeDefined();
-
-			const bundledCode = outputFile?.text ?? "";
-			expect(bundledCode).toContain("PatientSchemaInternal");
-			expect(bundledCode).not.toContain("AccountSchemaInternal");
-			expect(bundledCode).not.toContain("ObservationSchemaInternal");
-		} finally {
-			rmSync(packageRoot, { force: true, recursive: true });
-		}
-	}, 120_000);
-
-	it("lets a consumer bundle one explicit Zod 4 R4 schema without unrelated R4 resources", async () => {
-		const { distDir, packageRoot } = await buildPackageFixture();
-		try {
-			const r4Zod4Index = join(distDir, "r4/zod4/index.js");
-			const r4Zod4Patient = join(distDir, "r4/zod4/Patient.js");
-			const r4Zod4Observation = join(distDir, "r4/zod4/Observation.js");
-			expect(existsSync(r4Zod4Index)).toBe(true);
-			expect(existsSync(r4Zod4Patient)).toBe(true);
-			expect(readFileSync(r4Zod4Observation, "utf8")).toContain(
-				"ObservationSchemaInternal",
-			);
-
-			const result = await build({
-				bundle: true,
-				external: ["zod", "zod/v3", "zod/v4"],
-				format: "esm",
-				platform: "neutral",
-				stdin: {
-					contents: [
-						'import { PatientSchema } from "fhir-zod/r4/zod4";',
 						"console.log(PatientSchema);",
 					].join("\n"),
 					loader: "js",

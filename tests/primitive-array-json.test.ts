@@ -1,18 +1,8 @@
 import { HumanNameSchema, TimingSchema } from "fhir-zod/r4b";
-import {
-	HumanNameSchema as HumanNameSchemaZod3,
-	TimingSchema as TimingSchemaZod3,
-} from "fhir-zod/r4b/zod3";
-import {
-	HumanNameSchema as HumanNameSchemaZod4,
-	TimingSchema as TimingSchemaZod4,
-} from "fhir-zod/r4b/zod4";
 import { describe, expect, it } from "vitest";
 
 const primitiveArraySchemaSurfaces = [
 	["auto", HumanNameSchema, TimingSchema],
-	["zod3", HumanNameSchemaZod3, TimingSchemaZod3],
-	["zod4", HumanNameSchemaZod4, TimingSchemaZod4],
 ] as const;
 
 describe("FHIR primitive array JSON representation", () => {

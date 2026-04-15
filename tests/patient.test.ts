@@ -1,13 +1,7 @@
 import { PatientSchema } from "fhir-zod/r4";
-import { PatientSchema as PatientSchemaZod3 } from "fhir-zod/r4/zod3";
-import { PatientSchema as PatientSchemaZod4 } from "fhir-zod/r4/zod4";
 import { describe, expect, it } from "vitest";
 
-const patientSchemaSurfaces = [
-	["auto", PatientSchema],
-	["zod3", PatientSchemaZod3],
-	["zod4", PatientSchemaZod4],
-] as const;
+const patientSchemaSurfaces = [["auto", PatientSchema]] as const;
 
 describe("Patient", () => {
 	it("parses a basic patient resource", () => {

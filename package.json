@@ -36,49 +36,17 @@
 			"types": "./dist/r4/index.d.ts",
 			"import": "./dist/r4/index.js"
 		},
-		"./r4/zod3": {
-			"types": "./dist/r4/zod3/index.d.ts",
-			"import": "./dist/r4/zod3/index.js"
-		},
-		"./r4/zod4": {
-			"types": "./dist/r4/zod4/index.d.ts",
-			"import": "./dist/r4/zod4/index.js"
-		},
 		"./r4b": {
 			"types": "./dist/r4b/index.d.ts",
 			"import": "./dist/r4b/index.js"
-		},
-		"./r4b/zod3": {
-			"types": "./dist/r4b/zod3/index.d.ts",
-			"import": "./dist/r4b/zod3/index.js"
-		},
-		"./r4b/zod4": {
-			"types": "./dist/r4b/zod4/index.d.ts",
-			"import": "./dist/r4b/zod4/index.js"
 		},
 		"./r5": {
 			"types": "./dist/r5/index.d.ts",
 			"import": "./dist/r5/index.js"
 		},
-		"./r5/zod3": {
-			"types": "./dist/r5/zod3/index.d.ts",
-			"import": "./dist/r5/zod3/index.js"
-		},
-		"./r5/zod4": {
-			"types": "./dist/r5/zod4/index.d.ts",
-			"import": "./dist/r5/zod4/index.js"
-		},
 		"./stu3": {
 			"types": "./dist/stu3/index.d.ts",
 			"import": "./dist/stu3/index.js"
-		},
-		"./stu3/zod3": {
-			"types": "./dist/stu3/zod3/index.d.ts",
-			"import": "./dist/stu3/zod3/index.js"
-		},
-		"./stu3/zod4": {
-			"types": "./dist/stu3/zod4/index.d.ts",
-			"import": "./dist/stu3/zod4/index.js"
 		}
 	},
 	"files": [

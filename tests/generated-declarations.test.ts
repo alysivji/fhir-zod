@@ -57,14 +57,6 @@ describe("generated declarations", () => {
 				join(outDir, "src", "r4", "Patient_Contact.d.ts"),
 				"utf8",
 			);
-			const patientZod3Dts = readFileSync(
-				join(outDir, "src", "r4", "zod3", "Patient.d.ts"),
-				"utf8",
-			);
-			const patientZod4Dts = readFileSync(
-				join(outDir, "src", "r4", "zod4", "Patient.d.ts"),
-				"utf8",
-			);
 			const quantityDts = readFileSync(
 				join(outDir, "src", "r4", "Quantity.d.ts"),
 				"utf8",
@@ -86,14 +78,6 @@ describe("generated declarations", () => {
 			expect(observationDts).not.toContain("z.output<typeof");
 			expect(patientContactDts).toContain(
 				"export interface Patient_Contact extends BackboneElement",
-			);
-			expect(patientZod3Dts).toContain('import * as z from "zod/v3";');
-			expect(patientZod3Dts).toContain(
-				"export declare const PatientSchema: z.ZodType<Patient",
-			);
-			expect(patientZod4Dts).toContain('import * as z from "zod/v4";');
-			expect(patientZod4Dts).toContain(
-				"export declare const PatientSchema: z.ZodType<Patient",
 			);
 			expect(quantityDts).toContain(
 				"export interface Quantity extends Element",
