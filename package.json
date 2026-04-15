@@ -53,6 +53,7 @@
 		"dist/**/*.d.ts",
 		"dist/**/*.js",
 		"LICENSE",
+		"llms.txt",
 		"README.md"
 	],
 	"scripts": {

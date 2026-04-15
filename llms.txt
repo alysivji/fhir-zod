@@ -1,0 +1,268 @@
+# fhir-zod
+
+Generated TypeScript models and Zod schemas for HL7 FHIR.
+
+This file is a compact guide for AI coding assistants and other tools that need
+to use `fhir-zod` correctly from repository or package context.
+
+## Docs
+
+- [README](./README.md): Package overview, installation, quick start, common
+  use cases, supported FHIR versions, and development commands.
+
+## Core rules
+
+- Pick exactly one FHIR release for a given model flow.
+- Import from a versioned subpath: `fhir-zod/stu3`, `fhir-zod/r4`,
+  `fhir-zod/r4b`, or `fhir-zod/r5`.
+- Use exported TypeScript models such as `Patient` for app-level data shapes.
+- Use exported Zod schemas such as `PatientSchema` for runtime validation.
+- Prefer `safeParse` for untrusted input and `parse` when invalid input should
+  throw.
+- Do not import `*SchemaInternal` symbols. They are generated implementation
+  details.
+- Do not import directly from `src/<version>/*` in application code.
+- Do not mix STU3, R4, R4B, and R5 types unless the code explicitly translates
+  between releases.
+
+## Canonical import pattern
+
+```ts
+import { PatientSchema, type Patient } from "fhir-zod/r4";
+
+const patient: Patient = {
+  resourceType: "Patient",
+  id: "example",
+  active: true,
+};
+
+const result = PatientSchema.safeParse(patient);
+
+if (!result.success) {
+  console.error(result.error.issues);
+}
+```
+
+Schema exports use the model name plus `Schema`.
+
+```ts
+import { ObservationSchema, type Observation } from "fhir-zod/r4";
+import { BundleSchema, type Bundle } from "fhir-zod/r4";
+import { MedicationRequestSchema, type MedicationRequest } from "fhir-zod/r5";
+```
+
+## Package entry points
+
+| FHIR release | Import path |
+| --- | --- |
+| STU3 | `fhir-zod/stu3` |
+| R4 | `fhir-zod/r4` |
+| R4B | `fhir-zod/r4b` |
+| R5 | `fhir-zod/r5` |
+
+The root package currently exports shared helpers such as
+`configureFhirString`.
+
+```ts
+import { configureFhirString } from "fhir-zod";
+```
+
+## Validation scope
+
+Generated schemas are intended for structural FHIR validation.
+
+They cover:
+
+- required fields and cardinality
+- primitive formatting
+- generated enum and code literal unions
+- choice-type exclusivity such as `value[x]`
+- selected constrained reference targets
+
+They do not cover:
+
+- terminology validation
+- FHIRPath execution
+- profile resolution
+- slicing
+- FHIR server behavior
+
+If code needs profile validation, terminology checks, or FHIRPath invariants,
+use another FHIR-specific validation service in addition to `fhir-zod`.
+
+## Type and schema guidance
+
+Use the exported TypeScript model as the public data type:
+
+```ts
+import type { Patient } from "fhir-zod/r4";
+
+function getDisplayName(patient: Patient): string | undefined {
+  return patient.name?.[0]?.text ?? patient.name?.[0]?.family;
+}
+```
+
+Use the exported Zod schema at runtime boundaries:
+
+```ts
+import { PatientSchema } from "fhir-zod/r4";
+
+async function readPatient(response: Response) {
+  const payload: unknown = await response.json();
+  return PatientSchema.parse(payload);
+}
+```
+
+Avoid making `z.output<typeof PatientSchema>` the main application model type.
+The intended public model surface is the generated TypeScript export such as
+`Patient`.
+
+## Choice fields
+
+FHIR choice fields such as `value[x]` are emitted as concrete fields:
+
+- `valueQuantity`
+- `valueString`
+- `valueBoolean`
+- other allowed choices for that FHIR element
+
+Set only one member of a choice group.
+
+```ts
+import { ObservationSchema, type Observation } from "fhir-zod/r4";
+
+const observation: Observation = {
+  resourceType: "Observation",
+  status: "final",
+  code: {
+    coding: [
+      {
+        system: "http://loinc.org",
+        code: "29463-7",
+        display: "Body weight",
+      },
+    ],
+  },
+  subject: { reference: "Patient/example" },
+  valueQuantity: {
+    value: 72,
+    unit: "kg",
+    system: "http://unitsofmeasure.org",
+    code: "kg",
+  },
+};
+
+ObservationSchema.parse(observation);
+```
+
+Do not emit multiple fields from the same choice group unless the goal is to
+test validation failure.
+
+## Bundle validation
+
+`BundleSchema` validates the Bundle envelope and the basic shape of entry
+resources. When a workflow needs full validation for known entry resource types,
+validate those resources with their own schemas.
+
+```ts
+import { BundleSchema, PatientSchema, type Bundle } from "fhir-zod/r4";
+
+const bundle: Bundle = {
+  resourceType: "Bundle",
+  type: "collection",
+  entry: [
+    {
+      resource: {
+        resourceType: "Patient",
+        id: "example",
+      },
+    },
+  ],
+};
+
+const parsedBundle = BundleSchema.parse(bundle);
+
+for (const entry of parsedBundle.entry ?? []) {
+  if (entry.resource?.resourceType === "Patient") {
+    PatientSchema.parse(entry.resource);
+  }
+}
+```
+
+## Empty FHIR strings
+
+FHIR `string` values reject empty strings by default. If an application must
+accept real-world payloads with empty strings, configure the root package during
+startup before versioned schemas are imported or constructed.
+
+```ts
+import { configureFhirString } from "fhir-zod";
+
+configureFhirString({ allowEmpty: true });
+
+const { PatientSchema } = await import("fhir-zod/r4");
+```
+
+This only affects the FHIR `string` primitive.
+
+## Common mistakes to avoid
+
+- Do not import `PatientSchemaInternal`, `DomainResourceSchemaInternal`, or other
+  internal generated schema symbols.
+- Do not use one FHIR release import path in types and a different release path
+  in schemas.
+- Do not assume every string is a FHIR `string`; primitives such as `code`,
+  `id`, `uri`, `date`, and `dateTime` have their own validation behavior.
+- Do not assume `Reference.reference` proves the referenced resource exists.
+- Do not assume structural validation is complete clinical or regulatory
+  validation.
+- Do not edit generated files in `src/stu3`, `src/r4`, `src/r4b`, or `src/r5`
+  by hand when changing library behavior.
+
+## Repository development guidance
+
+Handwritten code lives in:
+
+- `src/generator/`
+- `src/shared/`
+- `scripts/`
+- `tests/`
+- `src/spec/`
+
+Generated output lives in:
+
+- `src/stu3/`
+- `src/r4/`
+- `src/r4b/`
+- `src/r5/`
+
+When generated output is wrong, fix the generator or source normalization,
+regenerate, and review the emitted diff.
+
+Useful commands:
+
+```bash
+npm test
+npm run typecheck
+npm run fetch-spec
+npm run generate
+```
+
+The default spec fetch currently downloads R4. Fetch other releases explicitly
+when generator tests or regeneration need them:
+
+```bash
+npm run fetch-spec -- stu3 r4b r5
+```
+
+## Suggested assistant prompt
+
+When asking an AI coding assistant to use this package, include:
+
+```md
+Use fhir-zod with versioned imports. Import TypeScript models as types and
+runtime validators as `*Schema` values. Prefer `safeParse` for untrusted data.
+Do not import internal generated schemas. Treat fhir-zod as structural FHIR
+validation only; do not claim it validates terminology, profiles, slicing, or
+FHIRPath invariants.
+```
