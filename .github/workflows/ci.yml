@@ -8,10 +8,15 @@ on:
 
 jobs:
   test-node:
-    name: Node 24 / Zod ${{ matrix.zod-version }}
+    name: Node ${{ matrix.node-version }} / Zod ${{ matrix.zod-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        node-version:
+          - "20"
+          - "22"
+          - "24"
+          - "25"
         zod-version:
           - 3.25.1
           - 4
@@ -23,7 +28,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: "24"
+          node-version: ${{ matrix.node-version }}
           cache: npm
 
       - name: Restore spec cache
@@ -54,7 +59,7 @@ jobs:
         run: npm run build
 
       - name: Upload bundle analysis to Codecov
-        if: ${{ matrix.zod-version == '4' }}
+        if: ${{ matrix.node-version == '24' && matrix.zod-version == '4' }}
         env:
           BUNDLE_ANALYZER_UPLOAD_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
@@ -65,15 +70,15 @@ jobs:
           npm run codecov:bundle
 
       - name: Test with coverage
-        if: ${{ matrix.zod-version == '4' }}
+        if: ${{ matrix.node-version == '24' && matrix.zod-version == '4' }}
         run: npm run coverage
 
       - name: Test
-        if: ${{ matrix.zod-version != '4' }}
+        if: ${{ !(matrix.node-version == '24' && matrix.zod-version == '4') }}
         run: npm test
 
       - name: Upload coverage reports to Codecov
-        if: ${{ !cancelled() && matrix.zod-version == '4' }}
+        if: ${{ !cancelled() && matrix.node-version == '24' && matrix.zod-version == '4' }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -81,7 +86,7 @@ jobs:
           fail_ci_if_error: false
 
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() && matrix.zod-version == '4' }}
+        if: ${{ !cancelled() && matrix.node-version == '24' && matrix.zod-version == '4' }}
         uses: codecov/test-results-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

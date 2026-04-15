@@ -2,13 +2,13 @@
 
 Generated TypeScript models and Zod schemas for HL7 FHIR.
 
-![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple)
+![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
-![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white)
+![Node](https://img.shields.io/badge/Node-%3E%3D20-339933?logo=node.js&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white)
 
 [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
 
-`fhir-zod` gives you type-safe FHIR models for your editor and Zod schemas for your runtime. The generated output is versioned by FHIR release, so STU3, R4, R4B, and R5 stay explicit in your imports.
+`fhir-zod` gives you type-safe FHIR models for your editor and Zod schemas for your runtime. The generated output is versioned by FHIR release, so R5, R4B, R4, and STU3 stay explicit in your imports.
 
 Bring your own FHIR workflow. This package focuses on structural validation, not on becoming a terminology server, profile resolver, FHIRPath engine, or FHIR platform.
 
@@ -16,7 +16,7 @@ Bring your own FHIR workflow. This package focuses on structural validation, not
 
 - 🧩 **Type-first models**: generated TypeScript interfaces and types for FHIR resources and datatypes.
 - ✅ **Runtime validation**: generated Zod schemas for parsing data at boundaries.
-- 🗂️ **Versioned imports**: separate entry points for STU3, R4, R4B, and R5.
+- 🗂️ **Versioned imports**: separate entry points for R5, R4B, R4, and STU3.
 - 📘 **Spec-aligned generation**: generated from pinned official HL7 artifacts.
 - 🧪 **Example-backed tests**: checked against official FHIR example fixtures.
 - 🌳 **Tree-shakeable shape**: import the versioned schemas you need.
@@ -174,10 +174,10 @@ What generated schemas do not do:
 
 | FHIR release | Import path |
 | --- | --- |
-| STU3 | `fhir-zod/stu3` |
-| R4 | `fhir-zod/r4` |
-| R4B | `fhir-zod/r4b` |
 | R5 | `fhir-zod/r5` |
+| R4B | `fhir-zod/r4b` |
+| R4 | `fhir-zod/r4` |
+| STU3 | `fhir-zod/stu3` |
 
 Each version exports generated TypeScript models and matching Zod schemas:
 
@@ -209,7 +209,7 @@ The package is designed for unbundled ESM output with `sideEffects: false`, so b
 
 ## Generation and quality
 
-The generated models and schemas come from pinned official HL7 artifacts. Generated output is checked into this repository under `src/stu3`, `src/r4`, `src/r4b`, and `src/r5` so changes are reviewable.
+The generated models and schemas come from pinned official HL7 artifacts. Generated output is checked into this repository under `src/r5`, `src/r4b`, `src/r4`, and `src/stu3` so changes are reviewable.
 
 The generator is part of the repository for transparency. Official FHIR example fixtures are checked into the test suite and used to validate generated schemas against real spec examples across supported releases.
 
@@ -247,10 +247,10 @@ Handwritten source lives in:
 
 Generated output lives in:
 
-- `src/stu3/`
-- `src/r4/`
-- `src/r4b/`
 - `src/r5/`
+- `src/r4b/`
+- `src/r4/`
+- `src/stu3/`
 
 If generated output is wrong, fix the generator or source normalization first, then regenerate and review the emitted diff. Avoid one-off manual edits in generated files.
 
