@@ -126,7 +126,7 @@ function materializeCase(
 }
 
 function pathEquals(
-	actual: Array<string | number>,
+	actual: PropertyKey[],
 	expected: Array<string | number>,
 ): boolean {
 	return (
@@ -136,7 +136,7 @@ function pathEquals(
 }
 
 function pathEndsWith(
-	actual: Array<string | number>,
+	actual: PropertyKey[],
 	expected: Array<string | number>,
 ): boolean {
 	return (
