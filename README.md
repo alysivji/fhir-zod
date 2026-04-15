@@ -23,7 +23,7 @@ Bring your own FHIR workflow. This package focuses on structural validation, not
 
 `fhir-zod` is pre-release. The package shape is stabilizing, and breaking changes are still possible before the first public release.
 
-This branch currently marks the package as private, so the install command below describes the intended public package shape once publishing is enabled.
+The install command below describes the intended public package shape. The project is still pre-release, so publication timing, versioning, and API details may change.
 
 ## Installation
 

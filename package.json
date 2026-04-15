@@ -1,10 +1,29 @@
 {
 	"name": "fhir-zod",
 	"version": "0.0.0",
-	"private": true,
+	"description": "Generated TypeScript models and Zod schemas for HL7 FHIR.",
 	"license": "MIT",
 	"type": "module",
 	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alysivji/fhir-zod"
+	},
+	"bugs": {
+		"url": "https://github.com/alysivji/fhir-zod/issues"
+	},
+	"homepage": "https://github.com/alysivji/fhir-zod#readme",
+	"keywords": [
+		"fhir",
+		"hl7",
+		"healthcare",
+		"typescript",
+		"zod",
+		"validation"
+	],
+	"engines": {
+		"node": ">=24"
+	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
@@ -31,7 +50,10 @@
 		}
 	},
 	"files": [
-		"dist"
+		"dist/**/*.d.ts",
+		"dist/**/*.js",
+		"LICENSE",
+		"README.md"
 	],
 	"scripts": {
 		"build": "npm run typecheck && tsdown",
@@ -49,6 +71,8 @@
 		"list:r4b-targets": "node scripts/list-r4b-targets.ts",
 		"list:r5-targets": "node scripts/list-r5-targets.ts",
 		"lint": "biome lint .",
+		"pack:check": "npm pack --dry-run",
+		"prepack": "npm run build",
 		"test": "vitest run",
 		"typecheck": "tsc --noEmit"
 	},
