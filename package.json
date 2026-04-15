@@ -1,5 +1,5 @@
 {
-	"name": "@fhir-zod/core",
+	"name": "fhir-zod",
 	"version": "0.0.0",
 	"private": true,
 	"license": "MIT",

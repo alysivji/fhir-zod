@@ -1,6 +1,6 @@
-import { configureFhirString } from "@fhir-zod/core";
-import * as r4Schemas from "@fhir-zod/core/r4";
-import * as r4bSchemas from "@fhir-zod/core/r4b";
+import { configureFhirString } from "fhir-zod";
+import * as r4Schemas from "fhir-zod/r4";
+import * as r4bSchemas from "fhir-zod/r4b";
 import { afterEach, describe, expect, it } from "vitest";
 import {
 	fhirBase64Binary,

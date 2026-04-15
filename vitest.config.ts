@@ -5,31 +5,31 @@ export default defineConfig({
 	resolve: {
 		alias: [
 			{
-				find: "@fhir-zod/core/r4",
+				find: "fhir-zod/r4",
 				replacement: fileURLToPath(
 					new URL("./src/r4/index.ts", import.meta.url),
 				),
 			},
 			{
-				find: "@fhir-zod/core/r4b",
+				find: "fhir-zod/r4b",
 				replacement: fileURLToPath(
 					new URL("./src/r4b/index.ts", import.meta.url),
 				),
 			},
 			{
-				find: "@fhir-zod/core/r5",
+				find: "fhir-zod/r5",
 				replacement: fileURLToPath(
 					new URL("./src/r5/index.ts", import.meta.url),
 				),
 			},
 			{
-				find: "@fhir-zod/core/stu3",
+				find: "fhir-zod/stu3",
 				replacement: fileURLToPath(
 					new URL("./src/stu3/index.ts", import.meta.url),
 				),
 			},
 			{
-				find: /^@fhir-zod\/core$/,
+				find: /^fhir-zod$/,
 				replacement: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
 			},
 		],

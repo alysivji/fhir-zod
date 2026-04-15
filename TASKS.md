@@ -16,12 +16,12 @@ Track the work needed to align the repository with the current README.
 
 ## Package Surface
 
-- [x] Publish root package as `@fhir-zod/core`
+- [x] Publish root package as `fhir-zod`
 - [x] Export versioned subpaths for `./stu3`
 - [x] Export versioned subpaths for `./r4`
 - [x] Export versioned subpaths for `./r4b`
 - [x] Export versioned subpaths for `./r5`
-- [x] Verify subpath import works for `@fhir-zod/core/r4`
+- [x] Verify subpath import works for `fhir-zod/r4`
 - [x] Emit package output in a tree-shakeable shape
   Current state:
   package builds use unbundled ESM output with `sideEffects: false`, and a
@@ -156,7 +156,7 @@ Track the work needed to align the repository with the current README.
 - [x] Add package tree-shaking regression test
   Current state:
   `tests/tree-shaking.test.ts` builds a temporary package and bundles a consumer
-  import of `PatientSchema` from `@fhir-zod/core/r4`, asserting unrelated R4
+  import of `PatientSchema` from `fhir-zod/r4`, asserting unrelated R4
   schema internals are absent from the consumer bundle.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
 - [ ] Investigate official example expected failures that violate emitted structural constraints

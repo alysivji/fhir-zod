@@ -7,7 +7,7 @@ import type {
 	Patient,
 	Practitioner,
 	ValueSet,
-} from "@fhir-zod/core/r4";
+} from "fhir-zod/r4";
 import {
 	AccountSchema,
 	BundleSchema,
@@ -16,17 +16,14 @@ import {
 	PatientSchema,
 	PractitionerSchema,
 	ValueSetSchema,
-} from "@fhir-zod/core/r4";
-import type {
-	Patient as R4BPatient,
-	Timing as R4BTiming,
-} from "@fhir-zod/core/r4b";
+} from "fhir-zod/r4";
+import type { Patient as R4BPatient, Timing as R4BTiming } from "fhir-zod/r4b";
 import {
 	PatientSchema as R4BPatientSchema,
 	TimingSchema as R4BTimingSchema,
-} from "@fhir-zod/core/r4b";
-import type { Patient as STU3Patient } from "@fhir-zod/core/stu3";
-import { PatientSchema as STU3PatientSchema } from "@fhir-zod/core/stu3";
+} from "fhir-zod/r4b";
+import type { Patient as STU3Patient } from "fhir-zod/stu3";
+import { PatientSchema as STU3PatientSchema } from "fhir-zod/stu3";
 import { describe, expect, it } from "vitest";
 
 describe("generated model types", () => {

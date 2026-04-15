@@ -43,7 +43,7 @@ Current repository status:
 ## Installation
 
 ```bash
-npm install @fhir-zod/core
+npm install fhir-zod
 ```
 
 Library consumers should install Zod as well:
@@ -55,8 +55,8 @@ npm install zod
 ## Usage
 
 ```ts
-import type { Patient } from "@fhir-zod/core/r4"
-import { PatientSchema } from "@fhir-zod/core/r4"
+import type { Patient } from "fhir-zod/r4"
+import { PatientSchema } from "fhir-zod/r4"
 
 const parsed = PatientSchema.parse(data)
 
@@ -72,7 +72,7 @@ payloads that use empty strings for the FHIR `string` primitive, configure the
 root package before constructing or importing schemas that use `fhirString()`:
 
 ```ts
-import { configureFhirString } from "@fhir-zod/core"
+import { configureFhirString } from "fhir-zod"
 
 configureFhirString({ allowEmpty: true })
 ```
@@ -329,8 +329,8 @@ PatientSchema.safeParse(data)
 FHIR versions are explicitly separated.
 
 ```ts
-import { Patient } from "@fhir-zod/core/r4"
-import { Patient as PatientR5 } from "@fhir-zod/core/r5"
+import { Patient } from "fhir-zod/r4"
+import { Patient as PatientR5 } from "fhir-zod/r5"
 ```
 
 Do NOT mix versions.
