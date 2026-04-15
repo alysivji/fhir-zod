@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -146,13 +146,19 @@ export const ChargeItemDefinitionSchemaInternal =
 		_approvalDate: z.lazy(getElementSchema).optional(),
 		code: z.lazy(getCodeableConceptSchema).optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
-		copyright: z.string().optional(),
+		copyright: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
 		derivedFromUri: fhirUri().nullable().array().optional(),
 		_derivedFromUri: z.lazy(getElementSchema).nullable().array().optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		effectivePeriod: z.lazy(getPeriodSchema).optional(),
 		experimental: z.boolean().optional(),

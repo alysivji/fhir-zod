@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -52,7 +52,10 @@ export const TerminologyCapabilities_ExpansionSchemaInternal =
 			.lazy(getTerminologyCapabilities_Expansion_ParameterSchema)
 			.array()
 			.optional(),
-		textFilter: z.string().optional(),
+		textFilter: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_textFilter: z.lazy(getElementSchema).optional(),
 	}).strict();
 

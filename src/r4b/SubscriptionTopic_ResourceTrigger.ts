@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubscriptionTopic
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -63,7 +63,10 @@ const getSubscriptionTopic_ResourceTrigger_QueryCriteriaSchema =
 /** @internal */
 export const SubscriptionTopic_ResourceTriggerSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		fhirPathCriteria: fhirString().optional(),
 		_fhirPathCriteria: z.lazy(getElementSchema).optional(),

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Evidence
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import {
@@ -144,17 +144,26 @@ const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 export const EvidenceSchemaInternal = DomainResourceSchemaInternal.extend({
 	approvalDate: fhirDate().optional(),
 	_approvalDate: z.lazy(getElementSchema).optional(),
-	assertion: z.string().optional(),
+	assertion: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_assertion: z.lazy(getElementSchema).optional(),
 	author: z.lazy(getContactDetailSchema).array().optional(),
 	certainty: z.lazy(getEvidence_CertaintySchema).array().optional(),
-	citeAsMarkdown: z.string().optional(),
+	citeAsMarkdown: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_citeAsMarkdown: z.lazy(getElementSchema).optional(),
 	citeAsReference: z.lazy(getReferenceSchema).optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	editor: z.lazy(getContactDetailSchema).array().optional(),
 	endorser: z.lazy(getContactDetailSchema).array().optional(),

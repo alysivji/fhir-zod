@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NamingSystem
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -82,7 +82,10 @@ export const NamingSystemSchemaInternal = DomainResourceSchemaInternal.extend({
 	contact: z.lazy(getContactDetailSchema).array().optional(),
 	date: fhirDateTime(),
 	_date: z.lazy(getElementSchema).optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
 	kind: z.enum(["codesystem", "identifier", "root"]),

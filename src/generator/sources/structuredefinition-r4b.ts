@@ -1,15 +1,8 @@
-import { listR4BGenerationTargetNames } from "../targets/r4b.ts";
-import {
-	buildStructureDefinitionsFromSpec,
-	type StructureDefinitionBuildResult,
-} from "./structuredefinition-r4.ts";
+import { fhirReleases } from "../versions.ts";
+import type { StructureDefinitionBuildResult } from "./structuredefinition.ts";
 
 export function buildStructureDefinitionR4BDefinitions(
-	scopeNames: Iterable<string> = listR4BGenerationTargetNames(),
+	scopeNames?: Iterable<string>,
 ): StructureDefinitionBuildResult {
-	return buildStructureDefinitionsFromSpec({
-		releaseLabel: "R4B",
-		scopeNames,
-		version: "r4b",
-	});
+	return fhirReleases.r4b.buildDefinitions(scopeNames);
 }

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -37,7 +37,7 @@ export const Citation_CitedArtifact_Contributorship_SummarySchemaInternal =
 		source: z.lazy(getCodeableConceptSchema).optional(),
 		style: z.lazy(getCodeableConceptSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
-		value: z.string(),
+		value: z.string().regex(/[ \r\n\t\S]+/),
 		_value: z.lazy(getElementSchema).optional(),
 	}).strict();
 

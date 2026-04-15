@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -43,11 +43,20 @@ const getExampleScenario_Process_StepSchema =
 /** @internal */
 export const ExampleScenario_ProcessSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
-		postConditions: z.string().optional(),
+		postConditions: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_postConditions: z.lazy(getElementSchema).optional(),
-		preConditions: z.string().optional(),
+		preConditions: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_preConditions: z.lazy(getElementSchema).optional(),
 		step: z.lazy(getExampleScenario_Process_StepSchema).array().optional(),
 		title: fhirString(),

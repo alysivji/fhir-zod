@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -107,11 +107,17 @@ const getValueSet_ExpansionSchema = (): z.ZodType<ValueSet_Expansion> =>
 export const ValueSetSchemaInternal = DomainResourceSchemaInternal.extend({
 	compose: z.lazy(getValueSet_ComposeSchema).optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
-	copyright: z.string().optional(),
+	copyright: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_copyright: z.lazy(getElementSchema).optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	expansion: z.lazy(getValueSet_ExpansionSchema).optional(),
 	experimental: z.boolean().optional(),
@@ -124,7 +130,10 @@ export const ValueSetSchemaInternal = DomainResourceSchemaInternal.extend({
 	_name: z.lazy(getElementSchema).optional(),
 	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
-	purpose: z.string().optional(),
+	purpose: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
 	resourceType: z.literal("ValueSet"),
 	status: z.enum(["active", "draft", "retired", "unknown"]),

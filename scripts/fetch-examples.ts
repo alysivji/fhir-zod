@@ -8,12 +8,12 @@ import {
 } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { listR4CoreResourceNames } from "../src/generator/targets/r4.ts";
-import { listR4BCoreResourceNames } from "../src/generator/targets/r4b.ts";
-import { listR5CoreResourceNames } from "../src/generator/targets/r5.ts";
-import { listSTU3CoreResourceNames } from "../src/generator/targets/stu3.ts";
+import {
+	type FhirVersionId,
+	getFhirRelease,
+} from "../src/generator/versions.ts";
 
-type SupportedVersion = "stu3" | "r4" | "r4b" | "r5";
+type SupportedVersion = FhirVersionId;
 
 type ExampleLink = {
 	filename: string;
@@ -27,18 +27,19 @@ const args = process.argv.slice(2);
 const positionalArgs = collectPositionalArgs(args);
 const requestedVersion = parseVersion(positionalArgs[0]);
 const version: SupportedVersion = requestedVersion ?? "r4";
+const selectedRelease = getFhirRelease(version);
+
+if (!selectedRelease) {
+	throw new Error(`Unknown FHIR version "${version}".`);
+}
+
+const release = selectedRelease;
+
 const resourceArgs = requestedVersion
 	? positionalArgs.slice(1)
 	: positionalArgs;
 const fixturesRoot = join(repoRoot, "tests", "fixtures", version);
-const knownResourceNames =
-	version === "stu3"
-		? listSTU3CoreResourceNames()
-		: version === "r4"
-			? listR4CoreResourceNames()
-			: version === "r4b"
-				? listR4BCoreResourceNames()
-				: listR5CoreResourceNames();
+const knownResourceNames = release.listCoreResourceNames();
 const forceRefresh = hasFlag("--force");
 const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
 const limit = parseNumberFlag("--limit");
@@ -48,11 +49,7 @@ const fetchMaxBufferBytes = 64 * 1024 * 1024;
 let requestCount = 0;
 
 function parseVersion(value: string | undefined): SupportedVersion | null {
-	if (value === "stu3" || value === "r4" || value === "r4b" || value === "r5") {
-		return value;
-	}
-
-	return null;
+	return value && getFhirRelease(value) ? (value as SupportedVersion) : null;
 }
 
 function parseFlag(name: string): string | null {
@@ -152,7 +149,7 @@ function decodeHtmlEntities(value: string): string {
 }
 
 function resourceExamplesPageUrl(resourceName: string): string {
-	return `https://hl7.org/fhir/${version.toUpperCase()}/${resourceName.toLowerCase()}-examples.html`;
+	return release.exampleResourcePageUrl(resourceName);
 }
 
 function discoverJsonExamples(

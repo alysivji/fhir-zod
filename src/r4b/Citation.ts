@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import {
@@ -161,12 +161,18 @@ export const CitationSchemaInternal = DomainResourceSchemaInternal.extend({
 	citedArtifact: z.lazy(getCitation_CitedArtifactSchema).optional(),
 	classification: z.lazy(getCitation_ClassificationSchema).array().optional(),
 	contact: z.lazy(getContactDetailSchema).array().optional(),
-	copyright: z.string().optional(),
+	copyright: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_copyright: z.lazy(getElementSchema).optional(),
 	currentState: z.lazy(getCodeableConceptSchema).array().optional(),
 	date: fhirDateTime().optional(),
 	_date: z.lazy(getElementSchema).optional(),
-	description: z.string().optional(),
+	description: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_description: z.lazy(getElementSchema).optional(),
 	editor: z.lazy(getContactDetailSchema).array().optional(),
 	effectivePeriod: z.lazy(getPeriodSchema).optional(),
@@ -182,7 +188,10 @@ export const CitationSchemaInternal = DomainResourceSchemaInternal.extend({
 	note: z.lazy(getAnnotationSchema).array().optional(),
 	publisher: fhirString().optional(),
 	_publisher: z.lazy(getElementSchema).optional(),
-	purpose: z.string().optional(),
+	purpose: z
+		.string()
+		.regex(/[ \r\n\t\S]+/)
+		.optional(),
 	_purpose: z.lazy(getElementSchema).optional(),
 	relatesTo: z.lazy(getCitation_RelatesToSchema).array().optional(),
 	resourceType: z.literal("Citation"),

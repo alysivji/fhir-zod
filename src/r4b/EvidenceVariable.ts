@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EvidenceVariable
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -139,7 +139,10 @@ export const EvidenceVariableSchemaInternal =
 		contact: z.lazy(getContactDetailSchema).array().optional(),
 		date: fhirDateTime().optional(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		editor: z.lazy(getContactDetailSchema).array().optional(),
 		endorser: z.lazy(getContactDetailSchema).array().optional(),

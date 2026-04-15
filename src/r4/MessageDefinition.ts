@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MessageDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-15T00:02:07.682Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -153,11 +153,17 @@ export const MessageDefinitionSchemaInternal =
 		category: z.enum(["consequence", "currency", "notification"]).optional(),
 		_category: z.lazy(getElementSchema).optional(),
 		contact: z.lazy(getContactDetailSchema).array().optional(),
-		copyright: z.string().optional(),
+		copyright: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		date: fhirDateTime(),
 		_date: z.lazy(getElementSchema).optional(),
-		description: z.string().optional(),
+		description: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_description: z.lazy(getElementSchema).optional(),
 		eventCoding: z.lazy(getCodingSchema).optional(),
 		eventUri: fhirUri().optional(),
@@ -175,7 +181,10 @@ export const MessageDefinitionSchemaInternal =
 		_parent: z.lazy(getElementSchema).nullable().array().optional(),
 		publisher: fhirString().optional(),
 		_publisher: z.lazy(getElementSchema).optional(),
-		purpose: z.string().optional(),
+		purpose: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_purpose: z.lazy(getElementSchema).optional(),
 		replaces: fhirCanonical().nullable().array().optional(),
 		_replaces: z.lazy(getElementSchema).nullable().array().optional(),

@@ -1,4 +1,5 @@
 import * as r4Schemas from "@fhir-zod/core/r4";
+import * as r4bSchemas from "@fhir-zod/core/r4b";
 import { describe, expect, it } from "vitest";
 import {
 	fhirBase64Binary,
@@ -156,6 +157,27 @@ describe("FHIR primitives", () => {
 					id: "contains space",
 				}).success,
 			).toBe(false);
+		});
+	});
+
+	describe("generated markdown primitives", () => {
+		it("rejects empty R4 and R4B markdown values", () => {
+			expect(r4Schemas.AnnotationSchema.safeParse({ text: "" }).success).toBe(
+				false,
+			);
+			expect(r4bSchemas.AnnotationSchema.safeParse({ text: "" }).success).toBe(
+				false,
+			);
+		});
+
+		it("accepts non-empty R4 and R4B markdown values", () => {
+			expect(
+				r4Schemas.AnnotationSchema.safeParse({ text: "clinical note" }).success,
+			).toBe(true);
+			expect(
+				r4bSchemas.AnnotationSchema.safeParse({ text: "clinical note" })
+					.success,
+			).toBe(true);
 		});
 	});
 });

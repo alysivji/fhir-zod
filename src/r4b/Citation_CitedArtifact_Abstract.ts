@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -35,10 +35,13 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const Citation_CitedArtifact_AbstractSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		copyright: z.string().optional(),
+		copyright: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		language: z.lazy(getCodeableConceptSchema).optional(),
-		text: z.string(),
+		text: z.string().regex(/[ \r\n\t\S]+/),
 		_text: z.lazy(getElementSchema).optional(),
 		type: z.lazy(getCodeableConceptSchema).optional(),
 	}).strict();

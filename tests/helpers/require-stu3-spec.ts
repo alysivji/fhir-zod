@@ -1,27 +1,8 @@
-import {
-	MissingSpecPackageError,
-	resolveRequiredSpecPackageRoot,
-} from "../../src/spec/spec-cache.ts";
+import { getSpecAvailability } from "./spec-availability.ts";
 
 export function getSTU3SpecAvailability(): {
 	available: boolean;
 	reason: string | null;
 } {
-	try {
-		resolveRequiredSpecPackageRoot("stu3");
-
-		return {
-			available: true,
-			reason: null,
-		};
-	} catch (error) {
-		if (error instanceof MissingSpecPackageError) {
-			return {
-				available: false,
-				reason: error.message,
-			};
-		}
-
-		throw error;
-	}
+	return getSpecAvailability("stu3");
 }

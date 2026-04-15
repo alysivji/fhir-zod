@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { fhirCanonical } from "../shared/fhir-primitives";
@@ -32,7 +32,10 @@ const getElementSchema = (): z.ZodType<Element> =>
 /** @internal */
 export const CapabilityStatement_DocumentSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		documentation: z.string().optional(),
+		documentation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 		mode: z.enum(["consumer", "producer"]),
 		_mode: z.lazy(getElementSchema).optional(),

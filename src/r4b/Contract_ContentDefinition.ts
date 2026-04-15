@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -62,7 +62,10 @@ const getReferenceSchema = (): z.ZodType<Reference> =>
 /** @internal */
 export const Contract_ContentDefinitionSchemaInternal =
 	BackboneElementSchemaInternal.extend({
-		copyright: z.string().optional(),
+		copyright: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_copyright: z.lazy(getElementSchema).optional(),
 		publicationDate: fhirDateTime().optional(),
 		_publicationDate: z.lazy(getElementSchema).optional(),

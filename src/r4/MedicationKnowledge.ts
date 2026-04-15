@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-15T00:02:07.682Z
+// Last generated: 2026-04-15T02:24:57.598Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -175,7 +175,10 @@ export const MedicationKnowledgeSchemaInternal =
 			.array()
 			.optional(),
 		packaging: z.lazy(getMedicationKnowledge_PackagingSchema).optional(),
-		preparationInstruction: z.string().optional(),
+		preparationInstruction: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_preparationInstruction: z.lazy(getElementSchema).optional(),
 		productType: z.lazy(getCodeableConceptSchema).array().optional(),
 		regulatory: z

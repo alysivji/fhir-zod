@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-15T02:24:59.228Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -64,7 +64,10 @@ export const CapabilityStatement_Rest_InteractionSchemaInternal =
 			"vread",
 		]),
 		_code: z.lazy(getElementSchema).optional(),
-		documentation: z.string().optional(),
+		documentation: z
+			.string()
+			.regex(/[ \r\n\t\S]+/)
+			.optional(),
 		_documentation: z.lazy(getElementSchema).optional(),
 	}).strict();
 
