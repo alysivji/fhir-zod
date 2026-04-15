@@ -123,10 +123,15 @@ Track the work needed to align the repository with the current README.
   R5 target discovery exists, committed R5 official example fixtures are
   checked in under `tests/fixtures/r5/`, and the generic R5 official-example
   suite validates them with known mismatches tracked as expected failures.
+- [x] Download official R4B example fixtures
+  Current state:
+  R4B target discovery exists, committed R4B official example fixtures are
+  checked in under `tests/fixtures/r4b/`, and the generic R4B official-example
+  suite validates them with known mismatches tracked as expected failures.
 - [ ] Consider a dedicated CI profile that exercises spec-dependent suites after `npm run fetch-spec`
 - [ ] Investigate official example expected failures that violate emitted structural constraints
   Current handling:
-  expected-failure fixtures still execute in the R4/R5 official-example suites
+  expected-failure fixtures still execute in the R4/R4B/R5 official-example suites
   via Vitest `it.fails`, and each entry is also surfaced as a skipped tracking
   test in `tests/official-example-expected-failures.test.ts` so the unresolved
   investigation debt remains visible in `npm test` summaries.

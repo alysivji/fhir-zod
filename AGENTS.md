@@ -31,11 +31,11 @@ Do not rely on the README alone for status. It is partially stale.
 
 As of this branch:
 
-- R4 generation is implemented and checked in under `src/r4/`
-- default R4 generation targets the canonical core-resource set plus required dependencies
+- R4, R4B, and R5 generation are implemented and checked in under `src/r4/`, `src/r4b/`, and `src/r5/`
+- default R4 and R4B generation target the canonical core-resource set plus required dependencies
 - spec manifests exist for `stu3`, `r4`, `r4b`, and `r5`
 - the default fetch flow only downloads `r4`
-- R4 is the only version with real generated schema output today
+- real generated schema output exists for `r4`, `r4b`, and `r5`
 - R4 profile-resource definitions are still excluded from generation because the current emitted file identity is name-based and some profile names collide
 - some docs still describe the generator as unimplemented; trust the code and `TASKS.md`
 
@@ -46,7 +46,7 @@ When there is tension between docs and code, use this order:
 1. `scripts/` entrypoints
 2. `src/generator/`
 3. `src/spec/*/manifest.json`
-4. generated output in `src/r4/`
+4. generated output in `src/r4/`, `src/r4b/`, and `src/r5/`
 5. `TASKS.md`
 6. `README.md`
 
@@ -67,6 +67,7 @@ Primary commands:
 npm run fetch-spec
 npm run fetch-spec -- r4b r5
 npm run list:r4-targets -- --summary
+npm run list:r4b-targets -- --summary
 npm run generate
 npm test
 npm run typecheck
@@ -74,13 +75,14 @@ npm run typecheck
 
 Important implementation facts:
 
-- `scripts/generate.ts` currently generates `r4` only
+- `scripts/generate.ts` generates `r4`, `r4b`, and `r5`
 - the default R4 generation scope is all `core-resource` targets reported by `npm run list:r4-targets -- --summary`, plus the abstract whitelist
+- the default R4B generation scope is all `core-resource` targets reported by `npm run list:r4b-targets -- --summary`, plus the abstract whitelist
 - `scripts/fetch-spec.ts` defaults to fetching `r4` only
-- `scripts/fetch-examples.ts` refreshes committed R4 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
+- `scripts/fetch-examples.ts` refreshes committed R4, R4B, and R5 example fixtures from the official site when available; the site may rate-limit automation, so existing committed fixtures remain the deterministic test source
 - manifests are committed; extracted upstream package contents in `.local/` are not
 - code paths that require extracted spec inputs now fail with an explicit `MissingSpecPackageError` that tells the user to run `npm run fetch-spec`
-- spec-dependent generator suites skip cleanly on a fresh checkout when `.local/spec-cache/r4/package` is absent; fetching `r4` enables the full generator-side test coverage
+- spec-dependent generator suites skip cleanly on a fresh checkout when `.local/spec-cache/<version>/package` is absent; fetching the relevant version enables the full generator-side test coverage
 - generated files include timestamps, so normalized comparison logic matters for determinism checks
 
 ## Generated vs Handwritten Code
