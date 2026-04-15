@@ -7,52 +7,58 @@ import {
 	writeFileSync,
 } from "node:fs";
 import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
+	type FhirRelease,
 	type FhirVersionId,
 	getFhirRelease,
 } from "../src/generator/versions.ts";
 
 type SupportedVersion = FhirVersionId;
 
-type ExampleLink = {
+export type ExampleLink = {
 	filename: string;
 	id: string;
 	url: string;
 };
 
+export type FetchExamplesOptions = {
+	delayMs: number;
+	forceRefresh: boolean;
+	limit: number | null;
+	requestedResources: string[];
+	version: SupportedVersion;
+};
+
+export type FetchExamplesDependencies = {
+	execFileSync: typeof execFileSync;
+	existsSync: typeof existsSync;
+	getRelease: (version: string) => FhirRelease | null;
+	log: (message: string) => void;
+	mkdirSync: typeof mkdirSync;
+	readdirSync: typeof readdirSync;
+	rmSync: typeof rmSync;
+	warn: (message: string) => void;
+	writeFileSync: typeof writeFileSync;
+};
+
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
-const args = process.argv.slice(2);
-const positionalArgs = collectPositionalArgs(args);
-const requestedVersion = parseVersion(positionalArgs[0]);
-const version: SupportedVersion = requestedVersion ?? "r4";
-const selectedRelease = getFhirRelease(version);
-
-if (!selectedRelease) {
-	throw new Error(`Unknown FHIR version "${version}".`);
-}
-
-const release = selectedRelease;
-
-const resourceArgs = requestedVersion
-	? positionalArgs.slice(1)
-	: positionalArgs;
-const fixturesRoot = join(repoRoot, "tests", "fixtures", version);
-const knownResourceNames = release.listCoreResourceNames();
-const forceRefresh = hasFlag("--force");
-const delayMs = parseNumberFlag("--delay-ms") ?? 1000;
-const limit = parseNumberFlag("--limit");
-const requestedResources = selectResourceNames(resourceArgs);
 const fetchMaxBufferBytes = 64 * 1024 * 1024;
 
-let requestCount = 0;
+const defaultDependencies: FetchExamplesDependencies = {
+	execFileSync,
+	existsSync,
+	getRelease: getFhirRelease,
+	log: console.log,
+	mkdirSync,
+	readdirSync,
+	rmSync,
+	warn: console.warn,
+	writeFileSync,
+};
 
-function parseVersion(value: string | undefined): SupportedVersion | null {
-	return value && getFhirRelease(value) ? (value as SupportedVersion) : null;
-}
-
-function parseFlag(name: string): string | null {
+export function parseFlag(args: string[], name: string): string | null {
 	const directMatch = args.find((arg) => arg.startsWith(`${name}=`));
 
 	if (directMatch) {
@@ -68,8 +74,8 @@ function parseFlag(name: string): string | null {
 	return args[flagIndex + 1] ?? null;
 }
 
-function parseNumberFlag(name: string): number | null {
-	const raw = parseFlag(name);
+export function parseNumberFlag(args: string[], name: string): number | null {
+	const raw = parseFlag(args, name);
 
 	if (raw === null) {
 		return null;
@@ -86,11 +92,11 @@ function parseNumberFlag(name: string): number | null {
 	return value;
 }
 
-function hasFlag(name: string): boolean {
+function hasFlag(args: string[], name: string): boolean {
 	return args.includes(name);
 }
 
-function collectPositionalArgs(argv: string[]): string[] {
+export function collectPositionalArgs(argv: string[]): string[] {
 	const positional: string[] = [];
 	const flagsWithValues = new Set(["--delay-ms", "--limit"]);
 
@@ -113,7 +119,40 @@ function collectPositionalArgs(argv: string[]): string[] {
 	return positional;
 }
 
-function sleep(milliseconds: number): void {
+export function parseFetchExamplesOptions(
+	argv: string[],
+	deps: Pick<FetchExamplesDependencies, "getRelease"> = defaultDependencies,
+): FetchExamplesOptions {
+	const positionalArgs = collectPositionalArgs(argv);
+	const requestedVersion =
+		positionalArgs[0] && deps.getRelease(positionalArgs[0])
+			? (positionalArgs[0] as SupportedVersion)
+			: null;
+	const version: SupportedVersion = requestedVersion ?? "r4";
+	const release = deps.getRelease(version);
+
+	if (!release) {
+		throw new Error(`Unknown FHIR version "${version}".`);
+	}
+
+	const resourceArgs = requestedVersion
+		? positionalArgs.slice(1)
+		: positionalArgs;
+
+	return {
+		delayMs: parseNumberFlag(argv, "--delay-ms") ?? 1000,
+		forceRefresh: hasFlag(argv, "--force"),
+		limit: parseNumberFlag(argv, "--limit"),
+		requestedResources: selectResourceNames(
+			resourceArgs,
+			release.listCoreResourceNames(),
+			version,
+		),
+		version,
+	};
+}
+
+export function sleep(milliseconds: number): void {
 	if (milliseconds <= 0) {
 		return;
 	}
@@ -121,25 +160,31 @@ function sleep(milliseconds: number): void {
 	Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
 }
 
-function fetchText(url: string): string {
-	if (requestCount > 0) {
-		sleep(delayMs);
+function fetchText(
+	url: string,
+	context: {
+		deps: FetchExamplesDependencies;
+		delayMs: number;
+		repoRoot: string;
+		requestCount: number;
+	},
+): string {
+	if (context.requestCount > 0) {
+		sleep(context.delayMs);
 	}
 
-	requestCount += 1;
-
-	return execFileSync("curl", ["-L", "-sS", url], {
-		cwd: repoRoot,
+	return context.deps.execFileSync("curl", ["-L", "-sS", url], {
+		cwd: context.repoRoot,
 		encoding: "utf8",
 		maxBuffer: fetchMaxBufferBytes,
 	});
 }
 
-function normalizeTextFileContent(content: string): string {
+export function normalizeTextFileContent(content: string): string {
 	return content.replace(/\r\n/g, "\n").replace(/\n*$/, "\n");
 }
 
-function decodeHtmlEntities(value: string): string {
+export function decodeHtmlEntities(value: string): string {
 	return value
 		.replaceAll("&amp;", "&")
 		.replaceAll("&quot;", '"')
@@ -148,15 +193,19 @@ function decodeHtmlEntities(value: string): string {
 		.replaceAll("&gt;", ">");
 }
 
-function resourceExamplesPageUrl(resourceName: string): string {
+function resourceExamplesPageUrl(
+	release: FhirRelease,
+	resourceName: string,
+): string {
 	return release.exampleResourcePageUrl(resourceName);
 }
 
-function discoverJsonExamples(
+export function discoverJsonExamples(
+	release: FhirRelease,
 	resourceName: string,
 	pageHtml: string,
 ): ExampleLink[] {
-	const pageUrl = resourceExamplesPageUrl(resourceName);
+	const pageUrl = resourceExamplesPageUrl(release, resourceName);
 	const resourceSlug = resourceName.toLowerCase();
 	const discovered = new Map<string, ExampleLink>();
 	const linkPattern = new RegExp(
@@ -194,7 +243,11 @@ function discoverJsonExamples(
 	);
 }
 
-function selectResourceNames(requested: string[]): string[] {
+export function selectResourceNames(
+	requested: string[],
+	knownResourceNames: string[],
+	version: SupportedVersion,
+): string[] {
 	if (requested.length === 0) {
 		return knownResourceNames;
 	}
@@ -219,26 +272,37 @@ function selectResourceNames(requested: string[]): string[] {
 	});
 }
 
-function clearFixtureDirectory(resourceName: string): string {
+function clearFixtureDirectory(
+	resourceName: string,
+	fixturesRoot: string,
+	deps: FetchExamplesDependencies,
+): string {
 	const outputDir = join(fixturesRoot, resourceName);
 
-	rmSync(outputDir, { force: true, recursive: true });
-	mkdirSync(outputDir, { recursive: true });
+	deps.rmSync(outputDir, { force: true, recursive: true });
+	deps.mkdirSync(outputDir, { recursive: true });
 
 	return outputDir;
 }
 
-function hasFetchedFixtures(resourceName: string): boolean {
+function hasFetchedFixtures(
+	resourceName: string,
+	fixturesRoot: string,
+	deps: FetchExamplesDependencies,
+): boolean {
 	const outputDir = join(fixturesRoot, resourceName);
 
-	if (!existsSync(outputDir)) {
+	if (!deps.existsSync(outputDir)) {
 		return false;
 	}
 
-	return readdirSync(outputDir).some((entry) => entry.endsWith(".json"));
+	return deps.readdirSync(outputDir).some((entry) => entry.endsWith(".json"));
 }
 
-function assertNotHumanVerification(pageHtml: string, pageUrl: string): void {
+export function assertNotHumanVerification(
+	pageHtml: string,
+	pageUrl: string,
+): void {
 	if (
 		pageHtml.includes("<title>Human Verification</title>") ||
 		pageHtml.includes('id="captcha-container"')
@@ -249,55 +313,117 @@ function assertNotHumanVerification(pageHtml: string, pageUrl: string): void {
 	}
 }
 
-function fetchResourceExamples(resourceName: string): boolean {
-	const pageUrl = resourceExamplesPageUrl(resourceName);
-	const pageHtml = fetchText(pageUrl);
+function fetchResourceExamples(
+	resourceName: string,
+	context: {
+		deps: FetchExamplesDependencies;
+		fixturesRoot: string;
+		release: FhirRelease;
+		repoRoot: string;
+		requestCount: number;
+		version: SupportedVersion;
+		delayMs: number;
+	},
+): { fetched: boolean; requestCount: number } {
+	const pageUrl = resourceExamplesPageUrl(context.release, resourceName);
+	const pageHtml = fetchText(pageUrl, context);
+	let requestCount = context.requestCount + 1;
 
 	assertNotHumanVerification(pageHtml, pageUrl);
-	const discoveredExamples = discoverJsonExamples(resourceName, pageHtml);
+	const discoveredExamples = discoverJsonExamples(
+		context.release,
+		resourceName,
+		pageHtml,
+	);
 
 	if (discoveredExamples.length === 0) {
-		console.warn(
-			`No JSON examples discovered for ${version.toUpperCase()} ${resourceName} on ${pageUrl}; leaving fixtures unchanged.`,
+		context.deps.warn(
+			`No JSON examples discovered for ${context.version.toUpperCase()} ${resourceName} on ${pageUrl}; leaving fixtures unchanged.`,
 		);
-		return false;
+		return { fetched: false, requestCount };
 	}
 
-	const outputDir = clearFixtureDirectory(resourceName);
+	const outputDir = clearFixtureDirectory(
+		resourceName,
+		context.fixturesRoot,
+		context.deps,
+	);
 
 	for (const example of discoveredExamples) {
-		const json = fetchText(example.url);
+		const json = fetchText(example.url, {
+			...context,
+			requestCount,
+		});
+		requestCount += 1;
 		const outputPath = join(outputDir, example.filename);
 
-		writeFileSync(outputPath, normalizeTextFileContent(json), "utf8");
-		console.log(
-			`Fetched ${version.toUpperCase()} ${resourceName} example ${example.id} -> ${outputPath}`,
+		context.deps.writeFileSync(
+			outputPath,
+			normalizeTextFileContent(json),
+			"utf8",
+		);
+		context.deps.log(
+			`Fetched ${context.version.toUpperCase()} ${resourceName} example ${example.id} -> ${outputPath}`,
 		);
 	}
 
-	return true;
+	return { fetched: true, requestCount };
 }
 
-function main(): void {
-	mkdirSync(fixturesRoot, { recursive: true });
+export function runFetchExamplesCli(
+	argv = process.argv.slice(2),
+	options: {
+		deps?: Partial<FetchExamplesDependencies>;
+		repoRoot?: string;
+	} = {},
+): void {
+	const deps = { ...defaultDependencies, ...options.deps };
+	const root = options.repoRoot ?? repoRoot;
+	const parsedOptions = parseFetchExamplesOptions(argv, deps);
+	const release = deps.getRelease(parsedOptions.version);
+
+	if (!release) {
+		throw new Error(`Unknown FHIR version "${parsedOptions.version}".`);
+	}
+
+	const fixturesRoot = join(root, "tests", "fixtures", parsedOptions.version);
+	let requestCount = 0;
+
+	deps.mkdirSync(fixturesRoot, { recursive: true });
 	const failures: string[] = [];
 	const skipped: string[] = [];
 	const fetched: string[] = [];
 	const noExamples: string[] = [];
 	const selectedResources =
-		limit === null ? requestedResources : requestedResources.slice(0, limit);
+		parsedOptions.limit === null
+			? parsedOptions.requestedResources
+			: parsedOptions.requestedResources.slice(0, parsedOptions.limit);
 
 	for (const resourceName of selectedResources) {
-		if (!forceRefresh && hasFetchedFixtures(resourceName)) {
+		if (
+			!parsedOptions.forceRefresh &&
+			hasFetchedFixtures(resourceName, fixturesRoot, deps)
+		) {
 			skipped.push(resourceName);
-			console.log(
-				`Skipping ${version.toUpperCase()} ${resourceName}; fixtures already exist.`,
+			deps.log(
+				`Skipping ${parsedOptions.version.toUpperCase()} ${resourceName}; fixtures already exist.`,
 			);
 			continue;
 		}
 
 		try {
-			if (fetchResourceExamples(resourceName)) {
+			const result = fetchResourceExamples(resourceName, {
+				delayMs: parsedOptions.delayMs,
+				deps,
+				fixturesRoot,
+				release,
+				repoRoot: root,
+				requestCount,
+				version: parsedOptions.version,
+			});
+			requestCount = result.requestCount;
+
+			if (result.fetched) {
 				fetched.push(resourceName);
 			} else {
 				noExamples.push(resourceName);
@@ -313,10 +439,10 @@ function main(): void {
 					selectedResources.indexOf(resourceName),
 				);
 
-				console.warn(
-					`Stopped at ${version.toUpperCase()} ${resourceName}; ${detail}\nFetched ${fetched.length} resources this run, skipped ${skipped.length}. Resume later with:\n` +
-						`npm run fetch-examples -- ${version} ${remainingResources
-							.slice(0, limit ?? remainingResources.length)
+				deps.warn(
+					`Stopped at ${parsedOptions.version.toUpperCase()} ${resourceName}; ${detail}\nFetched ${fetched.length} resources this run, skipped ${skipped.length}. Resume later with:\n` +
+						`npm run fetch-examples -- ${parsedOptions.version} ${remainingResources
+							.slice(0, parsedOptions.limit ?? remainingResources.length)
 							.join(" ")}`,
 				);
 				break;
@@ -328,13 +454,18 @@ function main(): void {
 
 	if (failures.length > 0) {
 		throw new Error(
-			`Unable to fetch fixtures for ${failures.length} ${version.toUpperCase()} resources.\n${failures.join("\n")}`,
+			`Unable to fetch fixtures for ${failures.length} ${parsedOptions.version.toUpperCase()} resources.\n${failures.join("\n")}`,
 		);
 	}
 
-	console.log(
-		`Finished ${version.toUpperCase()} example fetch. fetched=${fetched.length} skipped=${skipped.length} noExamples=${noExamples.length} requests=${requestCount}`,
+	deps.log(
+		`Finished ${parsedOptions.version.toUpperCase()} example fetch. fetched=${fetched.length} skipped=${skipped.length} noExamples=${noExamples.length} requests=${requestCount}`,
 	);
 }
 
-main();
+if (
+	process.argv[1] &&
+	import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+	runFetchExamplesCli();
+}

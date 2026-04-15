@@ -8,9 +8,9 @@ import {
 	rmSync,
 } from "node:fs";
 import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-type SpecManifest = {
+export type SpecManifest = {
 	fhirVersion: string;
 	jsonSchemaArchiveEntry?: string;
 	jsonSchemaOutputPath?: string;
@@ -24,24 +24,59 @@ type SpecManifest = {
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
-const specRoot = join(repoRoot, "src", "spec");
-const requestedVersions = new Set(process.argv.slice(2));
+const allVersionsSelector = "all";
 const defaultVersions = new Set(["r4"]);
 
-function loadManifests(): Array<{
+export type FetchSpecDependencies = {
+	execFileSync: typeof execFileSync;
+	existsSync: typeof existsSync;
+	mkdirSync: typeof mkdirSync;
+	readdirSync: typeof readdirSync;
+	readFileSync: typeof readFileSync;
+	rmSync: typeof rmSync;
+};
+
+const defaultDependencies: FetchSpecDependencies = {
+	execFileSync,
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	readFileSync,
+	rmSync,
+};
+
+export function loadManifests(
+	options: {
+		deps?: FetchSpecDependencies;
+		repoRoot?: string;
+		requestedVersions?: Iterable<string>;
+	} = {},
+): Array<{
 	version: string;
 	manifestPath: string;
 	manifest: SpecManifest;
 }> {
-	return readdirSync(specRoot, { withFileTypes: true })
+	const deps = options.deps ?? defaultDependencies;
+	const root = options.repoRoot ?? repoRoot;
+	const specRoot = join(root, "src", "spec");
+	const requestedVersions = new Set(options.requestedVersions ?? []);
+	const includeAllVersions = requestedVersions.has(allVersionsSelector);
+
+	return deps
+		.readdirSync(specRoot, { withFileTypes: true })
 		.filter((entry: Dirent) => entry.isDirectory())
+		.sort((left, right) => left.name.localeCompare(right.name))
 		.map((entry) => ({
 			version: entry.name,
 			manifestPath: join(specRoot, entry.name, "manifest.json"),
 		}))
 		.filter(({ manifestPath, version }) => {
-			if (!existsSync(manifestPath)) {
+			if (!deps.existsSync(manifestPath)) {
 				return false;
+			}
+
+			if (includeAllVersions) {
+				return true;
 			}
 
 			if (requestedVersions.size === 0) {
@@ -61,42 +96,51 @@ function loadManifests(): Array<{
 				version,
 				manifestPath,
 				manifest: JSON.parse(
-					readFileSync(manifestPath, "utf8"),
+					deps.readFileSync(manifestPath, "utf8"),
 				) as SpecManifest,
 			}),
 		);
 }
 
-function ensurePackage(
+export function ensurePackage(
 	version: string,
 	manifestPath: string,
 	manifest: SpecManifest,
+	options: {
+		deps?: FetchSpecDependencies;
+		repoRoot?: string;
+	} = {},
 ): void {
-	const packageDir = resolve(repoRoot, manifest.packageRoot);
+	const deps = options.deps ?? defaultDependencies;
+	const root = options.repoRoot ?? repoRoot;
+	const packageDir = resolve(root, manifest.packageRoot);
 	const packageParentDir = dirname(packageDir);
-	const downloadDir = join(repoRoot, ".local", "spec-cache", "downloads");
+	const downloadDir = join(root, ".local", "spec-cache", "downloads");
 	const archivePath = join(
 		downloadDir,
 		`${manifest.packageName}-${manifest.packageVersion}.tgz`,
 	);
-	const packageReady = isPackageReady(packageDir, manifest);
+	const packageReady = isPackageReady(packageDir, manifest, {
+		deps,
+		repoRoot: root,
+	});
 
-	mkdirSync(downloadDir, { recursive: true });
-	mkdirSync(packageParentDir, { recursive: true });
+	deps.mkdirSync(downloadDir, { recursive: true });
+	deps.mkdirSync(packageParentDir, { recursive: true });
 
 	if (!packageReady) {
 		console.log(
 			`spec-fetch[${version}]: cache miss for extracted package, downloading ${manifest.packageName}@${manifest.packageVersion}.`,
 		);
-		rmSync(packageDir, { recursive: true, force: true });
+		deps.rmSync(packageDir, { recursive: true, force: true });
 
-		execFileSync("curl", ["-L", manifest.sourceUrl, "-o", archivePath], {
-			cwd: repoRoot,
+		deps.execFileSync("curl", ["-L", manifest.sourceUrl, "-o", archivePath], {
+			cwd: root,
 			stdio: "inherit",
 		});
 
-		execFileSync("tar", ["-xzf", archivePath, "-C", packageParentDir], {
-			cwd: repoRoot,
+		deps.execFileSync("tar", ["-xzf", archivePath, "-C", packageParentDir], {
+			cwd: root,
 			stdio: "inherit",
 		});
 	} else {
@@ -105,15 +149,25 @@ function ensurePackage(
 		);
 	}
 
-	ensureJsonSchema(downloadDir, manifest);
+	ensureJsonSchema(downloadDir, manifest, { deps, repoRoot: root });
 
 	console.log(
 		`Fetched ${version}: ${manifest.packageName}@${manifest.packageVersion} for ${manifest.fhirVersion} using ${manifestPath}.`,
 	);
 }
 
-function isPackageReady(packageDir: string, manifest: SpecManifest): boolean {
-	if (!existsSync(packageDir)) {
+export function isPackageReady(
+	packageDir: string,
+	manifest: SpecManifest,
+	options: {
+		deps?: Pick<FetchSpecDependencies, "existsSync">;
+		repoRoot?: string;
+	} = {},
+): boolean {
+	const deps = options.deps ?? defaultDependencies;
+	const root = options.repoRoot ?? repoRoot;
+
+	if (!deps.existsSync(packageDir)) {
 		return false;
 	}
 
@@ -122,14 +176,14 @@ function isPackageReady(packageDir: string, manifest: SpecManifest): boolean {
 		"StructureDefinition-Patient.json",
 	);
 
-	if (!existsSync(structureDefinitionPath)) {
+	if (!deps.existsSync(structureDefinitionPath)) {
 		return false;
 	}
 
 	if (manifest.jsonSchemaOutputPath) {
-		const jsonSchemaPath = resolve(repoRoot, manifest.jsonSchemaOutputPath);
+		const jsonSchemaPath = resolve(root, manifest.jsonSchemaOutputPath);
 
-		if (!existsSync(jsonSchemaPath)) {
+		if (!deps.existsSync(jsonSchemaPath)) {
 			return false;
 		}
 	}
@@ -137,7 +191,14 @@ function isPackageReady(packageDir: string, manifest: SpecManifest): boolean {
 	return true;
 }
 
-function ensureJsonSchema(downloadDir: string, manifest: SpecManifest): void {
+export function ensureJsonSchema(
+	downloadDir: string,
+	manifest: SpecManifest,
+	options: {
+		deps?: FetchSpecDependencies;
+		repoRoot?: string;
+	} = {},
+): void {
 	if (
 		!manifest.jsonSchemaSourceUrl ||
 		!manifest.jsonSchemaArchiveEntry ||
@@ -146,9 +207,11 @@ function ensureJsonSchema(downloadDir: string, manifest: SpecManifest): void {
 		return;
 	}
 
-	const outputPath = resolve(repoRoot, manifest.jsonSchemaOutputPath);
+	const deps = options.deps ?? defaultDependencies;
+	const root = options.repoRoot ?? repoRoot;
+	const outputPath = resolve(root, manifest.jsonSchemaOutputPath);
 
-	if (existsSync(outputPath)) {
+	if (deps.existsSync(outputPath)) {
 		console.log(
 			`spec-fetch: using cached JSON schema at ${manifest.jsonSchemaOutputPath}.`,
 		);
@@ -164,17 +227,17 @@ function ensureJsonSchema(downloadDir: string, manifest: SpecManifest): void {
 		`spec-fetch: downloading JSON schema from ${manifest.jsonSchemaSourceUrl}.`,
 	);
 
-	execFileSync(
+	deps.execFileSync(
 		"curl",
 		["-L", manifest.jsonSchemaSourceUrl, "-o", archivePath],
 		{
-			cwd: repoRoot,
+			cwd: root,
 			stdio: "inherit",
 		},
 	);
 
-	mkdirSync(dirname(outputPath), { recursive: true });
-	execFileSync(
+	deps.mkdirSync(dirname(outputPath), { recursive: true });
+	deps.execFileSync(
 		"sh",
 		[
 			"-c",
@@ -185,16 +248,38 @@ function ensureJsonSchema(downloadDir: string, manifest: SpecManifest): void {
 			outputPath,
 		],
 		{
-			cwd: repoRoot,
+			cwd: root,
 			stdio: "inherit",
 		},
 	);
 }
 
-function basenameFromUrl(url: string): string {
+export function basenameFromUrl(url: string): string {
 	return url.split("/").at(-1) ?? "download";
 }
 
-for (const { version, manifestPath, manifest } of loadManifests()) {
-	ensurePackage(version, manifestPath, manifest);
+export function runFetchSpecCli(
+	argv = process.argv.slice(2),
+	options: {
+		deps?: FetchSpecDependencies;
+		repoRoot?: string;
+	} = {},
+): void {
+	const deps = options.deps ?? defaultDependencies;
+	const root = options.repoRoot ?? repoRoot;
+
+	for (const { version, manifestPath, manifest } of loadManifests({
+		deps,
+		repoRoot: root,
+		requestedVersions: argv,
+	})) {
+		ensurePackage(version, manifestPath, manifest, { deps, repoRoot: root });
+	}
+}
+
+if (
+	process.argv[1] &&
+	import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+	runFetchSpecCli();
 }
