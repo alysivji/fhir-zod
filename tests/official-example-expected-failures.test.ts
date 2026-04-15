@@ -16,8 +16,8 @@ describe("official example expected failures needing investigation", () => {
 		for (const [fixtureKey, reason] of expectedFailures) {
 			it.skip(`${version} ${fixtureKey}: ${reason}`, () => {
 				// Tracked as a skipped test so expected-failure debt stays visible in
-				// test summaries while the real fixture validation still runs under
-				// it.fails in the version-specific official-example suite.
+				// test summaries while the version-specific official-example suite
+				// still fails if the fixture starts passing.
 			});
 		}
 	}
