@@ -1,6 +1,6 @@
 ---
 name: fhir-zod-pr-workflow
-description: Use when preparing pull request notes, creating a pull request, naming work from a GitHub issue or non-GitHub task, or summarizing completed fhir-zod changes for review.
+description: Use when preparing pull request notes, creating a pull request, commenting on GitHub issues or PRs, naming work from a GitHub issue or non-GitHub task, or summarizing completed fhir-zod changes for review.
 ---
 
 # fhir-zod PR Workflow
@@ -31,6 +31,10 @@ Create PR notes that follow the repo template exactly:
 - **API Or Breaking Changes**: check exactly one box and explain only if public API changed.
 - **Testing**: include commands in a fenced `bash` block. Add brief results after the block when useful.
 - **Docs**: check exactly one box. Treat workflow/config-only notes as docs only when user-facing docs changed.
+
+## GitHub Attribution
+
+- When creating or editing GitHub PR bodies, issue comments, or PR comments as the user, include the attribution footer `_Created with Codex._` unless the user explicitly asks not to.
 
 ## Extra Review Notes
 
