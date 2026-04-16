@@ -122,6 +122,7 @@ export type StructureDefinitionBuildResult = {
 };
 
 type StructureDefinitionBuildOptions = {
+	packageRoot?: string;
 	release: FhirRelease;
 	scopeNames: Iterable<string>;
 };
@@ -144,7 +145,8 @@ const fhirPathPrimitiveByCode = new Map<string, string>([
 export function buildStructureDefinitionsFromSpec(
 	options: StructureDefinitionBuildOptions,
 ): StructureDefinitionBuildResult {
-	const packageRoot = resolveRequiredSpecPackageRoot(options.release.id);
+	const packageRoot =
+		options.packageRoot ?? resolveRequiredSpecPackageRoot(options.release.id);
 	const index = loadStructureDefinitionIndex(packageRoot);
 	const terminology = loadTerminologyIndex(packageRoot);
 	const primitivePatterns = loadPrimitivePatterns(index);
