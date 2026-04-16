@@ -34,6 +34,7 @@ Create PR notes that follow the repo template exactly:
 
 ## Extra Review Notes
 
+- When creating or editing GitHub PR bodies, issue comments, or PR comments as the user, include the attribution line `Created with Codex.` unless the user explicitly asks not to.
 - Mention skipped tests with the reason, especially spec-cache skips.
 - Mention follow-up work only when it is real and not part of the current PR.
 - Do not paste huge command output; summarize the meaningful result.
