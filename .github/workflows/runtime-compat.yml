@@ -50,28 +50,28 @@ jobs:
 
       - name: Pack package
         run: |
-          mkdir -p .runtime-consumer/tests
-          npm pack --ignore-scripts --pack-destination .runtime-consumer
-          cp tests/runtime-smoke.mjs .runtime-consumer/runtime-smoke.mjs
-          cp tests/runtime-official-examples.mjs .runtime-consumer/runtime-official-examples.mjs
-          cp -R tests/fixtures .runtime-consumer/tests/fixtures
+          mkdir -p runtime-consumer/tests
+          npm pack --ignore-scripts --pack-destination runtime-consumer
+          cp tests/runtime-smoke.mjs runtime-consumer/runtime-smoke.mjs
+          cp tests/runtime-official-examples.mjs runtime-consumer/runtime-official-examples.mjs
+          cp -R tests/fixtures runtime-consumer/tests/fixtures
 
       - name: Install packed package in consumer project
-        working-directory: .runtime-consumer
+        working-directory: runtime-consumer
         run: |
           npm init -y
           npm install --package-lock=false ./fhir-zod-*.tgz zod@${{ matrix.zod-version }}
 
-      - name: Run Bun smoke test
+      - name: Run Bun runtime compatibility checks
         if: ${{ matrix.runtime == 'bun' }}
-        working-directory: .runtime-consumer
+        working-directory: runtime-consumer
         run: |
           bun run runtime-smoke.mjs
           bun run runtime-official-examples.mjs
 
-      - name: Run Deno smoke test
+      - name: Run Deno runtime compatibility checks
         if: ${{ matrix.runtime == 'deno' }}
-        working-directory: .runtime-consumer
+        working-directory: runtime-consumer
         run: |
           deno run --node-modules-dir=manual --allow-read runtime-smoke.mjs
           deno run --node-modules-dir=manual --allow-read runtime-official-examples.mjs
