@@ -89,6 +89,20 @@ npm test -- tests/r4-choice-contracts.test.ts
 Run `npm test` before pushing a change that touches generator behavior, runtime
 schemas, package exports, or committed fixtures.
 
+The suite has several different kinds of tests:
+
+- **Runtime schema contracts** check focused validation behavior, such as FHIR
+  primitives, choice-type exclusivity, primitive arrays, inheritance, and
+  constrained references.
+- **Official example tests** parse committed HL7 example fixtures for each
+  supported release. These are broad regression tests for generated schemas.
+- **Generator tests** check the internal model, version registry, target
+  inventory, source normalization, and generated declaration shape.
+- **Script tests** cover developer commands such as spec fetching, example
+  fetching, target listing, and the shared CLI wrapper.
+- **Packaging tests** check public exports, generated imports, declaration
+  output, and tree-shaking behavior.
+
 Run `npm run typecheck` when TypeScript declarations, generated types, scripts,
 or package exports change. `npm run check` combines Biome checks with
 `typecheck`, and is a good final local gate for most pull requests.
