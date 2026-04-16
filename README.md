@@ -1,6 +1,6 @@
 # FHIR Zod 🩺
 
-Generated TypeScript interfaces and Zod schemas for HL7 FHIR.
+TypeScript interfaces and Zod schemas for HL7 FHIR.
 
 ![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
@@ -8,14 +8,14 @@ Generated TypeScript interfaces and Zod schemas for HL7 FHIR.
 
 [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![Runtime Compatibility](https://github.com/alysivji/fhir-zod/actions/workflows/runtime-compat.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/runtime-compat.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
 
-`fhir-zod` gives you type-safe FHIR interfaces for your editor and Zod schemas for your runtime. The generated output is versioned by FHIR release, so R5, R4B, R4, and STU3 stay explicit in your imports.
+`fhir-zod` gives you type-safe FHIR interfaces for your editor and Zod schemas for your runtime. FHIR releases are versioned, so R5, R4B, R4, and STU3 stay explicit in your imports.
 
 Bring your own FHIR workflow. This package focuses on structural validation, not on becoming a terminology server, profile resolver, FHIRPath engine, or FHIR platform.
 
 ## Why use it?
 
-- 🧩 **Type-first models**: generated TypeScript interfaces and types for FHIR resources and datatypes.
-- ✅ **Runtime validation**: generated Zod schemas for parsing data at boundaries.
+- 🧩 **Type-first models**: TypeScript interfaces and types for FHIR resources and datatypes.
+- ✅ **Runtime validation**: Zod schemas for parsing data at boundaries.
 - 🗂️ **Versioned imports**: separate entry points for R5, R4B, R4, and STU3.
 - 📘 **Spec-aligned generation**: generated from pinned official HL7 artifacts.
 - 🧪 **Example-backed tests**: checked against official FHIR example fixtures.
@@ -219,7 +219,7 @@ What generated schemas do not do:
 | R4 | `fhir-zod/r4` |
 | STU3 | `fhir-zod/stu3` |
 
-Each version exports generated TypeScript interfaces and matching Zod schemas:
+Each version exports TypeScript interfaces and matching Zod schemas:
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4"
