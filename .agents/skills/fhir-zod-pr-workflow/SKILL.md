@@ -34,7 +34,7 @@ Create PR notes that follow the repo template exactly:
 
 ## GitHub Attribution
 
-- When creating or editing GitHub PR bodies, issue comments, or PR comments as the user, include the attribution line `Created with Codex.` unless the user explicitly asks not to.
+- When creating or editing GitHub PR bodies, issue comments, or PR comments as the user, include the attribution footer `_Created with Codex._` unless the user explicitly asks not to.
 
 ## Extra Review Notes
 
