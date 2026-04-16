@@ -33,8 +33,10 @@ import {
 	type SpecManifest,
 } from "../scripts/fetch-spec.ts";
 import { runGenerateCli } from "../scripts/generate.ts";
+import { runInspectChoiceGroupsCli } from "../scripts/inspect-choice-groups.ts";
 import { runListTargetsCli } from "../scripts/list-targets.ts";
 import type { FhirRelease, TargetEntry } from "../src/generator/versions.ts";
+import { getR4SpecAvailability } from "./helpers/require-r4-spec.ts";
 
 describe("developer CLI", () => {
 	it("exposes the shared script commands and generated help", () => {
@@ -432,6 +434,33 @@ describe("generate script", () => {
 		);
 	});
 });
+
+const r4SpecAvailability = getR4SpecAvailability();
+const describeInspectChoiceGroups = r4SpecAvailability.available
+	? describe
+	: describe.skip;
+
+describeInspectChoiceGroups(
+	r4SpecAvailability.available
+		? "inspect-choice-groups script"
+		: `inspect-choice-groups script (${r4SpecAvailability.reason})`,
+	() => {
+		it("prints filtered R4 choice groups with stable field ordering", () => {
+			const logs: string[] = [];
+
+			runInspectChoiceGroupsCli(["Observation"], {
+				log: (message) => logs.push(message),
+			});
+
+			expect(logs.slice(0, 4)).toEqual([
+				"Observation",
+				"  effective[x]: effectiveDateTime, effectiveInstant, effectivePeriod, effectiveTiming",
+				"  value[x]: valueBoolean, valueCodeableConcept, valueDateTime, valueInteger, valuePeriod, valueQuantity, valueRange, valueRatio, valueSampledData, valueString, valueTime",
+				"Observation_Component",
+			]);
+		});
+	},
+);
 
 function makeFetchSpecDeps(execCalls: string[]): FetchSpecDependencies {
 	return {
