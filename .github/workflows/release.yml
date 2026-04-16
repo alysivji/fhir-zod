@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git ref to release
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  release:
+    concurrency:
+      group: release-${{ github.workflow }}-${{ inputs.ref }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore spec cache
+        id: spec-cache
+        uses: actions/cache@v5
+        with:
+          path: .local/spec-cache
+          key: spec-cache-${{ runner.os }}-${{ hashFiles('src/spec/**/*.json', 'scripts/fetch-spec.ts') }}
+
+      - name: Fetch spec artifacts
+        run: npm run fetch-spec -- stu3 r4 r4b r5
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Check package contents
+        run: npm run pack:check
+
+      - name: Read release version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "value=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure release tag does not already exist
+        run: |
+          if git rev-parse "${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ steps.version.outputs.tag }} already exists locally."
+            exit 1
+          fi
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ steps.version.outputs.tag }} already exists on origin."
+            exit 1
+          fi
+
+      - name: Publish release artifacts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          PUBLISH_SUCCEEDED=0
+
+          cleanup() {
+            if [ "$PUBLISH_SUCCEEDED" != "1" ] && git ls-remote --exit-code --tags origin "refs/tags/${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+              git push --delete origin "${{ steps.version.outputs.tag }}"
+            fi
+          }
+
+          trap cleanup EXIT
+
+          git tag "${{ steps.version.outputs.tag }}"
+          git push origin "${{ steps.version.outputs.tag }}"
+          npm publish --provenance --ignore-scripts
+          PUBLISH_SUCCEEDED=1
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ steps.version.outputs.tag }}" --title "${{ steps.version.outputs.tag }}" --generate-notes
