@@ -213,6 +213,10 @@ The generated models and schemas come from pinned official HL7 artifacts. Genera
 
 The generator is part of the repository for transparency. Official FHIR example fixtures are checked into the test suite and used to validate generated schemas against real spec examples across supported releases.
 
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and developer CLI workflow.
+
 ## AI usage
 
 This project has been developed with help from AI coding tools, including OpenAI Codex. AI assistance is used as part of an engineering workflow centered on developer experience, test-driven development, generated output, and reviewable changes.
@@ -220,49 +224,6 @@ This project has been developed with help from AI coding tools, including OpenAI
 Human judgment remains responsible for project direction, architecture, validation scope, tests, and release decisions. Generated FHIR models and schemas are derived from pinned official HL7 artifacts, not from AI-generated FHIR definitions.
 
 For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt). It documents canonical imports, type/schema naming, validation scope, choice fields, Bundle validation, and common mistakes to avoid.
-
-## Development
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Useful commands:
-
-```bash
-npm test
-npm run typecheck
-npm run fetch-spec
-npm run fetch-spec:all
-npm run generate
-```
-
-Handwritten source lives in:
-
-- `src/generator/`
-- `src/shared/`
-- `scripts/`
-- `tests/`
-- `src/spec/`
-
-Generated output lives in:
-
-- `src/r5/`
-- `src/r4b/`
-- `src/r4/`
-- `src/stu3/`
-
-If generated output is wrong, fix the generator or source normalization first, then regenerate and review the emitted diff. Avoid one-off manual edits in generated files.
-
-## Future documentation site
-
-Deeper guides are planned for a dedicated documentation site rather than a large README. Likely topics include getting started, validation recipes, version differences, generator internals, contributing, and API reference.
-
-## License
-
-MIT
 
 ## Trademark notice
 

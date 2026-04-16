@@ -10,6 +10,7 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { createCli } from "../scripts/cli.ts";
 import {
 	assertNotHumanVerification,
 	collectPositionalArgs,
@@ -34,6 +35,27 @@ import {
 import { runGenerateCli } from "../scripts/generate.ts";
 import { runListTargetsCli } from "../scripts/list-targets.ts";
 import type { FhirRelease, TargetEntry } from "../src/generator/versions.ts";
+
+describe("developer CLI", () => {
+	it("exposes the shared script commands and generated help", () => {
+		const cli = createCli();
+		const help = cli.helpInformation();
+		const commandNames = cli.commands.map((command) => command.name());
+		const nestedCommandNames = new Map(
+			cli.commands.map((command) => [
+				command.name(),
+				command.commands.map((nestedCommand) => nestedCommand.name()),
+			]),
+		);
+
+		expect(help).toContain("fhir-zod developer tools");
+		expect(commandNames).toContain("generate");
+		expect(commandNames).toContain("fetch-spec");
+		expect(nestedCommandNames.get("spec")).toContain("fetch");
+		expect(nestedCommandNames.get("examples")).toContain("fetch");
+		expect(nestedCommandNames.get("targets")).toContain("list");
+	});
+});
 
 function manifest(overrides: Partial<SpecManifest> = {}): SpecManifest {
 	return {
