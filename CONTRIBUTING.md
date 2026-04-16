@@ -78,23 +78,47 @@ logic rather than relying on raw timestamp diffs.
 
 ## Testing
 
-Use the narrowest test command that exercises the change while iterating, then
-run the broader checks before opening a pull request.
+Use the narrowest command that exercises the change while iterating. Most tests
+can be run directly by file:
 
 ```bash
-npm test
-npm run typecheck
+npm test -- tests/scripts.test.ts
+npm test -- tests/r4-choice-contracts.test.ts
+```
+
+Run `npm test` before pushing a change that touches generator behavior, runtime
+schemas, package exports, or committed fixtures.
+
+Run `npm run typecheck` when TypeScript declarations, generated types, scripts,
+or package exports change. `npm run check` combines Biome checks with
+`typecheck`, and is a good final local gate for most pull requests.
+
+```bash
 npm run check
-npm run coverage
+npm test
 ```
 
 Generator-side tests that need extracted spec packages skip cleanly on a fresh
-checkout. Run `npm run fetch-spec` or `npm run fetch-spec:all` when you need the
-full spec-backed coverage.
+checkout. That is expected for contributors who have not populated `.local`.
+Run `npm run fetch-spec` when working on R4 generator behavior, or
+`npm run fetch-spec:all` when changing shared release logic that affects STU3,
+R4, R4B, and R5.
+
+Official example tests use committed fixtures under `tests/fixtures/`, so they
+are deterministic and do not fetch from the HL7 site during normal test runs.
+Only run `npm run fetch-examples` when intentionally refreshing those fixtures.
 
 Coverage focuses on handwritten generator, shared runtime, and script code. The
 checked-in generated FHIR model output is intentionally excluded from coverage
-accounting.
+accounting. Use coverage when changing validation logic, generator internals, or
+developer scripts:
+
+```bash
+npm run coverage
+```
+
+When a test suite skips because a spec package is missing, mention that in the
+pull request notes rather than treating it as a failure.
 
 ## Contribution Expectations
 
