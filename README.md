@@ -225,10 +225,6 @@ Human judgment remains responsible for project direction, architecture, validati
 
 For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt). It documents canonical imports, type/schema naming, validation scope, choice fields, Bundle validation, and common mistakes to avoid.
 
-## License
-
-MIT
-
 ## Trademark notice
 
 FHIR® is a registered trademark of Health Level Seven International (HL7). Use of the FHIR® name does not imply endorsement by HL7.
