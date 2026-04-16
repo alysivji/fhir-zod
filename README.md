@@ -4,9 +4,9 @@ Generated TypeScript models and Zod schemas for HL7 FHIR.
 
 ![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
-![Node](https://img.shields.io/badge/Node-%3E%3D20-339933?logo=node.js&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white)
+![Node](https://img.shields.io/badge/Node-%3E%3D20-339933?logo=node.js&logoColor=white) ![Bun](https://img.shields.io/badge/Bun-%3E%3D1.3-000000?logo=bun&logoColor=white) ![Deno](https://img.shields.io/badge/Deno-%3E%3D2-000000?logo=deno&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white)
 
-[![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
+[![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![Runtime Compatibility](https://github.com/alysivji/fhir-zod/actions/workflows/runtime-compat.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/runtime-compat.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
 
 `fhir-zod` gives you type-safe FHIR models for your editor and Zod schemas for your runtime. The generated output is versioned by FHIR release, so R5, R4B, R4, and STU3 stay explicit in your imports.
 
@@ -34,6 +34,46 @@ npm install fhir-zod zod
 ```
 
 Works with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
+
+The published ESM library supports Node.js 20+, Bun 1.3+, and Deno 2+ for
+public package imports, model construction, and schema parsing. The generator
+and repository developer scripts are Node.js tooling.
+
+Runtime compatibility is tested by installing the packed npm package in a fresh
+consumer project and parsing the committed official FHIR example fixtures with
+Zod 3.25.x and Zod 4.x.x.
+
+## Runtime usage
+
+The published package is ESM-only. Use public imports such as `fhir-zod`,
+`fhir-zod/r4`, `fhir-zod/r4b`, `fhir-zod/r5`, and `fhir-zod/stu3`.
+
+Node.js:
+
+```bash
+npm install fhir-zod zod
+node app.mjs
+```
+
+Bun:
+
+```bash
+bun add fhir-zod zod
+bun run app.ts
+```
+
+Deno:
+
+```bash
+deno add npm:fhir-zod npm:zod
+deno run --node-modules-dir=auto app.ts
+```
+
+In all supported runtimes, application code imports the same package entrypoints:
+
+```ts
+import { PatientSchema, type Patient } from "fhir-zod/r4"
+```
 
 ## Quick start
 

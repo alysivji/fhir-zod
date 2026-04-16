@@ -77,6 +77,8 @@
 		"pack:check": "npm pack --dry-run",
 		"prepack": "npm run build",
 		"test": "vitest run",
+		"test:runtime": "node tests/runtime-smoke.mjs && node tests/runtime-official-examples.mjs",
+		"test:runtime:examples": "node tests/runtime-official-examples.mjs",
 		"typecheck": "node --max-old-space-size=8192 ./node_modules/typescript/bin/tsc --noEmit"
 	},
 	"peerDependencies": {
