@@ -2,9 +2,11 @@
 
 TypeScript interfaces and Zod schemas for HL7 FHIR.
 
+Shared FHIR types and validators for frontend and backend TypeScript.
+
 ![HL7 FHIR](https://img.shields.io/badge/HL7%20FHIR-compatible-blue) ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
-[![npm version](https://img.shields.io/npm/v/fhir-zod.svg)](https://www.npmjs.com/package/fhir-zod) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white) ![Node](https://img.shields.io/badge/Node-%3E%3D20-339933?logo=node.js&logoColor=white) ![Bun](https://img.shields.io/badge/Bun-%3E%3D1.3-000000?logo=bun&logoColor=white) ![Deno](https://img.shields.io/badge/Deno-%3E%3D2-000000?logo=deno&logoColor=white)
+[![npm version](https://img.shields.io/npm/v/fhir-zod.svg)](https://www.npmjs.com/package/fhir-zod) ![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178c6?logo=typescript&logoColor=white) ![ESM](https://img.shields.io/badge/ESM-only-4b5563) ![Frontend + Backend](https://img.shields.io/badge/frontend%20%2B%20backend-ready-16a34a) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white)
 
 [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![Runtime Compatibility](https://github.com/alysivji/fhir-zod/actions/workflows/runtime-compat.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/runtime-compat.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: Biome](https://img.shields.io/badge/code%20style-biome-60a5fa)](https://biomejs.dev/)
 
