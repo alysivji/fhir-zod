@@ -112,22 +112,20 @@ ObservationSchema.parse(bodyWeight)
 
 ### Validate Bundle resources
 
-`BundleSchema` recursively validates known FHIR resources in `entry[].resource`. Resource-valued fields such as `Bundle.entry.resource` and `DomainResource.contained` use the version's `FhirResource` union type.
+`BundleSchema` recursively validates known FHIR resources in `entry[].resource`.
 
 ```ts
-import { BundleSchema, type Bundle, type FhirResource, type Patient } from "fhir-zod/r4"
+import { BundleSchema, type Bundle, type Patient } from "fhir-zod/r4"
 
 const patient: Patient = {
   resourceType: "Patient",
   id: "john-doe",
 }
 
-const resource: FhirResource = patient
-
 const bundle: Bundle = {
   resourceType: "Bundle",
   type: "collection",
-  entry: [{ resource }],
+  entry: [{ resource: patient }],
 }
 
 BundleSchema.parse(bundle)
