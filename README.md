@@ -198,7 +198,7 @@ Import from a specific FHIR version subpath:
 import { ObservationSchema } from "fhir-zod/r4"
 ```
 
-Each FHIR version is exposed as a separate entry point. Version entry points register the concrete resource schemas needed for recursive `FhirResource` validation, so importing a runtime schema from a version entry point can pull in every generated resource schema for that FHIR version. Type-only imports remain tree-shakeable.
+Each FHIR version is exposed as a separate entry point. Bundlers will tree-shake unused FHIR versions. In frontend code, lazy-load runtime schema imports where validation runs.
 
 ## Specification alignment
 
