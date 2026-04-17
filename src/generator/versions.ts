@@ -73,6 +73,8 @@ export abstract class FhirRelease {
 		"Element",
 	];
 
+	readonly enableNestedResourceValidation: boolean = false;
+
 	loadTargetEntries(): TargetEntry[] {
 		const packageRoot = resolveRequiredSpecPackageRoot(this.id);
 
@@ -149,6 +151,7 @@ export abstract class FhirRelease {
 		const generatedAt = options.generatedAt ?? new Date().toISOString();
 		const files = writeNormalizedZodDefinitions({
 			definitions: structureDefinitionResult.definitions,
+			enableNestedResourceValidation: this.enableNestedResourceValidation,
 			generatedAt,
 			outputDir,
 			prune: options.prune ?? true,
@@ -212,6 +215,7 @@ export class R4Release extends FhirRelease {
 	readonly id = "r4";
 	readonly label = "R4";
 	readonly abstractTargetNames = defaultAbstractTargetNames;
+	readonly enableNestedResourceValidation = true;
 }
 
 export class R4BRelease extends FhirRelease {

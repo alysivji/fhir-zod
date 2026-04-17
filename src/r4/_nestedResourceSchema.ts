@@ -1,0 +1,348 @@
+// Release: R4
+// Last generated: 2026-04-17T20:41:23.929Z
+
+import * as z from "zod";
+import type { Account } from "./Account";
+import type { ActivityDefinition } from "./ActivityDefinition";
+import type { AdverseEvent } from "./AdverseEvent";
+import type { AllergyIntolerance } from "./AllergyIntolerance";
+import type { Appointment } from "./Appointment";
+import type { AppointmentResponse } from "./AppointmentResponse";
+import type { AuditEvent } from "./AuditEvent";
+import type { Basic } from "./Basic";
+import type { Binary } from "./Binary";
+import type { BiologicallyDerivedProduct } from "./BiologicallyDerivedProduct";
+import type { BodyStructure } from "./BodyStructure";
+import type { Bundle } from "./Bundle";
+import type { CapabilityStatement } from "./CapabilityStatement";
+import type { CarePlan } from "./CarePlan";
+import type { CareTeam } from "./CareTeam";
+import type { CatalogEntry } from "./CatalogEntry";
+import type { ChargeItem } from "./ChargeItem";
+import type { ChargeItemDefinition } from "./ChargeItemDefinition";
+import type { Claim } from "./Claim";
+import type { ClaimResponse } from "./ClaimResponse";
+import type { ClinicalImpression } from "./ClinicalImpression";
+import type { CodeSystem } from "./CodeSystem";
+import type { Communication } from "./Communication";
+import type { CommunicationRequest } from "./CommunicationRequest";
+import type { CompartmentDefinition } from "./CompartmentDefinition";
+import type { Composition } from "./Composition";
+import type { ConceptMap } from "./ConceptMap";
+import type { Condition } from "./Condition";
+import type { Consent } from "./Consent";
+import type { Contract } from "./Contract";
+import type { Coverage } from "./Coverage";
+import type { CoverageEligibilityRequest } from "./CoverageEligibilityRequest";
+import type { CoverageEligibilityResponse } from "./CoverageEligibilityResponse";
+import type { DetectedIssue } from "./DetectedIssue";
+import type { Device } from "./Device";
+import type { DeviceDefinition } from "./DeviceDefinition";
+import type { DeviceMetric } from "./DeviceMetric";
+import type { DeviceRequest } from "./DeviceRequest";
+import type { DeviceUseStatement } from "./DeviceUseStatement";
+import type { DiagnosticReport } from "./DiagnosticReport";
+import type { DocumentManifest } from "./DocumentManifest";
+import type { DocumentReference } from "./DocumentReference";
+import type { EffectEvidenceSynthesis } from "./EffectEvidenceSynthesis";
+import type { Encounter } from "./Encounter";
+import type { Endpoint } from "./Endpoint";
+import type { EnrollmentRequest } from "./EnrollmentRequest";
+import type { EnrollmentResponse } from "./EnrollmentResponse";
+import type { EpisodeOfCare } from "./EpisodeOfCare";
+import type { EventDefinition } from "./EventDefinition";
+import type { Evidence } from "./Evidence";
+import type { EvidenceVariable } from "./EvidenceVariable";
+import type { ExampleScenario } from "./ExampleScenario";
+import type { ExplanationOfBenefit } from "./ExplanationOfBenefit";
+import type { FamilyMemberHistory } from "./FamilyMemberHistory";
+import type { Flag } from "./Flag";
+import type { Goal } from "./Goal";
+import type { GraphDefinition } from "./GraphDefinition";
+import type { Group } from "./Group";
+import type { GuidanceResponse } from "./GuidanceResponse";
+import type { HealthcareService } from "./HealthcareService";
+import type { ImagingStudy } from "./ImagingStudy";
+import type { Immunization } from "./Immunization";
+import type { ImmunizationEvaluation } from "./ImmunizationEvaluation";
+import type { ImmunizationRecommendation } from "./ImmunizationRecommendation";
+import type { ImplementationGuide } from "./ImplementationGuide";
+import type { InsurancePlan } from "./InsurancePlan";
+import type { Invoice } from "./Invoice";
+import type { Library } from "./Library";
+import type { Linkage } from "./Linkage";
+import type { List } from "./List";
+import type { Location } from "./Location";
+import type { Measure } from "./Measure";
+import type { MeasureReport } from "./MeasureReport";
+import type { Media } from "./Media";
+import type { Medication } from "./Medication";
+import type { MedicationAdministration } from "./MedicationAdministration";
+import type { MedicationDispense } from "./MedicationDispense";
+import type { MedicationKnowledge } from "./MedicationKnowledge";
+import type { MedicationRequest } from "./MedicationRequest";
+import type { MedicationStatement } from "./MedicationStatement";
+import type { MedicinalProduct } from "./MedicinalProduct";
+import type { MedicinalProductAuthorization } from "./MedicinalProductAuthorization";
+import type { MedicinalProductContraindication } from "./MedicinalProductContraindication";
+import type { MedicinalProductIndication } from "./MedicinalProductIndication";
+import type { MedicinalProductIngredient } from "./MedicinalProductIngredient";
+import type { MedicinalProductInteraction } from "./MedicinalProductInteraction";
+import type { MedicinalProductManufactured } from "./MedicinalProductManufactured";
+import type { MedicinalProductPackaged } from "./MedicinalProductPackaged";
+import type { MedicinalProductPharmaceutical } from "./MedicinalProductPharmaceutical";
+import type { MedicinalProductUndesirableEffect } from "./MedicinalProductUndesirableEffect";
+import type { MessageDefinition } from "./MessageDefinition";
+import type { MessageHeader } from "./MessageHeader";
+import type { MolecularSequence } from "./MolecularSequence";
+import type { NamingSystem } from "./NamingSystem";
+import type { NutritionOrder } from "./NutritionOrder";
+import type { Observation } from "./Observation";
+import type { ObservationDefinition } from "./ObservationDefinition";
+import type { OperationDefinition } from "./OperationDefinition";
+import type { OperationOutcome } from "./OperationOutcome";
+import type { Organization } from "./Organization";
+import type { OrganizationAffiliation } from "./OrganizationAffiliation";
+import type { Parameters } from "./Parameters";
+import type { Patient } from "./Patient";
+import type { PaymentNotice } from "./PaymentNotice";
+import type { PaymentReconciliation } from "./PaymentReconciliation";
+import type { Person } from "./Person";
+import type { PlanDefinition } from "./PlanDefinition";
+import type { Practitioner } from "./Practitioner";
+import type { PractitionerRole } from "./PractitionerRole";
+import type { Procedure } from "./Procedure";
+import type { Provenance } from "./Provenance";
+import type { Questionnaire } from "./Questionnaire";
+import type { QuestionnaireResponse } from "./QuestionnaireResponse";
+import type { RelatedPerson } from "./RelatedPerson";
+import type { RequestGroup } from "./RequestGroup";
+import type { ResearchDefinition } from "./ResearchDefinition";
+import type { ResearchElementDefinition } from "./ResearchElementDefinition";
+import type { ResearchStudy } from "./ResearchStudy";
+import type { ResearchSubject } from "./ResearchSubject";
+import type { RiskAssessment } from "./RiskAssessment";
+import type { RiskEvidenceSynthesis } from "./RiskEvidenceSynthesis";
+import type { Schedule } from "./Schedule";
+import type { SearchParameter } from "./SearchParameter";
+import type { ServiceRequest } from "./ServiceRequest";
+import type { Slot } from "./Slot";
+import type { Specimen } from "./Specimen";
+import type { SpecimenDefinition } from "./SpecimenDefinition";
+import type { StructureDefinition } from "./StructureDefinition";
+import type { StructureMap } from "./StructureMap";
+import type { Subscription } from "./Subscription";
+import type { Substance } from "./Substance";
+import type { SubstanceNucleicAcid } from "./SubstanceNucleicAcid";
+import type { SubstancePolymer } from "./SubstancePolymer";
+import type { SubstanceProtein } from "./SubstanceProtein";
+import type { SubstanceReferenceInformation } from "./SubstanceReferenceInformation";
+import type { SubstanceSourceMaterial } from "./SubstanceSourceMaterial";
+import type { SubstanceSpecification } from "./SubstanceSpecification";
+import type { SupplyDelivery } from "./SupplyDelivery";
+import type { SupplyRequest } from "./SupplyRequest";
+import type { Task } from "./Task";
+import type { TerminologyCapabilities } from "./TerminologyCapabilities";
+import type { TestReport } from "./TestReport";
+import type { TestScript } from "./TestScript";
+import type { ValueSet } from "./ValueSet";
+import type { VerificationResult } from "./VerificationResult";
+import type { VisionPrescription } from "./VisionPrescription";
+
+/** @internal */
+export type NestedResource =
+	| Account
+	| ActivityDefinition
+	| AdverseEvent
+	| AllergyIntolerance
+	| Appointment
+	| AppointmentResponse
+	| AuditEvent
+	| Basic
+	| Binary
+	| BiologicallyDerivedProduct
+	| BodyStructure
+	| Bundle
+	| CapabilityStatement
+	| CarePlan
+	| CareTeam
+	| CatalogEntry
+	| ChargeItem
+	| ChargeItemDefinition
+	| Claim
+	| ClaimResponse
+	| ClinicalImpression
+	| CodeSystem
+	| Communication
+	| CommunicationRequest
+	| CompartmentDefinition
+	| Composition
+	| ConceptMap
+	| Condition
+	| Consent
+	| Contract
+	| Coverage
+	| CoverageEligibilityRequest
+	| CoverageEligibilityResponse
+	| DetectedIssue
+	| Device
+	| DeviceDefinition
+	| DeviceMetric
+	| DeviceRequest
+	| DeviceUseStatement
+	| DiagnosticReport
+	| DocumentManifest
+	| DocumentReference
+	| EffectEvidenceSynthesis
+	| Encounter
+	| Endpoint
+	| EnrollmentRequest
+	| EnrollmentResponse
+	| EpisodeOfCare
+	| EventDefinition
+	| Evidence
+	| EvidenceVariable
+	| ExampleScenario
+	| ExplanationOfBenefit
+	| FamilyMemberHistory
+	| Flag
+	| Goal
+	| GraphDefinition
+	| Group
+	| GuidanceResponse
+	| HealthcareService
+	| ImagingStudy
+	| Immunization
+	| ImmunizationEvaluation
+	| ImmunizationRecommendation
+	| ImplementationGuide
+	| InsurancePlan
+	| Invoice
+	| Library
+	| Linkage
+	| List
+	| Location
+	| Measure
+	| MeasureReport
+	| Media
+	| Medication
+	| MedicationAdministration
+	| MedicationDispense
+	| MedicationKnowledge
+	| MedicationRequest
+	| MedicationStatement
+	| MedicinalProduct
+	| MedicinalProductAuthorization
+	| MedicinalProductContraindication
+	| MedicinalProductIndication
+	| MedicinalProductIngredient
+	| MedicinalProductInteraction
+	| MedicinalProductManufactured
+	| MedicinalProductPackaged
+	| MedicinalProductPharmaceutical
+	| MedicinalProductUndesirableEffect
+	| MessageDefinition
+	| MessageHeader
+	| MolecularSequence
+	| NamingSystem
+	| NutritionOrder
+	| Observation
+	| ObservationDefinition
+	| OperationDefinition
+	| OperationOutcome
+	| Organization
+	| OrganizationAffiliation
+	| Parameters
+	| Patient
+	| PaymentNotice
+	| PaymentReconciliation
+	| Person
+	| PlanDefinition
+	| Practitioner
+	| PractitionerRole
+	| Procedure
+	| Provenance
+	| Questionnaire
+	| QuestionnaireResponse
+	| RelatedPerson
+	| RequestGroup
+	| ResearchDefinition
+	| ResearchElementDefinition
+	| ResearchStudy
+	| ResearchSubject
+	| RiskAssessment
+	| RiskEvidenceSynthesis
+	| Schedule
+	| SearchParameter
+	| ServiceRequest
+	| Slot
+	| Specimen
+	| SpecimenDefinition
+	| StructureDefinition
+	| StructureMap
+	| Subscription
+	| Substance
+	| SubstanceNucleicAcid
+	| SubstancePolymer
+	| SubstanceProtein
+	| SubstanceReferenceInformation
+	| SubstanceSourceMaterial
+	| SubstanceSpecification
+	| SupplyDelivery
+	| SupplyRequest
+	| Task
+	| TerminologyCapabilities
+	| TestReport
+	| TestScript
+	| ValueSet
+	| VerificationResult
+	| VisionPrescription;
+
+const registry = new Map<string, z.ZodTypeAny>();
+
+/** @internal */
+export function _registerNestedResourceUnion(
+	entries: Readonly<Record<string, z.ZodTypeAny>>,
+): void {
+	for (const [resourceType, schema] of Object.entries(entries)) {
+		registry.set(resourceType, schema);
+	}
+}
+
+/** @internal */
+export const NestedResourceSchemaInternal = z.lazy(
+	(): z.ZodType<NestedResource> =>
+		z.any().superRefine((value, ctx) => {
+			if (typeof value !== "object" || value === null) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: "Expected a FHIR resource object",
+				});
+				return;
+			}
+			const resourceType = (value as { resourceType?: unknown }).resourceType;
+			if (typeof resourceType !== "string") {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: "Missing or non-string resourceType",
+					path: ["resourceType"],
+				});
+				return;
+			}
+			const schema = registry.get(resourceType);
+			if (!schema) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: `Unknown FHIR resourceType: ${resourceType}`,
+					path: ["resourceType"],
+				});
+				return;
+			}
+			const result = schema.safeParse(value);
+			if (!result.success) {
+				for (const issue of result.error.issues) {
+					ctx.addIssue(issue as never);
+				}
+			}
+		}) as unknown as z.ZodType<NestedResource>,
+);

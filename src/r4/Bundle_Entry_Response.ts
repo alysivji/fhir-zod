@@ -1,15 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-17T19:50:51.863Z
 
 import * as z from "zod";
 import { fhirInstant, fhirString, fhirUri } from "../shared/fhir-primitives";
+import type { NestedResource } from "./_nestedResourceSchema";
+import { NestedResourceSchemaInternal } from "./_nestedResourceSchema";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
-import type { Resource } from "./Resource";
 
 /** Indicates the results of processing the corresponding 'request' entry in the batch or transaction being responded to or what the results of an operation where when returning history. */
 export interface Bundle_Entry_Response extends BackboneElement {
@@ -26,7 +27,7 @@ export interface Bundle_Entry_Response extends BackboneElement {
 	/** Extensions for location */
 	_location?: Element;
 	/** An OperationOutcome containing hints and warnings produced as part of processing this entry in a batch or transaction. */
-	outcome?: Resource;
+	outcome?: NestedResource;
 	/** The status code returned by processing this entry. The status SHALL start with a 3 digit HTTP code (e.g. 404) and may contain the standard HTTP description associated with the status code. */
 	status: string;
 	/** Extensions for status */
@@ -35,6 +36,8 @@ export interface Bundle_Entry_Response extends BackboneElement {
 
 const getElementSchema = (): z.ZodType<Element> =>
 	ElementSchemaInternal as z.ZodType<Element>;
+const getNestedResourceSchema = (): z.ZodType<NestedResource> =>
+	NestedResourceSchemaInternal as z.ZodType<NestedResource>;
 
 /** @internal */
 export const Bundle_Entry_ResponseSchemaInternal =
@@ -45,7 +48,7 @@ export const Bundle_Entry_ResponseSchemaInternal =
 		_lastModified: z.lazy(getElementSchema).optional(),
 		location: fhirUri().optional(),
 		_location: z.lazy(getElementSchema).optional(),
-		outcome: z.object({ resourceType: z.string() }).passthrough().optional(),
+		outcome: z.lazy(getNestedResourceSchema).optional(),
 		status: fhirString(),
 		_status: z.lazy(getElementSchema).optional(),
 	}).strict();
