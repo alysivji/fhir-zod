@@ -1,12 +1,10 @@
 # FHIR Zod 🩺
 
-TypeScript types and Zod schemas for HL7 FHIR.
+Type-safe FHIR models and runtime validation with Zod.
 
-![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey) [![npm version](https://img.shields.io/npm/v/fhir-zod.svg)](https://www.npmjs.com/package/fhir-zod) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white) [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod)
+![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
-`fhir-zod` gives you type-safe FHIR interfaces for your editor and Zod schemas for your runtime. Use explicit versioned imports for R5, R4B, R4, and STU3.
-
-Bring your own FHIR workflow. This package focuses on structural validation, not on becoming a terminology server, profile resolver, FHIRPath engine, or FHIR platform.
+[![npm version](https://img.shields.io/npm/v/fhir-zod.svg)](https://www.npmjs.com/package/fhir-zod) ![Zod](https://img.shields.io/badge/Zod-3.25.x%20%7C%204.x.x-3068B7?logo=zod&logoColor=white) [![CI](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml/badge.svg)](https://github.com/alysivji/fhir-zod/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/alysivji/fhir-zod/graph/badge.svg)](https://codecov.io/gh/alysivji/fhir-zod)
 
 ## Why use it?
 
@@ -19,9 +17,9 @@ Bring your own FHIR workflow. This package focuses on structural validation, not
 
 ## Project status
 
-`fhir-zod` is pre-release. The package shape is stabilizing, and breaking changes are still possible before the first public release.
+`fhir-zod` is pre-release. Early versions may include breaking changes while the package shape stabilizes.
 
-The install command below describes the intended public package shape. The project is still pre-release, so publication timing, versioning, and API details may change.
+Published versions are intended for testing and feedback rather than production use.
 
 ## Installation
 
