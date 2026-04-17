@@ -4,15 +4,17 @@ repos:
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
   - repo: local
     hooks:
       - id: biome-format
         name: biome format
-        entry: npm run format
+        entry: npx biome format --write
         language: system
-        pass_filenames: false
+        types: [javascript, jsx, ts, tsx, json]
+
       - id: biome-check
         name: biome check
-        entry: npm run check
+        entry: npx biome check
         language: system
-        pass_filenames: false
+        types: [javascript, jsx, ts, tsx, json]
