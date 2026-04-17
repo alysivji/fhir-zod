@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -11,19 +11,19 @@ import { TestScript_Setup_ActionSchemaInternal } from "./TestScript_Setup_Action
 
 /** A series of required setup operations before tests are executed. */
 export interface TestScript_Setup extends BackboneElement {
-	/** Action would contain either an operation or an assertion. */
-	action: Array<TestScript_Setup_Action>;
+  /** Action would contain either an operation or an assertion. */
+  action: Array<TestScript_Setup_Action>;
 }
 
 const getTestScript_Setup_ActionSchema =
-	(): z.ZodType<TestScript_Setup_Action> =>
-		TestScript_Setup_ActionSchemaInternal as z.ZodType<TestScript_Setup_Action>;
+  (): z.ZodType<TestScript_Setup_Action> =>
+    TestScript_Setup_ActionSchemaInternal as z.ZodType<TestScript_Setup_Action>;
 
 /** @internal */
 export const TestScript_SetupSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		action: z.lazy(getTestScript_Setup_ActionSchema).array(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    action: z.lazy(getTestScript_Setup_ActionSchema).array(),
+  }).strict();
 
 export const TestScript_SetupSchema =
-	TestScript_SetupSchemaInternal as z.ZodType<TestScript_Setup>;
+  TestScript_SetupSchemaInternal as z.ZodType<TestScript_Setup>;

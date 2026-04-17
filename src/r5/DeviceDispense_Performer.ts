@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDispense
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -14,50 +14,50 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Indicates who or what performed the event. */
 export interface DeviceDispense_Performer extends BackboneElement {
-	/** The device, practitioner, etc. who performed the action.  It should be assumed that the actor is the dispenser of the device. */
-	actor: Reference;
-	/** Distinguishes the type of performer in the dispense.  For example, date enterer, packager, final checker. */
-	function?: CodeableConcept;
+  /** The device, practitioner, etc. who performed the action.  It should be assumed that the actor is the dispenser of the device. */
+  actor: Reference;
+  /** Distinguishes the type of performer in the dispense.  For example, date enterer, packager, final checker. */
+  function?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const DeviceDispense_PerformerSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		actor: z.lazy(getReferenceSchema),
-		function: z.lazy(getCodeableConceptSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.actor,
-				"actor",
-				[
-					"http://hl7.org/fhir/StructureDefinition/CareTeam",
-					"http://hl7.org/fhir/StructureDefinition/Device",
-					"http://hl7.org/fhir/StructureDefinition/Organization",
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-					"http://hl7.org/fhir/StructureDefinition/Practitioner",
-					"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-				],
-				[
-					"CareTeam",
-					"Device",
-					"Organization",
-					"Patient",
-					"Practitioner",
-					"PractitionerRole",
-					"RelatedPerson",
-				],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    actor: z.lazy(getReferenceSchema),
+    function: z.lazy(getCodeableConceptSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.actor,
+        "actor",
+        [
+          "http://hl7.org/fhir/StructureDefinition/CareTeam",
+          "http://hl7.org/fhir/StructureDefinition/Device",
+          "http://hl7.org/fhir/StructureDefinition/Organization",
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Practitioner",
+          "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+          "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+        ],
+        [
+          "CareTeam",
+          "Device",
+          "Organization",
+          "Patient",
+          "Practitioner",
+          "PractitionerRole",
+          "RelatedPerson",
+        ],
+        ctx,
+      );
+    });
 
 export const DeviceDispense_PerformerSchema =
-	DeviceDispense_PerformerSchemaInternal as z.ZodType<DeviceDispense_Performer>;
+  DeviceDispense_PerformerSchemaInternal as z.ZodType<DeviceDispense_Performer>;

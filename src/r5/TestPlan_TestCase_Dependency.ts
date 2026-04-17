@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestPlan
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -13,29 +13,29 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** The required criteria to execute the test case - e.g. preconditions, previous tests. */
 export interface TestPlan_TestCase_Dependency extends BackboneElement {
-	/** Description of the criteria. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** Link to predecessor test plans. */
-	predecessor?: Reference;
+  /** Description of the criteria. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** Link to predecessor test plans. */
+  predecessor?: Reference;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const TestPlan_TestCase_DependencySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/^[\s\S]+$/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		predecessor: z.lazy(getReferenceSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    description: z
+      .string()
+      .regex(/^[\s\S]+$/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    predecessor: z.lazy(getReferenceSchema).optional(),
+  }).strict();
 
 export const TestPlan_TestCase_DependencySchema =
-	TestPlan_TestCase_DependencySchemaInternal as z.ZodType<TestPlan_TestCase_Dependency>;
+  TestPlan_TestCase_DependencySchemaInternal as z.ZodType<TestPlan_TestCase_Dependency>;

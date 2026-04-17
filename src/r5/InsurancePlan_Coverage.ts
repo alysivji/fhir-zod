@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/InsurancePlan
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -16,40 +16,40 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Details about the coverage offered by the insurance product. */
 export interface InsurancePlan_Coverage extends BackboneElement {
-	/** Specific benefits under this type of coverage. */
-	benefit: Array<InsurancePlan_Coverage_Benefit>;
-	/** Reference to the network that providing the type of coverage. */
-	network?: Array<Reference>;
-	/** Type of coverage  (Medical; Dental; Mental Health; Substance Abuse; Vision; Drug; Short Term; Long Term Care; Hospice; Home Health). */
-	type: CodeableConcept;
+  /** Specific benefits under this type of coverage. */
+  benefit: Array<InsurancePlan_Coverage_Benefit>;
+  /** Reference to the network that providing the type of coverage. */
+  network?: Array<Reference>;
+  /** Type of coverage  (Medical; Dental; Mental Health; Substance Abuse; Vision; Drug; Short Term; Long Term Care; Hospice; Home Health). */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getInsurancePlan_Coverage_BenefitSchema =
-	(): z.ZodType<InsurancePlan_Coverage_Benefit> =>
-		InsurancePlan_Coverage_BenefitSchemaInternal as z.ZodType<InsurancePlan_Coverage_Benefit>;
+  (): z.ZodType<InsurancePlan_Coverage_Benefit> =>
+    InsurancePlan_Coverage_BenefitSchemaInternal as z.ZodType<InsurancePlan_Coverage_Benefit>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const InsurancePlan_CoverageSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		benefit: z.lazy(getInsurancePlan_Coverage_BenefitSchema).array(),
-		network: z.lazy(getReferenceSchema).array().optional(),
-		type: z.lazy(getCodeableConceptSchema),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.network,
-				"network",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    benefit: z.lazy(getInsurancePlan_Coverage_BenefitSchema).array(),
+    network: z.lazy(getReferenceSchema).array().optional(),
+    type: z.lazy(getCodeableConceptSchema),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.network,
+        "network",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+    });
 
 export const InsurancePlan_CoverageSchema =
-	InsurancePlan_CoverageSchemaInternal as z.ZodType<InsurancePlan_Coverage>;
+  InsurancePlan_CoverageSchemaInternal as z.ZodType<InsurancePlan_Coverage>;

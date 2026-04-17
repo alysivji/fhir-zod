@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -16,35 +16,35 @@ import { SubstancePolymer_Repeat_RepeatUnitSchemaInternal } from "./SubstancePol
 
 /** Specifies and quantifies the repeated units and their configuration. */
 export interface SubstancePolymer_Repeat extends BackboneElement {
-	/** A representation of an (average) molecular formula from a polymer. */
-	averageMolecularFormula?: string;
-	/** Extensions for averageMolecularFormula */
-	_averageMolecularFormula?: Element;
-	/** An SRU - Structural Repeat Unit. */
-	repeatUnit?: Array<SubstancePolymer_Repeat_RepeatUnit>;
-	/** How the quantitative amount of Structural Repeat Units is captured (e.g. Exact, Numeric, Average). */
-	repeatUnitAmountType?: CodeableConcept;
+  /** A representation of an (average) molecular formula from a polymer. */
+  averageMolecularFormula?: string;
+  /** Extensions for averageMolecularFormula */
+  _averageMolecularFormula?: Element;
+  /** An SRU - Structural Repeat Unit. */
+  repeatUnit?: Array<SubstancePolymer_Repeat_RepeatUnit>;
+  /** How the quantitative amount of Structural Repeat Units is captured (e.g. Exact, Numeric, Average). */
+  repeatUnitAmountType?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getSubstancePolymer_Repeat_RepeatUnitSchema =
-	(): z.ZodType<SubstancePolymer_Repeat_RepeatUnit> =>
-		SubstancePolymer_Repeat_RepeatUnitSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit>;
+  (): z.ZodType<SubstancePolymer_Repeat_RepeatUnit> =>
+    SubstancePolymer_Repeat_RepeatUnitSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit>;
 
 /** @internal */
 export const SubstancePolymer_RepeatSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		averageMolecularFormula: fhirString().optional(),
-		_averageMolecularFormula: z.lazy(getElementSchema).optional(),
-		repeatUnit: z
-			.lazy(getSubstancePolymer_Repeat_RepeatUnitSchema)
-			.array()
-			.optional(),
-		repeatUnitAmountType: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    averageMolecularFormula: fhirString().optional(),
+    _averageMolecularFormula: z.lazy(getElementSchema).optional(),
+    repeatUnit: z
+      .lazy(getSubstancePolymer_Repeat_RepeatUnitSchema)
+      .array()
+      .optional(),
+    repeatUnitAmountType: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const SubstancePolymer_RepeatSchema =
-	SubstancePolymer_RepeatSchemaInternal as z.ZodType<SubstancePolymer_Repeat>;
+  SubstancePolymer_RepeatSchemaInternal as z.ZodType<SubstancePolymer_Repeat>;

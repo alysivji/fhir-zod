@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureMap
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { fhirId, fhirString } from "../shared/fhir-primitives";
@@ -18,51 +18,51 @@ import { StructureMap_Group_Rule_TargetSchemaInternal } from "./StructureMap_Gro
 
 /** Transform Rule from source to target. */
 export interface StructureMap_Group_Rule extends BackboneElement {
-	/** Which other rules to apply in the context of this rule. */
-	dependent?: Array<StructureMap_Group_Rule_Dependent>;
-	/** Documentation for this instance of data. */
-	documentation?: string;
-	/** Extensions for documentation */
-	_documentation?: Element;
-	/** Name of the rule for internal references. */
-	name: string;
-	/** Extensions for name */
-	_name?: Element;
-	/** Rules contained in this rule. */
-	rule?: Array<unknown>;
-	/** Source inputs to the mapping. */
-	source: Array<StructureMap_Group_Rule_Source>;
-	/** Content to create because of this mapping rule. */
-	target?: Array<StructureMap_Group_Rule_Target>;
+  /** Which other rules to apply in the context of this rule. */
+  dependent?: Array<StructureMap_Group_Rule_Dependent>;
+  /** Documentation for this instance of data. */
+  documentation?: string;
+  /** Extensions for documentation */
+  _documentation?: Element;
+  /** Name of the rule for internal references. */
+  name: string;
+  /** Extensions for name */
+  _name?: Element;
+  /** Rules contained in this rule. */
+  rule?: Array<unknown>;
+  /** Source inputs to the mapping. */
+  source: Array<StructureMap_Group_Rule_Source>;
+  /** Content to create because of this mapping rule. */
+  target?: Array<StructureMap_Group_Rule_Target>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getStructureMap_Group_Rule_DependentSchema =
-	(): z.ZodType<StructureMap_Group_Rule_Dependent> =>
-		StructureMap_Group_Rule_DependentSchemaInternal as z.ZodType<StructureMap_Group_Rule_Dependent>;
+  (): z.ZodType<StructureMap_Group_Rule_Dependent> =>
+    StructureMap_Group_Rule_DependentSchemaInternal as z.ZodType<StructureMap_Group_Rule_Dependent>;
 const getStructureMap_Group_Rule_SourceSchema =
-	(): z.ZodType<StructureMap_Group_Rule_Source> =>
-		StructureMap_Group_Rule_SourceSchemaInternal as z.ZodType<StructureMap_Group_Rule_Source>;
+  (): z.ZodType<StructureMap_Group_Rule_Source> =>
+    StructureMap_Group_Rule_SourceSchemaInternal as z.ZodType<StructureMap_Group_Rule_Source>;
 const getStructureMap_Group_Rule_TargetSchema =
-	(): z.ZodType<StructureMap_Group_Rule_Target> =>
-		StructureMap_Group_Rule_TargetSchemaInternal as z.ZodType<StructureMap_Group_Rule_Target>;
+  (): z.ZodType<StructureMap_Group_Rule_Target> =>
+    StructureMap_Group_Rule_TargetSchemaInternal as z.ZodType<StructureMap_Group_Rule_Target>;
 
 /** @internal */
 export const StructureMap_Group_RuleSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		dependent: z
-			.lazy(getStructureMap_Group_Rule_DependentSchema)
-			.array()
-			.optional(),
-		documentation: fhirString().optional(),
-		_documentation: z.lazy(getElementSchema).optional(),
-		name: fhirId(),
-		_name: z.lazy(getElementSchema).optional(),
-		rule: z.unknown().array().optional(),
-		source: z.lazy(getStructureMap_Group_Rule_SourceSchema).array(),
-		target: z.lazy(getStructureMap_Group_Rule_TargetSchema).array().optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    dependent: z
+      .lazy(getStructureMap_Group_Rule_DependentSchema)
+      .array()
+      .optional(),
+    documentation: fhirString().optional(),
+    _documentation: z.lazy(getElementSchema).optional(),
+    name: fhirId(),
+    _name: z.lazy(getElementSchema).optional(),
+    rule: z.unknown().array().optional(),
+    source: z.lazy(getStructureMap_Group_Rule_SourceSchema).array(),
+    target: z.lazy(getStructureMap_Group_Rule_TargetSchema).array().optional(),
+  }).strict();
 
 export const StructureMap_Group_RuleSchema =
-	StructureMap_Group_RuleSchemaInternal as z.ZodType<StructureMap_Group_Rule>;
+  StructureMap_Group_RuleSchemaInternal as z.ZodType<StructureMap_Group_Rule>;

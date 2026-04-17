@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Consent
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -14,37 +14,37 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** The resources controlled by this provision if specific resources are referenced. */
 export interface Consent_Provision_Data extends BackboneElement {
-	/** How the resource reference is interpreted when testing consent restrictions. */
-	meaning: "authoredby" | "dependents" | "instance" | "related";
-	/** Extensions for meaning */
-	_meaning?: Element;
-	/** A reference to a specific resource that defines which resources are covered by this consent. */
-	reference: Reference;
+  /** How the resource reference is interpreted when testing consent restrictions. */
+  meaning: "authoredby" | "dependents" | "instance" | "related";
+  /** Extensions for meaning */
+  _meaning?: Element;
+  /** A reference to a specific resource that defines which resources are covered by this consent. */
+  reference: Reference;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Consent_Provision_DataSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		meaning: z.enum(["authoredby", "dependents", "instance", "related"]),
-		_meaning: z.lazy(getElementSchema).optional(),
-		reference: z.lazy(getReferenceSchema),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.reference,
-				"reference",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    meaning: z.enum(["authoredby", "dependents", "instance", "related"]),
+    _meaning: z.lazy(getElementSchema).optional(),
+    reference: z.lazy(getReferenceSchema),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.reference,
+        "reference",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const Consent_Provision_DataSchema =
-	Consent_Provision_DataSchemaInternal as z.ZodType<Consent_Provision_Data>;
+  Consent_Provision_DataSchemaInternal as z.ZodType<Consent_Provision_Data>;

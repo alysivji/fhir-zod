@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExtendedContactDetail
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-05T15:32:44.350Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -26,61 +26,61 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** ExtendedContactDetail Type: Specifies contact information for a specific purpose over a period of time, might be handled/monitored by a specific named person or organization. */
 export interface ExtendedContactDetail extends DataType {
-	/** Address for the contact. */
-	address?: Address;
-	/** The name of an individual to contact, some types of contact detail are usually blank. */
-	name?: Array<HumanName>;
-	/** This contact detail is handled/monitored by a specific organization. If the name is provided in the contact, then it is referring to the named individual within this organization. */
-	organization?: Reference;
-	/** Period that this contact was valid for usage. */
-	period?: Period;
-	/** The purpose/type of contact. */
-	purpose?: CodeableConcept;
-	/** The contact details application for the purpose defined. */
-	telecom?: Array<ContactPoint>;
+  /** Address for the contact. */
+  address?: Address;
+  /** The name of an individual to contact, some types of contact detail are usually blank. */
+  name?: Array<HumanName>;
+  /** This contact detail is handled/monitored by a specific organization. If the name is provided in the contact, then it is referring to the named individual within this organization. */
+  organization?: Reference;
+  /** Period that this contact was valid for usage. */
+  period?: Period;
+  /** The purpose/type of contact. */
+  purpose?: CodeableConcept;
+  /** The contact details application for the purpose defined. */
+  telecom?: Array<ContactPoint>;
 }
 
 const getAddressSchema = (): z.ZodType<Address> =>
-	AddressSchemaInternal as z.ZodType<Address>;
+  AddressSchemaInternal as z.ZodType<Address>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getExtensionSchema = (): z.ZodType<Extension> =>
-	ExtensionSchemaInternal as z.ZodType<Extension>;
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 const getHumanNameSchema = (): z.ZodType<HumanName> =>
-	HumanNameSchemaInternal as z.ZodType<HumanName>;
+  HumanNameSchemaInternal as z.ZodType<HumanName>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const ExtendedContactDetailSchemaInternal = z
-	.object({
-		address: z.lazy(getAddressSchema).optional(),
-		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
-		_id: z.lazy(getElementSchema).optional(),
-		name: z.lazy(getHumanNameSchema).array().optional(),
-		organization: z.lazy(getReferenceSchema).optional(),
-		period: z.lazy(getPeriodSchema).optional(),
-		purpose: z.lazy(getCodeableConceptSchema).optional(),
-		telecom: z.lazy(getContactPointSchema).array().optional(),
-	})
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validateReferenceTarget(
-			record.organization,
-			"organization",
-			["http://hl7.org/fhir/StructureDefinition/Organization"],
-			["Organization"],
-			ctx,
-		);
-	});
+  .object({
+    address: z.lazy(getAddressSchema).optional(),
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    id: fhirId().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    name: z.lazy(getHumanNameSchema).array().optional(),
+    organization: z.lazy(getReferenceSchema).optional(),
+    period: z.lazy(getPeriodSchema).optional(),
+    purpose: z.lazy(getCodeableConceptSchema).optional(),
+    telecom: z.lazy(getContactPointSchema).array().optional(),
+  })
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validateReferenceTarget(
+      record.organization,
+      "organization",
+      ["http://hl7.org/fhir/StructureDefinition/Organization"],
+      ["Organization"],
+      ctx,
+    );
+  });
 
 export const ExtendedContactDetailSchema =
-	ExtendedContactDetailSchemaInternal as z.ZodType<ExtendedContactDetail>;
+  ExtendedContactDetailSchemaInternal as z.ZodType<ExtendedContactDetail>;

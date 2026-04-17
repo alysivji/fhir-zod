@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Device
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -16,31 +16,31 @@ import { IdentifierSchemaInternal } from "./Identifier";
 
 /** The actual design of the device or software version running on the device. */
 export interface Device_Version extends BackboneElement {
-	/** A single component of the device version. */
-	component?: Identifier;
-	/** The type of the device version, e.g. manufacturer, approved, internal. */
-	type?: CodeableConcept;
-	/** The version text. */
-	value: string;
-	/** Extensions for value */
-	_value?: Element;
+  /** A single component of the device version. */
+  component?: Identifier;
+  /** The type of the device version, e.g. manufacturer, approved, internal. */
+  type?: CodeableConcept;
+  /** The version text. */
+  value: string;
+  /** Extensions for value */
+  _value?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 
 /** @internal */
 export const Device_VersionSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		component: z.lazy(getIdentifierSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-		value: fhirString(),
-		_value: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    component: z.lazy(getIdentifierSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+    value: fhirString(),
+    _value: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const Device_VersionSchema =
-	Device_VersionSchemaInternal as z.ZodType<Device_Version>;
+  Device_VersionSchemaInternal as z.ZodType<Device_Version>;

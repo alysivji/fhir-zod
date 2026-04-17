@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-15T00:02:33.197Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -17,63 +17,63 @@ import { ImplementationGuide_Manifest_ResourceSchemaInternal } from "./Implement
 
 /** Information about an assembled implementation guide, created by the publication tooling. */
 export interface ImplementationGuide_Manifest extends BackboneElement {
-	/** Indicates a relative path to an image that exists within the IG. */
-	image?: Array<string | null>;
-	/** Extensions for image */
-	_image?: Array<Element | null>;
-	/** Indicates the relative path of an additional non-page, non-image file that is part of the IG - e.g. zip, jar and similar files that could be the target of a hyperlink in a derived IG. */
-	other?: Array<string | null>;
-	/** Extensions for other */
-	_other?: Array<Element | null>;
-	/** Information about a page within the IG. */
-	page?: Array<ImplementationGuide_Manifest_Page>;
-	/** A pointer to official web page, PDF or other rendering of the implementation guide. */
-	rendering?: string;
-	/** Extensions for rendering */
-	_rendering?: Element;
-	/** A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource. */
-	resource: Array<ImplementationGuide_Manifest_Resource>;
+  /** Indicates a relative path to an image that exists within the IG. */
+  image?: Array<string | null>;
+  /** Extensions for image */
+  _image?: Array<Element | null>;
+  /** Indicates the relative path of an additional non-page, non-image file that is part of the IG - e.g. zip, jar and similar files that could be the target of a hyperlink in a derived IG. */
+  other?: Array<string | null>;
+  /** Extensions for other */
+  _other?: Array<Element | null>;
+  /** Information about a page within the IG. */
+  page?: Array<ImplementationGuide_Manifest_Page>;
+  /** A pointer to official web page, PDF or other rendering of the implementation guide. */
+  rendering?: string;
+  /** Extensions for rendering */
+  _rendering?: Element;
+  /** A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource. */
+  resource: Array<ImplementationGuide_Manifest_Resource>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getImplementationGuide_Manifest_PageSchema =
-	(): z.ZodType<ImplementationGuide_Manifest_Page> =>
-		ImplementationGuide_Manifest_PageSchemaInternal as z.ZodType<ImplementationGuide_Manifest_Page>;
+  (): z.ZodType<ImplementationGuide_Manifest_Page> =>
+    ImplementationGuide_Manifest_PageSchemaInternal as z.ZodType<ImplementationGuide_Manifest_Page>;
 const getImplementationGuide_Manifest_ResourceSchema =
-	(): z.ZodType<ImplementationGuide_Manifest_Resource> =>
-		ImplementationGuide_Manifest_ResourceSchemaInternal as z.ZodType<ImplementationGuide_Manifest_Resource>;
+  (): z.ZodType<ImplementationGuide_Manifest_Resource> =>
+    ImplementationGuide_Manifest_ResourceSchemaInternal as z.ZodType<ImplementationGuide_Manifest_Resource>;
 
 /** @internal */
 export const ImplementationGuide_ManifestSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		image: fhirString().nullable().array().optional(),
-		_image: z.lazy(getElementSchema).nullable().array().optional(),
-		other: fhirString().nullable().array().optional(),
-		_other: z.lazy(getElementSchema).nullable().array().optional(),
-		page: z.lazy(getImplementationGuide_Manifest_PageSchema).array().optional(),
-		rendering: fhirUrl().optional(),
-		_rendering: z.lazy(getElementSchema).optional(),
-		resource: z.lazy(getImplementationGuide_Manifest_ResourceSchema).array(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validatePrimitiveArrayPair(
-				record.image,
-				record._image,
-				"image",
-				"_image",
-				ctx,
-			);
-			validatePrimitiveArrayPair(
-				record.other,
-				record._other,
-				"other",
-				"_other",
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    image: fhirString().nullable().array().optional(),
+    _image: z.lazy(getElementSchema).nullable().array().optional(),
+    other: fhirString().nullable().array().optional(),
+    _other: z.lazy(getElementSchema).nullable().array().optional(),
+    page: z.lazy(getImplementationGuide_Manifest_PageSchema).array().optional(),
+    rendering: fhirUrl().optional(),
+    _rendering: z.lazy(getElementSchema).optional(),
+    resource: z.lazy(getImplementationGuide_Manifest_ResourceSchema).array(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validatePrimitiveArrayPair(
+        record.image,
+        record._image,
+        "image",
+        "_image",
+        ctx,
+      );
+      validatePrimitiveArrayPair(
+        record.other,
+        record._other,
+        "other",
+        "_other",
+        ctx,
+      );
+    });
 
 export const ImplementationGuide_ManifestSchema =
-	ImplementationGuide_ManifestSchemaInternal as z.ZodType<ImplementationGuide_Manifest>;
+  ImplementationGuide_ManifestSchemaInternal as z.ZodType<ImplementationGuide_Manifest>;

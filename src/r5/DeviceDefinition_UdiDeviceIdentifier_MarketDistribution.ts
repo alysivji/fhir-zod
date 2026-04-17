@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirUri } from "../shared/fhir-primitives";
@@ -14,27 +14,27 @@ import { PeriodSchemaInternal } from "./Period";
 
 /** Indicates where and when the device is available on the market. */
 export interface DeviceDefinition_UdiDeviceIdentifier_MarketDistribution
-	extends BackboneElement {
-	/** Begin and end dates for the commercial distribution of the device. */
-	marketPeriod: Period;
-	/** National state or territory to which the marketDistribution recers, typically where the device is commercialized. */
-	subJurisdiction: string;
-	/** Extensions for subJurisdiction */
-	_subJurisdiction?: Element;
+  extends BackboneElement {
+  /** Begin and end dates for the commercial distribution of the device. */
+  marketPeriod: Period;
+  /** National state or territory to which the marketDistribution recers, typically where the device is commercialized. */
+  subJurisdiction: string;
+  /** Extensions for subJurisdiction */
+  _subJurisdiction?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const DeviceDefinition_UdiDeviceIdentifier_MarketDistributionSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		marketPeriod: z.lazy(getPeriodSchema),
-		subJurisdiction: fhirUri(),
-		_subJurisdiction: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    marketPeriod: z.lazy(getPeriodSchema),
+    subJurisdiction: fhirUri(),
+    _subJurisdiction: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const DeviceDefinition_UdiDeviceIdentifier_MarketDistributionSchema =
-	DeviceDefinition_UdiDeviceIdentifier_MarketDistributionSchemaInternal as z.ZodType<DeviceDefinition_UdiDeviceIdentifier_MarketDistribution>;
+  DeviceDefinition_UdiDeviceIdentifier_MarketDistributionSchemaInternal as z.ZodType<DeviceDefinition_UdiDeviceIdentifier_MarketDistribution>;

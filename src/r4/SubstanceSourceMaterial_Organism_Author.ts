@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -14,27 +14,27 @@ import { ElementSchemaInternal } from "./Element";
 
 /** 4.9.13.6.1 Author type (Conditional). */
 export interface SubstanceSourceMaterial_Organism_Author
-	extends BackboneElement {
-	/** The author of an organism species shall be specified. The author year of an organism shall also be specified when applicable; refers to the year in which the first author(s) published the infraspecific plant/animal name (of any rank). */
-	authorDescription?: string;
-	/** Extensions for authorDescription */
-	_authorDescription?: Element;
-	/** The type of author of an organism species shall be specified. The parenthetical author of an organism species refers to the first author who published the plant/animal name (of any rank). The primary author of an organism species refers to the first author(s), who validly published the plant/animal name. */
-	authorType?: CodeableConcept;
+  extends BackboneElement {
+  /** The author of an organism species shall be specified. The author year of an organism shall also be specified when applicable; refers to the year in which the first author(s) published the infraspecific plant/animal name (of any rank). */
+  authorDescription?: string;
+  /** Extensions for authorDescription */
+  _authorDescription?: Element;
+  /** The type of author of an organism species shall be specified. The parenthetical author of an organism species refers to the first author who published the plant/animal name (of any rank). The primary author of an organism species refers to the first author(s), who validly published the plant/animal name. */
+  authorType?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const SubstanceSourceMaterial_Organism_AuthorSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		authorDescription: fhirString().optional(),
-		_authorDescription: z.lazy(getElementSchema).optional(),
-		authorType: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    authorDescription: fhirString().optional(),
+    _authorDescription: z.lazy(getElementSchema).optional(),
+    authorType: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const SubstanceSourceMaterial_Organism_AuthorSchema =
-	SubstanceSourceMaterial_Organism_AuthorSchemaInternal as z.ZodType<SubstanceSourceMaterial_Organism_Author>;
+  SubstanceSourceMaterial_Organism_AuthorSchemaInternal as z.ZodType<SubstanceSourceMaterial_Organism_Author>;

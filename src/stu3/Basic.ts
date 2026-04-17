@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Basic
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T01:26:20.392Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirDate } from "../shared/fhir-primitives";
@@ -19,62 +19,62 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for Basic Resource */
 export interface Basic extends DomainResource {
-	/** Indicates who was responsible for creating the resource instance. */
-	author?: Reference;
-	/** Identifies the 'type' of resource - equivalent to the resource name for other resources. */
-	code: CodeableConcept;
-	/** Identifies when the resource was first created. */
-	created?: string;
-	/** Extensions for created */
-	_created?: Element;
-	/** Identifier assigned to the resource for business purposes, outside the context of FHIR. */
-	identifier?: Array<Identifier>;
-	/** This is a Basic resource. */
-	resourceType: "Basic";
-	/** Identifies the patient, practitioner, device or any other resource that is the "focus" of this resource. */
-	subject?: Reference;
+  /** Indicates who was responsible for creating the resource instance. */
+  author?: Reference;
+  /** Identifies the 'type' of resource - equivalent to the resource name for other resources. */
+  code: CodeableConcept;
+  /** Identifies when the resource was first created. */
+  created?: string;
+  /** Extensions for created */
+  _created?: Element;
+  /** Identifier assigned to the resource for business purposes, outside the context of FHIR. */
+  identifier?: Array<Identifier>;
+  /** This is a Basic resource. */
+  resourceType: "Basic";
+  /** Identifies the patient, practitioner, device or any other resource that is the "focus" of this resource. */
+  subject?: Reference;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const BasicSchemaInternal = DomainResourceSchemaInternal.extend({
-	author: z.lazy(getReferenceSchema).optional(),
-	code: z.lazy(getCodeableConceptSchema),
-	created: fhirDate().optional(),
-	_created: z.lazy(getElementSchema).optional(),
-	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	resourceType: z.literal("Basic"),
-	subject: z.lazy(getReferenceSchema).optional(),
+  author: z.lazy(getReferenceSchema).optional(),
+  code: z.lazy(getCodeableConceptSchema),
+  created: fhirDate().optional(),
+  _created: z.lazy(getElementSchema).optional(),
+  identifier: z.lazy(getIdentifierSchema).array().optional(),
+  resourceType: z.literal("Basic"),
+  subject: z.lazy(getReferenceSchema).optional(),
 })
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validateReferenceTarget(
-			record.author,
-			"author",
-			[
-				"http://hl7.org/fhir/StructureDefinition/Patient",
-				"http://hl7.org/fhir/StructureDefinition/Practitioner",
-				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-			],
-			["Patient", "Practitioner", "RelatedPerson"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.subject,
-			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Resource"],
-			["Resource"],
-			ctx,
-		);
-	});
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validateReferenceTarget(
+      record.author,
+      "author",
+      [
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+        "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+      ],
+      ["Patient", "Practitioner", "RelatedPerson"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.subject,
+      "subject",
+      ["http://hl7.org/fhir/StructureDefinition/Resource"],
+      ["Resource"],
+      ctx,
+    );
+  });
 
 export const BasicSchema = BasicSchemaInternal as z.ZodType<Basic>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceSpecification
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T20:28:54.953Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -17,51 +17,51 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Codes associated with the substance. */
 export interface SubstanceSpecification_Code extends BackboneElement {
-	/** The specific code. */
-	code?: CodeableConcept;
-	/** Any comment can be provided in this field, if necessary. */
-	comment?: string;
-	/** Extensions for comment */
-	_comment?: Element;
-	/** Supporting literature. */
-	source?: Array<Reference>;
-	/** Status of the code assignment. */
-	status?: CodeableConcept;
-	/** The date at which the code status is changed as part of the terminology maintenance. */
-	statusDate?: string;
-	/** Extensions for statusDate */
-	_statusDate?: Element;
+  /** The specific code. */
+  code?: CodeableConcept;
+  /** Any comment can be provided in this field, if necessary. */
+  comment?: string;
+  /** Extensions for comment */
+  _comment?: Element;
+  /** Supporting literature. */
+  source?: Array<Reference>;
+  /** Status of the code assignment. */
+  status?: CodeableConcept;
+  /** The date at which the code status is changed as part of the terminology maintenance. */
+  statusDate?: string;
+  /** Extensions for statusDate */
+  _statusDate?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SubstanceSpecification_CodeSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema).optional(),
-		comment: fhirString().optional(),
-		_comment: z.lazy(getElementSchema).optional(),
-		source: z.lazy(getReferenceSchema).array().optional(),
-		status: z.lazy(getCodeableConceptSchema).optional(),
-		statusDate: fhirDateTime().optional(),
-		_statusDate: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.source,
-				"source",
-				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
-				["DocumentReference"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema).optional(),
+    comment: fhirString().optional(),
+    _comment: z.lazy(getElementSchema).optional(),
+    source: z.lazy(getReferenceSchema).array().optional(),
+    status: z.lazy(getCodeableConceptSchema).optional(),
+    statusDate: fhirDateTime().optional(),
+    _statusDate: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.source,
+        "source",
+        ["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+        ["DocumentReference"],
+        ctx,
+      );
+    });
 
 export const SubstanceSpecification_CodeSchema =
-	SubstanceSpecification_CodeSchemaInternal as z.ZodType<SubstanceSpecification_Code>;
+  SubstanceSpecification_CodeSchemaInternal as z.ZodType<SubstanceSpecification_Code>;

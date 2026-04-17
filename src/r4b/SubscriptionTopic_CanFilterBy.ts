@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubscriptionTopic
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T02:24:59.228Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -13,96 +13,96 @@ import { ElementSchemaInternal } from "./Element";
 
 /** List of properties by which Subscriptions on the SubscriptionTopic can be filtered. May be defined Search Parameters (e.g., Encounter.patient) or parameters defined within this SubscriptionTopic context (e.g., hub.event). */
 export interface SubscriptionTopic_CanFilterBy extends BackboneElement {
-	/** Description of how this filtering parameter is intended to be used. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** Either the canonical URL to a search parameter (like "http://hl7.org/fhir/SearchParameter/encounter-patient") or the officially-defined URI for a shared filter concept (like "http://example.org/concepts/shared-common-event"). */
-	filterDefinition?: string;
-	/** Extensions for filterDefinition */
-	_filterDefinition?: Element;
-	/** Either the canonical URL to a search parameter (like "http://hl7.org/fhir/SearchParameter/encounter-patient") or topic-defined parameter (like "hub.event") which is a label for the filter. */
-	filterParameter: string;
-	/** Extensions for filterParameter */
-	_filterParameter?: Element;
-	/** Allowable operators to apply when determining matches (Search Modifiers).  If the filterParameter is a SearchParameter, this list of modifiers SHALL be a strict subset of the modifiers defined on that SearchParameter. */
-	modifier?: Array<
-		| "="
-		| "above"
-		| "ap"
-		| "below"
-		| "eb"
-		| "eq"
-		| "ge"
-		| "gt"
-		| "in"
-		| "le"
-		| "lt"
-		| "ne"
-		| "not-in"
-		| "of-type"
-		| "sa"
-		| null
-	>;
-	/** Extensions for modifier */
-	_modifier?: Array<Element | null>;
-	/** URL of the Resource that is the type used in this filter. This is the "focus" of the topic (or one of them if there are more than one). It will be the same, a generality, or a specificity of SubscriptionTopic.resourceTrigger.resource or SubscriptionTopic.eventTrigger.resource when they are present. */
-	resource?: string;
-	/** Extensions for resource */
-	_resource?: Element;
+  /** Description of how this filtering parameter is intended to be used. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** Either the canonical URL to a search parameter (like "http://hl7.org/fhir/SearchParameter/encounter-patient") or the officially-defined URI for a shared filter concept (like "http://example.org/concepts/shared-common-event"). */
+  filterDefinition?: string;
+  /** Extensions for filterDefinition */
+  _filterDefinition?: Element;
+  /** Either the canonical URL to a search parameter (like "http://hl7.org/fhir/SearchParameter/encounter-patient") or topic-defined parameter (like "hub.event") which is a label for the filter. */
+  filterParameter: string;
+  /** Extensions for filterParameter */
+  _filterParameter?: Element;
+  /** Allowable operators to apply when determining matches (Search Modifiers).  If the filterParameter is a SearchParameter, this list of modifiers SHALL be a strict subset of the modifiers defined on that SearchParameter. */
+  modifier?: Array<
+    | "="
+    | "above"
+    | "ap"
+    | "below"
+    | "eb"
+    | "eq"
+    | "ge"
+    | "gt"
+    | "in"
+    | "le"
+    | "lt"
+    | "ne"
+    | "not-in"
+    | "of-type"
+    | "sa"
+    | null
+  >;
+  /** Extensions for modifier */
+  _modifier?: Array<Element | null>;
+  /** URL of the Resource that is the type used in this filter. This is the "focus" of the topic (or one of them if there are more than one). It will be the same, a generality, or a specificity of SubscriptionTopic.resourceTrigger.resource or SubscriptionTopic.eventTrigger.resource when they are present. */
+  resource?: string;
+  /** Extensions for resource */
+  _resource?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const SubscriptionTopic_CanFilterBySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		filterDefinition: fhirUri().optional(),
-		_filterDefinition: z.lazy(getElementSchema).optional(),
-		filterParameter: fhirString(),
-		_filterParameter: z.lazy(getElementSchema).optional(),
-		modifier: z
-			.enum([
-				"=",
-				"above",
-				"ap",
-				"below",
-				"eb",
-				"eq",
-				"ge",
-				"gt",
-				"in",
-				"le",
-				"lt",
-				"ne",
-				"not-in",
-				"of-type",
-				"sa",
-			])
-			.nullable()
-			.array()
-			.optional(),
-		_modifier: z.lazy(getElementSchema).nullable().array().optional(),
-		resource: fhirUri().optional(),
-		_resource: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validatePrimitiveArrayPair(
-				record.modifier,
-				record._modifier,
-				"modifier",
-				"_modifier",
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    description: z
+      .string()
+      .regex(/[ \r\n\t\S]+/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    filterDefinition: fhirUri().optional(),
+    _filterDefinition: z.lazy(getElementSchema).optional(),
+    filterParameter: fhirString(),
+    _filterParameter: z.lazy(getElementSchema).optional(),
+    modifier: z
+      .enum([
+        "=",
+        "above",
+        "ap",
+        "below",
+        "eb",
+        "eq",
+        "ge",
+        "gt",
+        "in",
+        "le",
+        "lt",
+        "ne",
+        "not-in",
+        "of-type",
+        "sa",
+      ])
+      .nullable()
+      .array()
+      .optional(),
+    _modifier: z.lazy(getElementSchema).nullable().array().optional(),
+    resource: fhirUri().optional(),
+    _resource: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validatePrimitiveArrayPair(
+        record.modifier,
+        record._modifier,
+        "modifier",
+        "_modifier",
+        ctx,
+      );
+    });
 
 export const SubscriptionTopic_CanFilterBySchema =
-	SubscriptionTopic_CanFilterBySchemaInternal as z.ZodType<SubscriptionTopic_CanFilterBy>;
+  SubscriptionTopic_CanFilterBySchemaInternal as z.ZodType<SubscriptionTopic_CanFilterBy>;

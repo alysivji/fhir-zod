@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-15T00:02:07.682Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -14,43 +14,43 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Security labels that protect the handling of information about the term and its elements, which may be specifically identified.. */
 export interface Contract_Term_SecurityLabel extends BackboneElement {
-	/** Security label privacy tag that species the applicable privacy and security policies governing this term and/or term elements. */
-	category?: Array<Coding>;
-	/** Security label privacy tag that species the level of confidentiality protection required for this term and/or term elements. */
-	classification: Coding;
-	/** Security label privacy tag that species the manner in which term and/or term elements are to be protected. */
-	control?: Array<Coding>;
-	/** Number used to link this term or term element to the applicable Security Label. */
-	number?: Array<number | null>;
-	/** Extensions for number */
-	_number?: Array<Element | null>;
+  /** Security label privacy tag that species the applicable privacy and security policies governing this term and/or term elements. */
+  category?: Array<Coding>;
+  /** Security label privacy tag that species the level of confidentiality protection required for this term and/or term elements. */
+  classification: Coding;
+  /** Security label privacy tag that species the manner in which term and/or term elements are to be protected. */
+  control?: Array<Coding>;
+  /** Number used to link this term or term element to the applicable Security Label. */
+  number?: Array<number | null>;
+  /** Extensions for number */
+  _number?: Array<Element | null>;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const Contract_Term_SecurityLabelSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		category: z.lazy(getCodingSchema).array().optional(),
-		classification: z.lazy(getCodingSchema),
-		control: z.lazy(getCodingSchema).array().optional(),
-		number: z.number().int().nonnegative().nullable().array().optional(),
-		_number: z.lazy(getElementSchema).nullable().array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validatePrimitiveArrayPair(
-				record.number,
-				record._number,
-				"number",
-				"_number",
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    category: z.lazy(getCodingSchema).array().optional(),
+    classification: z.lazy(getCodingSchema),
+    control: z.lazy(getCodingSchema).array().optional(),
+    number: z.number().int().nonnegative().nullable().array().optional(),
+    _number: z.lazy(getElementSchema).nullable().array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validatePrimitiveArrayPair(
+        record.number,
+        record._number,
+        "number",
+        "_number",
+        ctx,
+      );
+    });
 
 export const Contract_Term_SecurityLabelSchema =
-	Contract_Term_SecurityLabelSchemaInternal as z.ZodType<Contract_Term_SecurityLabel>;
+  Contract_Term_SecurityLabelSchemaInternal as z.ZodType<Contract_Term_SecurityLabel>;

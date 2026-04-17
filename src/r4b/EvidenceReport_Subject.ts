@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/EvidenceReport
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { Annotation } from "./Annotation";
@@ -13,27 +13,27 @@ import { EvidenceReport_Subject_CharacteristicSchemaInternal } from "./EvidenceR
 
 /** Specifies the subject or focus of the report. Answers "What is this report about?". */
 export interface EvidenceReport_Subject extends BackboneElement {
-	/** Characteristic. */
-	characteristic?: Array<EvidenceReport_Subject_Characteristic>;
-	/** Used for general notes and annotations not coded elsewhere. */
-	note?: Array<Annotation>;
+  /** Characteristic. */
+  characteristic?: Array<EvidenceReport_Subject_Characteristic>;
+  /** Used for general notes and annotations not coded elsewhere. */
+  note?: Array<Annotation>;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getEvidenceReport_Subject_CharacteristicSchema =
-	(): z.ZodType<EvidenceReport_Subject_Characteristic> =>
-		EvidenceReport_Subject_CharacteristicSchemaInternal as z.ZodType<EvidenceReport_Subject_Characteristic>;
+  (): z.ZodType<EvidenceReport_Subject_Characteristic> =>
+    EvidenceReport_Subject_CharacteristicSchemaInternal as z.ZodType<EvidenceReport_Subject_Characteristic>;
 
 /** @internal */
 export const EvidenceReport_SubjectSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		characteristic: z
-			.lazy(getEvidenceReport_Subject_CharacteristicSchema)
-			.array()
-			.optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    characteristic: z
+      .lazy(getEvidenceReport_Subject_CharacteristicSchema)
+      .array()
+      .optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+  }).strict();
 
 export const EvidenceReport_SubjectSchema =
-	EvidenceReport_SubjectSchemaInternal as z.ZodType<EvidenceReport_Subject>;
+  EvidenceReport_SubjectSchemaInternal as z.ZodType<EvidenceReport_Subject>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-15T00:02:07.682Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -42,186 +42,186 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** The characteristics, operational status and capabilities of a medical-related component of a medical device. */
 export interface DeviceDefinition extends DomainResource {
-	/** Device capabilities. */
-	capability?: Array<DeviceDefinition_Capability>;
-	/** Contact details for an organization or a particular human that is responsible for the device. */
-	contact?: Array<ContactPoint>;
-	/** A name given to the device to identify it. */
-	deviceName?: Array<DeviceDefinition_DeviceName>;
-	/** Unique instance identifiers assigned to a device by the software, manufacturers, other organizations or owners. For example: handle ID. */
-	identifier?: Array<Identifier>;
-	/** Language code for the human-readable text strings produced by the device (all supported). */
-	languageCode?: Array<CodeableConcept>;
-	/** A name of the manufacturer. */
-	manufacturerReference?: Reference;
-	/** A name of the manufacturer. */
-	manufacturerString?: string;
-	/** Extensions for manufacturerString */
-	_manufacturerString?: Element;
-	/** A substance used to create the material(s) of which the device is made. */
-	material?: Array<DeviceDefinition_Material>;
-	/** The model number for the device. */
-	modelNumber?: string;
-	/** Extensions for modelNumber */
-	_modelNumber?: Element;
-	/** Descriptive information, usage information or implantation information that is not captured in an existing element. */
-	note?: Array<Annotation>;
-	/** Access to on-line information about the device. */
-	onlineInformation?: string;
-	/** Extensions for onlineInformation */
-	_onlineInformation?: Element;
-	/** An organization that is responsible for the provision and ongoing maintenance of the device. */
-	owner?: Reference;
-	/** The parent device it can be part of. */
-	parentDevice?: Reference;
-	/** Dimensions, color etc. */
-	physicalCharacteristics?: ProdCharacteristic;
-	/** The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties. */
-	property?: Array<DeviceDefinition_Property>;
-	/** The quantity of the device present in the packaging (e.g. the number of devices present in a pack, or the number of devices in the same package of the medicinal product). */
-	quantity?: Quantity;
-	/** This is a DeviceDefinition resource. */
-	resourceType: "DeviceDefinition";
-	/** Safety characteristics of the device. */
-	safety?: Array<CodeableConcept>;
-	/** Shelf Life and storage information. */
-	shelfLifeStorage?: Array<ProductShelfLife>;
-	/** The capabilities supported on a  device, the standards to which the device conforms for a particular purpose, and used for the communication. */
-	specialization?: Array<DeviceDefinition_Specialization>;
-	/** What kind of device or device system this is. */
-	type?: CodeableConcept;
-	/** Unique device identifier (UDI) assigned to device label or package.  Note that the Device may include multiple udiCarriers as it either may include just the udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it could have been sold. */
-	udiDeviceIdentifier?: Array<DeviceDefinition_UdiDeviceIdentifier>;
-	/** A network address on which the device may be contacted directly. */
-	url?: string;
-	/** Extensions for url */
-	_url?: Element;
-	/** The available versions of the device, e.g., software versions. */
-	version?: Array<string | null>;
-	/** Extensions for version */
-	_version?: Array<Element | null>;
+  /** Device capabilities. */
+  capability?: Array<DeviceDefinition_Capability>;
+  /** Contact details for an organization or a particular human that is responsible for the device. */
+  contact?: Array<ContactPoint>;
+  /** A name given to the device to identify it. */
+  deviceName?: Array<DeviceDefinition_DeviceName>;
+  /** Unique instance identifiers assigned to a device by the software, manufacturers, other organizations or owners. For example: handle ID. */
+  identifier?: Array<Identifier>;
+  /** Language code for the human-readable text strings produced by the device (all supported). */
+  languageCode?: Array<CodeableConcept>;
+  /** A name of the manufacturer. */
+  manufacturerReference?: Reference;
+  /** A name of the manufacturer. */
+  manufacturerString?: string;
+  /** Extensions for manufacturerString */
+  _manufacturerString?: Element;
+  /** A substance used to create the material(s) of which the device is made. */
+  material?: Array<DeviceDefinition_Material>;
+  /** The model number for the device. */
+  modelNumber?: string;
+  /** Extensions for modelNumber */
+  _modelNumber?: Element;
+  /** Descriptive information, usage information or implantation information that is not captured in an existing element. */
+  note?: Array<Annotation>;
+  /** Access to on-line information about the device. */
+  onlineInformation?: string;
+  /** Extensions for onlineInformation */
+  _onlineInformation?: Element;
+  /** An organization that is responsible for the provision and ongoing maintenance of the device. */
+  owner?: Reference;
+  /** The parent device it can be part of. */
+  parentDevice?: Reference;
+  /** Dimensions, color etc. */
+  physicalCharacteristics?: ProdCharacteristic;
+  /** The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties. */
+  property?: Array<DeviceDefinition_Property>;
+  /** The quantity of the device present in the packaging (e.g. the number of devices present in a pack, or the number of devices in the same package of the medicinal product). */
+  quantity?: Quantity;
+  /** This is a DeviceDefinition resource. */
+  resourceType: "DeviceDefinition";
+  /** Safety characteristics of the device. */
+  safety?: Array<CodeableConcept>;
+  /** Shelf Life and storage information. */
+  shelfLifeStorage?: Array<ProductShelfLife>;
+  /** The capabilities supported on a  device, the standards to which the device conforms for a particular purpose, and used for the communication. */
+  specialization?: Array<DeviceDefinition_Specialization>;
+  /** What kind of device or device system this is. */
+  type?: CodeableConcept;
+  /** Unique device identifier (UDI) assigned to device label or package.  Note that the Device may include multiple udiCarriers as it either may include just the udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it could have been sold. */
+  udiDeviceIdentifier?: Array<DeviceDefinition_UdiDeviceIdentifier>;
+  /** A network address on which the device may be contacted directly. */
+  url?: string;
+  /** Extensions for url */
+  _url?: Element;
+  /** The available versions of the device, e.g., software versions. */
+  version?: Array<string | null>;
+  /** Extensions for version */
+  _version?: Array<Element | null>;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getDeviceDefinition_CapabilitySchema =
-	(): z.ZodType<DeviceDefinition_Capability> =>
-		DeviceDefinition_CapabilitySchemaInternal as z.ZodType<DeviceDefinition_Capability>;
+  (): z.ZodType<DeviceDefinition_Capability> =>
+    DeviceDefinition_CapabilitySchemaInternal as z.ZodType<DeviceDefinition_Capability>;
 const getDeviceDefinition_DeviceNameSchema =
-	(): z.ZodType<DeviceDefinition_DeviceName> =>
-		DeviceDefinition_DeviceNameSchemaInternal as z.ZodType<DeviceDefinition_DeviceName>;
+  (): z.ZodType<DeviceDefinition_DeviceName> =>
+    DeviceDefinition_DeviceNameSchemaInternal as z.ZodType<DeviceDefinition_DeviceName>;
 const getDeviceDefinition_MaterialSchema =
-	(): z.ZodType<DeviceDefinition_Material> =>
-		DeviceDefinition_MaterialSchemaInternal as z.ZodType<DeviceDefinition_Material>;
+  (): z.ZodType<DeviceDefinition_Material> =>
+    DeviceDefinition_MaterialSchemaInternal as z.ZodType<DeviceDefinition_Material>;
 const getDeviceDefinition_PropertySchema =
-	(): z.ZodType<DeviceDefinition_Property> =>
-		DeviceDefinition_PropertySchemaInternal as z.ZodType<DeviceDefinition_Property>;
+  (): z.ZodType<DeviceDefinition_Property> =>
+    DeviceDefinition_PropertySchemaInternal as z.ZodType<DeviceDefinition_Property>;
 const getDeviceDefinition_SpecializationSchema =
-	(): z.ZodType<DeviceDefinition_Specialization> =>
-		DeviceDefinition_SpecializationSchemaInternal as z.ZodType<DeviceDefinition_Specialization>;
+  (): z.ZodType<DeviceDefinition_Specialization> =>
+    DeviceDefinition_SpecializationSchemaInternal as z.ZodType<DeviceDefinition_Specialization>;
 const getDeviceDefinition_UdiDeviceIdentifierSchema =
-	(): z.ZodType<DeviceDefinition_UdiDeviceIdentifier> =>
-		DeviceDefinition_UdiDeviceIdentifierSchemaInternal as z.ZodType<DeviceDefinition_UdiDeviceIdentifier>;
+  (): z.ZodType<DeviceDefinition_UdiDeviceIdentifier> =>
+    DeviceDefinition_UdiDeviceIdentifierSchemaInternal as z.ZodType<DeviceDefinition_UdiDeviceIdentifier>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getProdCharacteristicSchema = (): z.ZodType<ProdCharacteristic> =>
-	ProdCharacteristicSchemaInternal as z.ZodType<ProdCharacteristic>;
+  ProdCharacteristicSchemaInternal as z.ZodType<ProdCharacteristic>;
 const getProductShelfLifeSchema = (): z.ZodType<ProductShelfLife> =>
-	ProductShelfLifeSchemaInternal as z.ZodType<ProductShelfLife>;
+  ProductShelfLifeSchemaInternal as z.ZodType<ProductShelfLife>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const DeviceDefinitionSchemaInternal =
-	DomainResourceSchemaInternal.extend({
-		capability: z.lazy(getDeviceDefinition_CapabilitySchema).array().optional(),
-		contact: z.lazy(getContactPointSchema).array().optional(),
-		deviceName: z.lazy(getDeviceDefinition_DeviceNameSchema).array().optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		languageCode: z.lazy(getCodeableConceptSchema).array().optional(),
-		manufacturerReference: z.lazy(getReferenceSchema).optional(),
-		manufacturerString: fhirString().optional(),
-		_manufacturerString: z.lazy(getElementSchema).optional(),
-		material: z.lazy(getDeviceDefinition_MaterialSchema).array().optional(),
-		modelNumber: fhirString().optional(),
-		_modelNumber: z.lazy(getElementSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-		onlineInformation: fhirUri().optional(),
-		_onlineInformation: z.lazy(getElementSchema).optional(),
-		owner: z.lazy(getReferenceSchema).optional(),
-		parentDevice: z.lazy(getReferenceSchema).optional(),
-		physicalCharacteristics: z.lazy(getProdCharacteristicSchema).optional(),
-		property: z.lazy(getDeviceDefinition_PropertySchema).array().optional(),
-		quantity: z.lazy(getQuantitySchema).optional(),
-		resourceType: z.literal("DeviceDefinition"),
-		safety: z.lazy(getCodeableConceptSchema).array().optional(),
-		shelfLifeStorage: z.lazy(getProductShelfLifeSchema).array().optional(),
-		specialization: z
-			.lazy(getDeviceDefinition_SpecializationSchema)
-			.array()
-			.optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-		udiDeviceIdentifier: z
-			.lazy(getDeviceDefinition_UdiDeviceIdentifierSchema)
-			.array()
-			.optional(),
-		url: fhirUri().optional(),
-		_url: z.lazy(getElementSchema).optional(),
-		version: fhirString().nullable().array().optional(),
-		_version: z.lazy(getElementSchema).nullable().array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const manufacturer_x_Present = [
-				"manufacturerReference",
-				"manufacturerString",
-			].filter((field) => record[field] !== undefined);
-			if (manufacturer_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of manufacturerReference, manufacturerString may be present for manufacturer[x]",
-					path: [manufacturer_x_Present[0]],
-				});
-			}
-			validatePrimitiveArrayPair(
-				record.version,
-				record._version,
-				"version",
-				"_version",
-				ctx,
-			);
-			validateReferenceTarget(
-				record.manufacturerReference,
-				"manufacturerReference",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.owner,
-				"owner",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.parentDevice,
-				"parentDevice",
-				["http://hl7.org/fhir/StructureDefinition/DeviceDefinition"],
-				["DeviceDefinition"],
-				ctx,
-			);
-		});
+  DomainResourceSchemaInternal.extend({
+    capability: z.lazy(getDeviceDefinition_CapabilitySchema).array().optional(),
+    contact: z.lazy(getContactPointSchema).array().optional(),
+    deviceName: z.lazy(getDeviceDefinition_DeviceNameSchema).array().optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    languageCode: z.lazy(getCodeableConceptSchema).array().optional(),
+    manufacturerReference: z.lazy(getReferenceSchema).optional(),
+    manufacturerString: fhirString().optional(),
+    _manufacturerString: z.lazy(getElementSchema).optional(),
+    material: z.lazy(getDeviceDefinition_MaterialSchema).array().optional(),
+    modelNumber: fhirString().optional(),
+    _modelNumber: z.lazy(getElementSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+    onlineInformation: fhirUri().optional(),
+    _onlineInformation: z.lazy(getElementSchema).optional(),
+    owner: z.lazy(getReferenceSchema).optional(),
+    parentDevice: z.lazy(getReferenceSchema).optional(),
+    physicalCharacteristics: z.lazy(getProdCharacteristicSchema).optional(),
+    property: z.lazy(getDeviceDefinition_PropertySchema).array().optional(),
+    quantity: z.lazy(getQuantitySchema).optional(),
+    resourceType: z.literal("DeviceDefinition"),
+    safety: z.lazy(getCodeableConceptSchema).array().optional(),
+    shelfLifeStorage: z.lazy(getProductShelfLifeSchema).array().optional(),
+    specialization: z
+      .lazy(getDeviceDefinition_SpecializationSchema)
+      .array()
+      .optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+    udiDeviceIdentifier: z
+      .lazy(getDeviceDefinition_UdiDeviceIdentifierSchema)
+      .array()
+      .optional(),
+    url: fhirUri().optional(),
+    _url: z.lazy(getElementSchema).optional(),
+    version: fhirString().nullable().array().optional(),
+    _version: z.lazy(getElementSchema).nullable().array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const manufacturer_x_Present = [
+        "manufacturerReference",
+        "manufacturerString",
+      ].filter((field) => record[field] !== undefined);
+      if (manufacturer_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of manufacturerReference, manufacturerString may be present for manufacturer[x]",
+          path: [manufacturer_x_Present[0]],
+        });
+      }
+      validatePrimitiveArrayPair(
+        record.version,
+        record._version,
+        "version",
+        "_version",
+        ctx,
+      );
+      validateReferenceTarget(
+        record.manufacturerReference,
+        "manufacturerReference",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.owner,
+        "owner",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.parentDevice,
+        "parentDevice",
+        ["http://hl7.org/fhir/StructureDefinition/DeviceDefinition"],
+        ["DeviceDefinition"],
+        ctx,
+      );
+    });
 
 export const DeviceDefinitionSchema =
-	DeviceDefinitionSchemaInternal as z.ZodType<DeviceDefinition>;
+  DeviceDefinitionSchemaInternal as z.ZodType<DeviceDefinition>;

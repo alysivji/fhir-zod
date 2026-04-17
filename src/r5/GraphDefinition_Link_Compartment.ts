@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GraphDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -12,58 +12,58 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Compartment Consistency Rules. */
 export interface GraphDefinition_Link_Compartment extends BackboneElement {
-	/** Identifies the compartment. */
-	code:
-		| "Device"
-		| "Encounter"
-		| "EpisodeOfCare"
-		| "Patient"
-		| "Practitioner"
-		| "RelatedPerson";
-	/** Extensions for code */
-	_code?: Element;
-	/** Documentation for FHIRPath expression. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** Custom rule, as a FHIRPath expression. */
-	expression?: string;
-	/** Extensions for expression */
-	_expression?: Element;
-	/** identical | matching | different | no-rule | custom. */
-	rule: "custom" | "different" | "identical" | "matching";
-	/** Extensions for rule */
-	_rule?: Element;
-	/** Defines how the compartment rule is used - whether it it is used to test whether resources are subject to the rule, or whether it is a rule that must be followed. */
-	use: "requires" | "where";
-	/** Extensions for use */
-	_use?: Element;
+  /** Identifies the compartment. */
+  code:
+    | "Device"
+    | "Encounter"
+    | "EpisodeOfCare"
+    | "Patient"
+    | "Practitioner"
+    | "RelatedPerson";
+  /** Extensions for code */
+  _code?: Element;
+  /** Documentation for FHIRPath expression. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** Custom rule, as a FHIRPath expression. */
+  expression?: string;
+  /** Extensions for expression */
+  _expression?: Element;
+  /** identical | matching | different | no-rule | custom. */
+  rule: "custom" | "different" | "identical" | "matching";
+  /** Extensions for rule */
+  _rule?: Element;
+  /** Defines how the compartment rule is used - whether it it is used to test whether resources are subject to the rule, or whether it is a rule that must be followed. */
+  use: "requires" | "where";
+  /** Extensions for use */
+  _use?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const GraphDefinition_Link_CompartmentSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.enum([
-			"Device",
-			"Encounter",
-			"EpisodeOfCare",
-			"Patient",
-			"Practitioner",
-			"RelatedPerson",
-		]),
-		_code: z.lazy(getElementSchema).optional(),
-		description: fhirString().optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		expression: fhirString().optional(),
-		_expression: z.lazy(getElementSchema).optional(),
-		rule: z.enum(["custom", "different", "identical", "matching"]),
-		_rule: z.lazy(getElementSchema).optional(),
-		use: z.enum(["requires", "where"]),
-		_use: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    code: z.enum([
+      "Device",
+      "Encounter",
+      "EpisodeOfCare",
+      "Patient",
+      "Practitioner",
+      "RelatedPerson",
+    ]),
+    _code: z.lazy(getElementSchema).optional(),
+    description: fhirString().optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    expression: fhirString().optional(),
+    _expression: z.lazy(getElementSchema).optional(),
+    rule: z.enum(["custom", "different", "identical", "matching"]),
+    _rule: z.lazy(getElementSchema).optional(),
+    use: z.enum(["requires", "where"]),
+    _use: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const GraphDefinition_Link_CompartmentSchema =
-	GraphDefinition_Link_CompartmentSchemaInternal as z.ZodType<GraphDefinition_Link_Compartment>;
+  GraphDefinition_Link_CompartmentSchemaInternal as z.ZodType<GraphDefinition_Link_Compartment>;

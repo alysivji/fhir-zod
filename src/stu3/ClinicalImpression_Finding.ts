@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalImpression
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -17,64 +17,64 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Specific findings or diagnoses that was considered likely or relevant to ongoing treatment. */
 export interface ClinicalImpression_Finding extends BackboneElement {
-	/** Which investigations support finding or diagnosis. */
-	basis?: string;
-	/** Extensions for basis */
-	_basis?: Element;
-	/** Specific text, code or reference for finding or diagnosis, which may include ruled-out or resolved conditions. */
-	itemCodeableConcept?: CodeableConcept;
-	/** Specific text, code or reference for finding or diagnosis, which may include ruled-out or resolved conditions. */
-	itemReference?: Reference;
+  /** Which investigations support finding or diagnosis. */
+  basis?: string;
+  /** Extensions for basis */
+  _basis?: Element;
+  /** Specific text, code or reference for finding or diagnosis, which may include ruled-out or resolved conditions. */
+  itemCodeableConcept?: CodeableConcept;
+  /** Specific text, code or reference for finding or diagnosis, which may include ruled-out or resolved conditions. */
+  itemReference?: Reference;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const ClinicalImpression_FindingSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		basis: fhirString().optional(),
-		_basis: z.lazy(getElementSchema).optional(),
-		itemCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		itemReference: z.lazy(getReferenceSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const item_x_Present = ["itemCodeableConcept", "itemReference"].filter(
-				(field) => record[field] !== undefined,
-			);
-			if (item_x_Present.length === 0) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"One of itemCodeableConcept, itemReference must be present for item[x]",
-					path: ["itemCodeableConcept"],
-				});
-			}
-			if (item_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of itemCodeableConcept, itemReference may be present for item[x]",
-					path: [item_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.itemReference,
-				"itemReference",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Condition",
-					"http://hl7.org/fhir/StructureDefinition/Observation",
-				],
-				["Condition", "Observation"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    basis: fhirString().optional(),
+    _basis: z.lazy(getElementSchema).optional(),
+    itemCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    itemReference: z.lazy(getReferenceSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const item_x_Present = ["itemCodeableConcept", "itemReference"].filter(
+        (field) => record[field] !== undefined,
+      );
+      if (item_x_Present.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "One of itemCodeableConcept, itemReference must be present for item[x]",
+          path: ["itemCodeableConcept"],
+        });
+      }
+      if (item_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of itemCodeableConcept, itemReference may be present for item[x]",
+          path: [item_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.itemReference,
+        "itemReference",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Condition",
+          "http://hl7.org/fhir/StructureDefinition/Observation",
+        ],
+        ["Condition", "Observation"],
+        ctx,
+      );
+    });
 
 export const ClinicalImpression_FindingSchema =
-	ClinicalImpression_FindingSchemaInternal as z.ZodType<ClinicalImpression_Finding>;
+  ClinicalImpression_FindingSchemaInternal as z.ZodType<ClinicalImpression_Finding>;

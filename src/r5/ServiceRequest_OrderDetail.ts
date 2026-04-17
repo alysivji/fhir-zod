@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ServiceRequest
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -13,24 +13,24 @@ import { ServiceRequest_OrderDetail_ParameterSchemaInternal } from "./ServiceReq
 
 /** Additional details and instructions about the how the services are to be delivered.   For example, and order for a urinary catheter may have an order detail for an external or indwelling catheter, or an order for a bandage may require additional instructions specifying how the bandage should be applied. */
 export interface ServiceRequest_OrderDetail extends BackboneElement {
-	/** The parameter details for the service being requested. */
-	parameter: Array<ServiceRequest_OrderDetail_Parameter>;
-	/** Indicates the context of the order details by reference. */
-	parameterFocus?: CodeableReference;
+  /** The parameter details for the service being requested. */
+  parameter: Array<ServiceRequest_OrderDetail_Parameter>;
+  /** Indicates the context of the order details by reference. */
+  parameterFocus?: CodeableReference;
 }
 
 const getCodeableReferenceSchema = (): z.ZodType<CodeableReference> =>
-	CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
+  CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
 const getServiceRequest_OrderDetail_ParameterSchema =
-	(): z.ZodType<ServiceRequest_OrderDetail_Parameter> =>
-		ServiceRequest_OrderDetail_ParameterSchemaInternal as z.ZodType<ServiceRequest_OrderDetail_Parameter>;
+  (): z.ZodType<ServiceRequest_OrderDetail_Parameter> =>
+    ServiceRequest_OrderDetail_ParameterSchemaInternal as z.ZodType<ServiceRequest_OrderDetail_Parameter>;
 
 /** @internal */
 export const ServiceRequest_OrderDetailSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		parameter: z.lazy(getServiceRequest_OrderDetail_ParameterSchema).array(),
-		parameterFocus: z.lazy(getCodeableReferenceSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    parameter: z.lazy(getServiceRequest_OrderDetail_ParameterSchema).array(),
+    parameterFocus: z.lazy(getCodeableReferenceSchema).optional(),
+  }).strict();
 
 export const ServiceRequest_OrderDetailSchema =
-	ServiceRequest_OrderDetailSchemaInternal as z.ZodType<ServiceRequest_OrderDetail>;
+  ServiceRequest_OrderDetailSchemaInternal as z.ZodType<ServiceRequest_OrderDetail>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -18,73 +18,73 @@ import { MoneySchemaInternal } from "./Money";
 
 /** The first tier service adjudications for payor added services. */
 export interface ClaimResponse_AddItem extends BackboneElement {
-	/** The adjudications results. */
-	adjudication?: Array<unknown>;
-	/** Health Care Service Type Codes  to identify the classification of service or benefits. */
-	category?: CodeableConcept;
-	/** The second tier service adjudications for payor added services. */
-	detail?: Array<ClaimResponse_AddItem_Detail>;
-	/** The fee charged for the professional service or product.. */
-	fee?: Money;
-	/** Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours. */
-	modifier?: Array<CodeableConcept>;
-	/** A list of note references to the notes provided below. */
-	noteNumber?: Array<number | null>;
-	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element | null>;
-	/** The type of reveneu or cost center providing the product and/or service. */
-	revenue?: CodeableConcept;
-	/** List of input service items which this service line is intended to replace. */
-	sequenceLinkId?: Array<number | null>;
-	/** Extensions for sequenceLinkId */
-	_sequenceLinkId?: Array<Element | null>;
-	/** A code to indicate the Professional Service or Product supplied. */
-	service?: CodeableConcept;
+  /** The adjudications results. */
+  adjudication?: Array<unknown>;
+  /** Health Care Service Type Codes  to identify the classification of service or benefits. */
+  category?: CodeableConcept;
+  /** The second tier service adjudications for payor added services. */
+  detail?: Array<ClaimResponse_AddItem_Detail>;
+  /** The fee charged for the professional service or product.. */
+  fee?: Money;
+  /** Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours. */
+  modifier?: Array<CodeableConcept>;
+  /** A list of note references to the notes provided below. */
+  noteNumber?: Array<number | null>;
+  /** Extensions for noteNumber */
+  _noteNumber?: Array<Element | null>;
+  /** The type of reveneu or cost center providing the product and/or service. */
+  revenue?: CodeableConcept;
+  /** List of input service items which this service line is intended to replace. */
+  sequenceLinkId?: Array<number | null>;
+  /** Extensions for sequenceLinkId */
+  _sequenceLinkId?: Array<Element | null>;
+  /** A code to indicate the Professional Service or Product supplied. */
+  service?: CodeableConcept;
 }
 
 const getClaimResponse_AddItem_DetailSchema =
-	(): z.ZodType<ClaimResponse_AddItem_Detail> =>
-		ClaimResponse_AddItem_DetailSchemaInternal as z.ZodType<ClaimResponse_AddItem_Detail>;
+  (): z.ZodType<ClaimResponse_AddItem_Detail> =>
+    ClaimResponse_AddItem_DetailSchemaInternal as z.ZodType<ClaimResponse_AddItem_Detail>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getMoneySchema = (): z.ZodType<Money> =>
-	MoneySchemaInternal as z.ZodType<Money>;
+  MoneySchemaInternal as z.ZodType<Money>;
 
 /** @internal */
 export const ClaimResponse_AddItemSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		adjudication: z.unknown().array().optional(),
-		category: z.lazy(getCodeableConceptSchema).optional(),
-		detail: z.lazy(getClaimResponse_AddItem_DetailSchema).array().optional(),
-		fee: z.lazy(getMoneySchema).optional(),
-		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
-		noteNumber: z.number().int().positive().nullable().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
-		revenue: z.lazy(getCodeableConceptSchema).optional(),
-		sequenceLinkId: z.number().int().positive().nullable().array().optional(),
-		_sequenceLinkId: z.lazy(getElementSchema).nullable().array().optional(),
-		service: z.lazy(getCodeableConceptSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validatePrimitiveArrayPair(
-				record.noteNumber,
-				record._noteNumber,
-				"noteNumber",
-				"_noteNumber",
-				ctx,
-			);
-			validatePrimitiveArrayPair(
-				record.sequenceLinkId,
-				record._sequenceLinkId,
-				"sequenceLinkId",
-				"_sequenceLinkId",
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    adjudication: z.unknown().array().optional(),
+    category: z.lazy(getCodeableConceptSchema).optional(),
+    detail: z.lazy(getClaimResponse_AddItem_DetailSchema).array().optional(),
+    fee: z.lazy(getMoneySchema).optional(),
+    modifier: z.lazy(getCodeableConceptSchema).array().optional(),
+    noteNumber: z.number().int().positive().nullable().array().optional(),
+    _noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
+    revenue: z.lazy(getCodeableConceptSchema).optional(),
+    sequenceLinkId: z.number().int().positive().nullable().array().optional(),
+    _sequenceLinkId: z.lazy(getElementSchema).nullable().array().optional(),
+    service: z.lazy(getCodeableConceptSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validatePrimitiveArrayPair(
+        record.noteNumber,
+        record._noteNumber,
+        "noteNumber",
+        "_noteNumber",
+        ctx,
+      );
+      validatePrimitiveArrayPair(
+        record.sequenceLinkId,
+        record._sequenceLinkId,
+        "sequenceLinkId",
+        "_sequenceLinkId",
+        ctx,
+      );
+    });
 
 export const ClaimResponse_AddItemSchema =
-	ClaimResponse_AddItemSchemaInternal as z.ZodType<ClaimResponse_AddItem>;
+  ClaimResponse_AddItemSchemaInternal as z.ZodType<ClaimResponse_AddItem>;

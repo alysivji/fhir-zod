@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/StructureDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -11,18 +11,18 @@ import { ElementDefinitionSchemaInternal } from "./ElementDefinition";
 
 /** A snapshot view is expressed in a standalone form that can be used and interpreted without considering the base StructureDefinition. */
 export interface StructureDefinition_Snapshot extends BackboneElement {
-	/** Captures constraints on each element within the resource. */
-	element: Array<ElementDefinition>;
+  /** Captures constraints on each element within the resource. */
+  element: Array<ElementDefinition>;
 }
 
 const getElementDefinitionSchema = (): z.ZodType<ElementDefinition> =>
-	ElementDefinitionSchemaInternal as z.ZodType<ElementDefinition>;
+  ElementDefinitionSchemaInternal as z.ZodType<ElementDefinition>;
 
 /** @internal */
 export const StructureDefinition_SnapshotSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		element: z.lazy(getElementDefinitionSchema).array(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    element: z.lazy(getElementDefinitionSchema).array(),
+  }).strict();
 
 export const StructureDefinition_SnapshotSchema =
-	StructureDefinition_SnapshotSchemaInternal as z.ZodType<StructureDefinition_Snapshot>;
+  StructureDefinition_SnapshotSchemaInternal as z.ZodType<StructureDefinition_Snapshot>;

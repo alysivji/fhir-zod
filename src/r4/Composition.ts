@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Composition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-04T22:42:43.846Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../shared/fhir-primitives";
@@ -27,177 +27,177 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** A set of healthcare-related information that is assembled together into a single logical package that provides a single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is making the statement. A Composition defines the structure and narrative content necessary for a document. However, a Composition alone does not constitute a document. Rather, the Composition must be the first entry in a Bundle where Bundle.type=document, and any other resources referenced from Composition must be included as subsequent entries in the Bundle (for example Patient, Practitioner, Encounter, etc.). */
 export interface Composition extends DomainResource {
-	/** A participant who has attested to the accuracy of the composition/document. */
-	attester?: Array<Composition_Attester>;
-	/** Identifies who is responsible for the information in the composition, not necessarily who typed it in. */
-	author: Array<Reference>;
-	/** A categorization for the type of the composition - helps for indexing and searching. This may be implied by or derived from the code specified in the Composition Type. */
-	category?: Array<CodeableConcept>;
-	/** The code specifying the level of confidentiality of the Composition. */
-	confidentiality?:
-		| "_Confidentiality"
-		| "_ConfidentialityByAccessKind"
-		| "_ConfidentialityByInfoType"
-		| "_ConfidentialityModifiers"
-		| "B"
-		| "C"
-		| "D"
-		| "ETH"
-		| "HIV"
-		| "I"
-		| "L"
-		| "M"
-		| "N"
-		| "PSY"
-		| "R"
-		| "S"
-		| "SDV"
-		| "T"
-		| "U"
-		| "V";
-	/** Extensions for confidentiality */
-	_confidentiality?: Element;
-	/** Identifies the organization or group who is responsible for ongoing maintenance of and access to the composition/document information. */
-	custodian?: Reference;
-	/** The composition editing time, when the composition was last logically changed by the author. */
-	date: string;
-	/** Extensions for date */
-	_date?: Element;
-	/** Describes the clinical encounter or type of care this documentation is associated with. */
-	encounter?: Reference;
-	/** The clinical service, such as a colonoscopy or an appendectomy, being documented. */
-	event?: Array<Composition_Event>;
-	/** A version-independent identifier for the Composition. This identifier stays constant as the composition is changed over time. */
-	identifier?: Identifier;
-	/** Relationships that this composition has with other compositions or documents that already exist. */
-	relatesTo?: Array<Composition_RelatesTo>;
-	/** This is a Composition resource. */
-	resourceType: "Composition";
-	/** The root of the sections that make up the composition. */
-	section?: Array<Composition_Section>;
-	/** The workflow/clinical status of this composition. The status is a marker for the clinical standing of the document. */
-	status: "amended" | "entered-in-error" | "final" | "preliminary";
-	/** Extensions for status */
-	_status?: Element;
-	/** Who or what the composition is about. The composition can be about a person, (patient or healthcare practitioner), a device (e.g. a machine) or even a group of subjects (such as a document about a herd of livestock, or a set of patients that share a common exposure). */
-	subject?: Reference;
-	/** Official human-readable label for the composition. */
-	title: string;
-	/** Extensions for title */
-	_title?: Element;
-	/** Specifies the particular kind of composition (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the composition. */
-	type: CodeableConcept;
+  /** A participant who has attested to the accuracy of the composition/document. */
+  attester?: Array<Composition_Attester>;
+  /** Identifies who is responsible for the information in the composition, not necessarily who typed it in. */
+  author: Array<Reference>;
+  /** A categorization for the type of the composition - helps for indexing and searching. This may be implied by or derived from the code specified in the Composition Type. */
+  category?: Array<CodeableConcept>;
+  /** The code specifying the level of confidentiality of the Composition. */
+  confidentiality?:
+    | "_Confidentiality"
+    | "_ConfidentialityByAccessKind"
+    | "_ConfidentialityByInfoType"
+    | "_ConfidentialityModifiers"
+    | "B"
+    | "C"
+    | "D"
+    | "ETH"
+    | "HIV"
+    | "I"
+    | "L"
+    | "M"
+    | "N"
+    | "PSY"
+    | "R"
+    | "S"
+    | "SDV"
+    | "T"
+    | "U"
+    | "V";
+  /** Extensions for confidentiality */
+  _confidentiality?: Element;
+  /** Identifies the organization or group who is responsible for ongoing maintenance of and access to the composition/document information. */
+  custodian?: Reference;
+  /** The composition editing time, when the composition was last logically changed by the author. */
+  date: string;
+  /** Extensions for date */
+  _date?: Element;
+  /** Describes the clinical encounter or type of care this documentation is associated with. */
+  encounter?: Reference;
+  /** The clinical service, such as a colonoscopy or an appendectomy, being documented. */
+  event?: Array<Composition_Event>;
+  /** A version-independent identifier for the Composition. This identifier stays constant as the composition is changed over time. */
+  identifier?: Identifier;
+  /** Relationships that this composition has with other compositions or documents that already exist. */
+  relatesTo?: Array<Composition_RelatesTo>;
+  /** This is a Composition resource. */
+  resourceType: "Composition";
+  /** The root of the sections that make up the composition. */
+  section?: Array<Composition_Section>;
+  /** The workflow/clinical status of this composition. The status is a marker for the clinical standing of the document. */
+  status: "amended" | "entered-in-error" | "final" | "preliminary";
+  /** Extensions for status */
+  _status?: Element;
+  /** Who or what the composition is about. The composition can be about a person, (patient or healthcare practitioner), a device (e.g. a machine) or even a group of subjects (such as a document about a herd of livestock, or a set of patients that share a common exposure). */
+  subject?: Reference;
+  /** Official human-readable label for the composition. */
+  title: string;
+  /** Extensions for title */
+  _title?: Element;
+  /** Specifies the particular kind of composition (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the composition. */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getComposition_AttesterSchema = (): z.ZodType<Composition_Attester> =>
-	Composition_AttesterSchemaInternal as z.ZodType<Composition_Attester>;
+  Composition_AttesterSchemaInternal as z.ZodType<Composition_Attester>;
 const getComposition_EventSchema = (): z.ZodType<Composition_Event> =>
-	Composition_EventSchemaInternal as z.ZodType<Composition_Event>;
+  Composition_EventSchemaInternal as z.ZodType<Composition_Event>;
 const getComposition_RelatesToSchema = (): z.ZodType<Composition_RelatesTo> =>
-	Composition_RelatesToSchemaInternal as z.ZodType<Composition_RelatesTo>;
+  Composition_RelatesToSchemaInternal as z.ZodType<Composition_RelatesTo>;
 const getComposition_SectionSchema = (): z.ZodType<Composition_Section> =>
-	Composition_SectionSchemaInternal as z.ZodType<Composition_Section>;
+  Composition_SectionSchemaInternal as z.ZodType<Composition_Section>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const CompositionSchemaInternal = DomainResourceSchemaInternal.extend({
-	attester: z.lazy(getComposition_AttesterSchema).array().optional(),
-	author: z.lazy(getReferenceSchema).array(),
-	category: z.lazy(getCodeableConceptSchema).array().optional(),
-	confidentiality: z
-		.enum([
-			"_Confidentiality",
-			"_ConfidentialityByAccessKind",
-			"_ConfidentialityByInfoType",
-			"_ConfidentialityModifiers",
-			"B",
-			"C",
-			"D",
-			"ETH",
-			"HIV",
-			"I",
-			"L",
-			"M",
-			"N",
-			"PSY",
-			"R",
-			"S",
-			"SDV",
-			"T",
-			"U",
-			"V",
-		])
-		.optional(),
-	_confidentiality: z.lazy(getElementSchema).optional(),
-	custodian: z.lazy(getReferenceSchema).optional(),
-	date: fhirDateTime(),
-	_date: z.lazy(getElementSchema).optional(),
-	encounter: z.lazy(getReferenceSchema).optional(),
-	event: z.lazy(getComposition_EventSchema).array().optional(),
-	identifier: z.lazy(getIdentifierSchema).optional(),
-	relatesTo: z.lazy(getComposition_RelatesToSchema).array().optional(),
-	resourceType: z.literal("Composition"),
-	section: z.lazy(getComposition_SectionSchema).array().optional(),
-	status: z.enum(["amended", "entered-in-error", "final", "preliminary"]),
-	_status: z.lazy(getElementSchema).optional(),
-	subject: z.lazy(getReferenceSchema).optional(),
-	title: fhirString(),
-	_title: z.lazy(getElementSchema).optional(),
-	type: z.lazy(getCodeableConceptSchema),
+  attester: z.lazy(getComposition_AttesterSchema).array().optional(),
+  author: z.lazy(getReferenceSchema).array(),
+  category: z.lazy(getCodeableConceptSchema).array().optional(),
+  confidentiality: z
+    .enum([
+      "_Confidentiality",
+      "_ConfidentialityByAccessKind",
+      "_ConfidentialityByInfoType",
+      "_ConfidentialityModifiers",
+      "B",
+      "C",
+      "D",
+      "ETH",
+      "HIV",
+      "I",
+      "L",
+      "M",
+      "N",
+      "PSY",
+      "R",
+      "S",
+      "SDV",
+      "T",
+      "U",
+      "V",
+    ])
+    .optional(),
+  _confidentiality: z.lazy(getElementSchema).optional(),
+  custodian: z.lazy(getReferenceSchema).optional(),
+  date: fhirDateTime(),
+  _date: z.lazy(getElementSchema).optional(),
+  encounter: z.lazy(getReferenceSchema).optional(),
+  event: z.lazy(getComposition_EventSchema).array().optional(),
+  identifier: z.lazy(getIdentifierSchema).optional(),
+  relatesTo: z.lazy(getComposition_RelatesToSchema).array().optional(),
+  resourceType: z.literal("Composition"),
+  section: z.lazy(getComposition_SectionSchema).array().optional(),
+  status: z.enum(["amended", "entered-in-error", "final", "preliminary"]),
+  _status: z.lazy(getElementSchema).optional(),
+  subject: z.lazy(getReferenceSchema).optional(),
+  title: fhirString(),
+  _title: z.lazy(getElementSchema).optional(),
+  type: z.lazy(getCodeableConceptSchema),
 })
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validateReferenceTarget(
-			record.author,
-			"author",
-			[
-				"http://hl7.org/fhir/StructureDefinition/Device",
-				"http://hl7.org/fhir/StructureDefinition/Organization",
-				"http://hl7.org/fhir/StructureDefinition/Patient",
-				"http://hl7.org/fhir/StructureDefinition/Practitioner",
-				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-			],
-			[
-				"Device",
-				"Organization",
-				"Patient",
-				"Practitioner",
-				"PractitionerRole",
-				"RelatedPerson",
-			],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.custodian,
-			"custodian",
-			["http://hl7.org/fhir/StructureDefinition/Organization"],
-			["Organization"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.encounter,
-			"encounter",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.subject,
-			"subject",
-			["http://hl7.org/fhir/StructureDefinition/Resource"],
-			["Resource"],
-			ctx,
-		);
-	});
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validateReferenceTarget(
+      record.author,
+      "author",
+      [
+        "http://hl7.org/fhir/StructureDefinition/Device",
+        "http://hl7.org/fhir/StructureDefinition/Organization",
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+        "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+        "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+      ],
+      [
+        "Device",
+        "Organization",
+        "Patient",
+        "Practitioner",
+        "PractitionerRole",
+        "RelatedPerson",
+      ],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.custodian,
+      "custodian",
+      ["http://hl7.org/fhir/StructureDefinition/Organization"],
+      ["Organization"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.encounter,
+      "encounter",
+      ["http://hl7.org/fhir/StructureDefinition/Encounter"],
+      ["Encounter"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.subject,
+      "subject",
+      ["http://hl7.org/fhir/StructureDefinition/Resource"],
+      ["Resource"],
+      ctx,
+    );
+  });
 
 export const CompositionSchema =
-	CompositionSchemaInternal as z.ZodType<Composition>;
+  CompositionSchemaInternal as z.ZodType<Composition>;

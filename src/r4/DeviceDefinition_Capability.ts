@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DeviceDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -11,21 +11,21 @@ import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 
 /** Device capabilities. */
 export interface DeviceDefinition_Capability extends BackboneElement {
-	/** Description of capability. */
-	description?: Array<CodeableConcept>;
-	/** Type of capability. */
-	type: CodeableConcept;
+  /** Description of capability. */
+  description?: Array<CodeableConcept>;
+  /** Type of capability. */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const DeviceDefinition_CapabilitySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		description: z.lazy(getCodeableConceptSchema).array().optional(),
-		type: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    description: z.lazy(getCodeableConceptSchema).array().optional(),
+    type: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const DeviceDefinition_CapabilitySchema =
-	DeviceDefinition_CapabilitySchemaInternal as z.ZodType<DeviceDefinition_Capability>;
+  DeviceDefinition_CapabilitySchemaInternal as z.ZodType<DeviceDefinition_Capability>;

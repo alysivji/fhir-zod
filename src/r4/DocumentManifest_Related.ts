@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DocumentManifest
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -14,34 +14,34 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Related identifiers or resources associated with the DocumentManifest. */
 export interface DocumentManifest_Related extends BackboneElement {
-	/** Related identifier to this DocumentManifest.  For example, Order numbers, accession numbers, XDW workflow numbers. */
-	identifier?: Identifier;
-	/** Related Resource to this DocumentManifest. For example, Order, ServiceRequest,  Procedure, EligibilityRequest, etc. */
-	ref?: Reference;
+  /** Related identifier to this DocumentManifest.  For example, Order numbers, accession numbers, XDW workflow numbers. */
+  identifier?: Identifier;
+  /** Related Resource to this DocumentManifest. For example, Order, ServiceRequest,  Procedure, EligibilityRequest, etc. */
+  ref?: Reference;
 }
 
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const DocumentManifest_RelatedSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		identifier: z.lazy(getIdentifierSchema).optional(),
-		ref: z.lazy(getReferenceSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.ref,
-				"ref",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    identifier: z.lazy(getIdentifierSchema).optional(),
+    ref: z.lazy(getReferenceSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.ref,
+        "ref",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const DocumentManifest_RelatedSchema =
-	DocumentManifest_RelatedSchemaInternal as z.ZodType<DocumentManifest_Related>;
+  DocumentManifest_RelatedSchemaInternal as z.ZodType<DocumentManifest_Related>;

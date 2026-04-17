@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirUrl } from "../shared/fhir-primitives";
@@ -14,27 +14,27 @@ import { ElementSchemaInternal } from "./Element";
 
 /** An endpoint (network accessible address) to which messages and/or replies are to be sent. */
 export interface CapabilityStatement_Messaging_Endpoint
-	extends BackboneElement {
-	/** The network address of the endpoint. For solutions that do not use network addresses for routing, it can be just an identifier. */
-	address: string;
-	/** Extensions for address */
-	_address?: Element;
-	/** A list of the messaging transport protocol(s) identifiers, supported by this endpoint. */
-	protocol: Coding;
+  extends BackboneElement {
+  /** The network address of the endpoint. For solutions that do not use network addresses for routing, it can be just an identifier. */
+  address: string;
+  /** Extensions for address */
+  _address?: Element;
+  /** A list of the messaging transport protocol(s) identifiers, supported by this endpoint. */
+  protocol: Coding;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const CapabilityStatement_Messaging_EndpointSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		address: fhirUrl(),
-		_address: z.lazy(getElementSchema).optional(),
-		protocol: z.lazy(getCodingSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    address: fhirUrl(),
+    _address: z.lazy(getElementSchema).optional(),
+    protocol: z.lazy(getCodingSchema),
+  }).strict();
 
 export const CapabilityStatement_Messaging_EndpointSchema =
-	CapabilityStatement_Messaging_EndpointSchemaInternal as z.ZodType<CapabilityStatement_Messaging_Endpoint>;
+  CapabilityStatement_Messaging_EndpointSchemaInternal as z.ZodType<CapabilityStatement_Messaging_Endpoint>;

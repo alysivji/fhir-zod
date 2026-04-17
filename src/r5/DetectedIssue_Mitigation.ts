@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DetectedIssue
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -19,50 +19,50 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Indicates an action that has been taken or is committed to reduce or eliminate the likelihood of the risk identified by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that may reduce/eliminate the need for any action. */
 export interface DetectedIssue_Mitigation extends BackboneElement {
-	/** Describes the action that was taken or the observation that was made that reduces/eliminates the risk associated with the identified issue. */
-	action: CodeableConcept;
-	/** Identifies the practitioner who determined the mitigation and takes responsibility for the mitigation step occurring. */
-	author?: Reference;
-	/** Indicates when the mitigating action was documented. */
-	date?: string;
-	/** Extensions for date */
-	_date?: Element;
-	/** Clinicians may add additional notes or justifications about the mitigation action. For example, patient can have this drug because they have had it before without any issues. Multiple justifications may be provided. */
-	note?: Array<Annotation>;
+  /** Describes the action that was taken or the observation that was made that reduces/eliminates the risk associated with the identified issue. */
+  action: CodeableConcept;
+  /** Identifies the practitioner who determined the mitigation and takes responsibility for the mitigation step occurring. */
+  author?: Reference;
+  /** Indicates when the mitigating action was documented. */
+  date?: string;
+  /** Extensions for date */
+  _date?: Element;
+  /** Clinicians may add additional notes or justifications about the mitigation action. For example, patient can have this drug because they have had it before without any issues. Multiple justifications may be provided. */
+  note?: Array<Annotation>;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const DetectedIssue_MitigationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		action: z.lazy(getCodeableConceptSchema),
-		author: z.lazy(getReferenceSchema).optional(),
-		date: fhirDateTime().optional(),
-		_date: z.lazy(getElementSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.author,
-				"author",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Practitioner",
-					"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-				],
-				["Practitioner", "PractitionerRole"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    action: z.lazy(getCodeableConceptSchema),
+    author: z.lazy(getReferenceSchema).optional(),
+    date: fhirDateTime().optional(),
+    _date: z.lazy(getElementSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.author,
+        "author",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Practitioner",
+          "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+        ],
+        ["Practitioner", "PractitionerRole"],
+        ctx,
+      );
+    });
 
 export const DetectedIssue_MitigationSchema =
-	DetectedIssue_MitigationSchemaInternal as z.ZodType<DetectedIssue_Mitigation>;
+  DetectedIssue_MitigationSchemaInternal as z.ZodType<DetectedIssue_Mitigation>;

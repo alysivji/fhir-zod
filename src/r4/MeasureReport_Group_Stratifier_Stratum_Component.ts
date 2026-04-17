@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MeasureReport
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -11,22 +11,22 @@ import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 
 /** A stratifier component value. */
 export interface MeasureReport_Group_Stratifier_Stratum_Component
-	extends BackboneElement {
-	/** The code for the stratum component value. */
-	code: CodeableConcept;
-	/** The stratum component value. */
-	value: CodeableConcept;
+  extends BackboneElement {
+  /** The code for the stratum component value. */
+  code: CodeableConcept;
+  /** The stratum component value. */
+  value: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const MeasureReport_Group_Stratifier_Stratum_ComponentSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema),
-		value: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema),
+    value: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const MeasureReport_Group_Stratifier_Stratum_ComponentSchema =
-	MeasureReport_Group_Stratifier_Stratum_ComponentSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum_Component>;
+  MeasureReport_Group_Stratifier_Stratum_ComponentSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum_Component>;
