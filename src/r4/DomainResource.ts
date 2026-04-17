@@ -1,9 +1,11 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DomainResource
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:26:21.962Z
+// Last generated: 2026-04-17T22:15:02.446Z
 
 import * as z from "zod";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { Extension } from "./Extension";
 import { ExtensionSchemaInternal } from "./Extension";
 import type { Narrative } from "./Narrative";
@@ -14,7 +16,7 @@ import { ResourceSchemaInternal } from "./Resource";
 /** A resource that includes narrative, extensions, and contained resources. */
 export interface DomainResource extends Resource {
 	/** These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope. */
-	contained?: Array<Resource>;
+	contained?: Array<FhirResource>;
 	/** May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. */
 	extension?: Array<Extension>;
 	/**
@@ -31,14 +33,12 @@ const getExtensionSchema = (): z.ZodType<Extension> =>
 	ExtensionSchemaInternal as z.ZodType<Extension>;
 const getNarrativeSchema = (): z.ZodType<Narrative> =>
 	NarrativeSchemaInternal as z.ZodType<Narrative>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const DomainResourceSchemaInternal = ResourceSchemaInternal.extend({
-	contained: z
-		.object({ resourceType: z.string() })
-		.passthrough()
-		.array()
-		.optional(),
+	contained: z.lazy(getFhirResourceSchema).array().optional(),
 	extension: z.lazy(getExtensionSchema).array().optional(),
 	modifierExtension: z.lazy(getExtensionSchema).array().optional(),
 	text: z.lazy(getNarrativeSchema).optional(),

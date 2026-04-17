@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Parameters
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T22:15:20.782Z
 
 import * as z from "zod";
 import {
@@ -16,6 +16,8 @@ import {
 	fhirTime,
 	fhirUri,
 } from "../shared/fhir-primitives";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
 import type { Age } from "./Age";
@@ -58,7 +60,6 @@ import type { Ratio } from "./Ratio";
 import { RatioSchemaInternal } from "./Ratio";
 import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
-import type { Resource } from "./Resource";
 import type { SampledData } from "./SampledData";
 import { SampledDataSchemaInternal } from "./SampledData";
 import type { Signature } from "./Signature";
@@ -75,7 +76,7 @@ export interface Parameters_Parameter extends BackboneElement {
 	/** A named part of a multi-part parameter. */
 	part?: Array<unknown>;
 	/** If the parameter is a whole resource. */
-	resource?: Resource;
+	resource?: FhirResource;
 	/** If the parameter is a data type. */
 	valueAddress?: Address;
 	/** If the parameter is a data type. */
@@ -231,6 +232,8 @@ const getSignatureSchema = (): z.ZodType<Signature> =>
 	SignatureSchemaInternal as z.ZodType<Signature>;
 const getTimingSchema = (): z.ZodType<Timing> =>
 	TimingSchemaInternal as z.ZodType<Timing>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const Parameters_ParameterSchemaInternal =
@@ -238,7 +241,7 @@ export const Parameters_ParameterSchemaInternal =
 		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		part: z.unknown().array().optional(),
-		resource: z.object({ resourceType: z.string() }).passthrough().optional(),
+		resource: z.lazy(getFhirResourceSchema).optional(),
 		valueAddress: z.lazy(getAddressSchema).optional(),
 		valueAge: z.lazy(getAgeSchema).optional(),
 		valueAnnotation: z.lazy(getAnnotationSchema).optional(),

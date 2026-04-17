@@ -1,6 +1,8 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
+const isCi = process.env.CI === "true";
+
 export default defineConfig({
 	resolve: {
 		alias: [
@@ -50,6 +52,11 @@ export default defineConfig({
 			reporter: ["text", "lcov", "json-summary"],
 		},
 		environment: "node",
+		// CI runs declaration emit, package bundling, and generated schema suites in
+		// the same Vitest invocation. Capping workers avoids starving Vitest's RPC
+		// channel on smaller runners while keeping local runs fully parallel.
+		maxWorkers: isCi ? 2 : undefined,
+		minWorkers: isCi ? 1 : undefined,
 		outputFile: {
 			junit: "./test-results/vitest.junit.xml",
 		},

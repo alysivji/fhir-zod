@@ -192,6 +192,12 @@ function writeBaseStructureDefinitions(spec: SyntheticSpecPackage): void {
 		structureDefinition("DomainResource", {
 			abstract: true,
 			baseDefinition: "http://hl7.org/fhir/StructureDefinition/Resource",
+			elements: [
+				element("DomainResource.contained", {
+					max: "*",
+					type: [type("Resource")],
+				}),
+			],
 			kind: "resource",
 		}),
 	);

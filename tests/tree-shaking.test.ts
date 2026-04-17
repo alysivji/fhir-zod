@@ -68,11 +68,16 @@ describe("package tree shaking", () => {
 		return { distDir, packageRoot, rootPackageJson };
 	}
 
-	it("lets a consumer bundle one R4 schema without unrelated R4 resources", async () => {
+	it("leaves the bundle empty when only importing types from fhir-zod/r4", async () => {
 		const { distDir, packageRoot, rootPackageJson } =
 			await buildPackageFixture();
 		try {
-			expect(rootPackageJson.sideEffects).toBe(false);
+			expect(rootPackageJson.sideEffects).toEqual([
+				"./dist/r4/index.js",
+				"./dist/r4b/index.js",
+				"./dist/r5/index.js",
+				"./dist/stu3/index.js",
+			]);
 
 			const r4Index = join(distDir, "r4/index.js");
 			const r4Patient = join(distDir, "r4/Patient.js");
@@ -83,6 +88,44 @@ describe("package tree shaking", () => {
 				"ObservationSchemaInternal",
 			);
 
+			const result = await build({
+				bundle: true,
+				external: ["zod"],
+				format: "esm",
+				platform: "neutral",
+				stdin: {
+					contents: [
+						'import type { Patient } from "fhir-zod/r4";',
+						"const accept = (_p: Patient) => undefined;",
+						"accept({ resourceType: 'Patient' });",
+					].join("\n"),
+					loader: "ts",
+					resolveDir: packageRoot,
+				},
+				treeShaking: true,
+				tsconfigRaw: JSON.stringify({
+					compilerOptions: {
+						moduleResolution: "Bundler",
+					},
+				}),
+				write: false,
+			});
+
+			const outputFile = result.outputFiles?.[0];
+			expect(outputFile).toBeDefined();
+
+			const bundledCode = outputFile?.text ?? "";
+			expect(bundledCode).not.toContain("PatientSchemaInternal");
+			expect(bundledCode).not.toContain("AccountSchemaInternal");
+			expect(bundledCode).not.toContain("ObservationSchemaInternal");
+		} finally {
+			rmSync(packageRoot, { force: true, recursive: true });
+		}
+	}, 120_000);
+
+	it("pulls every R4 resource into the bundle when importing a resource schema from the version entry point", async () => {
+		const { packageRoot } = await buildPackageFixture();
+		try {
 			const result = await build({
 				bundle: true,
 				external: ["zod"],
@@ -105,13 +148,11 @@ describe("package tree shaking", () => {
 				write: false,
 			});
 
-			const outputFile = result.outputFiles?.[0];
-			expect(outputFile).toBeDefined();
-
-			const bundledCode = outputFile?.text ?? "";
+			const bundledCode = result.outputFiles?.[0]?.text ?? "";
 			expect(bundledCode).toContain("PatientSchemaInternal");
-			expect(bundledCode).not.toContain("AccountSchemaInternal");
-			expect(bundledCode).not.toContain("ObservationSchemaInternal");
+			expect(bundledCode).toContain("ObservationSchemaInternal");
+			expect(bundledCode).toContain("AccountSchemaInternal");
+			expect(bundledCode).toContain("_registerFhirResourceSchemas");
 		} finally {
 			rmSync(packageRoot, { force: true, recursive: true });
 		}

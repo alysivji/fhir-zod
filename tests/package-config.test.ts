@@ -5,6 +5,7 @@ import tsdownConfig from "../tsdown.config.ts";
 
 type PackageJson = {
 	exports: Record<string, unknown>;
+	sideEffects: unknown;
 };
 
 describe("package and build config", () => {
@@ -19,6 +20,12 @@ describe("package and build config", () => {
 			"./r4b",
 			"./r5",
 			"./stu3",
+		]);
+		expect(packageJson.sideEffects).toEqual([
+			"./dist/r4/index.js",
+			"./dist/r4b/index.js",
+			"./dist/r5/index.js",
+			"./dist/stu3/index.js",
 		]);
 	});
 

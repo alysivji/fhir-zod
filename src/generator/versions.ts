@@ -73,6 +73,8 @@ export abstract class FhirRelease {
 		"Element",
 	];
 
+	readonly enableFhirResourceValidation: boolean = true;
+
 	loadTargetEntries(): TargetEntry[] {
 		const packageRoot = resolveRequiredSpecPackageRoot(this.id);
 
@@ -149,6 +151,7 @@ export abstract class FhirRelease {
 		const generatedAt = options.generatedAt ?? new Date().toISOString();
 		const files = writeNormalizedZodDefinitions({
 			definitions: structureDefinitionResult.definitions,
+			enableFhirResourceValidation: this.enableFhirResourceValidation,
 			generatedAt,
 			outputDir,
 			prune: options.prune ?? true,

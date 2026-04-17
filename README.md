@@ -110,9 +110,9 @@ const bodyWeight: Observation = {
 ObservationSchema.parse(bodyWeight)
 ```
 
-### Validate Bundle structure
+### Validate Bundle resources
 
-`BundleSchema` validates the Bundle envelope and the basic shape of entry resources. If your workflow needs full validation for known entry resources, validate those resources with their own schemas as well.
+`BundleSchema` recursively validates known FHIR resources in `entry[].resource`.
 
 ```ts
 import { BundleSchema, type Bundle, type Patient } from "fhir-zod/r4"
@@ -198,7 +198,7 @@ Import from a specific FHIR version subpath:
 import { ObservationSchema } from "fhir-zod/r4"
 ```
 
-Each FHIR version is exposed as a separate entry point. Combined with ESM and `sideEffects: false`, this allows bundlers to tree-shake unused schemas and keep bundle size small.
+Each FHIR version is exposed as a separate entry point. Bundlers will tree-shake unused FHIR versions. In frontend code, lazy-load runtime schema imports where validation runs.
 
 ## Specification alignment
 
