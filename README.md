@@ -200,11 +200,9 @@ import { ObservationSchema } from "fhir-zod/r4"
 
 Each FHIR version is exposed as a separate entry point. Combined with ESM and `sideEffects: false`, this allows bundlers to tree-shake unused schemas and keep bundle size small.
 
-## Generation and quality
+## Specification alignment
 
-The generated models and schemas come from pinned official HL7 artifacts. Generated output is checked into this repository under `src/r5`, `src/r4b`, `src/r4`, and `src/stu3` so changes are reviewable.
-
-The generator is part of the repository for transparency. Official FHIR example fixtures are checked into the test suite and used to validate generated schemas against real spec examples across supported releases.
+Schemas are generated from official HL7 FHIR definitions to stay consistent with the specification. Validation is tested against official FHIR example data from the specification across supported versions.
 
 ## Contributing
 
