@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Schedule
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T01:26:20.392Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -21,81 +21,81 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for Schedule Resource */
 export interface Schedule extends DomainResource {
-	/** Whether this schedule record is in active use, or should not be used (such as was entered in error). */
-	active?: boolean;
-	/** Extensions for active */
-	_active?: Element;
-	/** The resource this Schedule resource is providing availability information for. These are expected to usually be one of HealthcareService, Location, Practitioner, PractitionerRole, Device, Patient or RelatedPerson. */
-	actor: Array<Reference>;
-	/** Comments on the availability to describe any extended information. Such as custom constraints on the slots that may be associated. */
-	comment?: string;
-	/** Extensions for comment */
-	_comment?: Element;
-	/** External Ids for this item. */
-	identifier?: Array<Identifier>;
-	/** The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These  cover the amount of time that an organization's planning horizon; the interval for which they are currently accepting appointments. This does not define a "template" for planning outside these dates. */
-	planningHorizon?: Period;
-	/** This is a Schedule resource. */
-	resourceType: "Schedule";
-	/** A broad categorisation of the service that is to be performed during this appointment. */
-	serviceCategory?: CodeableConcept;
-	/** The specific service that is to be performed during this appointment. */
-	serviceType?: Array<CodeableConcept>;
-	/** The specialty of a practitioner that would be required to perform the service requested in this appointment. */
-	specialty?: Array<CodeableConcept>;
+  /** Whether this schedule record is in active use, or should not be used (such as was entered in error). */
+  active?: boolean;
+  /** Extensions for active */
+  _active?: Element;
+  /** The resource this Schedule resource is providing availability information for. These are expected to usually be one of HealthcareService, Location, Practitioner, PractitionerRole, Device, Patient or RelatedPerson. */
+  actor: Array<Reference>;
+  /** Comments on the availability to describe any extended information. Such as custom constraints on the slots that may be associated. */
+  comment?: string;
+  /** Extensions for comment */
+  _comment?: Element;
+  /** External Ids for this item. */
+  identifier?: Array<Identifier>;
+  /** The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These  cover the amount of time that an organization's planning horizon; the interval for which they are currently accepting appointments. This does not define a "template" for planning outside these dates. */
+  planningHorizon?: Period;
+  /** This is a Schedule resource. */
+  resourceType: "Schedule";
+  /** A broad categorisation of the service that is to be performed during this appointment. */
+  serviceCategory?: CodeableConcept;
+  /** The specific service that is to be performed during this appointment. */
+  serviceType?: Array<CodeableConcept>;
+  /** The specialty of a practitioner that would be required to perform the service requested in this appointment. */
+  specialty?: Array<CodeableConcept>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const ScheduleSchemaInternal = DomainResourceSchemaInternal.extend({
-	active: z.boolean().optional(),
-	_active: z.lazy(getElementSchema).optional(),
-	actor: z.lazy(getReferenceSchema).array(),
-	comment: fhirString().optional(),
-	_comment: z.lazy(getElementSchema).optional(),
-	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	planningHorizon: z.lazy(getPeriodSchema).optional(),
-	resourceType: z.literal("Schedule"),
-	serviceCategory: z.lazy(getCodeableConceptSchema).optional(),
-	serviceType: z.lazy(getCodeableConceptSchema).array().optional(),
-	specialty: z.lazy(getCodeableConceptSchema).array().optional(),
+  active: z.boolean().optional(),
+  _active: z.lazy(getElementSchema).optional(),
+  actor: z.lazy(getReferenceSchema).array(),
+  comment: fhirString().optional(),
+  _comment: z.lazy(getElementSchema).optional(),
+  identifier: z.lazy(getIdentifierSchema).array().optional(),
+  planningHorizon: z.lazy(getPeriodSchema).optional(),
+  resourceType: z.literal("Schedule"),
+  serviceCategory: z.lazy(getCodeableConceptSchema).optional(),
+  serviceType: z.lazy(getCodeableConceptSchema).array().optional(),
+  specialty: z.lazy(getCodeableConceptSchema).array().optional(),
 })
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validateReferenceTarget(
-			record.actor,
-			"actor",
-			[
-				"http://hl7.org/fhir/StructureDefinition/Device",
-				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
-				"http://hl7.org/fhir/StructureDefinition/Location",
-				"http://hl7.org/fhir/StructureDefinition/Patient",
-				"http://hl7.org/fhir/StructureDefinition/Practitioner",
-				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-			],
-			[
-				"Device",
-				"HealthcareService",
-				"Location",
-				"Patient",
-				"Practitioner",
-				"PractitionerRole",
-				"RelatedPerson",
-			],
-			ctx,
-		);
-	});
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validateReferenceTarget(
+      record.actor,
+      "actor",
+      [
+        "http://hl7.org/fhir/StructureDefinition/Device",
+        "http://hl7.org/fhir/StructureDefinition/HealthcareService",
+        "http://hl7.org/fhir/StructureDefinition/Location",
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+        "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+        "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+      ],
+      [
+        "Device",
+        "HealthcareService",
+        "Location",
+        "Patient",
+        "Practitioner",
+        "PractitionerRole",
+        "RelatedPerson",
+      ],
+      ctx,
+    );
+  });
 
 export const ScheduleSchema = ScheduleSchemaInternal as z.ZodType<Schedule>;

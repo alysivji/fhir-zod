@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Coverage
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -15,41 +15,41 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Link to the paying party and optionally what specifically they will be responsible to pay. */
 export interface Coverage_PaymentBy extends BackboneElement {
-	/** The list of parties providing non-insurance payment for the treatment costs. */
-	party: Reference;
-	/**  Description of the financial responsibility. */
-	responsibility?: string;
-	/** Extensions for responsibility */
-	_responsibility?: Element;
+  /** The list of parties providing non-insurance payment for the treatment costs. */
+  party: Reference;
+  /**  Description of the financial responsibility. */
+  responsibility?: string;
+  /** Extensions for responsibility */
+  _responsibility?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Coverage_PaymentBySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		party: z.lazy(getReferenceSchema),
-		responsibility: fhirString().optional(),
-		_responsibility: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.party,
-				"party",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Organization",
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-				],
-				["Organization", "Patient", "RelatedPerson"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    party: z.lazy(getReferenceSchema),
+    responsibility: fhirString().optional(),
+    _responsibility: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.party,
+        "party",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Organization",
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+        ],
+        ["Organization", "Patient", "RelatedPerson"],
+        ctx,
+      );
+    });
 
 export const Coverage_PaymentBySchema =
-	Coverage_PaymentBySchemaInternal as z.ZodType<Coverage_PaymentBy>;
+  Coverage_PaymentBySchemaInternal as z.ZodType<Coverage_PaymentBy>;

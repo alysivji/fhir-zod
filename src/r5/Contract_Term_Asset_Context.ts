@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Contract
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -17,42 +17,42 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Circumstance of the asset. */
 export interface Contract_Term_Asset_Context extends BackboneElement {
-	/** Coded representation of the context generally or of the Referenced entity, such as the asset holder type or location. */
-	code?: Array<CodeableConcept>;
-	/** Asset context reference may include the creator, custodian, or owning Person or Organization (e.g., bank, repository),  location held, e.g., building,  jurisdiction. */
-	reference?: Reference;
-	/** Context description. */
-	text?: string;
-	/** Extensions for text */
-	_text?: Element;
+  /** Coded representation of the context generally or of the Referenced entity, such as the asset holder type or location. */
+  code?: Array<CodeableConcept>;
+  /** Asset context reference may include the creator, custodian, or owning Person or Organization (e.g., bank, repository),  location held, e.g., building,  jurisdiction. */
+  reference?: Reference;
+  /** Context description. */
+  text?: string;
+  /** Extensions for text */
+  _text?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Contract_Term_Asset_ContextSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema).array().optional(),
-		reference: z.lazy(getReferenceSchema).optional(),
-		text: fhirString().optional(),
-		_text: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.reference,
-				"reference",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema).array().optional(),
+    reference: z.lazy(getReferenceSchema).optional(),
+    text: fhirString().optional(),
+    _text: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.reference,
+        "reference",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const Contract_Term_Asset_ContextSchema =
-	Contract_Term_Asset_ContextSchemaInternal as z.ZodType<Contract_Term_Asset_Context>;
+  Contract_Term_Asset_ContextSchemaInternal as z.ZodType<Contract_Term_Asset_Context>;

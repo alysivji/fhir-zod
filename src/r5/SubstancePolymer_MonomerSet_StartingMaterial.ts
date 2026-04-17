@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -15,35 +15,35 @@ import { QuantitySchemaInternal } from "./Quantity";
 
 /** The starting materials - monomer(s) used in the synthesis of the polymer. */
 export interface SubstancePolymer_MonomerSet_StartingMaterial
-	extends BackboneElement {
-	/** A percentage. */
-	amount?: Quantity;
-	/** Substance high level category, e.g. chemical substance. */
-	category?: CodeableConcept;
-	/** The type of substance for this starting material. */
-	code?: CodeableConcept;
-	/** Used to specify whether the attribute described is a defining element for the unique identification of the polymer. */
-	isDefining?: boolean;
-	/** Extensions for isDefining */
-	_isDefining?: Element;
+  extends BackboneElement {
+  /** A percentage. */
+  amount?: Quantity;
+  /** Substance high level category, e.g. chemical substance. */
+  category?: CodeableConcept;
+  /** The type of substance for this starting material. */
+  code?: CodeableConcept;
+  /** Used to specify whether the attribute described is a defining element for the unique identification of the polymer. */
+  isDefining?: boolean;
+  /** Extensions for isDefining */
+  _isDefining?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const SubstancePolymer_MonomerSet_StartingMaterialSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		amount: z.lazy(getQuantitySchema).optional(),
-		category: z.lazy(getCodeableConceptSchema).optional(),
-		code: z.lazy(getCodeableConceptSchema).optional(),
-		isDefining: z.boolean().optional(),
-		_isDefining: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    amount: z.lazy(getQuantitySchema).optional(),
+    category: z.lazy(getCodeableConceptSchema).optional(),
+    code: z.lazy(getCodeableConceptSchema).optional(),
+    isDefining: z.boolean().optional(),
+    _isDefining: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const SubstancePolymer_MonomerSet_StartingMaterialSchema =
-	SubstancePolymer_MonomerSet_StartingMaterialSchemaInternal as z.ZodType<SubstancePolymer_MonomerSet_StartingMaterial>;
+  SubstancePolymer_MonomerSet_StartingMaterialSchemaInternal as z.ZodType<SubstancePolymer_MonomerSet_StartingMaterial>;

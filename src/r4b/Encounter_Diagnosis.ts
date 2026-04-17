@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Encounter
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
@@ -16,45 +16,45 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** The list of diagnosis relevant to this encounter. */
 export interface Encounter_Diagnosis extends BackboneElement {
-	/** Reason the encounter takes place, as specified using information from another resource. For admissions, this is the admission diagnosis. The indication will typically be a Condition (with other resources referenced in the evidence.detail), or a Procedure. */
-	condition: Reference;
-	/** Ranking of the diagnosis (for each role type). */
-	rank?: number;
-	/** Extensions for rank */
-	_rank?: Element;
-	/** Role that this diagnosis has within the encounter (e.g. admission, billing, discharge …). */
-	use?: CodeableConcept;
+  /** Reason the encounter takes place, as specified using information from another resource. For admissions, this is the admission diagnosis. The indication will typically be a Condition (with other resources referenced in the evidence.detail), or a Procedure. */
+  condition: Reference;
+  /** Ranking of the diagnosis (for each role type). */
+  rank?: number;
+  /** Extensions for rank */
+  _rank?: Element;
+  /** Role that this diagnosis has within the encounter (e.g. admission, billing, discharge …). */
+  use?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Encounter_DiagnosisSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		condition: z.lazy(getReferenceSchema),
-		rank: z.number().int().positive().optional(),
-		_rank: z.lazy(getElementSchema).optional(),
-		use: z.lazy(getCodeableConceptSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.condition,
-				"condition",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Condition",
-					"http://hl7.org/fhir/StructureDefinition/Procedure",
-				],
-				["Condition", "Procedure"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    condition: z.lazy(getReferenceSchema),
+    rank: z.number().int().positive().optional(),
+    _rank: z.lazy(getElementSchema).optional(),
+    use: z.lazy(getCodeableConceptSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.condition,
+        "condition",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Condition",
+          "http://hl7.org/fhir/StructureDefinition/Procedure",
+        ],
+        ["Condition", "Procedure"],
+        ctx,
+      );
+    });
 
 export const Encounter_DiagnosisSchema =
-	Encounter_DiagnosisSchemaInternal as z.ZodType<Encounter_Diagnosis>;
+  Encounter_DiagnosisSchemaInternal as z.ZodType<Encounter_Diagnosis>;

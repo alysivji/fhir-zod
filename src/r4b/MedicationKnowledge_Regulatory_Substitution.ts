@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -13,27 +13,27 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Specifies if changes are allowed when dispensing a medication from a regulatory perspective. */
 export interface MedicationKnowledge_Regulatory_Substitution
-	extends BackboneElement {
-	/** Specifies if regulation allows for changes in the medication when dispensing. */
-	allowed: boolean;
-	/** Extensions for allowed */
-	_allowed?: Element;
-	/** Specifies the type of substitution allowed. */
-	type: CodeableConcept;
+  extends BackboneElement {
+  /** Specifies if regulation allows for changes in the medication when dispensing. */
+  allowed: boolean;
+  /** Extensions for allowed */
+  _allowed?: Element;
+  /** Specifies the type of substitution allowed. */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const MedicationKnowledge_Regulatory_SubstitutionSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		allowed: z.boolean(),
-		_allowed: z.lazy(getElementSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    allowed: z.boolean(),
+    _allowed: z.lazy(getElementSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const MedicationKnowledge_Regulatory_SubstitutionSchema =
-	MedicationKnowledge_Regulatory_SubstitutionSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_Substitution>;
+  MedicationKnowledge_Regulatory_SubstitutionSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_Substitution>;

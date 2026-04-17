@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Evidence
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import type { Annotation } from "./Annotation";
@@ -19,53 +19,53 @@ import { RangeSchemaInternal } from "./Range";
 
 /** A statistical attribute of the statistic such as a measure of heterogeneity. */
 export interface Evidence_Statistic_AttributeEstimate extends BackboneElement {
-	/** A nested attribute estimate; which is the attribute estimate of an attribute estimate. */
-	attributeEstimate?: Array<unknown>;
-	/** Human-readable summary of the estimate. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** Use 95 for a 95% confidence interval. */
-	level?: number;
-	/** Extensions for level */
-	_level?: Element;
-	/** Footnote or explanatory note about the estimate. */
-	note?: Array<Annotation>;
-	/** The singular quantity of the attribute estimate, for attribute estimates represented as single values; also used to report unit of measure. */
-	quantity?: Quantity;
-	/** Lower bound of confidence interval. */
-	range?: Range;
-	/** The type of attribute estimate, e.g., confidence interval or p value. */
-	type?: CodeableConcept;
+  /** A nested attribute estimate; which is the attribute estimate of an attribute estimate. */
+  attributeEstimate?: Array<unknown>;
+  /** Human-readable summary of the estimate. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** Use 95 for a 95% confidence interval. */
+  level?: number;
+  /** Extensions for level */
+  _level?: Element;
+  /** Footnote or explanatory note about the estimate. */
+  note?: Array<Annotation>;
+  /** The singular quantity of the attribute estimate, for attribute estimates represented as single values; also used to report unit of measure. */
+  quantity?: Quantity;
+  /** Lower bound of confidence interval. */
+  range?: Range;
+  /** The type of attribute estimate, e.g., confidence interval or p value. */
+  type?: CodeableConcept;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getRangeSchema = (): z.ZodType<Range> =>
-	RangeSchemaInternal as z.ZodType<Range>;
+  RangeSchemaInternal as z.ZodType<Range>;
 
 /** @internal */
 export const Evidence_Statistic_AttributeEstimateSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		attributeEstimate: z.unknown().array().optional(),
-		description: z
-			.string()
-			.regex(/^[\s\S]+$/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		level: z.number().optional(),
-		_level: z.lazy(getElementSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-		quantity: z.lazy(getQuantitySchema).optional(),
-		range: z.lazy(getRangeSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    attributeEstimate: z.unknown().array().optional(),
+    description: z
+      .string()
+      .regex(/^[\s\S]+$/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    level: z.number().optional(),
+    _level: z.lazy(getElementSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+    quantity: z.lazy(getQuantitySchema).optional(),
+    range: z.lazy(getRangeSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const Evidence_Statistic_AttributeEstimateSchema =
-	Evidence_Statistic_AttributeEstimateSchemaInternal as z.ZodType<Evidence_Statistic_AttributeEstimate>;
+  Evidence_Statistic_AttributeEstimateSchemaInternal as z.ZodType<Evidence_Statistic_AttributeEstimate>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -19,66 +19,66 @@ import { SubstanceDefinition_Structure_RepresentationSchemaInternal } from "./Su
 
 /** Structural information. */
 export interface SubstanceDefinition_Structure extends BackboneElement {
-	/** Molecular formula of this substance, typically using the Hill system. */
-	molecularFormula?: string;
-	/** Extensions for molecularFormula */
-	_molecularFormula?: Element;
-	/** Specified per moiety according to the Hill system, i.e. first C, then H, then alphabetical, each moiety separated by a dot. */
-	molecularFormulaByMoiety?: string;
-	/** Extensions for molecularFormulaByMoiety */
-	_molecularFormulaByMoiety?: Element;
-	/** The molecular weight or weight range (for proteins, polymers or nucleic acids). */
-	molecularWeight?: unknown;
-	/** Optical activity type. */
-	opticalActivity?: CodeableConcept;
-	/** A depiction of the structure or characterization of the substance. */
-	representation?: Array<SubstanceDefinition_Structure_Representation>;
-	/** The source of information about the structure. */
-	sourceDocument?: Array<Reference>;
-	/** Stereochemistry type. */
-	stereochemistry?: CodeableConcept;
-	/** The method used to elucidate the structure or characterization of the drug substance. Examples: X-ray, HPLC, NMR, Peptide mapping, Ligand binding assay. */
-	technique?: Array<CodeableConcept>;
+  /** Molecular formula of this substance, typically using the Hill system. */
+  molecularFormula?: string;
+  /** Extensions for molecularFormula */
+  _molecularFormula?: Element;
+  /** Specified per moiety according to the Hill system, i.e. first C, then H, then alphabetical, each moiety separated by a dot. */
+  molecularFormulaByMoiety?: string;
+  /** Extensions for molecularFormulaByMoiety */
+  _molecularFormulaByMoiety?: Element;
+  /** The molecular weight or weight range (for proteins, polymers or nucleic acids). */
+  molecularWeight?: unknown;
+  /** Optical activity type. */
+  opticalActivity?: CodeableConcept;
+  /** A depiction of the structure or characterization of the substance. */
+  representation?: Array<SubstanceDefinition_Structure_Representation>;
+  /** The source of information about the structure. */
+  sourceDocument?: Array<Reference>;
+  /** Stereochemistry type. */
+  stereochemistry?: CodeableConcept;
+  /** The method used to elucidate the structure or characterization of the drug substance. Examples: X-ray, HPLC, NMR, Peptide mapping, Ligand binding assay. */
+  technique?: Array<CodeableConcept>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 const getSubstanceDefinition_Structure_RepresentationSchema =
-	(): z.ZodType<SubstanceDefinition_Structure_Representation> =>
-		SubstanceDefinition_Structure_RepresentationSchemaInternal as z.ZodType<SubstanceDefinition_Structure_Representation>;
+  (): z.ZodType<SubstanceDefinition_Structure_Representation> =>
+    SubstanceDefinition_Structure_RepresentationSchemaInternal as z.ZodType<SubstanceDefinition_Structure_Representation>;
 
 /** @internal */
 export const SubstanceDefinition_StructureSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		molecularFormula: fhirString().optional(),
-		_molecularFormula: z.lazy(getElementSchema).optional(),
-		molecularFormulaByMoiety: fhirString().optional(),
-		_molecularFormulaByMoiety: z.lazy(getElementSchema).optional(),
-		molecularWeight: z.unknown().optional(),
-		opticalActivity: z.lazy(getCodeableConceptSchema).optional(),
-		representation: z
-			.lazy(getSubstanceDefinition_Structure_RepresentationSchema)
-			.array()
-			.optional(),
-		sourceDocument: z.lazy(getReferenceSchema).array().optional(),
-		stereochemistry: z.lazy(getCodeableConceptSchema).optional(),
-		technique: z.lazy(getCodeableConceptSchema).array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.sourceDocument,
-				"sourceDocument",
-				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
-				["DocumentReference"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    molecularFormula: fhirString().optional(),
+    _molecularFormula: z.lazy(getElementSchema).optional(),
+    molecularFormulaByMoiety: fhirString().optional(),
+    _molecularFormulaByMoiety: z.lazy(getElementSchema).optional(),
+    molecularWeight: z.unknown().optional(),
+    opticalActivity: z.lazy(getCodeableConceptSchema).optional(),
+    representation: z
+      .lazy(getSubstanceDefinition_Structure_RepresentationSchema)
+      .array()
+      .optional(),
+    sourceDocument: z.lazy(getReferenceSchema).array().optional(),
+    stereochemistry: z.lazy(getCodeableConceptSchema).optional(),
+    technique: z.lazy(getCodeableConceptSchema).array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.sourceDocument,
+        "sourceDocument",
+        ["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+        ["DocumentReference"],
+        ctx,
+      );
+    });
 
 export const SubstanceDefinition_StructureSchema =
-	SubstanceDefinition_StructureSchemaInternal as z.ZodType<SubstanceDefinition_Structure>;
+  SubstanceDefinition_StructureSchemaInternal as z.ZodType<SubstanceDefinition_Structure>;

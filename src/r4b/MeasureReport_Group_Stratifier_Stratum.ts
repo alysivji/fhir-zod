@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MeasureReport
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -17,42 +17,42 @@ import { QuantitySchemaInternal } from "./Quantity";
 
 /** This element contains the results for a single stratum within the stratifier. For example, when stratifying on administrative gender, there will be four strata, one for each possible gender value. */
 export interface MeasureReport_Group_Stratifier_Stratum
-	extends BackboneElement {
-	/** A stratifier component value. */
-	component?: Array<MeasureReport_Group_Stratifier_Stratum_Component>;
-	/** The measure score for this stratum, calculated as appropriate for the measure type and scoring method, and based on only the members of this stratum. */
-	measureScore?: Quantity;
-	/** The populations that make up the stratum, one for each type of population appropriate to the measure. */
-	population?: Array<MeasureReport_Group_Stratifier_Stratum_Population>;
-	/** The value for this stratum, expressed as a CodeableConcept. When defining stratifiers on complex values, the value must be rendered such that the value for each stratum within the stratifier is unique. */
-	value?: CodeableConcept;
+  extends BackboneElement {
+  /** A stratifier component value. */
+  component?: Array<MeasureReport_Group_Stratifier_Stratum_Component>;
+  /** The measure score for this stratum, calculated as appropriate for the measure type and scoring method, and based on only the members of this stratum. */
+  measureScore?: Quantity;
+  /** The populations that make up the stratum, one for each type of population appropriate to the measure. */
+  population?: Array<MeasureReport_Group_Stratifier_Stratum_Population>;
+  /** The value for this stratum, expressed as a CodeableConcept. When defining stratifiers on complex values, the value must be rendered such that the value for each stratum within the stratifier is unique. */
+  value?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getMeasureReport_Group_Stratifier_Stratum_ComponentSchema =
-	(): z.ZodType<MeasureReport_Group_Stratifier_Stratum_Component> =>
-		MeasureReport_Group_Stratifier_Stratum_ComponentSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum_Component>;
+  (): z.ZodType<MeasureReport_Group_Stratifier_Stratum_Component> =>
+    MeasureReport_Group_Stratifier_Stratum_ComponentSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum_Component>;
 const getMeasureReport_Group_Stratifier_Stratum_PopulationSchema =
-	(): z.ZodType<MeasureReport_Group_Stratifier_Stratum_Population> =>
-		MeasureReport_Group_Stratifier_Stratum_PopulationSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum_Population>;
+  (): z.ZodType<MeasureReport_Group_Stratifier_Stratum_Population> =>
+    MeasureReport_Group_Stratifier_Stratum_PopulationSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum_Population>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const MeasureReport_Group_Stratifier_StratumSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		component: z
-			.lazy(getMeasureReport_Group_Stratifier_Stratum_ComponentSchema)
-			.array()
-			.optional(),
-		measureScore: z.lazy(getQuantitySchema).optional(),
-		population: z
-			.lazy(getMeasureReport_Group_Stratifier_Stratum_PopulationSchema)
-			.array()
-			.optional(),
-		value: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    component: z
+      .lazy(getMeasureReport_Group_Stratifier_Stratum_ComponentSchema)
+      .array()
+      .optional(),
+    measureScore: z.lazy(getQuantitySchema).optional(),
+    population: z
+      .lazy(getMeasureReport_Group_Stratifier_Stratum_PopulationSchema)
+      .array()
+      .optional(),
+    value: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const MeasureReport_Group_Stratifier_StratumSchema =
-	MeasureReport_Group_Stratifier_StratumSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum>;
+  MeasureReport_Group_Stratifier_StratumSchemaInternal as z.ZodType<MeasureReport_Group_Stratifier_Stratum>;

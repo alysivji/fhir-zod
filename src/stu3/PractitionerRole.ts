@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PractitionerRole
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -27,127 +27,127 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for PractitionerRole Resource */
 export interface PractitionerRole extends DomainResource {
-	/** Whether this practitioner's record is in active use. */
-	active?: boolean;
-	/** Extensions for active */
-	_active?: Element;
-	/** A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as details in the available Times and not available Times. */
-	availabilityExceptions?: string;
-	/** Extensions for availabilityExceptions */
-	_availabilityExceptions?: Element;
-	/** A collection of times that the Service Site is available. */
-	availableTime?: Array<PractitionerRole_AvailableTime>;
-	/** Roles which this practitioner is authorized to perform for the organization. */
-	code?: Array<CodeableConcept>;
-	/** Technical endpoints providing access to services operated for the practitioner with this role. */
-	endpoint?: Array<Reference>;
-	/** The list of healthcare services that this worker provides for this role's Organization/Location(s). */
-	healthcareService?: Array<Reference>;
-	/** Business Identifiers that are specific to a role/location. */
-	identifier?: Array<Identifier>;
-	/** The location(s) at which this practitioner provides care. */
-	location?: Array<Reference>;
-	/** The HealthcareService is not available during this period of time due to the provided reason. */
-	notAvailable?: Array<PractitionerRole_NotAvailable>;
-	/** The organization where the Practitioner performs the roles associated. */
-	organization?: Reference;
-	/** The period during which the person is authorized to act as a practitioner in these role(s) for the organization. */
-	period?: Period;
-	/** Practitioner that is able to provide the defined services for the organation. */
-	practitioner?: Reference;
-	/** This is a PractitionerRole resource. */
-	resourceType: "PractitionerRole";
-	/** Specific specialty of the practitioner. */
-	specialty?: Array<CodeableConcept>;
-	/** Contact details that are specific to the role/location/service. */
-	telecom?: Array<ContactPoint>;
+  /** Whether this practitioner's record is in active use. */
+  active?: boolean;
+  /** Extensions for active */
+  _active?: Element;
+  /** A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as details in the available Times and not available Times. */
+  availabilityExceptions?: string;
+  /** Extensions for availabilityExceptions */
+  _availabilityExceptions?: Element;
+  /** A collection of times that the Service Site is available. */
+  availableTime?: Array<PractitionerRole_AvailableTime>;
+  /** Roles which this practitioner is authorized to perform for the organization. */
+  code?: Array<CodeableConcept>;
+  /** Technical endpoints providing access to services operated for the practitioner with this role. */
+  endpoint?: Array<Reference>;
+  /** The list of healthcare services that this worker provides for this role's Organization/Location(s). */
+  healthcareService?: Array<Reference>;
+  /** Business Identifiers that are specific to a role/location. */
+  identifier?: Array<Identifier>;
+  /** The location(s) at which this practitioner provides care. */
+  location?: Array<Reference>;
+  /** The HealthcareService is not available during this period of time due to the provided reason. */
+  notAvailable?: Array<PractitionerRole_NotAvailable>;
+  /** The organization where the Practitioner performs the roles associated. */
+  organization?: Reference;
+  /** The period during which the person is authorized to act as a practitioner in these role(s) for the organization. */
+  period?: Period;
+  /** Practitioner that is able to provide the defined services for the organation. */
+  practitioner?: Reference;
+  /** This is a PractitionerRole resource. */
+  resourceType: "PractitionerRole";
+  /** Specific specialty of the practitioner. */
+  specialty?: Array<CodeableConcept>;
+  /** Contact details that are specific to the role/location/service. */
+  telecom?: Array<ContactPoint>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getPractitionerRole_AvailableTimeSchema =
-	(): z.ZodType<PractitionerRole_AvailableTime> =>
-		PractitionerRole_AvailableTimeSchemaInternal as z.ZodType<PractitionerRole_AvailableTime>;
+  (): z.ZodType<PractitionerRole_AvailableTime> =>
+    PractitionerRole_AvailableTimeSchemaInternal as z.ZodType<PractitionerRole_AvailableTime>;
 const getPractitionerRole_NotAvailableSchema =
-	(): z.ZodType<PractitionerRole_NotAvailable> =>
-		PractitionerRole_NotAvailableSchemaInternal as z.ZodType<PractitionerRole_NotAvailable>;
+  (): z.ZodType<PractitionerRole_NotAvailable> =>
+    PractitionerRole_NotAvailableSchemaInternal as z.ZodType<PractitionerRole_NotAvailable>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const PractitionerRoleSchemaInternal =
-	DomainResourceSchemaInternal.extend({
-		active: z.boolean().optional(),
-		_active: z.lazy(getElementSchema).optional(),
-		availabilityExceptions: fhirString().optional(),
-		_availabilityExceptions: z.lazy(getElementSchema).optional(),
-		availableTime: z
-			.lazy(getPractitionerRole_AvailableTimeSchema)
-			.array()
-			.optional(),
-		code: z.lazy(getCodeableConceptSchema).array().optional(),
-		endpoint: z.lazy(getReferenceSchema).array().optional(),
-		healthcareService: z.lazy(getReferenceSchema).array().optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		location: z.lazy(getReferenceSchema).array().optional(),
-		notAvailable: z
-			.lazy(getPractitionerRole_NotAvailableSchema)
-			.array()
-			.optional(),
-		organization: z.lazy(getReferenceSchema).optional(),
-		period: z.lazy(getPeriodSchema).optional(),
-		practitioner: z.lazy(getReferenceSchema).optional(),
-		resourceType: z.literal("PractitionerRole"),
-		specialty: z.lazy(getCodeableConceptSchema).array().optional(),
-		telecom: z.lazy(getContactPointSchema).array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.endpoint,
-				"endpoint",
-				["http://hl7.org/fhir/StructureDefinition/Endpoint"],
-				["Endpoint"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.healthcareService,
-				"healthcareService",
-				["http://hl7.org/fhir/StructureDefinition/HealthcareService"],
-				["HealthcareService"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.location,
-				"location",
-				["http://hl7.org/fhir/StructureDefinition/Location"],
-				["Location"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.organization,
-				"organization",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.practitioner,
-				"practitioner",
-				["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-				["Practitioner"],
-				ctx,
-			);
-		});
+  DomainResourceSchemaInternal.extend({
+    active: z.boolean().optional(),
+    _active: z.lazy(getElementSchema).optional(),
+    availabilityExceptions: fhirString().optional(),
+    _availabilityExceptions: z.lazy(getElementSchema).optional(),
+    availableTime: z
+      .lazy(getPractitionerRole_AvailableTimeSchema)
+      .array()
+      .optional(),
+    code: z.lazy(getCodeableConceptSchema).array().optional(),
+    endpoint: z.lazy(getReferenceSchema).array().optional(),
+    healthcareService: z.lazy(getReferenceSchema).array().optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    location: z.lazy(getReferenceSchema).array().optional(),
+    notAvailable: z
+      .lazy(getPractitionerRole_NotAvailableSchema)
+      .array()
+      .optional(),
+    organization: z.lazy(getReferenceSchema).optional(),
+    period: z.lazy(getPeriodSchema).optional(),
+    practitioner: z.lazy(getReferenceSchema).optional(),
+    resourceType: z.literal("PractitionerRole"),
+    specialty: z.lazy(getCodeableConceptSchema).array().optional(),
+    telecom: z.lazy(getContactPointSchema).array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.endpoint,
+        "endpoint",
+        ["http://hl7.org/fhir/StructureDefinition/Endpoint"],
+        ["Endpoint"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.healthcareService,
+        "healthcareService",
+        ["http://hl7.org/fhir/StructureDefinition/HealthcareService"],
+        ["HealthcareService"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.location,
+        "location",
+        ["http://hl7.org/fhir/StructureDefinition/Location"],
+        ["Location"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.organization,
+        "organization",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.practitioner,
+        "practitioner",
+        ["http://hl7.org/fhir/StructureDefinition/Practitioner"],
+        ["Practitioner"],
+        ctx,
+      );
+    });
 
 export const PractitionerRoleSchema =
-	PractitionerRoleSchemaInternal as z.ZodType<PractitionerRole>;
+  PractitionerRoleSchemaInternal as z.ZodType<PractitionerRole>;

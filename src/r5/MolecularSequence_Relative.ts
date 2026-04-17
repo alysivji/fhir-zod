@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MolecularSequence
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -19,45 +19,45 @@ import { RangeSchemaInternal } from "./Range";
 
 /** A sequence defined relative to another sequence. */
 export interface MolecularSequence_Relative extends BackboneElement {
-	/** These are different ways of identifying nucleotides or amino acids within a sequence. Different databases and file types may use different systems. For detail definitions, see https://loinc.org/92822-6/ for more detail. */
-	coordinateSystem: CodeableConcept;
-	/** Changes in sequence from the starting sequence. */
-	edit?: Array<MolecularSequence_Relative_Edit>;
-	/** Indicates the order in which the sequence should be considered when putting multiple 'relative' elements together. */
-	ordinalPosition?: number;
-	/** Extensions for ordinalPosition */
-	_ordinalPosition?: Element;
-	/** Indicates the nucleotide range in the composed sequence when multiple 'relative' elements are used together. */
-	sequenceRange?: Range;
-	/** A sequence that is used as a starting sequence to describe variants that are present in a sequence analyzed. */
-	startingSequence?: MolecularSequence_Relative_StartingSequence;
+  /** These are different ways of identifying nucleotides or amino acids within a sequence. Different databases and file types may use different systems. For detail definitions, see https://loinc.org/92822-6/ for more detail. */
+  coordinateSystem: CodeableConcept;
+  /** Changes in sequence from the starting sequence. */
+  edit?: Array<MolecularSequence_Relative_Edit>;
+  /** Indicates the order in which the sequence should be considered when putting multiple 'relative' elements together. */
+  ordinalPosition?: number;
+  /** Extensions for ordinalPosition */
+  _ordinalPosition?: Element;
+  /** Indicates the nucleotide range in the composed sequence when multiple 'relative' elements are used together. */
+  sequenceRange?: Range;
+  /** A sequence that is used as a starting sequence to describe variants that are present in a sequence analyzed. */
+  startingSequence?: MolecularSequence_Relative_StartingSequence;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getMolecularSequence_Relative_EditSchema =
-	(): z.ZodType<MolecularSequence_Relative_Edit> =>
-		MolecularSequence_Relative_EditSchemaInternal as z.ZodType<MolecularSequence_Relative_Edit>;
+  (): z.ZodType<MolecularSequence_Relative_Edit> =>
+    MolecularSequence_Relative_EditSchemaInternal as z.ZodType<MolecularSequence_Relative_Edit>;
 const getMolecularSequence_Relative_StartingSequenceSchema =
-	(): z.ZodType<MolecularSequence_Relative_StartingSequence> =>
-		MolecularSequence_Relative_StartingSequenceSchemaInternal as z.ZodType<MolecularSequence_Relative_StartingSequence>;
+  (): z.ZodType<MolecularSequence_Relative_StartingSequence> =>
+    MolecularSequence_Relative_StartingSequenceSchemaInternal as z.ZodType<MolecularSequence_Relative_StartingSequence>;
 const getRangeSchema = (): z.ZodType<Range> =>
-	RangeSchemaInternal as z.ZodType<Range>;
+  RangeSchemaInternal as z.ZodType<Range>;
 
 /** @internal */
 export const MolecularSequence_RelativeSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		coordinateSystem: z.lazy(getCodeableConceptSchema),
-		edit: z.lazy(getMolecularSequence_Relative_EditSchema).array().optional(),
-		ordinalPosition: z.number().int().optional(),
-		_ordinalPosition: z.lazy(getElementSchema).optional(),
-		sequenceRange: z.lazy(getRangeSchema).optional(),
-		startingSequence: z
-			.lazy(getMolecularSequence_Relative_StartingSequenceSchema)
-			.optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    coordinateSystem: z.lazy(getCodeableConceptSchema),
+    edit: z.lazy(getMolecularSequence_Relative_EditSchema).array().optional(),
+    ordinalPosition: z.number().int().optional(),
+    _ordinalPosition: z.lazy(getElementSchema).optional(),
+    sequenceRange: z.lazy(getRangeSchema).optional(),
+    startingSequence: z
+      .lazy(getMolecularSequence_Relative_StartingSequenceSchema)
+      .optional(),
+  }).strict();
 
 export const MolecularSequence_RelativeSchema =
-	MolecularSequence_RelativeSchemaInternal as z.ZodType<MolecularSequence_Relative>;
+  MolecularSequence_RelativeSchemaInternal as z.ZodType<MolecularSequence_Relative>;

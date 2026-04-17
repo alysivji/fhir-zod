@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -13,25 +13,25 @@ import { TestScript_Metadata_LinkSchemaInternal } from "./TestScript_Metadata_Li
 
 /** The required capability must exist and are assumed to function correctly on the FHIR server being tested. */
 export interface TestScript_Metadata extends BackboneElement {
-	/** Capabilities that must exist and are assumed to function correctly on the FHIR server being tested. */
-	capability: Array<TestScript_Metadata_Capability>;
-	/** A link to the FHIR specification that this test is covering. */
-	link?: Array<TestScript_Metadata_Link>;
+  /** Capabilities that must exist and are assumed to function correctly on the FHIR server being tested. */
+  capability: Array<TestScript_Metadata_Capability>;
+  /** A link to the FHIR specification that this test is covering. */
+  link?: Array<TestScript_Metadata_Link>;
 }
 
 const getTestScript_Metadata_CapabilitySchema =
-	(): z.ZodType<TestScript_Metadata_Capability> =>
-		TestScript_Metadata_CapabilitySchemaInternal as z.ZodType<TestScript_Metadata_Capability>;
+  (): z.ZodType<TestScript_Metadata_Capability> =>
+    TestScript_Metadata_CapabilitySchemaInternal as z.ZodType<TestScript_Metadata_Capability>;
 const getTestScript_Metadata_LinkSchema =
-	(): z.ZodType<TestScript_Metadata_Link> =>
-		TestScript_Metadata_LinkSchemaInternal as z.ZodType<TestScript_Metadata_Link>;
+  (): z.ZodType<TestScript_Metadata_Link> =>
+    TestScript_Metadata_LinkSchemaInternal as z.ZodType<TestScript_Metadata_Link>;
 
 /** @internal */
 export const TestScript_MetadataSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		capability: z.lazy(getTestScript_Metadata_CapabilitySchema).array(),
-		link: z.lazy(getTestScript_Metadata_LinkSchema).array().optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    capability: z.lazy(getTestScript_Metadata_CapabilitySchema).array(),
+    link: z.lazy(getTestScript_Metadata_LinkSchema).array().optional(),
+  }).strict();
 
 export const TestScript_MetadataSchema =
-	TestScript_MetadataSchemaInternal as z.ZodType<TestScript_Metadata>;
+  TestScript_MetadataSchemaInternal as z.ZodType<TestScript_Metadata>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-15T00:02:13.224Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
@@ -13,33 +13,33 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Filter Properties supported. */
 export interface TerminologyCapabilities_CodeSystem_Version_Filter
-	extends BackboneElement {
-	/** Code of the property supported. */
-	code: string;
-	/** Extensions for code */
-	_code?: Element;
-	/** Operations supported for the property. */
-	op: Array<string | null>;
-	/** Extensions for op */
-	_op?: Array<Element | null>;
+  extends BackboneElement {
+  /** Code of the property supported. */
+  code: string;
+  /** Extensions for code */
+  _code?: Element;
+  /** Operations supported for the property. */
+  op: Array<string | null>;
+  /** Extensions for op */
+  _op?: Array<Element | null>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const TerminologyCapabilities_CodeSystem_Version_FilterSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: fhirCode(),
-		_code: z.lazy(getElementSchema).optional(),
-		op: fhirCode().nullable().array(),
-		_op: z.lazy(getElementSchema).nullable().array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validatePrimitiveArrayPair(record.op, record._op, "op", "_op", ctx);
-		});
+  BackboneElementSchemaInternal.extend({
+    code: fhirCode(),
+    _code: z.lazy(getElementSchema).optional(),
+    op: fhirCode().nullable().array(),
+    _op: z.lazy(getElementSchema).nullable().array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validatePrimitiveArrayPair(record.op, record._op, "op", "_op", ctx);
+    });
 
 export const TerminologyCapabilities_CodeSystem_Version_FilterSchema =
-	TerminologyCapabilities_CodeSystem_Version_FilterSchemaInternal as z.ZodType<TerminologyCapabilities_CodeSystem_Version_Filter>;
+  TerminologyCapabilities_CodeSystem_Version_FilterSchemaInternal as z.ZodType<TerminologyCapabilities_CodeSystem_Version_Filter>;

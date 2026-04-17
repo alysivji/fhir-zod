@@ -131,14 +131,22 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 			return stagedPath;
 		});
 
-		execFileSync("npx", ["biome", "format", "--write", ...stagedPaths], {
-			cwd: repoRoot,
-			stdio: "inherit",
-		});
-		execFileSync("npx", ["biome", "check", "--write", ...stagedPaths], {
-			cwd: repoRoot,
-			stdio: "inherit",
-		});
+		execFileSync(
+			"npx",
+			["biome", "format", "--indent-style=space", "--write", ...stagedPaths],
+			{
+				cwd: repoRoot,
+				stdio: "inherit",
+			},
+		);
+		execFileSync(
+			"npx",
+			["biome", "check", "--indent-style=space", "--write", ...stagedPaths],
+			{
+				cwd: repoRoot,
+				stdio: "inherit",
+			},
+		);
 
 		return files.map((file) => {
 			const stagedPath = join(stagingDir, basename(file.path));
@@ -243,7 +251,7 @@ function emitFhirResourceRegistrationLines(
 		"_registerFhirResourceSchemas({",
 		...resources.map(
 			(resource) =>
-				`\t${JSON.stringify(resource.resourceTypeLiteral)}: ${schemaInternalName(resource.name)},`,
+				`  ${JSON.stringify(resource.resourceTypeLiteral)}: ${schemaInternalName(resource.name)},`,
 		),
 		"});",
 	];
@@ -271,52 +279,52 @@ function emitFhirResourceSchemaFile(options: {
 		"",
 		"/** @internal */",
 		"export function _registerFhirResourceSchemas(",
-		"\tentries: Readonly<Record<string, z.ZodTypeAny>>,",
+		"  entries: Readonly<Record<string, z.ZodTypeAny>>,",
 		"): void {",
-		"\tfor (const [resourceType, schema] of Object.entries(entries)) {",
-		"\t\tregistry.set(resourceType, schema);",
-		"\t}",
+		"  for (const [resourceType, schema] of Object.entries(entries)) {",
+		"    registry.set(resourceType, schema);",
+		"  }",
 		"}",
 		"",
 		"/** @internal */",
 		"export const FhirResourceSchemaInternal = z.lazy(",
-		"\t(): z.ZodType<FhirResource> =>",
-		"\t\tz",
-		"\t\t\t.any()",
-		"\t\t\t.superRefine((value, ctx) => {",
-		'\t\t\t\tif (typeof value !== "object" || value === null) {',
-		"\t\t\t\t\tctx.addIssue({",
-		"\t\t\t\t\t\tcode: z.ZodIssueCode.custom,",
-		'\t\t\t\t\t\tmessage: "Expected a FHIR resource object",',
-		"\t\t\t\t\t});",
-		"\t\t\t\t\treturn;",
-		"\t\t\t\t}",
-		"\t\t\t\tconst resourceType = (value as { resourceType?: unknown })",
-		"\t\t\t\t\t.resourceType;",
-		'\t\t\t\tif (typeof resourceType !== "string") {',
-		"\t\t\t\t\tctx.addIssue({",
-		"\t\t\t\t\t\tcode: z.ZodIssueCode.custom,",
-		'\t\t\t\t\t\tmessage: "Missing or non-string resourceType",',
-		'\t\t\t\t\t\tpath: ["resourceType"],',
-		"\t\t\t\t\t});",
-		"\t\t\t\t\treturn;",
-		"\t\t\t\t}",
-		"\t\t\t\tconst schema = registry.get(resourceType);",
-		"\t\t\t\tif (!schema) {",
-		"\t\t\t\t\tctx.addIssue({",
-		"\t\t\t\t\t\tcode: z.ZodIssueCode.custom,",
-		"\t\t\t\t\t\tmessage: `Unknown FHIR resourceType: ${resourceType}`,",
-		'\t\t\t\t\t\tpath: ["resourceType"],',
-		"\t\t\t\t\t});",
-		"\t\t\t\t\treturn;",
-		"\t\t\t\t}",
-		"\t\t\t\tconst result = schema.safeParse(value);",
-		"\t\t\t\tif (!result.success) {",
-		"\t\t\t\t\tfor (const issue of result.error.issues) {",
-		"\t\t\t\t\t\tctx.addIssue(issue as never);",
-		"\t\t\t\t\t}",
-		"\t\t\t\t}",
-		"\t\t\t}) as unknown as z.ZodType<FhirResource>,",
+		"  (): z.ZodType<FhirResource> =>",
+		"    z",
+		"      .any()",
+		"      .superRefine((value, ctx) => {",
+		'        if (typeof value !== "object" || value === null) {',
+		"          ctx.addIssue({",
+		"            code: z.ZodIssueCode.custom,",
+		'            message: "Expected a FHIR resource object",',
+		"          });",
+		"          return;",
+		"        }",
+		"        const resourceType = (value as { resourceType?: unknown })",
+		"          .resourceType;",
+		'        if (typeof resourceType !== "string") {',
+		"          ctx.addIssue({",
+		"            code: z.ZodIssueCode.custom,",
+		'            message: "Missing or non-string resourceType",',
+		'            path: ["resourceType"],',
+		"          });",
+		"          return;",
+		"        }",
+		"        const schema = registry.get(resourceType);",
+		"        if (!schema) {",
+		"          ctx.addIssue({",
+		"            code: z.ZodIssueCode.custom,",
+		"            message: `Unknown FHIR resourceType: ${resourceType}`,",
+		'            path: ["resourceType"],',
+		"          });",
+		"          return;",
+		"        }",
+		"        const result = schema.safeParse(value);",
+		"        if (!result.success) {",
+		"          for (const issue of result.error.issues) {",
+		"            ctx.addIssue(issue as never);",
+		"          }",
+		"        }",
+		"      }) as unknown as z.ZodType<FhirResource>,",
 		");",
 		"",
 	].join("\n");
@@ -471,7 +479,7 @@ function emitDefinitionFile(
 			enableFhirResourceValidation,
 		),
 		...refinementLines,
-		...(refinementLines.length > 0 ? ["\t;"] : []),
+		...(refinementLines.length > 0 ? ["  ;"] : []),
 		"",
 		...emitPublicSchemaExport(definition),
 		"",
@@ -554,8 +562,8 @@ function emitModelProperty(
 	);
 
 	return [
-		...emitJsDoc(property.description, "\t"),
-		`\t${propertyName}${optionalSuffix}: ${propertyType};`,
+		...emitJsDoc(property.description, "  "),
+		`  ${propertyName}${optionalSuffix}: ${propertyType};`,
 	];
 }
 
@@ -749,7 +757,7 @@ function emitDefinitionExpression(
 	return [
 		...directProperties.map(
 			(property) =>
-				`\t${property.jsonName}: ${emitPropertyExpression(
+				`  ${property.jsonName}: ${emitPropertyExpression(
 					definition,
 					property,
 					definitions,
@@ -757,8 +765,8 @@ function emitDefinitionExpression(
 					enableFhirResourceValidation,
 				)},`,
 		),
-		hasRefinements ? "\t})" : "}).strict();",
-		...(hasRefinements ? ["\t.strict()"] : []),
+		hasRefinements ? "  })" : "}).strict();",
+		...(hasRefinements ? ["  .strict()"] : []),
 	];
 }
 
@@ -1112,41 +1120,41 @@ function emitChoiceGroupRefinement(definition: NormalizedDefinition): string[] {
 	}
 
 	return [
-		"\t.superRefine((value, ctx) => {",
-		"\t\tconst record = value as Record<string, unknown>;",
+		"  .superRefine((value, ctx) => {",
+		"    const record = value as Record<string, unknown>;",
 		...choiceGroups.flatMap((group) => {
 			const fieldArray = `[${group.fields.map((field) => JSON.stringify(field)).join(", ")}]`;
 
 			return [
-				`\t\tconst ${choiceGroupVariableName(group.choiceGroup)} = ${fieldArray}.filter((field) => record[field] !== undefined);`,
+				`    const ${choiceGroupVariableName(group.choiceGroup)} = ${fieldArray}.filter((field) => record[field] !== undefined);`,
 				...(group.requiresValue
 					? [
-							`\t\tif (${choiceGroupVariableName(group.choiceGroup)}.length === 0) {`,
-							"\t\t\tctx.addIssue({",
-							"\t\t\t\tcode: z.ZodIssueCode.custom,",
-							`\t\t\t\tmessage: ${JSON.stringify(`One of ${group.fields.join(", ")} must be present for ${group.choiceGroup}`)},`,
-							`\t\t\t\tpath: [${JSON.stringify(group.fields[0])}],`,
-							"\t\t\t});",
-							"\t\t}",
+							`    if (${choiceGroupVariableName(group.choiceGroup)}.length === 0) {`,
+							"      ctx.addIssue({",
+							"        code: z.ZodIssueCode.custom,",
+							`        message: ${JSON.stringify(`One of ${group.fields.join(", ")} must be present for ${group.choiceGroup}`)},`,
+							`        path: [${JSON.stringify(group.fields[0])}],`,
+							"      });",
+							"    }",
 						]
 					: []),
-				`\t\tif (${choiceGroupVariableName(group.choiceGroup)}.length > 1) {`,
-				"\t\t\tctx.addIssue({",
-				"\t\t\t\tcode: z.ZodIssueCode.custom,",
-				`\t\t\t\tmessage: ${JSON.stringify(`Only one of ${group.fields.join(", ")} may be present for ${group.choiceGroup}`)},`,
-				`\t\t\t\tpath: [${choiceGroupVariableName(group.choiceGroup)}[0]],`,
-				"\t\t\t});",
-				"\t\t}",
+				`    if (${choiceGroupVariableName(group.choiceGroup)}.length > 1) {`,
+				"      ctx.addIssue({",
+				"        code: z.ZodIssueCode.custom,",
+				`        message: ${JSON.stringify(`Only one of ${group.fields.join(", ")} may be present for ${group.choiceGroup}`)},`,
+				`        path: [${choiceGroupVariableName(group.choiceGroup)}[0]],`,
+				"      });",
+				"    }",
 			];
 		}),
 		...primitiveArrayPairs.map(
 			(pair) =>
-				`\t\tvalidatePrimitiveArrayPair(${emitRecordAccess("record", pair.valueField)}, ${emitRecordAccess("record", pair.elementField)}, ${JSON.stringify(pair.valueField)}, ${JSON.stringify(pair.elementField)}, ctx);`,
+				`    validatePrimitiveArrayPair(${emitRecordAccess("record", pair.valueField)}, ${emitRecordAccess("record", pair.elementField)}, ${JSON.stringify(pair.valueField)}, ${JSON.stringify(pair.elementField)}, ctx);`,
 		),
 		...referenceConstraints.flatMap((constraint) => [
-			`\t\tvalidateReferenceTarget(${emitRecordAccess("record", constraint.field)}, ${JSON.stringify(constraint.field)}, [${constraint.allowedCanonicalTypes.map((type) => JSON.stringify(type)).join(", ")}], [${constraint.allowedResourceTypes.map((type) => JSON.stringify(type)).join(", ")}], ctx);`,
+			`    validateReferenceTarget(${emitRecordAccess("record", constraint.field)}, ${JSON.stringify(constraint.field)}, [${constraint.allowedCanonicalTypes.map((type) => JSON.stringify(type)).join(", ")}], [${constraint.allowedResourceTypes.map((type) => JSON.stringify(type)).join(", ")}], ctx);`,
 		]),
-		"\t})",
+		"  })",
 	];
 }
 

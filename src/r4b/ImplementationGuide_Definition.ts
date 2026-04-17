@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -19,52 +19,52 @@ import { ImplementationGuide_Definition_TemplateSchemaInternal } from "./Impleme
 
 /** The information needed by an IG publisher tool to publish the whole implementation guide. */
 export interface ImplementationGuide_Definition extends BackboneElement {
-	/** A logical group of resources. Logical groups can be used when building pages. */
-	grouping?: Array<ImplementationGuide_Definition_Grouping>;
-	/** A page / section in the implementation guide. The root page is the implementation guide home page. */
-	page?: ImplementationGuide_Definition_Page;
-	/** Defines how IG is built by tools. */
-	parameter?: Array<ImplementationGuide_Definition_Parameter>;
-	/** A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource. */
-	resource: Array<ImplementationGuide_Definition_Resource>;
-	/** A template for building resources. */
-	template?: Array<ImplementationGuide_Definition_Template>;
+  /** A logical group of resources. Logical groups can be used when building pages. */
+  grouping?: Array<ImplementationGuide_Definition_Grouping>;
+  /** A page / section in the implementation guide. The root page is the implementation guide home page. */
+  page?: ImplementationGuide_Definition_Page;
+  /** Defines how IG is built by tools. */
+  parameter?: Array<ImplementationGuide_Definition_Parameter>;
+  /** A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource. */
+  resource: Array<ImplementationGuide_Definition_Resource>;
+  /** A template for building resources. */
+  template?: Array<ImplementationGuide_Definition_Template>;
 }
 
 const getImplementationGuide_Definition_GroupingSchema =
-	(): z.ZodType<ImplementationGuide_Definition_Grouping> =>
-		ImplementationGuide_Definition_GroupingSchemaInternal as z.ZodType<ImplementationGuide_Definition_Grouping>;
+  (): z.ZodType<ImplementationGuide_Definition_Grouping> =>
+    ImplementationGuide_Definition_GroupingSchemaInternal as z.ZodType<ImplementationGuide_Definition_Grouping>;
 const getImplementationGuide_Definition_PageSchema =
-	(): z.ZodType<ImplementationGuide_Definition_Page> =>
-		ImplementationGuide_Definition_PageSchemaInternal as z.ZodType<ImplementationGuide_Definition_Page>;
+  (): z.ZodType<ImplementationGuide_Definition_Page> =>
+    ImplementationGuide_Definition_PageSchemaInternal as z.ZodType<ImplementationGuide_Definition_Page>;
 const getImplementationGuide_Definition_ParameterSchema =
-	(): z.ZodType<ImplementationGuide_Definition_Parameter> =>
-		ImplementationGuide_Definition_ParameterSchemaInternal as z.ZodType<ImplementationGuide_Definition_Parameter>;
+  (): z.ZodType<ImplementationGuide_Definition_Parameter> =>
+    ImplementationGuide_Definition_ParameterSchemaInternal as z.ZodType<ImplementationGuide_Definition_Parameter>;
 const getImplementationGuide_Definition_ResourceSchema =
-	(): z.ZodType<ImplementationGuide_Definition_Resource> =>
-		ImplementationGuide_Definition_ResourceSchemaInternal as z.ZodType<ImplementationGuide_Definition_Resource>;
+  (): z.ZodType<ImplementationGuide_Definition_Resource> =>
+    ImplementationGuide_Definition_ResourceSchemaInternal as z.ZodType<ImplementationGuide_Definition_Resource>;
 const getImplementationGuide_Definition_TemplateSchema =
-	(): z.ZodType<ImplementationGuide_Definition_Template> =>
-		ImplementationGuide_Definition_TemplateSchemaInternal as z.ZodType<ImplementationGuide_Definition_Template>;
+  (): z.ZodType<ImplementationGuide_Definition_Template> =>
+    ImplementationGuide_Definition_TemplateSchemaInternal as z.ZodType<ImplementationGuide_Definition_Template>;
 
 /** @internal */
 export const ImplementationGuide_DefinitionSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		grouping: z
-			.lazy(getImplementationGuide_Definition_GroupingSchema)
-			.array()
-			.optional(),
-		page: z.lazy(getImplementationGuide_Definition_PageSchema).optional(),
-		parameter: z
-			.lazy(getImplementationGuide_Definition_ParameterSchema)
-			.array()
-			.optional(),
-		resource: z.lazy(getImplementationGuide_Definition_ResourceSchema).array(),
-		template: z
-			.lazy(getImplementationGuide_Definition_TemplateSchema)
-			.array()
-			.optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    grouping: z
+      .lazy(getImplementationGuide_Definition_GroupingSchema)
+      .array()
+      .optional(),
+    page: z.lazy(getImplementationGuide_Definition_PageSchema).optional(),
+    parameter: z
+      .lazy(getImplementationGuide_Definition_ParameterSchema)
+      .array()
+      .optional(),
+    resource: z.lazy(getImplementationGuide_Definition_ResourceSchema).array(),
+    template: z
+      .lazy(getImplementationGuide_Definition_TemplateSchema)
+      .array()
+      .optional(),
+  }).strict();
 
 export const ImplementationGuide_DefinitionSchema =
-	ImplementationGuide_DefinitionSchemaInternal as z.ZodType<ImplementationGuide_Definition>;
+  ImplementationGuide_DefinitionSchemaInternal as z.ZodType<ImplementationGuide_Definition>;

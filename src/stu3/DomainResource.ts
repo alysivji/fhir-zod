@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DomainResource
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-17T22:15:20.782Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import type { FhirResource } from "./_fhirResourceSchema";
@@ -15,30 +15,30 @@ import { ResourceSchemaInternal } from "./Resource";
 
 /** Base StructureDefinition for DomainResource Resource */
 export interface DomainResource extends Resource {
-	/** These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope. */
-	contained?: Array<FhirResource>;
-	/** May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. */
-	extension?: Array<Extension>;
-	/** May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions. */
-	modifierExtension?: Array<Extension>;
-	/** A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety. */
-	text?: Narrative;
+  /** These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope. */
+  contained?: Array<FhirResource>;
+  /** May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. */
+  extension?: Array<Extension>;
+  /** May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions. */
+  modifierExtension?: Array<Extension>;
+  /** A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety. */
+  text?: Narrative;
 }
 
 const getExtensionSchema = (): z.ZodType<Extension> =>
-	ExtensionSchemaInternal as z.ZodType<Extension>;
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 const getNarrativeSchema = (): z.ZodType<Narrative> =>
-	NarrativeSchemaInternal as z.ZodType<Narrative>;
+  NarrativeSchemaInternal as z.ZodType<Narrative>;
 const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
-	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
+  FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const DomainResourceSchemaInternal = ResourceSchemaInternal.extend({
-	contained: z.lazy(getFhirResourceSchema).array().optional(),
-	extension: z.lazy(getExtensionSchema).array().optional(),
-	modifierExtension: z.lazy(getExtensionSchema).array().optional(),
-	text: z.lazy(getNarrativeSchema).optional(),
+  contained: z.lazy(getFhirResourceSchema).array().optional(),
+  extension: z.lazy(getExtensionSchema).array().optional(),
+  modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+  text: z.lazy(getNarrativeSchema).optional(),
 }).strict();
 
 export const DomainResourceSchema =
-	DomainResourceSchemaInternal as z.ZodType<DomainResource>;
+  DomainResourceSchemaInternal as z.ZodType<DomainResource>;

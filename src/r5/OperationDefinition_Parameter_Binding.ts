@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { fhirCanonical } from "../shared/fhir-primitives";
@@ -12,27 +12,27 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Binds to a value set if this parameter is coded (code, Coding, CodeableConcept). */
 export interface OperationDefinition_Parameter_Binding extends BackboneElement {
-	/** Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances. */
-	strength: "example" | "extensible" | "preferred" | "required";
-	/** Extensions for strength */
-	_strength?: Element;
-	/** Points to the value set or external definition (e.g. implicit value set) that identifies the set of codes to be used. */
-	valueSet: string;
-	/** Extensions for valueSet */
-	_valueSet?: Element;
+  /** Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances. */
+  strength: "example" | "extensible" | "preferred" | "required";
+  /** Extensions for strength */
+  _strength?: Element;
+  /** Points to the value set or external definition (e.g. implicit value set) that identifies the set of codes to be used. */
+  valueSet: string;
+  /** Extensions for valueSet */
+  _valueSet?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const OperationDefinition_Parameter_BindingSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		strength: z.enum(["example", "extensible", "preferred", "required"]),
-		_strength: z.lazy(getElementSchema).optional(),
-		valueSet: fhirCanonical(),
-		_valueSet: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    strength: z.enum(["example", "extensible", "preferred", "required"]),
+    _strength: z.lazy(getElementSchema).optional(),
+    valueSet: fhirCanonical(),
+    _valueSet: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const OperationDefinition_Parameter_BindingSchema =
-	OperationDefinition_Parameter_BindingSchemaInternal as z.ZodType<OperationDefinition_Parameter_Binding>;
+  OperationDefinition_Parameter_BindingSchemaInternal as z.ZodType<OperationDefinition_Parameter_Binding>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SearchParameter
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import { fhirCanonical, fhirString } from "../shared/fhir-primitives";
@@ -12,27 +12,27 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Used to define the parts of a composite search parameter. */
 export interface SearchParameter_Component extends BackboneElement {
-	/** The definition of the search parameter that describes this part. */
-	definition: string;
-	/** Extensions for definition */
-	_definition?: Element;
-	/** A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression. */
-	expression: string;
-	/** Extensions for expression */
-	_expression?: Element;
+  /** The definition of the search parameter that describes this part. */
+  definition: string;
+  /** Extensions for definition */
+  _definition?: Element;
+  /** A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression. */
+  expression: string;
+  /** Extensions for expression */
+  _expression?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const SearchParameter_ComponentSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		definition: fhirCanonical(),
-		_definition: z.lazy(getElementSchema).optional(),
-		expression: fhirString(),
-		_expression: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    definition: fhirCanonical(),
+    _definition: z.lazy(getElementSchema).optional(),
+    expression: fhirString(),
+    _expression: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const SearchParameter_ComponentSchema =
-	SearchParameter_ComponentSchemaInternal as z.ZodType<SearchParameter_Component>;
+  SearchParameter_ComponentSchemaInternal as z.ZodType<SearchParameter_Component>;

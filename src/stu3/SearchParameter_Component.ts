@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SearchParameter
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirString } from "../shared/fhir-primitives";
@@ -15,37 +15,37 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Used to define the parts of a composite search parameter. */
 export interface SearchParameter_Component extends BackboneElement {
-	/** The definition of the search parameter that describes this part. */
-	definition: Reference;
-	/** A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression. */
-	expression: string;
-	/** Extensions for expression */
-	_expression?: Element;
+  /** The definition of the search parameter that describes this part. */
+  definition: Reference;
+  /** A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression. */
+  expression: string;
+  /** Extensions for expression */
+  _expression?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SearchParameter_ComponentSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		definition: z.lazy(getReferenceSchema),
-		expression: fhirString(),
-		_expression: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.definition,
-				"definition",
-				["http://hl7.org/fhir/StructureDefinition/SearchParameter"],
-				["SearchParameter"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    definition: z.lazy(getReferenceSchema),
+    expression: fhirString(),
+    _expression: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.definition,
+        "definition",
+        ["http://hl7.org/fhir/StructureDefinition/SearchParameter"],
+        ["SearchParameter"],
+        ctx,
+      );
+    });
 
 export const SearchParameter_ComponentSchema =
-	SearchParameter_ComponentSchemaInternal as z.ZodType<SearchParameter_Component>;
+  SearchParameter_ComponentSchemaInternal as z.ZodType<SearchParameter_Component>;

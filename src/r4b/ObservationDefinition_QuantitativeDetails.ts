@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ObservationDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -13,36 +13,36 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Characteristics for quantitative results of this observation. */
 export interface ObservationDefinition_QuantitativeDetails
-	extends BackboneElement {
-	/** Factor for converting value expressed with SI unit to value expressed with customary unit. */
-	conversionFactor?: number;
-	/** Extensions for conversionFactor */
-	_conversionFactor?: Element;
-	/** Customary unit used to report quantitative results of observations conforming to this ObservationDefinition. */
-	customaryUnit?: CodeableConcept;
-	/** Number of digits after decimal separator when the results of such observations are of type Quantity. */
-	decimalPrecision?: number;
-	/** Extensions for decimalPrecision */
-	_decimalPrecision?: Element;
-	/** SI unit used to report quantitative results of observations conforming to this ObservationDefinition. */
-	unit?: CodeableConcept;
+  extends BackboneElement {
+  /** Factor for converting value expressed with SI unit to value expressed with customary unit. */
+  conversionFactor?: number;
+  /** Extensions for conversionFactor */
+  _conversionFactor?: Element;
+  /** Customary unit used to report quantitative results of observations conforming to this ObservationDefinition. */
+  customaryUnit?: CodeableConcept;
+  /** Number of digits after decimal separator when the results of such observations are of type Quantity. */
+  decimalPrecision?: number;
+  /** Extensions for decimalPrecision */
+  _decimalPrecision?: Element;
+  /** SI unit used to report quantitative results of observations conforming to this ObservationDefinition. */
+  unit?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const ObservationDefinition_QuantitativeDetailsSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		conversionFactor: z.number().optional(),
-		_conversionFactor: z.lazy(getElementSchema).optional(),
-		customaryUnit: z.lazy(getCodeableConceptSchema).optional(),
-		decimalPrecision: z.number().int().optional(),
-		_decimalPrecision: z.lazy(getElementSchema).optional(),
-		unit: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    conversionFactor: z.number().optional(),
+    _conversionFactor: z.lazy(getElementSchema).optional(),
+    customaryUnit: z.lazy(getCodeableConceptSchema).optional(),
+    decimalPrecision: z.number().int().optional(),
+    _decimalPrecision: z.lazy(getElementSchema).optional(),
+    unit: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const ObservationDefinition_QuantitativeDetailsSchema =
-	ObservationDefinition_QuantitativeDetailsSchemaInternal as z.ZodType<ObservationDefinition_QuantitativeDetails>;
+  ObservationDefinition_QuantitativeDetailsSchemaInternal as z.ZodType<ObservationDefinition_QuantitativeDetails>;

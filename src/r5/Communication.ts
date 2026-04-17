@@ -1,14 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Communication
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-15T00:02:33.197Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
-	fhirCanonical,
-	fhirDateTime,
-	fhirUri,
+  fhirCanonical,
+  fhirDateTime,
+  fhirUri,
 } from "../shared/fhir-primitives";
 import { validateReferenceTarget } from "../shared/fhir-reference-validation";
 import type { Annotation } from "./Annotation";
@@ -30,255 +30,255 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** A clinical or business level record of information being transmitted or shared; e.g. an alert that was sent to a responsible provider, a public health agency communication to a provider/reporter in response to a case report for a reportable condition. */
 export interface Communication extends DomainResource {
-	/** Other resources that pertain to this communication and to which this communication should be associated. */
-	about?: Array<Reference>;
-	/** An order, proposal or plan fulfilled in whole or in part by this Communication. */
-	basedOn?: Array<Reference>;
-	/** The type of message conveyed such as alert, notification, reminder, instruction, etc. */
-	category?: Array<CodeableConcept>;
-	/** The Encounter during which this Communication was created or to which the creation of this record is tightly associated. */
-	encounter?: Reference;
-	/** Business identifiers assigned to this communication by the performer or other systems which remain constant as the resource is updated and propagates from server to server. */
-	identifier?: Array<Identifier>;
-	/** Prior communication that this communication is in response to. */
-	inResponseTo?: Array<Reference>;
-	/** The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Communication. */
-	instantiatesCanonical?: Array<string | null>;
-	/** Extensions for instantiatesCanonical */
-	_instantiatesCanonical?: Array<Element | null>;
-	/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Communication. */
-	instantiatesUri?: Array<string | null>;
-	/** Extensions for instantiatesUri */
-	_instantiatesUri?: Array<Element | null>;
-	/** A channel that was used for this communication (e.g. email, fax). */
-	medium?: Array<CodeableConcept>;
-	/** Additional notes or commentary about the communication by the sender, receiver or other interested parties. */
-	note?: Array<Annotation>;
-	/** A larger event (e.g. Communication, Procedure) of which this particular communication is a component or step. */
-	partOf?: Array<Reference>;
-	/** Text, attachment(s), or resource(s) that was communicated to the recipient. */
-	payload?: Array<Communication_Payload>;
-	/** Characterizes how quickly the planned or in progress communication must be addressed. Includes concepts such as stat, urgent, routine. */
-	priority?: "asap" | "routine" | "stat" | "urgent";
-	/** Extensions for priority */
-	_priority?: Element;
-	/** The reason or justification for the communication. */
-	reason?: Array<CodeableReference>;
-	/** The time when this communication arrived at the destination. */
-	received?: string;
-	/** Extensions for received */
-	_received?: Element;
-	/** The entity (e.g. person, organization, clinical information system, care team or device) which is the target of the communication. */
-	recipient?: Array<Reference>;
-	/** This is a Communication resource. */
-	resourceType: "Communication";
-	/** The entity (e.g. person, organization, clinical information system, or device) which is the source of the communication. */
-	sender?: Reference;
-	/** The time when this communication was sent. */
-	sent?: string;
-	/** Extensions for sent */
-	_sent?: Element;
-	/** The status of the transmission. */
-	status:
-		| "completed"
-		| "entered-in-error"
-		| "in-progress"
-		| "not-done"
-		| "on-hold"
-		| "preparation"
-		| "stopped"
-		| "unknown";
-	/** Extensions for status */
-	_status?: Element;
-	/** Captures the reason for the current state of the Communication. */
-	statusReason?: CodeableConcept;
-	/** The patient or group that was the focus of this communication. */
-	subject?: Reference;
-	/** Description of the purpose/content, similar to a subject line in an email. */
-	topic?: CodeableConcept;
+  /** Other resources that pertain to this communication and to which this communication should be associated. */
+  about?: Array<Reference>;
+  /** An order, proposal or plan fulfilled in whole or in part by this Communication. */
+  basedOn?: Array<Reference>;
+  /** The type of message conveyed such as alert, notification, reminder, instruction, etc. */
+  category?: Array<CodeableConcept>;
+  /** The Encounter during which this Communication was created or to which the creation of this record is tightly associated. */
+  encounter?: Reference;
+  /** Business identifiers assigned to this communication by the performer or other systems which remain constant as the resource is updated and propagates from server to server. */
+  identifier?: Array<Identifier>;
+  /** Prior communication that this communication is in response to. */
+  inResponseTo?: Array<Reference>;
+  /** The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Communication. */
+  instantiatesCanonical?: Array<string | null>;
+  /** Extensions for instantiatesCanonical */
+  _instantiatesCanonical?: Array<Element | null>;
+  /** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Communication. */
+  instantiatesUri?: Array<string | null>;
+  /** Extensions for instantiatesUri */
+  _instantiatesUri?: Array<Element | null>;
+  /** A channel that was used for this communication (e.g. email, fax). */
+  medium?: Array<CodeableConcept>;
+  /** Additional notes or commentary about the communication by the sender, receiver or other interested parties. */
+  note?: Array<Annotation>;
+  /** A larger event (e.g. Communication, Procedure) of which this particular communication is a component or step. */
+  partOf?: Array<Reference>;
+  /** Text, attachment(s), or resource(s) that was communicated to the recipient. */
+  payload?: Array<Communication_Payload>;
+  /** Characterizes how quickly the planned or in progress communication must be addressed. Includes concepts such as stat, urgent, routine. */
+  priority?: "asap" | "routine" | "stat" | "urgent";
+  /** Extensions for priority */
+  _priority?: Element;
+  /** The reason or justification for the communication. */
+  reason?: Array<CodeableReference>;
+  /** The time when this communication arrived at the destination. */
+  received?: string;
+  /** Extensions for received */
+  _received?: Element;
+  /** The entity (e.g. person, organization, clinical information system, care team or device) which is the target of the communication. */
+  recipient?: Array<Reference>;
+  /** This is a Communication resource. */
+  resourceType: "Communication";
+  /** The entity (e.g. person, organization, clinical information system, or device) which is the source of the communication. */
+  sender?: Reference;
+  /** The time when this communication was sent. */
+  sent?: string;
+  /** Extensions for sent */
+  _sent?: Element;
+  /** The status of the transmission. */
+  status:
+    | "completed"
+    | "entered-in-error"
+    | "in-progress"
+    | "not-done"
+    | "on-hold"
+    | "preparation"
+    | "stopped"
+    | "unknown";
+  /** Extensions for status */
+  _status?: Element;
+  /** Captures the reason for the current state of the Communication. */
+  statusReason?: CodeableConcept;
+  /** The patient or group that was the focus of this communication. */
+  subject?: Reference;
+  /** Description of the purpose/content, similar to a subject line in an email. */
+  topic?: CodeableConcept;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getCodeableReferenceSchema = (): z.ZodType<CodeableReference> =>
-	CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
+  CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
 const getCommunication_PayloadSchema = (): z.ZodType<Communication_Payload> =>
-	Communication_PayloadSchemaInternal as z.ZodType<Communication_Payload>;
+  Communication_PayloadSchemaInternal as z.ZodType<Communication_Payload>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const CommunicationSchemaInternal = DomainResourceSchemaInternal.extend({
-	about: z.lazy(getReferenceSchema).array().optional(),
-	basedOn: z.lazy(getReferenceSchema).array().optional(),
-	category: z.lazy(getCodeableConceptSchema).array().optional(),
-	encounter: z.lazy(getReferenceSchema).optional(),
-	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	inResponseTo: z.lazy(getReferenceSchema).array().optional(),
-	instantiatesCanonical: fhirCanonical().nullable().array().optional(),
-	_instantiatesCanonical: z
-		.lazy(getElementSchema)
-		.nullable()
-		.array()
-		.optional(),
-	instantiatesUri: fhirUri().nullable().array().optional(),
-	_instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
-	medium: z.lazy(getCodeableConceptSchema).array().optional(),
-	note: z.lazy(getAnnotationSchema).array().optional(),
-	partOf: z.lazy(getReferenceSchema).array().optional(),
-	payload: z.lazy(getCommunication_PayloadSchema).array().optional(),
-	priority: z.enum(["asap", "routine", "stat", "urgent"]).optional(),
-	_priority: z.lazy(getElementSchema).optional(),
-	reason: z.lazy(getCodeableReferenceSchema).array().optional(),
-	received: fhirDateTime().optional(),
-	_received: z.lazy(getElementSchema).optional(),
-	recipient: z.lazy(getReferenceSchema).array().optional(),
-	resourceType: z.literal("Communication"),
-	sender: z.lazy(getReferenceSchema).optional(),
-	sent: fhirDateTime().optional(),
-	_sent: z.lazy(getElementSchema).optional(),
-	status: z.enum([
-		"completed",
-		"entered-in-error",
-		"in-progress",
-		"not-done",
-		"on-hold",
-		"preparation",
-		"stopped",
-		"unknown",
-	]),
-	_status: z.lazy(getElementSchema).optional(),
-	statusReason: z.lazy(getCodeableConceptSchema).optional(),
-	subject: z.lazy(getReferenceSchema).optional(),
-	topic: z.lazy(getCodeableConceptSchema).optional(),
+  about: z.lazy(getReferenceSchema).array().optional(),
+  basedOn: z.lazy(getReferenceSchema).array().optional(),
+  category: z.lazy(getCodeableConceptSchema).array().optional(),
+  encounter: z.lazy(getReferenceSchema).optional(),
+  identifier: z.lazy(getIdentifierSchema).array().optional(),
+  inResponseTo: z.lazy(getReferenceSchema).array().optional(),
+  instantiatesCanonical: fhirCanonical().nullable().array().optional(),
+  _instantiatesCanonical: z
+    .lazy(getElementSchema)
+    .nullable()
+    .array()
+    .optional(),
+  instantiatesUri: fhirUri().nullable().array().optional(),
+  _instantiatesUri: z.lazy(getElementSchema).nullable().array().optional(),
+  medium: z.lazy(getCodeableConceptSchema).array().optional(),
+  note: z.lazy(getAnnotationSchema).array().optional(),
+  partOf: z.lazy(getReferenceSchema).array().optional(),
+  payload: z.lazy(getCommunication_PayloadSchema).array().optional(),
+  priority: z.enum(["asap", "routine", "stat", "urgent"]).optional(),
+  _priority: z.lazy(getElementSchema).optional(),
+  reason: z.lazy(getCodeableReferenceSchema).array().optional(),
+  received: fhirDateTime().optional(),
+  _received: z.lazy(getElementSchema).optional(),
+  recipient: z.lazy(getReferenceSchema).array().optional(),
+  resourceType: z.literal("Communication"),
+  sender: z.lazy(getReferenceSchema).optional(),
+  sent: fhirDateTime().optional(),
+  _sent: z.lazy(getElementSchema).optional(),
+  status: z.enum([
+    "completed",
+    "entered-in-error",
+    "in-progress",
+    "not-done",
+    "on-hold",
+    "preparation",
+    "stopped",
+    "unknown",
+  ]),
+  _status: z.lazy(getElementSchema).optional(),
+  statusReason: z.lazy(getCodeableConceptSchema).optional(),
+  subject: z.lazy(getReferenceSchema).optional(),
+  topic: z.lazy(getCodeableConceptSchema).optional(),
 })
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validatePrimitiveArrayPair(
-			record.instantiatesCanonical,
-			record._instantiatesCanonical,
-			"instantiatesCanonical",
-			"_instantiatesCanonical",
-			ctx,
-		);
-		validatePrimitiveArrayPair(
-			record.instantiatesUri,
-			record._instantiatesUri,
-			"instantiatesUri",
-			"_instantiatesUri",
-			ctx,
-		);
-		validateReferenceTarget(
-			record.about,
-			"about",
-			["http://hl7.org/fhir/StructureDefinition/Resource"],
-			["Resource"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.basedOn,
-			"basedOn",
-			["http://hl7.org/fhir/StructureDefinition/Resource"],
-			["Resource"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.encounter,
-			"encounter",
-			["http://hl7.org/fhir/StructureDefinition/Encounter"],
-			["Encounter"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.inResponseTo,
-			"inResponseTo",
-			["http://hl7.org/fhir/StructureDefinition/Communication"],
-			["Communication"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.partOf,
-			"partOf",
-			["http://hl7.org/fhir/StructureDefinition/Resource"],
-			["Resource"],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.recipient,
-			"recipient",
-			[
-				"http://hl7.org/fhir/StructureDefinition/CareTeam",
-				"http://hl7.org/fhir/StructureDefinition/Device",
-				"http://hl7.org/fhir/StructureDefinition/Endpoint",
-				"http://hl7.org/fhir/StructureDefinition/Group",
-				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
-				"http://hl7.org/fhir/StructureDefinition/Location",
-				"http://hl7.org/fhir/StructureDefinition/Organization",
-				"http://hl7.org/fhir/StructureDefinition/Patient",
-				"http://hl7.org/fhir/StructureDefinition/Practitioner",
-				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-			],
-			[
-				"CareTeam",
-				"Device",
-				"Endpoint",
-				"Group",
-				"HealthcareService",
-				"Location",
-				"Organization",
-				"Patient",
-				"Practitioner",
-				"PractitionerRole",
-				"RelatedPerson",
-			],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.sender,
-			"sender",
-			[
-				"http://hl7.org/fhir/StructureDefinition/CareTeam",
-				"http://hl7.org/fhir/StructureDefinition/Device",
-				"http://hl7.org/fhir/StructureDefinition/Endpoint",
-				"http://hl7.org/fhir/StructureDefinition/HealthcareService",
-				"http://hl7.org/fhir/StructureDefinition/Organization",
-				"http://hl7.org/fhir/StructureDefinition/Patient",
-				"http://hl7.org/fhir/StructureDefinition/Practitioner",
-				"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-				"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-			],
-			[
-				"CareTeam",
-				"Device",
-				"Endpoint",
-				"HealthcareService",
-				"Organization",
-				"Patient",
-				"Practitioner",
-				"PractitionerRole",
-				"RelatedPerson",
-			],
-			ctx,
-		);
-		validateReferenceTarget(
-			record.subject,
-			"subject",
-			[
-				"http://hl7.org/fhir/StructureDefinition/Group",
-				"http://hl7.org/fhir/StructureDefinition/Patient",
-			],
-			["Group", "Patient"],
-			ctx,
-		);
-	});
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validatePrimitiveArrayPair(
+      record.instantiatesCanonical,
+      record._instantiatesCanonical,
+      "instantiatesCanonical",
+      "_instantiatesCanonical",
+      ctx,
+    );
+    validatePrimitiveArrayPair(
+      record.instantiatesUri,
+      record._instantiatesUri,
+      "instantiatesUri",
+      "_instantiatesUri",
+      ctx,
+    );
+    validateReferenceTarget(
+      record.about,
+      "about",
+      ["http://hl7.org/fhir/StructureDefinition/Resource"],
+      ["Resource"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.basedOn,
+      "basedOn",
+      ["http://hl7.org/fhir/StructureDefinition/Resource"],
+      ["Resource"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.encounter,
+      "encounter",
+      ["http://hl7.org/fhir/StructureDefinition/Encounter"],
+      ["Encounter"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.inResponseTo,
+      "inResponseTo",
+      ["http://hl7.org/fhir/StructureDefinition/Communication"],
+      ["Communication"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.partOf,
+      "partOf",
+      ["http://hl7.org/fhir/StructureDefinition/Resource"],
+      ["Resource"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.recipient,
+      "recipient",
+      [
+        "http://hl7.org/fhir/StructureDefinition/CareTeam",
+        "http://hl7.org/fhir/StructureDefinition/Device",
+        "http://hl7.org/fhir/StructureDefinition/Endpoint",
+        "http://hl7.org/fhir/StructureDefinition/Group",
+        "http://hl7.org/fhir/StructureDefinition/HealthcareService",
+        "http://hl7.org/fhir/StructureDefinition/Location",
+        "http://hl7.org/fhir/StructureDefinition/Organization",
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+        "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+        "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+      ],
+      [
+        "CareTeam",
+        "Device",
+        "Endpoint",
+        "Group",
+        "HealthcareService",
+        "Location",
+        "Organization",
+        "Patient",
+        "Practitioner",
+        "PractitionerRole",
+        "RelatedPerson",
+      ],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.sender,
+      "sender",
+      [
+        "http://hl7.org/fhir/StructureDefinition/CareTeam",
+        "http://hl7.org/fhir/StructureDefinition/Device",
+        "http://hl7.org/fhir/StructureDefinition/Endpoint",
+        "http://hl7.org/fhir/StructureDefinition/HealthcareService",
+        "http://hl7.org/fhir/StructureDefinition/Organization",
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+        "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+        "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+      ],
+      [
+        "CareTeam",
+        "Device",
+        "Endpoint",
+        "HealthcareService",
+        "Organization",
+        "Patient",
+        "Practitioner",
+        "PractitionerRole",
+        "RelatedPerson",
+      ],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.subject,
+      "subject",
+      [
+        "http://hl7.org/fhir/StructureDefinition/Group",
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+      ],
+      ["Group", "Patient"],
+      ctx,
+    );
+  });
 
 export const CommunicationSchema =
-	CommunicationSchemaInternal as z.ZodType<Communication>;
+  CommunicationSchemaInternal as z.ZodType<Communication>;

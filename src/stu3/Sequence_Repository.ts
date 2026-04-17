@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Sequence
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:34:07.547Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";
@@ -12,51 +12,51 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Configurations of the external repository. The repository shall store target's observedSeq or records related with target's observedSeq. */
 export interface Sequence_Repository extends BackboneElement {
-	/** Id of the variant in this external repository. The server will understand how to use this id to call for more info about datasets in external repository. */
-	datasetId?: string;
-	/** Extensions for datasetId */
-	_datasetId?: Element;
-	/** URI of an external repository which contains further details about the genetics data. */
-	name?: string;
-	/** Extensions for name */
-	_name?: Element;
-	/** Id of the read in this external repository. */
-	readsetId?: string;
-	/** Extensions for readsetId */
-	_readsetId?: Element;
-	/** Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource. */
-	type: "directlink" | "login" | "oauth" | "openapi" | "other";
-	/** Extensions for type */
-	_type?: Element;
-	/** URI of an external repository which contains further details about the genetics data. */
-	url?: string;
-	/** Extensions for url */
-	_url?: Element;
-	/** Id of the variantset in this external repository. The server will understand how to use this id to call for more info about variantsets in external repository. */
-	variantsetId?: string;
-	/** Extensions for variantsetId */
-	_variantsetId?: Element;
+  /** Id of the variant in this external repository. The server will understand how to use this id to call for more info about datasets in external repository. */
+  datasetId?: string;
+  /** Extensions for datasetId */
+  _datasetId?: Element;
+  /** URI of an external repository which contains further details about the genetics data. */
+  name?: string;
+  /** Extensions for name */
+  _name?: Element;
+  /** Id of the read in this external repository. */
+  readsetId?: string;
+  /** Extensions for readsetId */
+  _readsetId?: Element;
+  /** Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource. */
+  type: "directlink" | "login" | "oauth" | "openapi" | "other";
+  /** Extensions for type */
+  _type?: Element;
+  /** URI of an external repository which contains further details about the genetics data. */
+  url?: string;
+  /** Extensions for url */
+  _url?: Element;
+  /** Id of the variantset in this external repository. The server will understand how to use this id to call for more info about variantsets in external repository. */
+  variantsetId?: string;
+  /** Extensions for variantsetId */
+  _variantsetId?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const Sequence_RepositorySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		datasetId: fhirString().optional(),
-		_datasetId: z.lazy(getElementSchema).optional(),
-		name: fhirString().optional(),
-		_name: z.lazy(getElementSchema).optional(),
-		readsetId: fhirString().optional(),
-		_readsetId: z.lazy(getElementSchema).optional(),
-		type: z.enum(["directlink", "login", "oauth", "openapi", "other"]),
-		_type: z.lazy(getElementSchema).optional(),
-		url: fhirUri().optional(),
-		_url: z.lazy(getElementSchema).optional(),
-		variantsetId: fhirString().optional(),
-		_variantsetId: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    datasetId: fhirString().optional(),
+    _datasetId: z.lazy(getElementSchema).optional(),
+    name: fhirString().optional(),
+    _name: z.lazy(getElementSchema).optional(),
+    readsetId: fhirString().optional(),
+    _readsetId: z.lazy(getElementSchema).optional(),
+    type: z.enum(["directlink", "login", "oauth", "openapi", "other"]),
+    _type: z.lazy(getElementSchema).optional(),
+    url: fhirUri().optional(),
+    _url: z.lazy(getElementSchema).optional(),
+    variantsetId: fhirString().optional(),
+    _variantsetId: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const Sequence_RepositorySchema =
-	Sequence_RepositorySchemaInternal as z.ZodType<Sequence_Repository>;
+  Sequence_RepositorySchemaInternal as z.ZodType<Sequence_Repository>;

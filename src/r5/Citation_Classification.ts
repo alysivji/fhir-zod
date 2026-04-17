@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T23:33:08.008Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -11,21 +11,21 @@ import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 
 /** The assignment to an organizing scheme. */
 export interface Citation_Classification extends BackboneElement {
-	/** The specific classification value. */
-	classifier?: Array<CodeableConcept>;
-	/** The kind of classifier (e.g. publication type, keyword). */
-	type?: CodeableConcept;
+  /** The specific classification value. */
+  classifier?: Array<CodeableConcept>;
+  /** The kind of classifier (e.g. publication type, keyword). */
+  type?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const Citation_ClassificationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		classifier: z.lazy(getCodeableConceptSchema).array().optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    classifier: z.lazy(getCodeableConceptSchema).array().optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const Citation_ClassificationSchema =
-	Citation_ClassificationSchemaInternal as z.ZodType<Citation_Classification>;
+  Citation_ClassificationSchemaInternal as z.ZodType<Citation_Classification>;

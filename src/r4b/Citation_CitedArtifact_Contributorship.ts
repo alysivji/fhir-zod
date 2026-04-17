@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T23:33:05.787Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -15,40 +15,40 @@ import { ElementSchemaInternal } from "./Element";
 
 /** This element is used to list authors and other contributors, their contact information, specific contributions, and summary statements. */
 export interface Citation_CitedArtifact_Contributorship
-	extends BackboneElement {
-	/** Indicates if the list includes all authors and/or contributors. */
-	complete?: boolean;
-	/** Extensions for complete */
-	_complete?: Element;
-	/** An individual entity named in the author list or contributor list. */
-	entry?: Array<Citation_CitedArtifact_Contributorship_Entry>;
-	/** Used to record a display of the author/contributor list without separate coding for each list member. */
-	summary?: Array<Citation_CitedArtifact_Contributorship_Summary>;
+  extends BackboneElement {
+  /** Indicates if the list includes all authors and/or contributors. */
+  complete?: boolean;
+  /** Extensions for complete */
+  _complete?: Element;
+  /** An individual entity named in the author list or contributor list. */
+  entry?: Array<Citation_CitedArtifact_Contributorship_Entry>;
+  /** Used to record a display of the author/contributor list without separate coding for each list member. */
+  summary?: Array<Citation_CitedArtifact_Contributorship_Summary>;
 }
 
 const getCitation_CitedArtifact_Contributorship_EntrySchema =
-	(): z.ZodType<Citation_CitedArtifact_Contributorship_Entry> =>
-		Citation_CitedArtifact_Contributorship_EntrySchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship_Entry>;
+  (): z.ZodType<Citation_CitedArtifact_Contributorship_Entry> =>
+    Citation_CitedArtifact_Contributorship_EntrySchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship_Entry>;
 const getCitation_CitedArtifact_Contributorship_SummarySchema =
-	(): z.ZodType<Citation_CitedArtifact_Contributorship_Summary> =>
-		Citation_CitedArtifact_Contributorship_SummarySchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship_Summary>;
+  (): z.ZodType<Citation_CitedArtifact_Contributorship_Summary> =>
+    Citation_CitedArtifact_Contributorship_SummarySchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship_Summary>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const Citation_CitedArtifact_ContributorshipSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		complete: z.boolean().optional(),
-		_complete: z.lazy(getElementSchema).optional(),
-		entry: z
-			.lazy(getCitation_CitedArtifact_Contributorship_EntrySchema)
-			.array()
-			.optional(),
-		summary: z
-			.lazy(getCitation_CitedArtifact_Contributorship_SummarySchema)
-			.array()
-			.optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    complete: z.boolean().optional(),
+    _complete: z.lazy(getElementSchema).optional(),
+    entry: z
+      .lazy(getCitation_CitedArtifact_Contributorship_EntrySchema)
+      .array()
+      .optional(),
+    summary: z
+      .lazy(getCitation_CitedArtifact_Contributorship_SummarySchema)
+      .array()
+      .optional(),
+  }).strict();
 
 export const Citation_CitedArtifact_ContributorshipSchema =
-	Citation_CitedArtifact_ContributorshipSchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship>;
+  Citation_CitedArtifact_ContributorshipSchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship>;

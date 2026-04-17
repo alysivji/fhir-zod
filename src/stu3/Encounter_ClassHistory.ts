@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Encounter
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -17,23 +17,23 @@ import { PeriodSchemaInternal } from "./Period";
  * This would be used for a case where an admission starts of as an emergency encounter, then transisions into an inpatient scenario. Doing this and not restarting a new encounter ensures that any lab/diagnostic results can more easily follow the patient and not require re-processing and not get lost or cancelled during a kindof discharge from emergency to inpatient.
  */
 export interface Encounter_ClassHistory extends BackboneElement {
-	/** inpatient | outpatient | ambulatory | emergency +. */
-	class: Coding;
-	/** The time that the episode was in the specified class. */
-	period: Period;
+  /** inpatient | outpatient | ambulatory | emergency +. */
+  class: Coding;
+  /** The time that the episode was in the specified class. */
+  period: Period;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 
 /** @internal */
 export const Encounter_ClassHistorySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		class: z.lazy(getCodingSchema),
-		period: z.lazy(getPeriodSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    class: z.lazy(getCodingSchema),
+    period: z.lazy(getPeriodSchema),
+  }).strict();
 
 export const Encounter_ClassHistorySchema =
-	Encounter_ClassHistorySchemaInternal as z.ZodType<Encounter_ClassHistory>;
+  Encounter_ClassHistorySchemaInternal as z.ZodType<Encounter_ClassHistory>;

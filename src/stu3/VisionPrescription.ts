@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/VisionPrescription
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T00:32:01.048Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -21,106 +21,106 @@ import { VisionPrescription_DispenseSchemaInternal } from "./VisionPrescription_
 
 /** Base StructureDefinition for VisionPrescription Resource */
 export interface VisionPrescription extends DomainResource {
-	/** The date (and perhaps time) when the prescription was written. */
-	dateWritten?: string;
-	/** Extensions for dateWritten */
-	_dateWritten?: Element;
-	/** Deals with details of the dispense part of the supply specification. */
-	dispense?: Array<VisionPrescription_Dispense>;
-	/** A link to a resource that identifies the particular occurrence of contact between patient and health care provider. */
-	encounter?: Reference;
-	/** Business identifier which may be used by other parties to reference or identify the prescription. */
-	identifier?: Array<Identifier>;
-	/** A link to a resource representing the person to whom the vision products will be supplied. */
-	patient?: Reference;
-	/** The healthcare professional responsible for authorizing the prescription. */
-	prescriber?: Reference;
-	/** Can be the reason or the indication for writing the prescription. */
-	reasonCodeableConcept?: CodeableConcept;
-	/** Can be the reason or the indication for writing the prescription. */
-	reasonReference?: Reference;
-	/** This is a VisionPrescription resource. */
-	resourceType: "VisionPrescription";
-	/** The status of the resource instance. */
-	status?: "active" | "cancelled" | "draft" | "entered-in-error";
-	/** Extensions for status */
-	_status?: Element;
+  /** The date (and perhaps time) when the prescription was written. */
+  dateWritten?: string;
+  /** Extensions for dateWritten */
+  _dateWritten?: Element;
+  /** Deals with details of the dispense part of the supply specification. */
+  dispense?: Array<VisionPrescription_Dispense>;
+  /** A link to a resource that identifies the particular occurrence of contact between patient and health care provider. */
+  encounter?: Reference;
+  /** Business identifier which may be used by other parties to reference or identify the prescription. */
+  identifier?: Array<Identifier>;
+  /** A link to a resource representing the person to whom the vision products will be supplied. */
+  patient?: Reference;
+  /** The healthcare professional responsible for authorizing the prescription. */
+  prescriber?: Reference;
+  /** Can be the reason or the indication for writing the prescription. */
+  reasonCodeableConcept?: CodeableConcept;
+  /** Can be the reason or the indication for writing the prescription. */
+  reasonReference?: Reference;
+  /** This is a VisionPrescription resource. */
+  resourceType: "VisionPrescription";
+  /** The status of the resource instance. */
+  status?: "active" | "cancelled" | "draft" | "entered-in-error";
+  /** Extensions for status */
+  _status?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 const getVisionPrescription_DispenseSchema =
-	(): z.ZodType<VisionPrescription_Dispense> =>
-		VisionPrescription_DispenseSchemaInternal as z.ZodType<VisionPrescription_Dispense>;
+  (): z.ZodType<VisionPrescription_Dispense> =>
+    VisionPrescription_DispenseSchemaInternal as z.ZodType<VisionPrescription_Dispense>;
 
 /** @internal */
 export const VisionPrescriptionSchemaInternal =
-	DomainResourceSchemaInternal.extend({
-		dateWritten: fhirDateTime().optional(),
-		_dateWritten: z.lazy(getElementSchema).optional(),
-		dispense: z.lazy(getVisionPrescription_DispenseSchema).array().optional(),
-		encounter: z.lazy(getReferenceSchema).optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		patient: z.lazy(getReferenceSchema).optional(),
-		prescriber: z.lazy(getReferenceSchema).optional(),
-		reasonCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		reasonReference: z.lazy(getReferenceSchema).optional(),
-		resourceType: z.literal("VisionPrescription"),
-		status: z
-			.enum(["active", "cancelled", "draft", "entered-in-error"])
-			.optional(),
-		_status: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const reason_x_Present = [
-				"reasonCodeableConcept",
-				"reasonReference",
-			].filter((field) => record[field] !== undefined);
-			if (reason_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of reasonCodeableConcept, reasonReference may be present for reason[x]",
-					path: [reason_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.encounter,
-				"encounter",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.patient,
-				"patient",
-				["http://hl7.org/fhir/StructureDefinition/Patient"],
-				["Patient"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.prescriber,
-				"prescriber",
-				["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-				["Practitioner"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.reasonReference,
-				"reasonReference",
-				["http://hl7.org/fhir/StructureDefinition/Condition"],
-				["Condition"],
-				ctx,
-			);
-		});
+  DomainResourceSchemaInternal.extend({
+    dateWritten: fhirDateTime().optional(),
+    _dateWritten: z.lazy(getElementSchema).optional(),
+    dispense: z.lazy(getVisionPrescription_DispenseSchema).array().optional(),
+    encounter: z.lazy(getReferenceSchema).optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    patient: z.lazy(getReferenceSchema).optional(),
+    prescriber: z.lazy(getReferenceSchema).optional(),
+    reasonCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    reasonReference: z.lazy(getReferenceSchema).optional(),
+    resourceType: z.literal("VisionPrescription"),
+    status: z
+      .enum(["active", "cancelled", "draft", "entered-in-error"])
+      .optional(),
+    _status: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const reason_x_Present = [
+        "reasonCodeableConcept",
+        "reasonReference",
+      ].filter((field) => record[field] !== undefined);
+      if (reason_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of reasonCodeableConcept, reasonReference may be present for reason[x]",
+          path: [reason_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.encounter,
+        "encounter",
+        ["http://hl7.org/fhir/StructureDefinition/Encounter"],
+        ["Encounter"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.patient,
+        "patient",
+        ["http://hl7.org/fhir/StructureDefinition/Patient"],
+        ["Patient"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.prescriber,
+        "prescriber",
+        ["http://hl7.org/fhir/StructureDefinition/Practitioner"],
+        ["Practitioner"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.reasonReference,
+        "reasonReference",
+        ["http://hl7.org/fhir/StructureDefinition/Condition"],
+        ["Condition"],
+        ctx,
+      );
+    });
 
 export const VisionPrescriptionSchema =
-	VisionPrescriptionSchemaInternal as z.ZodType<VisionPrescription>;
+  VisionPrescriptionSchemaInternal as z.ZodType<VisionPrescription>;

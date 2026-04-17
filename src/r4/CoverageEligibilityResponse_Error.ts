@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-02T05:23:25.793Z
+// Last generated: 2026-04-17T23:33:03.670Z
 
 import * as z from "zod";
 import type { BackboneElement } from "./BackboneElement";
@@ -11,18 +11,18 @@ import { CodeableConceptSchemaInternal } from "./CodeableConcept";
 
 /** Errors encountered during the processing of the request. */
 export interface CoverageEligibilityResponse_Error extends BackboneElement {
-	/** An error code,from a specified code system, which details why the eligibility check could not be performed. */
-	code: CodeableConcept;
+  /** An error code,from a specified code system, which details why the eligibility check could not be performed. */
+  code: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const CoverageEligibilityResponse_ErrorSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const CoverageEligibilityResponse_ErrorSchema =
-	CoverageEligibilityResponse_ErrorSchemaInternal as z.ZodType<CoverageEligibilityResponse_Error>;
+  CoverageEligibilityResponse_ErrorSchemaInternal as z.ZodType<CoverageEligibilityResponse_Error>;

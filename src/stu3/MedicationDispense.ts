@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationDispense
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-15T01:26:20.392Z
+// Last generated: 2026-04-17T23:33:01.916Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../shared/fhir-primitives";
@@ -29,263 +29,263 @@ import { ReferenceSchemaInternal } from "./Reference";
 
 /** Base StructureDefinition for MedicationDispense Resource */
 export interface MedicationDispense extends DomainResource {
-	/** Indicates the medication order that is being dispensed against. */
-	authorizingPrescription?: Array<Reference>;
-	/** Indicates type of medication dispense and where the medication is expected to be consumed or administered. */
-	category?: CodeableConcept;
-	/** The encounter or episode of care that establishes the context for this event. */
-	context?: Reference;
-	/** The amount of medication expressed as a timing amount. */
-	daysSupply?: Quantity;
-	/** Identification of the facility/location where the medication was shipped to, as part of the dispense event. */
-	destination?: Reference;
-	/** Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a patient; e.g. Drug-drug interaction, duplicate therapy, dosage alert etc. */
-	detectedIssue?: Array<Reference>;
-	/** Indicates how the medication is to be used by the patient. */
-	dosageInstruction?: Array<Dosage>;
-	/** A summary of the events of interest that have occurred, such as when the dispense was verified. */
-	eventHistory?: Array<Reference>;
-	/** Identifier assigned by the dispensing facility - this is an identifier assigned outside FHIR. */
-	identifier?: Array<Identifier>;
-	/** Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications. */
-	medicationCodeableConcept?: CodeableConcept;
-	/** Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications. */
-	medicationReference?: Reference;
-	/** True if the dispense was not performed for some reason. */
-	notDone?: boolean;
-	/** Extensions for notDone */
-	_notDone?: Element;
-	/** Indicates the reason why a dispense was not performed. */
-	notDoneReasonCodeableConcept?: CodeableConcept;
-	/** Indicates the reason why a dispense was not performed. */
-	notDoneReasonReference?: Reference;
-	/** Extra information about the dispense that could not be conveyed in the other attributes. */
-	note?: Array<Annotation>;
-	/** The procedure that the dispense is done because of. */
-	partOf?: Array<Reference>;
-	/** Indicates who or what performed the event.  It should be assumed that the performer is the dispenser of the medication. */
-	performer?: Array<MedicationDispense_Performer>;
-	/** The amount of medication that has been dispensed. Includes unit of measure. */
-	quantity?: Quantity;
-	/** Identifies the person who picked up the medication.  This will usually be a patient or their caregiver, but some cases exist where it can be a healthcare professional. */
-	receiver?: Array<Reference>;
-	/** This is a MedicationDispense resource. */
-	resourceType: "MedicationDispense";
-	/** A code specifying the state of the set of dispense events. */
-	status?:
-		| "completed"
-		| "entered-in-error"
-		| "in-progress"
-		| "on-hold"
-		| "preparation"
-		| "stopped";
-	/** Extensions for status */
-	_status?: Element;
-	/** A link to a resource representing the person or the group to whom the medication will be given. */
-	subject?: Reference;
-	/** Indicates whether or not substitution was made as part of the dispense.  In some cases substitution will be expected but does not happen, in other cases substitution is not expected but does happen.  This block explains what substitution did or did not happen and why.  If nothing is specified, substitution was not done. */
-	substitution?: MedicationDispense_Substitution;
-	/** Additional information that supports the medication being dispensed. */
-	supportingInformation?: Array<Reference>;
-	/** Indicates the type of dispensing event that is performed. For example, Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc. */
-	type?: CodeableConcept;
-	/** The time the dispensed product was provided to the patient or their representative. */
-	whenHandedOver?: string;
-	/** Extensions for whenHandedOver */
-	_whenHandedOver?: Element;
-	/** The time when the dispensed product was packaged and reviewed. */
-	whenPrepared?: string;
-	/** Extensions for whenPrepared */
-	_whenPrepared?: Element;
+  /** Indicates the medication order that is being dispensed against. */
+  authorizingPrescription?: Array<Reference>;
+  /** Indicates type of medication dispense and where the medication is expected to be consumed or administered. */
+  category?: CodeableConcept;
+  /** The encounter or episode of care that establishes the context for this event. */
+  context?: Reference;
+  /** The amount of medication expressed as a timing amount. */
+  daysSupply?: Quantity;
+  /** Identification of the facility/location where the medication was shipped to, as part of the dispense event. */
+  destination?: Reference;
+  /** Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a patient; e.g. Drug-drug interaction, duplicate therapy, dosage alert etc. */
+  detectedIssue?: Array<Reference>;
+  /** Indicates how the medication is to be used by the patient. */
+  dosageInstruction?: Array<Dosage>;
+  /** A summary of the events of interest that have occurred, such as when the dispense was verified. */
+  eventHistory?: Array<Reference>;
+  /** Identifier assigned by the dispensing facility - this is an identifier assigned outside FHIR. */
+  identifier?: Array<Identifier>;
+  /** Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications. */
+  medicationCodeableConcept?: CodeableConcept;
+  /** Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications. */
+  medicationReference?: Reference;
+  /** True if the dispense was not performed for some reason. */
+  notDone?: boolean;
+  /** Extensions for notDone */
+  _notDone?: Element;
+  /** Indicates the reason why a dispense was not performed. */
+  notDoneReasonCodeableConcept?: CodeableConcept;
+  /** Indicates the reason why a dispense was not performed. */
+  notDoneReasonReference?: Reference;
+  /** Extra information about the dispense that could not be conveyed in the other attributes. */
+  note?: Array<Annotation>;
+  /** The procedure that the dispense is done because of. */
+  partOf?: Array<Reference>;
+  /** Indicates who or what performed the event.  It should be assumed that the performer is the dispenser of the medication. */
+  performer?: Array<MedicationDispense_Performer>;
+  /** The amount of medication that has been dispensed. Includes unit of measure. */
+  quantity?: Quantity;
+  /** Identifies the person who picked up the medication.  This will usually be a patient or their caregiver, but some cases exist where it can be a healthcare professional. */
+  receiver?: Array<Reference>;
+  /** This is a MedicationDispense resource. */
+  resourceType: "MedicationDispense";
+  /** A code specifying the state of the set of dispense events. */
+  status?:
+    | "completed"
+    | "entered-in-error"
+    | "in-progress"
+    | "on-hold"
+    | "preparation"
+    | "stopped";
+  /** Extensions for status */
+  _status?: Element;
+  /** A link to a resource representing the person or the group to whom the medication will be given. */
+  subject?: Reference;
+  /** Indicates whether or not substitution was made as part of the dispense.  In some cases substitution will be expected but does not happen, in other cases substitution is not expected but does happen.  This block explains what substitution did or did not happen and why.  If nothing is specified, substitution was not done. */
+  substitution?: MedicationDispense_Substitution;
+  /** Additional information that supports the medication being dispensed. */
+  supportingInformation?: Array<Reference>;
+  /** Indicates the type of dispensing event that is performed. For example, Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc. */
+  type?: CodeableConcept;
+  /** The time the dispensed product was provided to the patient or their representative. */
+  whenHandedOver?: string;
+  /** Extensions for whenHandedOver */
+  _whenHandedOver?: Element;
+  /** The time when the dispensed product was packaged and reviewed. */
+  whenPrepared?: string;
+  /** Extensions for whenPrepared */
+  _whenPrepared?: Element;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getDosageSchema = (): z.ZodType<Dosage> =>
-	DosageSchemaInternal as z.ZodType<Dosage>;
+  DosageSchemaInternal as z.ZodType<Dosage>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getMedicationDispense_PerformerSchema =
-	(): z.ZodType<MedicationDispense_Performer> =>
-		MedicationDispense_PerformerSchemaInternal as z.ZodType<MedicationDispense_Performer>;
+  (): z.ZodType<MedicationDispense_Performer> =>
+    MedicationDispense_PerformerSchemaInternal as z.ZodType<MedicationDispense_Performer>;
 const getMedicationDispense_SubstitutionSchema =
-	(): z.ZodType<MedicationDispense_Substitution> =>
-		MedicationDispense_SubstitutionSchemaInternal as z.ZodType<MedicationDispense_Substitution>;
+  (): z.ZodType<MedicationDispense_Substitution> =>
+    MedicationDispense_SubstitutionSchemaInternal as z.ZodType<MedicationDispense_Substitution>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const MedicationDispenseSchemaInternal =
-	DomainResourceSchemaInternal.extend({
-		authorizingPrescription: z.lazy(getReferenceSchema).array().optional(),
-		category: z.lazy(getCodeableConceptSchema).optional(),
-		context: z.lazy(getReferenceSchema).optional(),
-		daysSupply: z.lazy(getQuantitySchema).optional(),
-		destination: z.lazy(getReferenceSchema).optional(),
-		detectedIssue: z.lazy(getReferenceSchema).array().optional(),
-		dosageInstruction: z.lazy(getDosageSchema).array().optional(),
-		eventHistory: z.lazy(getReferenceSchema).array().optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		medicationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		medicationReference: z.lazy(getReferenceSchema).optional(),
-		notDone: z.boolean().optional(),
-		_notDone: z.lazy(getElementSchema).optional(),
-		notDoneReasonCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		notDoneReasonReference: z.lazy(getReferenceSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-		partOf: z.lazy(getReferenceSchema).array().optional(),
-		performer: z.lazy(getMedicationDispense_PerformerSchema).array().optional(),
-		quantity: z.lazy(getQuantitySchema).optional(),
-		receiver: z.lazy(getReferenceSchema).array().optional(),
-		resourceType: z.literal("MedicationDispense"),
-		status: z
-			.enum([
-				"completed",
-				"entered-in-error",
-				"in-progress",
-				"on-hold",
-				"preparation",
-				"stopped",
-			])
-			.optional(),
-		_status: z.lazy(getElementSchema).optional(),
-		subject: z.lazy(getReferenceSchema).optional(),
-		substitution: z.lazy(getMedicationDispense_SubstitutionSchema).optional(),
-		supportingInformation: z.lazy(getReferenceSchema).array().optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-		whenHandedOver: fhirDateTime().optional(),
-		_whenHandedOver: z.lazy(getElementSchema).optional(),
-		whenPrepared: fhirDateTime().optional(),
-		_whenPrepared: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const medication_x_Present = [
-				"medicationCodeableConcept",
-				"medicationReference",
-			].filter((field) => record[field] !== undefined);
-			if (medication_x_Present.length === 0) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"One of medicationCodeableConcept, medicationReference must be present for medication[x]",
-					path: ["medicationCodeableConcept"],
-				});
-			}
-			if (medication_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of medicationCodeableConcept, medicationReference may be present for medication[x]",
-					path: [medication_x_Present[0]],
-				});
-			}
-			const notDoneReason_x_Present = [
-				"notDoneReasonCodeableConcept",
-				"notDoneReasonReference",
-			].filter((field) => record[field] !== undefined);
-			if (notDoneReason_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of notDoneReasonCodeableConcept, notDoneReasonReference may be present for notDoneReason[x]",
-					path: [notDoneReason_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.authorizingPrescription,
-				"authorizingPrescription",
-				["http://hl7.org/fhir/StructureDefinition/MedicationRequest"],
-				["MedicationRequest"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.context,
-				"context",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Encounter",
-					"http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
-				],
-				["Encounter", "EpisodeOfCare"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.destination,
-				"destination",
-				["http://hl7.org/fhir/StructureDefinition/Location"],
-				["Location"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.detectedIssue,
-				"detectedIssue",
-				["http://hl7.org/fhir/StructureDefinition/DetectedIssue"],
-				["DetectedIssue"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.eventHistory,
-				"eventHistory",
-				["http://hl7.org/fhir/StructureDefinition/Provenance"],
-				["Provenance"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.medicationReference,
-				"medicationReference",
-				["http://hl7.org/fhir/StructureDefinition/Medication"],
-				["Medication"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.notDoneReasonReference,
-				"notDoneReasonReference",
-				["http://hl7.org/fhir/StructureDefinition/DetectedIssue"],
-				["DetectedIssue"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.partOf,
-				"partOf",
-				["http://hl7.org/fhir/StructureDefinition/Procedure"],
-				["Procedure"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.receiver,
-				"receiver",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-					"http://hl7.org/fhir/StructureDefinition/Practitioner",
-				],
-				["Patient", "Practitioner"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.subject,
-				"subject",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Group",
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-				],
-				["Group", "Patient"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.supportingInformation,
-				"supportingInformation",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  DomainResourceSchemaInternal.extend({
+    authorizingPrescription: z.lazy(getReferenceSchema).array().optional(),
+    category: z.lazy(getCodeableConceptSchema).optional(),
+    context: z.lazy(getReferenceSchema).optional(),
+    daysSupply: z.lazy(getQuantitySchema).optional(),
+    destination: z.lazy(getReferenceSchema).optional(),
+    detectedIssue: z.lazy(getReferenceSchema).array().optional(),
+    dosageInstruction: z.lazy(getDosageSchema).array().optional(),
+    eventHistory: z.lazy(getReferenceSchema).array().optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    medicationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    medicationReference: z.lazy(getReferenceSchema).optional(),
+    notDone: z.boolean().optional(),
+    _notDone: z.lazy(getElementSchema).optional(),
+    notDoneReasonCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    notDoneReasonReference: z.lazy(getReferenceSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+    partOf: z.lazy(getReferenceSchema).array().optional(),
+    performer: z.lazy(getMedicationDispense_PerformerSchema).array().optional(),
+    quantity: z.lazy(getQuantitySchema).optional(),
+    receiver: z.lazy(getReferenceSchema).array().optional(),
+    resourceType: z.literal("MedicationDispense"),
+    status: z
+      .enum([
+        "completed",
+        "entered-in-error",
+        "in-progress",
+        "on-hold",
+        "preparation",
+        "stopped",
+      ])
+      .optional(),
+    _status: z.lazy(getElementSchema).optional(),
+    subject: z.lazy(getReferenceSchema).optional(),
+    substitution: z.lazy(getMedicationDispense_SubstitutionSchema).optional(),
+    supportingInformation: z.lazy(getReferenceSchema).array().optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+    whenHandedOver: fhirDateTime().optional(),
+    _whenHandedOver: z.lazy(getElementSchema).optional(),
+    whenPrepared: fhirDateTime().optional(),
+    _whenPrepared: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const medication_x_Present = [
+        "medicationCodeableConcept",
+        "medicationReference",
+      ].filter((field) => record[field] !== undefined);
+      if (medication_x_Present.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "One of medicationCodeableConcept, medicationReference must be present for medication[x]",
+          path: ["medicationCodeableConcept"],
+        });
+      }
+      if (medication_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of medicationCodeableConcept, medicationReference may be present for medication[x]",
+          path: [medication_x_Present[0]],
+        });
+      }
+      const notDoneReason_x_Present = [
+        "notDoneReasonCodeableConcept",
+        "notDoneReasonReference",
+      ].filter((field) => record[field] !== undefined);
+      if (notDoneReason_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of notDoneReasonCodeableConcept, notDoneReasonReference may be present for notDoneReason[x]",
+          path: [notDoneReason_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.authorizingPrescription,
+        "authorizingPrescription",
+        ["http://hl7.org/fhir/StructureDefinition/MedicationRequest"],
+        ["MedicationRequest"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.context,
+        "context",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Encounter",
+          "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+        ],
+        ["Encounter", "EpisodeOfCare"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.destination,
+        "destination",
+        ["http://hl7.org/fhir/StructureDefinition/Location"],
+        ["Location"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.detectedIssue,
+        "detectedIssue",
+        ["http://hl7.org/fhir/StructureDefinition/DetectedIssue"],
+        ["DetectedIssue"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.eventHistory,
+        "eventHistory",
+        ["http://hl7.org/fhir/StructureDefinition/Provenance"],
+        ["Provenance"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.medicationReference,
+        "medicationReference",
+        ["http://hl7.org/fhir/StructureDefinition/Medication"],
+        ["Medication"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.notDoneReasonReference,
+        "notDoneReasonReference",
+        ["http://hl7.org/fhir/StructureDefinition/DetectedIssue"],
+        ["DetectedIssue"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.partOf,
+        "partOf",
+        ["http://hl7.org/fhir/StructureDefinition/Procedure"],
+        ["Procedure"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.receiver,
+        "receiver",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Practitioner",
+        ],
+        ["Patient", "Practitioner"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.subject,
+        "subject",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Group",
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+        ],
+        ["Group", "Patient"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.supportingInformation,
+        "supportingInformation",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const MedicationDispenseSchema =
-	MedicationDispenseSchemaInternal as z.ZodType<MedicationDispense>;
+  MedicationDispenseSchemaInternal as z.ZodType<MedicationDispense>;
