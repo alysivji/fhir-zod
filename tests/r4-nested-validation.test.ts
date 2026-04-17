@@ -1,14 +1,10 @@
 import { BundleSchema, PatientSchema } from "fhir-zod/r4";
 import { describe, expect, it } from "vitest";
 
-// Target-behavior tests for nested resource validation.
-//
-// - `Bundle_Entry.resource` and `DomainResource.contained` currently accept
-//   any `{ resourceType: string, ... }` via `.passthrough()`, so bad nested
-//   data slips through.
-// - Cases marked `it.fails` assert the desired strict behavior. They pass
-//   today only because the inner schema fails — once nested validation is
-//   implemented, flip them to plain `it(...)`.
+// Nested resource validation for `Bundle_Entry.resource` and
+// `DomainResource.contained`. The emitted schemas route these fields through
+// a lazily-resolved union over every concrete R4 resource, so both type
+// shape and value-level constraints (e.g. enum codes) are enforced.
 
 describe("Bundle entry.resource nested validation", () => {
 	it("accepts a Bundle whose entry contains a valid Patient", () => {
@@ -29,7 +25,7 @@ describe("Bundle entry.resource nested validation", () => {
 		expect(result.success).toBe(true);
 	});
 
-	it.fails(
+	it(
 		"rejects a Bundle entry whose Patient has an invalid gender code",
 		() => {
 			const result = BundleSchema.safeParse({
@@ -49,7 +45,7 @@ describe("Bundle entry.resource nested validation", () => {
 		},
 	);
 
-	it.fails(
+	it(
 		"rejects a Bundle entry whose Patient has a wrong-typed field",
 		() => {
 			const result = BundleSchema.safeParse({
@@ -69,7 +65,7 @@ describe("Bundle entry.resource nested validation", () => {
 		},
 	);
 
-	it.fails(
+	it(
 		"rejects a Bundle entry whose Patient has an unknown field",
 		() => {
 			const result = BundleSchema.safeParse({
@@ -89,7 +85,7 @@ describe("Bundle entry.resource nested validation", () => {
 		},
 	);
 
-	it.fails(
+	it(
 		"rejects a Bundle entry whose resourceType is not a known FHIR resource",
 		() => {
 			const result = BundleSchema.safeParse({
@@ -144,7 +140,7 @@ describe("Patient contained[] nested validation", () => {
 		expect(result.success).toBe(true);
 	});
 
-	it.fails(
+	it(
 		"rejects a Patient whose contained Organization has a wrong-typed field",
 		() => {
 			const result = PatientSchema.safeParse({
@@ -162,7 +158,7 @@ describe("Patient contained[] nested validation", () => {
 		},
 	);
 
-	it.fails(
+	it(
 		"rejects a Patient whose contained Patient has an invalid gender code",
 		() => {
 			const result = PatientSchema.safeParse({
@@ -180,7 +176,7 @@ describe("Patient contained[] nested validation", () => {
 		},
 	);
 
-	it.fails(
+	it(
 		"rejects a Patient whose contained resource has an unknown field",
 		() => {
 			const result = PatientSchema.safeParse({
@@ -198,7 +194,7 @@ describe("Patient contained[] nested validation", () => {
 		},
 	);
 
-	it.fails(
+	it(
 		"rejects a Patient whose contained resourceType is not a known FHIR resource",
 		() => {
 			const result = PatientSchema.safeParse({
