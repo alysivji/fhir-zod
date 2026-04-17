@@ -147,10 +147,10 @@ describeR4Spec(
 				"/** Demographics and other administrative information about an individual or animal receiving care or other health-related services. */",
 			);
 			expect(content).toContain(
-				"\t/** The date of birth for the individual. */\n\tbirthDate?: string;",
+				"  /** The date of birth for the individual. */\n  birthDate?: string;",
 			);
 			expect(content).toContain(
-				'\t/** This is a Patient resource. */\n\tresourceType: "Patient";',
+				'  /** This is a Patient resource. */\n  resourceType: "Patient";',
 			);
 		});
 
@@ -169,7 +169,7 @@ describeR4Spec(
 			const content = readFileSync(definitionPath, "utf8");
 
 			expect(content).toMatch(
-				/import \{\n\tfhirCanonical,\n\tfhirId,\n\tfhirInstant,\n\tfhirString,\n\tfhirUri,\n\} from "\.\.\/.*\/src\/shared\/fhir-primitives";/,
+				/import \{\n  fhirCanonical,\n  fhirId,\n  fhirInstant,\n  fhirString,\n  fhirUri,\n\} from "\.\.\/.*\/src\/shared\/fhir-primitives";/,
 			);
 			expect(content).toContain("fhirCanonical");
 			expect(content).toContain("fhirId");
