@@ -53,16 +53,16 @@ type PrimitiveArrayPair = {
 	valueField: string;
 };
 
-const nestedResourceHelperName = "getNestedResourceSchema";
+const fhirResourceHelperName = "getFhirResourceSchema";
 
 export function buildRuntimeSchemas(
 	definitions: Map<string, NormalizedDefinition>,
 	primitivePatterns: Map<string, string>,
-	options: { enableNestedResourceValidation?: boolean } = {},
+	options: { enableFhirResourceValidation?: boolean } = {},
 ): Record<string, z.ZodTypeAny> {
 	const runtimeSchemas: Record<string, z.ZodTypeAny> = {};
-	const enableNestedResourceValidation =
-		options.enableNestedResourceValidation ?? false;
+	const enableFhirResourceValidation =
+		options.enableFhirResourceValidation ?? false;
 
 	for (const definition of sortDefinitions(definitions.values())) {
 		const schema = z
@@ -76,7 +76,7 @@ export function buildRuntimeSchemas(
 							definitions,
 							primitivePatterns,
 							runtimeSchemas,
-							enableNestedResourceValidation,
+							enableFhirResourceValidation,
 						),
 					]),
 				),
@@ -94,7 +94,7 @@ export function buildRuntimeSchemas(
 
 export function writeNormalizedZodDefinitions(options: {
 	definitions: Map<string, NormalizedDefinition>;
-	enableNestedResourceValidation?: boolean;
+	enableFhirResourceValidation?: boolean;
 	generatedAt: string;
 	outputDir: string;
 	prune?: boolean;
@@ -154,13 +154,13 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 
 function buildNormalizedZodFiles(options: {
 	definitions: Map<string, NormalizedDefinition>;
-	enableNestedResourceValidation?: boolean;
+	enableFhirResourceValidation?: boolean;
 	generatedAt: string;
 	outputDir: string;
 	primitivePatterns: Map<string, string>;
 }): BuiltFile[] {
-	const enableNestedResourceValidation =
-		options.enableNestedResourceValidation ?? false;
+	const enableFhirResourceValidation =
+		options.enableFhirResourceValidation ?? false;
 	const builtFiles = sortDefinitions(options.definitions.values()).map(
 		(definition) => ({
 			content: emitDefinitionFile(
@@ -169,7 +169,7 @@ function buildNormalizedZodFiles(options: {
 				options.generatedAt,
 				options.primitivePatterns,
 				options.outputDir,
-				enableNestedResourceValidation,
+				enableFhirResourceValidation,
 			),
 			path: join(options.outputDir, `${definition.name}.ts`),
 		}),
@@ -179,8 +179,8 @@ function buildNormalizedZodFiles(options: {
 		sortDefinitions(options.definitions.values())[0]?.sourceMetadata
 			.releaseLabel ?? null;
 
-	const nestedResourceRegistrationLines = enableNestedResourceValidation
-		? emitNestedResourceRegistrationLines(options.definitions)
+	const fhirResourceRegistrationLines = enableFhirResourceValidation
+		? emitFhirResourceRegistrationLines(options.definitions)
 		: [];
 
 	builtFiles.push({
@@ -189,24 +189,30 @@ function buildNormalizedZodFiles(options: {
 				generatedAt: options.generatedAt,
 				releaseLabel,
 			}),
+			...(enableFhirResourceValidation
+				? [
+						'import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";',
+						"export type FhirResource = FhirResourceType;",
+					]
+				: []),
 			...sortDefinitions(options.definitions.values()).flatMap((definition) => [
 				`export type { ${definition.name} } from "./${definition.name}";`,
 				`export { ${schemaExportName(definition.name)} } from "./${definition.name}";`,
 			]),
-			...nestedResourceRegistrationLines,
+			...fhirResourceRegistrationLines,
 			"",
 		].join("\n"),
 		path: join(options.outputDir, "index.ts"),
 	});
 
-	if (enableNestedResourceValidation) {
+	if (enableFhirResourceValidation) {
 		builtFiles.push({
-			content: emitNestedResourceSchemaFile({
+			content: emitFhirResourceSchemaFile({
 				definitions: options.definitions,
 				generatedAt: options.generatedAt,
 				releaseLabel,
 			}),
-			path: join(options.outputDir, "_nestedResourceSchema.ts"),
+			path: join(options.outputDir, "_fhirResourceSchema.ts"),
 		});
 	}
 
@@ -221,20 +227,20 @@ function collectConcreteResourceDefinitions(
 	);
 }
 
-function emitNestedResourceRegistrationLines(
+function emitFhirResourceRegistrationLines(
 	definitions: Map<string, NormalizedDefinition>,
 ): string[] {
 	const resources = collectConcreteResourceDefinitions(definitions);
 
 	return [
 		"",
-		'import { _registerNestedResourceUnion } from "./_nestedResourceSchema";',
+		'import { _registerFhirResourceSchemas } from "./_fhirResourceSchema";',
 		...resources.map(
 			(resource) =>
 				`import { ${schemaInternalName(resource.name)} } from "./${resource.name}";`,
 		),
 		"",
-		"_registerNestedResourceUnion({",
+		"_registerFhirResourceSchemas({",
 		...resources.map(
 			(resource) =>
 				`\t${JSON.stringify(resource.resourceTypeLiteral)}: ${schemaInternalName(resource.name)},`,
@@ -243,7 +249,7 @@ function emitNestedResourceRegistrationLines(
 	];
 }
 
-function emitNestedResourceSchemaFile(options: {
+function emitFhirResourceSchemaFile(options: {
 	definitions: Map<string, NormalizedDefinition>;
 	generatedAt: string;
 	releaseLabel: string | null;
@@ -259,13 +265,12 @@ function emitNestedResourceSchemaFile(options: {
 		'import * as z from "zod";',
 		...names.map((name) => `import type { ${name} } from "./${name}";`),
 		"",
-		"/** @internal */",
-		`export type NestedResource = ${names.join(" | ")};`,
+		`export type FhirResource = ${names.join(" | ")};`,
 		"",
 		"const registry = new Map<string, z.ZodTypeAny>();",
 		"",
 		"/** @internal */",
-		"export function _registerNestedResourceUnion(",
+		"export function _registerFhirResourceSchemas(",
 		"\tentries: Readonly<Record<string, z.ZodTypeAny>>,",
 		"): void {",
 		"\tfor (const [resourceType, schema] of Object.entries(entries)) {",
@@ -274,8 +279,8 @@ function emitNestedResourceSchemaFile(options: {
 		"}",
 		"",
 		"/** @internal */",
-		"export const NestedResourceSchemaInternal = z.lazy(",
-		"\t(): z.ZodType<NestedResource> =>",
+		"export const FhirResourceSchemaInternal = z.lazy(",
+		"\t(): z.ZodType<FhirResource> =>",
 		"\t\tz",
 		"\t\t\t.any()",
 		"\t\t\t.superRefine((value, ctx) => {",
@@ -311,7 +316,7 @@ function emitNestedResourceSchemaFile(options: {
 		"\t\t\t\t\t\tctx.addIssue(issue as never);",
 		"\t\t\t\t\t}",
 		"\t\t\t\t}",
-		"\t\t\t}) as unknown as z.ZodType<NestedResource>,",
+		"\t\t\t}) as unknown as z.ZodType<FhirResource>,",
 		");",
 		"",
 	].join("\n");
@@ -323,7 +328,7 @@ function emitDefinitionFile(
 	generatedAt: string,
 	primitivePatterns: Map<string, string>,
 	outputDir: string,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string {
 	const modelBaseName = resolveModelBaseName(definition, definitions);
 	const runtimeShouldExtend = shouldExtendDefinition(definition, definitions);
@@ -333,8 +338,8 @@ function emitDefinitionFile(
 	const runtimeProperties = runtimeShouldExtend
 		? getDirectProperties(definition, definitions)
 		: definition.properties;
-	const usesNestedResource =
-		enableNestedResourceValidation &&
+	const usesFhirResource =
+		enableFhirResourceValidation &&
 		[...modelProperties, ...runtimeProperties].some(
 			(property) => property.typeRef === "Resource",
 		);
@@ -365,7 +370,7 @@ function emitDefinitionFile(
 			property.typeRef &&
 			definitions.has(property.typeRef) &&
 			property.typeRef !== definition.name &&
-			!(usesNestedResource && property.typeRef === "Resource")
+			!(usesFhirResource && property.typeRef === "Resource")
 		) {
 			typeImports.add(property.typeRef);
 		}
@@ -435,10 +440,10 @@ function emitDefinitionFile(
 			.map(
 				(name) => `import { ${schemaInternalName(name)} } from "./${name}";`,
 			),
-		...(usesNestedResource
+		...(usesFhirResource
 			? [
-					'import type { NestedResource } from "./_nestedResourceSchema";',
-					'import { NestedResourceSchemaInternal } from "./_nestedResourceSchema";',
+					'import type { FhirResource } from "./_fhirResourceSchema";',
+					'import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";',
 				]
 			: []),
 		"",
@@ -446,16 +451,16 @@ function emitDefinitionFile(
 			definition,
 			definitions,
 			modelBaseName,
-			enableNestedResourceValidation,
+			enableFhirResourceValidation,
 		),
 		"",
 		...emitLazySchemaHelpers(lazySchemaHelpers),
-		...(usesNestedResource
+		...(usesFhirResource
 			? [
-					`const ${nestedResourceHelperName} = (): z.ZodType<NestedResource> => NestedResourceSchemaInternal as z.ZodType<NestedResource>;`,
+					`const ${fhirResourceHelperName} = (): z.ZodType<FhirResource> => FhirResourceSchemaInternal as z.ZodType<FhirResource>;`,
 				]
 			: []),
-		...(lazySchemaHelpers.size > 0 || usesNestedResource ? [""] : []),
+		...(lazySchemaHelpers.size > 0 || usesFhirResource ? [""] : []),
 		...emitSchemaDeclaration(definition, definitions, runtimeShouldExtend),
 		...emitDefinitionExpression(
 			definition,
@@ -463,7 +468,7 @@ function emitDefinitionFile(
 			definitions,
 			primitivePatterns,
 			refinementLines.length > 0,
-			enableNestedResourceValidation,
+			enableFhirResourceValidation,
 		),
 		...refinementLines,
 		...(refinementLines.length > 0 ? ["\t;"] : []),
@@ -500,7 +505,7 @@ function emitModelDeclaration(
 	definition: NormalizedDefinition,
 	definitions: Map<string, NormalizedDefinition>,
 	modelBaseName: string | null,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string[] {
 	const properties = modelBaseName
 		? getDirectProperties(definition, definitions)
@@ -524,7 +529,7 @@ function emitModelDeclaration(
 				definition,
 				property,
 				definitions,
-				enableNestedResourceValidation,
+				enableFhirResourceValidation,
 			),
 		),
 		"}",
@@ -535,7 +540,7 @@ function emitModelProperty(
 	definition: NormalizedDefinition,
 	property: NormalizedProperty,
 	definitions: Map<string, NormalizedDefinition>,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string[] {
 	const propertyName = emitTypePropertyName(property.jsonName);
 	const optionalSuffix = isOptionalModelProperty(property, definitions)
@@ -545,7 +550,7 @@ function emitModelProperty(
 		definition,
 		property,
 		definitions,
-		enableNestedResourceValidation,
+		enableFhirResourceValidation,
 	);
 
 	return [
@@ -574,13 +579,13 @@ function emitModelPropertyType(
 	definition: NormalizedDefinition,
 	property: NormalizedProperty,
 	definitions: Map<string, NormalizedDefinition>,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string {
 	let baseType = emitModelBaseType(
 		definition,
 		property,
 		definitions,
-		enableNestedResourceValidation,
+		enableFhirResourceValidation,
 	);
 
 	if (property.isArray) {
@@ -598,7 +603,7 @@ function emitModelBaseType(
 	definition: NormalizedDefinition,
 	property: NormalizedProperty,
 	definitions: Map<string, NormalizedDefinition>,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string {
 	if (
 		property.jsonName === "resourceType" &&
@@ -607,8 +612,8 @@ function emitModelBaseType(
 		return JSON.stringify(definition.resourceTypeLiteral);
 	}
 
-	if (enableNestedResourceValidation && property.typeRef === "Resource") {
-		return "NestedResource";
+	if (enableFhirResourceValidation && property.typeRef === "Resource") {
+		return "FhirResource";
 	}
 
 	if (property.typeRef && definitions.has(property.typeRef)) {
@@ -739,7 +744,7 @@ function emitDefinitionExpression(
 	definitions: Map<string, NormalizedDefinition>,
 	primitivePatterns: Map<string, string>,
 	hasRefinements: boolean,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string[] {
 	return [
 		...directProperties.map(
@@ -749,7 +754,7 @@ function emitDefinitionExpression(
 					property,
 					definitions,
 					primitivePatterns,
-					enableNestedResourceValidation,
+					enableFhirResourceValidation,
 				)},`,
 		),
 		hasRefinements ? "\t})" : "}).strict();",
@@ -841,14 +846,14 @@ function emitPropertyExpression(
 	property: NormalizedDefinition["properties"][number],
 	definitions: Map<string, NormalizedDefinition>,
 	primitivePatterns: Map<string, string>,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string {
 	let baseExpression = emitBaseExpression(
 		definition,
 		property,
 		definitions,
 		primitivePatterns,
-		enableNestedResourceValidation,
+		enableFhirResourceValidation,
 	);
 
 	if (property.isArray) {
@@ -871,7 +876,7 @@ function emitBaseExpression(
 	property: NormalizedDefinition["properties"][number],
 	definitions: Map<string, NormalizedDefinition>,
 	primitivePatterns: Map<string, string>,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): string {
 	if (
 		property.jsonName === "resourceType" &&
@@ -881,8 +886,8 @@ function emitBaseExpression(
 	}
 
 	if (property.typeRef === "Resource") {
-		if (enableNestedResourceValidation) {
-			return `z.lazy(${nestedResourceHelperName})`;
+		if (enableFhirResourceValidation) {
+			return `z.lazy(${fhirResourceHelperName})`;
 		}
 		return "z.object({ resourceType: z.string() }).passthrough()";
 	}
@@ -910,7 +915,7 @@ function buildRuntimePropertySchema(
 	definitions: Map<string, NormalizedDefinition>,
 	primitivePatterns: Map<string, string>,
 	runtimeSchemas: Record<string, z.ZodTypeAny>,
-	enableNestedResourceValidation: boolean,
+	enableFhirResourceValidation: boolean,
 ): z.ZodTypeAny {
 	let baseSchema: z.ZodTypeAny;
 
@@ -920,7 +925,7 @@ function buildRuntimePropertySchema(
 	) {
 		baseSchema = z.literal(definition.resourceTypeLiteral);
 	} else if (property.typeRef === "Resource") {
-		if (enableNestedResourceValidation) {
+		if (enableFhirResourceValidation) {
 			baseSchema = z.lazy(() => {
 				const resourceSchemasByType = new Map<string, z.ZodTypeAny>();
 				for (const resource of collectConcreteResourceDefinitions(

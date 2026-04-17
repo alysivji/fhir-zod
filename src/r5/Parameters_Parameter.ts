@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Parameters
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T22:15:26.099Z
 
 import * as z from "zod";
 import {
@@ -20,6 +20,8 @@ import {
 	fhirUrl,
 	fhirUuid,
 } from "../shared/fhir-primitives";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
 import type { Age } from "./Age";
@@ -82,7 +84,6 @@ import type { Reference } from "./Reference";
 import { ReferenceSchemaInternal } from "./Reference";
 import type { RelatedArtifact } from "./RelatedArtifact";
 import { RelatedArtifactSchemaInternal } from "./RelatedArtifact";
-import type { Resource } from "./Resource";
 import type { SampledData } from "./SampledData";
 import { SampledDataSchemaInternal } from "./SampledData";
 import type { Signature } from "./Signature";
@@ -103,7 +104,7 @@ export interface Parameters_Parameter extends BackboneElement {
 	/** A named part of a multi-part parameter. */
 	part?: Array<unknown>;
 	/** Conveys the content if the parameter is a whole resource. */
-	resource?: Resource;
+	resource?: FhirResource;
 	/** Conveys the content if the parameter is a data type. */
 	valueAddress?: Address;
 	/** Conveys the content if the parameter is a data type. */
@@ -323,6 +324,8 @@ const getTriggerDefinitionSchema = (): z.ZodType<TriggerDefinition> =>
 	TriggerDefinitionSchemaInternal as z.ZodType<TriggerDefinition>;
 const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 	UsageContextSchemaInternal as z.ZodType<UsageContext>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const Parameters_ParameterSchemaInternal =
@@ -330,7 +333,7 @@ export const Parameters_ParameterSchemaInternal =
 		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		part: z.unknown().array().optional(),
-		resource: z.object({ resourceType: z.string() }).passthrough().optional(),
+		resource: z.lazy(getFhirResourceSchema).optional(),
 		valueAddress: z.lazy(getAddressSchema).optional(),
 		valueAge: z.lazy(getAgeSchema).optional(),
 		valueAnnotation: z.lazy(getAnnotationSchema).optional(),

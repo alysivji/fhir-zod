@@ -42,6 +42,7 @@ describe("Zod emitter", () => {
 
 		const files = writeNormalizedZodDefinitions({
 			definitions,
+			enableFhirResourceValidation: true,
 			generatedAt: "2026-04-16T00:00:00.000Z",
 			outputDir,
 			primitivePatterns,
@@ -54,6 +55,7 @@ describe("Zod emitter", () => {
 				"CodeableConcept.ts",
 				"DomainResource.ts",
 				"Element.ts",
+				"_fhirResourceSchema.ts",
 				"Observation.ts",
 				"Patient.ts",
 				"Patient_Contact.ts",
@@ -65,12 +67,30 @@ describe("Zod emitter", () => {
 		expect(existsSync(stalePath)).toBe(false);
 
 		const index = readFileSync(join(outputDir, "index.ts"), "utf8");
+		const fhirResource = readFileSync(
+			join(outputDir, "_fhirResourceSchema.ts"),
+			"utf8",
+		);
+		const domainResource = readFileSync(
+			join(outputDir, "DomainResource.ts"),
+			"utf8",
+		);
 		const patient = readFileSync(join(outputDir, "Patient.ts"), "utf8");
 		const observation = readFileSync(join(outputDir, "Observation.ts"), "utf8");
 		const contact = readFileSync(join(outputDir, "Patient_Contact.ts"), "utf8");
 
 		expect(index).toContain('export type { Patient } from "./Patient";');
 		expect(index).toContain('export { PatientSchema } from "./Patient";');
+		expect(index).toContain(
+			'import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";',
+		);
+		expect(index).toContain("export type FhirResource = FhirResourceType;");
+		expect(index).toContain("_registerFhirResourceSchemas");
+		expect(fhirResource).toContain("export type FhirResource =");
+		expect(fhirResource).toContain("export const FhirResourceSchemaInternal");
+		expect(fhirResource).not.toContain(["Nested", "Resource"].join(""));
+		expect(domainResource).toContain("contained?: Array<FhirResource>;");
+		expect(domainResource).toContain("z.lazy(getFhirResourceSchema)");
 		expect(patient).toContain(
 			"export interface Patient extends DomainResource",
 		);

@@ -1,12 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T19:50:51.863Z
+// Last generated: 2026-04-17T22:15:02.446Z
 
 import * as z from "zod";
 import { fhirUri } from "../shared/fhir-primitives";
-import type { NestedResource } from "./_nestedResourceSchema";
-import { NestedResourceSchemaInternal } from "./_nestedResourceSchema";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Bundle_Entry_Request } from "./Bundle_Entry_Request";
@@ -33,7 +33,7 @@ export interface Bundle_Entry extends BackboneElement {
 	/** Additional information about how this entry should be processed as part of a transaction or batch.  For history, it shows how the entry was processed to create the version contained in the entry. */
 	request?: Bundle_Entry_Request;
 	/** The Resource for the entry. The purpose/meaning of the resource is determined by the Bundle.type. */
-	resource?: NestedResource;
+	resource?: FhirResource;
 	/** Indicates the results of processing the corresponding 'request' entry in the batch or transaction being responded to or what the results of an operation where when returning history. */
 	response?: Bundle_Entry_Response;
 	/** Information about the search process that lead to the creation of this entry. */
@@ -48,8 +48,8 @@ const getBundle_Entry_SearchSchema = (): z.ZodType<Bundle_Entry_Search> =>
 	Bundle_Entry_SearchSchemaInternal as z.ZodType<Bundle_Entry_Search>;
 const getElementSchema = (): z.ZodType<Element> =>
 	ElementSchemaInternal as z.ZodType<Element>;
-const getNestedResourceSchema = (): z.ZodType<NestedResource> =>
-	NestedResourceSchemaInternal as z.ZodType<NestedResource>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const Bundle_EntrySchemaInternal = BackboneElementSchemaInternal.extend({
@@ -57,7 +57,7 @@ export const Bundle_EntrySchemaInternal = BackboneElementSchemaInternal.extend({
 	_fullUrl: z.lazy(getElementSchema).optional(),
 	link: z.unknown().array().optional(),
 	request: z.lazy(getBundle_Entry_RequestSchema).optional(),
-	resource: z.lazy(getNestedResourceSchema).optional(),
+	resource: z.lazy(getFhirResourceSchema).optional(),
 	response: z.lazy(getBundle_Entry_ResponseSchema).optional(),
 	search: z.lazy(getBundle_Entry_SearchSchema).optional(),
 }).strict();

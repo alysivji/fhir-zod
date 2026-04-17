@@ -72,7 +72,12 @@ describe("package tree shaking", () => {
 		const { distDir, packageRoot, rootPackageJson } =
 			await buildPackageFixture();
 		try {
-			expect(rootPackageJson.sideEffects).toBe(false);
+			expect(rootPackageJson.sideEffects).toEqual([
+				"./dist/r4/index.js",
+				"./dist/r4b/index.js",
+				"./dist/r5/index.js",
+				"./dist/stu3/index.js",
+			]);
 
 			const r4Index = join(distDir, "r4/index.js");
 			const r4Patient = join(distDir, "r4/Patient.js");
@@ -147,7 +152,7 @@ describe("package tree shaking", () => {
 			expect(bundledCode).toContain("PatientSchemaInternal");
 			expect(bundledCode).toContain("ObservationSchemaInternal");
 			expect(bundledCode).toContain("AccountSchemaInternal");
-			expect(bundledCode).toContain("_registerNestedResourceUnion");
+			expect(bundledCode).toContain("_registerFhirResourceSchemas");
 		} finally {
 			rmSync(packageRoot, { force: true, recursive: true });
 		}

@@ -1,10 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-17T22:15:23.934Z
 
 import * as z from "zod";
 import { fhirUri } from "../shared/fhir-primitives";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Bundle_Entry_Request } from "./Bundle_Entry_Request";
@@ -15,7 +17,6 @@ import type { Bundle_Entry_Search } from "./Bundle_Entry_Search";
 import { Bundle_Entry_SearchSchemaInternal } from "./Bundle_Entry_Search";
 import type { Element } from "./Element";
 import { ElementSchemaInternal } from "./Element";
-import type { Resource } from "./Resource";
 
 /** An entry in a bundle resource - will either contain a resource or information about a resource (transactions and history only). */
 export interface Bundle_Entry extends BackboneElement {
@@ -32,7 +33,7 @@ export interface Bundle_Entry extends BackboneElement {
 	/** Additional information about how this entry should be processed as part of a transaction or batch.  For history, it shows how the entry was processed to create the version contained in the entry. */
 	request?: Bundle_Entry_Request;
 	/** The Resource for the entry. The purpose/meaning of the resource is determined by the Bundle.type. */
-	resource?: Resource;
+	resource?: FhirResource;
 	/** Indicates the results of processing the corresponding 'request' entry in the batch or transaction being responded to or what the results of an operation where when returning history. */
 	response?: Bundle_Entry_Response;
 	/** Information about the search process that lead to the creation of this entry. */
@@ -47,6 +48,8 @@ const getBundle_Entry_SearchSchema = (): z.ZodType<Bundle_Entry_Search> =>
 	Bundle_Entry_SearchSchemaInternal as z.ZodType<Bundle_Entry_Search>;
 const getElementSchema = (): z.ZodType<Element> =>
 	ElementSchemaInternal as z.ZodType<Element>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const Bundle_EntrySchemaInternal = BackboneElementSchemaInternal.extend({
@@ -54,7 +57,7 @@ export const Bundle_EntrySchemaInternal = BackboneElementSchemaInternal.extend({
 	_fullUrl: z.lazy(getElementSchema).optional(),
 	link: z.unknown().array().optional(),
 	request: z.lazy(getBundle_Entry_RequestSchema).optional(),
-	resource: z.object({ resourceType: z.string() }).passthrough().optional(),
+	resource: z.lazy(getFhirResourceSchema).optional(),
 	response: z.lazy(getBundle_Entry_ResponseSchema).optional(),
 	search: z.lazy(getBundle_Entry_SearchSchema).optional(),
 }).strict();

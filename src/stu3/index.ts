@@ -1,6 +1,8 @@
 // Release: STU3
-// Last generated: 2026-04-15T00:34:07.547Z
+// Last generated: 2026-04-17T22:16:55.737Z
 
+import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";
+export type FhirResource = FhirResourceType;
 export type { Account } from "./Account";
 export { AccountSchema } from "./Account";
 export type { Account_Coverage } from "./Account_Coverage";
@@ -979,3 +981,242 @@ export type { VisionPrescription } from "./VisionPrescription";
 export { VisionPrescriptionSchema } from "./VisionPrescription";
 export type { VisionPrescription_Dispense } from "./VisionPrescription_Dispense";
 export { VisionPrescription_DispenseSchema } from "./VisionPrescription_Dispense";
+
+import { _registerFhirResourceSchemas } from "./_fhirResourceSchema";
+import { AccountSchemaInternal } from "./Account";
+import { ActivityDefinitionSchemaInternal } from "./ActivityDefinition";
+import { AdverseEventSchemaInternal } from "./AdverseEvent";
+import { AllergyIntoleranceSchemaInternal } from "./AllergyIntolerance";
+import { AppointmentSchemaInternal } from "./Appointment";
+import { AppointmentResponseSchemaInternal } from "./AppointmentResponse";
+import { AuditEventSchemaInternal } from "./AuditEvent";
+import { BasicSchemaInternal } from "./Basic";
+import { BinarySchemaInternal } from "./Binary";
+import { BodySiteSchemaInternal } from "./BodySite";
+import { BundleSchemaInternal } from "./Bundle";
+import { CapabilityStatementSchemaInternal } from "./CapabilityStatement";
+import { CarePlanSchemaInternal } from "./CarePlan";
+import { CareTeamSchemaInternal } from "./CareTeam";
+import { ChargeItemSchemaInternal } from "./ChargeItem";
+import { ClaimSchemaInternal } from "./Claim";
+import { ClaimResponseSchemaInternal } from "./ClaimResponse";
+import { ClinicalImpressionSchemaInternal } from "./ClinicalImpression";
+import { CodeSystemSchemaInternal } from "./CodeSystem";
+import { CommunicationSchemaInternal } from "./Communication";
+import { CommunicationRequestSchemaInternal } from "./CommunicationRequest";
+import { CompartmentDefinitionSchemaInternal } from "./CompartmentDefinition";
+import { CompositionSchemaInternal } from "./Composition";
+import { ConceptMapSchemaInternal } from "./ConceptMap";
+import { ConditionSchemaInternal } from "./Condition";
+import { ConsentSchemaInternal } from "./Consent";
+import { ContractSchemaInternal } from "./Contract";
+import { CoverageSchemaInternal } from "./Coverage";
+import { DataElementSchemaInternal } from "./DataElement";
+import { DetectedIssueSchemaInternal } from "./DetectedIssue";
+import { DeviceSchemaInternal } from "./Device";
+import { DeviceComponentSchemaInternal } from "./DeviceComponent";
+import { DeviceMetricSchemaInternal } from "./DeviceMetric";
+import { DeviceRequestSchemaInternal } from "./DeviceRequest";
+import { DeviceUseStatementSchemaInternal } from "./DeviceUseStatement";
+import { DiagnosticReportSchemaInternal } from "./DiagnosticReport";
+import { DocumentManifestSchemaInternal } from "./DocumentManifest";
+import { DocumentReferenceSchemaInternal } from "./DocumentReference";
+import { EligibilityRequestSchemaInternal } from "./EligibilityRequest";
+import { EligibilityResponseSchemaInternal } from "./EligibilityResponse";
+import { EncounterSchemaInternal } from "./Encounter";
+import { EndpointSchemaInternal } from "./Endpoint";
+import { EnrollmentRequestSchemaInternal } from "./EnrollmentRequest";
+import { EnrollmentResponseSchemaInternal } from "./EnrollmentResponse";
+import { EpisodeOfCareSchemaInternal } from "./EpisodeOfCare";
+import { ExpansionProfileSchemaInternal } from "./ExpansionProfile";
+import { ExplanationOfBenefitSchemaInternal } from "./ExplanationOfBenefit";
+import { FamilyMemberHistorySchemaInternal } from "./FamilyMemberHistory";
+import { FlagSchemaInternal } from "./Flag";
+import { GoalSchemaInternal } from "./Goal";
+import { GraphDefinitionSchemaInternal } from "./GraphDefinition";
+import { GroupSchemaInternal } from "./Group";
+import { GuidanceResponseSchemaInternal } from "./GuidanceResponse";
+import { HealthcareServiceSchemaInternal } from "./HealthcareService";
+import { ImagingManifestSchemaInternal } from "./ImagingManifest";
+import { ImagingStudySchemaInternal } from "./ImagingStudy";
+import { ImmunizationSchemaInternal } from "./Immunization";
+import { ImmunizationRecommendationSchemaInternal } from "./ImmunizationRecommendation";
+import { ImplementationGuideSchemaInternal } from "./ImplementationGuide";
+import { LibrarySchemaInternal } from "./Library";
+import { LinkageSchemaInternal } from "./Linkage";
+import { ListSchemaInternal } from "./List";
+import { LocationSchemaInternal } from "./Location";
+import { MeasureSchemaInternal } from "./Measure";
+import { MeasureReportSchemaInternal } from "./MeasureReport";
+import { MediaSchemaInternal } from "./Media";
+import { MedicationSchemaInternal } from "./Medication";
+import { MedicationAdministrationSchemaInternal } from "./MedicationAdministration";
+import { MedicationDispenseSchemaInternal } from "./MedicationDispense";
+import { MedicationRequestSchemaInternal } from "./MedicationRequest";
+import { MedicationStatementSchemaInternal } from "./MedicationStatement";
+import { MessageDefinitionSchemaInternal } from "./MessageDefinition";
+import { MessageHeaderSchemaInternal } from "./MessageHeader";
+import { NamingSystemSchemaInternal } from "./NamingSystem";
+import { NutritionOrderSchemaInternal } from "./NutritionOrder";
+import { ObservationSchemaInternal } from "./Observation";
+import { OperationDefinitionSchemaInternal } from "./OperationDefinition";
+import { OperationOutcomeSchemaInternal } from "./OperationOutcome";
+import { OrganizationSchemaInternal } from "./Organization";
+import { ParametersSchemaInternal } from "./Parameters";
+import { PatientSchemaInternal } from "./Patient";
+import { PaymentNoticeSchemaInternal } from "./PaymentNotice";
+import { PaymentReconciliationSchemaInternal } from "./PaymentReconciliation";
+import { PersonSchemaInternal } from "./Person";
+import { PlanDefinitionSchemaInternal } from "./PlanDefinition";
+import { PractitionerSchemaInternal } from "./Practitioner";
+import { PractitionerRoleSchemaInternal } from "./PractitionerRole";
+import { ProcedureSchemaInternal } from "./Procedure";
+import { ProcedureRequestSchemaInternal } from "./ProcedureRequest";
+import { ProcessRequestSchemaInternal } from "./ProcessRequest";
+import { ProcessResponseSchemaInternal } from "./ProcessResponse";
+import { ProvenanceSchemaInternal } from "./Provenance";
+import { QuestionnaireSchemaInternal } from "./Questionnaire";
+import { QuestionnaireResponseSchemaInternal } from "./QuestionnaireResponse";
+import { ReferralRequestSchemaInternal } from "./ReferralRequest";
+import { RelatedPersonSchemaInternal } from "./RelatedPerson";
+import { RequestGroupSchemaInternal } from "./RequestGroup";
+import { ResearchStudySchemaInternal } from "./ResearchStudy";
+import { ResearchSubjectSchemaInternal } from "./ResearchSubject";
+import { RiskAssessmentSchemaInternal } from "./RiskAssessment";
+import { ScheduleSchemaInternal } from "./Schedule";
+import { SearchParameterSchemaInternal } from "./SearchParameter";
+import { SequenceSchemaInternal } from "./Sequence";
+import { ServiceDefinitionSchemaInternal } from "./ServiceDefinition";
+import { SlotSchemaInternal } from "./Slot";
+import { SpecimenSchemaInternal } from "./Specimen";
+import { StructureDefinitionSchemaInternal } from "./StructureDefinition";
+import { StructureMapSchemaInternal } from "./StructureMap";
+import { SubscriptionSchemaInternal } from "./Subscription";
+import { SubstanceSchemaInternal } from "./Substance";
+import { SupplyDeliverySchemaInternal } from "./SupplyDelivery";
+import { SupplyRequestSchemaInternal } from "./SupplyRequest";
+import { TaskSchemaInternal } from "./Task";
+import { TestReportSchemaInternal } from "./TestReport";
+import { TestScriptSchemaInternal } from "./TestScript";
+import { ValueSetSchemaInternal } from "./ValueSet";
+import { VisionPrescriptionSchemaInternal } from "./VisionPrescription";
+
+_registerFhirResourceSchemas({
+	Account: AccountSchemaInternal,
+	ActivityDefinition: ActivityDefinitionSchemaInternal,
+	AdverseEvent: AdverseEventSchemaInternal,
+	AllergyIntolerance: AllergyIntoleranceSchemaInternal,
+	Appointment: AppointmentSchemaInternal,
+	AppointmentResponse: AppointmentResponseSchemaInternal,
+	AuditEvent: AuditEventSchemaInternal,
+	Basic: BasicSchemaInternal,
+	Binary: BinarySchemaInternal,
+	BodySite: BodySiteSchemaInternal,
+	Bundle: BundleSchemaInternal,
+	CapabilityStatement: CapabilityStatementSchemaInternal,
+	CarePlan: CarePlanSchemaInternal,
+	CareTeam: CareTeamSchemaInternal,
+	ChargeItem: ChargeItemSchemaInternal,
+	Claim: ClaimSchemaInternal,
+	ClaimResponse: ClaimResponseSchemaInternal,
+	ClinicalImpression: ClinicalImpressionSchemaInternal,
+	CodeSystem: CodeSystemSchemaInternal,
+	Communication: CommunicationSchemaInternal,
+	CommunicationRequest: CommunicationRequestSchemaInternal,
+	CompartmentDefinition: CompartmentDefinitionSchemaInternal,
+	Composition: CompositionSchemaInternal,
+	ConceptMap: ConceptMapSchemaInternal,
+	Condition: ConditionSchemaInternal,
+	Consent: ConsentSchemaInternal,
+	Contract: ContractSchemaInternal,
+	Coverage: CoverageSchemaInternal,
+	DataElement: DataElementSchemaInternal,
+	DetectedIssue: DetectedIssueSchemaInternal,
+	Device: DeviceSchemaInternal,
+	DeviceComponent: DeviceComponentSchemaInternal,
+	DeviceMetric: DeviceMetricSchemaInternal,
+	DeviceRequest: DeviceRequestSchemaInternal,
+	DeviceUseStatement: DeviceUseStatementSchemaInternal,
+	DiagnosticReport: DiagnosticReportSchemaInternal,
+	DocumentManifest: DocumentManifestSchemaInternal,
+	DocumentReference: DocumentReferenceSchemaInternal,
+	EligibilityRequest: EligibilityRequestSchemaInternal,
+	EligibilityResponse: EligibilityResponseSchemaInternal,
+	Encounter: EncounterSchemaInternal,
+	Endpoint: EndpointSchemaInternal,
+	EnrollmentRequest: EnrollmentRequestSchemaInternal,
+	EnrollmentResponse: EnrollmentResponseSchemaInternal,
+	EpisodeOfCare: EpisodeOfCareSchemaInternal,
+	ExpansionProfile: ExpansionProfileSchemaInternal,
+	ExplanationOfBenefit: ExplanationOfBenefitSchemaInternal,
+	FamilyMemberHistory: FamilyMemberHistorySchemaInternal,
+	Flag: FlagSchemaInternal,
+	Goal: GoalSchemaInternal,
+	GraphDefinition: GraphDefinitionSchemaInternal,
+	Group: GroupSchemaInternal,
+	GuidanceResponse: GuidanceResponseSchemaInternal,
+	HealthcareService: HealthcareServiceSchemaInternal,
+	ImagingManifest: ImagingManifestSchemaInternal,
+	ImagingStudy: ImagingStudySchemaInternal,
+	Immunization: ImmunizationSchemaInternal,
+	ImmunizationRecommendation: ImmunizationRecommendationSchemaInternal,
+	ImplementationGuide: ImplementationGuideSchemaInternal,
+	Library: LibrarySchemaInternal,
+	Linkage: LinkageSchemaInternal,
+	List: ListSchemaInternal,
+	Location: LocationSchemaInternal,
+	Measure: MeasureSchemaInternal,
+	MeasureReport: MeasureReportSchemaInternal,
+	Media: MediaSchemaInternal,
+	Medication: MedicationSchemaInternal,
+	MedicationAdministration: MedicationAdministrationSchemaInternal,
+	MedicationDispense: MedicationDispenseSchemaInternal,
+	MedicationRequest: MedicationRequestSchemaInternal,
+	MedicationStatement: MedicationStatementSchemaInternal,
+	MessageDefinition: MessageDefinitionSchemaInternal,
+	MessageHeader: MessageHeaderSchemaInternal,
+	NamingSystem: NamingSystemSchemaInternal,
+	NutritionOrder: NutritionOrderSchemaInternal,
+	Observation: ObservationSchemaInternal,
+	OperationDefinition: OperationDefinitionSchemaInternal,
+	OperationOutcome: OperationOutcomeSchemaInternal,
+	Organization: OrganizationSchemaInternal,
+	Parameters: ParametersSchemaInternal,
+	Patient: PatientSchemaInternal,
+	PaymentNotice: PaymentNoticeSchemaInternal,
+	PaymentReconciliation: PaymentReconciliationSchemaInternal,
+	Person: PersonSchemaInternal,
+	PlanDefinition: PlanDefinitionSchemaInternal,
+	Practitioner: PractitionerSchemaInternal,
+	PractitionerRole: PractitionerRoleSchemaInternal,
+	Procedure: ProcedureSchemaInternal,
+	ProcedureRequest: ProcedureRequestSchemaInternal,
+	ProcessRequest: ProcessRequestSchemaInternal,
+	ProcessResponse: ProcessResponseSchemaInternal,
+	Provenance: ProvenanceSchemaInternal,
+	Questionnaire: QuestionnaireSchemaInternal,
+	QuestionnaireResponse: QuestionnaireResponseSchemaInternal,
+	ReferralRequest: ReferralRequestSchemaInternal,
+	RelatedPerson: RelatedPersonSchemaInternal,
+	RequestGroup: RequestGroupSchemaInternal,
+	ResearchStudy: ResearchStudySchemaInternal,
+	ResearchSubject: ResearchSubjectSchemaInternal,
+	RiskAssessment: RiskAssessmentSchemaInternal,
+	Schedule: ScheduleSchemaInternal,
+	SearchParameter: SearchParameterSchemaInternal,
+	Sequence: SequenceSchemaInternal,
+	ServiceDefinition: ServiceDefinitionSchemaInternal,
+	Slot: SlotSchemaInternal,
+	Specimen: SpecimenSchemaInternal,
+	StructureDefinition: StructureDefinitionSchemaInternal,
+	StructureMap: StructureMapSchemaInternal,
+	Subscription: SubscriptionSchemaInternal,
+	Substance: SubstanceSchemaInternal,
+	SupplyDelivery: SupplyDeliverySchemaInternal,
+	SupplyRequest: SupplyRequestSchemaInternal,
+	Task: TaskSchemaInternal,
+	TestReport: TestReportSchemaInternal,
+	TestScript: TestScriptSchemaInternal,
+	ValueSet: ValueSetSchemaInternal,
+	VisionPrescription: VisionPrescriptionSchemaInternal,
+});

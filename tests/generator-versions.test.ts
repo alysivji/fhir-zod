@@ -191,8 +191,12 @@ describe("FHIR version registry", () => {
 		expect(release.capturedScopes).toEqual([["Element", "Patient"]]);
 		expect(result.files.map((file) => file.split("/").at(-1)).sort()).toEqual([
 			"Patient.ts",
+			"_fhirResourceSchema.ts",
 			"index.ts",
 		]);
+		expect(readFileSync(join(outputDir, "index.ts"), "utf8")).toContain(
+			"export type FhirResource",
+		);
 		expect(readFileSync(join(outputDir, "Patient.ts"), "utf8")).toContain(
 			"export const PatientSchema",
 		);

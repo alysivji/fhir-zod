@@ -1,12 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T19:50:51.863Z
+// Last generated: 2026-04-17T22:15:02.446Z
 
 import * as z from "zod";
 import { fhirInstant, fhirString, fhirUri } from "../shared/fhir-primitives";
-import type { NestedResource } from "./_nestedResourceSchema";
-import { NestedResourceSchemaInternal } from "./_nestedResourceSchema";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { BackboneElement } from "./BackboneElement";
 import { BackboneElementSchemaInternal } from "./BackboneElement";
 import type { Element } from "./Element";
@@ -27,7 +27,7 @@ export interface Bundle_Entry_Response extends BackboneElement {
 	/** Extensions for location */
 	_location?: Element;
 	/** An OperationOutcome containing hints and warnings produced as part of processing this entry in a batch or transaction. */
-	outcome?: NestedResource;
+	outcome?: FhirResource;
 	/** The status code returned by processing this entry. The status SHALL start with a 3 digit HTTP code (e.g. 404) and may contain the standard HTTP description associated with the status code. */
 	status: string;
 	/** Extensions for status */
@@ -36,8 +36,8 @@ export interface Bundle_Entry_Response extends BackboneElement {
 
 const getElementSchema = (): z.ZodType<Element> =>
 	ElementSchemaInternal as z.ZodType<Element>;
-const getNestedResourceSchema = (): z.ZodType<NestedResource> =>
-	NestedResourceSchemaInternal as z.ZodType<NestedResource>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const Bundle_Entry_ResponseSchemaInternal =
@@ -48,7 +48,7 @@ export const Bundle_Entry_ResponseSchemaInternal =
 		_lastModified: z.lazy(getElementSchema).optional(),
 		location: fhirUri().optional(),
 		_location: z.lazy(getElementSchema).optional(),
-		outcome: z.lazy(getNestedResourceSchema).optional(),
+		outcome: z.lazy(getFhirResourceSchema).optional(),
 		status: fhirString(),
 		_status: z.lazy(getElementSchema).optional(),
 	}).strict();

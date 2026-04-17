@@ -110,22 +110,24 @@ const bodyWeight: Observation = {
 ObservationSchema.parse(bodyWeight)
 ```
 
-### Validate Bundle structure
+### Validate Bundle resources
 
-`BundleSchema` validates the Bundle envelope and the basic shape of entry resources. If your workflow needs full validation for known entry resources, validate those resources with their own schemas as well.
+`BundleSchema` recursively validates known FHIR resources in `entry[].resource`. Resource-valued fields such as `Bundle.entry.resource` and `DomainResource.contained` use the version's `FhirResource` union type.
 
 ```ts
-import { BundleSchema, type Bundle, type Patient } from "fhir-zod/r4"
+import { BundleSchema, type Bundle, type FhirResource, type Patient } from "fhir-zod/r4"
 
 const patient: Patient = {
   resourceType: "Patient",
   id: "john-doe",
 }
 
+const resource: FhirResource = patient
+
 const bundle: Bundle = {
   resourceType: "Bundle",
   type: "collection",
-  entry: [{ resource: patient }],
+  entry: [{ resource }],
 }
 
 BundleSchema.parse(bundle)
@@ -198,7 +200,7 @@ Import from a specific FHIR version subpath:
 import { ObservationSchema } from "fhir-zod/r4"
 ```
 
-Each FHIR version is exposed as a separate entry point. Combined with ESM and `sideEffects: false`, this allows bundlers to tree-shake unused schemas and keep bundle size small.
+Each FHIR version is exposed as a separate entry point. Version entry points register the concrete resource schemas needed for recursive `FhirResource` validation, so importing a runtime schema from a version entry point can pull in every generated resource schema for that FHIR version. Type-only imports remain tree-shakeable.
 
 ## Specification alignment
 

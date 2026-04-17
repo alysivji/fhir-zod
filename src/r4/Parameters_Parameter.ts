@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Parameters
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T19:50:51.863Z
+// Last generated: 2026-04-17T22:15:02.446Z
 
 import * as z from "zod";
 import {
@@ -19,8 +19,8 @@ import {
 	fhirUrl,
 	fhirUuid,
 } from "../shared/fhir-primitives";
-import type { NestedResource } from "./_nestedResourceSchema";
-import { NestedResourceSchemaInternal } from "./_nestedResourceSchema";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { Address } from "./Address";
 import { AddressSchemaInternal } from "./Address";
 import type { Age } from "./Age";
@@ -97,7 +97,7 @@ export interface Parameters_Parameter extends BackboneElement {
 	/** A named part of a multi-part parameter. */
 	part?: Array<unknown>;
 	/** If the parameter is a whole resource. */
-	resource?: NestedResource;
+	resource?: FhirResource;
 	/** If the parameter is a data type. */
 	valueAddress?: Address;
 	/** If the parameter is a data type. */
@@ -301,8 +301,8 @@ const getTriggerDefinitionSchema = (): z.ZodType<TriggerDefinition> =>
 	TriggerDefinitionSchemaInternal as z.ZodType<TriggerDefinition>;
 const getUsageContextSchema = (): z.ZodType<UsageContext> =>
 	UsageContextSchemaInternal as z.ZodType<UsageContext>;
-const getNestedResourceSchema = (): z.ZodType<NestedResource> =>
-	NestedResourceSchemaInternal as z.ZodType<NestedResource>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const Parameters_ParameterSchemaInternal =
@@ -310,7 +310,7 @@ export const Parameters_ParameterSchemaInternal =
 		name: fhirString(),
 		_name: z.lazy(getElementSchema).optional(),
 		part: z.unknown().array().optional(),
-		resource: z.lazy(getNestedResourceSchema).optional(),
+		resource: z.lazy(getFhirResourceSchema).optional(),
 		valueAddress: z.lazy(getAddressSchema).optional(),
 		valueAge: z.lazy(getAgeSchema).optional(),
 		valueAnnotation: z.lazy(getAnnotationSchema).optional(),

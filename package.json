@@ -4,7 +4,12 @@
 	"description": "TypeScript interfaces and Zod schemas for HL7 FHIR.",
 	"license": "MIT",
 	"type": "module",
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/r4/index.js",
+		"./dist/r4b/index.js",
+		"./dist/r5/index.js",
+		"./dist/stu3/index.js"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/alysivji/fhir-zod"

@@ -1,6 +1,8 @@
 // Release: R4
-// Last generated: 2026-04-17T19:59:32.487Z
+// Last generated: 2026-04-17T22:16:57.484Z
 
+import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";
+export type FhirResource = FhirResourceType;
 export type { Account } from "./Account";
 export { AccountSchema } from "./Account";
 export type { Account_Coverage } from "./Account_Coverage";
@@ -1326,7 +1328,7 @@ export { VisionPrescription_LensSpecificationSchema } from "./VisionPrescription
 export type { VisionPrescription_LensSpecification_Prism } from "./VisionPrescription_LensSpecification_Prism";
 export { VisionPrescription_LensSpecification_PrismSchema } from "./VisionPrescription_LensSpecification_Prism";
 
-import { _registerNestedResourceUnion } from "./_nestedResourceSchema";
+import { _registerFhirResourceSchemas } from "./_fhirResourceSchema";
 import { AccountSchemaInternal } from "./Account";
 import { ActivityDefinitionSchemaInternal } from "./ActivityDefinition";
 import { AdverseEventSchemaInternal } from "./AdverseEvent";
@@ -1474,7 +1476,7 @@ import { ValueSetSchemaInternal } from "./ValueSet";
 import { VerificationResultSchemaInternal } from "./VerificationResult";
 import { VisionPrescriptionSchemaInternal } from "./VisionPrescription";
 
-_registerNestedResourceUnion({
+_registerFhirResourceSchemas({
 	Account: AccountSchemaInternal,
 	ActivityDefinition: ActivityDefinitionSchemaInternal,
 	AdverseEvent: AdverseEventSchemaInternal,

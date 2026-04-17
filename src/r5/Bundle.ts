@@ -1,10 +1,12 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-14T20:21:27.277Z
+// Last generated: 2026-04-17T22:15:26.099Z
 
 import * as z from "zod";
 import { fhirInstant } from "../shared/fhir-primitives";
+import type { FhirResource } from "./_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";
 import type { Bundle_Entry } from "./Bundle_Entry";
 import { Bundle_EntrySchemaInternal } from "./Bundle_Entry";
 import type { Bundle_Link } from "./Bundle_Link";
@@ -25,7 +27,7 @@ export interface Bundle extends Resource {
 	/** A persistent identifier for the bundle that won't change as a bundle is copied from server to server. */
 	identifier?: Identifier;
 	/** Captures issues and warnings that relate to the construction of the Bundle and the content within it. */
-	issues?: Resource;
+	issues?: FhirResource;
 	/** A series of links that provide context to this bundle. */
 	link?: Array<Bundle_Link>;
 	/** This is a Bundle resource. */
@@ -66,12 +68,14 @@ const getIdentifierSchema = (): z.ZodType<Identifier> =>
 	IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getSignatureSchema = (): z.ZodType<Signature> =>
 	SignatureSchemaInternal as z.ZodType<Signature>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+	FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
 export const BundleSchemaInternal = ResourceSchemaInternal.extend({
 	entry: z.lazy(getBundle_EntrySchema).array().optional(),
 	identifier: z.lazy(getIdentifierSchema).optional(),
-	issues: z.object({ resourceType: z.string() }).passthrough().optional(),
+	issues: z.lazy(getFhirResourceSchema).optional(),
 	link: z.lazy(getBundle_LinkSchema).array().optional(),
 	resourceType: z.literal("Bundle"),
 	signature: z.lazy(getSignatureSchema).optional(),
