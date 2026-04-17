@@ -202,19 +202,15 @@ Each FHIR version is exposed as a separate entry point. Combined with ESM and `s
 
 ## Specification alignment
 
-Schemas are generated from official HL7 FHIR definitions to stay consistent with the specification. Validation is tested against official FHIR example data from the specification across supported versions.
+Schemas and TypeScript models are generated from pinned official HL7 FHIR definitions, not handwritten schemas or converted TypeScript typedefs. Validation is tested against official FHIR example data from the specification across supported versions.
 
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and developer CLI workflow.
 
-## AI usage
+## AI and tooling notes
 
-This project has been developed with help from AI coding tools, including OpenAI Codex. AI assistance is used as part of an engineering workflow centered on developer experience, test-driven development, code generation, and reviewable changes.
-
-Human judgment remains responsible for project direction, architecture, validation scope, tests, and release decisions. Generated FHIR models and schemas are derived from pinned official HL7 artifacts, not from AI-generated FHIR definitions.
-
-For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt). It documents canonical imports, type/schema naming, validation scope, choice fields, Bundle validation, and common mistakes to avoid.
+For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt).
 
 ## Trademark notice
 

@@ -158,3 +158,15 @@ Prefer changes that are:
 This project is pre-release. Breaking changes are acceptable when they make the
 generator, emitted schemas, public package shape, or contributor workflow more
 correct and easier to maintain.
+
+## AI-Assisted Development
+
+This project has been developed with help from AI coding tools, including
+OpenAI Codex. AI assistance is used as part of an engineering workflow centered
+on developer experience, test-driven development, code generation, and
+reviewable changes.
+
+Human judgment remains responsible for project direction, architecture,
+validation scope, tests, and release decisions. Generated FHIR models and
+schemas are derived from pinned official HL7 artifacts, not from AI-generated
+FHIR definitions.
