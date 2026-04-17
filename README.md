@@ -79,21 +79,6 @@ if (!parsed.success) {
 console.log(parsed.data.resourceType)
 ```
 
-### Keep FHIR versions explicit
-
-```ts
-import type { Patient as R4Patient } from "fhir-zod/r4"
-import type { Patient as R5Patient } from "fhir-zod/r5"
-
-function useR4Patient(patient: R4Patient) {
-  return patient.resourceType
-}
-
-function useR5Patient(patient: R5Patient) {
-  return patient.resourceType
-}
-```
-
 ### Validate choice fields
 
 FHIR choice fields such as `value[x]` are emitted as concrete fields such as `valueQuantity`, `valueString`, and `valueBoolean`. The generated schemas reject payloads that provide more than one value for the same choice group.
@@ -144,6 +129,21 @@ const bundle: Bundle = {
 }
 
 BundleSchema.parse(bundle)
+```
+
+### Keep FHIR versions explicit
+
+```ts
+import type { Patient as R4Patient } from "fhir-zod/r4"
+import type { Patient as R5Patient } from "fhir-zod/r5"
+
+function useR4Patient(patient: R4Patient) {
+  return patient.resourceType
+}
+
+function useR5Patient(patient: R5Patient) {
+  return patient.resourceType
+}
 ```
 
 ## Validation scope
