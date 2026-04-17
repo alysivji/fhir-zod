@@ -1,0 +1,58 @@
+name: Prepare Version Bump
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: Semver increment to apply
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump package version
+        run: npm version "${{ inputs.bump_type }}" --no-git-tag-version
+
+      - name: Read new version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "value=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: version-bump-v${{ steps.version.outputs.value }}
+          commit-message: "chore: bump version to v${{ steps.version.outputs.value }}"
+          title: "chore: bump version to v${{ steps.version.outputs.value }}"
+          body: |
+            Prepares the next npm release.
+
+            - Semver increment: `${{ inputs.bump_type }}`
+            - New version: `v${{ steps.version.outputs.value }}`
+          delete-branch: true
