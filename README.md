@@ -8,7 +8,7 @@ Type-safe FHIR models and runtime validation with Zod.
 
 ## Why use it?
 
-- 🧩 **Type-first models**: TypeScript interfaces and types for FHIR resources and datatypes.
+- 🧩 **Type-first models**: TypeScript interfaces for FHIR resources and datatypes.
 - ✅ **Runtime validation**: Zod schemas for parsing data at boundaries.
 - 🗂️ **Versioned imports**: separate entry points for R5, R4B, R4, and STU3.
 - 📘 **Spec-aligned generation**: generated from pinned official HL7 artifacts.
@@ -27,47 +27,9 @@ Published versions are intended for testing and feedback rather than production 
 npm install fhir-zod zod
 ```
 
-Works with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
+Compatible with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
 
-The published ESM library supports Node.js 20+, Bun 1.3+, and Deno 2+ for
-public package imports, model construction, and schema parsing. The generator
-and repository developer scripts are Node.js tooling.
-
-Runtime compatibility is tested by installing the packed npm package in a fresh
-consumer project and parsing the committed official FHIR example fixtures with
-Zod 3.25.x and Zod 4.x.x.
-
-## Runtime usage
-
-The published package is ESM-only. Use public imports such as `fhir-zod`,
-`fhir-zod/r4`, `fhir-zod/r4b`, `fhir-zod/r5`, and `fhir-zod/stu3`.
-
-Node.js:
-
-```bash
-npm install fhir-zod zod
-node app.mjs
-```
-
-Bun:
-
-```bash
-bun add fhir-zod zod
-bun run app.ts
-```
-
-Deno:
-
-```bash
-deno add npm:fhir-zod npm:zod
-deno run --node-modules-dir=auto app.ts
-```
-
-In all supported runtimes, application code imports the same package entrypoints:
-
-```ts
-import { PatientSchema, type Patient } from "fhir-zod/r4"
-```
+Supports Node.js 20+ and modern bundlers. Import using ES modules and versioned entry points such as `fhir-zod/r4`, `fhir-zod/r5`, etc.
 
 ## Quick start
 
@@ -186,22 +148,19 @@ BundleSchema.parse(bundle)
 
 ## Validation scope
 
-`fhir-zod` is built for structural FHIR validation.
+`fhir-zod` validates the structure of FHIR data.
 
-What generated schemas cover:
-
+**Covers:**
 - required fields and cardinality
 - FHIR primitive formats
-- enum and code literal unions where generated from the spec
-- choice-type exclusivity such as `value[x]`
+- enum and code literal unions from the spec
+- choice-type exclusivity (e.g. `value[x]`)
 - selected constrained reference targets
 
-What generated schemas do not do:
-
+**Does not cover:**
 - terminology validation
 - FHIRPath execution
-- profile resolution
-- slicing
+- profile resolution or slicing
 - FHIR server behavior
 
 ## Supported FHIR versions
@@ -239,7 +198,7 @@ Import from a specific FHIR version subpath:
 import { ObservationSchema } from "fhir-zod/r4"
 ```
 
-The package is designed for unbundled ESM output with `sideEffects: false`, so bundlers can drop generated schemas that your application does not import.
+Each FHIR version is exposed as a separate entry point. Combined with ESM and `sideEffects: false`, this allows bundlers to tree-shake unused schemas and keep bundle size small.
 
 ## Generation and quality
 
@@ -253,7 +212,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and dev
 
 ## AI usage
 
-This project has been developed with help from AI coding tools, including OpenAI Codex. AI assistance is used as part of an engineering workflow centered on developer experience, test-driven development, generated output, and reviewable changes.
+This project has been developed with help from AI coding tools, including OpenAI Codex. AI assistance is used as part of an engineering workflow centered on developer experience, test-driven development, code generation, and reviewable changes.
 
 Human judgment remains responsible for project direction, architecture, validation scope, tests, and release decisions. Generated FHIR models and schemas are derived from pinned official HL7 artifacts, not from AI-generated FHIR definitions.
 
