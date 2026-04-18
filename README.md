@@ -166,14 +166,14 @@ function useR5Patient(patient: R5Patient) {
 
 ## Supported FHIR versions
 
-| FHIR release | Import path |
-| --- | --- |
-| R5 | `fhir-zod/r5` |
-| R4B | `fhir-zod/r4b` |
-| R4 | `fhir-zod/r4`, `fhir-zod/r4/Patient` |
-| STU3 | `fhir-zod/stu3` |
+| FHIR release | Version entry point | Resource entry points |
+| --- | --- | --- |
+| R5 | `fhir-zod/r5` | `fhir-zod/r5/<Resource>` |
+| R4B | `fhir-zod/r4b` | `fhir-zod/r4b/<Resource>` |
+| R4 | `fhir-zod/r4` | `fhir-zod/r4/<Resource>` |
+| STU3 | `fhir-zod/stu3` | `fhir-zod/stu3/<Resource>` |
 
-Each release entry point exports TypeScript interfaces and matching Zod schemas. R4 is beginning to add resource-specific folder modules, starting with Patient:
+Each release exposes two import styles. The version entry point exports all data type schemas and registers the full resource registry. Each resource also has its own entry point that exports only that resource family:
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
@@ -201,13 +201,13 @@ import { ObservationSchema } from "fhir-zod/r4"
 
 Each FHIR version is exposed as a separate entry point. Bundlers will tree-shake unused FHIR versions. In frontend code, lazy-load runtime schema imports where validation runs.
 
-R4 Patient is also exposed through its own resource module:
+Every core resource also has its own entry point scoped to that resource family:
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
 ```
 
-The R4 Patient module registers Patient for contained-resource validation. Import `fhir-zod/r4` when you need the full R4 resource registry.
+Resource entry points register only that resource for contained-resource validation. Import the version entry point (`fhir-zod/r4`) when you need the full resource registry.
 
 ## Specification alignment
 
