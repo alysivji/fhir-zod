@@ -49,8 +49,8 @@ function definition(name: string): NormalizedDefinition {
 		properties: [],
 		resourceTypeLiteral: name,
 		sourceMetadata: {
-			profileUrl: null,
 			releaseLabel: null,
+			sourceUrl: null,
 			version: null,
 		},
 	};

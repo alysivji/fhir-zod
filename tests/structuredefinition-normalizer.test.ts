@@ -55,8 +55,8 @@ describe("StructureDefinition source normalizer", () => {
 			kind: "resource",
 			resourceTypeLiteral: "Patient",
 			sourceMetadata: {
-				profileUrl: "http://hl7.org/fhir/StructureDefinition/Patient",
 				releaseLabel: "R4",
+				sourceUrl: "https://hl7.org/fhir/R4/patient.html",
 				version: "4.0.1-patient",
 			},
 		});
@@ -84,6 +84,10 @@ describe("StructureDefinition source normalizer", () => {
 			description: "A contact",
 			kind: "backbone",
 			resourceTypeLiteral: null,
+			sourceMetadata: {
+				sourceUrl:
+					"https://hl7.org/fhir/R4/patient-definitions.html#Patient.contact",
+			},
 		});
 		expect(requireProperty(contact, "name")).toMatchObject({
 			jsonName: "name",

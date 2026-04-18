@@ -1,7 +1,7 @@
-// Profile: http://hl7.org/fhir/StructureDefinition/MedicationDispense
+// Source: https://hl7.org/fhir/R4/medicationdispense.html
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T17:03:58.798Z
+// Last generated: 2026-04-18T17:41:32.609Z
 
 import * as z from "zod";
 import {

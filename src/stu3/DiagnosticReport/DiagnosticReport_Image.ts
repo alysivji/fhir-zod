@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/STU3/diagnosticreport-definitions.html#DiagnosticReport.image
 // Profile: http://hl7.org/fhir/StructureDefinition/DiagnosticReport
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-18T17:27:29.190Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";

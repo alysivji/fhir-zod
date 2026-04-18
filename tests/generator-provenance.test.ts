@@ -32,9 +32,9 @@ describeR4Spec(
 			const firstStat = statSync(definitionPath);
 
 			expect(firstContent).toContain(
-				"// Profile: http://hl7.org/fhir/StructureDefinition/BackboneElement",
+				"// Source: https://hl7.org/fhir/R4/backboneelement.html",
 			);
-			expect(firstContent).toContain("// Release: R4");
+expect(firstContent).toContain("// Release: R4");
 			expect(firstContent).toContain("// Version: 4.0.1");
 			expect(firstContent).toContain(
 				"// Last generated: 2026-04-01T05:42:36.000Z",
@@ -119,6 +119,9 @@ describeR4Spec(
 			const definitionPath = join(outputDir, "Patient.ts");
 			const content = readFileSync(definitionPath, "utf8");
 
+			expect(content).toContain(
+				"// Source: https://hl7.org/fhir/R4/patient.html",
+			);
 			expect(content).toContain(
 				"_active: z.lazy(getElementSchema).optional(),",
 			);

@@ -77,6 +77,18 @@ export abstract class FhirRelease {
 	];
 
 	readonly enableFhirResourceValidation: boolean = true;
+	readonly standaloneTypePageNames = new Set([
+		"BackboneElement",
+		"Element",
+		"ElementDefinition",
+	]);
+	readonly typeSystemPageNames = new Set([
+		"BackboneElement",
+		"BackboneType",
+		"Base",
+		"DataType",
+		"Element",
+	]);
 
 	loadTargetEntries(): TargetEntry[] {
 		const packageRoot = resolveRequiredSpecPackageRoot(this.id);
@@ -174,7 +186,38 @@ export abstract class FhirRelease {
 	}
 
 	exampleResourcePageUrl(resourceName: string): string {
-		return `https://hl7.org/fhir/${this.id.toUpperCase()}/${resourceName.toLowerCase()}-examples.html`;
+		return `${this.specBaseUrl()}/${resourceName.toLowerCase()}-examples.html`;
+	}
+
+	sourcePageUrl(options: {
+		fhirPath?: string;
+		kind: string;
+		name: string;
+		rootName?: string;
+	}): string {
+		const rootName = options.rootName ?? options.name;
+
+		if (options.fhirPath) {
+			return `${this.specBaseUrl()}/${rootName.toLowerCase()}-definitions.html#${options.fhirPath}`;
+		}
+
+		if (options.kind === "resource") {
+			return `${this.specBaseUrl()}/${options.name.toLowerCase()}.html`;
+		}
+
+		if (this.id === "r5" && this.typeSystemPageNames.has(options.name)) {
+			return `${this.specBaseUrl()}/types.html#${options.name}`;
+		}
+
+		if (this.standaloneTypePageNames.has(options.name)) {
+			return `${this.specBaseUrl()}/${options.name.toLowerCase()}.html`;
+		}
+
+		return `${this.specBaseUrl()}/datatypes.html#${options.name}`;
+	}
+
+	private specBaseUrl(): string {
+		return `https://hl7.org/fhir/${this.id.toUpperCase()}`;
 	}
 
 	private classifyTargetEntry(definition: StructureDefinition): TargetEntry {

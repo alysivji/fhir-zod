@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R5/parameters.html
 // Profile: http://hl7.org/fhir/StructureDefinition/Parameters
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T17:04:05.932Z
+// Last generated: 2026-04-18T17:27:36.849Z
 
 import * as z from "zod";
 import { fhirCode, fhirId, fhirUri } from "../../shared/fhir-primitives";

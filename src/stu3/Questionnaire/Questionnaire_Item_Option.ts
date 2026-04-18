@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/STU3/questionnaire-definitions.html#Questionnaire.item.option
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-18T17:27:29.190Z
 
 import * as z from "zod";
 import { fhirDate, fhirString, fhirTime } from "../../shared/fhir-primitives";

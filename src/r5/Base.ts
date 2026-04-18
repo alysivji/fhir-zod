@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R5/types.html#Base
 // Profile: http://hl7.org/fhir/StructureDefinition/Base
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-15T00:08:33.059Z
+// Last generated: 2026-04-18T17:27:36.849Z
 
 import * as z from "zod";
 

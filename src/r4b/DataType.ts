@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/datatypes.html#DataType
 // Profile: http://hl7.org/fhir/StructureDefinition/DataType
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-14T22:22:34.384Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import type * as z from "zod";
 import type { Element } from "./Element";

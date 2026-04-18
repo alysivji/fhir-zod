@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/auditevent-definitions.html#AuditEvent.entity
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import * as z from "zod";
 import { fhirBase64Binary, fhirString } from "../../shared/fhir-primitives";

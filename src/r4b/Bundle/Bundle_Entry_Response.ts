@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/bundle-definitions.html#Bundle.entry.response
 // Profile: http://hl7.org/fhir/StructureDefinition/Bundle
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import * as z from "zod";
 import { fhirInstant, fhirString, fhirUri } from "../../shared/fhir-primitives";

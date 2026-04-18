@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/STU3/appointmentresponse.html
 // Profile: http://hl7.org/fhir/StructureDefinition/AppointmentResponse
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T17:04:01.401Z
+// Last generated: 2026-04-18T17:27:29.190Z
 
 import * as z from "zod";
 import {
