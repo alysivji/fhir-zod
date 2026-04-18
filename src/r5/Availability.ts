@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Availability
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-17T23:33:08.008Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirId } from "../shared/fhir-primitives";
@@ -17,39 +17,39 @@ import { ExtensionSchemaInternal } from "./Extension";
 
 /** Availability Type: Availability data for an {item}. */
 export interface Availability extends DataType {
-	/** Times the {item} is available. */
-	availableTime?: Array<Availability_AvailableTime>;
-	/** Not available during this time due to provided reason. */
-	notAvailableTime?: Array<Availability_NotAvailableTime>;
+  /** Times the {item} is available. */
+  availableTime?: Array<Availability_AvailableTime>;
+  /** Not available during this time due to provided reason. */
+  notAvailableTime?: Array<Availability_NotAvailableTime>;
 }
 
 const getAvailability_AvailableTimeSchema =
-	(): z.ZodType<Availability_AvailableTime> =>
-		Availability_AvailableTimeSchemaInternal as z.ZodType<Availability_AvailableTime>;
+  (): z.ZodType<Availability_AvailableTime> =>
+    Availability_AvailableTimeSchemaInternal as z.ZodType<Availability_AvailableTime>;
 const getAvailability_NotAvailableTimeSchema =
-	(): z.ZodType<Availability_NotAvailableTime> =>
-		Availability_NotAvailableTimeSchemaInternal as z.ZodType<Availability_NotAvailableTime>;
+  (): z.ZodType<Availability_NotAvailableTime> =>
+    Availability_NotAvailableTimeSchemaInternal as z.ZodType<Availability_NotAvailableTime>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getExtensionSchema = (): z.ZodType<Extension> =>
-	ExtensionSchemaInternal as z.ZodType<Extension>;
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const AvailabilitySchemaInternal = z
-	.object({
-		availableTime: z
-			.lazy(getAvailability_AvailableTimeSchema)
-			.array()
-			.optional(),
-		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirId().optional(),
-		_id: z.lazy(getElementSchema).optional(),
-		notAvailableTime: z
-			.lazy(getAvailability_NotAvailableTimeSchema)
-			.array()
-			.optional(),
-	})
-	.strict();
+  .object({
+    availableTime: z
+      .lazy(getAvailability_AvailableTimeSchema)
+      .array()
+      .optional(),
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    id: fhirId().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    notAvailableTime: z
+      .lazy(getAvailability_NotAvailableTimeSchema)
+      .array()
+      .optional(),
+  })
+  .strict();
 
 export const AvailabilitySchema =
-	AvailabilitySchemaInternal as z.ZodType<Availability>;
+  AvailabilitySchemaInternal as z.ZodType<Availability>;

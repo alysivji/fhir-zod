@@ -1,10 +1,17 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Practitioner
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:04:03.496Z
 
 import * as z from "zod";
-import { fhirDate } from "../../shared/fhir-primitives";
+import {
+  fhirCode,
+  fhirDate,
+  fhirId,
+  fhirUri,
+} from "../../shared/fhir-primitives";
+import type { FhirResource } from "../_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "../_fhirResourceSchema";
 import type { Address } from "../Address";
 import { AddressSchemaInternal } from "../Address";
 import type { Attachment } from "../Attachment";
@@ -14,83 +21,112 @@ import { CodeableConceptSchemaInternal } from "../CodeableConcept";
 import type { ContactPoint } from "../ContactPoint";
 import { ContactPointSchemaInternal } from "../ContactPoint";
 import type { DomainResource } from "../DomainResource";
-import { DomainResourceSchemaInternal } from "../DomainResource";
 import type { Element } from "../Element";
 import { ElementSchemaInternal } from "../Element";
+import type { Extension } from "../Extension";
+import { ExtensionSchemaInternal } from "../Extension";
 import type { HumanName } from "../HumanName";
 import { HumanNameSchemaInternal } from "../HumanName";
 import type { Identifier } from "../Identifier";
 import { IdentifierSchemaInternal } from "../Identifier";
+import type { Meta } from "../Meta";
+import { MetaSchemaInternal } from "../Meta";
+import type { Narrative } from "../Narrative";
+import { NarrativeSchemaInternal } from "../Narrative";
 import type { Practitioner_Qualification } from "./Practitioner_Qualification";
 import { Practitioner_QualificationSchemaInternal } from "./Practitioner_Qualification";
 
 /** A person who is directly or indirectly involved in the provisioning of healthcare. */
 export interface Practitioner extends DomainResource {
-	/** Whether this practitioner's record is in active use. */
-	active?: boolean;
-	/** Extensions for active */
-	_active?: Element;
-	/** Address(es) of the practitioner that are not role specific (typically home address). Work addresses are not typically entered in this property as they are usually role dependent. */
-	address?: Array<Address>;
-	/** The date of birth for the practitioner. */
-	birthDate?: string;
-	/** Extensions for birthDate */
-	_birthDate?: Element;
-	/** A language the practitioner can use in patient communication. */
-	communication?: Array<CodeableConcept>;
-	/** Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes. */
-	gender?: "female" | "male" | "other" | "unknown";
-	/** Extensions for gender */
-	_gender?: Element;
-	/** An identifier that applies to this person in this role. */
-	identifier?: Array<Identifier>;
-	/** The name(s) associated with the practitioner. */
-	name?: Array<HumanName>;
-	/** Image of the person. */
-	photo?: Array<Attachment>;
-	/** The official certifications, training, and licenses that authorize or otherwise pertain to the provision of care by the practitioner.  For example, a medical license issued by a medical board authorizing the practitioner to practice medicine within a certian locality. */
-	qualification?: Array<Practitioner_Qualification>;
-	/** This is a Practitioner resource. */
-	resourceType: "Practitioner";
-	/** A contact detail for the practitioner, e.g. a telephone number or an email address. */
-	telecom?: Array<ContactPoint>;
+  /** Whether this practitioner's record is in active use. */
+  active?: boolean;
+  /** Extensions for active */
+  _active?: Element;
+  /** Address(es) of the practitioner that are not role specific (typically home address). Work addresses are not typically entered in this property as they are usually role dependent. */
+  address?: Array<Address>;
+  /** The date of birth for the practitioner. */
+  birthDate?: string;
+  /** Extensions for birthDate */
+  _birthDate?: Element;
+  /** A language the practitioner can use in patient communication. */
+  communication?: Array<CodeableConcept>;
+  /** Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes. */
+  gender?: "female" | "male" | "other" | "unknown";
+  /** Extensions for gender */
+  _gender?: Element;
+  /** An identifier that applies to this person in this role. */
+  identifier?: Array<Identifier>;
+  /** The name(s) associated with the practitioner. */
+  name?: Array<HumanName>;
+  /** Image of the person. */
+  photo?: Array<Attachment>;
+  /** The official certifications, training, and licenses that authorize or otherwise pertain to the provision of care by the practitioner.  For example, a medical license issued by a medical board authorizing the practitioner to practice medicine within a certian locality. */
+  qualification?: Array<Practitioner_Qualification>;
+  /** This is a Practitioner resource. */
+  resourceType: "Practitioner";
+  /** A contact detail for the practitioner, e.g. a telephone number or an email address. */
+  telecom?: Array<ContactPoint>;
 }
 
 const getAddressSchema = (): z.ZodType<Address> =>
-	AddressSchemaInternal as z.ZodType<Address>;
+  AddressSchemaInternal as z.ZodType<Address>;
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal as z.ZodType<Attachment>;
+  AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 const getHumanNameSchema = (): z.ZodType<HumanName> =>
-	HumanNameSchemaInternal as z.ZodType<HumanName>;
+  HumanNameSchemaInternal as z.ZodType<HumanName>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+  MetaSchemaInternal as z.ZodType<Meta>;
+const getNarrativeSchema = (): z.ZodType<Narrative> =>
+  NarrativeSchemaInternal as z.ZodType<Narrative>;
 const getPractitioner_QualificationSchema =
-	(): z.ZodType<Practitioner_Qualification> =>
-		Practitioner_QualificationSchemaInternal as z.ZodType<Practitioner_Qualification>;
+  (): z.ZodType<Practitioner_Qualification> =>
+    Practitioner_QualificationSchemaInternal as z.ZodType<Practitioner_Qualification>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+  FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
-export const PractitionerSchemaInternal = DomainResourceSchemaInternal.extend({
-	active: z.boolean().optional(),
-	_active: z.lazy(getElementSchema).optional(),
-	address: z.lazy(getAddressSchema).array().optional(),
-	birthDate: fhirDate().optional(),
-	_birthDate: z.lazy(getElementSchema).optional(),
-	communication: z.lazy(getCodeableConceptSchema).array().optional(),
-	gender: z.enum(["female", "male", "other", "unknown"]).optional(),
-	_gender: z.lazy(getElementSchema).optional(),
-	identifier: z.lazy(getIdentifierSchema).array().optional(),
-	name: z.lazy(getHumanNameSchema).array().optional(),
-	photo: z.lazy(getAttachmentSchema).array().optional(),
-	qualification: z.lazy(getPractitioner_QualificationSchema).array().optional(),
-	resourceType: z.literal("Practitioner"),
-	telecom: z.lazy(getContactPointSchema).array().optional(),
-}).strict();
+export const PractitionerSchemaInternal = z
+  .object({
+    active: z.boolean().optional(),
+    _active: z.lazy(getElementSchema).optional(),
+    address: z.lazy(getAddressSchema).array().optional(),
+    birthDate: fhirDate().optional(),
+    _birthDate: z.lazy(getElementSchema).optional(),
+    communication: z.lazy(getCodeableConceptSchema).array().optional(),
+    contained: z.lazy(getFhirResourceSchema).array().optional(),
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    gender: z.enum(["female", "male", "other", "unknown"]).optional(),
+    _gender: z.lazy(getElementSchema).optional(),
+    id: fhirId().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    implicitRules: fhirUri().optional(),
+    _implicitRules: z.lazy(getElementSchema).optional(),
+    language: fhirCode().optional(),
+    _language: z.lazy(getElementSchema).optional(),
+    meta: z.lazy(getMetaSchema).optional(),
+    modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+    name: z.lazy(getHumanNameSchema).array().optional(),
+    photo: z.lazy(getAttachmentSchema).array().optional(),
+    qualification: z
+      .lazy(getPractitioner_QualificationSchema)
+      .array()
+      .optional(),
+    resourceType: z.literal("Practitioner"),
+    telecom: z.lazy(getContactPointSchema).array().optional(),
+    text: z.lazy(getNarrativeSchema).optional(),
+  })
+  .strict();
 
 export const PractitionerSchema =
-	PractitionerSchemaInternal as z.ZodType<Practitioner>;
+  PractitionerSchemaInternal as z.ZodType<Practitioner>;

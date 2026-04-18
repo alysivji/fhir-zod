@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ValueSet } from "./ValueSet";
 export { ValueSetSchema } from "./ValueSet";
@@ -27,10 +27,3 @@ export type { ValueSet_Expansion_Property } from "./ValueSet_Expansion_Property"
 export { ValueSet_Expansion_PropertySchema } from "./ValueSet_Expansion_Property";
 export type { ValueSet_Scope } from "./ValueSet_Scope";
 export { ValueSet_ScopeSchema } from "./ValueSet_Scope";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ValueSetSchemaInternal } from "./ValueSet";
-
-_registerFhirResourceSchemas({
-	ValueSet: ValueSetSchemaInternal,
-});

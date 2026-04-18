@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Evidence
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -18,69 +18,69 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Evidence variable such as population, exposure, or outcome. */
 export interface Evidence_VariableDefinition extends BackboneElement {
-	/** A text description or summary of the variable. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** Indication of quality of match between intended variable to actual variable. */
-	directnessMatch?: CodeableConcept;
-	/** Definition of the intended variable related to the Evidence. */
-	intended?: Reference;
-	/** Footnotes and/or explanatory notes. */
-	note?: Array<Annotation>;
-	/** Definition of the actual variable related to the statistic(s). */
-	observed?: Reference;
-	/** population | subpopulation | exposure | referenceExposure | measuredVariable | confounder. */
-	variableRole: CodeableConcept;
+  /** A text description or summary of the variable. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** Indication of quality of match between intended variable to actual variable. */
+  directnessMatch?: CodeableConcept;
+  /** Definition of the intended variable related to the Evidence. */
+  intended?: Reference;
+  /** Footnotes and/or explanatory notes. */
+  note?: Array<Annotation>;
+  /** Definition of the actual variable related to the statistic(s). */
+  observed?: Reference;
+  /** population | subpopulation | exposure | referenceExposure | measuredVariable | confounder. */
+  variableRole: CodeableConcept;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Evidence_VariableDefinitionSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/^[\s\S]+$/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		directnessMatch: z.lazy(getCodeableConceptSchema).optional(),
-		intended: z.lazy(getReferenceSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-		observed: z.lazy(getReferenceSchema).optional(),
-		variableRole: z.lazy(getCodeableConceptSchema),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.intended,
-				"intended",
-				[
-					"http://hl7.org/fhir/StructureDefinition/EvidenceVariable",
-					"http://hl7.org/fhir/StructureDefinition/Group",
-				],
-				["EvidenceVariable", "Group"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.observed,
-				"observed",
-				[
-					"http://hl7.org/fhir/StructureDefinition/EvidenceVariable",
-					"http://hl7.org/fhir/StructureDefinition/Group",
-				],
-				["EvidenceVariable", "Group"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    description: z
+      .string()
+      .regex(/^[\s\S]+$/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    directnessMatch: z.lazy(getCodeableConceptSchema).optional(),
+    intended: z.lazy(getReferenceSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+    observed: z.lazy(getReferenceSchema).optional(),
+    variableRole: z.lazy(getCodeableConceptSchema),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.intended,
+        "intended",
+        [
+          "http://hl7.org/fhir/StructureDefinition/EvidenceVariable",
+          "http://hl7.org/fhir/StructureDefinition/Group",
+        ],
+        ["EvidenceVariable", "Group"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.observed,
+        "observed",
+        [
+          "http://hl7.org/fhir/StructureDefinition/EvidenceVariable",
+          "http://hl7.org/fhir/StructureDefinition/Group",
+        ],
+        ["EvidenceVariable", "Group"],
+        ctx,
+      );
+    });
 
 export const Evidence_VariableDefinitionSchema =
-	Evidence_VariableDefinitionSchemaInternal as z.ZodType<Evidence_VariableDefinition>;
+  Evidence_VariableDefinitionSchemaInternal as z.ZodType<Evidence_VariableDefinition>;

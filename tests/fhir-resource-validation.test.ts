@@ -1,13 +1,9 @@
-import type { FhirResource as R4FhirResource } from "fhir-zod/r4";
 import { BundleSchema as R4BundleSchema } from "fhir-zod/r4/Bundle";
 import { PatientSchema as R4PatientSchema } from "fhir-zod/r4/Patient";
-import type { FhirResource as R4BFhirResource } from "fhir-zod/r4b";
 import { BundleSchema as R4BBundleSchema } from "fhir-zod/r4b/Bundle";
 import { PatientSchema as R4BPatientSchema } from "fhir-zod/r4b/Patient";
-import type { FhirResource as R5FhirResource } from "fhir-zod/r5";
 import { BundleSchema as R5BundleSchema } from "fhir-zod/r5/Bundle";
 import { PatientSchema as R5PatientSchema } from "fhir-zod/r5/Patient";
-import type { FhirResource as STU3FhirResource } from "fhir-zod/stu3";
 import { BundleSchema as STU3BundleSchema } from "fhir-zod/stu3/Bundle";
 import { PatientSchema as STU3PatientSchema } from "fhir-zod/stu3/Patient";
 import { describe, expect, it } from "vitest";
@@ -18,18 +14,6 @@ type VersionCase = {
 	PatientSchema: z.ZodTypeAny;
 	label: string;
 };
-
-const fhirResourceTypeSmoke: [
-	STU3FhirResource,
-	R4FhirResource,
-	R4BFhirResource,
-	R5FhirResource,
-] = [
-	{ resourceType: "Patient" },
-	{ resourceType: "Patient" },
-	{ resourceType: "Patient" },
-	{ resourceType: "Patient" },
-];
 
 const versions: VersionCase[] = [
 	{
@@ -55,12 +39,6 @@ const versions: VersionCase[] = [
 ];
 
 describe("FHIR resource validation", () => {
-	it("exports FhirResource as a public resource union type", () => {
-		expect(
-			fhirResourceTypeSmoke.map((resource) => resource.resourceType),
-		).toEqual(["Patient", "Patient", "Patient", "Patient"]);
-	});
-
 	for (const { BundleSchema, PatientSchema, label } of versions) {
 		describe(label, () => {
 			it("accepts a Bundle whose entry contains a valid Patient", () => {
@@ -178,6 +156,40 @@ describe("FHIR resource validation", () => {
 				});
 
 				expect(result.success).toBe(true);
+			});
+
+			it("accepts a Patient with a valid contained Observation", () => {
+				const result = PatientSchema.safeParse({
+					resourceType: "Patient",
+					contained: [
+						{
+							resourceType: "Observation",
+							status: "final",
+							code: {
+								text: "Example observation",
+							},
+						},
+					],
+				});
+
+				expect(result.success).toBe(true);
+			});
+
+			it("rejects a contained Observation with an invalid status code", () => {
+				const result = PatientSchema.safeParse({
+					resourceType: "Patient",
+					contained: [
+						{
+							resourceType: "Observation",
+							status: "not-a-real-status",
+							code: {
+								text: "Example observation",
+							},
+						},
+					],
+				});
+
+				expect(result.success).toBe(false);
 			});
 
 			it("rejects a contained Patient with an invalid gender code", () => {

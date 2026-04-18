@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { PaymentReconciliation } from "./PaymentReconciliation";
 export { PaymentReconciliationSchema } from "./PaymentReconciliation";
@@ -7,10 +7,3 @@ export type { PaymentReconciliation_Detail } from "./PaymentReconciliation_Detai
 export { PaymentReconciliation_DetailSchema } from "./PaymentReconciliation_Detail";
 export type { PaymentReconciliation_ProcessNote } from "./PaymentReconciliation_ProcessNote";
 export { PaymentReconciliation_ProcessNoteSchema } from "./PaymentReconciliation_ProcessNote";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { PaymentReconciliationSchemaInternal } from "./PaymentReconciliation";
-
-_registerFhirResourceSchemas({
-	PaymentReconciliation: PaymentReconciliationSchemaInternal,
-});

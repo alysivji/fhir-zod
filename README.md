@@ -29,7 +29,7 @@ npm install fhir-zod zod
 
 Compatible with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
 
-Supports Node.js 20+ and modern bundlers. Import using ES modules and versioned entry points such as `fhir-zod/r4`, resource module entry points such as `fhir-zod/r4/Patient`, and other release entry points such as `fhir-zod/r5`.
+Supports Node.js 20+ and modern bundlers. Import concrete resources from resource module entry points such as `fhir-zod/r4/Patient`. Versioned entry points such as `fhir-zod/r4` expose shared datatypes and supporting generated definitions.
 
 ## Quick start
 
@@ -84,7 +84,7 @@ console.log(parsed.data.resourceType)
 FHIR choice fields such as `value[x]` are emitted as concrete fields such as `valueQuantity`, `valueString`, and `valueBoolean`. The generated schemas reject payloads that provide more than one value for the same choice group.
 
 ```ts
-import { ObservationSchema, type Observation } from "fhir-zod/r4"
+import { ObservationSchema, type Observation } from "fhir-zod/r4/Observation"
 
 const bodyWeight: Observation = {
   resourceType: "Observation",
@@ -115,7 +115,7 @@ ObservationSchema.parse(bodyWeight)
 `BundleSchema` recursively validates known FHIR resources in `entry[].resource`.
 
 ```ts
-import { BundleSchema, type Bundle } from "fhir-zod/r4"
+import { BundleSchema, type Bundle } from "fhir-zod/r4/Bundle"
 import type { Patient } from "fhir-zod/r4/Patient"
 
 const patient: Patient = {
@@ -136,7 +136,7 @@ BundleSchema.parse(bundle)
 
 ```ts
 import type { Patient as R4Patient } from "fhir-zod/r4/Patient"
-import type { Patient as R5Patient } from "fhir-zod/r5"
+import type { Patient as R5Patient } from "fhir-zod/r5/Patient"
 
 function useR4Patient(patient: R4Patient) {
   return patient.resourceType
@@ -173,7 +173,7 @@ function useR5Patient(patient: R5Patient) {
 | R4 | `fhir-zod/r4` | `fhir-zod/r4/<Resource>` |
 | STU3 | `fhir-zod/stu3` | `fhir-zod/stu3/<Resource>` |
 
-Each release exposes two import styles. The version entry point exports all data type schemas and registers the full resource registry. Each resource also has its own entry point that exports only that resource family:
+Each release exposes two import styles. The version entry point exports shared datatype schemas and supporting generated definitions. Concrete resources are exported from resource entry points:
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
@@ -193,21 +193,19 @@ This affects all generated schemas. It only changes the FHIR `string` primitive.
 
 ## Bundle size and imports
 
-Import from a specific FHIR version subpath:
+Import concrete resources from their resource entry points:
 
 ```ts
-import { ObservationSchema } from "fhir-zod/r4"
+import { ObservationSchema } from "fhir-zod/r4/Observation"
 ```
 
-Each FHIR version is exposed as a separate entry point. Bundlers will tree-shake unused FHIR versions. In frontend code, lazy-load runtime schema imports where validation runs.
-
-Every core resource also has its own entry point scoped to that resource family:
+Each FHIR version is exposed as a separate entry point for shared datatypes and supporting generated definitions. Bundlers will tree-shake unused FHIR versions. In frontend code, lazy-load runtime schema imports where validation runs.
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
 ```
 
-Resource entry points register only that resource for contained-resource validation. Import the version entry point (`fhir-zod/r4`) when you need the full resource registry.
+Schemas with polymorphic `Resource` fields, such as `Bundle.entry[].resource` and `DomainResource.contained`, include the internal full-resource dispatcher for that FHIR release. This keeps validation independent of import order, but resources with polymorphic fields can pull more schemas into a runtime bundle.
 
 ## Specification alignment
 

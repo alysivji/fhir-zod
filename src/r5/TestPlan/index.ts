@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { TestPlan } from "./TestPlan";
 export { TestPlanSchema } from "./TestPlan";
@@ -17,10 +17,3 @@ export type { TestPlan_TestCase_TestRun } from "./TestPlan_TestCase_TestRun";
 export { TestPlan_TestCase_TestRunSchema } from "./TestPlan_TestCase_TestRun";
 export type { TestPlan_TestCase_TestRun_Script } from "./TestPlan_TestCase_TestRun_Script";
 export { TestPlan_TestCase_TestRun_ScriptSchema } from "./TestPlan_TestCase_TestRun_Script";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { TestPlanSchemaInternal } from "./TestPlan";
-
-_registerFhirResourceSchemas({
-	TestPlan: TestPlanSchemaInternal,
-});

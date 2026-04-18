@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { Measure } from "./Measure";
 export { MeasureSchema } from "./Measure";
@@ -13,10 +13,3 @@ export type { Measure_Group_Stratifier_Component } from "./Measure_Group_Stratif
 export { Measure_Group_Stratifier_ComponentSchema } from "./Measure_Group_Stratifier_Component";
 export type { Measure_SupplementalData } from "./Measure_SupplementalData";
 export { Measure_SupplementalDataSchema } from "./Measure_SupplementalData";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MeasureSchemaInternal } from "./Measure";
-
-_registerFhirResourceSchemas({
-	Measure: MeasureSchemaInternal,
-});

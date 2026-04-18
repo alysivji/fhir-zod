@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { ExpansionProfile } from "./ExpansionProfile";
 export { ExpansionProfileSchema } from "./ExpansionProfile";
@@ -17,10 +17,3 @@ export type { ExpansionProfile_ExcludedSystem } from "./ExpansionProfile_Exclude
 export { ExpansionProfile_ExcludedSystemSchema } from "./ExpansionProfile_ExcludedSystem";
 export type { ExpansionProfile_FixedVersion } from "./ExpansionProfile_FixedVersion";
 export { ExpansionProfile_FixedVersionSchema } from "./ExpansionProfile_FixedVersion";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ExpansionProfileSchemaInternal } from "./ExpansionProfile";
-
-_registerFhirResourceSchemas({
-	ExpansionProfile: ExpansionProfileSchemaInternal,
-});

@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { StructureDefinition } from "./StructureDefinition";
 export { StructureDefinitionSchema } from "./StructureDefinition";
@@ -11,10 +11,3 @@ export type { StructureDefinition_Mapping } from "./StructureDefinition_Mapping"
 export { StructureDefinition_MappingSchema } from "./StructureDefinition_Mapping";
 export type { StructureDefinition_Snapshot } from "./StructureDefinition_Snapshot";
 export { StructureDefinition_SnapshotSchema } from "./StructureDefinition_Snapshot";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { StructureDefinitionSchemaInternal } from "./StructureDefinition";
-
-_registerFhirResourceSchemas({
-	StructureDefinition: StructureDefinitionSchemaInternal,
-});

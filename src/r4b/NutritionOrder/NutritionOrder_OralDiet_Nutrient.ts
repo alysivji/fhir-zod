@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NutritionOrder
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,23 +13,23 @@ import { QuantitySchemaInternal } from "../Quantity";
 
 /** Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium) required for the oral diet. */
 export interface NutritionOrder_OralDiet_Nutrient extends BackboneElement {
-	/** The quantity of the specified nutrient to include in diet. */
-	amount?: Quantity;
-	/** The nutrient that is being modified such as carbohydrate or sodium. */
-	modifier?: CodeableConcept;
+  /** The quantity of the specified nutrient to include in diet. */
+  amount?: Quantity;
+  /** The nutrient that is being modified such as carbohydrate or sodium. */
+  modifier?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const NutritionOrder_OralDiet_NutrientSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		amount: z.lazy(getQuantitySchema).optional(),
-		modifier: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    amount: z.lazy(getQuantitySchema).optional(),
+    modifier: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const NutritionOrder_OralDiet_NutrientSchema =
-	NutritionOrder_OralDiet_NutrientSchemaInternal as z.ZodType<NutritionOrder_OralDiet_Nutrient>;
+  NutritionOrder_OralDiet_NutrientSchemaInternal as z.ZodType<NutritionOrder_OralDiet_Nutrient>;

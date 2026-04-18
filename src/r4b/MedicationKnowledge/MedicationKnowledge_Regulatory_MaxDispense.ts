@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,24 +13,24 @@ import { QuantitySchemaInternal } from "../Quantity";
 
 /** The maximum number of units of the medication that can be dispensed in a period. */
 export interface MedicationKnowledge_Regulatory_MaxDispense
-	extends BackboneElement {
-	/** The period that applies to the maximum number of units. */
-	period?: Duration;
-	/** The maximum number of units of the medication that can be dispensed. */
-	quantity: Quantity;
+  extends BackboneElement {
+  /** The period that applies to the maximum number of units. */
+  period?: Duration;
+  /** The maximum number of units of the medication that can be dispensed. */
+  quantity: Quantity;
 }
 
 const getDurationSchema = (): z.ZodType<Duration> =>
-	DurationSchemaInternal as z.ZodType<Duration>;
+  DurationSchemaInternal as z.ZodType<Duration>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const MedicationKnowledge_Regulatory_MaxDispenseSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		period: z.lazy(getDurationSchema).optional(),
-		quantity: z.lazy(getQuantitySchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    period: z.lazy(getDurationSchema).optional(),
+    quantity: z.lazy(getQuantitySchema),
+  }).strict();
 
 export const MedicationKnowledge_Regulatory_MaxDispenseSchema =
-	MedicationKnowledge_Regulatory_MaxDispenseSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_MaxDispense>;
+  MedicationKnowledge_Regulatory_MaxDispenseSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_MaxDispense>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Encounter
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -18,47 +18,47 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** List of locations where  the patient has been during this encounter. */
 export interface Encounter_Location extends BackboneElement {
-	/** The location where the encounter takes place. */
-	location: Reference;
-	/** Time period during which the patient was present at the location. */
-	period?: Period;
-	/** This will be used to specify the required levels (bed/ward/room/etc.) desired to be recorded to simplify either messaging or query. */
-	physicalType?: CodeableConcept;
-	/** The status of the participants' presence at the specified location during the period specified. If the participant is no longer at the location, then the period will have an end date/time. */
-	status?: "active" | "completed" | "planned" | "reserved";
-	/** Extensions for status */
-	_status?: Element;
+  /** The location where the encounter takes place. */
+  location: Reference;
+  /** Time period during which the patient was present at the location. */
+  period?: Period;
+  /** This will be used to specify the required levels (bed/ward/room/etc.) desired to be recorded to simplify either messaging or query. */
+  physicalType?: CodeableConcept;
+  /** The status of the participants' presence at the specified location during the period specified. If the participant is no longer at the location, then the period will have an end date/time. */
+  status?: "active" | "completed" | "planned" | "reserved";
+  /** Extensions for status */
+  _status?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Encounter_LocationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		location: z.lazy(getReferenceSchema),
-		period: z.lazy(getPeriodSchema).optional(),
-		physicalType: z.lazy(getCodeableConceptSchema).optional(),
-		status: z.enum(["active", "completed", "planned", "reserved"]).optional(),
-		_status: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.location,
-				"location",
-				["http://hl7.org/fhir/StructureDefinition/Location"],
-				["Location"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    location: z.lazy(getReferenceSchema),
+    period: z.lazy(getPeriodSchema).optional(),
+    physicalType: z.lazy(getCodeableConceptSchema).optional(),
+    status: z.enum(["active", "completed", "planned", "reserved"]).optional(),
+    _status: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.location,
+        "location",
+        ["http://hl7.org/fhir/StructureDefinition/Location"],
+        ["Location"],
+        ctx,
+      );
+    });
 
 export const Encounter_LocationSchema =
-	Encounter_LocationSchemaInternal as z.ZodType<Encounter_Location>;
+  Encounter_LocationSchemaInternal as z.ZodType<Encounter_Location>;

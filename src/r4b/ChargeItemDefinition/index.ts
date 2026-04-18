@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { ChargeItemDefinition } from "./ChargeItemDefinition";
 export { ChargeItemDefinitionSchema } from "./ChargeItemDefinition";
@@ -9,10 +9,3 @@ export type { ChargeItemDefinition_PropertyGroup } from "./ChargeItemDefinition_
 export { ChargeItemDefinition_PropertyGroupSchema } from "./ChargeItemDefinition_PropertyGroup";
 export type { ChargeItemDefinition_PropertyGroup_PriceComponent } from "./ChargeItemDefinition_PropertyGroup_PriceComponent";
 export { ChargeItemDefinition_PropertyGroup_PriceComponentSchema } from "./ChargeItemDefinition_PropertyGroup_PriceComponent";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ChargeItemDefinitionSchemaInternal } from "./ChargeItemDefinition";
-
-_registerFhirResourceSchemas({
-	ChargeItemDefinition: ChargeItemDefinitionSchemaInternal,
-});

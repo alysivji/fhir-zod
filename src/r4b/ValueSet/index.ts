@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { ValueSet } from "./ValueSet";
 export { ValueSetSchema } from "./ValueSet";
@@ -19,10 +19,3 @@ export type { ValueSet_Expansion_Contains } from "./ValueSet_Expansion_Contains"
 export { ValueSet_Expansion_ContainsSchema } from "./ValueSet_Expansion_Contains";
 export type { ValueSet_Expansion_Parameter } from "./ValueSet_Expansion_Parameter";
 export { ValueSet_Expansion_ParameterSchema } from "./ValueSet_Expansion_Parameter";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ValueSetSchemaInternal } from "./ValueSet";
-
-_registerFhirResourceSchemas({
-	ValueSet: ValueSetSchemaInternal,
-});

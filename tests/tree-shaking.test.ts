@@ -72,16 +72,7 @@ describe("package tree shaking", () => {
 		const { distDir, packageRoot, rootPackageJson } =
 			await buildPackageFixture();
 		try {
-			expect(rootPackageJson.sideEffects).toEqual([
-				"./dist/r4/index.js",
-				"./dist/r4/*/index.js",
-				"./dist/r4b/index.js",
-				"./dist/r4b/*/index.js",
-				"./dist/r5/index.js",
-				"./dist/r5/*/index.js",
-				"./dist/stu3/index.js",
-				"./dist/stu3/*/index.js",
-			]);
+			expect(rootPackageJson.sideEffects).toBe(false);
 
 			const r4Index = join(distDir, "r4/index.js");
 			const r4Patient = join(distDir, "r4/Patient/Patient.js");
@@ -127,7 +118,7 @@ describe("package tree shaking", () => {
 		}
 	}, 120_000);
 
-	it("pulls every R4 resource into the bundle when importing from the version entry point", async () => {
+	it("does not pull concrete resources when importing a datatype from the version entry point", async () => {
 		const { packageRoot } = await buildPackageFixture();
 		try {
 			const result = await build({
@@ -153,16 +144,17 @@ describe("package tree shaking", () => {
 			});
 
 			const bundledCode = result.outputFiles?.[0]?.text ?? "";
-			expect(bundledCode).toContain("PatientSchemaInternal");
-			expect(bundledCode).toContain("ObservationSchemaInternal");
-			expect(bundledCode).toContain("AccountSchemaInternal");
-			expect(bundledCode).toContain("_registerFhirResourceSchemas");
+			expect(bundledCode).toContain("CodingSchemaInternal");
+			expect(bundledCode).not.toContain("PatientSchemaInternal");
+			expect(bundledCode).not.toContain("ObservationSchemaInternal");
+			expect(bundledCode).not.toContain("AccountSchemaInternal");
+			expect(bundledCode).not.toContain("FhirResourceSchemaInternal");
 		} finally {
 			rmSync(packageRoot, { force: true, recursive: true });
 		}
 	}, 120_000);
 
-	it("keeps the Patient module scoped to the Patient resource family", async () => {
+	it("includes the full resource dispatcher for Patient contained-resource validation", async () => {
 		const { packageRoot } = await buildPackageFixture();
 		try {
 			const result = await build({
@@ -189,9 +181,49 @@ describe("package tree shaking", () => {
 
 			const bundledCode = result.outputFiles?.[0]?.text ?? "";
 			expect(bundledCode).toContain("PatientSchemaInternal");
-			expect(bundledCode).not.toContain("ObservationSchemaInternal");
-			expect(bundledCode).not.toContain("AccountSchemaInternal");
-			expect(bundledCode).toContain("_registerFhirResourceSchemas");
+			expect(bundledCode).toContain("ObservationSchemaInternal");
+			expect(bundledCode).toContain("AccountSchemaInternal");
+			expect(bundledCode).toContain("FhirResourceSchemaInternal");
+			expect(bundledCode).toContain("resourceSchemas");
+			expect(bundledCode).not.toContain("_registerFhirResourceSchemas");
+		} finally {
+			rmSync(packageRoot, { force: true, recursive: true });
+		}
+	}, 120_000);
+
+	it("includes the full resource dispatcher for Bundle entry resource validation", async () => {
+		const { packageRoot } = await buildPackageFixture();
+		try {
+			const result = await build({
+				bundle: true,
+				external: ["zod"],
+				format: "esm",
+				platform: "neutral",
+				stdin: {
+					contents: [
+						'import { BundleSchema } from "fhir-zod/r4/Bundle";',
+						"console.log(BundleSchema);",
+					].join("\n"),
+					loader: "js",
+					resolveDir: packageRoot,
+				},
+				treeShaking: true,
+				tsconfigRaw: JSON.stringify({
+					compilerOptions: {
+						moduleResolution: "Bundler",
+					},
+				}),
+				write: false,
+			});
+
+			const bundledCode = result.outputFiles?.[0]?.text ?? "";
+			expect(bundledCode).toContain("BundleSchemaInternal");
+			expect(bundledCode).toContain("PatientSchemaInternal");
+			expect(bundledCode).toContain("ObservationSchemaInternal");
+			expect(bundledCode).toContain("AccountSchemaInternal");
+			expect(bundledCode).toContain("FhirResourceSchemaInternal");
+			expect(bundledCode).toContain("resourceSchemas");
+			expect(bundledCode).not.toContain("_registerFhirResourceSchemas");
 		} finally {
 			rmSync(packageRoot, { force: true, recursive: true });
 		}

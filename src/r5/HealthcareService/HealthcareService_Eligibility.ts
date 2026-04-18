@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/HealthcareService
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,29 +13,29 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Does this service have specific eligibility requirements that need to be met in order to use the service? */
 export interface HealthcareService_Eligibility extends BackboneElement {
-	/** Coded value for the eligibility. */
-	code?: CodeableConcept;
-	/** Describes the eligibility conditions for the service. */
-	comment?: string;
-	/** Extensions for comment */
-	_comment?: Element;
+  /** Coded value for the eligibility. */
+  code?: CodeableConcept;
+  /** Describes the eligibility conditions for the service. */
+  comment?: string;
+  /** Extensions for comment */
+  _comment?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const HealthcareService_EligibilitySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema).optional(),
-		comment: z
-			.string()
-			.regex(/^[\s\S]+$/)
-			.optional(),
-		_comment: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema).optional(),
+    comment: z
+      .string()
+      .regex(/^[\s\S]+$/)
+      .optional(),
+    _comment: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const HealthcareService_EligibilitySchema =
-	HealthcareService_EligibilitySchemaInternal as z.ZodType<HealthcareService_Eligibility>;
+  HealthcareService_EligibilitySchemaInternal as z.ZodType<HealthcareService_Eligibility>;

@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { GenomicStudy } from "./GenomicStudy";
 export { GenomicStudySchema } from "./GenomicStudy";
@@ -13,10 +13,3 @@ export type { GenomicStudy_Analysis_Output } from "./GenomicStudy_Analysis_Outpu
 export { GenomicStudy_Analysis_OutputSchema } from "./GenomicStudy_Analysis_Output";
 export type { GenomicStudy_Analysis_Performer } from "./GenomicStudy_Analysis_Performer";
 export { GenomicStudy_Analysis_PerformerSchema } from "./GenomicStudy_Analysis_Performer";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { GenomicStudySchemaInternal } from "./GenomicStudy";
-
-_registerFhirResourceSchemas({
-	GenomicStudy: GenomicStudySchemaInternal,
-});

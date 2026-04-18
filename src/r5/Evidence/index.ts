@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Evidence } from "./Evidence";
 export { EvidenceSchema } from "./Evidence";
@@ -17,10 +17,3 @@ export type { Evidence_Statistic_SampleSize } from "./Evidence_Statistic_SampleS
 export { Evidence_Statistic_SampleSizeSchema } from "./Evidence_Statistic_SampleSize";
 export type { Evidence_VariableDefinition } from "./Evidence_VariableDefinition";
 export { Evidence_VariableDefinitionSchema } from "./Evidence_VariableDefinition";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { EvidenceSchemaInternal } from "./Evidence";
-
-_registerFhirResourceSchemas({
-	Evidence: EvidenceSchemaInternal,
-});

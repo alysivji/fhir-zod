@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { Claim } from "./Claim";
 export { ClaimSchema } from "./Claim";
@@ -25,10 +25,3 @@ export type { Claim_Procedure } from "./Claim_Procedure";
 export { Claim_ProcedureSchema } from "./Claim_Procedure";
 export type { Claim_Related } from "./Claim_Related";
 export { Claim_RelatedSchema } from "./Claim_Related";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ClaimSchemaInternal } from "./Claim";
-
-_registerFhirResourceSchemas({
-	Claim: ClaimSchemaInternal,
-});

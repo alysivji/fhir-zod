@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { CapabilityStatement } from "./CapabilityStatement";
 export { CapabilityStatementSchema } from "./CapabilityStatement";
@@ -29,10 +29,3 @@ export type { CapabilityStatement_Rest_Security } from "./CapabilityStatement_Re
 export { CapabilityStatement_Rest_SecuritySchema } from "./CapabilityStatement_Rest_Security";
 export type { CapabilityStatement_Software } from "./CapabilityStatement_Software";
 export { CapabilityStatement_SoftwareSchema } from "./CapabilityStatement_Software";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CapabilityStatementSchemaInternal } from "./CapabilityStatement";
-
-_registerFhirResourceSchemas({
-	CapabilityStatement: CapabilityStatementSchemaInternal,
-});

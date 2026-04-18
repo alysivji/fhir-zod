@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { EvidenceVariable } from "./EvidenceVariable";
 export { EvidenceVariableSchema } from "./EvidenceVariable";
@@ -13,10 +13,3 @@ export type { EvidenceVariable_Characteristic_DefinitionByTypeAndValue } from ".
 export { EvidenceVariable_Characteristic_DefinitionByTypeAndValueSchema } from "./EvidenceVariable_Characteristic_DefinitionByTypeAndValue";
 export type { EvidenceVariable_Characteristic_TimeFromEvent } from "./EvidenceVariable_Characteristic_TimeFromEvent";
 export { EvidenceVariable_Characteristic_TimeFromEventSchema } from "./EvidenceVariable_Characteristic_TimeFromEvent";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { EvidenceVariableSchemaInternal } from "./EvidenceVariable";
-
-_registerFhirResourceSchemas({
-	EvidenceVariable: EvidenceVariableSchemaInternal,
-});

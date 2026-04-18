@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { Bundle } from "./Bundle";
 export { BundleSchema } from "./Bundle";
@@ -13,10 +13,3 @@ export type { Bundle_Entry_Search } from "./Bundle_Entry_Search";
 export { Bundle_Entry_SearchSchema } from "./Bundle_Entry_Search";
 export type { Bundle_Link } from "./Bundle_Link";
 export { Bundle_LinkSchema } from "./Bundle_Link";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { BundleSchemaInternal } from "./Bundle";
-
-_registerFhirResourceSchemas({
-	Bundle: BundleSchemaInternal,
-});

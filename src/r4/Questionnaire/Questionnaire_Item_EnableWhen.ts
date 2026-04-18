@@ -1,14 +1,14 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 import * as z from "zod";
 import {
-	fhirDate,
-	fhirDateTime,
-	fhirString,
-	fhirTime,
+  fhirDate,
+  fhirDateTime,
+  fhirString,
+  fhirTime,
 } from "../../shared/fhir-primitives";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
 import type { BackboneElement } from "../BackboneElement";
@@ -24,123 +24,123 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** A constraint indicating that this item should only be enabled (displayed/allow answers to be captured) when the specified condition is true. */
 export interface Questionnaire_Item_EnableWhen extends BackboneElement {
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerBoolean?: boolean;
-	/** Extensions for answerBoolean */
-	_answerBoolean?: Element;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerCoding?: Coding;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerDate?: string;
-	/** Extensions for answerDate */
-	_answerDate?: Element;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerDateTime?: string;
-	/** Extensions for answerDateTime */
-	_answerDateTime?: Element;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerDecimal?: number;
-	/** Extensions for answerDecimal */
-	_answerDecimal?: Element;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerInteger?: number;
-	/** Extensions for answerInteger */
-	_answerInteger?: Element;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerQuantity?: Quantity;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerReference?: Reference;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerString?: string;
-	/** Extensions for answerString */
-	_answerString?: Element;
-	/** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
-	answerTime?: string;
-	/** Extensions for answerTime */
-	_answerTime?: Element;
-	/** Specifies the criteria by which the question is enabled. */
-	operator: "!=" | "<" | "<=" | "=" | ">" | ">=" | "exists";
-	/** Extensions for operator */
-	_operator?: Element;
-	/** The linkId for the question whose answer (or lack of answer) governs whether this item is enabled. */
-	question: string;
-	/** Extensions for question */
-	_question?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerBoolean?: boolean;
+  /** Extensions for answerBoolean */
+  _answerBoolean?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerCoding?: Coding;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerDate?: string;
+  /** Extensions for answerDate */
+  _answerDate?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerDateTime?: string;
+  /** Extensions for answerDateTime */
+  _answerDateTime?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerDecimal?: number;
+  /** Extensions for answerDecimal */
+  _answerDecimal?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerInteger?: number;
+  /** Extensions for answerInteger */
+  _answerInteger?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerQuantity?: Quantity;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerReference?: Reference;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerString?: string;
+  /** Extensions for answerString */
+  _answerString?: Element;
+  /** A value that the referenced question is tested using the specified operator in order for the item to be enabled. */
+  answerTime?: string;
+  /** Extensions for answerTime */
+  _answerTime?: Element;
+  /** Specifies the criteria by which the question is enabled. */
+  operator: "!=" | "<" | "<=" | "=" | ">" | ">=" | "exists";
+  /** Extensions for operator */
+  _operator?: Element;
+  /** The linkId for the question whose answer (or lack of answer) governs whether this item is enabled. */
+  question: string;
+  /** Extensions for question */
+  _question?: Element;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Questionnaire_Item_EnableWhenSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		answerBoolean: z.boolean().optional(),
-		_answerBoolean: z.lazy(getElementSchema).optional(),
-		answerCoding: z.lazy(getCodingSchema).optional(),
-		answerDate: fhirDate().optional(),
-		_answerDate: z.lazy(getElementSchema).optional(),
-		answerDateTime: fhirDateTime().optional(),
-		_answerDateTime: z.lazy(getElementSchema).optional(),
-		answerDecimal: z.number().optional(),
-		_answerDecimal: z.lazy(getElementSchema).optional(),
-		answerInteger: z.number().int().optional(),
-		_answerInteger: z.lazy(getElementSchema).optional(),
-		answerQuantity: z.lazy(getQuantitySchema).optional(),
-		answerReference: z.lazy(getReferenceSchema).optional(),
-		answerString: fhirString().optional(),
-		_answerString: z.lazy(getElementSchema).optional(),
-		answerTime: fhirTime().optional(),
-		_answerTime: z.lazy(getElementSchema).optional(),
-		operator: z.enum(["!=", "<", "<=", "=", ">", ">=", "exists"]),
-		_operator: z.lazy(getElementSchema).optional(),
-		question: fhirString(),
-		_question: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const answer_x_Present = [
-				"answerBoolean",
-				"answerCoding",
-				"answerDate",
-				"answerDateTime",
-				"answerDecimal",
-				"answerInteger",
-				"answerQuantity",
-				"answerReference",
-				"answerString",
-				"answerTime",
-			].filter((field) => record[field] !== undefined);
-			if (answer_x_Present.length === 0) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"One of answerBoolean, answerCoding, answerDate, answerDateTime, answerDecimal, answerInteger, answerQuantity, answerReference, answerString, answerTime must be present for answer[x]",
-					path: ["answerBoolean"],
-				});
-			}
-			if (answer_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of answerBoolean, answerCoding, answerDate, answerDateTime, answerDecimal, answerInteger, answerQuantity, answerReference, answerString, answerTime may be present for answer[x]",
-					path: [answer_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.answerReference,
-				"answerReference",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    answerBoolean: z.boolean().optional(),
+    _answerBoolean: z.lazy(getElementSchema).optional(),
+    answerCoding: z.lazy(getCodingSchema).optional(),
+    answerDate: fhirDate().optional(),
+    _answerDate: z.lazy(getElementSchema).optional(),
+    answerDateTime: fhirDateTime().optional(),
+    _answerDateTime: z.lazy(getElementSchema).optional(),
+    answerDecimal: z.number().optional(),
+    _answerDecimal: z.lazy(getElementSchema).optional(),
+    answerInteger: z.number().int().optional(),
+    _answerInteger: z.lazy(getElementSchema).optional(),
+    answerQuantity: z.lazy(getQuantitySchema).optional(),
+    answerReference: z.lazy(getReferenceSchema).optional(),
+    answerString: fhirString().optional(),
+    _answerString: z.lazy(getElementSchema).optional(),
+    answerTime: fhirTime().optional(),
+    _answerTime: z.lazy(getElementSchema).optional(),
+    operator: z.enum(["!=", "<", "<=", "=", ">", ">=", "exists"]),
+    _operator: z.lazy(getElementSchema).optional(),
+    question: fhirString(),
+    _question: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const answer_x_Present = [
+        "answerBoolean",
+        "answerCoding",
+        "answerDate",
+        "answerDateTime",
+        "answerDecimal",
+        "answerInteger",
+        "answerQuantity",
+        "answerReference",
+        "answerString",
+        "answerTime",
+      ].filter((field) => record[field] !== undefined);
+      if (answer_x_Present.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "One of answerBoolean, answerCoding, answerDate, answerDateTime, answerDecimal, answerInteger, answerQuantity, answerReference, answerString, answerTime must be present for answer[x]",
+          path: ["answerBoolean"],
+        });
+      }
+      if (answer_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of answerBoolean, answerCoding, answerDate, answerDateTime, answerDecimal, answerInteger, answerQuantity, answerReference, answerString, answerTime may be present for answer[x]",
+          path: [answer_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.answerReference,
+        "answerReference",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const Questionnaire_Item_EnableWhenSchema =
-	Questionnaire_Item_EnableWhenSchemaInternal as z.ZodType<Questionnaire_Item_EnableWhen>;
+  Questionnaire_Item_EnableWhenSchemaInternal as z.ZodType<Questionnaire_Item_EnableWhen>;

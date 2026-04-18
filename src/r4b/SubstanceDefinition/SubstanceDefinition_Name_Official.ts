@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceDefinition
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../../shared/fhir-primitives";
@@ -14,29 +14,29 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Details of the official nature of this name. */
 export interface SubstanceDefinition_Name_Official extends BackboneElement {
-	/** Which authority uses this official name. */
-	authority?: CodeableConcept;
-	/** Date of the official name change. */
-	date?: string;
-	/** Extensions for date */
-	_date?: Element;
-	/** The status of the official name, for example 'draft', 'active', 'retired'. */
-	status?: CodeableConcept;
+  /** Which authority uses this official name. */
+  authority?: CodeableConcept;
+  /** Date of the official name change. */
+  date?: string;
+  /** Extensions for date */
+  _date?: Element;
+  /** The status of the official name, for example 'draft', 'active', 'retired'. */
+  status?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const SubstanceDefinition_Name_OfficialSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		authority: z.lazy(getCodeableConceptSchema).optional(),
-		date: fhirDateTime().optional(),
-		_date: z.lazy(getElementSchema).optional(),
-		status: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    authority: z.lazy(getCodeableConceptSchema).optional(),
+    date: fhirDateTime().optional(),
+    _date: z.lazy(getElementSchema).optional(),
+    status: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const SubstanceDefinition_Name_OfficialSchema =
-	SubstanceDefinition_Name_OfficialSchemaInternal as z.ZodType<SubstanceDefinition_Name_Official>;
+  SubstanceDefinition_Name_OfficialSchemaInternal as z.ZodType<SubstanceDefinition_Name_Official>;

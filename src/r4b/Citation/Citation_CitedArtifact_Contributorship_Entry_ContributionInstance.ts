@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { fhirDateTime } from "../../shared/fhir-primitives";
@@ -14,27 +14,27 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Contributions with accounting for time or number. */
 export interface Citation_CitedArtifact_Contributorship_Entry_ContributionInstance
-	extends BackboneElement {
-	/** The time that the contribution was made. */
-	time?: string;
-	/** Extensions for time */
-	_time?: Element;
-	/** The specific contribution. */
-	type: CodeableConcept;
+  extends BackboneElement {
+  /** The time that the contribution was made. */
+  time?: string;
+  /** Extensions for time */
+  _time?: Element;
+  /** The specific contribution. */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const Citation_CitedArtifact_Contributorship_Entry_ContributionInstanceSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		time: fhirDateTime().optional(),
-		_time: z.lazy(getElementSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    time: fhirDateTime().optional(),
+    _time: z.lazy(getElementSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const Citation_CitedArtifact_Contributorship_Entry_ContributionInstanceSchema =
-	Citation_CitedArtifact_Contributorship_Entry_ContributionInstanceSchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship_Entry_ContributionInstance>;
+  Citation_CitedArtifact_Contributorship_Entry_ContributionInstanceSchemaInternal as z.ZodType<Citation_CitedArtifact_Contributorship_Entry_ContributionInstance>;

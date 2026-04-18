@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,24 +13,24 @@ import { DosageSchemaInternal } from "../Dosage";
 
 /** Dosage for the medication for the specific guidelines. */
 export interface MedicationKnowledge_IndicationGuideline_DosingGuideline_Dosage
-	extends BackboneElement {
-	/** Dosage for the medication for the specific guidelines. */
-	dosage: Array<Dosage>;
-	/** The type or category of dosage for a given medication (for example, prophylaxis, maintenance, therapeutic, etc.). */
-	type: CodeableConcept;
+  extends BackboneElement {
+  /** Dosage for the medication for the specific guidelines. */
+  dosage: Array<Dosage>;
+  /** The type or category of dosage for a given medication (for example, prophylaxis, maintenance, therapeutic, etc.). */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getDosageSchema = (): z.ZodType<Dosage> =>
-	DosageSchemaInternal as z.ZodType<Dosage>;
+  DosageSchemaInternal as z.ZodType<Dosage>;
 
 /** @internal */
 export const MedicationKnowledge_IndicationGuideline_DosingGuideline_DosageSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		dosage: z.lazy(getDosageSchema).array(),
-		type: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    dosage: z.lazy(getDosageSchema).array(),
+    type: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const MedicationKnowledge_IndicationGuideline_DosingGuideline_DosageSchema =
-	MedicationKnowledge_IndicationGuideline_DosingGuideline_DosageSchemaInternal as z.ZodType<MedicationKnowledge_IndicationGuideline_DosingGuideline_Dosage>;
+  MedicationKnowledge_IndicationGuideline_DosingGuideline_DosageSchemaInternal as z.ZodType<MedicationKnowledge_IndicationGuideline_DosingGuideline_Dosage>;

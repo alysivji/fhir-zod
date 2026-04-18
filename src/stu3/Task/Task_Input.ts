@@ -1,20 +1,20 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Task
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import {
-	fhirBase64Binary,
-	fhirCode,
-	fhirDate,
-	fhirDateTime,
-	fhirId,
-	fhirInstant,
-	fhirOid,
-	fhirString,
-	fhirTime,
-	fhirUri,
+  fhirBase64Binary,
+  fhirCode,
+  fhirDate,
+  fhirDateTime,
+  fhirId,
+  fhirInstant,
+  fhirOid,
+  fhirString,
+  fhirTime,
+  fhirUri,
 } from "../../shared/fhir-primitives";
 import type { Address } from "../Address";
 import { AddressSchemaInternal } from "../Address";
@@ -67,282 +67,282 @@ import { TimingSchemaInternal } from "../Timing";
 
 /** Additional information that may be needed in the execution of the task. */
 export interface Task_Input extends BackboneElement {
-	/** A code or description indicating how the input is intended to be used as part of the task execution. */
-	type: CodeableConcept;
-	/** The value of the input parameter as a basic type. */
-	valueAddress?: Address;
-	/** The value of the input parameter as a basic type. */
-	valueAge?: Age;
-	/** The value of the input parameter as a basic type. */
-	valueAnnotation?: Annotation;
-	/** The value of the input parameter as a basic type. */
-	valueAttachment?: Attachment;
-	/** The value of the input parameter as a basic type. */
-	valueBase64Binary?: string;
-	/** Extensions for valueBase64Binary */
-	_valueBase64Binary?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueBoolean?: boolean;
-	/** Extensions for valueBoolean */
-	_valueBoolean?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueCode?: string;
-	/** Extensions for valueCode */
-	_valueCode?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueCodeableConcept?: CodeableConcept;
-	/** The value of the input parameter as a basic type. */
-	valueCoding?: Coding;
-	/** The value of the input parameter as a basic type. */
-	valueContactPoint?: ContactPoint;
-	/** The value of the input parameter as a basic type. */
-	valueCount?: Count;
-	/** The value of the input parameter as a basic type. */
-	valueDate?: string;
-	/** Extensions for valueDate */
-	_valueDate?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueDateTime?: string;
-	/** Extensions for valueDateTime */
-	_valueDateTime?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueDecimal?: number;
-	/** Extensions for valueDecimal */
-	_valueDecimal?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueDistance?: Distance;
-	/** The value of the input parameter as a basic type. */
-	valueDuration?: Duration;
-	/** The value of the input parameter as a basic type. */
-	valueHumanName?: HumanName;
-	/** The value of the input parameter as a basic type. */
-	valueId?: string;
-	/** Extensions for valueId */
-	_valueId?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueIdentifier?: Identifier;
-	/** The value of the input parameter as a basic type. */
-	valueInstant?: string;
-	/** Extensions for valueInstant */
-	_valueInstant?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueInteger?: number;
-	/** Extensions for valueInteger */
-	_valueInteger?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueMarkdown?: string;
-	/** Extensions for valueMarkdown */
-	_valueMarkdown?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueMeta?: Meta;
-	/** The value of the input parameter as a basic type. */
-	valueMoney?: Money;
-	/** The value of the input parameter as a basic type. */
-	valueOid?: string;
-	/** Extensions for valueOid */
-	_valueOid?: Element;
-	/** The value of the input parameter as a basic type. */
-	valuePeriod?: Period;
-	/** The value of the input parameter as a basic type. */
-	valuePositiveInt?: number;
-	/** Extensions for valuePositiveInt */
-	_valuePositiveInt?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueQuantity?: Quantity;
-	/** The value of the input parameter as a basic type. */
-	valueRange?: Range;
-	/** The value of the input parameter as a basic type. */
-	valueRatio?: Ratio;
-	/** The value of the input parameter as a basic type. */
-	valueReference?: Reference;
-	/** The value of the input parameter as a basic type. */
-	valueSampledData?: SampledData;
-	/** The value of the input parameter as a basic type. */
-	valueSignature?: Signature;
-	/** The value of the input parameter as a basic type. */
-	valueString?: string;
-	/** Extensions for valueString */
-	_valueString?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueTime?: string;
-	/** Extensions for valueTime */
-	_valueTime?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueTiming?: Timing;
-	/** The value of the input parameter as a basic type. */
-	valueUnsignedInt?: number;
-	/** Extensions for valueUnsignedInt */
-	_valueUnsignedInt?: Element;
-	/** The value of the input parameter as a basic type. */
-	valueUri?: string;
-	/** Extensions for valueUri */
-	_valueUri?: Element;
+  /** A code or description indicating how the input is intended to be used as part of the task execution. */
+  type: CodeableConcept;
+  /** The value of the input parameter as a basic type. */
+  valueAddress?: Address;
+  /** The value of the input parameter as a basic type. */
+  valueAge?: Age;
+  /** The value of the input parameter as a basic type. */
+  valueAnnotation?: Annotation;
+  /** The value of the input parameter as a basic type. */
+  valueAttachment?: Attachment;
+  /** The value of the input parameter as a basic type. */
+  valueBase64Binary?: string;
+  /** Extensions for valueBase64Binary */
+  _valueBase64Binary?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueBoolean?: boolean;
+  /** Extensions for valueBoolean */
+  _valueBoolean?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueCode?: string;
+  /** Extensions for valueCode */
+  _valueCode?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueCodeableConcept?: CodeableConcept;
+  /** The value of the input parameter as a basic type. */
+  valueCoding?: Coding;
+  /** The value of the input parameter as a basic type. */
+  valueContactPoint?: ContactPoint;
+  /** The value of the input parameter as a basic type. */
+  valueCount?: Count;
+  /** The value of the input parameter as a basic type. */
+  valueDate?: string;
+  /** Extensions for valueDate */
+  _valueDate?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueDateTime?: string;
+  /** Extensions for valueDateTime */
+  _valueDateTime?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueDecimal?: number;
+  /** Extensions for valueDecimal */
+  _valueDecimal?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueDistance?: Distance;
+  /** The value of the input parameter as a basic type. */
+  valueDuration?: Duration;
+  /** The value of the input parameter as a basic type. */
+  valueHumanName?: HumanName;
+  /** The value of the input parameter as a basic type. */
+  valueId?: string;
+  /** Extensions for valueId */
+  _valueId?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueIdentifier?: Identifier;
+  /** The value of the input parameter as a basic type. */
+  valueInstant?: string;
+  /** Extensions for valueInstant */
+  _valueInstant?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueInteger?: number;
+  /** Extensions for valueInteger */
+  _valueInteger?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueMarkdown?: string;
+  /** Extensions for valueMarkdown */
+  _valueMarkdown?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueMeta?: Meta;
+  /** The value of the input parameter as a basic type. */
+  valueMoney?: Money;
+  /** The value of the input parameter as a basic type. */
+  valueOid?: string;
+  /** Extensions for valueOid */
+  _valueOid?: Element;
+  /** The value of the input parameter as a basic type. */
+  valuePeriod?: Period;
+  /** The value of the input parameter as a basic type. */
+  valuePositiveInt?: number;
+  /** Extensions for valuePositiveInt */
+  _valuePositiveInt?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueQuantity?: Quantity;
+  /** The value of the input parameter as a basic type. */
+  valueRange?: Range;
+  /** The value of the input parameter as a basic type. */
+  valueRatio?: Ratio;
+  /** The value of the input parameter as a basic type. */
+  valueReference?: Reference;
+  /** The value of the input parameter as a basic type. */
+  valueSampledData?: SampledData;
+  /** The value of the input parameter as a basic type. */
+  valueSignature?: Signature;
+  /** The value of the input parameter as a basic type. */
+  valueString?: string;
+  /** Extensions for valueString */
+  _valueString?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueTime?: string;
+  /** Extensions for valueTime */
+  _valueTime?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueTiming?: Timing;
+  /** The value of the input parameter as a basic type. */
+  valueUnsignedInt?: number;
+  /** Extensions for valueUnsignedInt */
+  _valueUnsignedInt?: Element;
+  /** The value of the input parameter as a basic type. */
+  valueUri?: string;
+  /** Extensions for valueUri */
+  _valueUri?: Element;
 }
 
 const getAddressSchema = (): z.ZodType<Address> =>
-	AddressSchemaInternal as z.ZodType<Address>;
+  AddressSchemaInternal as z.ZodType<Address>;
 const getAgeSchema = (): z.ZodType<Age> => AgeSchemaInternal as z.ZodType<Age>;
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal as z.ZodType<Attachment>;
+  AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getCountSchema = (): z.ZodType<Count> =>
-	CountSchemaInternal as z.ZodType<Count>;
+  CountSchemaInternal as z.ZodType<Count>;
 const getDistanceSchema = (): z.ZodType<Distance> =>
-	DistanceSchemaInternal as z.ZodType<Distance>;
+  DistanceSchemaInternal as z.ZodType<Distance>;
 const getDurationSchema = (): z.ZodType<Duration> =>
-	DurationSchemaInternal as z.ZodType<Duration>;
+  DurationSchemaInternal as z.ZodType<Duration>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getHumanNameSchema = (): z.ZodType<HumanName> =>
-	HumanNameSchemaInternal as z.ZodType<HumanName>;
+  HumanNameSchemaInternal as z.ZodType<HumanName>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getMetaSchema = (): z.ZodType<Meta> =>
-	MetaSchemaInternal as z.ZodType<Meta>;
+  MetaSchemaInternal as z.ZodType<Meta>;
 const getMoneySchema = (): z.ZodType<Money> =>
-	MoneySchemaInternal as z.ZodType<Money>;
+  MoneySchemaInternal as z.ZodType<Money>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getRangeSchema = (): z.ZodType<Range> =>
-	RangeSchemaInternal as z.ZodType<Range>;
+  RangeSchemaInternal as z.ZodType<Range>;
 const getRatioSchema = (): z.ZodType<Ratio> =>
-	RatioSchemaInternal as z.ZodType<Ratio>;
+  RatioSchemaInternal as z.ZodType<Ratio>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 const getSampledDataSchema = (): z.ZodType<SampledData> =>
-	SampledDataSchemaInternal as z.ZodType<SampledData>;
+  SampledDataSchemaInternal as z.ZodType<SampledData>;
 const getSignatureSchema = (): z.ZodType<Signature> =>
-	SignatureSchemaInternal as z.ZodType<Signature>;
+  SignatureSchemaInternal as z.ZodType<Signature>;
 const getTimingSchema = (): z.ZodType<Timing> =>
-	TimingSchemaInternal as z.ZodType<Timing>;
+  TimingSchemaInternal as z.ZodType<Timing>;
 
 /** @internal */
 export const Task_InputSchemaInternal = BackboneElementSchemaInternal.extend({
-	type: z.lazy(getCodeableConceptSchema),
-	valueAddress: z.lazy(getAddressSchema).optional(),
-	valueAge: z.lazy(getAgeSchema).optional(),
-	valueAnnotation: z.lazy(getAnnotationSchema).optional(),
-	valueAttachment: z.lazy(getAttachmentSchema).optional(),
-	valueBase64Binary: fhirBase64Binary().optional(),
-	_valueBase64Binary: z.lazy(getElementSchema).optional(),
-	valueBoolean: z.boolean().optional(),
-	_valueBoolean: z.lazy(getElementSchema).optional(),
-	valueCode: fhirCode().optional(),
-	_valueCode: z.lazy(getElementSchema).optional(),
-	valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-	valueCoding: z.lazy(getCodingSchema).optional(),
-	valueContactPoint: z.lazy(getContactPointSchema).optional(),
-	valueCount: z.lazy(getCountSchema).optional(),
-	valueDate: fhirDate().optional(),
-	_valueDate: z.lazy(getElementSchema).optional(),
-	valueDateTime: fhirDateTime().optional(),
-	_valueDateTime: z.lazy(getElementSchema).optional(),
-	valueDecimal: z.number().optional(),
-	_valueDecimal: z.lazy(getElementSchema).optional(),
-	valueDistance: z.lazy(getDistanceSchema).optional(),
-	valueDuration: z.lazy(getDurationSchema).optional(),
-	valueHumanName: z.lazy(getHumanNameSchema).optional(),
-	valueId: fhirId().optional(),
-	_valueId: z.lazy(getElementSchema).optional(),
-	valueIdentifier: z.lazy(getIdentifierSchema).optional(),
-	valueInstant: fhirInstant().optional(),
-	_valueInstant: z.lazy(getElementSchema).optional(),
-	valueInteger: z.number().int().optional(),
-	_valueInteger: z.lazy(getElementSchema).optional(),
-	valueMarkdown: z.string().optional(),
-	_valueMarkdown: z.lazy(getElementSchema).optional(),
-	valueMeta: z.lazy(getMetaSchema).optional(),
-	valueMoney: z.lazy(getMoneySchema).optional(),
-	valueOid: fhirOid().optional(),
-	_valueOid: z.lazy(getElementSchema).optional(),
-	valuePeriod: z.lazy(getPeriodSchema).optional(),
-	valuePositiveInt: z.number().int().positive().optional(),
-	_valuePositiveInt: z.lazy(getElementSchema).optional(),
-	valueQuantity: z.lazy(getQuantitySchema).optional(),
-	valueRange: z.lazy(getRangeSchema).optional(),
-	valueRatio: z.lazy(getRatioSchema).optional(),
-	valueReference: z.lazy(getReferenceSchema).optional(),
-	valueSampledData: z.lazy(getSampledDataSchema).optional(),
-	valueSignature: z.lazy(getSignatureSchema).optional(),
-	valueString: fhirString().optional(),
-	_valueString: z.lazy(getElementSchema).optional(),
-	valueTime: fhirTime().optional(),
-	_valueTime: z.lazy(getElementSchema).optional(),
-	valueTiming: z.lazy(getTimingSchema).optional(),
-	valueUnsignedInt: z.number().int().nonnegative().optional(),
-	_valueUnsignedInt: z.lazy(getElementSchema).optional(),
-	valueUri: fhirUri().optional(),
-	_valueUri: z.lazy(getElementSchema).optional(),
+  type: z.lazy(getCodeableConceptSchema),
+  valueAddress: z.lazy(getAddressSchema).optional(),
+  valueAge: z.lazy(getAgeSchema).optional(),
+  valueAnnotation: z.lazy(getAnnotationSchema).optional(),
+  valueAttachment: z.lazy(getAttachmentSchema).optional(),
+  valueBase64Binary: fhirBase64Binary().optional(),
+  _valueBase64Binary: z.lazy(getElementSchema).optional(),
+  valueBoolean: z.boolean().optional(),
+  _valueBoolean: z.lazy(getElementSchema).optional(),
+  valueCode: fhirCode().optional(),
+  _valueCode: z.lazy(getElementSchema).optional(),
+  valueCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+  valueCoding: z.lazy(getCodingSchema).optional(),
+  valueContactPoint: z.lazy(getContactPointSchema).optional(),
+  valueCount: z.lazy(getCountSchema).optional(),
+  valueDate: fhirDate().optional(),
+  _valueDate: z.lazy(getElementSchema).optional(),
+  valueDateTime: fhirDateTime().optional(),
+  _valueDateTime: z.lazy(getElementSchema).optional(),
+  valueDecimal: z.number().optional(),
+  _valueDecimal: z.lazy(getElementSchema).optional(),
+  valueDistance: z.lazy(getDistanceSchema).optional(),
+  valueDuration: z.lazy(getDurationSchema).optional(),
+  valueHumanName: z.lazy(getHumanNameSchema).optional(),
+  valueId: fhirId().optional(),
+  _valueId: z.lazy(getElementSchema).optional(),
+  valueIdentifier: z.lazy(getIdentifierSchema).optional(),
+  valueInstant: fhirInstant().optional(),
+  _valueInstant: z.lazy(getElementSchema).optional(),
+  valueInteger: z.number().int().optional(),
+  _valueInteger: z.lazy(getElementSchema).optional(),
+  valueMarkdown: z.string().optional(),
+  _valueMarkdown: z.lazy(getElementSchema).optional(),
+  valueMeta: z.lazy(getMetaSchema).optional(),
+  valueMoney: z.lazy(getMoneySchema).optional(),
+  valueOid: fhirOid().optional(),
+  _valueOid: z.lazy(getElementSchema).optional(),
+  valuePeriod: z.lazy(getPeriodSchema).optional(),
+  valuePositiveInt: z.number().int().positive().optional(),
+  _valuePositiveInt: z.lazy(getElementSchema).optional(),
+  valueQuantity: z.lazy(getQuantitySchema).optional(),
+  valueRange: z.lazy(getRangeSchema).optional(),
+  valueRatio: z.lazy(getRatioSchema).optional(),
+  valueReference: z.lazy(getReferenceSchema).optional(),
+  valueSampledData: z.lazy(getSampledDataSchema).optional(),
+  valueSignature: z.lazy(getSignatureSchema).optional(),
+  valueString: fhirString().optional(),
+  _valueString: z.lazy(getElementSchema).optional(),
+  valueTime: fhirTime().optional(),
+  _valueTime: z.lazy(getElementSchema).optional(),
+  valueTiming: z.lazy(getTimingSchema).optional(),
+  valueUnsignedInt: z.number().int().nonnegative().optional(),
+  _valueUnsignedInt: z.lazy(getElementSchema).optional(),
+  valueUri: fhirUri().optional(),
+  _valueUri: z.lazy(getElementSchema).optional(),
 })
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		const value_x_Present = [
-			"valueAddress",
-			"valueAge",
-			"valueAnnotation",
-			"valueAttachment",
-			"valueBase64Binary",
-			"valueBoolean",
-			"valueCode",
-			"valueCodeableConcept",
-			"valueCoding",
-			"valueContactPoint",
-			"valueCount",
-			"valueDate",
-			"valueDateTime",
-			"valueDecimal",
-			"valueDistance",
-			"valueDuration",
-			"valueHumanName",
-			"valueId",
-			"valueIdentifier",
-			"valueInstant",
-			"valueInteger",
-			"valueMarkdown",
-			"valueMeta",
-			"valueMoney",
-			"valueOid",
-			"valuePeriod",
-			"valuePositiveInt",
-			"valueQuantity",
-			"valueRange",
-			"valueRatio",
-			"valueReference",
-			"valueSampledData",
-			"valueSignature",
-			"valueString",
-			"valueTime",
-			"valueTiming",
-			"valueUnsignedInt",
-			"valueUri",
-		].filter((field) => record[field] !== undefined);
-		if (value_x_Present.length === 0) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message:
-					"One of valueAddress, valueAge, valueAnnotation, valueAttachment, valueBase64Binary, valueBoolean, valueCode, valueCodeableConcept, valueCoding, valueContactPoint, valueCount, valueDate, valueDateTime, valueDecimal, valueDistance, valueDuration, valueHumanName, valueId, valueIdentifier, valueInstant, valueInteger, valueMarkdown, valueMeta, valueMoney, valueOid, valuePeriod, valuePositiveInt, valueQuantity, valueRange, valueRatio, valueReference, valueSampledData, valueSignature, valueString, valueTime, valueTiming, valueUnsignedInt, valueUri must be present for value[x]",
-				path: ["valueAddress"],
-			});
-		}
-		if (value_x_Present.length > 1) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message:
-					"Only one of valueAddress, valueAge, valueAnnotation, valueAttachment, valueBase64Binary, valueBoolean, valueCode, valueCodeableConcept, valueCoding, valueContactPoint, valueCount, valueDate, valueDateTime, valueDecimal, valueDistance, valueDuration, valueHumanName, valueId, valueIdentifier, valueInstant, valueInteger, valueMarkdown, valueMeta, valueMoney, valueOid, valuePeriod, valuePositiveInt, valueQuantity, valueRange, valueRatio, valueReference, valueSampledData, valueSignature, valueString, valueTime, valueTiming, valueUnsignedInt, valueUri may be present for value[x]",
-				path: [value_x_Present[0]],
-			});
-		}
-	});
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    const value_x_Present = [
+      "valueAddress",
+      "valueAge",
+      "valueAnnotation",
+      "valueAttachment",
+      "valueBase64Binary",
+      "valueBoolean",
+      "valueCode",
+      "valueCodeableConcept",
+      "valueCoding",
+      "valueContactPoint",
+      "valueCount",
+      "valueDate",
+      "valueDateTime",
+      "valueDecimal",
+      "valueDistance",
+      "valueDuration",
+      "valueHumanName",
+      "valueId",
+      "valueIdentifier",
+      "valueInstant",
+      "valueInteger",
+      "valueMarkdown",
+      "valueMeta",
+      "valueMoney",
+      "valueOid",
+      "valuePeriod",
+      "valuePositiveInt",
+      "valueQuantity",
+      "valueRange",
+      "valueRatio",
+      "valueReference",
+      "valueSampledData",
+      "valueSignature",
+      "valueString",
+      "valueTime",
+      "valueTiming",
+      "valueUnsignedInt",
+      "valueUri",
+    ].filter((field) => record[field] !== undefined);
+    if (value_x_Present.length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "One of valueAddress, valueAge, valueAnnotation, valueAttachment, valueBase64Binary, valueBoolean, valueCode, valueCodeableConcept, valueCoding, valueContactPoint, valueCount, valueDate, valueDateTime, valueDecimal, valueDistance, valueDuration, valueHumanName, valueId, valueIdentifier, valueInstant, valueInteger, valueMarkdown, valueMeta, valueMoney, valueOid, valuePeriod, valuePositiveInt, valueQuantity, valueRange, valueRatio, valueReference, valueSampledData, valueSignature, valueString, valueTime, valueTiming, valueUnsignedInt, valueUri must be present for value[x]",
+        path: ["valueAddress"],
+      });
+    }
+    if (value_x_Present.length > 1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "Only one of valueAddress, valueAge, valueAnnotation, valueAttachment, valueBase64Binary, valueBoolean, valueCode, valueCodeableConcept, valueCoding, valueContactPoint, valueCount, valueDate, valueDateTime, valueDecimal, valueDistance, valueDuration, valueHumanName, valueId, valueIdentifier, valueInstant, valueInteger, valueMarkdown, valueMeta, valueMoney, valueOid, valuePeriod, valuePositiveInt, valueQuantity, valueRange, valueRatio, valueReference, valueSampledData, valueSignature, valueString, valueTime, valueTiming, valueUnsignedInt, valueUri may be present for value[x]",
+        path: [value_x_Present[0]],
+      });
+    }
+  });
 
 export const Task_InputSchema =
-	Task_InputSchemaInternal as z.ZodType<Task_Input>;
+  Task_InputSchemaInternal as z.ZodType<Task_Input>;

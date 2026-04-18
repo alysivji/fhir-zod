@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { InventoryItem } from "./InventoryItem";
 export { InventoryItemSchema } from "./InventoryItem";
@@ -15,10 +15,3 @@ export type { InventoryItem_Name } from "./InventoryItem_Name";
 export { InventoryItem_NameSchema } from "./InventoryItem_Name";
 export type { InventoryItem_ResponsibleOrganization } from "./InventoryItem_ResponsibleOrganization";
 export { InventoryItem_ResponsibleOrganizationSchema } from "./InventoryItem_ResponsibleOrganization";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { InventoryItemSchemaInternal } from "./InventoryItem";
-
-_registerFhirResourceSchemas({
-	InventoryItem: InventoryItemSchemaInternal,
-});

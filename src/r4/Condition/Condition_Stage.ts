@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Condition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -14,41 +14,41 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Clinical stage or grade of a condition. May include formal severity assessments. */
 export interface Condition_Stage extends BackboneElement {
-	/** Reference to a formal record of the evidence on which the staging assessment is based. */
-	assessment?: Array<Reference>;
-	/** A simple summary of the stage such as "Stage 3". The determination of the stage is disease-specific. */
-	summary?: CodeableConcept;
-	/** The kind of staging, such as pathological or clinical staging. */
-	type?: CodeableConcept;
+  /** Reference to a formal record of the evidence on which the staging assessment is based. */
+  assessment?: Array<Reference>;
+  /** A simple summary of the stage such as "Stage 3". The determination of the stage is disease-specific. */
+  summary?: CodeableConcept;
+  /** The kind of staging, such as pathological or clinical staging. */
+  type?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Condition_StageSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		assessment: z.lazy(getReferenceSchema).array().optional(),
-		summary: z.lazy(getCodeableConceptSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.assessment,
-				"assessment",
-				[
-					"http://hl7.org/fhir/StructureDefinition/ClinicalImpression",
-					"http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
-					"http://hl7.org/fhir/StructureDefinition/Observation",
-				],
-				["ClinicalImpression", "DiagnosticReport", "Observation"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    assessment: z.lazy(getReferenceSchema).array().optional(),
+    summary: z.lazy(getCodeableConceptSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.assessment,
+        "assessment",
+        [
+          "http://hl7.org/fhir/StructureDefinition/ClinicalImpression",
+          "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+          "http://hl7.org/fhir/StructureDefinition/Observation",
+        ],
+        ["ClinicalImpression", "DiagnosticReport", "Observation"],
+        ctx,
+      );
+    });
 
 export const Condition_StageSchema =
-	Condition_StageSchemaInternal as z.ZodType<Condition_Stage>;
+  Condition_StageSchemaInternal as z.ZodType<Condition_Stage>;

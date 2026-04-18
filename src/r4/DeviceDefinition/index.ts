@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { DeviceDefinition } from "./DeviceDefinition";
 export { DeviceDefinitionSchema } from "./DeviceDefinition";
@@ -15,10 +15,3 @@ export type { DeviceDefinition_Specialization } from "./DeviceDefinition_Special
 export { DeviceDefinition_SpecializationSchema } from "./DeviceDefinition_Specialization";
 export type { DeviceDefinition_UdiDeviceIdentifier } from "./DeviceDefinition_UdiDeviceIdentifier";
 export { DeviceDefinition_UdiDeviceIdentifierSchema } from "./DeviceDefinition_UdiDeviceIdentifier";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { DeviceDefinitionSchemaInternal } from "./DeviceDefinition";
-
-_registerFhirResourceSchemas({
-	DeviceDefinition: DeviceDefinitionSchemaInternal,
-});

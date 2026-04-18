@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { NutritionProduct } from "./NutritionProduct";
 export { NutritionProductSchema } from "./NutritionProduct";
@@ -11,10 +11,3 @@ export type { NutritionProduct_Nutrient } from "./NutritionProduct_Nutrient";
 export { NutritionProduct_NutrientSchema } from "./NutritionProduct_Nutrient";
 export type { NutritionProduct_ProductCharacteristic } from "./NutritionProduct_ProductCharacteristic";
 export { NutritionProduct_ProductCharacteristicSchema } from "./NutritionProduct_ProductCharacteristic";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { NutritionProductSchemaInternal } from "./NutritionProduct";
-
-_registerFhirResourceSchemas({
-	NutritionProduct: NutritionProductSchemaInternal,
-});

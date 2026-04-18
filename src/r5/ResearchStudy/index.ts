@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ResearchStudy } from "./ResearchStudy";
 export { ResearchStudySchema } from "./ResearchStudy";
@@ -17,10 +17,3 @@ export type { ResearchStudy_ProgressStatus } from "./ResearchStudy_ProgressStatu
 export { ResearchStudy_ProgressStatusSchema } from "./ResearchStudy_ProgressStatus";
 export type { ResearchStudy_Recruitment } from "./ResearchStudy_Recruitment";
 export { ResearchStudy_RecruitmentSchema } from "./ResearchStudy_Recruitment";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ResearchStudySchemaInternal } from "./ResearchStudy";
-
-_registerFhirResourceSchemas({
-	ResearchStudy: ResearchStudySchemaInternal,
-});

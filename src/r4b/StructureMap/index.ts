@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { StructureMap } from "./StructureMap";
 export { StructureMapSchema } from "./StructureMap";
@@ -19,10 +19,3 @@ export type { StructureMap_Group_Rule_Target_Parameter } from "./StructureMap_Gr
 export { StructureMap_Group_Rule_Target_ParameterSchema } from "./StructureMap_Group_Rule_Target_Parameter";
 export type { StructureMap_Structure } from "./StructureMap_Structure";
 export { StructureMap_StructureSchema } from "./StructureMap_Structure";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { StructureMapSchemaInternal } from "./StructureMap";
-
-_registerFhirResourceSchemas({
-	StructureMap: StructureMapSchemaInternal,
-});

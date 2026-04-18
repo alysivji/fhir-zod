@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestScript
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { fhirId } from "../../shared/fhir-primitives";
@@ -14,27 +14,27 @@ import { TestScript_Ruleset_Rule_ParamSchemaInternal } from "./TestScript_Rulese
 
 /** The referenced rule within the external ruleset template. */
 export interface TestScript_Ruleset_Rule extends BackboneElement {
-	/** Each rule template can take one or more parameters for rule evaluation. */
-	param?: Array<TestScript_Ruleset_Rule_Param>;
-	/** Id of the referenced rule within the external ruleset template. */
-	ruleId: string;
-	/** Extensions for ruleId */
-	_ruleId?: Element;
+  /** Each rule template can take one or more parameters for rule evaluation. */
+  param?: Array<TestScript_Ruleset_Rule_Param>;
+  /** Id of the referenced rule within the external ruleset template. */
+  ruleId: string;
+  /** Extensions for ruleId */
+  _ruleId?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getTestScript_Ruleset_Rule_ParamSchema =
-	(): z.ZodType<TestScript_Ruleset_Rule_Param> =>
-		TestScript_Ruleset_Rule_ParamSchemaInternal as z.ZodType<TestScript_Ruleset_Rule_Param>;
+  (): z.ZodType<TestScript_Ruleset_Rule_Param> =>
+    TestScript_Ruleset_Rule_ParamSchemaInternal as z.ZodType<TestScript_Ruleset_Rule_Param>;
 
 /** @internal */
 export const TestScript_Ruleset_RuleSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		param: z.lazy(getTestScript_Ruleset_Rule_ParamSchema).array().optional(),
-		ruleId: fhirId(),
-		_ruleId: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    param: z.lazy(getTestScript_Ruleset_Rule_ParamSchema).array().optional(),
+    ruleId: fhirId(),
+    _ruleId: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const TestScript_Ruleset_RuleSchema =
-	TestScript_Ruleset_RuleSchemaInternal as z.ZodType<TestScript_Ruleset_Rule>;
+  TestScript_Ruleset_RuleSchemaInternal as z.ZodType<TestScript_Ruleset_Rule>;

@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ExampleScenario } from "./ExampleScenario";
 export { ExampleScenarioSchema } from "./ExampleScenario";
@@ -19,10 +19,3 @@ export type { ExampleScenario_Process_Step_Alternative } from "./ExampleScenario
 export { ExampleScenario_Process_Step_AlternativeSchema } from "./ExampleScenario_Process_Step_Alternative";
 export type { ExampleScenario_Process_Step_Operation } from "./ExampleScenario_Process_Step_Operation";
 export { ExampleScenario_Process_Step_OperationSchema } from "./ExampleScenario_Process_Step_Operation";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ExampleScenarioSchemaInternal } from "./ExampleScenario";
-
-_registerFhirResourceSchemas({
-	ExampleScenario: ExampleScenarioSchemaInternal,
-});

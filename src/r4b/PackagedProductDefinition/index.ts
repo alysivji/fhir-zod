@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { PackagedProductDefinition } from "./PackagedProductDefinition";
 export { PackagedProductDefinitionSchema } from "./PackagedProductDefinition";
@@ -13,10 +13,3 @@ export type { PackagedProductDefinition_Package_Property } from "./PackagedProdu
 export { PackagedProductDefinition_Package_PropertySchema } from "./PackagedProductDefinition_Package_Property";
 export type { PackagedProductDefinition_Package_ShelfLifeStorage } from "./PackagedProductDefinition_Package_ShelfLifeStorage";
 export { PackagedProductDefinition_Package_ShelfLifeStorageSchema } from "./PackagedProductDefinition_Package_ShelfLifeStorage";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { PackagedProductDefinitionSchemaInternal } from "./PackagedProductDefinition";
-
-_registerFhirResourceSchemas({
-	PackagedProductDefinition: PackagedProductDefinitionSchemaInternal,
-});

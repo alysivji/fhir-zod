@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClinicalUseDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,29 +13,29 @@ import { ElementSchemaInternal } from "../Element";
 
 /** A critical piece of information about environmental, health or physical risks or hazards that serve as caution to the user. For example 'Do not operate heavy machinery', 'May cause drowsiness', or 'Get medical advice/attention if you feel unwell'. */
 export interface ClinicalUseDefinition_Warning extends BackboneElement {
-	/** A coded or unformatted textual definition of this warning. */
-	code?: CodeableConcept;
-	/** A textual definition of this warning, with formatting. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
+  /** A coded or unformatted textual definition of this warning. */
+  code?: CodeableConcept;
+  /** A textual definition of this warning, with formatting. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const ClinicalUseDefinition_WarningSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema).optional(),
-		description: z
-			.string()
-			.regex(/^[\s\S]+$/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema).optional(),
+    description: z
+      .string()
+      .regex(/^[\s\S]+$/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const ClinicalUseDefinition_WarningSchema =
-	ClinicalUseDefinition_WarningSchemaInternal as z.ZodType<ClinicalUseDefinition_Warning>;
+  ClinicalUseDefinition_WarningSchemaInternal as z.ZodType<ClinicalUseDefinition_Warning>;

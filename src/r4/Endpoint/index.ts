@@ -1,12 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { Endpoint } from "./Endpoint";
 export { EndpointSchema } from "./Endpoint";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { EndpointSchemaInternal } from "./Endpoint";
-
-_registerFhirResourceSchemas({
-	Endpoint: EndpointSchemaInternal,
-});

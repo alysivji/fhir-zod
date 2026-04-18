@@ -25,16 +25,7 @@ describe("package and build config", () => {
 			"./stu3",
 			"./stu3/*",
 		]);
-		expect(packageJson.sideEffects).toEqual([
-			"./dist/r4/index.js",
-			"./dist/r4/*/index.js",
-			"./dist/r4b/index.js",
-			"./dist/r4b/*/index.js",
-			"./dist/r5/index.js",
-			"./dist/r5/*/index.js",
-			"./dist/stu3/index.js",
-			"./dist/stu3/*/index.js",
-		]);
+		expect(packageJson.sideEffects).toBe(false);
 	});
 
 	it("builds each public entrypoint as unbundled ESM with declarations", () => {

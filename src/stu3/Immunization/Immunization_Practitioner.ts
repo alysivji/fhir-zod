@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Immunization
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -14,34 +14,34 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Indicates who or what performed the event. */
 export interface Immunization_Practitioner extends BackboneElement {
-	/** The device, practitioner, etc. who performed the action. */
-	actor: Reference;
-	/** Describes the type of performance (e.g. ordering provider, administering provider, etc.). */
-	role?: CodeableConcept;
+  /** The device, practitioner, etc. who performed the action. */
+  actor: Reference;
+  /** Describes the type of performance (e.g. ordering provider, administering provider, etc.). */
+  role?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Immunization_PractitionerSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		actor: z.lazy(getReferenceSchema),
-		role: z.lazy(getCodeableConceptSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.actor,
-				"actor",
-				["http://hl7.org/fhir/StructureDefinition/Practitioner"],
-				["Practitioner"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    actor: z.lazy(getReferenceSchema),
+    role: z.lazy(getCodeableConceptSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.actor,
+        "actor",
+        ["http://hl7.org/fhir/StructureDefinition/Practitioner"],
+        ["Practitioner"],
+        ctx,
+      );
+    });
 
 export const Immunization_PractitionerSchema =
-	Immunization_PractitionerSchemaInternal as z.ZodType<Immunization_Practitioner>;
+  Immunization_PractitionerSchemaInternal as z.ZodType<Immunization_Practitioner>;

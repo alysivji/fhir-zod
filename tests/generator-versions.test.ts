@@ -205,9 +205,12 @@ describe("FHIR version registry", () => {
 			"index.ts",
 			"index.ts",
 		]);
-		expect(readFileSync(join(outputDir, "index.ts"), "utf8")).toContain(
-			"export type FhirResource",
+		expect(readFileSync(join(outputDir, "index.ts"), "utf8")).not.toContain(
+			"FhirResource",
 		);
+		expect(
+			readFileSync(join(outputDir, "_fhirResourceSchema.ts"), "utf8"),
+		).toContain("export type FhirResource");
 		expect(
 			readFileSync(join(outputDir, "Patient", "index.ts"), "utf8"),
 		).toContain('export { PatientSchema } from "./Patient"');

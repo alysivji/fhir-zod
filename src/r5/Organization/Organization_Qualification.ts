@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Organization
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -18,44 +18,44 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The official certifications, accreditations, training, designations and licenses that authorize and/or otherwise endorse the provision of care by the organization.For example, an approval to provide a type of services issued by a certifying body (such as the US Joint Commission) to an organization. */
 export interface Organization_Qualification extends BackboneElement {
-	/** Coded representation of the qualification. */
-	code: CodeableConcept;
-	/** An identifier allocated to this qualification for this organization. */
-	identifier?: Array<Identifier>;
-	/** Organization that regulates and issues the qualification. */
-	issuer?: Reference;
-	/** Period during which the qualification is valid. */
-	period?: Period;
+  /** Coded representation of the qualification. */
+  code: CodeableConcept;
+  /** An identifier allocated to this qualification for this organization. */
+  identifier?: Array<Identifier>;
+  /** Organization that regulates and issues the qualification. */
+  issuer?: Reference;
+  /** Period during which the qualification is valid. */
+  period?: Period;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Organization_QualificationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		issuer: z.lazy(getReferenceSchema).optional(),
-		period: z.lazy(getPeriodSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.issuer,
-				"issuer",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    issuer: z.lazy(getReferenceSchema).optional(),
+    period: z.lazy(getPeriodSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.issuer,
+        "issuer",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+    });
 
 export const Organization_QualificationSchema =
-	Organization_QualificationSchemaInternal as z.ZodType<Organization_Qualification>;
+  Organization_QualificationSchemaInternal as z.ZodType<Organization_Qualification>;

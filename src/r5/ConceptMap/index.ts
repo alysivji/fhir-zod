@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ConceptMap } from "./ConceptMap";
 export { ConceptMapSchema } from "./ConceptMap";
@@ -19,10 +19,3 @@ export type { ConceptMap_Group_Unmapped } from "./ConceptMap_Group_Unmapped";
 export { ConceptMap_Group_UnmappedSchema } from "./ConceptMap_Group_Unmapped";
 export type { ConceptMap_Property } from "./ConceptMap_Property";
 export { ConceptMap_PropertySchema } from "./ConceptMap_Property";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ConceptMapSchemaInternal } from "./ConceptMap";
-
-_registerFhirResourceSchemas({
-	ConceptMap: ConceptMapSchemaInternal,
-});

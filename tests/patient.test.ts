@@ -46,7 +46,7 @@ describe("Patient", () => {
 		});
 	});
 
-	it("registers Patient for contained-resource validation in the Patient module", () => {
+	it("validates contained resources against the full resource dispatcher", () => {
 		expect(
 			PatientSchema.safeParse({
 				contained: [{ resourceType: "Patient" }],
@@ -65,7 +65,7 @@ describe("Patient", () => {
 				],
 				resourceType: "Patient",
 			}).success,
-		).toBe(false);
+		).toBe(true);
 	});
 
 	it("rejects an invalid nested patient shape", () => {

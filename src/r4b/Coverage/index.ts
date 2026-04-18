@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { Coverage } from "./Coverage";
 export { CoverageSchema } from "./Coverage";
@@ -9,10 +9,3 @@ export type { Coverage_CostToBeneficiary } from "./Coverage_CostToBeneficiary";
 export { Coverage_CostToBeneficiarySchema } from "./Coverage_CostToBeneficiary";
 export type { Coverage_CostToBeneficiary_Exception } from "./Coverage_CostToBeneficiary_Exception";
 export { Coverage_CostToBeneficiary_ExceptionSchema } from "./Coverage_CostToBeneficiary_Exception";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CoverageSchemaInternal } from "./Coverage";
-
-_registerFhirResourceSchemas({
-	Coverage: CoverageSchemaInternal,
-});

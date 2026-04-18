@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { NutritionOrder } from "./NutritionOrder";
 export { NutritionOrderSchema } from "./NutritionOrder";
@@ -15,10 +15,3 @@ export type { NutritionOrder_OralDiet_Texture } from "./NutritionOrder_OralDiet_
 export { NutritionOrder_OralDiet_TextureSchema } from "./NutritionOrder_OralDiet_Texture";
 export type { NutritionOrder_Supplement } from "./NutritionOrder_Supplement";
 export { NutritionOrder_SupplementSchema } from "./NutritionOrder_Supplement";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { NutritionOrderSchemaInternal } from "./NutritionOrder";
-
-_registerFhirResourceSchemas({
-	NutritionOrder: NutritionOrderSchemaInternal,
-});

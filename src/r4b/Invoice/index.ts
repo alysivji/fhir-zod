@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { Invoice } from "./Invoice";
 export { InvoiceSchema } from "./Invoice";
@@ -9,10 +9,3 @@ export type { Invoice_LineItem_PriceComponent } from "./Invoice_LineItem_PriceCo
 export { Invoice_LineItem_PriceComponentSchema } from "./Invoice_LineItem_PriceComponent";
 export type { Invoice_Participant } from "./Invoice_Participant";
 export { Invoice_ParticipantSchema } from "./Invoice_Participant";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { InvoiceSchemaInternal } from "./Invoice";
-
-_registerFhirResourceSchemas({
-	Invoice: InvoiceSchemaInternal,
-});

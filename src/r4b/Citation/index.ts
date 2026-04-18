@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { Citation } from "./Citation";
 export { CitationSchema } from "./Citation";
@@ -49,10 +49,3 @@ export type { Citation_StatusDate } from "./Citation_StatusDate";
 export { Citation_StatusDateSchema } from "./Citation_StatusDate";
 export type { Citation_Summary } from "./Citation_Summary";
 export { Citation_SummarySchema } from "./Citation_Summary";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CitationSchemaInternal } from "./Citation";
-
-_registerFhirResourceSchemas({
-	Citation: CitationSchemaInternal,
-});

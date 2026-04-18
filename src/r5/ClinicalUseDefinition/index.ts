@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ClinicalUseDefinition } from "./ClinicalUseDefinition";
 export { ClinicalUseDefinitionSchema } from "./ClinicalUseDefinition";
@@ -17,10 +17,3 @@ export type { ClinicalUseDefinition_UndesirableEffect } from "./ClinicalUseDefin
 export { ClinicalUseDefinition_UndesirableEffectSchema } from "./ClinicalUseDefinition_UndesirableEffect";
 export type { ClinicalUseDefinition_Warning } from "./ClinicalUseDefinition_Warning";
 export { ClinicalUseDefinition_WarningSchema } from "./ClinicalUseDefinition_Warning";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ClinicalUseDefinitionSchemaInternal } from "./ClinicalUseDefinition";
-
-_registerFhirResourceSchemas({
-	ClinicalUseDefinition: ClinicalUseDefinitionSchemaInternal,
-});

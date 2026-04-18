@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { RiskEvidenceSynthesis } from "./RiskEvidenceSynthesis";
 export { RiskEvidenceSynthesisSchema } from "./RiskEvidenceSynthesis";
@@ -13,10 +13,3 @@ export type { RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimate } from "./Ris
 export { RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimateSchema } from "./RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimate";
 export type { RiskEvidenceSynthesis_SampleSize } from "./RiskEvidenceSynthesis_SampleSize";
 export { RiskEvidenceSynthesis_SampleSizeSchema } from "./RiskEvidenceSynthesis_SampleSize";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { RiskEvidenceSynthesisSchemaInternal } from "./RiskEvidenceSynthesis";
-
-_registerFhirResourceSchemas({
-	RiskEvidenceSynthesis: RiskEvidenceSynthesisSchemaInternal,
-});

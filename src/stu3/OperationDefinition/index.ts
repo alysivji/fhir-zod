@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { OperationDefinition } from "./OperationDefinition";
 export { OperationDefinitionSchema } from "./OperationDefinition";
@@ -9,10 +9,3 @@ export type { OperationDefinition_Parameter } from "./OperationDefinition_Parame
 export { OperationDefinition_ParameterSchema } from "./OperationDefinition_Parameter";
 export type { OperationDefinition_Parameter_Binding } from "./OperationDefinition_Parameter_Binding";
 export { OperationDefinition_Parameter_BindingSchema } from "./OperationDefinition_Parameter_Binding";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { OperationDefinitionSchemaInternal } from "./OperationDefinition";
-
-_registerFhirResourceSchemas({
-	OperationDefinition: OperationDefinitionSchemaInternal,
-});

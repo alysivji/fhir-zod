@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Consent
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -14,36 +14,36 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The resources controlled by this consent, if specific resources are referenced. */
 export interface Consent_Data extends BackboneElement {
-	/** How the resource reference is interpreted when testing consent restrictions. */
-	meaning: "authoredby" | "dependents" | "instance" | "related";
-	/** Extensions for meaning */
-	_meaning?: Element;
-	/** A reference to a specific resource that defines which resources are covered by this consent. */
-	reference: Reference;
+  /** How the resource reference is interpreted when testing consent restrictions. */
+  meaning: "authoredby" | "dependents" | "instance" | "related";
+  /** Extensions for meaning */
+  _meaning?: Element;
+  /** A reference to a specific resource that defines which resources are covered by this consent. */
+  reference: Reference;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Consent_DataSchemaInternal = BackboneElementSchemaInternal.extend({
-	meaning: z.enum(["authoredby", "dependents", "instance", "related"]),
-	_meaning: z.lazy(getElementSchema).optional(),
-	reference: z.lazy(getReferenceSchema),
+  meaning: z.enum(["authoredby", "dependents", "instance", "related"]),
+  _meaning: z.lazy(getElementSchema).optional(),
+  reference: z.lazy(getReferenceSchema),
 })
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validateReferenceTarget(
-			record.reference,
-			"reference",
-			["http://hl7.org/fhir/StructureDefinition/Resource"],
-			["Resource"],
-			ctx,
-		);
-	});
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validateReferenceTarget(
+      record.reference,
+      "reference",
+      ["http://hl7.org/fhir/StructureDefinition/Resource"],
+      ["Resource"],
+      ctx,
+    );
+  });
 
 export const Consent_DataSchema =
-	Consent_DataSchemaInternal as z.ZodType<Consent_Data>;
+  Consent_DataSchemaInternal as z.ZodType<Consent_Data>;

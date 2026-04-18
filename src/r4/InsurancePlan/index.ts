@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { InsurancePlan } from "./InsurancePlan";
 export { InsurancePlanSchema } from "./InsurancePlan";
@@ -21,10 +21,3 @@ export type { InsurancePlan_Plan_SpecificCost_Benefit } from "./InsurancePlan_Pl
 export { InsurancePlan_Plan_SpecificCost_BenefitSchema } from "./InsurancePlan_Plan_SpecificCost_Benefit";
 export type { InsurancePlan_Plan_SpecificCost_Benefit_Cost } from "./InsurancePlan_Plan_SpecificCost_Benefit_Cost";
 export { InsurancePlan_Plan_SpecificCost_Benefit_CostSchema } from "./InsurancePlan_Plan_SpecificCost_Benefit_Cost";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { InsurancePlanSchemaInternal } from "./InsurancePlan";
-
-_registerFhirResourceSchemas({
-	InsurancePlan: InsurancePlanSchemaInternal,
-});

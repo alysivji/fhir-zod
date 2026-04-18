@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ServiceRequest } from "./ServiceRequest";
 export { ServiceRequestSchema } from "./ServiceRequest";
@@ -9,10 +9,3 @@ export type { ServiceRequest_OrderDetail_Parameter } from "./ServiceRequest_Orde
 export { ServiceRequest_OrderDetail_ParameterSchema } from "./ServiceRequest_OrderDetail_Parameter";
 export type { ServiceRequest_PatientInstruction } from "./ServiceRequest_PatientInstruction";
 export { ServiceRequest_PatientInstructionSchema } from "./ServiceRequest_PatientInstruction";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ServiceRequestSchemaInternal } from "./ServiceRequest";
-
-_registerFhirResourceSchemas({
-	ServiceRequest: ServiceRequestSchemaInternal,
-});

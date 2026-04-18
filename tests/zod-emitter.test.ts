@@ -103,14 +103,10 @@ describe("Zod emitter", () => {
 
 		expect(index).not.toContain("export type { Patient } from");
 		expect(index).not.toContain("export { PatientSchema }");
-		expect(index).toContain(
-			'import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";',
-		);
-		expect(index).toContain("export type FhirResource = FhirResourceType;");
-		expect(index).toContain("_registerFhirResourceSchemas");
-		expect(index).toContain(
-			'import { PatientSchemaInternal } from "./Patient/Patient";',
-		);
+		expect(index).toContain('export type { Observation } from "./Observation";');
+		expect(index).not.toContain("FhirResourceType");
+		expect(index).not.toContain("_registerFhirResourceSchemas");
+		expect(index).not.toContain("PatientSchemaInternal");
 		expect(patientIndex).toContain('export type { Patient } from "./Patient";');
 		expect(patientIndex).toContain(
 			'export { PatientSchema } from "./Patient";',
@@ -118,13 +114,26 @@ describe("Zod emitter", () => {
 		expect(patientIndex).toContain(
 			'export type { Patient_Contact } from "./Patient_Contact";',
 		);
-		expect(patientIndex).toContain(
-			'import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";',
-		);
-		expect(patientIndex).toContain("Patient: PatientSchemaInternal");
+		expect(patientIndex).not.toContain("_registerFhirResourceSchemas");
+		expect(patientIndex).not.toContain("PatientSchemaInternal");
 		expect(fhirResource).toContain("export type FhirResource =");
-		expect(fhirResource).toContain('import type { Patient } from "./Patient";');
+		expect(fhirResource).toContain(
+			'import type { Patient } from "./Patient/Patient";',
+		);
+		expect(fhirResource).toContain(
+			'import { PatientSchemaInternal } from "./Patient/Patient";',
+		);
+		expect(fhirResource).toContain(
+			'import { ObservationSchemaInternal } from "./Observation";',
+		);
+		expect(fhirResource).toContain(
+			"let resourceSchemas: Readonly<Record<string, z.ZodTypeAny>> | null = null;",
+		);
+		expect(fhirResource).toContain("function getResourceSchemas()");
+		expect(fhirResource).toContain("Patient: PatientSchemaInternal");
+		expect(fhirResource).toContain("Observation: ObservationSchemaInternal");
 		expect(fhirResource).toContain("export const FhirResourceSchemaInternal");
+		expect(fhirResource).not.toContain("_registerFhirResourceSchemas");
 		expect(fhirResource).not.toContain(["Nested", "Resource"].join(""));
 		expect(domainResource).toContain("contained?: Array<FhirResource>;");
 		expect(domainResource).toContain("z.lazy(getFhirResourceSchema)");

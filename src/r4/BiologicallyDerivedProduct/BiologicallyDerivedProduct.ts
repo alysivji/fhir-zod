@@ -1,18 +1,26 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:03:58.798Z
 
 import * as z from "zod";
+import { fhirCode, fhirId, fhirUri } from "../../shared/fhir-primitives";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { FhirResource } from "../_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "../_fhirResourceSchema";
 import type { CodeableConcept } from "../CodeableConcept";
 import { CodeableConceptSchemaInternal } from "../CodeableConcept";
 import type { DomainResource } from "../DomainResource";
-import { DomainResourceSchemaInternal } from "../DomainResource";
 import type { Element } from "../Element";
 import { ElementSchemaInternal } from "../Element";
+import type { Extension } from "../Extension";
+import { ExtensionSchemaInternal } from "../Extension";
 import type { Identifier } from "../Identifier";
 import { IdentifierSchemaInternal } from "../Identifier";
+import type { Meta } from "../Meta";
+import { MetaSchemaInternal } from "../Meta";
+import type { Narrative } from "../Narrative";
+import { NarrativeSchemaInternal } from "../Narrative";
 import type { Reference } from "../Reference";
 import { ReferenceSchemaInternal } from "../Reference";
 import type { BiologicallyDerivedProduct_Collection } from "./BiologicallyDerivedProduct_Collection";
@@ -29,108 +37,127 @@ import { BiologicallyDerivedProduct_StorageSchemaInternal } from "./Biologically
  * into another (possibly the same) biological entity.
  */
 export interface BiologicallyDerivedProduct extends DomainResource {
-	/** How this product was collected. */
-	collection?: BiologicallyDerivedProduct_Collection;
-	/** This records identifiers associated with this biologically derived product instance that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation). */
-	identifier?: Array<Identifier>;
-	/** Any manipulation of product post-collection that is intended to alter the product.  For example a buffy-coat enrichment or CD8 reduction of Peripheral Blood Stem Cells to make it more suitable for infusion. */
-	manipulation?: BiologicallyDerivedProduct_Manipulation;
-	/** Parent product (if any). */
-	parent?: Array<Reference>;
-	/** Any processing of the product during collection that does not change the fundamental nature of the product. For example adding anti-coagulants during the collection of Peripheral Blood Stem Cells. */
-	processing?: Array<BiologicallyDerivedProduct_Processing>;
-	/** Broad category of this product. */
-	productCategory?: "biologicalAgent" | "cells" | "fluid" | "organ" | "tissue";
-	/** Extensions for productCategory */
-	_productCategory?: Element;
-	/** A code that identifies the kind of this biologically derived product (SNOMED Ctcode). */
-	productCode?: CodeableConcept;
-	/** Number of discrete units within this product. */
-	quantity?: number;
-	/** Extensions for quantity */
-	_quantity?: Element;
-	/** Procedure request to obtain this biologically derived product. */
-	request?: Array<Reference>;
-	/** This is a BiologicallyDerivedProduct resource. */
-	resourceType: "BiologicallyDerivedProduct";
-	/** Whether the product is currently available. */
-	status?: "available" | "unavailable";
-	/** Extensions for status */
-	_status?: Element;
-	/** Product storage. */
-	storage?: Array<BiologicallyDerivedProduct_Storage>;
+  /** How this product was collected. */
+  collection?: BiologicallyDerivedProduct_Collection;
+  /** This records identifiers associated with this biologically derived product instance that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation). */
+  identifier?: Array<Identifier>;
+  /** Any manipulation of product post-collection that is intended to alter the product.  For example a buffy-coat enrichment or CD8 reduction of Peripheral Blood Stem Cells to make it more suitable for infusion. */
+  manipulation?: BiologicallyDerivedProduct_Manipulation;
+  /** Parent product (if any). */
+  parent?: Array<Reference>;
+  /** Any processing of the product during collection that does not change the fundamental nature of the product. For example adding anti-coagulants during the collection of Peripheral Blood Stem Cells. */
+  processing?: Array<BiologicallyDerivedProduct_Processing>;
+  /** Broad category of this product. */
+  productCategory?: "biologicalAgent" | "cells" | "fluid" | "organ" | "tissue";
+  /** Extensions for productCategory */
+  _productCategory?: Element;
+  /** A code that identifies the kind of this biologically derived product (SNOMED Ctcode). */
+  productCode?: CodeableConcept;
+  /** Number of discrete units within this product. */
+  quantity?: number;
+  /** Extensions for quantity */
+  _quantity?: Element;
+  /** Procedure request to obtain this biologically derived product. */
+  request?: Array<Reference>;
+  /** This is a BiologicallyDerivedProduct resource. */
+  resourceType: "BiologicallyDerivedProduct";
+  /** Whether the product is currently available. */
+  status?: "available" | "unavailable";
+  /** Extensions for status */
+  _status?: Element;
+  /** Product storage. */
+  storage?: Array<BiologicallyDerivedProduct_Storage>;
 }
 
 const getBiologicallyDerivedProduct_CollectionSchema =
-	(): z.ZodType<BiologicallyDerivedProduct_Collection> =>
-		BiologicallyDerivedProduct_CollectionSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Collection>;
+  (): z.ZodType<BiologicallyDerivedProduct_Collection> =>
+    BiologicallyDerivedProduct_CollectionSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Collection>;
 const getBiologicallyDerivedProduct_ManipulationSchema =
-	(): z.ZodType<BiologicallyDerivedProduct_Manipulation> =>
-		BiologicallyDerivedProduct_ManipulationSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Manipulation>;
+  (): z.ZodType<BiologicallyDerivedProduct_Manipulation> =>
+    BiologicallyDerivedProduct_ManipulationSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Manipulation>;
 const getBiologicallyDerivedProduct_ProcessingSchema =
-	(): z.ZodType<BiologicallyDerivedProduct_Processing> =>
-		BiologicallyDerivedProduct_ProcessingSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Processing>;
+  (): z.ZodType<BiologicallyDerivedProduct_Processing> =>
+    BiologicallyDerivedProduct_ProcessingSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Processing>;
 const getBiologicallyDerivedProduct_StorageSchema =
-	(): z.ZodType<BiologicallyDerivedProduct_Storage> =>
-		BiologicallyDerivedProduct_StorageSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Storage>;
+  (): z.ZodType<BiologicallyDerivedProduct_Storage> =>
+    BiologicallyDerivedProduct_StorageSchemaInternal as z.ZodType<BiologicallyDerivedProduct_Storage>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+  MetaSchemaInternal as z.ZodType<Meta>;
+const getNarrativeSchema = (): z.ZodType<Narrative> =>
+  NarrativeSchemaInternal as z.ZodType<Narrative>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+  FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
-export const BiologicallyDerivedProductSchemaInternal =
-	DomainResourceSchemaInternal.extend({
-		collection: z
-			.lazy(getBiologicallyDerivedProduct_CollectionSchema)
-			.optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		manipulation: z
-			.lazy(getBiologicallyDerivedProduct_ManipulationSchema)
-			.optional(),
-		parent: z.lazy(getReferenceSchema).array().optional(),
-		processing: z
-			.lazy(getBiologicallyDerivedProduct_ProcessingSchema)
-			.array()
-			.optional(),
-		productCategory: z
-			.enum(["biologicalAgent", "cells", "fluid", "organ", "tissue"])
-			.optional(),
-		_productCategory: z.lazy(getElementSchema).optional(),
-		productCode: z.lazy(getCodeableConceptSchema).optional(),
-		quantity: z.number().int().optional(),
-		_quantity: z.lazy(getElementSchema).optional(),
-		request: z.lazy(getReferenceSchema).array().optional(),
-		resourceType: z.literal("BiologicallyDerivedProduct"),
-		status: z.enum(["available", "unavailable"]).optional(),
-		_status: z.lazy(getElementSchema).optional(),
-		storage: z
-			.lazy(getBiologicallyDerivedProduct_StorageSchema)
-			.array()
-			.optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.parent,
-				"parent",
-				["http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct"],
-				["BiologicallyDerivedProduct"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.request,
-				"request",
-				["http://hl7.org/fhir/StructureDefinition/ServiceRequest"],
-				["ServiceRequest"],
-				ctx,
-			);
-		});
+export const BiologicallyDerivedProductSchemaInternal = z
+  .object({
+    collection: z
+      .lazy(getBiologicallyDerivedProduct_CollectionSchema)
+      .optional(),
+    contained: z.lazy(getFhirResourceSchema).array().optional(),
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    id: fhirId().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    implicitRules: fhirUri().optional(),
+    _implicitRules: z.lazy(getElementSchema).optional(),
+    language: fhirCode().optional(),
+    _language: z.lazy(getElementSchema).optional(),
+    manipulation: z
+      .lazy(getBiologicallyDerivedProduct_ManipulationSchema)
+      .optional(),
+    meta: z.lazy(getMetaSchema).optional(),
+    modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+    parent: z.lazy(getReferenceSchema).array().optional(),
+    processing: z
+      .lazy(getBiologicallyDerivedProduct_ProcessingSchema)
+      .array()
+      .optional(),
+    productCategory: z
+      .enum(["biologicalAgent", "cells", "fluid", "organ", "tissue"])
+      .optional(),
+    _productCategory: z.lazy(getElementSchema).optional(),
+    productCode: z.lazy(getCodeableConceptSchema).optional(),
+    quantity: z.number().int().optional(),
+    _quantity: z.lazy(getElementSchema).optional(),
+    request: z.lazy(getReferenceSchema).array().optional(),
+    resourceType: z.literal("BiologicallyDerivedProduct"),
+    status: z.enum(["available", "unavailable"]).optional(),
+    _status: z.lazy(getElementSchema).optional(),
+    storage: z
+      .lazy(getBiologicallyDerivedProduct_StorageSchema)
+      .array()
+      .optional(),
+    text: z.lazy(getNarrativeSchema).optional(),
+  })
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validateReferenceTarget(
+      record.parent,
+      "parent",
+      ["http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct"],
+      ["BiologicallyDerivedProduct"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.request,
+      "request",
+      ["http://hl7.org/fhir/StructureDefinition/ServiceRequest"],
+      ["ServiceRequest"],
+      ctx,
+    );
+  });
 
 export const BiologicallyDerivedProductSchema =
-	BiologicallyDerivedProductSchemaInternal as z.ZodType<BiologicallyDerivedProduct>;
+  BiologicallyDerivedProductSchemaInternal as z.ZodType<BiologicallyDerivedProduct>;

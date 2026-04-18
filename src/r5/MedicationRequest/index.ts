@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { MedicationRequest } from "./MedicationRequest";
 export { MedicationRequestSchema } from "./MedicationRequest";
@@ -9,10 +9,3 @@ export type { MedicationRequest_DispenseRequest_InitialFill } from "./Medication
 export { MedicationRequest_DispenseRequest_InitialFillSchema } from "./MedicationRequest_DispenseRequest_InitialFill";
 export type { MedicationRequest_Substitution } from "./MedicationRequest_Substitution";
 export { MedicationRequest_SubstitutionSchema } from "./MedicationRequest_Substitution";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MedicationRequestSchemaInternal } from "./MedicationRequest";
-
-_registerFhirResourceSchemas({
-	MedicationRequest: MedicationRequestSchemaInternal,
-});

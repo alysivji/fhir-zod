@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExampleScenario
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -16,357 +16,357 @@ import { ExampleScenario_Instance_VersionSchemaInternal } from "./ExampleScenari
 
 /** Each resource and each version that is present in the workflow. */
 export interface ExampleScenario_Instance extends BackboneElement {
-	/** Resources contained in the instance (e.g. the observations contained in a bundle). */
-	containedInstance?: Array<ExampleScenario_Instance_ContainedInstance>;
-	/** Human-friendly description of the resource instance. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** A short name for the resource instance. */
-	name?: string;
-	/** Extensions for name */
-	_name?: Element;
-	/** The id of the resource for referencing. */
-	resourceId: string;
-	/** Extensions for resourceId */
-	_resourceId?: Element;
-	/** The type of the resource. */
-	resourceType:
-		| "Account"
-		| "ActivityDefinition"
-		| "AdverseEvent"
-		| "AllergyIntolerance"
-		| "Appointment"
-		| "AppointmentResponse"
-		| "AuditEvent"
-		| "Basic"
-		| "Binary"
-		| "BiologicallyDerivedProduct"
-		| "BodyStructure"
-		| "Bundle"
-		| "CapabilityStatement"
-		| "CarePlan"
-		| "CareTeam"
-		| "CatalogEntry"
-		| "ChargeItem"
-		| "ChargeItemDefinition"
-		| "Claim"
-		| "ClaimResponse"
-		| "ClinicalImpression"
-		| "CodeSystem"
-		| "Communication"
-		| "CommunicationRequest"
-		| "CompartmentDefinition"
-		| "Composition"
-		| "ConceptMap"
-		| "Condition"
-		| "Consent"
-		| "Contract"
-		| "Coverage"
-		| "CoverageEligibilityRequest"
-		| "CoverageEligibilityResponse"
-		| "DetectedIssue"
-		| "Device"
-		| "DeviceDefinition"
-		| "DeviceMetric"
-		| "DeviceRequest"
-		| "DeviceUseStatement"
-		| "DiagnosticReport"
-		| "DocumentManifest"
-		| "DocumentReference"
-		| "DomainResource"
-		| "EffectEvidenceSynthesis"
-		| "Encounter"
-		| "Endpoint"
-		| "EnrollmentRequest"
-		| "EnrollmentResponse"
-		| "EpisodeOfCare"
-		| "EventDefinition"
-		| "Evidence"
-		| "EvidenceVariable"
-		| "ExampleScenario"
-		| "ExplanationOfBenefit"
-		| "FamilyMemberHistory"
-		| "Flag"
-		| "Goal"
-		| "GraphDefinition"
-		| "Group"
-		| "GuidanceResponse"
-		| "HealthcareService"
-		| "ImagingStudy"
-		| "Immunization"
-		| "ImmunizationEvaluation"
-		| "ImmunizationRecommendation"
-		| "ImplementationGuide"
-		| "InsurancePlan"
-		| "Invoice"
-		| "Library"
-		| "Linkage"
-		| "List"
-		| "Location"
-		| "Measure"
-		| "MeasureReport"
-		| "Media"
-		| "Medication"
-		| "MedicationAdministration"
-		| "MedicationDispense"
-		| "MedicationKnowledge"
-		| "MedicationRequest"
-		| "MedicationStatement"
-		| "MedicinalProduct"
-		| "MedicinalProductAuthorization"
-		| "MedicinalProductContraindication"
-		| "MedicinalProductIndication"
-		| "MedicinalProductIngredient"
-		| "MedicinalProductInteraction"
-		| "MedicinalProductManufactured"
-		| "MedicinalProductPackaged"
-		| "MedicinalProductPharmaceutical"
-		| "MedicinalProductUndesirableEffect"
-		| "MessageDefinition"
-		| "MessageHeader"
-		| "MolecularSequence"
-		| "NamingSystem"
-		| "NutritionOrder"
-		| "Observation"
-		| "ObservationDefinition"
-		| "OperationDefinition"
-		| "OperationOutcome"
-		| "Organization"
-		| "OrganizationAffiliation"
-		| "Parameters"
-		| "Patient"
-		| "PaymentNotice"
-		| "PaymentReconciliation"
-		| "Person"
-		| "PlanDefinition"
-		| "Practitioner"
-		| "PractitionerRole"
-		| "Procedure"
-		| "Provenance"
-		| "Questionnaire"
-		| "QuestionnaireResponse"
-		| "RelatedPerson"
-		| "RequestGroup"
-		| "ResearchDefinition"
-		| "ResearchElementDefinition"
-		| "ResearchStudy"
-		| "ResearchSubject"
-		| "Resource"
-		| "RiskAssessment"
-		| "RiskEvidenceSynthesis"
-		| "Schedule"
-		| "SearchParameter"
-		| "ServiceRequest"
-		| "Slot"
-		| "Specimen"
-		| "SpecimenDefinition"
-		| "StructureDefinition"
-		| "StructureMap"
-		| "Subscription"
-		| "Substance"
-		| "SubstanceNucleicAcid"
-		| "SubstancePolymer"
-		| "SubstanceProtein"
-		| "SubstanceReferenceInformation"
-		| "SubstanceSourceMaterial"
-		| "SubstanceSpecification"
-		| "SupplyDelivery"
-		| "SupplyRequest"
-		| "Task"
-		| "TerminologyCapabilities"
-		| "TestReport"
-		| "TestScript"
-		| "ValueSet"
-		| "VerificationResult"
-		| "VisionPrescription";
-	/** Extensions for resourceType */
-	_resourceType?: Element;
-	/** A specific version of the resource. */
-	version?: Array<ExampleScenario_Instance_Version>;
+  /** Resources contained in the instance (e.g. the observations contained in a bundle). */
+  containedInstance?: Array<ExampleScenario_Instance_ContainedInstance>;
+  /** Human-friendly description of the resource instance. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** A short name for the resource instance. */
+  name?: string;
+  /** Extensions for name */
+  _name?: Element;
+  /** The id of the resource for referencing. */
+  resourceId: string;
+  /** Extensions for resourceId */
+  _resourceId?: Element;
+  /** The type of the resource. */
+  resourceType:
+    | "Account"
+    | "ActivityDefinition"
+    | "AdverseEvent"
+    | "AllergyIntolerance"
+    | "Appointment"
+    | "AppointmentResponse"
+    | "AuditEvent"
+    | "Basic"
+    | "Binary"
+    | "BiologicallyDerivedProduct"
+    | "BodyStructure"
+    | "Bundle"
+    | "CapabilityStatement"
+    | "CarePlan"
+    | "CareTeam"
+    | "CatalogEntry"
+    | "ChargeItem"
+    | "ChargeItemDefinition"
+    | "Claim"
+    | "ClaimResponse"
+    | "ClinicalImpression"
+    | "CodeSystem"
+    | "Communication"
+    | "CommunicationRequest"
+    | "CompartmentDefinition"
+    | "Composition"
+    | "ConceptMap"
+    | "Condition"
+    | "Consent"
+    | "Contract"
+    | "Coverage"
+    | "CoverageEligibilityRequest"
+    | "CoverageEligibilityResponse"
+    | "DetectedIssue"
+    | "Device"
+    | "DeviceDefinition"
+    | "DeviceMetric"
+    | "DeviceRequest"
+    | "DeviceUseStatement"
+    | "DiagnosticReport"
+    | "DocumentManifest"
+    | "DocumentReference"
+    | "DomainResource"
+    | "EffectEvidenceSynthesis"
+    | "Encounter"
+    | "Endpoint"
+    | "EnrollmentRequest"
+    | "EnrollmentResponse"
+    | "EpisodeOfCare"
+    | "EventDefinition"
+    | "Evidence"
+    | "EvidenceVariable"
+    | "ExampleScenario"
+    | "ExplanationOfBenefit"
+    | "FamilyMemberHistory"
+    | "Flag"
+    | "Goal"
+    | "GraphDefinition"
+    | "Group"
+    | "GuidanceResponse"
+    | "HealthcareService"
+    | "ImagingStudy"
+    | "Immunization"
+    | "ImmunizationEvaluation"
+    | "ImmunizationRecommendation"
+    | "ImplementationGuide"
+    | "InsurancePlan"
+    | "Invoice"
+    | "Library"
+    | "Linkage"
+    | "List"
+    | "Location"
+    | "Measure"
+    | "MeasureReport"
+    | "Media"
+    | "Medication"
+    | "MedicationAdministration"
+    | "MedicationDispense"
+    | "MedicationKnowledge"
+    | "MedicationRequest"
+    | "MedicationStatement"
+    | "MedicinalProduct"
+    | "MedicinalProductAuthorization"
+    | "MedicinalProductContraindication"
+    | "MedicinalProductIndication"
+    | "MedicinalProductIngredient"
+    | "MedicinalProductInteraction"
+    | "MedicinalProductManufactured"
+    | "MedicinalProductPackaged"
+    | "MedicinalProductPharmaceutical"
+    | "MedicinalProductUndesirableEffect"
+    | "MessageDefinition"
+    | "MessageHeader"
+    | "MolecularSequence"
+    | "NamingSystem"
+    | "NutritionOrder"
+    | "Observation"
+    | "ObservationDefinition"
+    | "OperationDefinition"
+    | "OperationOutcome"
+    | "Organization"
+    | "OrganizationAffiliation"
+    | "Parameters"
+    | "Patient"
+    | "PaymentNotice"
+    | "PaymentReconciliation"
+    | "Person"
+    | "PlanDefinition"
+    | "Practitioner"
+    | "PractitionerRole"
+    | "Procedure"
+    | "Provenance"
+    | "Questionnaire"
+    | "QuestionnaireResponse"
+    | "RelatedPerson"
+    | "RequestGroup"
+    | "ResearchDefinition"
+    | "ResearchElementDefinition"
+    | "ResearchStudy"
+    | "ResearchSubject"
+    | "Resource"
+    | "RiskAssessment"
+    | "RiskEvidenceSynthesis"
+    | "Schedule"
+    | "SearchParameter"
+    | "ServiceRequest"
+    | "Slot"
+    | "Specimen"
+    | "SpecimenDefinition"
+    | "StructureDefinition"
+    | "StructureMap"
+    | "Subscription"
+    | "Substance"
+    | "SubstanceNucleicAcid"
+    | "SubstancePolymer"
+    | "SubstanceProtein"
+    | "SubstanceReferenceInformation"
+    | "SubstanceSourceMaterial"
+    | "SubstanceSpecification"
+    | "SupplyDelivery"
+    | "SupplyRequest"
+    | "Task"
+    | "TerminologyCapabilities"
+    | "TestReport"
+    | "TestScript"
+    | "ValueSet"
+    | "VerificationResult"
+    | "VisionPrescription";
+  /** Extensions for resourceType */
+  _resourceType?: Element;
+  /** A specific version of the resource. */
+  version?: Array<ExampleScenario_Instance_Version>;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getExampleScenario_Instance_ContainedInstanceSchema =
-	(): z.ZodType<ExampleScenario_Instance_ContainedInstance> =>
-		ExampleScenario_Instance_ContainedInstanceSchemaInternal as z.ZodType<ExampleScenario_Instance_ContainedInstance>;
+  (): z.ZodType<ExampleScenario_Instance_ContainedInstance> =>
+    ExampleScenario_Instance_ContainedInstanceSchemaInternal as z.ZodType<ExampleScenario_Instance_ContainedInstance>;
 const getExampleScenario_Instance_VersionSchema =
-	(): z.ZodType<ExampleScenario_Instance_Version> =>
-		ExampleScenario_Instance_VersionSchemaInternal as z.ZodType<ExampleScenario_Instance_Version>;
+  (): z.ZodType<ExampleScenario_Instance_Version> =>
+    ExampleScenario_Instance_VersionSchemaInternal as z.ZodType<ExampleScenario_Instance_Version>;
 
 /** @internal */
 export const ExampleScenario_InstanceSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		containedInstance: z
-			.lazy(getExampleScenario_Instance_ContainedInstanceSchema)
-			.array()
-			.optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		name: fhirString().optional(),
-		_name: z.lazy(getElementSchema).optional(),
-		resourceId: fhirString(),
-		_resourceId: z.lazy(getElementSchema).optional(),
-		resourceType: z.enum([
-			"Account",
-			"ActivityDefinition",
-			"AdverseEvent",
-			"AllergyIntolerance",
-			"Appointment",
-			"AppointmentResponse",
-			"AuditEvent",
-			"Basic",
-			"Binary",
-			"BiologicallyDerivedProduct",
-			"BodyStructure",
-			"Bundle",
-			"CapabilityStatement",
-			"CarePlan",
-			"CareTeam",
-			"CatalogEntry",
-			"ChargeItem",
-			"ChargeItemDefinition",
-			"Claim",
-			"ClaimResponse",
-			"ClinicalImpression",
-			"CodeSystem",
-			"Communication",
-			"CommunicationRequest",
-			"CompartmentDefinition",
-			"Composition",
-			"ConceptMap",
-			"Condition",
-			"Consent",
-			"Contract",
-			"Coverage",
-			"CoverageEligibilityRequest",
-			"CoverageEligibilityResponse",
-			"DetectedIssue",
-			"Device",
-			"DeviceDefinition",
-			"DeviceMetric",
-			"DeviceRequest",
-			"DeviceUseStatement",
-			"DiagnosticReport",
-			"DocumentManifest",
-			"DocumentReference",
-			"DomainResource",
-			"EffectEvidenceSynthesis",
-			"Encounter",
-			"Endpoint",
-			"EnrollmentRequest",
-			"EnrollmentResponse",
-			"EpisodeOfCare",
-			"EventDefinition",
-			"Evidence",
-			"EvidenceVariable",
-			"ExampleScenario",
-			"ExplanationOfBenefit",
-			"FamilyMemberHistory",
-			"Flag",
-			"Goal",
-			"GraphDefinition",
-			"Group",
-			"GuidanceResponse",
-			"HealthcareService",
-			"ImagingStudy",
-			"Immunization",
-			"ImmunizationEvaluation",
-			"ImmunizationRecommendation",
-			"ImplementationGuide",
-			"InsurancePlan",
-			"Invoice",
-			"Library",
-			"Linkage",
-			"List",
-			"Location",
-			"Measure",
-			"MeasureReport",
-			"Media",
-			"Medication",
-			"MedicationAdministration",
-			"MedicationDispense",
-			"MedicationKnowledge",
-			"MedicationRequest",
-			"MedicationStatement",
-			"MedicinalProduct",
-			"MedicinalProductAuthorization",
-			"MedicinalProductContraindication",
-			"MedicinalProductIndication",
-			"MedicinalProductIngredient",
-			"MedicinalProductInteraction",
-			"MedicinalProductManufactured",
-			"MedicinalProductPackaged",
-			"MedicinalProductPharmaceutical",
-			"MedicinalProductUndesirableEffect",
-			"MessageDefinition",
-			"MessageHeader",
-			"MolecularSequence",
-			"NamingSystem",
-			"NutritionOrder",
-			"Observation",
-			"ObservationDefinition",
-			"OperationDefinition",
-			"OperationOutcome",
-			"Organization",
-			"OrganizationAffiliation",
-			"Parameters",
-			"Patient",
-			"PaymentNotice",
-			"PaymentReconciliation",
-			"Person",
-			"PlanDefinition",
-			"Practitioner",
-			"PractitionerRole",
-			"Procedure",
-			"Provenance",
-			"Questionnaire",
-			"QuestionnaireResponse",
-			"RelatedPerson",
-			"RequestGroup",
-			"ResearchDefinition",
-			"ResearchElementDefinition",
-			"ResearchStudy",
-			"ResearchSubject",
-			"Resource",
-			"RiskAssessment",
-			"RiskEvidenceSynthesis",
-			"Schedule",
-			"SearchParameter",
-			"ServiceRequest",
-			"Slot",
-			"Specimen",
-			"SpecimenDefinition",
-			"StructureDefinition",
-			"StructureMap",
-			"Subscription",
-			"Substance",
-			"SubstanceNucleicAcid",
-			"SubstancePolymer",
-			"SubstanceProtein",
-			"SubstanceReferenceInformation",
-			"SubstanceSourceMaterial",
-			"SubstanceSpecification",
-			"SupplyDelivery",
-			"SupplyRequest",
-			"Task",
-			"TerminologyCapabilities",
-			"TestReport",
-			"TestScript",
-			"ValueSet",
-			"VerificationResult",
-			"VisionPrescription",
-		]),
-		_resourceType: z.lazy(getElementSchema).optional(),
-		version: z
-			.lazy(getExampleScenario_Instance_VersionSchema)
-			.array()
-			.optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    containedInstance: z
+      .lazy(getExampleScenario_Instance_ContainedInstanceSchema)
+      .array()
+      .optional(),
+    description: z
+      .string()
+      .regex(/[ \r\n\t\S]+/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    name: fhirString().optional(),
+    _name: z.lazy(getElementSchema).optional(),
+    resourceId: fhirString(),
+    _resourceId: z.lazy(getElementSchema).optional(),
+    resourceType: z.enum([
+      "Account",
+      "ActivityDefinition",
+      "AdverseEvent",
+      "AllergyIntolerance",
+      "Appointment",
+      "AppointmentResponse",
+      "AuditEvent",
+      "Basic",
+      "Binary",
+      "BiologicallyDerivedProduct",
+      "BodyStructure",
+      "Bundle",
+      "CapabilityStatement",
+      "CarePlan",
+      "CareTeam",
+      "CatalogEntry",
+      "ChargeItem",
+      "ChargeItemDefinition",
+      "Claim",
+      "ClaimResponse",
+      "ClinicalImpression",
+      "CodeSystem",
+      "Communication",
+      "CommunicationRequest",
+      "CompartmentDefinition",
+      "Composition",
+      "ConceptMap",
+      "Condition",
+      "Consent",
+      "Contract",
+      "Coverage",
+      "CoverageEligibilityRequest",
+      "CoverageEligibilityResponse",
+      "DetectedIssue",
+      "Device",
+      "DeviceDefinition",
+      "DeviceMetric",
+      "DeviceRequest",
+      "DeviceUseStatement",
+      "DiagnosticReport",
+      "DocumentManifest",
+      "DocumentReference",
+      "DomainResource",
+      "EffectEvidenceSynthesis",
+      "Encounter",
+      "Endpoint",
+      "EnrollmentRequest",
+      "EnrollmentResponse",
+      "EpisodeOfCare",
+      "EventDefinition",
+      "Evidence",
+      "EvidenceVariable",
+      "ExampleScenario",
+      "ExplanationOfBenefit",
+      "FamilyMemberHistory",
+      "Flag",
+      "Goal",
+      "GraphDefinition",
+      "Group",
+      "GuidanceResponse",
+      "HealthcareService",
+      "ImagingStudy",
+      "Immunization",
+      "ImmunizationEvaluation",
+      "ImmunizationRecommendation",
+      "ImplementationGuide",
+      "InsurancePlan",
+      "Invoice",
+      "Library",
+      "Linkage",
+      "List",
+      "Location",
+      "Measure",
+      "MeasureReport",
+      "Media",
+      "Medication",
+      "MedicationAdministration",
+      "MedicationDispense",
+      "MedicationKnowledge",
+      "MedicationRequest",
+      "MedicationStatement",
+      "MedicinalProduct",
+      "MedicinalProductAuthorization",
+      "MedicinalProductContraindication",
+      "MedicinalProductIndication",
+      "MedicinalProductIngredient",
+      "MedicinalProductInteraction",
+      "MedicinalProductManufactured",
+      "MedicinalProductPackaged",
+      "MedicinalProductPharmaceutical",
+      "MedicinalProductUndesirableEffect",
+      "MessageDefinition",
+      "MessageHeader",
+      "MolecularSequence",
+      "NamingSystem",
+      "NutritionOrder",
+      "Observation",
+      "ObservationDefinition",
+      "OperationDefinition",
+      "OperationOutcome",
+      "Organization",
+      "OrganizationAffiliation",
+      "Parameters",
+      "Patient",
+      "PaymentNotice",
+      "PaymentReconciliation",
+      "Person",
+      "PlanDefinition",
+      "Practitioner",
+      "PractitionerRole",
+      "Procedure",
+      "Provenance",
+      "Questionnaire",
+      "QuestionnaireResponse",
+      "RelatedPerson",
+      "RequestGroup",
+      "ResearchDefinition",
+      "ResearchElementDefinition",
+      "ResearchStudy",
+      "ResearchSubject",
+      "Resource",
+      "RiskAssessment",
+      "RiskEvidenceSynthesis",
+      "Schedule",
+      "SearchParameter",
+      "ServiceRequest",
+      "Slot",
+      "Specimen",
+      "SpecimenDefinition",
+      "StructureDefinition",
+      "StructureMap",
+      "Subscription",
+      "Substance",
+      "SubstanceNucleicAcid",
+      "SubstancePolymer",
+      "SubstanceProtein",
+      "SubstanceReferenceInformation",
+      "SubstanceSourceMaterial",
+      "SubstanceSpecification",
+      "SupplyDelivery",
+      "SupplyRequest",
+      "Task",
+      "TerminologyCapabilities",
+      "TestReport",
+      "TestScript",
+      "ValueSet",
+      "VerificationResult",
+      "VisionPrescription",
+    ]),
+    _resourceType: z.lazy(getElementSchema).optional(),
+    version: z
+      .lazy(getExampleScenario_Instance_VersionSchema)
+      .array()
+      .optional(),
+  }).strict();
 
 export const ExampleScenario_InstanceSchema =
-	ExampleScenario_InstanceSchemaInternal as z.ZodType<ExampleScenario_Instance>;
+  ExampleScenario_InstanceSchemaInternal as z.ZodType<ExampleScenario_Instance>;

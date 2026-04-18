@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { MeasureReport } from "./MeasureReport";
 export { MeasureReportSchema } from "./MeasureReport";
@@ -15,10 +15,3 @@ export type { MeasureReport_Group_Stratifier_Stratum_Component } from "./Measure
 export { MeasureReport_Group_Stratifier_Stratum_ComponentSchema } from "./MeasureReport_Group_Stratifier_Stratum_Component";
 export type { MeasureReport_Group_Stratifier_Stratum_Population } from "./MeasureReport_Group_Stratifier_Stratum_Population";
 export { MeasureReport_Group_Stratifier_Stratum_PopulationSchema } from "./MeasureReport_Group_Stratifier_Stratum_Population";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MeasureReportSchemaInternal } from "./MeasureReport";
-
-_registerFhirResourceSchemas({
-	MeasureReport: MeasureReportSchemaInternal,
-});

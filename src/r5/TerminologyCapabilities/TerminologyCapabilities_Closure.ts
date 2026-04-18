@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -11,21 +11,21 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Whether the $closure operation is supported. */
 export interface TerminologyCapabilities_Closure extends BackboneElement {
-	/** If cross-system closure is supported. */
-	translation?: boolean;
-	/** Extensions for translation */
-	_translation?: Element;
+  /** If cross-system closure is supported. */
+  translation?: boolean;
+  /** Extensions for translation */
+  _translation?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const TerminologyCapabilities_ClosureSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		translation: z.boolean().optional(),
-		_translation: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    translation: z.boolean().optional(),
+    _translation: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const TerminologyCapabilities_ClosureSchema =
-	TerminologyCapabilities_ClosureSchemaInternal as z.ZodType<TerminologyCapabilities_Closure>;
+  TerminologyCapabilities_ClosureSchemaInternal as z.ZodType<TerminologyCapabilities_Closure>;

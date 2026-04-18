@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Encounter } from "./Encounter";
 export { EncounterSchema } from "./Encounter";
@@ -13,10 +13,3 @@ export type { Encounter_Participant } from "./Encounter_Participant";
 export { Encounter_ParticipantSchema } from "./Encounter_Participant";
 export type { Encounter_Reason } from "./Encounter_Reason";
 export { Encounter_ReasonSchema } from "./Encounter_Reason";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { EncounterSchemaInternal } from "./Encounter";
-
-_registerFhirResourceSchemas({
-	Encounter: EncounterSchemaInternal,
-});

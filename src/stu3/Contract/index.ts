@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { Contract } from "./Contract";
 export { ContractSchema } from "./Contract";
@@ -21,10 +21,3 @@ export type { Contract_Term_ValuedItem } from "./Contract_Term_ValuedItem";
 export { Contract_Term_ValuedItemSchema } from "./Contract_Term_ValuedItem";
 export type { Contract_ValuedItem } from "./Contract_ValuedItem";
 export { Contract_ValuedItemSchema } from "./Contract_ValuedItem";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ContractSchemaInternal } from "./Contract";
-
-_registerFhirResourceSchemas({
-	Contract: ContractSchemaInternal,
-});

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { fhirUri } from "../../shared/fhir-primitives";
@@ -21,77 +21,77 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The artifact related to the cited artifact. */
 export interface Citation_CitedArtifact_RelatesTo extends BackboneElement {
-	/** How the cited artifact relates to the target artifact. */
-	relationshipType: CodeableConcept;
-	/** The article or artifact that the cited artifact is related to. */
-	targetAttachment?: Attachment;
-	/** The clasification of the related artifact. */
-	targetClassifier?: Array<CodeableConcept>;
-	/** The article or artifact that the cited artifact is related to. */
-	targetIdentifier?: Identifier;
-	/** The article or artifact that the cited artifact is related to. */
-	targetReference?: Reference;
-	/** The article or artifact that the cited artifact is related to. */
-	targetUri?: string;
-	/** Extensions for targetUri */
-	_targetUri?: Element;
+  /** How the cited artifact relates to the target artifact. */
+  relationshipType: CodeableConcept;
+  /** The article or artifact that the cited artifact is related to. */
+  targetAttachment?: Attachment;
+  /** The clasification of the related artifact. */
+  targetClassifier?: Array<CodeableConcept>;
+  /** The article or artifact that the cited artifact is related to. */
+  targetIdentifier?: Identifier;
+  /** The article or artifact that the cited artifact is related to. */
+  targetReference?: Reference;
+  /** The article or artifact that the cited artifact is related to. */
+  targetUri?: string;
+  /** Extensions for targetUri */
+  _targetUri?: Element;
 }
 
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal as z.ZodType<Attachment>;
+  AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Citation_CitedArtifact_RelatesToSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		relationshipType: z.lazy(getCodeableConceptSchema),
-		targetAttachment: z.lazy(getAttachmentSchema).optional(),
-		targetClassifier: z.lazy(getCodeableConceptSchema).array().optional(),
-		targetIdentifier: z.lazy(getIdentifierSchema).optional(),
-		targetReference: z.lazy(getReferenceSchema).optional(),
-		targetUri: fhirUri().optional(),
-		_targetUri: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const target_x_Present = [
-				"targetAttachment",
-				"targetIdentifier",
-				"targetReference",
-				"targetUri",
-			].filter((field) => record[field] !== undefined);
-			if (target_x_Present.length === 0) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"One of targetAttachment, targetIdentifier, targetReference, targetUri must be present for target[x]",
-					path: ["targetAttachment"],
-				});
-			}
-			if (target_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of targetAttachment, targetIdentifier, targetReference, targetUri may be present for target[x]",
-					path: [target_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.targetReference,
-				"targetReference",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    relationshipType: z.lazy(getCodeableConceptSchema),
+    targetAttachment: z.lazy(getAttachmentSchema).optional(),
+    targetClassifier: z.lazy(getCodeableConceptSchema).array().optional(),
+    targetIdentifier: z.lazy(getIdentifierSchema).optional(),
+    targetReference: z.lazy(getReferenceSchema).optional(),
+    targetUri: fhirUri().optional(),
+    _targetUri: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const target_x_Present = [
+        "targetAttachment",
+        "targetIdentifier",
+        "targetReference",
+        "targetUri",
+      ].filter((field) => record[field] !== undefined);
+      if (target_x_Present.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "One of targetAttachment, targetIdentifier, targetReference, targetUri must be present for target[x]",
+          path: ["targetAttachment"],
+        });
+      }
+      if (target_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of targetAttachment, targetIdentifier, targetReference, targetUri may be present for target[x]",
+          path: [target_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.targetReference,
+        "targetReference",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const Citation_CitedArtifact_RelatesToSchema =
-	Citation_CitedArtifact_RelatesToSchemaInternal as z.ZodType<Citation_CitedArtifact_RelatesTo>;
+  Citation_CitedArtifact_RelatesToSchemaInternal as z.ZodType<Citation_CitedArtifact_RelatesTo>;

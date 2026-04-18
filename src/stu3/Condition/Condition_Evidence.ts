@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Condition
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -14,34 +14,34 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed. */
 export interface Condition_Evidence extends BackboneElement {
-	/** A manifestation or symptom that led to the recording of this condition. */
-	code?: Array<CodeableConcept>;
-	/** Links to other relevant information, including pathology reports. */
-	detail?: Array<Reference>;
+  /** A manifestation or symptom that led to the recording of this condition. */
+  code?: Array<CodeableConcept>;
+  /** Links to other relevant information, including pathology reports. */
+  detail?: Array<Reference>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Condition_EvidenceSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		code: z.lazy(getCodeableConceptSchema).array().optional(),
-		detail: z.lazy(getReferenceSchema).array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.detail,
-				"detail",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    code: z.lazy(getCodeableConceptSchema).array().optional(),
+    detail: z.lazy(getReferenceSchema).array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.detail,
+        "detail",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const Condition_EvidenceSchema =
-	Condition_EvidenceSchemaInternal as z.ZodType<Condition_Evidence>;
+  Condition_EvidenceSchemaInternal as z.ZodType<Condition_Evidence>;

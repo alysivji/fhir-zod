@@ -29,7 +29,6 @@ const { BundleSchema: R4BundleSchema } = await import("fhir-zod/r4/Bundle");
 const { ObservationSchema: R4ObservationSchema } = await import(
 	"fhir-zod/r4/Observation"
 );
-const { PatientSchema: R4PatientSchema } = await import("fhir-zod/r4/Patient");
 const { PatientSchema: R4BPatientSchema } = await import(
 	"fhir-zod/r4b/Patient"
 );
@@ -43,6 +42,25 @@ assertParseSuccess(
 	{ family: "" },
 	"R4 HumanName should allow an empty string after configuration",
 );
+
+assertParseSuccess(
+	R4BundleSchema,
+	{
+		resourceType: "Bundle",
+		type: "collection",
+		entry: [
+			{
+				resource: {
+					resourceType: "Patient",
+					id: "runtime-smoke-bundle-patient",
+				},
+			},
+		],
+	},
+	"R4 Bundle with Patient before importing PatientSchema",
+);
+
+const { PatientSchema: R4PatientSchema } = await import("fhir-zod/r4/Patient");
 
 const patient = assertParseSuccess(
 	R4PatientSchema,

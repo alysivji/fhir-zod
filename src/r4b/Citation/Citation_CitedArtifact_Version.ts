@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -15,37 +15,37 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The defined version of the cited artifact. */
 export interface Citation_CitedArtifact_Version extends BackboneElement {
-	/** Citation for the main version of the cited artifact. */
-	baseCitation?: Reference;
-	/** The version number or other version identifier. */
-	value: string;
-	/** Extensions for value */
-	_value?: Element;
+  /** Citation for the main version of the cited artifact. */
+  baseCitation?: Reference;
+  /** The version number or other version identifier. */
+  value: string;
+  /** Extensions for value */
+  _value?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Citation_CitedArtifact_VersionSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		baseCitation: z.lazy(getReferenceSchema).optional(),
-		value: fhirString(),
-		_value: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.baseCitation,
-				"baseCitation",
-				["http://hl7.org/fhir/StructureDefinition/Citation"],
-				["Citation"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    baseCitation: z.lazy(getReferenceSchema).optional(),
+    value: fhirString(),
+    _value: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.baseCitation,
+        "baseCitation",
+        ["http://hl7.org/fhir/StructureDefinition/Citation"],
+        ["Citation"],
+        ctx,
+      );
+    });
 
 export const Citation_CitedArtifact_VersionSchema =
-	Citation_CitedArtifact_VersionSchemaInternal as z.ZodType<Citation_CitedArtifact_Version>;
+  Citation_CitedArtifact_VersionSchemaInternal as z.ZodType<Citation_CitedArtifact_Version>;

@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Task } from "./Task";
 export { TaskSchema } from "./Task";
@@ -11,10 +11,3 @@ export type { Task_Performer } from "./Task_Performer";
 export { Task_PerformerSchema } from "./Task_Performer";
 export type { Task_Restriction } from "./Task_Restriction";
 export { Task_RestrictionSchema } from "./Task_Restriction";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { TaskSchemaInternal } from "./Task";
-
-_registerFhirResourceSchemas({
-	Task: TaskSchemaInternal,
-});

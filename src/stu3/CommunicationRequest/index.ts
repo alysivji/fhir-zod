@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { CommunicationRequest } from "./CommunicationRequest";
 export { CommunicationRequestSchema } from "./CommunicationRequest";
@@ -7,10 +7,3 @@ export type { CommunicationRequest_Payload } from "./CommunicationRequest_Payloa
 export { CommunicationRequest_PayloadSchema } from "./CommunicationRequest_Payload";
 export type { CommunicationRequest_Requester } from "./CommunicationRequest_Requester";
 export { CommunicationRequest_RequesterSchema } from "./CommunicationRequest_Requester";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CommunicationRequestSchemaInternal } from "./CommunicationRequest";
-
-_registerFhirResourceSchemas({
-	CommunicationRequest: CommunicationRequestSchemaInternal,
-});

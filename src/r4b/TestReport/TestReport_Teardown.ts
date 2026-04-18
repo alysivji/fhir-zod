@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/TestReport
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -11,19 +11,19 @@ import { TestReport_Teardown_ActionSchemaInternal } from "./TestReport_Teardown_
 
 /** The results of the series of operations required to clean up after all the tests were executed (successfully or otherwise). */
 export interface TestReport_Teardown extends BackboneElement {
-	/** The teardown action will only contain an operation. */
-	action: Array<TestReport_Teardown_Action>;
+  /** The teardown action will only contain an operation. */
+  action: Array<TestReport_Teardown_Action>;
 }
 
 const getTestReport_Teardown_ActionSchema =
-	(): z.ZodType<TestReport_Teardown_Action> =>
-		TestReport_Teardown_ActionSchemaInternal as z.ZodType<TestReport_Teardown_Action>;
+  (): z.ZodType<TestReport_Teardown_Action> =>
+    TestReport_Teardown_ActionSchemaInternal as z.ZodType<TestReport_Teardown_Action>;
 
 /** @internal */
 export const TestReport_TeardownSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		action: z.lazy(getTestReport_Teardown_ActionSchema).array(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    action: z.lazy(getTestReport_Teardown_ActionSchema).array(),
+  }).strict();
 
 export const TestReport_TeardownSchema =
-	TestReport_TeardownSchemaInternal as z.ZodType<TestReport_Teardown>;
+  TestReport_TeardownSchemaInternal as z.ZodType<TestReport_Teardown>;

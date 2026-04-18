@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { MolecularSequence } from "./MolecularSequence";
 export { MolecularSequenceSchema } from "./MolecularSequence";
@@ -19,10 +19,3 @@ export type { MolecularSequence_StructureVariant_Outer } from "./MolecularSequen
 export { MolecularSequence_StructureVariant_OuterSchema } from "./MolecularSequence_StructureVariant_Outer";
 export type { MolecularSequence_Variant } from "./MolecularSequence_Variant";
 export { MolecularSequence_VariantSchema } from "./MolecularSequence_Variant";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MolecularSequenceSchemaInternal } from "./MolecularSequence";
-
-_registerFhirResourceSchemas({
-	MolecularSequence: MolecularSequenceSchemaInternal,
-});

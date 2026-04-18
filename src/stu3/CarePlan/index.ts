@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { CarePlan } from "./CarePlan";
 export { CarePlanSchema } from "./CarePlan";
@@ -7,10 +7,3 @@ export type { CarePlan_Activity } from "./CarePlan_Activity";
 export { CarePlan_ActivitySchema } from "./CarePlan_Activity";
 export type { CarePlan_Activity_Detail } from "./CarePlan_Activity_Detail";
 export { CarePlan_Activity_DetailSchema } from "./CarePlan_Activity_Detail";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CarePlanSchemaInternal } from "./CarePlan";
-
-_registerFhirResourceSchemas({
-	CarePlan: CarePlanSchemaInternal,
-});

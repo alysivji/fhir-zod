@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { AuditEvent } from "./AuditEvent";
 export { AuditEventSchema } from "./AuditEvent";
@@ -13,10 +13,3 @@ export type { AuditEvent_Outcome } from "./AuditEvent_Outcome";
 export { AuditEvent_OutcomeSchema } from "./AuditEvent_Outcome";
 export type { AuditEvent_Source } from "./AuditEvent_Source";
 export { AuditEvent_SourceSchema } from "./AuditEvent_Source";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { AuditEventSchemaInternal } from "./AuditEvent";
-
-_registerFhirResourceSchemas({
-	AuditEvent: AuditEventSchemaInternal,
-});

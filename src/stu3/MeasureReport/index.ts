@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { MeasureReport } from "./MeasureReport";
 export { MeasureReportSchema } from "./MeasureReport";
@@ -13,10 +13,3 @@ export type { MeasureReport_Group_Stratifier_Stratum } from "./MeasureReport_Gro
 export { MeasureReport_Group_Stratifier_StratumSchema } from "./MeasureReport_Group_Stratifier_Stratum";
 export type { MeasureReport_Group_Stratifier_Stratum_Population } from "./MeasureReport_Group_Stratifier_Stratum_Population";
 export { MeasureReport_Group_Stratifier_Stratum_PopulationSchema } from "./MeasureReport_Group_Stratifier_Stratum_Population";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MeasureReportSchemaInternal } from "./MeasureReport";
-
-_registerFhirResourceSchemas({
-	MeasureReport: MeasureReportSchemaInternal,
-});

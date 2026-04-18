@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { Task } from "./Task";
 export { TaskSchema } from "./Task";
@@ -11,10 +11,3 @@ export type { Task_Requester } from "./Task_Requester";
 export { Task_RequesterSchema } from "./Task_Requester";
 export type { Task_Restriction } from "./Task_Restriction";
 export { Task_RestrictionSchema } from "./Task_Restriction";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { TaskSchemaInternal } from "./Task";
-
-_registerFhirResourceSchemas({
-	Task: TaskSchemaInternal,
-});

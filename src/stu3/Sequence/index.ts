@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { Sequence } from "./Sequence";
 export { SequenceSchema } from "./Sequence";
@@ -11,10 +11,3 @@ export type { Sequence_Repository } from "./Sequence_Repository";
 export { Sequence_RepositorySchema } from "./Sequence_Repository";
 export type { Sequence_Variant } from "./Sequence_Variant";
 export { Sequence_VariantSchema } from "./Sequence_Variant";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SequenceSchemaInternal } from "./Sequence";
-
-_registerFhirResourceSchemas({
-	Sequence: SequenceSchemaInternal,
-});
