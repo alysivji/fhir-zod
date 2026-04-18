@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { ClaimResponse } from "./ClaimResponse";
 export { ClaimResponseSchema } from "./ClaimResponse";
@@ -23,10 +23,3 @@ export type { ClaimResponse_Payment } from "./ClaimResponse_Payment";
 export { ClaimResponse_PaymentSchema } from "./ClaimResponse_Payment";
 export type { ClaimResponse_ProcessNote } from "./ClaimResponse_ProcessNote";
 export { ClaimResponse_ProcessNoteSchema } from "./ClaimResponse_ProcessNote";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ClaimResponseSchemaInternal } from "./ClaimResponse";
-
-_registerFhirResourceSchemas({
-	ClaimResponse: ClaimResponseSchemaInternal,
-});

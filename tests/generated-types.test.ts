@@ -1,4 +1,4 @@
-import type { FhirResource, HumanName } from "fhir-zod/r4";
+import type { HumanName } from "fhir-zod/r4";
 import type { Account } from "fhir-zod/r4/Account";
 import { AccountSchema } from "fhir-zod/r4/Account";
 import type { Bundle } from "fhir-zod/r4/Bundle";
@@ -13,17 +13,12 @@ import type { Practitioner } from "fhir-zod/r4/Practitioner";
 import { PractitionerSchema } from "fhir-zod/r4/Practitioner";
 import type { ValueSet } from "fhir-zod/r4/ValueSet";
 import { ValueSetSchema } from "fhir-zod/r4/ValueSet";
-import type {
-	FhirResource as R4BFhirResource,
-	Timing as R4BTiming,
-} from "fhir-zod/r4b";
+import type { Timing as R4BTiming } from "fhir-zod/r4b";
 import { TimingSchema as R4BTimingSchema } from "fhir-zod/r4b";
 import type { Patient as R4BPatient } from "fhir-zod/r4b/Patient";
 import { PatientSchema as R4BPatientSchema } from "fhir-zod/r4b/Patient";
-import type { FhirResource as R5FhirResource } from "fhir-zod/r5";
 import type { Patient as R5Patient } from "fhir-zod/r5/Patient";
 import { PatientSchema as R5PatientSchema } from "fhir-zod/r5/Patient";
-import type { FhirResource as STU3FhirResource } from "fhir-zod/stu3";
 import type { Patient as STU3Patient } from "fhir-zod/stu3/Patient";
 import { PatientSchema as STU3PatientSchema } from "fhir-zod/stu3/Patient";
 import { describe, expect, it } from "vitest";
@@ -54,7 +49,6 @@ describe("generated model types", () => {
 		const patient: Patient = PatientSchema.parse({
 			resourceType: "Patient",
 		});
-		const resource: FhirResource = patient;
 		const account: Account = AccountSchema.parse({
 			resourceType: "Account",
 			status: "active",
@@ -91,7 +85,7 @@ describe("generated model types", () => {
 		});
 
 		expect(account.resourceType).toBe("Account");
-		expect(resource.resourceType).toBe("Patient");
+		expect(patient.resourceType).toBe("Patient");
 		expect(observation.resourceType).toBe("Observation");
 		expect(encounter.resourceType).toBe("Encounter");
 		expect(practitioner.resourceType).toBe("Practitioner");
@@ -103,30 +97,24 @@ describe("generated model types", () => {
 		const patient: R4BPatient = R4BPatientSchema.parse({
 			resourceType: "Patient",
 		});
-		const resource: R4BFhirResource = patient;
 
 		expect(patient.resourceType).toBe("Patient");
-		expect(resource.resourceType).toBe("Patient");
 	});
 
 	it("exports R5 model types with separate schemas", () => {
 		const patient: R5Patient = R5PatientSchema.parse({
 			resourceType: "Patient",
 		});
-		const resource: R5FhirResource = patient;
 
 		expect(patient.resourceType).toBe("Patient");
-		expect(resource.resourceType).toBe("Patient");
 	});
 
 	it("exports STU3 model types with separate schemas", () => {
 		const patient: STU3Patient = STU3PatientSchema.parse({
 			resourceType: "Patient",
 		});
-		const resource: STU3FhirResource = patient;
 
 		expect(patient.resourceType).toBe("Patient");
-		expect(resource.resourceType).toBe("Patient");
 	});
 
 	it("types FHIR primitive array null placeholders", () => {

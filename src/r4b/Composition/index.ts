@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { Composition } from "./Composition";
 export { CompositionSchema } from "./Composition";
@@ -11,10 +11,3 @@ export type { Composition_RelatesTo } from "./Composition_RelatesTo";
 export { Composition_RelatesToSchema } from "./Composition_RelatesTo";
 export type { Composition_Section } from "./Composition_Section";
 export { Composition_SectionSchema } from "./Composition_Section";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CompositionSchemaInternal } from "./Composition";
-
-_registerFhirResourceSchemas({
-	Composition: CompositionSchemaInternal,
-});

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Ingredient
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -20,91 +20,91 @@ import { Ingredient_Substance_Strength_ReferenceStrengthSchemaInternal } from ".
 
 /** The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. The allowed repetitions do not represent different strengths, but are different representations - mathematically equivalent - of a single strength. */
 export interface Ingredient_Substance_Strength extends BackboneElement {
-	/** The strength per unitary volume (or mass). */
-	concentrationRatio?: Ratio;
-	/** The strength per unitary volume (or mass). */
-	concentrationRatioRange?: RatioRange;
-	/** The country or countries for which the strength range applies. */
-	country?: Array<CodeableConcept>;
-	/** For when strength is measured at a particular point or distance. There are products where strength is measured at a particular point. For example, the strength of the ingredient in some inhalers is measured at a particular position relative to the point of aerosolization. */
-	measurementPoint?: string;
-	/** Extensions for measurementPoint */
-	_measurementPoint?: Element;
-	/** The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. Unit of presentation refers to the quantity that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not generally normalized as a unitary unit, which would be 'per mg'). */
-	presentationRatio?: Ratio;
-	/** The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. Unit of presentation refers to the quantity that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not generally normalized as a unitary unit, which would be 'per mg'). */
-	presentationRatioRange?: RatioRange;
-	/** Strength expressed in terms of a reference substance. For when the ingredient strength is additionally expressed as equivalent to the strength of some other closely related substance (e.g. salt vs. base). Reference strength represents the strength (quantitative composition) of the active moiety of the active substance. There are situations when the active substance and active moiety are different, therefore both a strength and a reference strength are needed. */
-	referenceStrength?: Array<Ingredient_Substance_Strength_ReferenceStrength>;
-	/** A textual represention of either the whole of the concentration strength or a part of it - with the rest being in Strength.concentration as a ratio. */
-	textConcentration?: string;
-	/** Extensions for textConcentration */
-	_textConcentration?: Element;
-	/** A textual represention of either the whole of the presentation strength or a part of it - with the rest being in Strength.presentation as a ratio. */
-	textPresentation?: string;
-	/** Extensions for textPresentation */
-	_textPresentation?: Element;
+  /** The strength per unitary volume (or mass). */
+  concentrationRatio?: Ratio;
+  /** The strength per unitary volume (or mass). */
+  concentrationRatioRange?: RatioRange;
+  /** The country or countries for which the strength range applies. */
+  country?: Array<CodeableConcept>;
+  /** For when strength is measured at a particular point or distance. There are products where strength is measured at a particular point. For example, the strength of the ingredient in some inhalers is measured at a particular position relative to the point of aerosolization. */
+  measurementPoint?: string;
+  /** Extensions for measurementPoint */
+  _measurementPoint?: Element;
+  /** The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. Unit of presentation refers to the quantity that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not generally normalized as a unitary unit, which would be 'per mg'). */
+  presentationRatio?: Ratio;
+  /** The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. Unit of presentation refers to the quantity that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not generally normalized as a unitary unit, which would be 'per mg'). */
+  presentationRatioRange?: RatioRange;
+  /** Strength expressed in terms of a reference substance. For when the ingredient strength is additionally expressed as equivalent to the strength of some other closely related substance (e.g. salt vs. base). Reference strength represents the strength (quantitative composition) of the active moiety of the active substance. There are situations when the active substance and active moiety are different, therefore both a strength and a reference strength are needed. */
+  referenceStrength?: Array<Ingredient_Substance_Strength_ReferenceStrength>;
+  /** A textual represention of either the whole of the concentration strength or a part of it - with the rest being in Strength.concentration as a ratio. */
+  textConcentration?: string;
+  /** Extensions for textConcentration */
+  _textConcentration?: Element;
+  /** A textual represention of either the whole of the presentation strength or a part of it - with the rest being in Strength.presentation as a ratio. */
+  textPresentation?: string;
+  /** Extensions for textPresentation */
+  _textPresentation?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getIngredient_Substance_Strength_ReferenceStrengthSchema =
-	(): z.ZodType<Ingredient_Substance_Strength_ReferenceStrength> =>
-		Ingredient_Substance_Strength_ReferenceStrengthSchemaInternal as z.ZodType<Ingredient_Substance_Strength_ReferenceStrength>;
+  (): z.ZodType<Ingredient_Substance_Strength_ReferenceStrength> =>
+    Ingredient_Substance_Strength_ReferenceStrengthSchemaInternal as z.ZodType<Ingredient_Substance_Strength_ReferenceStrength>;
 const getRatioSchema = (): z.ZodType<Ratio> =>
-	RatioSchemaInternal as z.ZodType<Ratio>;
+  RatioSchemaInternal as z.ZodType<Ratio>;
 const getRatioRangeSchema = (): z.ZodType<RatioRange> =>
-	RatioRangeSchemaInternal as z.ZodType<RatioRange>;
+  RatioRangeSchemaInternal as z.ZodType<RatioRange>;
 
 /** @internal */
 export const Ingredient_Substance_StrengthSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		concentrationRatio: z.lazy(getRatioSchema).optional(),
-		concentrationRatioRange: z.lazy(getRatioRangeSchema).optional(),
-		country: z.lazy(getCodeableConceptSchema).array().optional(),
-		measurementPoint: fhirString().optional(),
-		_measurementPoint: z.lazy(getElementSchema).optional(),
-		presentationRatio: z.lazy(getRatioSchema).optional(),
-		presentationRatioRange: z.lazy(getRatioRangeSchema).optional(),
-		referenceStrength: z
-			.lazy(getIngredient_Substance_Strength_ReferenceStrengthSchema)
-			.array()
-			.optional(),
-		textConcentration: fhirString().optional(),
-		_textConcentration: z.lazy(getElementSchema).optional(),
-		textPresentation: fhirString().optional(),
-		_textPresentation: z.lazy(getElementSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const concentration_x_Present = [
-				"concentrationRatio",
-				"concentrationRatioRange",
-			].filter((field) => record[field] !== undefined);
-			if (concentration_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of concentrationRatio, concentrationRatioRange may be present for concentration[x]",
-					path: [concentration_x_Present[0]],
-				});
-			}
-			const presentation_x_Present = [
-				"presentationRatio",
-				"presentationRatioRange",
-			].filter((field) => record[field] !== undefined);
-			if (presentation_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of presentationRatio, presentationRatioRange may be present for presentation[x]",
-					path: [presentation_x_Present[0]],
-				});
-			}
-		});
+  BackboneElementSchemaInternal.extend({
+    concentrationRatio: z.lazy(getRatioSchema).optional(),
+    concentrationRatioRange: z.lazy(getRatioRangeSchema).optional(),
+    country: z.lazy(getCodeableConceptSchema).array().optional(),
+    measurementPoint: fhirString().optional(),
+    _measurementPoint: z.lazy(getElementSchema).optional(),
+    presentationRatio: z.lazy(getRatioSchema).optional(),
+    presentationRatioRange: z.lazy(getRatioRangeSchema).optional(),
+    referenceStrength: z
+      .lazy(getIngredient_Substance_Strength_ReferenceStrengthSchema)
+      .array()
+      .optional(),
+    textConcentration: fhirString().optional(),
+    _textConcentration: z.lazy(getElementSchema).optional(),
+    textPresentation: fhirString().optional(),
+    _textPresentation: z.lazy(getElementSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const concentration_x_Present = [
+        "concentrationRatio",
+        "concentrationRatioRange",
+      ].filter((field) => record[field] !== undefined);
+      if (concentration_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of concentrationRatio, concentrationRatioRange may be present for concentration[x]",
+          path: [concentration_x_Present[0]],
+        });
+      }
+      const presentation_x_Present = [
+        "presentationRatio",
+        "presentationRatioRange",
+      ].filter((field) => record[field] !== undefined);
+      if (presentation_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of presentationRatio, presentationRatioRange may be present for presentation[x]",
+          path: [presentation_x_Present[0]],
+        });
+      }
+    });
 
 export const Ingredient_Substance_StrengthSchema =
-	Ingredient_Substance_StrengthSchemaInternal as z.ZodType<Ingredient_Substance_Strength>;
+  Ingredient_Substance_StrengthSchemaInternal as z.ZodType<Ingredient_Substance_Strength>;

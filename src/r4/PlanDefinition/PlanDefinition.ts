@@ -1,28 +1,37 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PlanDefinition
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:03:58.798Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation";
 import {
-	fhirCanonical,
-	fhirDate,
-	fhirDateTime,
-	fhirString,
-	fhirUri,
+  fhirCanonical,
+  fhirCode,
+  fhirDate,
+  fhirDateTime,
+  fhirId,
+  fhirString,
+  fhirUri,
 } from "../../shared/fhir-primitives";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { FhirResource } from "../_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "../_fhirResourceSchema";
 import type { CodeableConcept } from "../CodeableConcept";
 import { CodeableConceptSchemaInternal } from "../CodeableConcept";
 import type { ContactDetail } from "../ContactDetail";
 import { ContactDetailSchemaInternal } from "../ContactDetail";
 import type { DomainResource } from "../DomainResource";
-import { DomainResourceSchemaInternal } from "../DomainResource";
 import type { Element } from "../Element";
 import { ElementSchemaInternal } from "../Element";
+import type { Extension } from "../Extension";
+import { ExtensionSchemaInternal } from "../Extension";
 import type { Identifier } from "../Identifier";
 import { IdentifierSchemaInternal } from "../Identifier";
+import type { Meta } from "../Meta";
+import { MetaSchemaInternal } from "../Meta";
+import type { Narrative } from "../Narrative";
+import { NarrativeSchemaInternal } from "../Narrative";
 import type { Period } from "../Period";
 import { PeriodSchemaInternal } from "../Period";
 import type { Reference } from "../Reference";
@@ -38,220 +47,238 @@ import { PlanDefinition_GoalSchemaInternal } from "./PlanDefinition_Goal";
 
 /** This resource allows for the definition of various types of plans as a sharable, consumable, and executable artifact. The resource is general enough to support the description of a broad range of clinical artifacts such as clinical decision support rules, order sets and protocols. */
 export interface PlanDefinition extends DomainResource {
-	/** An action or group of actions to be taken as part of the plan. */
-	action?: Array<PlanDefinition_Action>;
-	/** The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage. */
-	approvalDate?: string;
-	/** Extensions for approvalDate */
-	_approvalDate?: Element;
-	/** An individiual or organization primarily involved in the creation and maintenance of the content. */
-	author?: Array<ContactDetail>;
-	/** Contact details to assist a user in finding and communicating with the publisher. */
-	contact?: Array<ContactDetail>;
-	/** A copyright statement relating to the plan definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the plan definition. */
-	copyright?: string;
-	/** Extensions for copyright */
-	_copyright?: Element;
-	/** The date  (and optionally time) when the plan definition was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the plan definition changes. */
-	date?: string;
-	/** Extensions for date */
-	_date?: Element;
-	/** A free text natural language description of the plan definition from a consumer's perspective. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** An individual or organization primarily responsible for internal coherence of the content. */
-	editor?: Array<ContactDetail>;
-	/** The period during which the plan definition content was or is planned to be in active use. */
-	effectivePeriod?: Period;
-	/** An individual or organization responsible for officially endorsing the content for use in some setting. */
-	endorser?: Array<ContactDetail>;
-	/** A Boolean value to indicate that this plan definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage. */
-	experimental?: boolean;
-	/** Extensions for experimental */
-	_experimental?: Element;
-	/** Goals that describe what the activities within the plan are intended to achieve. For example, weight loss, restoring an activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc. */
-	goal?: Array<PlanDefinition_Goal>;
-	/** A formal identifier that is used to identify this plan definition when it is represented in other formats, or referenced in a specification, model, design or an instance. */
-	identifier?: Array<Identifier>;
-	/** A legal or geographic region in which the plan definition is intended to be used. */
-	jurisdiction?: Array<CodeableConcept>;
-	/** The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date. */
-	lastReviewDate?: string;
-	/** Extensions for lastReviewDate */
-	_lastReviewDate?: Element;
-	/** A reference to a Library resource containing any formal logic used by the plan definition. */
-	library?: Array<string | null>;
-	/** Extensions for library */
-	_library?: Array<Element | null>;
-	/** A natural language name identifying the plan definition. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
-	name?: string;
-	/** Extensions for name */
-	_name?: Element;
-	/** The name of the organization or individual that published the plan definition. */
-	publisher?: string;
-	/** Extensions for publisher */
-	_publisher?: Element;
-	/** Explanation of why this plan definition is needed and why it has been designed as it has. */
-	purpose?: string;
-	/** Extensions for purpose */
-	_purpose?: Element;
-	/** Related artifacts such as additional documentation, justification, or bibliographic references. */
-	relatedArtifact?: Array<RelatedArtifact>;
-	/** This is a PlanDefinition resource. */
-	resourceType: "PlanDefinition";
-	/** An individual or organization primarily responsible for review of some aspect of the content. */
-	reviewer?: Array<ContactDetail>;
-	/** The status of this plan definition. Enables tracking the life-cycle of the content. */
-	status: "active" | "draft" | "retired" | "unknown";
-	/** Extensions for status */
-	_status?: Element;
-	/** A code or group definition that describes the intended subject of the plan definition. */
-	subjectCodeableConcept?: CodeableConcept;
-	/** A code or group definition that describes the intended subject of the plan definition. */
-	subjectReference?: Reference;
-	/** An explanatory or alternate title for the plan definition giving additional information about its content. */
-	subtitle?: string;
-	/** Extensions for subtitle */
-	_subtitle?: Element;
-	/** A short, descriptive, user-friendly title for the plan definition. */
-	title?: string;
-	/** Extensions for title */
-	_title?: Element;
-	/** Descriptive topics related to the content of the plan definition. Topics provide a high-level categorization of the definition that can be useful for filtering and searching. */
-	topic?: Array<CodeableConcept>;
-	/** A high-level category for the plan definition that distinguishes the kinds of systems that would be interested in the plan definition. */
-	type?: CodeableConcept;
-	/** An absolute URI that is used to identify this plan definition when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this plan definition is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the plan definition is stored on different servers. */
-	url?: string;
-	/** Extensions for url */
-	_url?: Element;
-	/** A detailed description of how the plan definition is used from a clinical perspective. */
-	usage?: string;
-	/** Extensions for usage */
-	_usage?: Element;
-	/** The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate plan definition instances. */
-	useContext?: Array<UsageContext>;
-	/** The identifier that is used to identify this version of the plan definition when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the plan definition author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence. To provide a version consistent with the Decision Support Service specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more information on versioning knowledge assets, refer to the Decision Support Service specification. Note that a version is required for non-experimental active artifacts. */
-	version?: string;
-	/** Extensions for version */
-	_version?: Element;
+  /** An action or group of actions to be taken as part of the plan. */
+  action?: Array<PlanDefinition_Action>;
+  /** The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage. */
+  approvalDate?: string;
+  /** Extensions for approvalDate */
+  _approvalDate?: Element;
+  /** An individiual or organization primarily involved in the creation and maintenance of the content. */
+  author?: Array<ContactDetail>;
+  /** Contact details to assist a user in finding and communicating with the publisher. */
+  contact?: Array<ContactDetail>;
+  /** A copyright statement relating to the plan definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the plan definition. */
+  copyright?: string;
+  /** Extensions for copyright */
+  _copyright?: Element;
+  /** The date  (and optionally time) when the plan definition was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the plan definition changes. */
+  date?: string;
+  /** Extensions for date */
+  _date?: Element;
+  /** A free text natural language description of the plan definition from a consumer's perspective. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** An individual or organization primarily responsible for internal coherence of the content. */
+  editor?: Array<ContactDetail>;
+  /** The period during which the plan definition content was or is planned to be in active use. */
+  effectivePeriod?: Period;
+  /** An individual or organization responsible for officially endorsing the content for use in some setting. */
+  endorser?: Array<ContactDetail>;
+  /** A Boolean value to indicate that this plan definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage. */
+  experimental?: boolean;
+  /** Extensions for experimental */
+  _experimental?: Element;
+  /** Goals that describe what the activities within the plan are intended to achieve. For example, weight loss, restoring an activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc. */
+  goal?: Array<PlanDefinition_Goal>;
+  /** A formal identifier that is used to identify this plan definition when it is represented in other formats, or referenced in a specification, model, design or an instance. */
+  identifier?: Array<Identifier>;
+  /** A legal or geographic region in which the plan definition is intended to be used. */
+  jurisdiction?: Array<CodeableConcept>;
+  /** The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date. */
+  lastReviewDate?: string;
+  /** Extensions for lastReviewDate */
+  _lastReviewDate?: Element;
+  /** A reference to a Library resource containing any formal logic used by the plan definition. */
+  library?: Array<string | null>;
+  /** Extensions for library */
+  _library?: Array<Element | null>;
+  /** A natural language name identifying the plan definition. This name should be usable as an identifier for the module by machine processing applications such as code generation. */
+  name?: string;
+  /** Extensions for name */
+  _name?: Element;
+  /** The name of the organization or individual that published the plan definition. */
+  publisher?: string;
+  /** Extensions for publisher */
+  _publisher?: Element;
+  /** Explanation of why this plan definition is needed and why it has been designed as it has. */
+  purpose?: string;
+  /** Extensions for purpose */
+  _purpose?: Element;
+  /** Related artifacts such as additional documentation, justification, or bibliographic references. */
+  relatedArtifact?: Array<RelatedArtifact>;
+  /** This is a PlanDefinition resource. */
+  resourceType: "PlanDefinition";
+  /** An individual or organization primarily responsible for review of some aspect of the content. */
+  reviewer?: Array<ContactDetail>;
+  /** The status of this plan definition. Enables tracking the life-cycle of the content. */
+  status: "active" | "draft" | "retired" | "unknown";
+  /** Extensions for status */
+  _status?: Element;
+  /** A code or group definition that describes the intended subject of the plan definition. */
+  subjectCodeableConcept?: CodeableConcept;
+  /** A code or group definition that describes the intended subject of the plan definition. */
+  subjectReference?: Reference;
+  /** An explanatory or alternate title for the plan definition giving additional information about its content. */
+  subtitle?: string;
+  /** Extensions for subtitle */
+  _subtitle?: Element;
+  /** A short, descriptive, user-friendly title for the plan definition. */
+  title?: string;
+  /** Extensions for title */
+  _title?: Element;
+  /** Descriptive topics related to the content of the plan definition. Topics provide a high-level categorization of the definition that can be useful for filtering and searching. */
+  topic?: Array<CodeableConcept>;
+  /** A high-level category for the plan definition that distinguishes the kinds of systems that would be interested in the plan definition. */
+  type?: CodeableConcept;
+  /** An absolute URI that is used to identify this plan definition when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this plan definition is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the plan definition is stored on different servers. */
+  url?: string;
+  /** Extensions for url */
+  _url?: Element;
+  /** A detailed description of how the plan definition is used from a clinical perspective. */
+  usage?: string;
+  /** Extensions for usage */
+  _usage?: Element;
+  /** The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate plan definition instances. */
+  useContext?: Array<UsageContext>;
+  /** The identifier that is used to identify this version of the plan definition when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the plan definition author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence. To provide a version consistent with the Decision Support Service specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more information on versioning knowledge assets, refer to the Decision Support Service specification. Note that a version is required for non-experimental active artifacts. */
+  version?: string;
+  /** Extensions for version */
+  _version?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getContactDetailSchema = (): z.ZodType<ContactDetail> =>
-	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
+  ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+  MetaSchemaInternal as z.ZodType<Meta>;
+const getNarrativeSchema = (): z.ZodType<Narrative> =>
+  NarrativeSchemaInternal as z.ZodType<Narrative>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getPlanDefinition_ActionSchema = (): z.ZodType<PlanDefinition_Action> =>
-	PlanDefinition_ActionSchemaInternal as z.ZodType<PlanDefinition_Action>;
+  PlanDefinition_ActionSchemaInternal as z.ZodType<PlanDefinition_Action>;
 const getPlanDefinition_GoalSchema = (): z.ZodType<PlanDefinition_Goal> =>
-	PlanDefinition_GoalSchemaInternal as z.ZodType<PlanDefinition_Goal>;
+  PlanDefinition_GoalSchemaInternal as z.ZodType<PlanDefinition_Goal>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 const getRelatedArtifactSchema = (): z.ZodType<RelatedArtifact> =>
-	RelatedArtifactSchemaInternal as z.ZodType<RelatedArtifact>;
+  RelatedArtifactSchemaInternal as z.ZodType<RelatedArtifact>;
 const getUsageContextSchema = (): z.ZodType<UsageContext> =>
-	UsageContextSchemaInternal as z.ZodType<UsageContext>;
+  UsageContextSchemaInternal as z.ZodType<UsageContext>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+  FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
-export const PlanDefinitionSchemaInternal = DomainResourceSchemaInternal.extend(
-	{
-		action: z.lazy(getPlanDefinition_ActionSchema).array().optional(),
-		approvalDate: fhirDate().optional(),
-		_approvalDate: z.lazy(getElementSchema).optional(),
-		author: z.lazy(getContactDetailSchema).array().optional(),
-		contact: z.lazy(getContactDetailSchema).array().optional(),
-		copyright: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
-		_copyright: z.lazy(getElementSchema).optional(),
-		date: fhirDateTime().optional(),
-		_date: z.lazy(getElementSchema).optional(),
-		description: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		editor: z.lazy(getContactDetailSchema).array().optional(),
-		effectivePeriod: z.lazy(getPeriodSchema).optional(),
-		endorser: z.lazy(getContactDetailSchema).array().optional(),
-		experimental: z.boolean().optional(),
-		_experimental: z.lazy(getElementSchema).optional(),
-		goal: z.lazy(getPlanDefinition_GoalSchema).array().optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
-		lastReviewDate: fhirDate().optional(),
-		_lastReviewDate: z.lazy(getElementSchema).optional(),
-		library: fhirCanonical().nullable().array().optional(),
-		_library: z.lazy(getElementSchema).nullable().array().optional(),
-		name: fhirString().optional(),
-		_name: z.lazy(getElementSchema).optional(),
-		publisher: fhirString().optional(),
-		_publisher: z.lazy(getElementSchema).optional(),
-		purpose: z
-			.string()
-			.regex(/[ \r\n\t\S]+/)
-			.optional(),
-		_purpose: z.lazy(getElementSchema).optional(),
-		relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
-		resourceType: z.literal("PlanDefinition"),
-		reviewer: z.lazy(getContactDetailSchema).array().optional(),
-		status: z.enum(["active", "draft", "retired", "unknown"]),
-		_status: z.lazy(getElementSchema).optional(),
-		subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		subjectReference: z.lazy(getReferenceSchema).optional(),
-		subtitle: fhirString().optional(),
-		_subtitle: z.lazy(getElementSchema).optional(),
-		title: fhirString().optional(),
-		_title: z.lazy(getElementSchema).optional(),
-		topic: z.lazy(getCodeableConceptSchema).array().optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-		url: fhirUri().optional(),
-		_url: z.lazy(getElementSchema).optional(),
-		usage: fhirString().optional(),
-		_usage: z.lazy(getElementSchema).optional(),
-		useContext: z.lazy(getUsageContextSchema).array().optional(),
-		version: fhirString().optional(),
-		_version: z.lazy(getElementSchema).optional(),
-	},
-)
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		const subject_x_Present = [
-			"subjectCodeableConcept",
-			"subjectReference",
-		].filter((field) => record[field] !== undefined);
-		if (subject_x_Present.length > 1) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message:
-					"Only one of subjectCodeableConcept, subjectReference may be present for subject[x]",
-				path: [subject_x_Present[0]],
-			});
-		}
-		validatePrimitiveArrayPair(
-			record.library,
-			record._library,
-			"library",
-			"_library",
-			ctx,
-		);
-		validateReferenceTarget(
-			record.subjectReference,
-			"subjectReference",
-			["http://hl7.org/fhir/StructureDefinition/Group"],
-			["Group"],
-			ctx,
-		);
-	});
+export const PlanDefinitionSchemaInternal = z
+  .object({
+    action: z.lazy(getPlanDefinition_ActionSchema).array().optional(),
+    approvalDate: fhirDate().optional(),
+    _approvalDate: z.lazy(getElementSchema).optional(),
+    author: z.lazy(getContactDetailSchema).array().optional(),
+    contact: z.lazy(getContactDetailSchema).array().optional(),
+    contained: z.lazy(getFhirResourceSchema).array().optional(),
+    copyright: z
+      .string()
+      .regex(/[ \r\n\t\S]+/)
+      .optional(),
+    _copyright: z.lazy(getElementSchema).optional(),
+    date: fhirDateTime().optional(),
+    _date: z.lazy(getElementSchema).optional(),
+    description: z
+      .string()
+      .regex(/[ \r\n\t\S]+/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    editor: z.lazy(getContactDetailSchema).array().optional(),
+    effectivePeriod: z.lazy(getPeriodSchema).optional(),
+    endorser: z.lazy(getContactDetailSchema).array().optional(),
+    experimental: z.boolean().optional(),
+    _experimental: z.lazy(getElementSchema).optional(),
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    goal: z.lazy(getPlanDefinition_GoalSchema).array().optional(),
+    id: fhirId().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    implicitRules: fhirUri().optional(),
+    _implicitRules: z.lazy(getElementSchema).optional(),
+    jurisdiction: z.lazy(getCodeableConceptSchema).array().optional(),
+    language: fhirCode().optional(),
+    _language: z.lazy(getElementSchema).optional(),
+    lastReviewDate: fhirDate().optional(),
+    _lastReviewDate: z.lazy(getElementSchema).optional(),
+    library: fhirCanonical().nullable().array().optional(),
+    _library: z.lazy(getElementSchema).nullable().array().optional(),
+    meta: z.lazy(getMetaSchema).optional(),
+    modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+    name: fhirString().optional(),
+    _name: z.lazy(getElementSchema).optional(),
+    publisher: fhirString().optional(),
+    _publisher: z.lazy(getElementSchema).optional(),
+    purpose: z
+      .string()
+      .regex(/[ \r\n\t\S]+/)
+      .optional(),
+    _purpose: z.lazy(getElementSchema).optional(),
+    relatedArtifact: z.lazy(getRelatedArtifactSchema).array().optional(),
+    resourceType: z.literal("PlanDefinition"),
+    reviewer: z.lazy(getContactDetailSchema).array().optional(),
+    status: z.enum(["active", "draft", "retired", "unknown"]),
+    _status: z.lazy(getElementSchema).optional(),
+    subjectCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    subjectReference: z.lazy(getReferenceSchema).optional(),
+    subtitle: fhirString().optional(),
+    _subtitle: z.lazy(getElementSchema).optional(),
+    text: z.lazy(getNarrativeSchema).optional(),
+    title: fhirString().optional(),
+    _title: z.lazy(getElementSchema).optional(),
+    topic: z.lazy(getCodeableConceptSchema).array().optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+    url: fhirUri().optional(),
+    _url: z.lazy(getElementSchema).optional(),
+    usage: fhirString().optional(),
+    _usage: z.lazy(getElementSchema).optional(),
+    useContext: z.lazy(getUsageContextSchema).array().optional(),
+    version: fhirString().optional(),
+    _version: z.lazy(getElementSchema).optional(),
+  })
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    const subject_x_Present = [
+      "subjectCodeableConcept",
+      "subjectReference",
+    ].filter((field) => record[field] !== undefined);
+    if (subject_x_Present.length > 1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "Only one of subjectCodeableConcept, subjectReference may be present for subject[x]",
+        path: [subject_x_Present[0]],
+      });
+    }
+    validatePrimitiveArrayPair(
+      record.library,
+      record._library,
+      "library",
+      "_library",
+      ctx,
+    );
+    validateReferenceTarget(
+      record.subjectReference,
+      "subjectReference",
+      ["http://hl7.org/fhir/StructureDefinition/Group"],
+      ["Group"],
+      ctx,
+    );
+  });
 
 export const PlanDefinitionSchema =
-	PlanDefinitionSchemaInternal as z.ZodType<PlanDefinition>;
+  PlanDefinitionSchemaInternal as z.ZodType<PlanDefinition>;

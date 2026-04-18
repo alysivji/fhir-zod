@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { CoverageEligibilityRequest } from "./CoverageEligibilityRequest";
 export { CoverageEligibilityRequestSchema } from "./CoverageEligibilityRequest";
@@ -11,10 +11,3 @@ export type { CoverageEligibilityRequest_Item_Diagnosis } from "./CoverageEligib
 export { CoverageEligibilityRequest_Item_DiagnosisSchema } from "./CoverageEligibilityRequest_Item_Diagnosis";
 export type { CoverageEligibilityRequest_SupportingInfo } from "./CoverageEligibilityRequest_SupportingInfo";
 export { CoverageEligibilityRequest_SupportingInfoSchema } from "./CoverageEligibilityRequest_SupportingInfo";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CoverageEligibilityRequestSchemaInternal } from "./CoverageEligibilityRequest";
-
-_registerFhirResourceSchemas({
-	CoverageEligibilityRequest: CoverageEligibilityRequestSchemaInternal,
-});

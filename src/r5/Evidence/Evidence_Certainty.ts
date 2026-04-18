@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Evidence
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -16,46 +16,46 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Assessment of certainty, confidence in the estimates, or quality of the evidence. */
 export interface Evidence_Certainty extends BackboneElement {
-	/** Textual description of certainty. */
-	description?: string;
-	/** Extensions for description */
-	_description?: Element;
-	/** Footnotes and/or explanatory notes. */
-	note?: Array<Annotation>;
-	/** Individual or group who did the rating. */
-	rater?: string;
-	/** Extensions for rater */
-	_rater?: Element;
-	/** Assessment or judgement of the aspect. */
-	rating?: CodeableConcept;
-	/** A domain or subdomain of certainty. */
-	subcomponent?: Array<unknown>;
-	/** Aspect of certainty being rated. */
-	type?: CodeableConcept;
+  /** Textual description of certainty. */
+  description?: string;
+  /** Extensions for description */
+  _description?: Element;
+  /** Footnotes and/or explanatory notes. */
+  note?: Array<Annotation>;
+  /** Individual or group who did the rating. */
+  rater?: string;
+  /** Extensions for rater */
+  _rater?: Element;
+  /** Assessment or judgement of the aspect. */
+  rating?: CodeableConcept;
+  /** A domain or subdomain of certainty. */
+  subcomponent?: Array<unknown>;
+  /** Aspect of certainty being rated. */
+  type?: CodeableConcept;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const Evidence_CertaintySchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		description: z
-			.string()
-			.regex(/^[\s\S]+$/)
-			.optional(),
-		_description: z.lazy(getElementSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-		rater: fhirString().optional(),
-		_rater: z.lazy(getElementSchema).optional(),
-		rating: z.lazy(getCodeableConceptSchema).optional(),
-		subcomponent: z.unknown().array().optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    description: z
+      .string()
+      .regex(/^[\s\S]+$/)
+      .optional(),
+    _description: z.lazy(getElementSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+    rater: fhirString().optional(),
+    _rater: z.lazy(getElementSchema).optional(),
+    rating: z.lazy(getCodeableConceptSchema).optional(),
+    subcomponent: z.unknown().array().optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const Evidence_CertaintySchema =
-	Evidence_CertaintySchemaInternal as z.ZodType<Evidence_Certainty>;
+  Evidence_CertaintySchemaInternal as z.ZodType<Evidence_Certainty>;

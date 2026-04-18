@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/AuditEvent
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -12,27 +12,27 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Logical network location for application activity, if the activity has a network location. */
 export interface AuditEvent_Agent_Network extends BackboneElement {
-	/** An identifier for the network access point of the user device for the audit event. */
-	address?: string;
-	/** Extensions for address */
-	_address?: Element;
-	/** An identifier for the type of network access point that originated the audit event. */
-	type?: "1" | "2" | "3" | "4" | "5";
-	/** Extensions for type */
-	_type?: Element;
+  /** An identifier for the network access point of the user device for the audit event. */
+  address?: string;
+  /** Extensions for address */
+  _address?: Element;
+  /** An identifier for the type of network access point that originated the audit event. */
+  type?: "1" | "2" | "3" | "4" | "5";
+  /** Extensions for type */
+  _type?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const AuditEvent_Agent_NetworkSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		address: fhirString().optional(),
-		_address: z.lazy(getElementSchema).optional(),
-		type: z.enum(["1", "2", "3", "4", "5"]).optional(),
-		_type: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    address: fhirString().optional(),
+    _address: z.lazy(getElementSchema).optional(),
+    type: z.enum(["1", "2", "3", "4", "5"]).optional(),
+    _type: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const AuditEvent_Agent_NetworkSchema =
-	AuditEvent_Agent_NetworkSchemaInternal as z.ZodType<AuditEvent_Agent_Network>;
+  AuditEvent_Agent_NetworkSchemaInternal as z.ZodType<AuditEvent_Agent_Network>;

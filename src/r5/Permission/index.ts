@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Permission } from "./Permission";
 export { PermissionSchema } from "./Permission";
@@ -13,10 +13,3 @@ export type { Permission_Rule_Data } from "./Permission_Rule_Data";
 export { Permission_Rule_DataSchema } from "./Permission_Rule_Data";
 export type { Permission_Rule_Data_Resource } from "./Permission_Rule_Data_Resource";
 export { Permission_Rule_Data_ResourceSchema } from "./Permission_Rule_Data_Resource";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { PermissionSchemaInternal } from "./Permission";
-
-_registerFhirResourceSchemas({
-	Permission: PermissionSchemaInternal,
-});

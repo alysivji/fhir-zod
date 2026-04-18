@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Citation
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,29 +13,29 @@ import { Citation_CitedArtifact_Classification_WhoClassifiedSchemaInternal } fro
 
 /** The assignment to an organizing scheme. */
 export interface Citation_CitedArtifact_Classification extends BackboneElement {
-	/** The specific classification value. */
-	classifier?: Array<CodeableConcept>;
-	/** The kind of classifier (e.g. publication type, keyword). */
-	type?: CodeableConcept;
-	/** Provenance and copyright of classification. */
-	whoClassified?: Citation_CitedArtifact_Classification_WhoClassified;
+  /** The specific classification value. */
+  classifier?: Array<CodeableConcept>;
+  /** The kind of classifier (e.g. publication type, keyword). */
+  type?: CodeableConcept;
+  /** Provenance and copyright of classification. */
+  whoClassified?: Citation_CitedArtifact_Classification_WhoClassified;
 }
 
 const getCitation_CitedArtifact_Classification_WhoClassifiedSchema =
-	(): z.ZodType<Citation_CitedArtifact_Classification_WhoClassified> =>
-		Citation_CitedArtifact_Classification_WhoClassifiedSchemaInternal as z.ZodType<Citation_CitedArtifact_Classification_WhoClassified>;
+  (): z.ZodType<Citation_CitedArtifact_Classification_WhoClassified> =>
+    Citation_CitedArtifact_Classification_WhoClassifiedSchemaInternal as z.ZodType<Citation_CitedArtifact_Classification_WhoClassified>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const Citation_CitedArtifact_ClassificationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		classifier: z.lazy(getCodeableConceptSchema).array().optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-		whoClassified: z
-			.lazy(getCitation_CitedArtifact_Classification_WhoClassifiedSchema)
-			.optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    classifier: z.lazy(getCodeableConceptSchema).array().optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+    whoClassified: z
+      .lazy(getCitation_CitedArtifact_Classification_WhoClassifiedSchema)
+      .optional(),
+  }).strict();
 
 export const Citation_CitedArtifact_ClassificationSchema =
-	Citation_CitedArtifact_ClassificationSchemaInternal as z.ZodType<Citation_CitedArtifact_Classification>;
+  Citation_CitedArtifact_ClassificationSchemaInternal as z.ZodType<Citation_CitedArtifact_Classification>;

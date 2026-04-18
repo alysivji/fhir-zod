@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { SubstanceSourceMaterial } from "./SubstanceSourceMaterial";
 export { SubstanceSourceMaterialSchema } from "./SubstanceSourceMaterial";
@@ -15,10 +15,3 @@ export type { SubstanceSourceMaterial_Organism_OrganismGeneral } from "./Substan
 export { SubstanceSourceMaterial_Organism_OrganismGeneralSchema } from "./SubstanceSourceMaterial_Organism_OrganismGeneral";
 export type { SubstanceSourceMaterial_PartDescription } from "./SubstanceSourceMaterial_PartDescription";
 export { SubstanceSourceMaterial_PartDescriptionSchema } from "./SubstanceSourceMaterial_PartDescription";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SubstanceSourceMaterialSchemaInternal } from "./SubstanceSourceMaterial";
-
-_registerFhirResourceSchemas({
-	SubstanceSourceMaterial: SubstanceSourceMaterialSchemaInternal,
-});

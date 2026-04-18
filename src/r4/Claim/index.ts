@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { Claim } from "./Claim";
 export { ClaimSchema } from "./Claim";
@@ -25,10 +25,3 @@ export type { Claim_Related } from "./Claim_Related";
 export { Claim_RelatedSchema } from "./Claim_Related";
 export type { Claim_SupportingInfo } from "./Claim_SupportingInfo";
 export { Claim_SupportingInfoSchema } from "./Claim_SupportingInfo";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ClaimSchemaInternal } from "./Claim";
-
-_registerFhirResourceSchemas({
-	Claim: ClaimSchemaInternal,
-});

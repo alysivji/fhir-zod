@@ -215,13 +215,6 @@ function buildNormalizedZodFiles(options: {
 		sortDefinitions(options.definitions.values())[0]?.sourceMetadata
 			.releaseLabel ?? null;
 
-	const fhirResourceRegistrationLines = enableFhirResourceValidation
-		? emitFhirResourceRegistrationLines({
-				definitions: options.definitions,
-				fromFilePath: join(options.outputDir, "index.ts"),
-				layout,
-			})
-		: [];
 	const publicRootDefinitions = sortDefinitions(
 		options.definitions.values(),
 	).filter((definition) => !layout.isFolderedDefinition(definition.name));
@@ -232,17 +225,10 @@ function buildNormalizedZodFiles(options: {
 				generatedAt: options.generatedAt,
 				releaseLabel,
 			}),
-			...(enableFhirResourceValidation
-				? [
-						'import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";',
-						"export type FhirResource = FhirResourceType;",
-					]
-				: []),
 			...publicRootDefinitions.flatMap((definition) => [
 				`export type { ${definition.name} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
 				`export { ${schemaExportName(definition.name)} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
 			]),
-			...fhirResourceRegistrationLines,
 			"",
 		].join("\n"),
 		path: join(options.outputDir, "index.ts"),
@@ -262,7 +248,6 @@ function buildNormalizedZodFiles(options: {
 		builtFiles.push({
 			content: emitFolderIndexFile({
 				definitions: familyDefinitions,
-				enableFhirResourceValidation,
 				familyName,
 				generatedAt: options.generatedAt,
 				layout,
@@ -371,59 +356,14 @@ function collectConcreteResourceDefinitions(
 	);
 }
 
-function emitFhirResourceRegistrationLines(options: {
-	definitions: Map<string, NormalizedDefinition>;
-	fromFilePath: string;
-	layout: EmitLayout;
-	resources?: NormalizedDefinition[];
-}): string[] {
-	const resources =
-		options.resources ??
-		collectConcreteResourceDefinitions(options.definitions);
-
-	return [
-		"",
-		`import { _registerFhirResourceSchemas } from ${JSON.stringify(options.layout.importPath(options.fromFilePath, join(options.layout.outputDir, "_fhirResourceSchema.ts")))};`,
-		...resources.map(
-			(resource) =>
-				`import { ${schemaInternalName(resource.name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(options.fromFilePath, resource.name))};`,
-		),
-		"",
-		"_registerFhirResourceSchemas({",
-		...resources.map(
-			(resource) =>
-				`  ${JSON.stringify(resource.resourceTypeLiteral)}: ${schemaInternalName(resource.name)},`,
-		),
-		"});",
-	];
-}
-
 function emitFolderIndexFile(options: {
 	definitions: NormalizedDefinition[];
-	enableFhirResourceValidation: boolean;
 	familyName: string;
 	generatedAt: string;
 	layout: EmitLayout;
 	releaseLabel: string | null;
 }): string {
 	const filePath = options.layout.folderIndexFilePath(options.familyName);
-	const resourceDefinitions = options.definitions.filter(
-		(definition) => definition.resourceTypeLiteral !== null,
-	);
-	const registrationLines =
-		options.enableFhirResourceValidation && resourceDefinitions.length > 0
-			? emitFhirResourceRegistrationLines({
-					definitions: new Map(
-						options.definitions.map((definition) => [
-							definition.name,
-							definition,
-						]),
-					),
-					fromFilePath: filePath,
-					layout: options.layout,
-					resources: resourceDefinitions,
-				})
-			: [];
 
 	return [
 		...buildGeneratedHeader({
@@ -434,7 +374,6 @@ function emitFolderIndexFile(options: {
 			`export type { ${definition.name} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
 			`export { ${schemaExportName(definition.name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
 		]),
-		...registrationLines,
 		"",
 	].join("\n");
 }
@@ -448,6 +387,7 @@ function emitFhirResourceSchemaFile(options: {
 	const resources = collectConcreteResourceDefinitions(options.definitions);
 	const names = resources.map((definition) => definition.name);
 	const filePath = join(options.layout.outputDir, "_fhirResourceSchema.ts");
+	const resourceType = names.length > 0 ? names.join(" | ") : "never";
 
 	return [
 		...buildGeneratedHeader({
@@ -457,20 +397,26 @@ function emitFhirResourceSchemaFile(options: {
 		'import * as z from "zod";',
 		...names.map(
 			(name) =>
-				`import type { ${name} } from ${JSON.stringify(options.layout.definitionImportPath(filePath, name))};`,
+				`import type { ${name} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, name))};`,
+		),
+		...names.map(
+			(name) =>
+				`import { ${schemaInternalName(name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, name))};`,
 		),
 		"",
-		`export type FhirResource = ${names.join(" | ")};`,
+		`export type FhirResource = ${resourceType};`,
 		"",
-		"const registry = new Map<string, z.ZodTypeAny>();",
+		"let resourceSchemas: Readonly<Record<string, z.ZodTypeAny>> | null = null;",
 		"",
-		"/** @internal */",
-		"export function _registerFhirResourceSchemas(",
-		"  entries: Readonly<Record<string, z.ZodTypeAny>>,",
-		"): void {",
-		"  for (const [resourceType, schema] of Object.entries(entries)) {",
-		"    registry.set(resourceType, schema);",
-		"  }",
+		"function getResourceSchemas(): Readonly<Record<string, z.ZodTypeAny>> {",
+		"  resourceSchemas ??= {",
+		...resources.map(
+			(resource) =>
+				`    ${JSON.stringify(resource.resourceTypeLiteral)}: ${schemaInternalName(resource.name)},`,
+		),
+		"  };",
+		"",
+		"  return resourceSchemas;",
 		"}",
 		"",
 		"/** @internal */",
@@ -496,7 +442,7 @@ function emitFhirResourceSchemaFile(options: {
 		"          });",
 		"          return;",
 		"        }",
-		"        const schema = registry.get(resourceType);",
+		"        const schema = getResourceSchemas()[resourceType];",
 		"        if (!schema) {",
 		"          ctx.addIssue({",
 		"            code: z.ZodIssueCode.custom,",
@@ -527,7 +473,11 @@ function emitDefinitionFile(
 	enableFhirResourceValidation: boolean,
 ): string {
 	const modelBaseName = resolveModelBaseName(definition, definitions);
-	const runtimeShouldExtend = shouldExtendDefinition(definition, definitions);
+	const runtimeShouldExtend = shouldExtendDefinition(
+		definition,
+		definitions,
+		enableFhirResourceValidation,
+	);
 	const modelProperties = modelBaseName
 		? getDirectProperties(definition, definitions)
 		: definition.properties;
@@ -967,8 +917,13 @@ function emitDefinitionExpression(
 function shouldExtendDefinition(
 	definition: NormalizedDefinition,
 	definitions: Map<string, NormalizedDefinition>,
+	enableFhirResourceValidation: boolean,
 ): boolean {
 	if (!definition.baseName) {
+		return false;
+	}
+
+	if (enableFhirResourceValidation && definition.resourceTypeLiteral !== null) {
 		return false;
 	}
 

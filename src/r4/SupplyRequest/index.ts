@@ -1,14 +1,7 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { SupplyRequest } from "./SupplyRequest";
 export { SupplyRequestSchema } from "./SupplyRequest";
 export type { SupplyRequest_Parameter } from "./SupplyRequest_Parameter";
 export { SupplyRequest_ParameterSchema } from "./SupplyRequest_Parameter";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SupplyRequestSchemaInternal } from "./SupplyRequest";
-
-_registerFhirResourceSchemas({
-	SupplyRequest: SupplyRequestSchemaInternal,
-});

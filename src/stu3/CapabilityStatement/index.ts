@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { CapabilityStatement } from "./CapabilityStatement";
 export { CapabilityStatementSchema } from "./CapabilityStatement";
@@ -33,10 +33,3 @@ export type { CapabilityStatement_Rest_Security_Certificate } from "./Capability
 export { CapabilityStatement_Rest_Security_CertificateSchema } from "./CapabilityStatement_Rest_Security_Certificate";
 export type { CapabilityStatement_Software } from "./CapabilityStatement_Software";
 export { CapabilityStatement_SoftwareSchema } from "./CapabilityStatement_Software";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CapabilityStatementSchemaInternal } from "./CapabilityStatement";
-
-_registerFhirResourceSchemas({
-	CapabilityStatement: CapabilityStatementSchemaInternal,
-});

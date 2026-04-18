@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicinalProductDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -14,26 +14,26 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Coding words or phrases of the name. */
 export interface MedicinalProductDefinition_Name_Part extends BackboneElement {
-	/** A fragment of a product name. */
-	part: string;
-	/** Extensions for part */
-	_part?: Element;
-	/** Identifying type for this part of the name (e.g. strength part). */
-	type: CodeableConcept;
+  /** A fragment of a product name. */
+  part: string;
+  /** Extensions for part */
+  _part?: Element;
+  /** Identifying type for this part of the name (e.g. strength part). */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const MedicinalProductDefinition_Name_PartSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		part: fhirString(),
-		_part: z.lazy(getElementSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    part: fhirString(),
+    _part: z.lazy(getElementSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const MedicinalProductDefinition_Name_PartSchema =
-	MedicinalProductDefinition_Name_PartSchemaInternal as z.ZodType<MedicinalProductDefinition_Name_Part>;
+  MedicinalProductDefinition_Name_PartSchemaInternal as z.ZodType<MedicinalProductDefinition_Name_Part>;

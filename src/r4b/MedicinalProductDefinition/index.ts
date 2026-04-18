@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { MedicinalProductDefinition } from "./MedicinalProductDefinition";
 export { MedicinalProductDefinitionSchema } from "./MedicinalProductDefinition";
@@ -17,10 +17,3 @@ export type { MedicinalProductDefinition_Name_NamePart } from "./MedicinalProduc
 export { MedicinalProductDefinition_Name_NamePartSchema } from "./MedicinalProductDefinition_Name_NamePart";
 export type { MedicinalProductDefinition_Operation } from "./MedicinalProductDefinition_Operation";
 export { MedicinalProductDefinition_OperationSchema } from "./MedicinalProductDefinition_Operation";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MedicinalProductDefinitionSchemaInternal } from "./MedicinalProductDefinition";
-
-_registerFhirResourceSchemas({
-	MedicinalProductDefinition: MedicinalProductDefinitionSchemaInternal,
-});

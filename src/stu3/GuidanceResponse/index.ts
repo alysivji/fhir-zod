@@ -1,12 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { GuidanceResponse } from "./GuidanceResponse";
 export { GuidanceResponseSchema } from "./GuidanceResponse";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { GuidanceResponseSchemaInternal } from "./GuidanceResponse";
-
-_registerFhirResourceSchemas({
-	GuidanceResponse: GuidanceResponseSchemaInternal,
-});

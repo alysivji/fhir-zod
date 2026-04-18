@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PaymentReconciliation
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -12,27 +12,27 @@ import { ElementSchemaInternal } from "../Element";
 
 /** A note that describes or explains the processing in a human readable form. */
 export interface PaymentReconciliation_ProcessNote extends BackboneElement {
-	/** The explanation or description associated with the processing. */
-	text?: string;
-	/** Extensions for text */
-	_text?: Element;
-	/** The business purpose of the note text. */
-	type?: "display" | "print" | "printoper";
-	/** Extensions for type */
-	_type?: Element;
+  /** The explanation or description associated with the processing. */
+  text?: string;
+  /** Extensions for text */
+  _text?: Element;
+  /** The business purpose of the note text. */
+  type?: "display" | "print" | "printoper";
+  /** Extensions for type */
+  _type?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const PaymentReconciliation_ProcessNoteSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		text: fhirString().optional(),
-		_text: z.lazy(getElementSchema).optional(),
-		type: z.enum(["display", "print", "printoper"]).optional(),
-		_type: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    text: fhirString().optional(),
+    _text: z.lazy(getElementSchema).optional(),
+    type: z.enum(["display", "print", "printoper"]).optional(),
+    _type: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const PaymentReconciliation_ProcessNoteSchema =
-	PaymentReconciliation_ProcessNoteSchemaInternal as z.ZodType<PaymentReconciliation_ProcessNote>;
+  PaymentReconciliation_ProcessNoteSchemaInternal as z.ZodType<PaymentReconciliation_ProcessNote>;

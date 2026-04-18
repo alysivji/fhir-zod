@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { SubstanceSpecification } from "./SubstanceSpecification";
 export { SubstanceSpecificationSchema } from "./SubstanceSpecification";
@@ -23,10 +23,3 @@ export type { SubstanceSpecification_Structure_Isotope_MolecularWeight } from ".
 export { SubstanceSpecification_Structure_Isotope_MolecularWeightSchema } from "./SubstanceSpecification_Structure_Isotope_MolecularWeight";
 export type { SubstanceSpecification_Structure_Representation } from "./SubstanceSpecification_Structure_Representation";
 export { SubstanceSpecification_Structure_RepresentationSchema } from "./SubstanceSpecification_Structure_Representation";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SubstanceSpecificationSchemaInternal } from "./SubstanceSpecification";
-
-_registerFhirResourceSchemas({
-	SubstanceSpecification: SubstanceSpecificationSchemaInternal,
-});

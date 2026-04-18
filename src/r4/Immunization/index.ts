@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { Immunization } from "./Immunization";
 export { ImmunizationSchema } from "./Immunization";
@@ -11,10 +11,3 @@ export type { Immunization_ProtocolApplied } from "./Immunization_ProtocolApplie
 export { Immunization_ProtocolAppliedSchema } from "./Immunization_ProtocolApplied";
 export type { Immunization_Reaction } from "./Immunization_Reaction";
 export { Immunization_ReactionSchema } from "./Immunization_Reaction";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ImmunizationSchemaInternal } from "./Immunization";
-
-_registerFhirResourceSchemas({
-	Immunization: ImmunizationSchemaInternal,
-});

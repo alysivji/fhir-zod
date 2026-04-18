@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { TestReport } from "./TestReport";
 export { TestReportSchema } from "./TestReport";
@@ -21,10 +21,3 @@ export type { TestReport_Test } from "./TestReport_Test";
 export { TestReport_TestSchema } from "./TestReport_Test";
 export type { TestReport_Test_Action } from "./TestReport_Test_Action";
 export { TestReport_Test_ActionSchema } from "./TestReport_Test_Action";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { TestReportSchemaInternal } from "./TestReport";
-
-_registerFhirResourceSchemas({
-	TestReport: TestReportSchemaInternal,
-});

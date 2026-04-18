@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/NutritionIntake
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,23 +13,23 @@ import { QuantitySchemaInternal } from "../Quantity";
 
 /** Total nutrient amounts for the whole meal, product, serving, etc. */
 export interface NutritionIntake_IngredientLabel extends BackboneElement {
-	/** Total amount of nutrient consumed. */
-	amount: Quantity;
-	/** Total nutrient consumed. This could be a macronutrient (protein, fat, carbohydrate), or a vitamin and mineral. */
-	nutrient: CodeableReference;
+  /** Total amount of nutrient consumed. */
+  amount: Quantity;
+  /** Total nutrient consumed. This could be a macronutrient (protein, fat, carbohydrate), or a vitamin and mineral. */
+  nutrient: CodeableReference;
 }
 
 const getCodeableReferenceSchema = (): z.ZodType<CodeableReference> =>
-	CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
+  CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const NutritionIntake_IngredientLabelSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		amount: z.lazy(getQuantitySchema),
-		nutrient: z.lazy(getCodeableReferenceSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    amount: z.lazy(getQuantitySchema),
+    nutrient: z.lazy(getCodeableReferenceSchema),
+  }).strict();
 
 export const NutritionIntake_IngredientLabelSchema =
-	NutritionIntake_IngredientLabelSchemaInternal as z.ZodType<NutritionIntake_IngredientLabel>;
+  NutritionIntake_IngredientLabelSchemaInternal as z.ZodType<NutritionIntake_IngredientLabel>;

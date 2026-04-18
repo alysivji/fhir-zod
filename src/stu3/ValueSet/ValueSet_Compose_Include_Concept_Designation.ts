@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ValueSet
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { fhirCode, fhirString } from "../../shared/fhir-primitives";
@@ -14,33 +14,33 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Additional representations for this concept when used in this value set - other languages, aliases, specialized purposes, used for particular purposes, etc. */
 export interface ValueSet_Compose_Include_Concept_Designation
-	extends BackboneElement {
-	/** The language this designation is defined for. */
-	language?: string;
-	/** Extensions for language */
-	_language?: Element;
-	/** A code that details how this designation would be used. */
-	use?: Coding;
-	/** The text value for this designation. */
-	value: string;
-	/** Extensions for value */
-	_value?: Element;
+  extends BackboneElement {
+  /** The language this designation is defined for. */
+  language?: string;
+  /** Extensions for language */
+  _language?: Element;
+  /** A code that details how this designation would be used. */
+  use?: Coding;
+  /** The text value for this designation. */
+  value: string;
+  /** Extensions for value */
+  _value?: Element;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const ValueSet_Compose_Include_Concept_DesignationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		language: fhirCode().optional(),
-		_language: z.lazy(getElementSchema).optional(),
-		use: z.lazy(getCodingSchema).optional(),
-		value: fhirString(),
-		_value: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    language: fhirCode().optional(),
+    _language: z.lazy(getElementSchema).optional(),
+    use: z.lazy(getCodingSchema).optional(),
+    value: fhirString(),
+    _value: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const ValueSet_Compose_Include_Concept_DesignationSchema =
-	ValueSet_Compose_Include_Concept_DesignationSchemaInternal as z.ZodType<ValueSet_Compose_Include_Concept_Designation>;
+  ValueSet_Compose_Include_Concept_DesignationSchemaInternal as z.ZodType<ValueSet_Compose_Include_Concept_Designation>;

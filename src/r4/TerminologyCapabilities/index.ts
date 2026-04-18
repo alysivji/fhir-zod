@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { TerminologyCapabilities } from "./TerminologyCapabilities";
 export { TerminologyCapabilitiesSchema } from "./TerminologyCapabilities";
@@ -23,10 +23,3 @@ export type { TerminologyCapabilities_Translation } from "./TerminologyCapabilit
 export { TerminologyCapabilities_TranslationSchema } from "./TerminologyCapabilities_Translation";
 export type { TerminologyCapabilities_ValidateCode } from "./TerminologyCapabilities_ValidateCode";
 export { TerminologyCapabilities_ValidateCodeSchema } from "./TerminologyCapabilities_ValidateCode";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { TerminologyCapabilitiesSchemaInternal } from "./TerminologyCapabilities";
-
-_registerFhirResourceSchemas({
-	TerminologyCapabilities: TerminologyCapabilitiesSchemaInternal,
-});

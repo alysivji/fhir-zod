@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CapabilityStatement
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { fhirDateTime, fhirString } from "../../shared/fhir-primitives";
@@ -12,33 +12,33 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Software that is covered by this capability statement.  It is used when the capability statement describes the capabilities of a particular software version, independent of an installation. */
 export interface CapabilityStatement_Software extends BackboneElement {
-	/** Name software is known by. */
-	name: string;
-	/** Extensions for name */
-	_name?: Element;
-	/** Date this version of the software was released. */
-	releaseDate?: string;
-	/** Extensions for releaseDate */
-	_releaseDate?: Element;
-	/** The version identifier for the software covered by this statement. */
-	version?: string;
-	/** Extensions for version */
-	_version?: Element;
+  /** Name software is known by. */
+  name: string;
+  /** Extensions for name */
+  _name?: Element;
+  /** Date this version of the software was released. */
+  releaseDate?: string;
+  /** Extensions for releaseDate */
+  _releaseDate?: Element;
+  /** The version identifier for the software covered by this statement. */
+  version?: string;
+  /** Extensions for version */
+  _version?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const CapabilityStatement_SoftwareSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		name: fhirString(),
-		_name: z.lazy(getElementSchema).optional(),
-		releaseDate: fhirDateTime().optional(),
-		_releaseDate: z.lazy(getElementSchema).optional(),
-		version: fhirString().optional(),
-		_version: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    name: fhirString(),
+    _name: z.lazy(getElementSchema).optional(),
+    releaseDate: fhirDateTime().optional(),
+    _releaseDate: z.lazy(getElementSchema).optional(),
+    version: fhirString().optional(),
+    _version: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const CapabilityStatement_SoftwareSchema =
-	CapabilityStatement_SoftwareSchemaInternal as z.ZodType<CapabilityStatement_Software>;
+  CapabilityStatement_SoftwareSchemaInternal as z.ZodType<CapabilityStatement_Software>;

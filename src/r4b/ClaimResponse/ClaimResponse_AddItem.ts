@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ClaimResponse
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation";
@@ -28,191 +28,191 @@ import { ClaimResponse_AddItem_DetailSchemaInternal } from "./ClaimResponse_AddI
 
 /** The first-tier service adjudications for payor added product or service lines. */
 export interface ClaimResponse_AddItem extends BackboneElement {
-	/** The adjudication results. */
-	adjudication: Array<unknown>;
-	/** Physical service site on the patient (limb, tooth, etc.). */
-	bodySite?: CodeableConcept;
-	/** The second-tier service adjudications for payor added services. */
-	detail?: Array<ClaimResponse_AddItem_Detail>;
-	/** The sequence number of the details within the claim item which this line is intended to replace. */
-	detailSequence?: Array<number | null>;
-	/** Extensions for detailSequence */
-	_detailSequence?: Array<Element | null>;
-	/** A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount. */
-	factor?: number;
-	/** Extensions for factor */
-	_factor?: Element;
-	/** Claim items which this service line is intended to replace. */
-	itemSequence?: Array<number | null>;
-	/** Extensions for itemSequence */
-	_itemSequence?: Array<Element | null>;
-	/** Where the product or service was provided. */
-	locationAddress?: Address;
-	/** Where the product or service was provided. */
-	locationCodeableConcept?: CodeableConcept;
-	/** Where the product or service was provided. */
-	locationReference?: Reference;
-	/** Item typification or modifiers codes to convey additional context for the product or service. */
-	modifier?: Array<CodeableConcept>;
-	/** The quantity times the unit price for an additional service or product or charge. */
-	net?: Money;
-	/** The numbers associated with notes below which apply to the adjudication of this item. */
-	noteNumber?: Array<number | null>;
-	/** Extensions for noteNumber */
-	_noteNumber?: Array<Element | null>;
-	/** When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item. */
-	productOrService: CodeableConcept;
-	/** Identifies the program under which this may be recovered. */
-	programCode?: Array<CodeableConcept>;
-	/** The providers who are authorized for the services rendered to the patient. */
-	provider?: Array<Reference>;
-	/** The number of repetitions of a service or product. */
-	quantity?: Quantity;
-	/** The date or dates when the service or product was supplied, performed or completed. */
-	servicedDate?: string;
-	/** Extensions for servicedDate */
-	_servicedDate?: Element;
-	/** The date or dates when the service or product was supplied, performed or completed. */
-	servicedPeriod?: Period;
-	/** The sequence number of the sub-details within the details within the claim item which this line is intended to replace. */
-	subdetailSequence?: Array<number | null>;
-	/** Extensions for subdetailSequence */
-	_subdetailSequence?: Array<Element | null>;
-	/** A region or surface of the bodySite, e.g. limb region or tooth surface(s). */
-	subSite?: Array<CodeableConcept>;
-	/** If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group. */
-	unitPrice?: Money;
+  /** The adjudication results. */
+  adjudication: Array<unknown>;
+  /** Physical service site on the patient (limb, tooth, etc.). */
+  bodySite?: CodeableConcept;
+  /** The second-tier service adjudications for payor added services. */
+  detail?: Array<ClaimResponse_AddItem_Detail>;
+  /** The sequence number of the details within the claim item which this line is intended to replace. */
+  detailSequence?: Array<number | null>;
+  /** Extensions for detailSequence */
+  _detailSequence?: Array<Element | null>;
+  /** A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount. */
+  factor?: number;
+  /** Extensions for factor */
+  _factor?: Element;
+  /** Claim items which this service line is intended to replace. */
+  itemSequence?: Array<number | null>;
+  /** Extensions for itemSequence */
+  _itemSequence?: Array<Element | null>;
+  /** Where the product or service was provided. */
+  locationAddress?: Address;
+  /** Where the product or service was provided. */
+  locationCodeableConcept?: CodeableConcept;
+  /** Where the product or service was provided. */
+  locationReference?: Reference;
+  /** Item typification or modifiers codes to convey additional context for the product or service. */
+  modifier?: Array<CodeableConcept>;
+  /** The quantity times the unit price for an additional service or product or charge. */
+  net?: Money;
+  /** The numbers associated with notes below which apply to the adjudication of this item. */
+  noteNumber?: Array<number | null>;
+  /** Extensions for noteNumber */
+  _noteNumber?: Array<Element | null>;
+  /** When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item. */
+  productOrService: CodeableConcept;
+  /** Identifies the program under which this may be recovered. */
+  programCode?: Array<CodeableConcept>;
+  /** The providers who are authorized for the services rendered to the patient. */
+  provider?: Array<Reference>;
+  /** The number of repetitions of a service or product. */
+  quantity?: Quantity;
+  /** The date or dates when the service or product was supplied, performed or completed. */
+  servicedDate?: string;
+  /** Extensions for servicedDate */
+  _servicedDate?: Element;
+  /** The date or dates when the service or product was supplied, performed or completed. */
+  servicedPeriod?: Period;
+  /** The sequence number of the sub-details within the details within the claim item which this line is intended to replace. */
+  subdetailSequence?: Array<number | null>;
+  /** Extensions for subdetailSequence */
+  _subdetailSequence?: Array<Element | null>;
+  /** A region or surface of the bodySite, e.g. limb region or tooth surface(s). */
+  subSite?: Array<CodeableConcept>;
+  /** If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group. */
+  unitPrice?: Money;
 }
 
 const getAddressSchema = (): z.ZodType<Address> =>
-	AddressSchemaInternal as z.ZodType<Address>;
+  AddressSchemaInternal as z.ZodType<Address>;
 const getClaimResponse_AddItem_DetailSchema =
-	(): z.ZodType<ClaimResponse_AddItem_Detail> =>
-		ClaimResponse_AddItem_DetailSchemaInternal as z.ZodType<ClaimResponse_AddItem_Detail>;
+  (): z.ZodType<ClaimResponse_AddItem_Detail> =>
+    ClaimResponse_AddItem_DetailSchemaInternal as z.ZodType<ClaimResponse_AddItem_Detail>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getMoneySchema = (): z.ZodType<Money> =>
-	MoneySchemaInternal as z.ZodType<Money>;
+  MoneySchemaInternal as z.ZodType<Money>;
 const getPeriodSchema = (): z.ZodType<Period> =>
-	PeriodSchemaInternal as z.ZodType<Period>;
+  PeriodSchemaInternal as z.ZodType<Period>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const ClaimResponse_AddItemSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		adjudication: z.custom<unknown>((value) => value !== undefined).array(),
-		bodySite: z.lazy(getCodeableConceptSchema).optional(),
-		detail: z.lazy(getClaimResponse_AddItem_DetailSchema).array().optional(),
-		detailSequence: z.number().int().positive().nullable().array().optional(),
-		_detailSequence: z.lazy(getElementSchema).nullable().array().optional(),
-		factor: z.number().optional(),
-		_factor: z.lazy(getElementSchema).optional(),
-		itemSequence: z.number().int().positive().nullable().array().optional(),
-		_itemSequence: z.lazy(getElementSchema).nullable().array().optional(),
-		locationAddress: z.lazy(getAddressSchema).optional(),
-		locationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		locationReference: z.lazy(getReferenceSchema).optional(),
-		modifier: z.lazy(getCodeableConceptSchema).array().optional(),
-		net: z.lazy(getMoneySchema).optional(),
-		noteNumber: z.number().int().positive().nullable().array().optional(),
-		_noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
-		productOrService: z.lazy(getCodeableConceptSchema),
-		programCode: z.lazy(getCodeableConceptSchema).array().optional(),
-		provider: z.lazy(getReferenceSchema).array().optional(),
-		quantity: z.lazy(getQuantitySchema).optional(),
-		servicedDate: fhirDate().optional(),
-		_servicedDate: z.lazy(getElementSchema).optional(),
-		servicedPeriod: z.lazy(getPeriodSchema).optional(),
-		subdetailSequence: z
-			.number()
-			.int()
-			.positive()
-			.nullable()
-			.array()
-			.optional(),
-		_subdetailSequence: z.lazy(getElementSchema).nullable().array().optional(),
-		subSite: z.lazy(getCodeableConceptSchema).array().optional(),
-		unitPrice: z.lazy(getMoneySchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const location_x_Present = [
-				"locationAddress",
-				"locationCodeableConcept",
-				"locationReference",
-			].filter((field) => record[field] !== undefined);
-			if (location_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of locationAddress, locationCodeableConcept, locationReference may be present for location[x]",
-					path: [location_x_Present[0]],
-				});
-			}
-			const serviced_x_Present = ["servicedDate", "servicedPeriod"].filter(
-				(field) => record[field] !== undefined,
-			);
-			if (serviced_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of servicedDate, servicedPeriod may be present for serviced[x]",
-					path: [serviced_x_Present[0]],
-				});
-			}
-			validatePrimitiveArrayPair(
-				record.detailSequence,
-				record._detailSequence,
-				"detailSequence",
-				"_detailSequence",
-				ctx,
-			);
-			validatePrimitiveArrayPair(
-				record.itemSequence,
-				record._itemSequence,
-				"itemSequence",
-				"_itemSequence",
-				ctx,
-			);
-			validatePrimitiveArrayPair(
-				record.noteNumber,
-				record._noteNumber,
-				"noteNumber",
-				"_noteNumber",
-				ctx,
-			);
-			validatePrimitiveArrayPair(
-				record.subdetailSequence,
-				record._subdetailSequence,
-				"subdetailSequence",
-				"_subdetailSequence",
-				ctx,
-			);
-			validateReferenceTarget(
-				record.locationReference,
-				"locationReference",
-				["http://hl7.org/fhir/StructureDefinition/Location"],
-				["Location"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.provider,
-				"provider",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Organization",
-					"http://hl7.org/fhir/StructureDefinition/Practitioner",
-					"http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-				],
-				["Organization", "Practitioner", "PractitionerRole"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    adjudication: z.custom<unknown>((value) => value !== undefined).array(),
+    bodySite: z.lazy(getCodeableConceptSchema).optional(),
+    detail: z.lazy(getClaimResponse_AddItem_DetailSchema).array().optional(),
+    detailSequence: z.number().int().positive().nullable().array().optional(),
+    _detailSequence: z.lazy(getElementSchema).nullable().array().optional(),
+    factor: z.number().optional(),
+    _factor: z.lazy(getElementSchema).optional(),
+    itemSequence: z.number().int().positive().nullable().array().optional(),
+    _itemSequence: z.lazy(getElementSchema).nullable().array().optional(),
+    locationAddress: z.lazy(getAddressSchema).optional(),
+    locationCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    locationReference: z.lazy(getReferenceSchema).optional(),
+    modifier: z.lazy(getCodeableConceptSchema).array().optional(),
+    net: z.lazy(getMoneySchema).optional(),
+    noteNumber: z.number().int().positive().nullable().array().optional(),
+    _noteNumber: z.lazy(getElementSchema).nullable().array().optional(),
+    productOrService: z.lazy(getCodeableConceptSchema),
+    programCode: z.lazy(getCodeableConceptSchema).array().optional(),
+    provider: z.lazy(getReferenceSchema).array().optional(),
+    quantity: z.lazy(getQuantitySchema).optional(),
+    servicedDate: fhirDate().optional(),
+    _servicedDate: z.lazy(getElementSchema).optional(),
+    servicedPeriod: z.lazy(getPeriodSchema).optional(),
+    subdetailSequence: z
+      .number()
+      .int()
+      .positive()
+      .nullable()
+      .array()
+      .optional(),
+    _subdetailSequence: z.lazy(getElementSchema).nullable().array().optional(),
+    subSite: z.lazy(getCodeableConceptSchema).array().optional(),
+    unitPrice: z.lazy(getMoneySchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const location_x_Present = [
+        "locationAddress",
+        "locationCodeableConcept",
+        "locationReference",
+      ].filter((field) => record[field] !== undefined);
+      if (location_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of locationAddress, locationCodeableConcept, locationReference may be present for location[x]",
+          path: [location_x_Present[0]],
+        });
+      }
+      const serviced_x_Present = ["servicedDate", "servicedPeriod"].filter(
+        (field) => record[field] !== undefined,
+      );
+      if (serviced_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of servicedDate, servicedPeriod may be present for serviced[x]",
+          path: [serviced_x_Present[0]],
+        });
+      }
+      validatePrimitiveArrayPair(
+        record.detailSequence,
+        record._detailSequence,
+        "detailSequence",
+        "_detailSequence",
+        ctx,
+      );
+      validatePrimitiveArrayPair(
+        record.itemSequence,
+        record._itemSequence,
+        "itemSequence",
+        "_itemSequence",
+        ctx,
+      );
+      validatePrimitiveArrayPair(
+        record.noteNumber,
+        record._noteNumber,
+        "noteNumber",
+        "_noteNumber",
+        ctx,
+      );
+      validatePrimitiveArrayPair(
+        record.subdetailSequence,
+        record._subdetailSequence,
+        "subdetailSequence",
+        "_subdetailSequence",
+        ctx,
+      );
+      validateReferenceTarget(
+        record.locationReference,
+        "locationReference",
+        ["http://hl7.org/fhir/StructureDefinition/Location"],
+        ["Location"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.provider,
+        "provider",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Organization",
+          "http://hl7.org/fhir/StructureDefinition/Practitioner",
+          "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+        ],
+        ["Organization", "Practitioner", "PractitionerRole"],
+        ctx,
+      );
+    });
 
 export const ClaimResponse_AddItemSchema =
-	ClaimResponse_AddItemSchemaInternal as z.ZodType<ClaimResponse_AddItem>;
+  ClaimResponse_AddItemSchemaInternal as z.ZodType<ClaimResponse_AddItem>;

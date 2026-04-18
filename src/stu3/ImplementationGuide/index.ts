@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { ImplementationGuide } from "./ImplementationGuide";
 export { ImplementationGuideSchema } from "./ImplementationGuide";
@@ -13,10 +13,3 @@ export type { ImplementationGuide_Package_Resource } from "./ImplementationGuide
 export { ImplementationGuide_Package_ResourceSchema } from "./ImplementationGuide_Package_Resource";
 export type { ImplementationGuide_Page } from "./ImplementationGuide_Page";
 export { ImplementationGuide_PageSchema } from "./ImplementationGuide_Page";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ImplementationGuideSchemaInternal } from "./ImplementationGuide";
-
-_registerFhirResourceSchemas({
-	ImplementationGuide: ImplementationGuideSchemaInternal,
-});

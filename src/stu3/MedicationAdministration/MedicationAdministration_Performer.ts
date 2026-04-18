@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationAdministration
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -12,44 +12,44 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The individual who was responsible for giving the medication to the patient. */
 export interface MedicationAdministration_Performer extends BackboneElement {
-	/** The device, practitioner, etc. who performed the action. */
-	actor: Reference;
-	/** The organization the device or practitioner was acting on behalf of. */
-	onBehalfOf?: Reference;
+  /** The device, practitioner, etc. who performed the action. */
+  actor: Reference;
+  /** The organization the device or practitioner was acting on behalf of. */
+  onBehalfOf?: Reference;
 }
 
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const MedicationAdministration_PerformerSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		actor: z.lazy(getReferenceSchema),
-		onBehalfOf: z.lazy(getReferenceSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.actor,
-				"actor",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Device",
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-					"http://hl7.org/fhir/StructureDefinition/Practitioner",
-					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-				],
-				["Device", "Patient", "Practitioner", "RelatedPerson"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.onBehalfOf,
-				"onBehalfOf",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    actor: z.lazy(getReferenceSchema),
+    onBehalfOf: z.lazy(getReferenceSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.actor,
+        "actor",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Device",
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Practitioner",
+          "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+        ],
+        ["Device", "Patient", "Practitioner", "RelatedPerson"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.onBehalfOf,
+        "onBehalfOf",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+    });
 
 export const MedicationAdministration_PerformerSchema =
-	MedicationAdministration_PerformerSchemaInternal as z.ZodType<MedicationAdministration_Performer>;
+  MedicationAdministration_PerformerSchemaInternal as z.ZodType<MedicationAdministration_Performer>;

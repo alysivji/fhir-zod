@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Contract } from "./Contract";
 export { ContractSchema } from "./Contract";
@@ -33,10 +33,3 @@ export type { Contract_Term_Offer_Party } from "./Contract_Term_Offer_Party";
 export { Contract_Term_Offer_PartySchema } from "./Contract_Term_Offer_Party";
 export type { Contract_Term_SecurityLabel } from "./Contract_Term_SecurityLabel";
 export { Contract_Term_SecurityLabelSchema } from "./Contract_Term_SecurityLabel";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ContractSchemaInternal } from "./Contract";
-
-_registerFhirResourceSchemas({
-	Contract: ContractSchemaInternal,
-});

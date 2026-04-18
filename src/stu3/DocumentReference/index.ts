@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { DocumentReference } from "./DocumentReference";
 export { DocumentReferenceSchema } from "./DocumentReference";
@@ -11,10 +11,3 @@ export type { DocumentReference_Context_Related } from "./DocumentReference_Cont
 export { DocumentReference_Context_RelatedSchema } from "./DocumentReference_Context_Related";
 export type { DocumentReference_RelatesTo } from "./DocumentReference_RelatesTo";
 export { DocumentReference_RelatesToSchema } from "./DocumentReference_RelatesTo";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { DocumentReferenceSchemaInternal } from "./DocumentReference";
-
-_registerFhirResourceSchemas({
-	DocumentReference: DocumentReferenceSchemaInternal,
-});

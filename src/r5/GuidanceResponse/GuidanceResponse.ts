@@ -1,15 +1,19 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/GuidanceResponse
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:04:05.932Z
 
 import * as z from "zod";
 import {
-	fhirCanonical,
-	fhirDateTime,
-	fhirUri,
+  fhirCanonical,
+  fhirCode,
+  fhirDateTime,
+  fhirId,
+  fhirUri,
 } from "../../shared/fhir-primitives";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { FhirResource } from "../_fhirResourceSchema";
+import { FhirResourceSchemaInternal } from "../_fhirResourceSchema";
 import type { Annotation } from "../Annotation";
 import { AnnotationSchemaInternal } from "../Annotation";
 import type { CodeableConcept } from "../CodeableConcept";
@@ -19,219 +23,243 @@ import { CodeableReferenceSchemaInternal } from "../CodeableReference";
 import type { DataRequirement } from "../DataRequirement";
 import { DataRequirementSchemaInternal } from "../DataRequirement";
 import type { DomainResource } from "../DomainResource";
-import { DomainResourceSchemaInternal } from "../DomainResource";
 import type { Element } from "../Element";
 import { ElementSchemaInternal } from "../Element";
+import type { Extension } from "../Extension";
+import { ExtensionSchemaInternal } from "../Extension";
 import type { Identifier } from "../Identifier";
 import { IdentifierSchemaInternal } from "../Identifier";
+import type { Meta } from "../Meta";
+import { MetaSchemaInternal } from "../Meta";
+import type { Narrative } from "../Narrative";
+import { NarrativeSchemaInternal } from "../Narrative";
 import type { Reference } from "../Reference";
 import { ReferenceSchemaInternal } from "../Reference";
 
 /** A guidance response is the formal response to a guidance request, including any output parameters returned by the evaluation, as well as the description of any proposed actions to be taken. */
 export interface GuidanceResponse extends DomainResource {
-	/** If the evaluation could not be completed due to lack of information, or additional information would potentially result in a more accurate response, this element will a description of the data required in order to proceed with the evaluation. A subsequent request to the service should include this data. */
-	dataRequirement?: Array<DataRequirement>;
-	/** The encounter during which this response was created or to which the creation of this record is tightly associated. */
-	encounter?: Reference;
-	/** Messages resulting from the evaluation of the artifact or artifacts. As part of evaluating the request, the engine may produce informational or warning messages. These messages will be provided by this element. */
-	evaluationMessage?: Reference;
-	/** Allows a service to provide  unique, business identifiers for the response. */
-	identifier?: Array<Identifier>;
-	/** An identifier, CodeableConcept or canonical reference to the guidance that was requested. */
-	moduleCanonical?: string;
-	/** Extensions for moduleCanonical */
-	_moduleCanonical?: Element;
-	/** An identifier, CodeableConcept or canonical reference to the guidance that was requested. */
-	moduleCodeableConcept?: CodeableConcept;
-	/** An identifier, CodeableConcept or canonical reference to the guidance that was requested. */
-	moduleUri?: string;
-	/** Extensions for moduleUri */
-	_moduleUri?: Element;
-	/** Provides a mechanism to communicate additional information about the response. */
-	note?: Array<Annotation>;
-	/** Indicates when the guidance response was processed. */
-	occurrenceDateTime?: string;
-	/** Extensions for occurrenceDateTime */
-	_occurrenceDateTime?: Element;
-	/** The output parameters of the evaluation, if any. Many modules will result in the return of specific resources such as procedure or communication requests that are returned as part of the operation result. However, modules may define specific outputs that would be returned as the result of the evaluation, and these would be returned in this element. */
-	outputParameters?: Reference;
-	/** Provides a reference to the device that performed the guidance. */
-	performer?: Reference;
-	/** Describes the reason for the guidance response in coded or textual form, or Indicates the reason the request was initiated. This is typically provided as a parameter to the evaluation and echoed by the service, although for some use cases, such as subscription- or event-based scenarios, it may provide an indication of the cause for the response. */
-	reason?: Array<CodeableReference>;
-	/** The identifier of the request associated with this response. If an identifier was given as part of the request, it will be reproduced here to enable the requester to more easily identify the response in a multi-request scenario. */
-	requestIdentifier?: Identifier;
-	/** This is a GuidanceResponse resource. */
-	resourceType: "GuidanceResponse";
-	/** The actions, if any, produced by the evaluation of the artifact. */
-	result?: Array<Reference>;
-	/** The status of the response. If the evaluation is completed successfully, the status will indicate success. However, in order to complete the evaluation, the engine may require more information. In this case, the status will be data-required, and the response will contain a description of the additional required information. If the evaluation completed successfully, but the engine determines that a potentially more accurate response could be provided if more data was available, the status will be data-requested, and the response will contain a description of the additional requested information. */
-	status:
-		| "data-requested"
-		| "data-required"
-		| "entered-in-error"
-		| "failure"
-		| "in-progress"
-		| "success";
-	/** Extensions for status */
-	_status?: Element;
-	/** The patient for which the request was processed. */
-	subject?: Reference;
+  /** If the evaluation could not be completed due to lack of information, or additional information would potentially result in a more accurate response, this element will a description of the data required in order to proceed with the evaluation. A subsequent request to the service should include this data. */
+  dataRequirement?: Array<DataRequirement>;
+  /** The encounter during which this response was created or to which the creation of this record is tightly associated. */
+  encounter?: Reference;
+  /** Messages resulting from the evaluation of the artifact or artifacts. As part of evaluating the request, the engine may produce informational or warning messages. These messages will be provided by this element. */
+  evaluationMessage?: Reference;
+  /** Allows a service to provide  unique, business identifiers for the response. */
+  identifier?: Array<Identifier>;
+  /** An identifier, CodeableConcept or canonical reference to the guidance that was requested. */
+  moduleCanonical?: string;
+  /** Extensions for moduleCanonical */
+  _moduleCanonical?: Element;
+  /** An identifier, CodeableConcept or canonical reference to the guidance that was requested. */
+  moduleCodeableConcept?: CodeableConcept;
+  /** An identifier, CodeableConcept or canonical reference to the guidance that was requested. */
+  moduleUri?: string;
+  /** Extensions for moduleUri */
+  _moduleUri?: Element;
+  /** Provides a mechanism to communicate additional information about the response. */
+  note?: Array<Annotation>;
+  /** Indicates when the guidance response was processed. */
+  occurrenceDateTime?: string;
+  /** Extensions for occurrenceDateTime */
+  _occurrenceDateTime?: Element;
+  /** The output parameters of the evaluation, if any. Many modules will result in the return of specific resources such as procedure or communication requests that are returned as part of the operation result. However, modules may define specific outputs that would be returned as the result of the evaluation, and these would be returned in this element. */
+  outputParameters?: Reference;
+  /** Provides a reference to the device that performed the guidance. */
+  performer?: Reference;
+  /** Describes the reason for the guidance response in coded or textual form, or Indicates the reason the request was initiated. This is typically provided as a parameter to the evaluation and echoed by the service, although for some use cases, such as subscription- or event-based scenarios, it may provide an indication of the cause for the response. */
+  reason?: Array<CodeableReference>;
+  /** The identifier of the request associated with this response. If an identifier was given as part of the request, it will be reproduced here to enable the requester to more easily identify the response in a multi-request scenario. */
+  requestIdentifier?: Identifier;
+  /** This is a GuidanceResponse resource. */
+  resourceType: "GuidanceResponse";
+  /** The actions, if any, produced by the evaluation of the artifact. */
+  result?: Array<Reference>;
+  /** The status of the response. If the evaluation is completed successfully, the status will indicate success. However, in order to complete the evaluation, the engine may require more information. In this case, the status will be data-required, and the response will contain a description of the additional required information. If the evaluation completed successfully, but the engine determines that a potentially more accurate response could be provided if more data was available, the status will be data-requested, and the response will contain a description of the additional requested information. */
+  status:
+    | "data-requested"
+    | "data-required"
+    | "entered-in-error"
+    | "failure"
+    | "in-progress"
+    | "success";
+  /** Extensions for status */
+  _status?: Element;
+  /** The patient for which the request was processed. */
+  subject?: Reference;
 }
 
 const getAnnotationSchema = (): z.ZodType<Annotation> =>
-	AnnotationSchemaInternal as z.ZodType<Annotation>;
+  AnnotationSchemaInternal as z.ZodType<Annotation>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getCodeableReferenceSchema = (): z.ZodType<CodeableReference> =>
-	CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
+  CodeableReferenceSchemaInternal as z.ZodType<CodeableReference>;
 const getDataRequirementSchema = (): z.ZodType<DataRequirement> =>
-	DataRequirementSchemaInternal as z.ZodType<DataRequirement>;
+  DataRequirementSchemaInternal as z.ZodType<DataRequirement>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
+const getExtensionSchema = (): z.ZodType<Extension> =>
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-	IdentifierSchemaInternal as z.ZodType<Identifier>;
+  IdentifierSchemaInternal as z.ZodType<Identifier>;
+const getMetaSchema = (): z.ZodType<Meta> =>
+  MetaSchemaInternal as z.ZodType<Meta>;
+const getNarrativeSchema = (): z.ZodType<Narrative> =>
+  NarrativeSchemaInternal as z.ZodType<Narrative>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
+const getFhirResourceSchema = (): z.ZodType<FhirResource> =>
+  FhirResourceSchemaInternal as z.ZodType<FhirResource>;
 
 /** @internal */
-export const GuidanceResponseSchemaInternal =
-	DomainResourceSchemaInternal.extend({
-		dataRequirement: z.lazy(getDataRequirementSchema).array().optional(),
-		encounter: z.lazy(getReferenceSchema).optional(),
-		evaluationMessage: z.lazy(getReferenceSchema).optional(),
-		identifier: z.lazy(getIdentifierSchema).array().optional(),
-		moduleCanonical: fhirCanonical().optional(),
-		_moduleCanonical: z.lazy(getElementSchema).optional(),
-		moduleCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		moduleUri: fhirUri().optional(),
-		_moduleUri: z.lazy(getElementSchema).optional(),
-		note: z.lazy(getAnnotationSchema).array().optional(),
-		occurrenceDateTime: fhirDateTime().optional(),
-		_occurrenceDateTime: z.lazy(getElementSchema).optional(),
-		outputParameters: z.lazy(getReferenceSchema).optional(),
-		performer: z.lazy(getReferenceSchema).optional(),
-		reason: z.lazy(getCodeableReferenceSchema).array().optional(),
-		requestIdentifier: z.lazy(getIdentifierSchema).optional(),
-		resourceType: z.literal("GuidanceResponse"),
-		result: z.lazy(getReferenceSchema).array().optional(),
-		status: z.enum([
-			"data-requested",
-			"data-required",
-			"entered-in-error",
-			"failure",
-			"in-progress",
-			"success",
-		]),
-		_status: z.lazy(getElementSchema).optional(),
-		subject: z.lazy(getReferenceSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const module_x_Present = [
-				"moduleCanonical",
-				"moduleCodeableConcept",
-				"moduleUri",
-			].filter((field) => record[field] !== undefined);
-			if (module_x_Present.length === 0) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"One of moduleCanonical, moduleCodeableConcept, moduleUri must be present for module[x]",
-					path: ["moduleCanonical"],
-				});
-			}
-			if (module_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of moduleCanonical, moduleCodeableConcept, moduleUri may be present for module[x]",
-					path: [module_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.encounter,
-				"encounter",
-				["http://hl7.org/fhir/StructureDefinition/Encounter"],
-				["Encounter"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.evaluationMessage,
-				"evaluationMessage",
-				["http://hl7.org/fhir/StructureDefinition/OperationOutcome"],
-				["OperationOutcome"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.outputParameters,
-				"outputParameters",
-				["http://hl7.org/fhir/StructureDefinition/Parameters"],
-				["Parameters"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.performer,
-				"performer",
-				["http://hl7.org/fhir/StructureDefinition/Device"],
-				["Device"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.result,
-				"result",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Appointment",
-					"http://hl7.org/fhir/StructureDefinition/AppointmentResponse",
-					"http://hl7.org/fhir/StructureDefinition/CarePlan",
-					"http://hl7.org/fhir/StructureDefinition/Claim",
-					"http://hl7.org/fhir/StructureDefinition/CommunicationRequest",
-					"http://hl7.org/fhir/StructureDefinition/Contract",
-					"http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest",
-					"http://hl7.org/fhir/StructureDefinition/DeviceRequest",
-					"http://hl7.org/fhir/StructureDefinition/EnrollmentRequest",
-					"http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
-					"http://hl7.org/fhir/StructureDefinition/MedicationRequest",
-					"http://hl7.org/fhir/StructureDefinition/NutritionOrder",
-					"http://hl7.org/fhir/StructureDefinition/RequestOrchestration",
-					"http://hl7.org/fhir/StructureDefinition/ServiceRequest",
-					"http://hl7.org/fhir/StructureDefinition/SupplyRequest",
-					"http://hl7.org/fhir/StructureDefinition/Task",
-					"http://hl7.org/fhir/StructureDefinition/VisionPrescription",
-				],
-				[
-					"Appointment",
-					"AppointmentResponse",
-					"CarePlan",
-					"Claim",
-					"CommunicationRequest",
-					"Contract",
-					"CoverageEligibilityRequest",
-					"DeviceRequest",
-					"EnrollmentRequest",
-					"ImmunizationRecommendation",
-					"MedicationRequest",
-					"NutritionOrder",
-					"RequestOrchestration",
-					"ServiceRequest",
-					"SupplyRequest",
-					"Task",
-					"VisionPrescription",
-				],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.subject,
-				"subject",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Group",
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-				],
-				["Group", "Patient"],
-				ctx,
-			);
-		});
+export const GuidanceResponseSchemaInternal = z
+  .object({
+    contained: z.lazy(getFhirResourceSchema).array().optional(),
+    dataRequirement: z.lazy(getDataRequirementSchema).array().optional(),
+    encounter: z.lazy(getReferenceSchema).optional(),
+    evaluationMessage: z.lazy(getReferenceSchema).optional(),
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    id: fhirId().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    identifier: z.lazy(getIdentifierSchema).array().optional(),
+    implicitRules: fhirUri().optional(),
+    _implicitRules: z.lazy(getElementSchema).optional(),
+    language: fhirCode().optional(),
+    _language: z.lazy(getElementSchema).optional(),
+    meta: z.lazy(getMetaSchema).optional(),
+    modifierExtension: z.lazy(getExtensionSchema).array().optional(),
+    moduleCanonical: fhirCanonical().optional(),
+    _moduleCanonical: z.lazy(getElementSchema).optional(),
+    moduleCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    moduleUri: fhirUri().optional(),
+    _moduleUri: z.lazy(getElementSchema).optional(),
+    note: z.lazy(getAnnotationSchema).array().optional(),
+    occurrenceDateTime: fhirDateTime().optional(),
+    _occurrenceDateTime: z.lazy(getElementSchema).optional(),
+    outputParameters: z.lazy(getReferenceSchema).optional(),
+    performer: z.lazy(getReferenceSchema).optional(),
+    reason: z.lazy(getCodeableReferenceSchema).array().optional(),
+    requestIdentifier: z.lazy(getIdentifierSchema).optional(),
+    resourceType: z.literal("GuidanceResponse"),
+    result: z.lazy(getReferenceSchema).array().optional(),
+    status: z.enum([
+      "data-requested",
+      "data-required",
+      "entered-in-error",
+      "failure",
+      "in-progress",
+      "success",
+    ]),
+    _status: z.lazy(getElementSchema).optional(),
+    subject: z.lazy(getReferenceSchema).optional(),
+    text: z.lazy(getNarrativeSchema).optional(),
+  })
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    const module_x_Present = [
+      "moduleCanonical",
+      "moduleCodeableConcept",
+      "moduleUri",
+    ].filter((field) => record[field] !== undefined);
+    if (module_x_Present.length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "One of moduleCanonical, moduleCodeableConcept, moduleUri must be present for module[x]",
+        path: ["moduleCanonical"],
+      });
+    }
+    if (module_x_Present.length > 1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "Only one of moduleCanonical, moduleCodeableConcept, moduleUri may be present for module[x]",
+        path: [module_x_Present[0]],
+      });
+    }
+    validateReferenceTarget(
+      record.encounter,
+      "encounter",
+      ["http://hl7.org/fhir/StructureDefinition/Encounter"],
+      ["Encounter"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.evaluationMessage,
+      "evaluationMessage",
+      ["http://hl7.org/fhir/StructureDefinition/OperationOutcome"],
+      ["OperationOutcome"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.outputParameters,
+      "outputParameters",
+      ["http://hl7.org/fhir/StructureDefinition/Parameters"],
+      ["Parameters"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.performer,
+      "performer",
+      ["http://hl7.org/fhir/StructureDefinition/Device"],
+      ["Device"],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.result,
+      "result",
+      [
+        "http://hl7.org/fhir/StructureDefinition/Appointment",
+        "http://hl7.org/fhir/StructureDefinition/AppointmentResponse",
+        "http://hl7.org/fhir/StructureDefinition/CarePlan",
+        "http://hl7.org/fhir/StructureDefinition/Claim",
+        "http://hl7.org/fhir/StructureDefinition/CommunicationRequest",
+        "http://hl7.org/fhir/StructureDefinition/Contract",
+        "http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest",
+        "http://hl7.org/fhir/StructureDefinition/DeviceRequest",
+        "http://hl7.org/fhir/StructureDefinition/EnrollmentRequest",
+        "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+        "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+        "http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+        "http://hl7.org/fhir/StructureDefinition/RequestOrchestration",
+        "http://hl7.org/fhir/StructureDefinition/ServiceRequest",
+        "http://hl7.org/fhir/StructureDefinition/SupplyRequest",
+        "http://hl7.org/fhir/StructureDefinition/Task",
+        "http://hl7.org/fhir/StructureDefinition/VisionPrescription",
+      ],
+      [
+        "Appointment",
+        "AppointmentResponse",
+        "CarePlan",
+        "Claim",
+        "CommunicationRequest",
+        "Contract",
+        "CoverageEligibilityRequest",
+        "DeviceRequest",
+        "EnrollmentRequest",
+        "ImmunizationRecommendation",
+        "MedicationRequest",
+        "NutritionOrder",
+        "RequestOrchestration",
+        "ServiceRequest",
+        "SupplyRequest",
+        "Task",
+        "VisionPrescription",
+      ],
+      ctx,
+    );
+    validateReferenceTarget(
+      record.subject,
+      "subject",
+      [
+        "http://hl7.org/fhir/StructureDefinition/Group",
+        "http://hl7.org/fhir/StructureDefinition/Patient",
+      ],
+      ["Group", "Patient"],
+      ctx,
+    );
+  });
 
 export const GuidanceResponseSchema =
-	GuidanceResponseSchemaInternal as z.ZodType<GuidanceResponse>;
+  GuidanceResponseSchemaInternal as z.ZodType<GuidanceResponse>;

@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { SubscriptionTopic } from "./SubscriptionTopic";
 export { SubscriptionTopicSchema } from "./SubscriptionTopic";
@@ -13,10 +13,3 @@ export type { SubscriptionTopic_ResourceTrigger } from "./SubscriptionTopic_Reso
 export { SubscriptionTopic_ResourceTriggerSchema } from "./SubscriptionTopic_ResourceTrigger";
 export type { SubscriptionTopic_ResourceTrigger_QueryCriteria } from "./SubscriptionTopic_ResourceTrigger_QueryCriteria";
 export { SubscriptionTopic_ResourceTrigger_QueryCriteriaSchema } from "./SubscriptionTopic_ResourceTrigger_QueryCriteria";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SubscriptionTopicSchemaInternal } from "./SubscriptionTopic";
-
-_registerFhirResourceSchemas({
-	SubscriptionTopic: SubscriptionTopicSchemaInternal,
-});

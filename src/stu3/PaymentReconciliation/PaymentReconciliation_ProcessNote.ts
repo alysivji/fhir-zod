@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/PaymentReconciliation
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -14,26 +14,26 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Suite of notes. */
 export interface PaymentReconciliation_ProcessNote extends BackboneElement {
-	/** The note text. */
-	text?: string;
-	/** Extensions for text */
-	_text?: Element;
-	/** The note purpose: Print/Display. */
-	type?: CodeableConcept;
+  /** The note text. */
+  text?: string;
+  /** Extensions for text */
+  _text?: Element;
+  /** The note purpose: Print/Display. */
+  type?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const PaymentReconciliation_ProcessNoteSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		text: fhirString().optional(),
-		_text: z.lazy(getElementSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    text: fhirString().optional(),
+    _text: z.lazy(getElementSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const PaymentReconciliation_ProcessNoteSchema =
-	PaymentReconciliation_ProcessNoteSchemaInternal as z.ZodType<PaymentReconciliation_ProcessNote>;
+  PaymentReconciliation_ProcessNoteSchemaInternal as z.ZodType<PaymentReconciliation_ProcessNote>;

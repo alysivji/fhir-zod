@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { ExplanationOfBenefit } from "./ExplanationOfBenefit";
 export { ExplanationOfBenefitSchema } from "./ExplanationOfBenefit";
@@ -39,10 +39,3 @@ export type { ExplanationOfBenefit_ProcessNote } from "./ExplanationOfBenefit_Pr
 export { ExplanationOfBenefit_ProcessNoteSchema } from "./ExplanationOfBenefit_ProcessNote";
 export type { ExplanationOfBenefit_Related } from "./ExplanationOfBenefit_Related";
 export { ExplanationOfBenefit_RelatedSchema } from "./ExplanationOfBenefit_Related";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ExplanationOfBenefitSchemaInternal } from "./ExplanationOfBenefit";
-
-_registerFhirResourceSchemas({
-	ExplanationOfBenefit: ExplanationOfBenefitSchemaInternal,
-});

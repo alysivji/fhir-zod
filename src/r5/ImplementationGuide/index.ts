@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ImplementationGuide } from "./ImplementationGuide";
 export { ImplementationGuideSchema } from "./ImplementationGuide";
@@ -25,10 +25,3 @@ export type { ImplementationGuide_Manifest_Page } from "./ImplementationGuide_Ma
 export { ImplementationGuide_Manifest_PageSchema } from "./ImplementationGuide_Manifest_Page";
 export type { ImplementationGuide_Manifest_Resource } from "./ImplementationGuide_Manifest_Resource";
 export { ImplementationGuide_Manifest_ResourceSchema } from "./ImplementationGuide_Manifest_Resource";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ImplementationGuideSchemaInternal } from "./ImplementationGuide";
-
-_registerFhirResourceSchemas({
-	ImplementationGuide: ImplementationGuideSchemaInternal,
-});

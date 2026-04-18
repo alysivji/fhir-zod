@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 import * as z from "zod";
 import { fhirString, fhirUri } from "../../shared/fhir-primitives";
@@ -14,45 +14,45 @@ import { QuestionnaireResponse_Item_AnswerSchemaInternal } from "./Questionnaire
 
 /** A group or question item from the original questionnaire for which answers are provided. */
 export interface QuestionnaireResponse_Item extends BackboneElement {
-	/** The respondent's answer(s) to the question. */
-	answer?: Array<QuestionnaireResponse_Item_Answer>;
-	/** A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. */
-	definition?: string;
-	/** Extensions for definition */
-	_definition?: Element;
-	/** Questions or sub-groups nested beneath a question or group. */
-	item?: Array<unknown>;
-	/** The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource. */
-	linkId: string;
-	/** Extensions for linkId */
-	_linkId?: Element;
-	/** Text that is displayed above the contents of the group or as the text of the question being answered. */
-	text?: string;
-	/** Extensions for text */
-	_text?: Element;
+  /** The respondent's answer(s) to the question. */
+  answer?: Array<QuestionnaireResponse_Item_Answer>;
+  /** A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. */
+  definition?: string;
+  /** Extensions for definition */
+  _definition?: Element;
+  /** Questions or sub-groups nested beneath a question or group. */
+  item?: Array<unknown>;
+  /** The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource. */
+  linkId: string;
+  /** Extensions for linkId */
+  _linkId?: Element;
+  /** Text that is displayed above the contents of the group or as the text of the question being answered. */
+  text?: string;
+  /** Extensions for text */
+  _text?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getQuestionnaireResponse_Item_AnswerSchema =
-	(): z.ZodType<QuestionnaireResponse_Item_Answer> =>
-		QuestionnaireResponse_Item_AnswerSchemaInternal as z.ZodType<QuestionnaireResponse_Item_Answer>;
+  (): z.ZodType<QuestionnaireResponse_Item_Answer> =>
+    QuestionnaireResponse_Item_AnswerSchemaInternal as z.ZodType<QuestionnaireResponse_Item_Answer>;
 
 /** @internal */
 export const QuestionnaireResponse_ItemSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		answer: z
-			.lazy(getQuestionnaireResponse_Item_AnswerSchema)
-			.array()
-			.optional(),
-		definition: fhirUri().optional(),
-		_definition: z.lazy(getElementSchema).optional(),
-		item: z.unknown().array().optional(),
-		linkId: fhirString(),
-		_linkId: z.lazy(getElementSchema).optional(),
-		text: fhirString().optional(),
-		_text: z.lazy(getElementSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    answer: z
+      .lazy(getQuestionnaireResponse_Item_AnswerSchema)
+      .array()
+      .optional(),
+    definition: fhirUri().optional(),
+    _definition: z.lazy(getElementSchema).optional(),
+    item: z.unknown().array().optional(),
+    linkId: fhirString(),
+    _linkId: z.lazy(getElementSchema).optional(),
+    text: fhirString().optional(),
+    _text: z.lazy(getElementSchema).optional(),
+  }).strict();
 
 export const QuestionnaireResponse_ItemSchema =
-	QuestionnaireResponse_ItemSchemaInternal as z.ZodType<QuestionnaireResponse_Item>;
+  QuestionnaireResponse_ItemSchemaInternal as z.ZodType<QuestionnaireResponse_Item>;

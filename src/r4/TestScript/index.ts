@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { TestScript } from "./TestScript";
 export { TestScriptSchema } from "./TestScript";
@@ -35,10 +35,3 @@ export type { TestScript_Test_Action } from "./TestScript_Test_Action";
 export { TestScript_Test_ActionSchema } from "./TestScript_Test_Action";
 export type { TestScript_Variable } from "./TestScript_Variable";
 export { TestScript_VariableSchema } from "./TestScript_Variable";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { TestScriptSchemaInternal } from "./TestScript";
-
-_registerFhirResourceSchemas({
-	TestScript: TestScriptSchemaInternal,
-});

@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { MedicationKnowledge } from "./MedicationKnowledge";
 export { MedicationKnowledgeSchema } from "./MedicationKnowledge";
@@ -35,10 +35,3 @@ export type { MedicationKnowledge_Regulatory_Substitution } from "./MedicationKn
 export { MedicationKnowledge_Regulatory_SubstitutionSchema } from "./MedicationKnowledge_Regulatory_Substitution";
 export type { MedicationKnowledge_RelatedMedicationKnowledge } from "./MedicationKnowledge_RelatedMedicationKnowledge";
 export { MedicationKnowledge_RelatedMedicationKnowledgeSchema } from "./MedicationKnowledge_RelatedMedicationKnowledge";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MedicationKnowledgeSchemaInternal } from "./MedicationKnowledge";
-
-_registerFhirResourceSchemas({
-	MedicationKnowledge: MedicationKnowledgeSchemaInternal,
-});

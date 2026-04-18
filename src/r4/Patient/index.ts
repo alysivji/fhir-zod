@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T00:49:28.751Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { Patient } from "./Patient";
 export { PatientSchema } from "./Patient";
@@ -9,10 +9,3 @@ export type { Patient_Contact } from "./Patient_Contact";
 export { Patient_ContactSchema } from "./Patient_Contact";
 export type { Patient_Link } from "./Patient_Link";
 export { Patient_LinkSchema } from "./Patient_Link";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { PatientSchemaInternal } from "./Patient";
-
-_registerFhirResourceSchemas({
-	Patient: PatientSchemaInternal,
-});

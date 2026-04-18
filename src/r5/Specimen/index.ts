@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Specimen } from "./Specimen";
 export { SpecimenSchema } from "./Specimen";
@@ -11,10 +11,3 @@ export type { Specimen_Feature } from "./Specimen_Feature";
 export { Specimen_FeatureSchema } from "./Specimen_Feature";
 export type { Specimen_Processing } from "./Specimen_Processing";
 export { Specimen_ProcessingSchema } from "./Specimen_Processing";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SpecimenSchemaInternal } from "./Specimen";
-
-_registerFhirResourceSchemas({
-	Specimen: SpecimenSchemaInternal,
-});

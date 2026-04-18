@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { AdministrableProductDefinition } from "./AdministrableProductDefinition";
 export { AdministrableProductDefinitionSchema } from "./AdministrableProductDefinition";
@@ -11,10 +11,3 @@ export type { AdministrableProductDefinition_RouteOfAdministration_TargetSpecies
 export { AdministrableProductDefinition_RouteOfAdministration_TargetSpeciesSchema } from "./AdministrableProductDefinition_RouteOfAdministration_TargetSpecies";
 export type { AdministrableProductDefinition_RouteOfAdministration_TargetSpecies_WithdrawalPeriod } from "./AdministrableProductDefinition_RouteOfAdministration_TargetSpecies_WithdrawalPeriod";
 export { AdministrableProductDefinition_RouteOfAdministration_TargetSpecies_WithdrawalPeriodSchema } from "./AdministrableProductDefinition_RouteOfAdministration_TargetSpecies_WithdrawalPeriod";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { AdministrableProductDefinitionSchemaInternal } from "./AdministrableProductDefinition";
-
-_registerFhirResourceSchemas({
-	AdministrableProductDefinition: AdministrableProductDefinitionSchemaInternal,
-});

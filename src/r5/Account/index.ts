@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Account } from "./Account";
 export { AccountSchema } from "./Account";
@@ -15,10 +15,3 @@ export type { Account_Procedure } from "./Account_Procedure";
 export { Account_ProcedureSchema } from "./Account_Procedure";
 export type { Account_RelatedAccount } from "./Account_RelatedAccount";
 export { Account_RelatedAccountSchema } from "./Account_RelatedAccount";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { AccountSchemaInternal } from "./Account";
-
-_registerFhirResourceSchemas({
-	Account: AccountSchemaInternal,
-});

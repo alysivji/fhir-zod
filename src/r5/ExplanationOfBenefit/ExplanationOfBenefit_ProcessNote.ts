@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -14,35 +14,35 @@ import { ElementSchemaInternal } from "../Element";
 
 /** A note that describes or explains adjudication results in a human readable form. */
 export interface ExplanationOfBenefit_ProcessNote extends BackboneElement {
-	/** A code to define the language used in the text of the note. */
-	language?: CodeableConcept;
-	/** A number to uniquely identify a note entry. */
-	number?: number;
-	/** Extensions for number */
-	_number?: Element;
-	/** The explanation or description associated with the processing. */
-	text?: string;
-	/** Extensions for text */
-	_text?: Element;
-	/** The business purpose of the note text. */
-	type?: CodeableConcept;
+  /** A code to define the language used in the text of the note. */
+  language?: CodeableConcept;
+  /** A number to uniquely identify a note entry. */
+  number?: number;
+  /** Extensions for number */
+  _number?: Element;
+  /** The explanation or description associated with the processing. */
+  text?: string;
+  /** Extensions for text */
+  _text?: Element;
+  /** The business purpose of the note text. */
+  type?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const ExplanationOfBenefit_ProcessNoteSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		language: z.lazy(getCodeableConceptSchema).optional(),
-		number: z.number().int().positive().optional(),
-		_number: z.lazy(getElementSchema).optional(),
-		text: fhirString().optional(),
-		_text: z.lazy(getElementSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    language: z.lazy(getCodeableConceptSchema).optional(),
+    number: z.number().int().positive().optional(),
+    _number: z.lazy(getElementSchema).optional(),
+    text: fhirString().optional(),
+    _text: z.lazy(getElementSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const ExplanationOfBenefit_ProcessNoteSchema =
-	ExplanationOfBenefit_ProcessNoteSchemaInternal as z.ZodType<ExplanationOfBenefit_ProcessNote>;
+  ExplanationOfBenefit_ProcessNoteSchemaInternal as z.ZodType<ExplanationOfBenefit_ProcessNote>;

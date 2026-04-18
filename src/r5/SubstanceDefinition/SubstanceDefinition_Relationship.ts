@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstanceDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -21,104 +21,104 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** A link between this substance and another, with details of the relationship. */
 export interface SubstanceDefinition_Relationship extends BackboneElement {
-	/** A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other. */
-	amountQuantity?: Quantity;
-	/** A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other. */
-	amountRatio?: Ratio;
-	/** A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other. */
-	amountString?: string;
-	/** Extensions for amountString */
-	_amountString?: Element;
-	/** An operator for the amount, for example "average", "approximately", "less than". */
-	comparator?: CodeableConcept;
-	/** For example where an enzyme strongly bonds with a particular substance, this is a defining relationship for that enzyme, out of several possible substance relationships. */
-	isDefining?: boolean;
-	/** Extensions for isDefining */
-	_isDefining?: Element;
-	/** For use when the numeric has an uncertain range. */
-	ratioHighLimitAmount?: Ratio;
-	/** Supporting literature. */
-	source?: Array<Reference>;
-	/** A pointer to another substance, as a resource or just a representational code. */
-	substanceDefinitionCodeableConcept?: CodeableConcept;
-	/** A pointer to another substance, as a resource or just a representational code. */
-	substanceDefinitionReference?: Reference;
-	/** For example "salt to parent", "active moiety", "starting material", "polymorph", "impurity of". */
-	type: CodeableConcept;
+  /** A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other. */
+  amountQuantity?: Quantity;
+  /** A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other. */
+  amountRatio?: Ratio;
+  /** A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other. */
+  amountString?: string;
+  /** Extensions for amountString */
+  _amountString?: Element;
+  /** An operator for the amount, for example "average", "approximately", "less than". */
+  comparator?: CodeableConcept;
+  /** For example where an enzyme strongly bonds with a particular substance, this is a defining relationship for that enzyme, out of several possible substance relationships. */
+  isDefining?: boolean;
+  /** Extensions for isDefining */
+  _isDefining?: Element;
+  /** For use when the numeric has an uncertain range. */
+  ratioHighLimitAmount?: Ratio;
+  /** Supporting literature. */
+  source?: Array<Reference>;
+  /** A pointer to another substance, as a resource or just a representational code. */
+  substanceDefinitionCodeableConcept?: CodeableConcept;
+  /** A pointer to another substance, as a resource or just a representational code. */
+  substanceDefinitionReference?: Reference;
+  /** For example "salt to parent", "active moiety", "starting material", "polymorph", "impurity of". */
+  type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-	QuantitySchemaInternal as z.ZodType<Quantity>;
+  QuantitySchemaInternal as z.ZodType<Quantity>;
 const getRatioSchema = (): z.ZodType<Ratio> =>
-	RatioSchemaInternal as z.ZodType<Ratio>;
+  RatioSchemaInternal as z.ZodType<Ratio>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SubstanceDefinition_RelationshipSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		amountQuantity: z.lazy(getQuantitySchema).optional(),
-		amountRatio: z.lazy(getRatioSchema).optional(),
-		amountString: fhirString().optional(),
-		_amountString: z.lazy(getElementSchema).optional(),
-		comparator: z.lazy(getCodeableConceptSchema).optional(),
-		isDefining: z.boolean().optional(),
-		_isDefining: z.lazy(getElementSchema).optional(),
-		ratioHighLimitAmount: z.lazy(getRatioSchema).optional(),
-		source: z.lazy(getReferenceSchema).array().optional(),
-		substanceDefinitionCodeableConcept: z
-			.lazy(getCodeableConceptSchema)
-			.optional(),
-		substanceDefinitionReference: z.lazy(getReferenceSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const amount_x_Present = [
-				"amountQuantity",
-				"amountRatio",
-				"amountString",
-			].filter((field) => record[field] !== undefined);
-			if (amount_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of amountQuantity, amountRatio, amountString may be present for amount[x]",
-					path: [amount_x_Present[0]],
-				});
-			}
-			const substanceDefinition_x_Present = [
-				"substanceDefinitionCodeableConcept",
-				"substanceDefinitionReference",
-			].filter((field) => record[field] !== undefined);
-			if (substanceDefinition_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of substanceDefinitionCodeableConcept, substanceDefinitionReference may be present for substanceDefinition[x]",
-					path: [substanceDefinition_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.source,
-				"source",
-				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
-				["DocumentReference"],
-				ctx,
-			);
-			validateReferenceTarget(
-				record.substanceDefinitionReference,
-				"substanceDefinitionReference",
-				["http://hl7.org/fhir/StructureDefinition/SubstanceDefinition"],
-				["SubstanceDefinition"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    amountQuantity: z.lazy(getQuantitySchema).optional(),
+    amountRatio: z.lazy(getRatioSchema).optional(),
+    amountString: fhirString().optional(),
+    _amountString: z.lazy(getElementSchema).optional(),
+    comparator: z.lazy(getCodeableConceptSchema).optional(),
+    isDefining: z.boolean().optional(),
+    _isDefining: z.lazy(getElementSchema).optional(),
+    ratioHighLimitAmount: z.lazy(getRatioSchema).optional(),
+    source: z.lazy(getReferenceSchema).array().optional(),
+    substanceDefinitionCodeableConcept: z
+      .lazy(getCodeableConceptSchema)
+      .optional(),
+    substanceDefinitionReference: z.lazy(getReferenceSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const amount_x_Present = [
+        "amountQuantity",
+        "amountRatio",
+        "amountString",
+      ].filter((field) => record[field] !== undefined);
+      if (amount_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of amountQuantity, amountRatio, amountString may be present for amount[x]",
+          path: [amount_x_Present[0]],
+        });
+      }
+      const substanceDefinition_x_Present = [
+        "substanceDefinitionCodeableConcept",
+        "substanceDefinitionReference",
+      ].filter((field) => record[field] !== undefined);
+      if (substanceDefinition_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of substanceDefinitionCodeableConcept, substanceDefinitionReference may be present for substanceDefinition[x]",
+          path: [substanceDefinition_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.source,
+        "source",
+        ["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+        ["DocumentReference"],
+        ctx,
+      );
+      validateReferenceTarget(
+        record.substanceDefinitionReference,
+        "substanceDefinitionReference",
+        ["http://hl7.org/fhir/StructureDefinition/SubstanceDefinition"],
+        ["SubstanceDefinition"],
+        ctx,
+      );
+    });
 
 export const SubstanceDefinition_RelationshipSchema =
-	SubstanceDefinition_RelationshipSchemaInternal as z.ZodType<SubstanceDefinition_Relationship>;
+  SubstanceDefinition_RelationshipSchemaInternal as z.ZodType<SubstanceDefinition_Relationship>;

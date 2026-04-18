@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -14,42 +14,42 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The party to be reimbursed for the services. */
 export interface ExplanationOfBenefit_Payee extends BackboneElement {
-	/** Party to be reimbursed: Subscriber, provider, other. */
-	party?: Reference;
-	/** organization | patient | practitioner | relatedperson. */
-	resourceType?: CodeableConcept;
-	/** Type of Party to be reimbursed: Subscriber, provider, other. */
-	type?: CodeableConcept;
+  /** Party to be reimbursed: Subscriber, provider, other. */
+  party?: Reference;
+  /** organization | patient | practitioner | relatedperson. */
+  resourceType?: CodeableConcept;
+  /** Type of Party to be reimbursed: Subscriber, provider, other. */
+  type?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const ExplanationOfBenefit_PayeeSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		party: z.lazy(getReferenceSchema).optional(),
-		resourceType: z.lazy(getCodeableConceptSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.party,
-				"party",
-				[
-					"http://hl7.org/fhir/StructureDefinition/Organization",
-					"http://hl7.org/fhir/StructureDefinition/Patient",
-					"http://hl7.org/fhir/StructureDefinition/Practitioner",
-					"http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-				],
-				["Organization", "Patient", "Practitioner", "RelatedPerson"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    party: z.lazy(getReferenceSchema).optional(),
+    resourceType: z.lazy(getCodeableConceptSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.party,
+        "party",
+        [
+          "http://hl7.org/fhir/StructureDefinition/Organization",
+          "http://hl7.org/fhir/StructureDefinition/Patient",
+          "http://hl7.org/fhir/StructureDefinition/Practitioner",
+          "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+        ],
+        ["Organization", "Patient", "Practitioner", "RelatedPerson"],
+        ctx,
+      );
+    });
 
 export const ExplanationOfBenefit_PayeeSchema =
-	ExplanationOfBenefit_PayeeSchemaInternal as z.ZodType<ExplanationOfBenefit_Payee>;
+  ExplanationOfBenefit_PayeeSchemaInternal as z.ZodType<ExplanationOfBenefit_Payee>;

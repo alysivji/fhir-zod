@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/MedicationKnowledge
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -11,19 +11,19 @@ import { CodeableConceptSchemaInternal } from "../CodeableConcept";
 
 /** Specifies the schedule of a medication in jurisdiction. */
 export interface MedicationKnowledge_Regulatory_Schedule
-	extends BackboneElement {
-	/** Specifies the specific drug schedule. */
-	schedule: CodeableConcept;
+  extends BackboneElement {
+  /** Specifies the specific drug schedule. */
+  schedule: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const MedicationKnowledge_Regulatory_ScheduleSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		schedule: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    schedule: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const MedicationKnowledge_Regulatory_ScheduleSchema =
-	MedicationKnowledge_Regulatory_ScheduleSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_Schedule>;
+  MedicationKnowledge_Regulatory_ScheduleSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_Schedule>;

@@ -1,16 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Meta
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T23:33:03.670Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../shared/fhir-primitive-array-validation";
 import {
-	fhirCanonical,
-	fhirId,
-	fhirInstant,
-	fhirString,
-	fhirUri,
+  fhirCanonical,
+  fhirId,
+  fhirInstant,
+  fhirString,
+  fhirUri,
 } from "../shared/fhir-primitives";
 import type { Coding } from "./Coding";
 import { CodingSchemaInternal } from "./Coding";
@@ -21,62 +21,62 @@ import { ExtensionSchemaInternal } from "./Extension";
 
 /** Base StructureDefinition for Meta Type: The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource. */
 export interface Meta extends Element {
-	/** When the resource last changed - e.g. when the version changed. */
-	lastUpdated?: string;
-	/** Extensions for lastUpdated */
-	_lastUpdated?: Element;
-	/** A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url). */
-	profile?: Array<string | null>;
-	/** Extensions for profile */
-	_profile?: Array<Element | null>;
-	/** Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. */
-	security?: Array<Coding>;
-	/** A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. */
-	source?: string;
-	/** Extensions for source */
-	_source?: Element;
-	/** Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. */
-	tag?: Array<Coding>;
-	/** The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted. */
-	versionId?: string;
-	/** Extensions for versionId */
-	_versionId?: Element;
+  /** When the resource last changed - e.g. when the version changed. */
+  lastUpdated?: string;
+  /** Extensions for lastUpdated */
+  _lastUpdated?: Element;
+  /** A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url). */
+  profile?: Array<string | null>;
+  /** Extensions for profile */
+  _profile?: Array<Element | null>;
+  /** Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. */
+  security?: Array<Coding>;
+  /** A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. */
+  source?: string;
+  /** Extensions for source */
+  _source?: Element;
+  /** Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. */
+  tag?: Array<Coding>;
+  /** The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted. */
+  versionId?: string;
+  /** Extensions for versionId */
+  _versionId?: Element;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-	CodingSchemaInternal as z.ZodType<Coding>;
+  CodingSchemaInternal as z.ZodType<Coding>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getExtensionSchema = (): z.ZodType<Extension> =>
-	ExtensionSchemaInternal as z.ZodType<Extension>;
+  ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const MetaSchemaInternal = z
-	.object({
-		extension: z.lazy(getExtensionSchema).array().optional(),
-		id: fhirString().optional(),
-		_id: z.lazy(getElementSchema).optional(),
-		lastUpdated: fhirInstant().optional(),
-		_lastUpdated: z.lazy(getElementSchema).optional(),
-		profile: fhirCanonical().nullable().array().optional(),
-		_profile: z.lazy(getElementSchema).nullable().array().optional(),
-		security: z.lazy(getCodingSchema).array().optional(),
-		source: fhirUri().optional(),
-		_source: z.lazy(getElementSchema).optional(),
-		tag: z.lazy(getCodingSchema).array().optional(),
-		versionId: fhirId().optional(),
-		_versionId: z.lazy(getElementSchema).optional(),
-	})
-	.strict()
-	.superRefine((value, ctx) => {
-		const record = value as Record<string, unknown>;
-		validatePrimitiveArrayPair(
-			record.profile,
-			record._profile,
-			"profile",
-			"_profile",
-			ctx,
-		);
-	});
+  .object({
+    extension: z.lazy(getExtensionSchema).array().optional(),
+    id: fhirString().optional(),
+    _id: z.lazy(getElementSchema).optional(),
+    lastUpdated: fhirInstant().optional(),
+    _lastUpdated: z.lazy(getElementSchema).optional(),
+    profile: fhirCanonical().nullable().array().optional(),
+    _profile: z.lazy(getElementSchema).nullable().array().optional(),
+    security: z.lazy(getCodingSchema).array().optional(),
+    source: fhirUri().optional(),
+    _source: z.lazy(getElementSchema).optional(),
+    tag: z.lazy(getCodingSchema).array().optional(),
+    versionId: fhirId().optional(),
+    _versionId: z.lazy(getElementSchema).optional(),
+  })
+  .strict()
+  .superRefine((value, ctx) => {
+    const record = value as Record<string, unknown>;
+    validatePrimitiveArrayPair(
+      record.profile,
+      record._profile,
+      "profile",
+      "_profile",
+      ctx,
+    );
+  });
 
 export const MetaSchema = MetaSchemaInternal as z.ZodType<Meta>;

@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/SubstancePolymer
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -16,32 +16,32 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Todo. */
 export interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation
-	extends BackboneElement {
-	/** Todo. */
-	attachment?: Attachment;
-	/** Todo. */
-	representation?: string;
-	/** Extensions for representation */
-	_representation?: Element;
-	/** Todo. */
-	type?: CodeableConcept;
+  extends BackboneElement {
+  /** Todo. */
+  attachment?: Attachment;
+  /** Todo. */
+  representation?: string;
+  /** Extensions for representation */
+  _representation?: Element;
+  /** Todo. */
+  type?: CodeableConcept;
 }
 
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal as z.ZodType<Attachment>;
+  AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		attachment: z.lazy(getAttachmentSchema).optional(),
-		representation: fhirString().optional(),
-		_representation: z.lazy(getElementSchema).optional(),
-		type: z.lazy(getCodeableConceptSchema).optional(),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    attachment: z.lazy(getAttachmentSchema).optional(),
+    representation: fhirString().optional(),
+    _representation: z.lazy(getElementSchema).optional(),
+    type: z.lazy(getCodeableConceptSchema).optional(),
+  }).strict();
 
 export const SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchema =
-	SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation>;
+  SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation>;

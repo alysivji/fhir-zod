@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { CodeSystem } from "./CodeSystem";
 export { CodeSystemSchema } from "./CodeSystem";
@@ -13,10 +13,3 @@ export type { CodeSystem_Filter } from "./CodeSystem_Filter";
 export { CodeSystem_FilterSchema } from "./CodeSystem_Filter";
 export type { CodeSystem_Property } from "./CodeSystem_Property";
 export { CodeSystem_PropertySchema } from "./CodeSystem_Property";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { CodeSystemSchemaInternal } from "./CodeSystem";
-
-_registerFhirResourceSchemas({
-	CodeSystem: CodeSystemSchemaInternal,
-});

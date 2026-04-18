@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { SpecimenDefinition } from "./SpecimenDefinition";
 export { SpecimenDefinitionSchema } from "./SpecimenDefinition";
@@ -11,10 +11,3 @@ export type { SpecimenDefinition_TypeTested_Container_Additive } from "./Specime
 export { SpecimenDefinition_TypeTested_Container_AdditiveSchema } from "./SpecimenDefinition_TypeTested_Container_Additive";
 export type { SpecimenDefinition_TypeTested_Handling } from "./SpecimenDefinition_TypeTested_Handling";
 export { SpecimenDefinition_TypeTested_HandlingSchema } from "./SpecimenDefinition_TypeTested_Handling";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SpecimenDefinitionSchemaInternal } from "./SpecimenDefinition";
-
-_registerFhirResourceSchemas({
-	SpecimenDefinition: SpecimenDefinitionSchemaInternal,
-});

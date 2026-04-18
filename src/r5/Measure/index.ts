@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Measure } from "./Measure";
 export { MeasureSchema } from "./Measure";
@@ -15,10 +15,3 @@ export type { Measure_SupplementalData } from "./Measure_SupplementalData";
 export { Measure_SupplementalDataSchema } from "./Measure_SupplementalData";
 export type { Measure_Term } from "./Measure_Term";
 export { Measure_TermSchema } from "./Measure_Term";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MeasureSchemaInternal } from "./Measure";
-
-_registerFhirResourceSchemas({
-	Measure: MeasureSchemaInternal,
-});

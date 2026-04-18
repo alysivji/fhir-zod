@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { SubstanceDefinition } from "./SubstanceDefinition";
 export { SubstanceDefinitionSchema } from "./SubstanceDefinition";
@@ -23,10 +23,3 @@ export type { SubstanceDefinition_Structure } from "./SubstanceDefinition_Struct
 export { SubstanceDefinition_StructureSchema } from "./SubstanceDefinition_Structure";
 export type { SubstanceDefinition_Structure_Representation } from "./SubstanceDefinition_Structure_Representation";
 export { SubstanceDefinition_Structure_RepresentationSchema } from "./SubstanceDefinition_Structure_Representation";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SubstanceDefinitionSchemaInternal } from "./SubstanceDefinition";
-
-_registerFhirResourceSchemas({
-	SubstanceDefinition: SubstanceDefinitionSchemaInternal,
-});

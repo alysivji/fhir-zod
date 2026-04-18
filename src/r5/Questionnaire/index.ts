@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { Questionnaire } from "./Questionnaire";
 export { QuestionnaireSchema } from "./Questionnaire";
@@ -11,10 +11,3 @@ export type { Questionnaire_Item_EnableWhen } from "./Questionnaire_Item_EnableW
 export { Questionnaire_Item_EnableWhenSchema } from "./Questionnaire_Item_EnableWhen";
 export type { Questionnaire_Item_Initial } from "./Questionnaire_Item_Initial";
 export { Questionnaire_Item_InitialSchema } from "./Questionnaire_Item_Initial";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { QuestionnaireSchemaInternal } from "./Questionnaire";
-
-_registerFhirResourceSchemas({
-	Questionnaire: QuestionnaireSchemaInternal,
-});

@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { MedicationKnowledge } from "./MedicationKnowledge";
 export { MedicationKnowledgeSchema } from "./MedicationKnowledge";
@@ -39,10 +39,3 @@ export type { MedicationKnowledge_StorageGuideline } from "./MedicationKnowledge
 export { MedicationKnowledge_StorageGuidelineSchema } from "./MedicationKnowledge_StorageGuideline";
 export type { MedicationKnowledge_StorageGuideline_EnvironmentalSetting } from "./MedicationKnowledge_StorageGuideline_EnvironmentalSetting";
 export { MedicationKnowledge_StorageGuideline_EnvironmentalSettingSchema } from "./MedicationKnowledge_StorageGuideline_EnvironmentalSetting";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MedicationKnowledgeSchemaInternal } from "./MedicationKnowledge";
-
-_registerFhirResourceSchemas({
-	MedicationKnowledge: MedicationKnowledgeSchemaInternal,
-});

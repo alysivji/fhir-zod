@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Immunization
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -17,54 +17,54 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** The protocol (set of recommendations) being followed by the provider who administered the dose. */
 export interface Immunization_ProtocolApplied extends BackboneElement {
-	/** Indicates the authority who published the protocol (e.g. ACIP) that is being followed. */
-	authority?: Reference;
-	/** Nominal position in a series as intended by the practitioner administering the dose. */
-	doseNumber: string;
-	/** Extensions for doseNumber */
-	_doseNumber?: Element;
-	/** One possible path to achieve presumed immunity against a disease - within the context of an authority. */
-	series?: string;
-	/** Extensions for series */
-	_series?: Element;
-	/** The recommended number of doses to achieve immunity as intended by the practitioner administering the dose. */
-	seriesDoses?: string;
-	/** Extensions for seriesDoses */
-	_seriesDoses?: Element;
-	/** The vaccine preventable disease the dose is being administered against. */
-	targetDisease?: Array<CodeableConcept>;
+  /** Indicates the authority who published the protocol (e.g. ACIP) that is being followed. */
+  authority?: Reference;
+  /** Nominal position in a series as intended by the practitioner administering the dose. */
+  doseNumber: string;
+  /** Extensions for doseNumber */
+  _doseNumber?: Element;
+  /** One possible path to achieve presumed immunity against a disease - within the context of an authority. */
+  series?: string;
+  /** Extensions for series */
+  _series?: Element;
+  /** The recommended number of doses to achieve immunity as intended by the practitioner administering the dose. */
+  seriesDoses?: string;
+  /** Extensions for seriesDoses */
+  _seriesDoses?: Element;
+  /** The vaccine preventable disease the dose is being administered against. */
+  targetDisease?: Array<CodeableConcept>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const Immunization_ProtocolAppliedSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		authority: z.lazy(getReferenceSchema).optional(),
-		doseNumber: fhirString(),
-		_doseNumber: z.lazy(getElementSchema).optional(),
-		series: fhirString().optional(),
-		_series: z.lazy(getElementSchema).optional(),
-		seriesDoses: fhirString().optional(),
-		_seriesDoses: z.lazy(getElementSchema).optional(),
-		targetDisease: z.lazy(getCodeableConceptSchema).array().optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.authority,
-				"authority",
-				["http://hl7.org/fhir/StructureDefinition/Organization"],
-				["Organization"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    authority: z.lazy(getReferenceSchema).optional(),
+    doseNumber: fhirString(),
+    _doseNumber: z.lazy(getElementSchema).optional(),
+    series: fhirString().optional(),
+    _series: z.lazy(getElementSchema).optional(),
+    seriesDoses: fhirString().optional(),
+    _seriesDoses: z.lazy(getElementSchema).optional(),
+    targetDisease: z.lazy(getCodeableConceptSchema).array().optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.authority,
+        "authority",
+        ["http://hl7.org/fhir/StructureDefinition/Organization"],
+        ["Organization"],
+        ctx,
+      );
+    });
 
 export const Immunization_ProtocolAppliedSchema =
-	Immunization_ProtocolAppliedSchemaInternal as z.ZodType<Immunization_ProtocolApplied>;
+  Immunization_ProtocolAppliedSchemaInternal as z.ZodType<Immunization_ProtocolApplied>;

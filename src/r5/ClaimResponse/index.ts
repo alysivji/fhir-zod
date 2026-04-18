@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { ClaimResponse } from "./ClaimResponse";
 export { ClaimResponseSchema } from "./ClaimResponse";
@@ -33,10 +33,3 @@ export type { ClaimResponse_ProcessNote } from "./ClaimResponse_ProcessNote";
 export { ClaimResponse_ProcessNoteSchema } from "./ClaimResponse_ProcessNote";
 export type { ClaimResponse_Total } from "./ClaimResponse_Total";
 export { ClaimResponse_TotalSchema } from "./ClaimResponse_Total";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ClaimResponseSchemaInternal } from "./ClaimResponse";
-
-_registerFhirResourceSchemas({
-	ClaimResponse: ClaimResponseSchemaInternal,
-});

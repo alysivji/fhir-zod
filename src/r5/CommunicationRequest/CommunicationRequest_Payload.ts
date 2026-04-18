@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/CommunicationRequest
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
@@ -16,60 +16,60 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Text, attachment(s), or resource(s) to be communicated to the recipient. */
 export interface CommunicationRequest_Payload extends BackboneElement {
-	/** The communicated content (or for multi-part communications, one portion of the communication). */
-	contentAttachment?: Attachment;
-	/** The communicated content (or for multi-part communications, one portion of the communication). */
-	contentCodeableConcept?: CodeableConcept;
-	/** The communicated content (or for multi-part communications, one portion of the communication). */
-	contentReference?: Reference;
+  /** The communicated content (or for multi-part communications, one portion of the communication). */
+  contentAttachment?: Attachment;
+  /** The communicated content (or for multi-part communications, one portion of the communication). */
+  contentCodeableConcept?: CodeableConcept;
+  /** The communicated content (or for multi-part communications, one portion of the communication). */
+  contentReference?: Reference;
 }
 
 const getAttachmentSchema = (): z.ZodType<Attachment> =>
-	AttachmentSchemaInternal as z.ZodType<Attachment>;
+  AttachmentSchemaInternal as z.ZodType<Attachment>;
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const CommunicationRequest_PayloadSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		contentAttachment: z.lazy(getAttachmentSchema).optional(),
-		contentCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
-		contentReference: z.lazy(getReferenceSchema).optional(),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			const content_x_Present = [
-				"contentAttachment",
-				"contentCodeableConcept",
-				"contentReference",
-			].filter((field) => record[field] !== undefined);
-			if (content_x_Present.length === 0) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"One of contentAttachment, contentCodeableConcept, contentReference must be present for content[x]",
-					path: ["contentAttachment"],
-				});
-			}
-			if (content_x_Present.length > 1) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message:
-						"Only one of contentAttachment, contentCodeableConcept, contentReference may be present for content[x]",
-					path: [content_x_Present[0]],
-				});
-			}
-			validateReferenceTarget(
-				record.contentReference,
-				"contentReference",
-				["http://hl7.org/fhir/StructureDefinition/Resource"],
-				["Resource"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    contentAttachment: z.lazy(getAttachmentSchema).optional(),
+    contentCodeableConcept: z.lazy(getCodeableConceptSchema).optional(),
+    contentReference: z.lazy(getReferenceSchema).optional(),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      const content_x_Present = [
+        "contentAttachment",
+        "contentCodeableConcept",
+        "contentReference",
+      ].filter((field) => record[field] !== undefined);
+      if (content_x_Present.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "One of contentAttachment, contentCodeableConcept, contentReference must be present for content[x]",
+          path: ["contentAttachment"],
+        });
+      }
+      if (content_x_Present.length > 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "Only one of contentAttachment, contentCodeableConcept, contentReference may be present for content[x]",
+          path: [content_x_Present[0]],
+        });
+      }
+      validateReferenceTarget(
+        record.contentReference,
+        "contentReference",
+        ["http://hl7.org/fhir/StructureDefinition/Resource"],
+        ["Resource"],
+        ctx,
+      );
+    });
 
 export const CommunicationRequest_PayloadSchema =
-	CommunicationRequest_PayloadSchemaInternal as z.ZodType<CommunicationRequest_Payload>;
+  CommunicationRequest_PayloadSchemaInternal as z.ZodType<CommunicationRequest_Payload>;

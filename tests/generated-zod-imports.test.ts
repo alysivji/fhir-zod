@@ -10,8 +10,8 @@ describe("generated Zod schema surface", () => {
 		);
 
 		expect(autoPatient).toContain('import * as z from "zod";');
-		expect(autoPatient).toContain(
-			'import { fhirDate, fhirDateTime } from "../../shared/fhir-primitives";',
-		);
+		expect(autoPatient).toContain('from "../../shared/fhir-primitives";');
+		expect(autoPatient).toContain("fhirDate,");
+		expect(autoPatient).toContain("fhirDateTime,");
 	});
 });

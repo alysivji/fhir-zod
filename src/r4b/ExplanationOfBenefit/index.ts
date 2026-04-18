@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { ExplanationOfBenefit } from "./ExplanationOfBenefit";
 export { ExplanationOfBenefitSchema } from "./ExplanationOfBenefit";
@@ -43,10 +43,3 @@ export type { ExplanationOfBenefit_SupportingInfo } from "./ExplanationOfBenefit
 export { ExplanationOfBenefit_SupportingInfoSchema } from "./ExplanationOfBenefit_SupportingInfo";
 export type { ExplanationOfBenefit_Total } from "./ExplanationOfBenefit_Total";
 export { ExplanationOfBenefit_TotalSchema } from "./ExplanationOfBenefit_Total";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ExplanationOfBenefitSchemaInternal } from "./ExplanationOfBenefit";
-
-_registerFhirResourceSchemas({
-	ExplanationOfBenefit: ExplanationOfBenefitSchemaInternal,
-});

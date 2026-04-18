@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/InsurancePlan
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";
@@ -13,27 +13,27 @@ import { InsurancePlan_Plan_SpecificCost_BenefitSchemaInternal } from "./Insuran
 
 /** Costs associated with the coverage provided by the product. */
 export interface InsurancePlan_Plan_SpecificCost extends BackboneElement {
-	/** List of the specific benefits under this category of benefit. */
-	benefit?: Array<InsurancePlan_Plan_SpecificCost_Benefit>;
-	/** General category of benefit (Medical; Dental; Vision; Drug; Mental Health; Substance Abuse; Hospice, Home Health). */
-	category: CodeableConcept;
+  /** List of the specific benefits under this category of benefit. */
+  benefit?: Array<InsurancePlan_Plan_SpecificCost_Benefit>;
+  /** General category of benefit (Medical; Dental; Vision; Drug; Mental Health; Substance Abuse; Hospice, Home Health). */
+  category: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getInsurancePlan_Plan_SpecificCost_BenefitSchema =
-	(): z.ZodType<InsurancePlan_Plan_SpecificCost_Benefit> =>
-		InsurancePlan_Plan_SpecificCost_BenefitSchemaInternal as z.ZodType<InsurancePlan_Plan_SpecificCost_Benefit>;
+  (): z.ZodType<InsurancePlan_Plan_SpecificCost_Benefit> =>
+    InsurancePlan_Plan_SpecificCost_BenefitSchemaInternal as z.ZodType<InsurancePlan_Plan_SpecificCost_Benefit>;
 
 /** @internal */
 export const InsurancePlan_Plan_SpecificCostSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		benefit: z
-			.lazy(getInsurancePlan_Plan_SpecificCost_BenefitSchema)
-			.array()
-			.optional(),
-		category: z.lazy(getCodeableConceptSchema),
-	}).strict();
+  BackboneElementSchemaInternal.extend({
+    benefit: z
+      .lazy(getInsurancePlan_Plan_SpecificCost_BenefitSchema)
+      .array()
+      .optional(),
+    category: z.lazy(getCodeableConceptSchema),
+  }).strict();
 
 export const InsurancePlan_Plan_SpecificCostSchema =
-	InsurancePlan_Plan_SpecificCostSchemaInternal as z.ZodType<InsurancePlan_Plan_SpecificCost>;
+  InsurancePlan_Plan_SpecificCostSchemaInternal as z.ZodType<InsurancePlan_Plan_SpecificCost>;

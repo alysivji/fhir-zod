@@ -1,5 +1,5 @@
 // Release: R5
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 export type { RequestOrchestration } from "./RequestOrchestration";
 export { RequestOrchestrationSchema } from "./RequestOrchestration";
@@ -17,10 +17,3 @@ export type { RequestOrchestration_Action_Participant } from "./RequestOrchestra
 export { RequestOrchestration_Action_ParticipantSchema } from "./RequestOrchestration_Action_Participant";
 export type { RequestOrchestration_Action_RelatedAction } from "./RequestOrchestration_Action_RelatedAction";
 export { RequestOrchestration_Action_RelatedActionSchema } from "./RequestOrchestration_Action_RelatedAction";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { RequestOrchestrationSchemaInternal } from "./RequestOrchestration";
-
-_registerFhirResourceSchemas({
-	RequestOrchestration: RequestOrchestrationSchemaInternal,
-});

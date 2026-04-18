@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { Measure } from "./Measure";
 export { MeasureSchema } from "./Measure";
@@ -11,10 +11,3 @@ export type { Measure_Group_Stratifier } from "./Measure_Group_Stratifier";
 export { Measure_Group_StratifierSchema } from "./Measure_Group_Stratifier";
 export type { Measure_SupplementalData } from "./Measure_SupplementalData";
 export { Measure_SupplementalDataSchema } from "./Measure_SupplementalData";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { MeasureSchemaInternal } from "./Measure";
-
-_registerFhirResourceSchemas({
-	Measure: MeasureSchemaInternal,
-});

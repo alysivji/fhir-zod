@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-18T01:45:47.034Z
+// Last generated: 2026-04-18T17:00:42.795Z
 
 export type { SubstancePolymer } from "./SubstancePolymer";
 export { SubstancePolymerSchema } from "./SubstancePolymer";
@@ -15,10 +15,3 @@ export type { SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation } from "
 export { SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationSchema } from "./SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation";
 export type { SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation } from "./SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation";
 export { SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationSchema } from "./SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { SubstancePolymerSchemaInternal } from "./SubstancePolymer";
-
-_registerFhirResourceSchemas({
-	SubstancePolymer: SubstancePolymerSchemaInternal,
-});

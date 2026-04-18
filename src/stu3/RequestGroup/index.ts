@@ -1,5 +1,5 @@
 // Release: STU3
-// Last generated: 2026-04-18T03:47:44.174Z
+// Last generated: 2026-04-18T17:00:56.233Z
 
 export type { RequestGroup } from "./RequestGroup";
 export { RequestGroupSchema } from "./RequestGroup";
@@ -9,10 +9,3 @@ export type { RequestGroup_Action_Condition } from "./RequestGroup_Action_Condit
 export { RequestGroup_Action_ConditionSchema } from "./RequestGroup_Action_Condition";
 export type { RequestGroup_Action_RelatedAction } from "./RequestGroup_Action_RelatedAction";
 export { RequestGroup_Action_RelatedActionSchema } from "./RequestGroup_Action_RelatedAction";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { RequestGroupSchemaInternal } from "./RequestGroup";
-
-_registerFhirResourceSchemas({
-	RequestGroup: RequestGroupSchemaInternal,
-});

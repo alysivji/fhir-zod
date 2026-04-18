@@ -1,7 +1,7 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/DiagnosticReport
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T03:47:50.212Z
+// Last generated: 2026-04-18T17:01:01.100Z
 
 import * as z from "zod";
 import { fhirString } from "../../shared/fhir-primitives";
@@ -15,37 +15,37 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** A list of key images or data associated with this report. The images or data are generally created during the diagnostic process, and may be directly of the patient, or of treated specimens (i.e. slides of interest). */
 export interface DiagnosticReport_Media extends BackboneElement {
-	/** A comment about the image or data. Typically, this is used to provide an explanation for why the image or data is included, or to draw the viewer's attention to important features. */
-	comment?: string;
-	/** Extensions for comment */
-	_comment?: Element;
-	/** Reference to the image or data source. */
-	link: Reference;
+  /** A comment about the image or data. Typically, this is used to provide an explanation for why the image or data is included, or to draw the viewer's attention to important features. */
+  comment?: string;
+  /** Extensions for comment */
+  _comment?: Element;
+  /** Reference to the image or data source. */
+  link: Reference;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-	ElementSchemaInternal as z.ZodType<Element>;
+  ElementSchemaInternal as z.ZodType<Element>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-	ReferenceSchemaInternal as z.ZodType<Reference>;
+  ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const DiagnosticReport_MediaSchemaInternal =
-	BackboneElementSchemaInternal.extend({
-		comment: fhirString().optional(),
-		_comment: z.lazy(getElementSchema).optional(),
-		link: z.lazy(getReferenceSchema),
-	})
-		.strict()
-		.superRefine((value, ctx) => {
-			const record = value as Record<string, unknown>;
-			validateReferenceTarget(
-				record.link,
-				"link",
-				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
-				["DocumentReference"],
-				ctx,
-			);
-		});
+  BackboneElementSchemaInternal.extend({
+    comment: fhirString().optional(),
+    _comment: z.lazy(getElementSchema).optional(),
+    link: z.lazy(getReferenceSchema),
+  })
+    .strict()
+    .superRefine((value, ctx) => {
+      const record = value as Record<string, unknown>;
+      validateReferenceTarget(
+        record.link,
+        "link",
+        ["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+        ["DocumentReference"],
+        ctx,
+      );
+    });
 
 export const DiagnosticReport_MediaSchema =
-	DiagnosticReport_MediaSchemaInternal as z.ZodType<DiagnosticReport_Media>;
+  DiagnosticReport_MediaSchemaInternal as z.ZodType<DiagnosticReport_Media>;

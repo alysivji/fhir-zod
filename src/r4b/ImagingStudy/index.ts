@@ -1,5 +1,5 @@
 // Release: R4B
-// Last generated: 2026-04-18T03:47:47.070Z
+// Last generated: 2026-04-18T17:00:58.420Z
 
 export type { ImagingStudy } from "./ImagingStudy";
 export { ImagingStudySchema } from "./ImagingStudy";
@@ -9,10 +9,3 @@ export type { ImagingStudy_Series_Instance } from "./ImagingStudy_Series_Instanc
 export { ImagingStudy_Series_InstanceSchema } from "./ImagingStudy_Series_Instance";
 export type { ImagingStudy_Series_Performer } from "./ImagingStudy_Series_Performer";
 export { ImagingStudy_Series_PerformerSchema } from "./ImagingStudy_Series_Performer";
-
-import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
-import { ImagingStudySchemaInternal } from "./ImagingStudy";
-
-_registerFhirResourceSchemas({
-	ImagingStudy: ImagingStudySchemaInternal,
-});
