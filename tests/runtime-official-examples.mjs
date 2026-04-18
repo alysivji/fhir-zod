@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import * as r4Schemas from "fhir-zod/r4";
+import * as r4PatientSchemas from "fhir-zod/r4/Patient";
 import * as r4bSchemas from "fhir-zod/r4b";
 import * as r5Schemas from "fhir-zod/r5";
 import * as stu3Schemas from "fhir-zod/stu3";
@@ -86,7 +87,7 @@ const suites = [
 		fixturesRoot: resolve(process.cwd(), "tests", "fixtures", "r4"),
 		label: "R4",
 		expectedFailures: expectedFailureGroups.r4,
-		schemas: r4Schemas,
+		schemas: { ...r4Schemas, ...r4PatientSchemas },
 	},
 	{
 		fixturesRoot: resolve(process.cwd(), "tests", "fixtures", "r4b"),

@@ -28,8 +28,8 @@ const {
 	BundleSchema: R4BundleSchema,
 	HumanNameSchema: R4HumanNameSchema,
 	ObservationSchema: R4ObservationSchema,
-	PatientSchema: R4PatientSchema,
 } = await import("fhir-zod/r4");
+const { PatientSchema: R4PatientSchema } = await import("fhir-zod/r4/Patient");
 const { PatientSchema: R4BPatientSchema } = await import("fhir-zod/r4b");
 const { PatientSchema: R5PatientSchema } = await import("fhir-zod/r5");
 const { PatientSchema: STU3PatientSchema } = await import("fhir-zod/stu3");

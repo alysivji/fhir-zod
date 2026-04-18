@@ -1,5 +1,5 @@
 // Release: R4
-// Last generated: 2026-04-17T23:33:03.670Z
+// Last generated: 2026-04-18T00:49:28.751Z
 
 import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";
 export type FhirResource = FhirResourceType;
@@ -913,14 +913,6 @@ export type { Parameters } from "./Parameters";
 export { ParametersSchema } from "./Parameters";
 export type { Parameters_Parameter } from "./Parameters_Parameter";
 export { Parameters_ParameterSchema } from "./Parameters_Parameter";
-export type { Patient } from "./Patient";
-export { PatientSchema } from "./Patient";
-export type { Patient_Communication } from "./Patient_Communication";
-export { Patient_CommunicationSchema } from "./Patient_Communication";
-export type { Patient_Contact } from "./Patient_Contact";
-export { Patient_ContactSchema } from "./Patient_Contact";
-export type { Patient_Link } from "./Patient_Link";
-export { Patient_LinkSchema } from "./Patient_Link";
 export type { PaymentNotice } from "./PaymentNotice";
 export { PaymentNoticeSchema } from "./PaymentNotice";
 export type { PaymentReconciliation } from "./PaymentReconciliation";
@@ -1431,7 +1423,7 @@ import { OperationOutcomeSchemaInternal } from "./OperationOutcome";
 import { OrganizationSchemaInternal } from "./Organization";
 import { OrganizationAffiliationSchemaInternal } from "./OrganizationAffiliation";
 import { ParametersSchemaInternal } from "./Parameters";
-import { PatientSchemaInternal } from "./Patient";
+import { PatientSchemaInternal } from "./Patient/Patient";
 import { PaymentNoticeSchemaInternal } from "./PaymentNotice";
 import { PaymentReconciliationSchemaInternal } from "./PaymentReconciliation";
 import { PersonSchemaInternal } from "./Person";

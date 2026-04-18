@@ -42,6 +42,22 @@ type BuiltFile = {
 	path: string;
 };
 
+export type GeneratedLayoutOptions = {
+	folderedResourceFamilies?: readonly string[];
+};
+
+type EmitLayout = {
+	definitionFilePath: (name: string) => string;
+	definitionImportPath: (fromFilePath: string, name: string) => string;
+	definitionInternalImportPath: (fromFilePath: string, name: string) => string;
+	folderIndexFilePath: (familyName: string) => string;
+	folderedFamilyName: (name: string) => string | null;
+	folderedResourceFamilies: readonly string[];
+	importPath: (fromFilePath: string, toFilePath: string) => string;
+	isFolderedDefinition: (name: string) => boolean;
+	outputDir: string;
+};
+
 type ChoiceGroup = {
 	choiceGroup: string;
 	fields: string[];
@@ -95,6 +111,7 @@ export function buildRuntimeSchemas(
 export function writeNormalizedZodDefinitions(options: {
 	definitions: Map<string, NormalizedDefinition>;
 	enableFhirResourceValidation?: boolean;
+	folderedResourceFamilies?: readonly string[];
 	generatedAt: string;
 	outputDir: string;
 	prune?: boolean;
@@ -125,8 +142,9 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 	const stagingDir = mkdtempSync(join(tmpdir(), "fhir-zod-format-"));
 
 	try {
-		const stagedPaths = files.map((file) => {
-			const stagedPath = join(stagingDir, basename(file.path));
+		const stagedPaths = files.map((file, index) => {
+			const stagedPath = join(stagingDir, String(index), basename(file.path));
+			mkdirSync(dirname(stagedPath), { recursive: true });
 			writeFileSync(stagedPath, file.content, "utf8");
 			return stagedPath;
 		});
@@ -148,8 +166,8 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 			},
 		);
 
-		return files.map((file) => {
-			const stagedPath = join(stagingDir, basename(file.path));
+		return files.map((file, index) => {
+			const stagedPath = join(stagingDir, String(index), basename(file.path));
 			return {
 				content: readFileSync(stagedPath, "utf8"),
 				path: file.path,
@@ -163,24 +181,34 @@ function formatBuiltFiles(files: BuiltFile[]): BuiltFile[] {
 function buildNormalizedZodFiles(options: {
 	definitions: Map<string, NormalizedDefinition>;
 	enableFhirResourceValidation?: boolean;
+	folderedResourceFamilies?: readonly string[];
 	generatedAt: string;
 	outputDir: string;
 	primitivePatterns: Map<string, string>;
 }): BuiltFile[] {
 	const enableFhirResourceValidation =
 		options.enableFhirResourceValidation ?? false;
+	const layout = createEmitLayout({
+		folderedResourceFamilies: options.folderedResourceFamilies,
+		outputDir: options.outputDir,
+	});
 	const builtFiles = sortDefinitions(options.definitions.values()).map(
-		(definition) => ({
-			content: emitDefinitionFile(
-				definition,
-				options.definitions,
-				options.generatedAt,
-				options.primitivePatterns,
-				options.outputDir,
-				enableFhirResourceValidation,
-			),
-			path: join(options.outputDir, `${definition.name}.ts`),
-		}),
+		(definition) => {
+			const filePath = layout.definitionFilePath(definition.name);
+
+			return {
+				content: emitDefinitionFile(
+					definition,
+					options.definitions,
+					options.generatedAt,
+					options.primitivePatterns,
+					filePath,
+					layout,
+					enableFhirResourceValidation,
+				),
+				path: filePath,
+			};
+		},
 	);
 
 	const releaseLabel =
@@ -188,8 +216,15 @@ function buildNormalizedZodFiles(options: {
 			.releaseLabel ?? null;
 
 	const fhirResourceRegistrationLines = enableFhirResourceValidation
-		? emitFhirResourceRegistrationLines(options.definitions)
+		? emitFhirResourceRegistrationLines({
+				definitions: options.definitions,
+				fromFilePath: join(options.outputDir, "index.ts"),
+				layout,
+			})
 		: [];
+	const publicRootDefinitions = sortDefinitions(
+		options.definitions.values(),
+	).filter((definition) => !layout.isFolderedDefinition(definition.name));
 
 	builtFiles.push({
 		content: [
@@ -203,9 +238,9 @@ function buildNormalizedZodFiles(options: {
 						"export type FhirResource = FhirResourceType;",
 					]
 				: []),
-			...sortDefinitions(options.definitions.values()).flatMap((definition) => [
-				`export type { ${definition.name} } from "./${definition.name}";`,
-				`export { ${schemaExportName(definition.name)} } from "./${definition.name}";`,
+			...publicRootDefinitions.flatMap((definition) => [
+				`export type { ${definition.name} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
+				`export { ${schemaExportName(definition.name)} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
 			]),
 			...fhirResourceRegistrationLines,
 			"",
@@ -213,11 +248,36 @@ function buildNormalizedZodFiles(options: {
 		path: join(options.outputDir, "index.ts"),
 	});
 
+	for (const familyName of layout.folderedResourceFamilies) {
+		const familyDefinitions = sortDefinitions(
+			options.definitions.values(),
+		).filter(
+			(definition) => layout.folderedFamilyName(definition.name) === familyName,
+		);
+
+		if (familyDefinitions.length === 0) {
+			continue;
+		}
+
+		builtFiles.push({
+			content: emitFolderIndexFile({
+				definitions: familyDefinitions,
+				enableFhirResourceValidation,
+				familyName,
+				generatedAt: options.generatedAt,
+				layout,
+				releaseLabel,
+			}),
+			path: layout.folderIndexFilePath(familyName),
+		});
+	}
+
 	if (enableFhirResourceValidation) {
 		builtFiles.push({
 			content: emitFhirResourceSchemaFile({
 				definitions: options.definitions,
 				generatedAt: options.generatedAt,
+				layout,
 				releaseLabel,
 			}),
 			path: join(options.outputDir, "_fhirResourceSchema.ts"),
@@ -225,6 +285,82 @@ function buildNormalizedZodFiles(options: {
 	}
 
 	return builtFiles;
+}
+
+function createEmitLayout(options: {
+	folderedResourceFamilies?: readonly string[];
+	outputDir: string;
+}): EmitLayout {
+	const outputDir = resolve(options.outputDir);
+	const folderedResourceFamilies = [
+		...(options.folderedResourceFamilies ?? []),
+	].sort((left, right) => left.localeCompare(right));
+	const folderedResourceFamilySet = new Set(folderedResourceFamilies);
+
+	const folderedFamilyName = (name: string): string | null => {
+		for (const familyName of folderedResourceFamilies) {
+			if (name === familyName || name.startsWith(`${familyName}_`)) {
+				return familyName;
+			}
+		}
+
+		return null;
+	};
+	const definitionFilePath = (name: string): string => {
+		const familyName = folderedFamilyName(name);
+
+		return familyName
+			? join(outputDir, familyName, `${name}.ts`)
+			: join(outputDir, `${name}.ts`);
+	};
+	const folderIndexFilePath = (familyName: string): string =>
+		join(outputDir, familyName, "index.ts");
+	const importPath = (fromFilePath: string, toFilePath: string): string => {
+		const importPath = relative(
+			dirname(fromFilePath),
+			toFilePath.replace(/\.ts$/, ""),
+		)
+			.split(sep)
+			.join("/");
+
+		return importPath.startsWith(".") ? importPath : `./${importPath}`;
+	};
+	const definitionImportPath = (fromFilePath: string, name: string): string => {
+		const familyName = folderedFamilyName(name);
+		const fromFamilyName = folderedFamilyName(basename(fromFilePath, ".ts"));
+
+		if (
+			familyName &&
+			(familyName !== fromFamilyName ||
+				fromFilePath === folderIndexFilePath(familyName))
+		) {
+			return importPath(fromFilePath, join(outputDir, familyName));
+		}
+
+		return importPath(fromFilePath, definitionFilePath(name));
+	};
+	const definitionInternalImportPath = (
+		fromFilePath: string,
+		name: string,
+	): string => importPath(fromFilePath, definitionFilePath(name));
+
+	return {
+		definitionFilePath,
+		definitionImportPath,
+		definitionInternalImportPath,
+		folderIndexFilePath: (familyName: string) => {
+			if (!folderedResourceFamilySet.has(familyName)) {
+				throw new Error(`Unknown foldered resource family "${familyName}".`);
+			}
+
+			return folderIndexFilePath(familyName);
+		},
+		folderedFamilyName,
+		folderedResourceFamilies,
+		importPath,
+		isFolderedDefinition: (name: string) => folderedFamilyName(name) !== null,
+		outputDir,
+	};
 }
 
 function collectConcreteResourceDefinitions(
@@ -235,17 +371,21 @@ function collectConcreteResourceDefinitions(
 	);
 }
 
-function emitFhirResourceRegistrationLines(
-	definitions: Map<string, NormalizedDefinition>,
-): string[] {
-	const resources = collectConcreteResourceDefinitions(definitions);
+function emitFhirResourceRegistrationLines(options: {
+	definitions: Map<string, NormalizedDefinition>;
+	fromFilePath: string;
+	layout: EmitLayout;
+	resources?: NormalizedDefinition[];
+}): string[] {
+	const resources =
+		options.resources ?? collectConcreteResourceDefinitions(options.definitions);
 
 	return [
 		"",
-		'import { _registerFhirResourceSchemas } from "./_fhirResourceSchema";',
+		`import { _registerFhirResourceSchemas } from ${JSON.stringify(options.layout.importPath(options.fromFilePath, join(options.layout.outputDir, "_fhirResourceSchema.ts")))};`,
 		...resources.map(
 			(resource) =>
-				`import { ${schemaInternalName(resource.name)} } from "./${resource.name}";`,
+				`import { ${schemaInternalName(resource.name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(options.fromFilePath, resource.name))};`,
 		),
 		"",
 		"_registerFhirResourceSchemas({",
@@ -257,13 +397,56 @@ function emitFhirResourceRegistrationLines(
 	];
 }
 
+function emitFolderIndexFile(options: {
+	definitions: NormalizedDefinition[];
+	enableFhirResourceValidation: boolean;
+	familyName: string;
+	generatedAt: string;
+	layout: EmitLayout;
+	releaseLabel: string | null;
+}): string {
+	const filePath = options.layout.folderIndexFilePath(options.familyName);
+	const resourceDefinitions = options.definitions.filter(
+		(definition) => definition.resourceTypeLiteral !== null,
+	);
+	const registrationLines =
+		options.enableFhirResourceValidation && resourceDefinitions.length > 0
+			? emitFhirResourceRegistrationLines({
+					definitions: new Map(
+						options.definitions.map((definition) => [
+							definition.name,
+							definition,
+						]),
+					),
+					fromFilePath: filePath,
+					layout: options.layout,
+					resources: resourceDefinitions,
+				})
+			: [];
+
+	return [
+		...buildGeneratedHeader({
+			generatedAt: options.generatedAt,
+			releaseLabel: options.releaseLabel,
+		}),
+		...options.definitions.flatMap((definition) => [
+			`export type { ${definition.name} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
+			`export { ${schemaExportName(definition.name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
+		]),
+		...registrationLines,
+		"",
+	].join("\n");
+}
+
 function emitFhirResourceSchemaFile(options: {
 	definitions: Map<string, NormalizedDefinition>;
 	generatedAt: string;
+	layout: EmitLayout;
 	releaseLabel: string | null;
 }): string {
 	const resources = collectConcreteResourceDefinitions(options.definitions);
 	const names = resources.map((definition) => definition.name);
+	const filePath = join(options.layout.outputDir, "_fhirResourceSchema.ts");
 
 	return [
 		...buildGeneratedHeader({
@@ -271,7 +454,10 @@ function emitFhirResourceSchemaFile(options: {
 			releaseLabel: options.releaseLabel,
 		}),
 		'import * as z from "zod";',
-		...names.map((name) => `import type { ${name} } from "./${name}";`),
+		...names.map(
+			(name) =>
+				`import type { ${name} } from ${JSON.stringify(options.layout.definitionImportPath(filePath, name))};`,
+		),
 		"",
 		`export type FhirResource = ${names.join(" | ")};`,
 		"",
@@ -335,7 +521,8 @@ function emitDefinitionFile(
 	definitions: Map<string, NormalizedDefinition>,
 	generatedAt: string,
 	primitivePatterns: Map<string, string>,
-	outputDir: string,
+	filePath: string,
+	layout: EmitLayout,
 	enableFhirResourceValidation: boolean,
 ): string {
 	const modelBaseName = resolveModelBaseName(definition, definitions);
@@ -427,31 +614,35 @@ function emitDefinitionFile(
 		'import * as z from "zod";',
 		...[...typeImports]
 			.sort((left, right) => left.localeCompare(right))
-			.map((name) => `import type { ${name} } from "./${name}";`),
+			.map(
+				(name) =>
+					`import type { ${name} } from ${JSON.stringify(layout.definitionImportPath(filePath, name))};`,
+			),
 		...(helperImports.size > 0
 			? [
-					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-primitives"))};`,
+					`import { ${[...helperImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(filePath, "fhir-primitives"))};`,
 				]
 			: []),
 		...(primitiveArrayImports.size > 0
 			? [
-					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-primitive-array-validation"))};`,
+					`import { ${[...primitiveArrayImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(filePath, "fhir-primitive-array-validation"))};`,
 				]
 			: []),
 		...(referenceImports.size > 0
 			? [
-					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(outputDir, "fhir-reference-validation"))};`,
+					`import { ${[...referenceImports].sort((left, right) => left.localeCompare(right)).join(", ")} } from ${JSON.stringify(sharedImportPath(filePath, "fhir-reference-validation"))};`,
 				]
 			: []),
 		...[...valueImports]
 			.sort((left, right) => left.localeCompare(right))
 			.map(
-				(name) => `import { ${schemaInternalName(name)} } from "./${name}";`,
+				(name) =>
+					`import { ${schemaInternalName(name)} } from ${JSON.stringify(layout.definitionInternalImportPath(filePath, name))};`,
 			),
 		...(usesFhirResource
 			? [
-					'import type { FhirResource } from "./_fhirResourceSchema";',
-					'import { FhirResourceSchemaInternal } from "./_fhirResourceSchema";',
+					`import type { FhirResource } from ${JSON.stringify(layout.importPath(filePath, join(layout.outputDir, "_fhirResourceSchema.ts")))};`,
+					`import { FhirResourceSchemaInternal } from ${JSON.stringify(layout.importPath(filePath, join(layout.outputDir, "_fhirResourceSchema.ts")))};`,
 				]
 			: []),
 		"",
@@ -488,9 +679,9 @@ function emitDefinitionFile(
 	return lines.join("\n");
 }
 
-function sharedImportPath(outputDir: string, moduleName: string): string {
+function sharedImportPath(fromFilePath: string, moduleName: string): string {
 	const target = resolve(repoRoot, "src", "shared", moduleName);
-	const importPath = relative(resolve(outputDir), target).split(sep).join("/");
+	const importPath = relative(dirname(fromFilePath), target).split(sep).join("/");
 	return importPath.startsWith(".") ? importPath : `./${importPath}`;
 }
 
@@ -1527,16 +1718,43 @@ function normalizeGeneratedContent(content: string): string {
 
 function pruneGeneratedFiles(outputDir: string, nextFiles: string[]): void {
 	const trackedFiles = new Set(nextFiles);
+	const directories: string[] = [];
 
-	for (const entry of readdirSync(outputDir, { withFileTypes: true })) {
-		if (!entry.isFile() || !entry.name.endsWith(".ts")) {
+	for (const entryPath of collectGeneratedEntries(outputDir, directories)) {
+		if (!entryPath.endsWith(".ts")) {
 			continue;
 		}
-
-		const entryPath = join(outputDir, entry.name);
 
 		if (!trackedFiles.has(entryPath)) {
 			rmSync(entryPath);
 		}
 	}
+
+	for (const directory of directories.sort(
+		(left, right) => right.length - left.length,
+	)) {
+		if (readdirSync(directory).length === 0) {
+			rmSync(directory, { recursive: true });
+		}
+	}
+}
+
+function collectGeneratedEntries(outputDir: string, directories: string[]): string[] {
+	const entries: string[] = [];
+
+	for (const entry of readdirSync(outputDir, { withFileTypes: true })) {
+		const entryPath = join(outputDir, entry.name);
+
+		if (entry.isDirectory()) {
+			directories.push(entryPath);
+			entries.push(...collectGeneratedEntries(entryPath, directories));
+			continue;
+		}
+
+		if (entry.isFile()) {
+			entries.push(entryPath);
+		}
+	}
+
+	return entries;
 }

@@ -1,15 +1,15 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T23:33:03.670Z
+// Last generated: 2026-04-18T00:49:28.751Z
 
 import * as z from "zod";
-import type { BackboneElement } from "./BackboneElement";
-import { BackboneElementSchemaInternal } from "./BackboneElement";
-import type { CodeableConcept } from "./CodeableConcept";
-import { CodeableConceptSchemaInternal } from "./CodeableConcept";
-import type { Element } from "./Element";
-import { ElementSchemaInternal } from "./Element";
+import type { BackboneElement } from "../BackboneElement";
+import { BackboneElementSchemaInternal } from "../BackboneElement";
+import type { CodeableConcept } from "../CodeableConcept";
+import { CodeableConceptSchemaInternal } from "../CodeableConcept";
+import type { Element } from "../Element";
+import { ElementSchemaInternal } from "../Element";
 
 /** A language which may be used to communicate with the patient about his or her health. */
 export interface Patient_Communication extends BackboneElement {

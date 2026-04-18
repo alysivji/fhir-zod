@@ -6,6 +6,7 @@
 	"type": "module",
 	"sideEffects": [
 		"./dist/r4/index.js",
+		"./dist/r4/Patient/index.js",
 		"./dist/r4b/index.js",
 		"./dist/r5/index.js",
 		"./dist/stu3/index.js"
@@ -40,6 +41,10 @@
 		"./r4": {
 			"types": "./dist/r4/index.d.ts",
 			"import": "./dist/r4/index.js"
+		},
+		"./r4/Patient": {
+			"types": "./dist/r4/Patient/index.d.ts",
+			"import": "./dist/r4/Patient/index.js"
 		},
 		"./r4b": {
 			"types": "./dist/r4b/index.d.ts",

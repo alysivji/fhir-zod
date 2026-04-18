@@ -1,16 +1,16 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T23:33:03.670Z
+// Last generated: 2026-04-18T00:49:28.751Z
 
 import * as z from "zod";
-import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import type { BackboneElement } from "./BackboneElement";
-import { BackboneElementSchemaInternal } from "./BackboneElement";
-import type { Element } from "./Element";
-import { ElementSchemaInternal } from "./Element";
-import type { Reference } from "./Reference";
-import { ReferenceSchemaInternal } from "./Reference";
+import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { BackboneElement } from "../BackboneElement";
+import { BackboneElementSchemaInternal } from "../BackboneElement";
+import type { Element } from "../Element";
+import { ElementSchemaInternal } from "../Element";
+import type { Reference } from "../Reference";
+import { ReferenceSchemaInternal } from "../Reference";
 
 /** Link to another patient resource that concerns the same actual patient. */
 export interface Patient_Link extends BackboneElement {

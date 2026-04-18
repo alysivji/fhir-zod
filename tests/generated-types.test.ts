@@ -5,7 +5,6 @@ import type {
 	FhirResource,
 	HumanName,
 	Observation,
-	Patient,
 	Practitioner,
 	ValueSet,
 } from "fhir-zod/r4";
@@ -14,10 +13,11 @@ import {
 	BundleSchema,
 	EncounterSchema,
 	ObservationSchema,
-	PatientSchema,
 	PractitionerSchema,
 	ValueSetSchema,
 } from "fhir-zod/r4";
+import type { Patient } from "fhir-zod/r4/Patient";
+import { PatientSchema } from "fhir-zod/r4/Patient";
 import type {
 	FhirResource as R4BFhirResource,
 	Patient as R4BPatient,

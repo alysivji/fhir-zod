@@ -144,6 +144,13 @@ describe("FHIR version registry", () => {
 		);
 	});
 
+	it("configures the R4 Patient family as the foldered resource pilot", () => {
+		expect(new R4Release().generatedLayout).toEqual({
+			folderedResourceFamilies: ["Patient"],
+		});
+		expect(new R4BRelease().generatedLayout).toEqual({});
+	});
+
 	it("builds official example page URLs from release id and resource name", () => {
 		expect(new R4Release().exampleResourcePageUrl("Observation")).toBe(
 			"https://hl7.org/fhir/R4/observation-examples.html",

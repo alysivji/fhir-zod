@@ -1,26 +1,26 @@
 // Profile: http://hl7.org/fhir/StructureDefinition/Patient
 // Release: R4
 // Version: 4.0.1
-// Last generated: 2026-04-17T23:33:03.670Z
+// Last generated: 2026-04-18T00:49:28.751Z
 
 import * as z from "zod";
-import { validateReferenceTarget } from "../shared/fhir-reference-validation";
-import type { Address } from "./Address";
-import { AddressSchemaInternal } from "./Address";
-import type { BackboneElement } from "./BackboneElement";
-import { BackboneElementSchemaInternal } from "./BackboneElement";
-import type { CodeableConcept } from "./CodeableConcept";
-import { CodeableConceptSchemaInternal } from "./CodeableConcept";
-import type { ContactPoint } from "./ContactPoint";
-import { ContactPointSchemaInternal } from "./ContactPoint";
-import type { Element } from "./Element";
-import { ElementSchemaInternal } from "./Element";
-import type { HumanName } from "./HumanName";
-import { HumanNameSchemaInternal } from "./HumanName";
-import type { Period } from "./Period";
-import { PeriodSchemaInternal } from "./Period";
-import type { Reference } from "./Reference";
-import { ReferenceSchemaInternal } from "./Reference";
+import { validateReferenceTarget } from "../../shared/fhir-reference-validation";
+import type { Address } from "../Address";
+import { AddressSchemaInternal } from "../Address";
+import type { BackboneElement } from "../BackboneElement";
+import { BackboneElementSchemaInternal } from "../BackboneElement";
+import type { CodeableConcept } from "../CodeableConcept";
+import { CodeableConceptSchemaInternal } from "../CodeableConcept";
+import type { ContactPoint } from "../ContactPoint";
+import { ContactPointSchemaInternal } from "../ContactPoint";
+import type { Element } from "../Element";
+import { ElementSchemaInternal } from "../Element";
+import type { HumanName } from "../HumanName";
+import { HumanNameSchemaInternal } from "../HumanName";
+import type { Period } from "../Period";
+import { PeriodSchemaInternal } from "../Period";
+import type { Reference } from "../Reference";
+import { ReferenceSchemaInternal } from "../Reference";
 
 /** A contact party (e.g. guardian, partner, friend) for the patient. */
 export interface Patient_Contact extends BackboneElement {

@@ -74,13 +74,14 @@ describe("package tree shaking", () => {
 		try {
 			expect(rootPackageJson.sideEffects).toEqual([
 				"./dist/r4/index.js",
+				"./dist/r4/Patient/index.js",
 				"./dist/r4b/index.js",
 				"./dist/r5/index.js",
 				"./dist/stu3/index.js",
 			]);
 
 			const r4Index = join(distDir, "r4/index.js");
-			const r4Patient = join(distDir, "r4/Patient.js");
+			const r4Patient = join(distDir, "r4/Patient/Patient.js");
 			const r4Observation = join(distDir, "r4/Observation.js");
 			expect(existsSync(r4Index)).toBe(true);
 			expect(existsSync(r4Patient)).toBe(true);
@@ -95,7 +96,7 @@ describe("package tree shaking", () => {
 				platform: "neutral",
 				stdin: {
 					contents: [
-						'import type { Patient } from "fhir-zod/r4";',
+						'import type { Patient } from "fhir-zod/r4/Patient";',
 						"const accept = (_p: Patient) => undefined;",
 						"accept({ resourceType: 'Patient' });",
 					].join("\n"),
@@ -133,8 +134,8 @@ describe("package tree shaking", () => {
 				platform: "neutral",
 				stdin: {
 					contents: [
-						'import { PatientSchema } from "fhir-zod/r4";',
-						"console.log(PatientSchema);",
+						'import { ObservationSchema } from "fhir-zod/r4";',
+						"console.log(ObservationSchema);",
 					].join("\n"),
 					loader: "js",
 					resolveDir: packageRoot,
@@ -152,6 +153,41 @@ describe("package tree shaking", () => {
 			expect(bundledCode).toContain("PatientSchemaInternal");
 			expect(bundledCode).toContain("ObservationSchemaInternal");
 			expect(bundledCode).toContain("AccountSchemaInternal");
+			expect(bundledCode).toContain("_registerFhirResourceSchemas");
+		} finally {
+			rmSync(packageRoot, { force: true, recursive: true });
+		}
+	}, 120_000);
+
+	it("keeps the Patient module scoped to the Patient resource family", async () => {
+		const { packageRoot } = await buildPackageFixture();
+		try {
+			const result = await build({
+				bundle: true,
+				external: ["zod"],
+				format: "esm",
+				platform: "neutral",
+				stdin: {
+					contents: [
+						'import { PatientSchema } from "fhir-zod/r4/Patient";',
+						"console.log(PatientSchema);",
+					].join("\n"),
+					loader: "js",
+					resolveDir: packageRoot,
+				},
+				treeShaking: true,
+				tsconfigRaw: JSON.stringify({
+					compilerOptions: {
+						moduleResolution: "Bundler",
+					},
+				}),
+				write: false,
+			});
+
+			const bundledCode = result.outputFiles?.[0]?.text ?? "";
+			expect(bundledCode).toContain("PatientSchemaInternal");
+			expect(bundledCode).not.toContain("ObservationSchemaInternal");
+			expect(bundledCode).not.toContain("AccountSchemaInternal");
 			expect(bundledCode).toContain("_registerFhirResourceSchemas");
 		} finally {
 			rmSync(packageRoot, { force: true, recursive: true });

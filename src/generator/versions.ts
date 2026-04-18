@@ -1,7 +1,10 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { resolveRequiredSpecPackageRoot } from "../spec/spec-cache.ts";
-import { writeNormalizedZodDefinitions } from "./emit/zod.ts";
+import {
+	type GeneratedLayoutOptions,
+	writeNormalizedZodDefinitions,
+} from "./emit/zod.ts";
 import { repoRoot } from "./shared.ts";
 import {
 	buildStructureDefinitionsFromSpec,
@@ -68,6 +71,7 @@ export abstract class FhirRelease {
 	abstract readonly label: string;
 	abstract readonly abstractTargetNames: readonly string[];
 
+	readonly generatedLayout: GeneratedLayoutOptions = {};
 	readonly nestedBackboneTypeCodes: readonly string[] = [
 		"BackboneElement",
 		"Element",
@@ -152,6 +156,7 @@ export abstract class FhirRelease {
 		const files = writeNormalizedZodDefinitions({
 			definitions: structureDefinitionResult.definitions,
 			enableFhirResourceValidation: this.enableFhirResourceValidation,
+			...this.generatedLayout,
 			generatedAt,
 			outputDir,
 			prune: options.prune ?? true,
@@ -215,6 +220,9 @@ export class R4Release extends FhirRelease {
 	readonly id = "r4";
 	readonly label = "R4";
 	readonly abstractTargetNames = defaultAbstractTargetNames;
+	readonly generatedLayout = {
+		folderedResourceFamilies: ["Patient"],
+	} as const;
 }
 
 export class R4BRelease extends FhirRelease {

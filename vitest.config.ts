@@ -7,6 +7,12 @@ export default defineConfig({
 	resolve: {
 		alias: [
 			{
+				find: "fhir-zod/r4/Patient",
+				replacement: fileURLToPath(
+					new URL("./src/r4/Patient/index.ts", import.meta.url),
+				),
+			},
+			{
 				find: "fhir-zod/r4",
 				replacement: fileURLToPath(
 					new URL("./src/r4/index.ts", import.meta.url),

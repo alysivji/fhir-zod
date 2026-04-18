@@ -17,12 +17,14 @@ describe("package and build config", () => {
 		expect(Object.keys(packageJson.exports).sort()).toEqual([
 			".",
 			"./r4",
+			"./r4/Patient",
 			"./r4b",
 			"./r5",
 			"./stu3",
 		]);
 		expect(packageJson.sideEffects).toEqual([
 			"./dist/r4/index.js",
+			"./dist/r4/Patient/index.js",
 			"./dist/r4b/index.js",
 			"./dist/r5/index.js",
 			"./dist/stu3/index.js",
@@ -35,6 +37,7 @@ describe("package and build config", () => {
 			entry: {
 				index: "src/index.ts",
 				"r4/index": "src/r4/index.ts",
+				"r4/Patient/index": "src/r4/Patient/index.ts",
 				"r4b/index": "src/r4b/index.ts",
 				"r5/index": "src/r5/index.ts",
 				"stu3/index": "src/stu3/index.ts",

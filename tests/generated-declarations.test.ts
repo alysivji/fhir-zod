@@ -54,7 +54,11 @@ describe("generated declarations", () => {
 				"utf8",
 			);
 			const patientContactDts = readFileSync(
-				join(outDir, "src", "r4", "Patient_Contact.d.ts"),
+				join(outDir, "src", "r4", "Patient", "Patient_Contact.d.ts"),
+				"utf8",
+			);
+			const patientIndexDts = readFileSync(
+				join(outDir, "src", "r4", "Patient", "index.d.ts"),
 				"utf8",
 			);
 			const quantityDts = readFileSync(
@@ -79,6 +83,12 @@ describe("generated declarations", () => {
 			expect(patientContactDts).toContain(
 				"export interface Patient_Contact extends BackboneElement",
 			);
+			expect(patientIndexDts).toContain(
+				'export type { Patient } from "./Patient";',
+			);
+			expect(patientIndexDts).toContain(
+				'export { PatientSchema } from "./Patient";',
+			);
 			expect(quantityDts).toContain(
 				"export interface Quantity extends Element",
 			);
@@ -94,6 +104,8 @@ describe("generated declarations", () => {
 			expect(indexDts).toContain(
 				'export { ValueSetSchema } from "./ValueSet";',
 			);
+			expect(indexDts).not.toContain('export type { Patient } from');
+			expect(indexDts).not.toContain("export { PatientSchema }");
 
 			const r4bBundleDts = readFileSync(
 				join(outDir, "src", "r4b", "Bundle.d.ts"),

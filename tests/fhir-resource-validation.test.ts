@@ -1,8 +1,8 @@
 import {
 	BundleSchema as R4BundleSchema,
-	PatientSchema as R4PatientSchema,
 	type FhirResource as R4FhirResource,
 } from "fhir-zod/r4";
+import { PatientSchema as R4PatientSchema } from "fhir-zod/r4/Patient";
 import {
 	BundleSchema as R4BBundleSchema,
 	PatientSchema as R4BPatientSchema,
