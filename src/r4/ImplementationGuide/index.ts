@@ -30,5 +30,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ImplementationGuideSchemaInternal } from "./ImplementationGuide";
 
 _registerFhirResourceSchemas({
-  ImplementationGuide: ImplementationGuideSchemaInternal,
+	ImplementationGuide: ImplementationGuideSchemaInternal,
 });

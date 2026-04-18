@@ -19,15 +19,21 @@ describe("package and build config", () => {
 			"./r4",
 			"./r4/*",
 			"./r4b",
+			"./r4b/*",
 			"./r5",
+			"./r5/*",
 			"./stu3",
+			"./stu3/*",
 		]);
 		expect(packageJson.sideEffects).toEqual([
 			"./dist/r4/index.js",
 			"./dist/r4/*/index.js",
 			"./dist/r4b/index.js",
+			"./dist/r4b/*/index.js",
 			"./dist/r5/index.js",
+			"./dist/r5/*/index.js",
 			"./dist/stu3/index.js",
+			"./dist/stu3/*/index.js",
 		]);
 	});
 
@@ -39,8 +45,11 @@ describe("package and build config", () => {
 				"r4/index": "src/r4/index.ts",
 				"r4/Patient/index": "src/r4/Patient/index.ts",
 				"r4b/index": "src/r4b/index.ts",
+				"r4b/Patient/index": "src/r4b/Patient/index.ts",
 				"r5/index": "src/r5/index.ts",
+				"r5/Patient/index": "src/r5/Patient/index.ts",
 				"stu3/index": "src/stu3/index.ts",
+				"stu3/Patient/index": "src/stu3/Patient/index.ts",
 			}),
 			format: "esm",
 			outDir: "dist",

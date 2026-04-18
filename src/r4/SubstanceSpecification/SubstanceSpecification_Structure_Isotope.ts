@@ -17,40 +17,40 @@ import { SubstanceSpecification_Structure_Isotope_MolecularWeightSchemaInternal 
 
 /** Applicable for single substances that contain a radionuclide or a non-natural isotopic ratio. */
 export interface SubstanceSpecification_Structure_Isotope
-  extends BackboneElement {
-  /** Half life - for a non-natural nuclide. */
-  halfLife?: Quantity;
-  /** Substance identifier for each non-natural or radioisotope. */
-  identifier?: Identifier;
-  /** The molecular weight or weight range (for proteins, polymers or nucleic acids). */
-  molecularWeight?: SubstanceSpecification_Structure_Isotope_MolecularWeight;
-  /** Substance name for each non-natural or radioisotope. */
-  name?: CodeableConcept;
-  /** The type of isotopic substitution present in a single substance. */
-  substitution?: CodeableConcept;
+	extends BackboneElement {
+	/** Half life - for a non-natural nuclide. */
+	halfLife?: Quantity;
+	/** Substance identifier for each non-natural or radioisotope. */
+	identifier?: Identifier;
+	/** The molecular weight or weight range (for proteins, polymers or nucleic acids). */
+	molecularWeight?: SubstanceSpecification_Structure_Isotope_MolecularWeight;
+	/** Substance name for each non-natural or radioisotope. */
+	name?: CodeableConcept;
+	/** The type of isotopic substitution present in a single substance. */
+	substitution?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-  IdentifierSchemaInternal as z.ZodType<Identifier>;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-  QuantitySchemaInternal as z.ZodType<Quantity>;
+	QuantitySchemaInternal as z.ZodType<Quantity>;
 const getSubstanceSpecification_Structure_Isotope_MolecularWeightSchema =
-  (): z.ZodType<SubstanceSpecification_Structure_Isotope_MolecularWeight> =>
-    SubstanceSpecification_Structure_Isotope_MolecularWeightSchemaInternal as z.ZodType<SubstanceSpecification_Structure_Isotope_MolecularWeight>;
+	(): z.ZodType<SubstanceSpecification_Structure_Isotope_MolecularWeight> =>
+		SubstanceSpecification_Structure_Isotope_MolecularWeightSchemaInternal as z.ZodType<SubstanceSpecification_Structure_Isotope_MolecularWeight>;
 
 /** @internal */
 export const SubstanceSpecification_Structure_IsotopeSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    halfLife: z.lazy(getQuantitySchema).optional(),
-    identifier: z.lazy(getIdentifierSchema).optional(),
-    molecularWeight: z
-      .lazy(getSubstanceSpecification_Structure_Isotope_MolecularWeightSchema)
-      .optional(),
-    name: z.lazy(getCodeableConceptSchema).optional(),
-    substitution: z.lazy(getCodeableConceptSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		halfLife: z.lazy(getQuantitySchema).optional(),
+		identifier: z.lazy(getIdentifierSchema).optional(),
+		molecularWeight: z
+			.lazy(getSubstanceSpecification_Structure_Isotope_MolecularWeightSchema)
+			.optional(),
+		name: z.lazy(getCodeableConceptSchema).optional(),
+		substitution: z.lazy(getCodeableConceptSchema).optional(),
+	}).strict();
 
 export const SubstanceSpecification_Structure_IsotopeSchema =
-  SubstanceSpecification_Structure_IsotopeSchemaInternal as z.ZodType<SubstanceSpecification_Structure_Isotope>;
+	SubstanceSpecification_Structure_IsotopeSchemaInternal as z.ZodType<SubstanceSpecification_Structure_Isotope>;

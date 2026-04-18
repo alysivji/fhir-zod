@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DetectedIssueSchemaInternal } from "./DetectedIssue";
 
 _registerFhirResourceSchemas({
-  DetectedIssue: DetectedIssueSchemaInternal,
+	DetectedIssue: DetectedIssueSchemaInternal,
 });

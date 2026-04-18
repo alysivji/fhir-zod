@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { AccountSchemaInternal } from "./Account";
 
 _registerFhirResourceSchemas({
-  Account: AccountSchemaInternal,
+	Account: AccountSchemaInternal,
 });

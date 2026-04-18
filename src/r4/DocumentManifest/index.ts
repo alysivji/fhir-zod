@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DocumentManifestSchemaInternal } from "./DocumentManifest";
 
 _registerFhirResourceSchemas({
-  DocumentManifest: DocumentManifestSchemaInternal,
+	DocumentManifest: DocumentManifestSchemaInternal,
 });

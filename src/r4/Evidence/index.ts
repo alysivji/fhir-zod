@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EvidenceSchemaInternal } from "./Evidence";
 
 _registerFhirResourceSchemas({
-  Evidence: EvidenceSchemaInternal,
+	Evidence: EvidenceSchemaInternal,
 });

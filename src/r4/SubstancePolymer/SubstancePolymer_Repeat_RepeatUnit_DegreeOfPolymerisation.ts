@@ -13,24 +13,24 @@ import { SubstanceAmountSchemaInternal } from "../SubstanceAmount";
 
 /** Todo. */
 export interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation
-  extends BackboneElement {
-  /** Todo. */
-  amount?: SubstanceAmount;
-  /** Todo. */
-  degree?: CodeableConcept;
+	extends BackboneElement {
+	/** Todo. */
+	amount?: SubstanceAmount;
+	/** Todo. */
+	degree?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getSubstanceAmountSchema = (): z.ZodType<SubstanceAmount> =>
-  SubstanceAmountSchemaInternal as z.ZodType<SubstanceAmount>;
+	SubstanceAmountSchemaInternal as z.ZodType<SubstanceAmount>;
 
 /** @internal */
 export const SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    amount: z.lazy(getSubstanceAmountSchema).optional(),
-    degree: z.lazy(getCodeableConceptSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		amount: z.lazy(getSubstanceAmountSchema).optional(),
+		degree: z.lazy(getCodeableConceptSchema).optional(),
+	}).strict();
 
 export const SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationSchema =
-  SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation>;
+	SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationSchemaInternal as z.ZodType<SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation>;

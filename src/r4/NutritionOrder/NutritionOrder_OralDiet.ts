@@ -20,52 +20,52 @@ import { NutritionOrder_OralDiet_TextureSchemaInternal } from "./NutritionOrder_
 
 /** Diet given orally in contrast to enteral (tube) feeding. */
 export interface NutritionOrder_OralDiet extends BackboneElement {
-  /** The required consistency (e.g. honey-thick, nectar-thick, thin, thickened.) of liquids or fluids served to the patient. */
-  fluidConsistencyType?: Array<CodeableConcept>;
-  /** Free text or additional instructions or information pertaining to the oral diet. */
-  instruction?: string;
-  /** Extensions for instruction */
-  _instruction?: Element;
-  /** Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium) required for the oral diet. */
-  nutrient?: Array<NutritionOrder_OralDiet_Nutrient>;
-  /** The time period and frequency at which the diet should be given.  The diet should be given for the combination of all schedules if more than one schedule is present. */
-  schedule?: Array<Timing>;
-  /** Class that describes any texture modifications required for the patient to safely consume various types of solid foods. */
-  texture?: Array<NutritionOrder_OralDiet_Texture>;
-  /** The kind of diet or dietary restriction such as fiber restricted diet or diabetic diet. */
-  type?: Array<CodeableConcept>;
+	/** The required consistency (e.g. honey-thick, nectar-thick, thin, thickened.) of liquids or fluids served to the patient. */
+	fluidConsistencyType?: Array<CodeableConcept>;
+	/** Free text or additional instructions or information pertaining to the oral diet. */
+	instruction?: string;
+	/** Extensions for instruction */
+	_instruction?: Element;
+	/** Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium) required for the oral diet. */
+	nutrient?: Array<NutritionOrder_OralDiet_Nutrient>;
+	/** The time period and frequency at which the diet should be given.  The diet should be given for the combination of all schedules if more than one schedule is present. */
+	schedule?: Array<Timing>;
+	/** Class that describes any texture modifications required for the patient to safely consume various types of solid foods. */
+	texture?: Array<NutritionOrder_OralDiet_Texture>;
+	/** The kind of diet or dietary restriction such as fiber restricted diet or diabetic diet. */
+	type?: Array<CodeableConcept>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getNutritionOrder_OralDiet_NutrientSchema =
-  (): z.ZodType<NutritionOrder_OralDiet_Nutrient> =>
-    NutritionOrder_OralDiet_NutrientSchemaInternal as z.ZodType<NutritionOrder_OralDiet_Nutrient>;
+	(): z.ZodType<NutritionOrder_OralDiet_Nutrient> =>
+		NutritionOrder_OralDiet_NutrientSchemaInternal as z.ZodType<NutritionOrder_OralDiet_Nutrient>;
 const getNutritionOrder_OralDiet_TextureSchema =
-  (): z.ZodType<NutritionOrder_OralDiet_Texture> =>
-    NutritionOrder_OralDiet_TextureSchemaInternal as z.ZodType<NutritionOrder_OralDiet_Texture>;
+	(): z.ZodType<NutritionOrder_OralDiet_Texture> =>
+		NutritionOrder_OralDiet_TextureSchemaInternal as z.ZodType<NutritionOrder_OralDiet_Texture>;
 const getTimingSchema = (): z.ZodType<Timing> =>
-  TimingSchemaInternal as z.ZodType<Timing>;
+	TimingSchemaInternal as z.ZodType<Timing>;
 
 /** @internal */
 export const NutritionOrder_OralDietSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    fluidConsistencyType: z.lazy(getCodeableConceptSchema).array().optional(),
-    instruction: fhirString().optional(),
-    _instruction: z.lazy(getElementSchema).optional(),
-    nutrient: z
-      .lazy(getNutritionOrder_OralDiet_NutrientSchema)
-      .array()
-      .optional(),
-    schedule: z.lazy(getTimingSchema).array().optional(),
-    texture: z
-      .lazy(getNutritionOrder_OralDiet_TextureSchema)
-      .array()
-      .optional(),
-    type: z.lazy(getCodeableConceptSchema).array().optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		fluidConsistencyType: z.lazy(getCodeableConceptSchema).array().optional(),
+		instruction: fhirString().optional(),
+		_instruction: z.lazy(getElementSchema).optional(),
+		nutrient: z
+			.lazy(getNutritionOrder_OralDiet_NutrientSchema)
+			.array()
+			.optional(),
+		schedule: z.lazy(getTimingSchema).array().optional(),
+		texture: z
+			.lazy(getNutritionOrder_OralDiet_TextureSchema)
+			.array()
+			.optional(),
+		type: z.lazy(getCodeableConceptSchema).array().optional(),
+	}).strict();
 
 export const NutritionOrder_OralDietSchema =
-  NutritionOrder_OralDietSchemaInternal as z.ZodType<NutritionOrder_OralDiet>;
+	NutritionOrder_OralDietSchemaInternal as z.ZodType<NutritionOrder_OralDiet>;

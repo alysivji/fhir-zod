@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ImmunizationEvaluationSchemaInternal } from "./ImmunizationEvaluation";
 
 _registerFhirResourceSchemas({
-  ImmunizationEvaluation: ImmunizationEvaluationSchemaInternal,
+	ImmunizationEvaluation: ImmunizationEvaluationSchemaInternal,
 });

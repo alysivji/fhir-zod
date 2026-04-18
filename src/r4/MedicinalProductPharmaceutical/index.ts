@@ -16,5 +16,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MedicinalProductPharmaceuticalSchemaInternal } from "./MedicinalProductPharmaceutical";
 
 _registerFhirResourceSchemas({
-  MedicinalProductPharmaceutical: MedicinalProductPharmaceuticalSchemaInternal,
+	MedicinalProductPharmaceutical: MedicinalProductPharmaceuticalSchemaInternal,
 });

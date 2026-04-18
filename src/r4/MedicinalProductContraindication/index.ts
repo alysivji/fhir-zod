@@ -10,6 +10,6 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MedicinalProductContraindicationSchemaInternal } from "./MedicinalProductContraindication";
 
 _registerFhirResourceSchemas({
-  MedicinalProductContraindication:
-    MedicinalProductContraindicationSchemaInternal,
+	MedicinalProductContraindication:
+		MedicinalProductContraindicationSchemaInternal,
 });

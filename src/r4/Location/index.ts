@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { LocationSchemaInternal } from "./Location";
 
 _registerFhirResourceSchemas({
-  Location: LocationSchemaInternal,
+	Location: LocationSchemaInternal,
 });

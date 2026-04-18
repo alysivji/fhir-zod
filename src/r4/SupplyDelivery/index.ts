@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SupplyDeliverySchemaInternal } from "./SupplyDelivery";
 
 _registerFhirResourceSchemas({
-  SupplyDelivery: SupplyDeliverySchemaInternal,
+	SupplyDelivery: SupplyDeliverySchemaInternal,
 });

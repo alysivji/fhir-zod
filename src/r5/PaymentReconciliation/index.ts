@@ -1,0 +1,16 @@
+// Release: R5
+// Last generated: 2026-04-18T03:47:50.212Z
+
+export type { PaymentReconciliation } from "./PaymentReconciliation";
+export { PaymentReconciliationSchema } from "./PaymentReconciliation";
+export type { PaymentReconciliation_Allocation } from "./PaymentReconciliation_Allocation";
+export { PaymentReconciliation_AllocationSchema } from "./PaymentReconciliation_Allocation";
+export type { PaymentReconciliation_ProcessNote } from "./PaymentReconciliation_ProcessNote";
+export { PaymentReconciliation_ProcessNoteSchema } from "./PaymentReconciliation_ProcessNote";
+
+import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
+import { PaymentReconciliationSchemaInternal } from "./PaymentReconciliation";
+
+_registerFhirResourceSchemas({
+	PaymentReconciliation: PaymentReconciliationSchemaInternal,
+});

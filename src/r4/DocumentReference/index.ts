@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DocumentReferenceSchemaInternal } from "./DocumentReference";
 
 _registerFhirResourceSchemas({
-  DocumentReference: DocumentReferenceSchemaInternal,
+	DocumentReference: DocumentReferenceSchemaInternal,
 });

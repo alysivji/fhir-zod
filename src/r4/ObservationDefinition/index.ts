@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ObservationDefinitionSchemaInternal } from "./ObservationDefinition";
 
 _registerFhirResourceSchemas({
-  ObservationDefinition: ObservationDefinitionSchemaInternal,
+	ObservationDefinition: ObservationDefinitionSchemaInternal,
 });

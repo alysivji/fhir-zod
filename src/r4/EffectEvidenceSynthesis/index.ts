@@ -20,5 +20,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EffectEvidenceSynthesisSchemaInternal } from "./EffectEvidenceSynthesis";
 
 _registerFhirResourceSchemas({
-  EffectEvidenceSynthesis: EffectEvidenceSynthesisSchemaInternal,
+	EffectEvidenceSynthesis: EffectEvidenceSynthesisSchemaInternal,
 });

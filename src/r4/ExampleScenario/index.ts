@@ -24,5 +24,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ExampleScenarioSchemaInternal } from "./ExampleScenario";
 
 _registerFhirResourceSchemas({
-  ExampleScenario: ExampleScenarioSchemaInternal,
+	ExampleScenario: ExampleScenarioSchemaInternal,
 });

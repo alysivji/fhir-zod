@@ -15,32 +15,32 @@ import { ExtensionSchemaInternal } from "./Extension";
 
 /** ContactDetail Type: Specifies contact information for a person or organization. */
 export interface ContactDetail extends DataType {
-  /** The name of an individual to contact. */
-  name?: string;
-  /** Extensions for name */
-  _name?: Element;
-  /** The contact details for the individual (if a name was provided) or the organization. */
-  telecom?: Array<ContactPoint>;
+	/** The name of an individual to contact. */
+	name?: string;
+	/** Extensions for name */
+	_name?: Element;
+	/** The contact details for the individual (if a name was provided) or the organization. */
+	telecom?: Array<ContactPoint>;
 }
 
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getExtensionSchema = (): z.ZodType<Extension> =>
-  ExtensionSchemaInternal as z.ZodType<Extension>;
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 
 /** @internal */
 export const ContactDetailSchemaInternal = z
-  .object({
-    extension: z.lazy(getExtensionSchema).array().optional(),
-    id: fhirId().optional(),
-    _id: z.lazy(getElementSchema).optional(),
-    name: fhirString().optional(),
-    _name: z.lazy(getElementSchema).optional(),
-    telecom: z.lazy(getContactPointSchema).array().optional(),
-  })
-  .strict();
+	.object({
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		name: fhirString().optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		telecom: z.lazy(getContactPointSchema).array().optional(),
+	})
+	.strict();
 
 export const ContactDetailSchema =
-  ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
+	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;

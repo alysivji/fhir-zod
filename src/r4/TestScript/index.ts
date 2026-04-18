@@ -40,5 +40,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { TestScriptSchemaInternal } from "./TestScript";
 
 _registerFhirResourceSchemas({
-  TestScript: TestScriptSchemaInternal,
+	TestScript: TestScriptSchemaInternal,
 });

@@ -12,25 +12,25 @@ import { ElementSchemaInternal } from "./Element";
 
 /** Base StructureDefinition for ContactDetail Type */
 export interface ContactDetail extends Element {
-  /** The name of an individual to contact. */
-  name?: string;
-  /** Extensions for name */
-  _name?: Element;
-  /** The contact details for the individual (if a name was provided) or the organization. */
-  telecom?: Array<ContactPoint>;
+	/** The name of an individual to contact. */
+	name?: string;
+	/** Extensions for name */
+	_name?: Element;
+	/** The contact details for the individual (if a name was provided) or the organization. */
+	telecom?: Array<ContactPoint>;
 }
 
 const getContactPointSchema = (): z.ZodType<ContactPoint> =>
-  ContactPointSchemaInternal as z.ZodType<ContactPoint>;
+	ContactPointSchemaInternal as z.ZodType<ContactPoint>;
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const ContactDetailSchemaInternal = ElementSchemaInternal.extend({
-  name: fhirString().optional(),
-  _name: z.lazy(getElementSchema).optional(),
-  telecom: z.lazy(getContactPointSchema).array().optional(),
+	name: fhirString().optional(),
+	_name: z.lazy(getElementSchema).optional(),
+	telecom: z.lazy(getContactPointSchema).array().optional(),
 }).strict();
 
 export const ContactDetailSchema =
-  ContactDetailSchemaInternal as z.ZodType<ContactDetail>;
+	ContactDetailSchemaInternal as z.ZodType<ContactDetail>;

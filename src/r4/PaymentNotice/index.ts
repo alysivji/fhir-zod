@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { PaymentNoticeSchemaInternal } from "./PaymentNotice";
 
 _registerFhirResourceSchemas({
-  PaymentNotice: PaymentNoticeSchemaInternal,
+	PaymentNotice: PaymentNoticeSchemaInternal,
 });

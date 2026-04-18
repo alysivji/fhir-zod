@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { PaymentReconciliationSchemaInternal } from "./PaymentReconciliation";
 
 _registerFhirResourceSchemas({
-  PaymentReconciliation: PaymentReconciliationSchemaInternal,
+	PaymentReconciliation: PaymentReconciliationSchemaInternal,
 });

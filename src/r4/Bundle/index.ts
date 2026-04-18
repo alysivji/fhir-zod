@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { BundleSchemaInternal } from "./Bundle";
 
 _registerFhirResourceSchemas({
-  Bundle: BundleSchemaInternal,
+	Bundle: BundleSchemaInternal,
 });

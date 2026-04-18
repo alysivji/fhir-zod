@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { VerificationResultSchemaInternal } from "./VerificationResult";
 
 _registerFhirResourceSchemas({
-  VerificationResult: VerificationResultSchemaInternal,
+	VerificationResult: VerificationResultSchemaInternal,
 });

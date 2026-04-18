@@ -13,24 +13,24 @@ import { DosageSchemaInternal } from "../Dosage";
 
 /** Dosage for the medication for the specific guidelines. */
 export interface MedicationKnowledge_AdministrationGuidelines_Dosage
-  extends BackboneElement {
-  /** Dosage for the medication for the specific guidelines. */
-  dosage: Array<Dosage>;
-  /** The type of dosage (for example, prophylaxis, maintenance, therapeutic, etc.). */
-  type: CodeableConcept;
+	extends BackboneElement {
+	/** Dosage for the medication for the specific guidelines. */
+	dosage: Array<Dosage>;
+	/** The type of dosage (for example, prophylaxis, maintenance, therapeutic, etc.). */
+	type: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getDosageSchema = (): z.ZodType<Dosage> =>
-  DosageSchemaInternal as z.ZodType<Dosage>;
+	DosageSchemaInternal as z.ZodType<Dosage>;
 
 /** @internal */
 export const MedicationKnowledge_AdministrationGuidelines_DosageSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    dosage: z.lazy(getDosageSchema).array(),
-    type: z.lazy(getCodeableConceptSchema),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		dosage: z.lazy(getDosageSchema).array(),
+		type: z.lazy(getCodeableConceptSchema),
+	}).strict();
 
 export const MedicationKnowledge_AdministrationGuidelines_DosageSchema =
-  MedicationKnowledge_AdministrationGuidelines_DosageSchemaInternal as z.ZodType<MedicationKnowledge_AdministrationGuidelines_Dosage>;
+	MedicationKnowledge_AdministrationGuidelines_DosageSchemaInternal as z.ZodType<MedicationKnowledge_AdministrationGuidelines_Dosage>;

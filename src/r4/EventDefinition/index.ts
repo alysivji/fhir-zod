@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EventDefinitionSchemaInternal } from "./EventDefinition";
 
 _registerFhirResourceSchemas({
-  EventDefinition: EventDefinitionSchemaInternal,
+	EventDefinition: EventDefinitionSchemaInternal,
 });

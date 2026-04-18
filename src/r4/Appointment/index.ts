@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { AppointmentSchemaInternal } from "./Appointment";
 
 _registerFhirResourceSchemas({
-  Appointment: AppointmentSchemaInternal,
+	Appointment: AppointmentSchemaInternal,
 });

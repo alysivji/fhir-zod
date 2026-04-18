@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MedicinalProductManufacturedSchemaInternal } from "./MedicinalProductManufactured";
 
 _registerFhirResourceSchemas({
-  MedicinalProductManufactured: MedicinalProductManufacturedSchemaInternal,
+	MedicinalProductManufactured: MedicinalProductManufacturedSchemaInternal,
 });

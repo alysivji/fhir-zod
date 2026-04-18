@@ -20,5 +20,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SubstancePolymerSchemaInternal } from "./SubstancePolymer";
 
 _registerFhirResourceSchemas({
-  SubstancePolymer: SubstancePolymerSchemaInternal,
+	SubstancePolymer: SubstancePolymerSchemaInternal,
 });

@@ -19,63 +19,63 @@ import { ImmunizationRecommendation_RecommendationSchemaInternal } from "./Immun
 
 /** A patient's point-in-time set of recommendations (i.e. forecasting) according to a published schedule with optional supporting justification. */
 export interface ImmunizationRecommendation extends DomainResource {
-  /** Indicates the authority who published the protocol (e.g. ACIP). */
-  authority?: Reference;
-  /** The date the immunization recommendation(s) were created. */
-  date: string;
-  /** Extensions for date */
-  _date?: Element;
-  /** A unique identifier assigned to this particular recommendation record. */
-  identifier?: Array<Identifier>;
-  /** The patient the recommendation(s) are for. */
-  patient: Reference;
-  /** Vaccine administration recommendations. */
-  recommendation: Array<ImmunizationRecommendation_Recommendation>;
-  /** This is a ImmunizationRecommendation resource. */
-  resourceType: "ImmunizationRecommendation";
+	/** Indicates the authority who published the protocol (e.g. ACIP). */
+	authority?: Reference;
+	/** The date the immunization recommendation(s) were created. */
+	date: string;
+	/** Extensions for date */
+	_date?: Element;
+	/** A unique identifier assigned to this particular recommendation record. */
+	identifier?: Array<Identifier>;
+	/** The patient the recommendation(s) are for. */
+	patient: Reference;
+	/** Vaccine administration recommendations. */
+	recommendation: Array<ImmunizationRecommendation_Recommendation>;
+	/** This is a ImmunizationRecommendation resource. */
+	resourceType: "ImmunizationRecommendation";
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-  IdentifierSchemaInternal as z.ZodType<Identifier>;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getImmunizationRecommendation_RecommendationSchema =
-  (): z.ZodType<ImmunizationRecommendation_Recommendation> =>
-    ImmunizationRecommendation_RecommendationSchemaInternal as z.ZodType<ImmunizationRecommendation_Recommendation>;
+	(): z.ZodType<ImmunizationRecommendation_Recommendation> =>
+		ImmunizationRecommendation_RecommendationSchemaInternal as z.ZodType<ImmunizationRecommendation_Recommendation>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-  ReferenceSchemaInternal as z.ZodType<Reference>;
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const ImmunizationRecommendationSchemaInternal =
-  DomainResourceSchemaInternal.extend({
-    authority: z.lazy(getReferenceSchema).optional(),
-    date: fhirDateTime(),
-    _date: z.lazy(getElementSchema).optional(),
-    identifier: z.lazy(getIdentifierSchema).array().optional(),
-    patient: z.lazy(getReferenceSchema),
-    recommendation: z
-      .lazy(getImmunizationRecommendation_RecommendationSchema)
-      .array(),
-    resourceType: z.literal("ImmunizationRecommendation"),
-  })
-    .strict()
-    .superRefine((value, ctx) => {
-      const record = value as Record<string, unknown>;
-      validateReferenceTarget(
-        record.authority,
-        "authority",
-        ["http://hl7.org/fhir/StructureDefinition/Organization"],
-        ["Organization"],
-        ctx,
-      );
-      validateReferenceTarget(
-        record.patient,
-        "patient",
-        ["http://hl7.org/fhir/StructureDefinition/Patient"],
-        ["Patient"],
-        ctx,
-      );
-    });
+	DomainResourceSchemaInternal.extend({
+		authority: z.lazy(getReferenceSchema).optional(),
+		date: fhirDateTime(),
+		_date: z.lazy(getElementSchema).optional(),
+		identifier: z.lazy(getIdentifierSchema).array().optional(),
+		patient: z.lazy(getReferenceSchema),
+		recommendation: z
+			.lazy(getImmunizationRecommendation_RecommendationSchema)
+			.array(),
+		resourceType: z.literal("ImmunizationRecommendation"),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validateReferenceTarget(
+				record.authority,
+				"authority",
+				["http://hl7.org/fhir/StructureDefinition/Organization"],
+				["Organization"],
+				ctx,
+			);
+			validateReferenceTarget(
+				record.patient,
+				"patient",
+				["http://hl7.org/fhir/StructureDefinition/Patient"],
+				["Patient"],
+				ctx,
+			);
+		});
 
 export const ImmunizationRecommendationSchema =
-  ImmunizationRecommendationSchemaInternal as z.ZodType<ImmunizationRecommendation>;
+	ImmunizationRecommendationSchemaInternal as z.ZodType<ImmunizationRecommendation>;

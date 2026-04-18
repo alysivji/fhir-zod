@@ -20,5 +20,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EncounterSchemaInternal } from "./Encounter";
 
 _registerFhirResourceSchemas({
-  Encounter: EncounterSchemaInternal,
+	Encounter: EncounterSchemaInternal,
 });

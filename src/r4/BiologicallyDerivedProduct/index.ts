@@ -16,5 +16,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { BiologicallyDerivedProductSchemaInternal } from "./BiologicallyDerivedProduct";
 
 _registerFhirResourceSchemas({
-  BiologicallyDerivedProduct: BiologicallyDerivedProductSchemaInternal,
+	BiologicallyDerivedProduct: BiologicallyDerivedProductSchemaInternal,
 });

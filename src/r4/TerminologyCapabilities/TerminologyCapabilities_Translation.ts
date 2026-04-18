@@ -11,21 +11,21 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Information about the [ConceptMap/$translate](conceptmap-operation-translate.html) operation. */
 export interface TerminologyCapabilities_Translation extends BackboneElement {
-  /** Whether the client must identify the map. */
-  needsMap: boolean;
-  /** Extensions for needsMap */
-  _needsMap?: Element;
+	/** Whether the client must identify the map. */
+	needsMap: boolean;
+	/** Extensions for needsMap */
+	_needsMap?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const TerminologyCapabilities_TranslationSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    needsMap: z.boolean(),
-    _needsMap: z.lazy(getElementSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		needsMap: z.boolean(),
+		_needsMap: z.lazy(getElementSchema).optional(),
+	}).strict();
 
 export const TerminologyCapabilities_TranslationSchema =
-  TerminologyCapabilities_TranslationSchemaInternal as z.ZodType<TerminologyCapabilities_Translation>;
+	TerminologyCapabilities_TranslationSchemaInternal as z.ZodType<TerminologyCapabilities_Translation>;

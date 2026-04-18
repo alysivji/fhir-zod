@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { OrganizationSchemaInternal } from "./Organization";
 
 _registerFhirResourceSchemas({
-  Organization: OrganizationSchemaInternal,
+	Organization: OrganizationSchemaInternal,
 });

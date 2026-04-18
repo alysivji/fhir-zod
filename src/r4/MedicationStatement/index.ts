@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MedicationStatementSchemaInternal } from "./MedicationStatement";
 
 _registerFhirResourceSchemas({
-  MedicationStatement: MedicationStatementSchemaInternal,
+	MedicationStatement: MedicationStatementSchemaInternal,
 });

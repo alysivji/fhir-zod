@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { TaskSchemaInternal } from "./Task";
 
 _registerFhirResourceSchemas({
-  Task: TaskSchemaInternal,
+	Task: TaskSchemaInternal,
 });

@@ -28,5 +28,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { TerminologyCapabilitiesSchemaInternal } from "./TerminologyCapabilities";
 
 _registerFhirResourceSchemas({
-  TerminologyCapabilities: TerminologyCapabilitiesSchemaInternal,
+	TerminologyCapabilities: TerminologyCapabilitiesSchemaInternal,
 });

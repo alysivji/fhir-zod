@@ -18,69 +18,69 @@ import { QuantitySchemaInternal } from "../Quantity";
 
 /** Moiety, for structural modifications. */
 export interface SubstanceSpecification_Moiety extends BackboneElement {
-  /** Quantitative value for this moiety. */
-  amountQuantity?: Quantity;
-  /** Quantitative value for this moiety. */
-  amountString?: string;
-  /** Extensions for amountString */
-  _amountString?: Element;
-  /** Identifier by which this moiety substance is known. */
-  identifier?: Identifier;
-  /** Molecular formula. */
-  molecularFormula?: string;
-  /** Extensions for molecularFormula */
-  _molecularFormula?: Element;
-  /** Textual name for this moiety substance. */
-  name?: string;
-  /** Extensions for name */
-  _name?: Element;
-  /** Optical activity type. */
-  opticalActivity?: CodeableConcept;
-  /** Role that the moiety is playing. */
-  role?: CodeableConcept;
-  /** Stereochemistry type. */
-  stereochemistry?: CodeableConcept;
+	/** Quantitative value for this moiety. */
+	amountQuantity?: Quantity;
+	/** Quantitative value for this moiety. */
+	amountString?: string;
+	/** Extensions for amountString */
+	_amountString?: Element;
+	/** Identifier by which this moiety substance is known. */
+	identifier?: Identifier;
+	/** Molecular formula. */
+	molecularFormula?: string;
+	/** Extensions for molecularFormula */
+	_molecularFormula?: Element;
+	/** Textual name for this moiety substance. */
+	name?: string;
+	/** Extensions for name */
+	_name?: Element;
+	/** Optical activity type. */
+	opticalActivity?: CodeableConcept;
+	/** Role that the moiety is playing. */
+	role?: CodeableConcept;
+	/** Stereochemistry type. */
+	stereochemistry?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-  IdentifierSchemaInternal as z.ZodType<Identifier>;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-  QuantitySchemaInternal as z.ZodType<Quantity>;
+	QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const SubstanceSpecification_MoietySchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    amountQuantity: z.lazy(getQuantitySchema).optional(),
-    amountString: fhirString().optional(),
-    _amountString: z.lazy(getElementSchema).optional(),
-    identifier: z.lazy(getIdentifierSchema).optional(),
-    molecularFormula: fhirString().optional(),
-    _molecularFormula: z.lazy(getElementSchema).optional(),
-    name: fhirString().optional(),
-    _name: z.lazy(getElementSchema).optional(),
-    opticalActivity: z.lazy(getCodeableConceptSchema).optional(),
-    role: z.lazy(getCodeableConceptSchema).optional(),
-    stereochemistry: z.lazy(getCodeableConceptSchema).optional(),
-  })
-    .strict()
-    .superRefine((value, ctx) => {
-      const record = value as Record<string, unknown>;
-      const amount_x_Present = ["amountQuantity", "amountString"].filter(
-        (field) => record[field] !== undefined,
-      );
-      if (amount_x_Present.length > 1) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message:
-            "Only one of amountQuantity, amountString may be present for amount[x]",
-          path: [amount_x_Present[0]],
-        });
-      }
-    });
+	BackboneElementSchemaInternal.extend({
+		amountQuantity: z.lazy(getQuantitySchema).optional(),
+		amountString: fhirString().optional(),
+		_amountString: z.lazy(getElementSchema).optional(),
+		identifier: z.lazy(getIdentifierSchema).optional(),
+		molecularFormula: fhirString().optional(),
+		_molecularFormula: z.lazy(getElementSchema).optional(),
+		name: fhirString().optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		opticalActivity: z.lazy(getCodeableConceptSchema).optional(),
+		role: z.lazy(getCodeableConceptSchema).optional(),
+		stereochemistry: z.lazy(getCodeableConceptSchema).optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			const amount_x_Present = ["amountQuantity", "amountString"].filter(
+				(field) => record[field] !== undefined,
+			);
+			if (amount_x_Present.length > 1) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message:
+						"Only one of amountQuantity, amountString may be present for amount[x]",
+					path: [amount_x_Present[0]],
+				});
+			}
+		});
 
 export const SubstanceSpecification_MoietySchema =
-  SubstanceSpecification_MoietySchemaInternal as z.ZodType<SubstanceSpecification_Moiety>;
+	SubstanceSpecification_MoietySchemaInternal as z.ZodType<SubstanceSpecification_Moiety>;

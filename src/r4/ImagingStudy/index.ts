@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ImagingStudySchemaInternal } from "./ImagingStudy";
 
 _registerFhirResourceSchemas({
-  ImagingStudy: ImagingStudySchemaInternal,
+	ImagingStudy: ImagingStudySchemaInternal,
 });

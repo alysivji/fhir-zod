@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ProvenanceSchemaInternal } from "./Provenance";
 
 _registerFhirResourceSchemas({
-  Provenance: ProvenanceSchemaInternal,
+	Provenance: ProvenanceSchemaInternal,
 });

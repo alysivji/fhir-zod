@@ -12,49 +12,49 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Defines how IG is built by tools. */
 export interface ImplementationGuide_Definition_Parameter
-  extends BackboneElement {
-  /** apply | path-resource | path-pages | path-tx-cache | expansion-parameter | rule-broken-links | generate-xml | generate-json | generate-turtle | html-template. */
-  code:
-    | "apply"
-    | "expansion-parameter"
-    | "generate-json"
-    | "generate-turtle"
-    | "generate-xml"
-    | "html-template"
-    | "path-pages"
-    | "path-resource"
-    | "path-tx-cache"
-    | "rule-broken-links";
-  /** Extensions for code */
-  _code?: Element;
-  /** Value for named type. */
-  value: string;
-  /** Extensions for value */
-  _value?: Element;
+	extends BackboneElement {
+	/** apply | path-resource | path-pages | path-tx-cache | expansion-parameter | rule-broken-links | generate-xml | generate-json | generate-turtle | html-template. */
+	code:
+		| "apply"
+		| "expansion-parameter"
+		| "generate-json"
+		| "generate-turtle"
+		| "generate-xml"
+		| "html-template"
+		| "path-pages"
+		| "path-resource"
+		| "path-tx-cache"
+		| "rule-broken-links";
+	/** Extensions for code */
+	_code?: Element;
+	/** Value for named type. */
+	value: string;
+	/** Extensions for value */
+	_value?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const ImplementationGuide_Definition_ParameterSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    code: z.enum([
-      "apply",
-      "expansion-parameter",
-      "generate-json",
-      "generate-turtle",
-      "generate-xml",
-      "html-template",
-      "path-pages",
-      "path-resource",
-      "path-tx-cache",
-      "rule-broken-links",
-    ]),
-    _code: z.lazy(getElementSchema).optional(),
-    value: fhirString(),
-    _value: z.lazy(getElementSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		code: z.enum([
+			"apply",
+			"expansion-parameter",
+			"generate-json",
+			"generate-turtle",
+			"generate-xml",
+			"html-template",
+			"path-pages",
+			"path-resource",
+			"path-tx-cache",
+			"rule-broken-links",
+		]),
+		_code: z.lazy(getElementSchema).optional(),
+		value: fhirString(),
+		_value: z.lazy(getElementSchema).optional(),
+	}).strict();
 
 export const ImplementationGuide_Definition_ParameterSchema =
-  ImplementationGuide_Definition_ParameterSchemaInternal as z.ZodType<ImplementationGuide_Definition_Parameter>;
+	ImplementationGuide_Definition_ParameterSchemaInternal as z.ZodType<ImplementationGuide_Definition_Parameter>;

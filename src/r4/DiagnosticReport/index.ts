@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DiagnosticReportSchemaInternal } from "./DiagnosticReport";
 
 _registerFhirResourceSchemas({
-  DiagnosticReport: DiagnosticReportSchemaInternal,
+	DiagnosticReport: DiagnosticReportSchemaInternal,
 });

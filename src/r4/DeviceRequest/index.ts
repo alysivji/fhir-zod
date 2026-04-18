@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DeviceRequestSchemaInternal } from "./DeviceRequest";
 
 _registerFhirResourceSchemas({
-  DeviceRequest: DeviceRequestSchemaInternal,
+	DeviceRequest: DeviceRequestSchemaInternal,
 });

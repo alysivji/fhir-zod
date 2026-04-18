@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { BinarySchemaInternal } from "./Binary";
 
 _registerFhirResourceSchemas({
-  Binary: BinarySchemaInternal,
+	Binary: BinarySchemaInternal,
 });

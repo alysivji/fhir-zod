@@ -14,28 +14,28 @@ import { QuantitySchemaInternal } from "./Quantity";
 
 /** Base StructureDefinition for Range Type: A set of ordered Quantities defined by a low and high limit. */
 export interface Range extends Element {
-  /** The high limit. The boundary is inclusive. */
-  high?: Quantity;
-  /** The low limit. The boundary is inclusive. */
-  low?: Quantity;
+	/** The high limit. The boundary is inclusive. */
+	high?: Quantity;
+	/** The low limit. The boundary is inclusive. */
+	low?: Quantity;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getExtensionSchema = (): z.ZodType<Extension> =>
-  ExtensionSchemaInternal as z.ZodType<Extension>;
+	ExtensionSchemaInternal as z.ZodType<Extension>;
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-  QuantitySchemaInternal as z.ZodType<Quantity>;
+	QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const RangeSchemaInternal = z
-  .object({
-    extension: z.lazy(getExtensionSchema).array().optional(),
-    high: z.lazy(getQuantitySchema).optional(),
-    id: fhirId().optional(),
-    _id: z.lazy(getElementSchema).optional(),
-    low: z.lazy(getQuantitySchema).optional(),
-  })
-  .strict();
+	.object({
+		extension: z.lazy(getExtensionSchema).array().optional(),
+		high: z.lazy(getQuantitySchema).optional(),
+		id: fhirId().optional(),
+		_id: z.lazy(getElementSchema).optional(),
+		low: z.lazy(getQuantitySchema).optional(),
+	})
+	.strict();
 
 export const RangeSchema = RangeSchemaInternal as z.ZodType<Range>;

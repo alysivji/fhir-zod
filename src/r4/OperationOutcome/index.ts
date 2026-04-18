@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { OperationOutcomeSchemaInternal } from "./OperationOutcome";
 
 _registerFhirResourceSchemas({
-  OperationOutcome: OperationOutcomeSchemaInternal,
+	OperationOutcome: OperationOutcomeSchemaInternal,
 });

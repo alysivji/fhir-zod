@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ConditionSchemaInternal } from "./Condition";
 
 _registerFhirResourceSchemas({
-  Condition: ConditionSchemaInternal,
+	Condition: ConditionSchemaInternal,
 });

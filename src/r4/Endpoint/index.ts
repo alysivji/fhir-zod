@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EndpointSchemaInternal } from "./Endpoint";
 
 _registerFhirResourceSchemas({
-  Endpoint: EndpointSchemaInternal,
+	Endpoint: EndpointSchemaInternal,
 });

@@ -11,19 +11,19 @@ import { CodeableConceptSchemaInternal } from "../CodeableConcept";
 
 /** Specifies the schedule of a medication in jurisdiction. */
 export interface MedicationKnowledge_Regulatory_Schedule
-  extends BackboneElement {
-  /** Specifies the specific drug schedule. */
-  schedule: CodeableConcept;
+	extends BackboneElement {
+	/** Specifies the specific drug schedule. */
+	schedule: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 
 /** @internal */
 export const MedicationKnowledge_Regulatory_ScheduleSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    schedule: z.lazy(getCodeableConceptSchema),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		schedule: z.lazy(getCodeableConceptSchema),
+	}).strict();
 
 export const MedicationKnowledge_Regulatory_ScheduleSchema =
-  MedicationKnowledge_Regulatory_ScheduleSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_Schedule>;
+	MedicationKnowledge_Regulatory_ScheduleSchemaInternal as z.ZodType<MedicationKnowledge_Regulatory_Schedule>;

@@ -11,22 +11,22 @@ import { IdentifierSchemaInternal } from "../Identifier";
 
 /** Batch numbering. */
 export interface MedicinalProductPackaged_BatchIdentifier
-  extends BackboneElement {
-  /** A number appearing on the immediate packaging (and not the outer packaging). */
-  immediatePackaging?: Identifier;
-  /** A number appearing on the outer packaging of a specific batch. */
-  outerPackaging: Identifier;
+	extends BackboneElement {
+	/** A number appearing on the immediate packaging (and not the outer packaging). */
+	immediatePackaging?: Identifier;
+	/** A number appearing on the outer packaging of a specific batch. */
+	outerPackaging: Identifier;
 }
 
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-  IdentifierSchemaInternal as z.ZodType<Identifier>;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 
 /** @internal */
 export const MedicinalProductPackaged_BatchIdentifierSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    immediatePackaging: z.lazy(getIdentifierSchema).optional(),
-    outerPackaging: z.lazy(getIdentifierSchema),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		immediatePackaging: z.lazy(getIdentifierSchema).optional(),
+		outerPackaging: z.lazy(getIdentifierSchema),
+	}).strict();
 
 export const MedicinalProductPackaged_BatchIdentifierSchema =
-  MedicinalProductPackaged_BatchIdentifierSchemaInternal as z.ZodType<MedicinalProductPackaged_BatchIdentifier>;
+	MedicinalProductPackaged_BatchIdentifierSchemaInternal as z.ZodType<MedicinalProductPackaged_BatchIdentifier>;

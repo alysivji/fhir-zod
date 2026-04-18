@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CatalogEntrySchemaInternal } from "./CatalogEntry";
 
 _registerFhirResourceSchemas({
-  CatalogEntry: CatalogEntrySchemaInternal,
+	CatalogEntry: CatalogEntrySchemaInternal,
 });

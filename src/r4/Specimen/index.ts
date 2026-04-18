@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SpecimenSchemaInternal } from "./Specimen";
 
 _registerFhirResourceSchemas({
-  Specimen: SpecimenSchemaInternal,
+	Specimen: SpecimenSchemaInternal,
 });

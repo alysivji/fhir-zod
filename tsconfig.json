@@ -22,8 +22,11 @@
 			"fhir-zod/r4": ["./src/r4/index.ts"],
 			"fhir-zod/r4/*": ["./src/r4/*/index.ts"],
 			"fhir-zod/r4b": ["./src/r4b/index.ts"],
+			"fhir-zod/r4b/*": ["./src/r4b/*/index.ts"],
 			"fhir-zod/r5": ["./src/r5/index.ts"],
-			"fhir-zod/stu3": ["./src/stu3/index.ts"]
+			"fhir-zod/r5/*": ["./src/r5/*/index.ts"],
+			"fhir-zod/stu3": ["./src/stu3/index.ts"],
+			"fhir-zod/stu3/*": ["./src/stu3/*/index.ts"]
 		}
 	},
 	"include": ["src", "scripts", "tests", "tsdown.config.ts", "vitest.config.ts"]

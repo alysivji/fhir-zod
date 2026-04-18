@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { AllergyIntoleranceSchemaInternal } from "./AllergyIntolerance";
 
 _registerFhirResourceSchemas({
-  AllergyIntolerance: AllergyIntoleranceSchemaInternal,
+	AllergyIntolerance: AllergyIntoleranceSchemaInternal,
 });

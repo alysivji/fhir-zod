@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MessageDefinitionSchemaInternal } from "./MessageDefinition";
 
 _registerFhirResourceSchemas({
-  MessageDefinition: MessageDefinitionSchemaInternal,
+	MessageDefinition: MessageDefinitionSchemaInternal,
 });

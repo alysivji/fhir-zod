@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { AuditEventSchemaInternal } from "./AuditEvent";
 
 _registerFhirResourceSchemas({
-  AuditEvent: AuditEventSchemaInternal,
+	AuditEvent: AuditEventSchemaInternal,
 });

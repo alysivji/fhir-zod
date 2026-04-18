@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CareTeamSchemaInternal } from "./CareTeam";
 
 _registerFhirResourceSchemas({
-  CareTeam: CareTeamSchemaInternal,
+	CareTeam: CareTeamSchemaInternal,
 });

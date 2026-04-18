@@ -16,40 +16,40 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Todo. */
 export interface SubstanceReferenceInformation_GeneElement
-  extends BackboneElement {
-  /** Todo. */
-  element?: Identifier;
-  /** Todo. */
-  source?: Array<Reference>;
-  /** Todo. */
-  type?: CodeableConcept;
+	extends BackboneElement {
+	/** Todo. */
+	element?: Identifier;
+	/** Todo. */
+	source?: Array<Reference>;
+	/** Todo. */
+	type?: CodeableConcept;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-  IdentifierSchemaInternal as z.ZodType<Identifier>;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-  ReferenceSchemaInternal as z.ZodType<Reference>;
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SubstanceReferenceInformation_GeneElementSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    element: z.lazy(getIdentifierSchema).optional(),
-    source: z.lazy(getReferenceSchema).array().optional(),
-    type: z.lazy(getCodeableConceptSchema).optional(),
-  })
-    .strict()
-    .superRefine((value, ctx) => {
-      const record = value as Record<string, unknown>;
-      validateReferenceTarget(
-        record.source,
-        "source",
-        ["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
-        ["DocumentReference"],
-        ctx,
-      );
-    });
+	BackboneElementSchemaInternal.extend({
+		element: z.lazy(getIdentifierSchema).optional(),
+		source: z.lazy(getReferenceSchema).array().optional(),
+		type: z.lazy(getCodeableConceptSchema).optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validateReferenceTarget(
+				record.source,
+				"source",
+				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+				["DocumentReference"],
+				ctx,
+			);
+		});
 
 export const SubstanceReferenceInformation_GeneElementSchema =
-  SubstanceReferenceInformation_GeneElementSchemaInternal as z.ZodType<SubstanceReferenceInformation_GeneElement>;
+	SubstanceReferenceInformation_GeneElementSchemaInternal as z.ZodType<SubstanceReferenceInformation_GeneElement>;

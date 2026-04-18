@@ -48,5 +48,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ExplanationOfBenefitSchemaInternal } from "./ExplanationOfBenefit";
 
 _registerFhirResourceSchemas({
-  ExplanationOfBenefit: ExplanationOfBenefitSchemaInternal,
+	ExplanationOfBenefit: ExplanationOfBenefitSchemaInternal,
 });

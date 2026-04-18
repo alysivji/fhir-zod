@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { BasicSchemaInternal } from "./Basic";
 
 _registerFhirResourceSchemas({
-  Basic: BasicSchemaInternal,
+	Basic: BasicSchemaInternal,
 });

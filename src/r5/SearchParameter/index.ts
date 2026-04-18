@@ -1,0 +1,14 @@
+// Release: R5
+// Last generated: 2026-04-18T03:47:50.212Z
+
+export type { SearchParameter } from "./SearchParameter";
+export { SearchParameterSchema } from "./SearchParameter";
+export type { SearchParameter_Component } from "./SearchParameter_Component";
+export { SearchParameter_ComponentSchema } from "./SearchParameter_Component";
+
+import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
+import { SearchParameterSchemaInternal } from "./SearchParameter";
+
+_registerFhirResourceSchemas({
+	SearchParameter: SearchParameterSchemaInternal,
+});

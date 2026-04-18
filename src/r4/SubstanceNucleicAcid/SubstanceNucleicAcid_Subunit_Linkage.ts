@@ -14,38 +14,38 @@ import { IdentifierSchemaInternal } from "../Identifier";
 
 /** The linkages between sugar residues will also be captured. */
 export interface SubstanceNucleicAcid_Subunit_Linkage extends BackboneElement {
-  /** The entity that links the sugar residues together should also be captured for nearly all naturally occurring nucleic acid the linkage is a phosphate group. For many synthetic oligonucleotides phosphorothioate linkages are often seen. Linkage connectivity is assumed to be 3’-5’. If the linkage is either 3’-3’ or 5’-5’ this should be specified. */
-  connectivity?: string;
-  /** Extensions for connectivity */
-  _connectivity?: Element;
-  /** Each linkage will be registered as a fragment and have an ID. */
-  identifier?: Identifier;
-  /** Each linkage will be registered as a fragment and have at least one name. A single name shall be assigned to each linkage. */
-  name?: string;
-  /** Extensions for name */
-  _name?: Element;
-  /** Residues shall be captured as described in 5.3.6.8.3. */
-  residueSite?: string;
-  /** Extensions for residueSite */
-  _residueSite?: Element;
+	/** The entity that links the sugar residues together should also be captured for nearly all naturally occurring nucleic acid the linkage is a phosphate group. For many synthetic oligonucleotides phosphorothioate linkages are often seen. Linkage connectivity is assumed to be 3’-5’. If the linkage is either 3’-3’ or 5’-5’ this should be specified. */
+	connectivity?: string;
+	/** Extensions for connectivity */
+	_connectivity?: Element;
+	/** Each linkage will be registered as a fragment and have an ID. */
+	identifier?: Identifier;
+	/** Each linkage will be registered as a fragment and have at least one name. A single name shall be assigned to each linkage. */
+	name?: string;
+	/** Extensions for name */
+	_name?: Element;
+	/** Residues shall be captured as described in 5.3.6.8.3. */
+	residueSite?: string;
+	/** Extensions for residueSite */
+	_residueSite?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getIdentifierSchema = (): z.ZodType<Identifier> =>
-  IdentifierSchemaInternal as z.ZodType<Identifier>;
+	IdentifierSchemaInternal as z.ZodType<Identifier>;
 
 /** @internal */
 export const SubstanceNucleicAcid_Subunit_LinkageSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    connectivity: fhirString().optional(),
-    _connectivity: z.lazy(getElementSchema).optional(),
-    identifier: z.lazy(getIdentifierSchema).optional(),
-    name: fhirString().optional(),
-    _name: z.lazy(getElementSchema).optional(),
-    residueSite: fhirString().optional(),
-    _residueSite: z.lazy(getElementSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		connectivity: fhirString().optional(),
+		_connectivity: z.lazy(getElementSchema).optional(),
+		identifier: z.lazy(getIdentifierSchema).optional(),
+		name: fhirString().optional(),
+		_name: z.lazy(getElementSchema).optional(),
+		residueSite: fhirString().optional(),
+		_residueSite: z.lazy(getElementSchema).optional(),
+	}).strict();
 
 export const SubstanceNucleicAcid_Subunit_LinkageSchema =
-  SubstanceNucleicAcid_Subunit_LinkageSchemaInternal as z.ZodType<SubstanceNucleicAcid_Subunit_Linkage>;
+	SubstanceNucleicAcid_Subunit_LinkageSchemaInternal as z.ZodType<SubstanceNucleicAcid_Subunit_Linkage>;

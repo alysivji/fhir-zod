@@ -30,5 +30,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ClaimSchemaInternal } from "./Claim";
 
 _registerFhirResourceSchemas({
-  Claim: ClaimSchemaInternal,
+	Claim: ClaimSchemaInternal,
 });

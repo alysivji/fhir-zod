@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { LibrarySchemaInternal } from "./Library";
 
 _registerFhirResourceSchemas({
-  Library: LibrarySchemaInternal,
+	Library: LibrarySchemaInternal,
 });

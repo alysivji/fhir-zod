@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { PractitionerSchemaInternal } from "./Practitioner";
 
 _registerFhirResourceSchemas({
-  Practitioner: PractitionerSchemaInternal,
+	Practitioner: PractitionerSchemaInternal,
 });

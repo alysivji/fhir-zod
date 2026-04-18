@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CompartmentDefinitionSchemaInternal } from "./CompartmentDefinition";
 
 _registerFhirResourceSchemas({
-  CompartmentDefinition: CompartmentDefinitionSchemaInternal,
+	CompartmentDefinition: CompartmentDefinitionSchemaInternal,
 });

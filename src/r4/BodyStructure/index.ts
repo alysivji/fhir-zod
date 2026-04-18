@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { BodyStructureSchemaInternal } from "./BodyStructure";
 
 _registerFhirResourceSchemas({
-  BodyStructure: BodyStructureSchemaInternal,
+	BodyStructure: BodyStructureSchemaInternal,
 });

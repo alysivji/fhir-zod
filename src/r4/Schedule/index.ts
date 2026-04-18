@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ScheduleSchemaInternal } from "./Schedule";
 
 _registerFhirResourceSchemas({
-  Schedule: ScheduleSchemaInternal,
+	Schedule: ScheduleSchemaInternal,
 });

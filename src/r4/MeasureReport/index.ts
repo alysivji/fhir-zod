@@ -20,5 +20,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MeasureReportSchemaInternal } from "./MeasureReport";
 
 _registerFhirResourceSchemas({
-  MeasureReport: MeasureReportSchemaInternal,
+	MeasureReport: MeasureReportSchemaInternal,
 });

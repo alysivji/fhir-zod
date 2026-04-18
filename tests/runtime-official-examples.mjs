@@ -1,22 +1,27 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { join, relative, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import * as r4DataTypeSchemas from "fhir-zod/r4";
-import * as r4bSchemas from "fhir-zod/r4b";
-import * as r5Schemas from "fhir-zod/r5";
-import * as stu3Schemas from "fhir-zod/stu3";
+import * as r4bDataTypeSchemas from "fhir-zod/r4b";
+import * as r5DataTypeSchemas from "fhir-zod/r5";
+import * as stu3DataTypeSchemas from "fhir-zod/stu3";
 
 const distR4Dir = fileURLToPath(new URL("../dist/r4/", import.meta.url));
-const r4FolderNames = readdirSync(distR4Dir, { withFileTypes: true })
-	.filter((d) => d.isDirectory())
-	.map((d) => d.name);
-const r4FolderModules = await Promise.all(
-	r4FolderNames.map((name) => import(`../dist/r4/${name}/index.js`)),
+const distR4BDir = fileURLToPath(new URL("../dist/r4b/", import.meta.url));
+const distR5Dir = fileURLToPath(new URL("../dist/r5/", import.meta.url));
+const distSTU3Dir = fileURLToPath(new URL("../dist/stu3/", import.meta.url));
+
+const r4Schemas = await loadVersionSchemas("r4", distR4Dir, r4DataTypeSchemas);
+const r4bSchemas = await loadVersionSchemas(
+	"r4b",
+	distR4BDir,
+	r4bDataTypeSchemas,
 );
-const r4Schemas = Object.assign(
-	{},
-	r4DataTypeSchemas,
-	...r4FolderModules,
+const r5Schemas = await loadVersionSchemas("r5", distR5Dir, r5DataTypeSchemas);
+const stu3Schemas = await loadVersionSchemas(
+	"stu3",
+	distSTU3Dir,
+	stu3DataTypeSchemas,
 );
 
 const expectedFailureGroups = {
@@ -234,6 +239,17 @@ function validateResourcePayload(input, fixtureLabel, schemas) {
 	}
 
 	return schema.safeParse(input);
+}
+
+async function loadVersionSchemas(version, distVersionDir, dataTypeSchemas) {
+	const folderNames = readdirSync(distVersionDir, { withFileTypes: true })
+		.filter((d) => d.isDirectory())
+		.map((d) => d.name);
+	const folderModules = await Promise.all(
+		folderNames.map((name) => import(`../dist/${version}/${name}/index.js`)),
+	);
+
+	return Object.assign({}, dataTypeSchemas, ...folderModules);
 }
 
 function isRecord(value) {

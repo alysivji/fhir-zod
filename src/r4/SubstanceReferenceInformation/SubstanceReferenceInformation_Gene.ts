@@ -14,37 +14,37 @@ import { ReferenceSchemaInternal } from "../Reference";
 
 /** Todo. */
 export interface SubstanceReferenceInformation_Gene extends BackboneElement {
-  /** Todo. */
-  gene?: CodeableConcept;
-  /** Todo. */
-  geneSequenceOrigin?: CodeableConcept;
-  /** Todo. */
-  source?: Array<Reference>;
+	/** Todo. */
+	gene?: CodeableConcept;
+	/** Todo. */
+	geneSequenceOrigin?: CodeableConcept;
+	/** Todo. */
+	source?: Array<Reference>;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getReferenceSchema = (): z.ZodType<Reference> =>
-  ReferenceSchemaInternal as z.ZodType<Reference>;
+	ReferenceSchemaInternal as z.ZodType<Reference>;
 
 /** @internal */
 export const SubstanceReferenceInformation_GeneSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    gene: z.lazy(getCodeableConceptSchema).optional(),
-    geneSequenceOrigin: z.lazy(getCodeableConceptSchema).optional(),
-    source: z.lazy(getReferenceSchema).array().optional(),
-  })
-    .strict()
-    .superRefine((value, ctx) => {
-      const record = value as Record<string, unknown>;
-      validateReferenceTarget(
-        record.source,
-        "source",
-        ["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
-        ["DocumentReference"],
-        ctx,
-      );
-    });
+	BackboneElementSchemaInternal.extend({
+		gene: z.lazy(getCodeableConceptSchema).optional(),
+		geneSequenceOrigin: z.lazy(getCodeableConceptSchema).optional(),
+		source: z.lazy(getReferenceSchema).array().optional(),
+	})
+		.strict()
+		.superRefine((value, ctx) => {
+			const record = value as Record<string, unknown>;
+			validateReferenceTarget(
+				record.source,
+				"source",
+				["http://hl7.org/fhir/StructureDefinition/DocumentReference"],
+				["DocumentReference"],
+				ctx,
+			);
+		});
 
 export const SubstanceReferenceInformation_GeneSchema =
-  SubstanceReferenceInformation_GeneSchemaInternal as z.ZodType<SubstanceReferenceInformation_Gene>;
+	SubstanceReferenceInformation_GeneSchemaInternal as z.ZodType<SubstanceReferenceInformation_Gene>;

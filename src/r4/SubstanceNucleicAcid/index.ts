@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SubstanceNucleicAcidSchemaInternal } from "./SubstanceNucleicAcid";
 
 _registerFhirResourceSchemas({
-  SubstanceNucleicAcid: SubstanceNucleicAcidSchemaInternal,
+	SubstanceNucleicAcid: SubstanceNucleicAcidSchemaInternal,
 });

@@ -11,21 +11,21 @@ import { QuantitySchemaInternal } from "./Quantity";
 
 /** Reference range of possible or expected values. */
 export interface SubstanceAmount_ReferenceRange extends Element {
-  /** Upper limit possible or expected. */
-  highLimit?: Quantity;
-  /** Lower limit possible or expected. */
-  lowLimit?: Quantity;
+	/** Upper limit possible or expected. */
+	highLimit?: Quantity;
+	/** Lower limit possible or expected. */
+	lowLimit?: Quantity;
 }
 
 const getQuantitySchema = (): z.ZodType<Quantity> =>
-  QuantitySchemaInternal as z.ZodType<Quantity>;
+	QuantitySchemaInternal as z.ZodType<Quantity>;
 
 /** @internal */
 export const SubstanceAmount_ReferenceRangeSchemaInternal =
-  ElementSchemaInternal.extend({
-    highLimit: z.lazy(getQuantitySchema).optional(),
-    lowLimit: z.lazy(getQuantitySchema).optional(),
-  }).strict();
+	ElementSchemaInternal.extend({
+		highLimit: z.lazy(getQuantitySchema).optional(),
+		lowLimit: z.lazy(getQuantitySchema).optional(),
+	}).strict();
 
 export const SubstanceAmount_ReferenceRangeSchema =
-  SubstanceAmount_ReferenceRangeSchemaInternal as z.ZodType<SubstanceAmount_ReferenceRange>;
+	SubstanceAmount_ReferenceRangeSchemaInternal as z.ZodType<SubstanceAmount_ReferenceRange>;

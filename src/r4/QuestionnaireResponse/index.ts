@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { QuestionnaireResponseSchemaInternal } from "./QuestionnaireResponse";
 
 _registerFhirResourceSchemas({
-  QuestionnaireResponse: QuestionnaireResponseSchemaInternal,
+	QuestionnaireResponse: QuestionnaireResponseSchemaInternal,
 });

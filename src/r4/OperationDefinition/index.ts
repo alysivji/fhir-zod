@@ -16,5 +16,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { OperationDefinitionSchemaInternal } from "./OperationDefinition";
 
 _registerFhirResourceSchemas({
-  OperationDefinition: OperationDefinitionSchemaInternal,
+	OperationDefinition: OperationDefinitionSchemaInternal,
 });

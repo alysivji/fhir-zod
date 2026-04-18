@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DeviceUseStatementSchemaInternal } from "./DeviceUseStatement";
 
 _registerFhirResourceSchemas({
-  DeviceUseStatement: DeviceUseStatementSchemaInternal,
+	DeviceUseStatement: DeviceUseStatementSchemaInternal,
 });

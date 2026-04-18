@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { InvoiceSchemaInternal } from "./Invoice";
 
 _registerFhirResourceSchemas({
-  Invoice: InvoiceSchemaInternal,
+	Invoice: InvoiceSchemaInternal,
 });

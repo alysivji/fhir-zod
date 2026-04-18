@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { GoalSchemaInternal } from "./Goal";
 
 _registerFhirResourceSchemas({
-  Goal: GoalSchemaInternal,
+	Goal: GoalSchemaInternal,
 });

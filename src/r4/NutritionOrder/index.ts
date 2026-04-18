@@ -20,5 +20,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { NutritionOrderSchemaInternal } from "./NutritionOrder";
 
 _registerFhirResourceSchemas({
-  NutritionOrder: NutritionOrderSchemaInternal,
+	NutritionOrder: NutritionOrderSchemaInternal,
 });

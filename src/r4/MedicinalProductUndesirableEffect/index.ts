@@ -8,6 +8,6 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MedicinalProductUndesirableEffectSchemaInternal } from "./MedicinalProductUndesirableEffect";
 
 _registerFhirResourceSchemas({
-  MedicinalProductUndesirableEffect:
-    MedicinalProductUndesirableEffectSchemaInternal,
+	MedicinalProductUndesirableEffect:
+		MedicinalProductUndesirableEffectSchemaInternal,
 });

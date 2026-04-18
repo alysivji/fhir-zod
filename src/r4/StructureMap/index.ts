@@ -24,5 +24,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { StructureMapSchemaInternal } from "./StructureMap";
 
 _registerFhirResourceSchemas({
-  StructureMap: StructureMapSchemaInternal,
+	StructureMap: StructureMapSchemaInternal,
 });

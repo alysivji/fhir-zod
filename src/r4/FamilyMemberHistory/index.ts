@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { FamilyMemberHistorySchemaInternal } from "./FamilyMemberHistory";
 
 _registerFhirResourceSchemas({
-  FamilyMemberHistory: FamilyMemberHistorySchemaInternal,
+	FamilyMemberHistory: FamilyMemberHistorySchemaInternal,
 });

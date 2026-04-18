@@ -14,26 +14,26 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Coding words or phrases of the name. */
 export interface MedicinalProduct_Name_NamePart extends BackboneElement {
-  /** A fragment of a product name. */
-  part: string;
-  /** Extensions for part */
-  _part?: Element;
-  /** Idenifying type for this part of the name (e.g. strength part). */
-  type: Coding;
+	/** A fragment of a product name. */
+	part: string;
+	/** Extensions for part */
+	_part?: Element;
+	/** Idenifying type for this part of the name (e.g. strength part). */
+	type: Coding;
 }
 
 const getCodingSchema = (): z.ZodType<Coding> =>
-  CodingSchemaInternal as z.ZodType<Coding>;
+	CodingSchemaInternal as z.ZodType<Coding>;
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const MedicinalProduct_Name_NamePartSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    part: fhirString(),
-    _part: z.lazy(getElementSchema).optional(),
-    type: z.lazy(getCodingSchema),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		part: fhirString(),
+		_part: z.lazy(getElementSchema).optional(),
+		type: z.lazy(getCodingSchema),
+	}).strict();
 
 export const MedicinalProduct_Name_NamePartSchema =
-  MedicinalProduct_Name_NamePartSchemaInternal as z.ZodType<MedicinalProduct_Name_NamePart>;
+	MedicinalProduct_Name_NamePartSchemaInternal as z.ZodType<MedicinalProduct_Name_NamePart>;

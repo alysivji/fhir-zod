@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { GraphDefinitionSchemaInternal } from "./GraphDefinition";
 
 _registerFhirResourceSchemas({
-  GraphDefinition: GraphDefinitionSchemaInternal,
+	GraphDefinition: GraphDefinitionSchemaInternal,
 });

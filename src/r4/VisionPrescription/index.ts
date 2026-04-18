@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { VisionPrescriptionSchemaInternal } from "./VisionPrescription";
 
 _registerFhirResourceSchemas({
-  VisionPrescription: VisionPrescriptionSchemaInternal,
+	VisionPrescription: VisionPrescriptionSchemaInternal,
 });

@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EnrollmentRequestSchemaInternal } from "./EnrollmentRequest";
 
 _registerFhirResourceSchemas({
-  EnrollmentRequest: EnrollmentRequestSchemaInternal,
+	EnrollmentRequest: EnrollmentRequestSchemaInternal,
 });

@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { AdverseEventSchemaInternal } from "./AdverseEvent";
 
 _registerFhirResourceSchemas({
-  AdverseEvent: AdverseEventSchemaInternal,
+	AdverseEvent: AdverseEventSchemaInternal,
 });

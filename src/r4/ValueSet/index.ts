@@ -24,5 +24,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ValueSetSchemaInternal } from "./ValueSet";
 
 _registerFhirResourceSchemas({
-  ValueSet: ValueSetSchemaInternal,
+	ValueSet: ValueSetSchemaInternal,
 });

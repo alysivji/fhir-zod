@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ResearchElementDefinitionSchemaInternal } from "./ResearchElementDefinition";
 
 _registerFhirResourceSchemas({
-  ResearchElementDefinition: ResearchElementDefinitionSchemaInternal,
+	ResearchElementDefinition: ResearchElementDefinitionSchemaInternal,
 });

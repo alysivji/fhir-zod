@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ProcedureSchemaInternal } from "./Procedure";
 
 _registerFhirResourceSchemas({
-  Procedure: ProcedureSchemaInternal,
+	Procedure: ProcedureSchemaInternal,
 });

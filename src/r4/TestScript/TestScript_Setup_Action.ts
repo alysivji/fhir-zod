@@ -13,25 +13,25 @@ import { TestScript_Setup_Action_OperationSchemaInternal } from "./TestScript_Se
 
 /** Action would contain either an operation or an assertion. */
 export interface TestScript_Setup_Action extends BackboneElement {
-  /** Evaluates the results of previous operations to determine if the server under test behaves appropriately. */
-  assert?: TestScript_Setup_Action_Assert;
-  /** The operation to perform. */
-  operation?: TestScript_Setup_Action_Operation;
+	/** Evaluates the results of previous operations to determine if the server under test behaves appropriately. */
+	assert?: TestScript_Setup_Action_Assert;
+	/** The operation to perform. */
+	operation?: TestScript_Setup_Action_Operation;
 }
 
 const getTestScript_Setup_Action_AssertSchema =
-  (): z.ZodType<TestScript_Setup_Action_Assert> =>
-    TestScript_Setup_Action_AssertSchemaInternal as z.ZodType<TestScript_Setup_Action_Assert>;
+	(): z.ZodType<TestScript_Setup_Action_Assert> =>
+		TestScript_Setup_Action_AssertSchemaInternal as z.ZodType<TestScript_Setup_Action_Assert>;
 const getTestScript_Setup_Action_OperationSchema =
-  (): z.ZodType<TestScript_Setup_Action_Operation> =>
-    TestScript_Setup_Action_OperationSchemaInternal as z.ZodType<TestScript_Setup_Action_Operation>;
+	(): z.ZodType<TestScript_Setup_Action_Operation> =>
+		TestScript_Setup_Action_OperationSchemaInternal as z.ZodType<TestScript_Setup_Action_Operation>;
 
 /** @internal */
 export const TestScript_Setup_ActionSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    assert: z.lazy(getTestScript_Setup_Action_AssertSchema).optional(),
-    operation: z.lazy(getTestScript_Setup_Action_OperationSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		assert: z.lazy(getTestScript_Setup_Action_AssertSchema).optional(),
+		operation: z.lazy(getTestScript_Setup_Action_OperationSchema).optional(),
+	}).strict();
 
 export const TestScript_Setup_ActionSchema =
-  TestScript_Setup_ActionSchemaInternal as z.ZodType<TestScript_Setup_Action>;
+	TestScript_Setup_ActionSchemaInternal as z.ZodType<TestScript_Setup_Action>;

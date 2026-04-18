@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { HealthcareServiceSchemaInternal } from "./HealthcareService";
 
 _registerFhirResourceSchemas({
-  HealthcareService: HealthcareServiceSchemaInternal,
+	HealthcareService: HealthcareServiceSchemaInternal,
 });

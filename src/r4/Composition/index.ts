@@ -16,5 +16,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CompositionSchemaInternal } from "./Composition";
 
 _registerFhirResourceSchemas({
-  Composition: CompositionSchemaInternal,
+	Composition: CompositionSchemaInternal,
 });

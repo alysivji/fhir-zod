@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CodeSystemSchemaInternal } from "./CodeSystem";
 
 _registerFhirResourceSchemas({
-  CodeSystem: CodeSystemSchemaInternal,
+	CodeSystem: CodeSystemSchemaInternal,
 });

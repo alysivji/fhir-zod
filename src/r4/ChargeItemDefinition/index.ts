@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ChargeItemDefinitionSchemaInternal } from "./ChargeItemDefinition";
 
 _registerFhirResourceSchemas({
-  ChargeItemDefinition: ChargeItemDefinitionSchemaInternal,
+	ChargeItemDefinition: ChargeItemDefinitionSchemaInternal,
 });

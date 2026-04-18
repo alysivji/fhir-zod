@@ -76,8 +76,11 @@ describe("package tree shaking", () => {
 				"./dist/r4/index.js",
 				"./dist/r4/*/index.js",
 				"./dist/r4b/index.js",
+				"./dist/r4b/*/index.js",
 				"./dist/r5/index.js",
+				"./dist/r5/*/index.js",
 				"./dist/stu3/index.js",
+				"./dist/stu3/*/index.js",
 			]);
 
 			const r4Index = join(distDir, "r4/index.js");

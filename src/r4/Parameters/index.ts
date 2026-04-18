@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ParametersSchemaInternal } from "./Parameters";
 
 _registerFhirResourceSchemas({
-  Parameters: ParametersSchemaInternal,
+	Parameters: ParametersSchemaInternal,
 });

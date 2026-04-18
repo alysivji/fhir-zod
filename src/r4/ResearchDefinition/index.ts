@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ResearchDefinitionSchemaInternal } from "./ResearchDefinition";
 
 _registerFhirResourceSchemas({
-  ResearchDefinition: ResearchDefinitionSchemaInternal,
+	ResearchDefinition: ResearchDefinitionSchemaInternal,
 });

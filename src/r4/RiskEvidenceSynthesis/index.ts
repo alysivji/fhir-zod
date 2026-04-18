@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { RiskEvidenceSynthesisSchemaInternal } from "./RiskEvidenceSynthesis";
 
 _registerFhirResourceSchemas({
-  RiskEvidenceSynthesis: RiskEvidenceSynthesisSchemaInternal,
+	RiskEvidenceSynthesis: RiskEvidenceSynthesisSchemaInternal,
 });

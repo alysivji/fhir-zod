@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ConsentSchemaInternal } from "./Consent";
 
 _registerFhirResourceSchemas({
-  Consent: ConsentSchemaInternal,
+	Consent: ConsentSchemaInternal,
 });

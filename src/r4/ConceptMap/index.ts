@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ConceptMapSchemaInternal } from "./ConceptMap";
 
 _registerFhirResourceSchemas({
-  ConceptMap: ConceptMapSchemaInternal,
+	ConceptMap: ConceptMapSchemaInternal,
 });

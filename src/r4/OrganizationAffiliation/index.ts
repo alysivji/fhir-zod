@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { OrganizationAffiliationSchemaInternal } from "./OrganizationAffiliation";
 
 _registerFhirResourceSchemas({
-  OrganizationAffiliation: OrganizationAffiliationSchemaInternal,
+	OrganizationAffiliation: OrganizationAffiliationSchemaInternal,
 });

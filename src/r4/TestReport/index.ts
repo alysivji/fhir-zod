@@ -26,5 +26,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { TestReportSchemaInternal } from "./TestReport";
 
 _registerFhirResourceSchemas({
-  TestReport: TestReportSchemaInternal,
+	TestReport: TestReportSchemaInternal,
 });

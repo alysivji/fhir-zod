@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SlotSchemaInternal } from "./Slot";
 
 _registerFhirResourceSchemas({
-  Slot: SlotSchemaInternal,
+	Slot: SlotSchemaInternal,
 });

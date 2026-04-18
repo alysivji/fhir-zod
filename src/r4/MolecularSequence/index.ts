@@ -24,5 +24,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MolecularSequenceSchemaInternal } from "./MolecularSequence";
 
 _registerFhirResourceSchemas({
-  MolecularSequence: MolecularSequenceSchemaInternal,
+	MolecularSequence: MolecularSequenceSchemaInternal,
 });

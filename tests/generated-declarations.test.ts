@@ -102,18 +102,16 @@ describe("generated declarations", () => {
 			expect(quantityDts).toContain(
 				"export interface Quantity extends Element",
 			);
-			expect(indexDts).toContain(
-				'export type { Quantity } from "./Quantity";',
-			);
-			expect(indexDts).not.toContain('export type { Account }');
+			expect(indexDts).toContain('export type { Quantity } from "./Quantity";');
+			expect(indexDts).not.toContain("export type { Account }");
 			expect(indexDts).not.toContain("export { AccountSchema }");
-			expect(indexDts).not.toContain('export type { Observation }');
+			expect(indexDts).not.toContain("export type { Observation }");
 			expect(indexDts).not.toContain("export { ObservationSchema }");
-			expect(indexDts).not.toContain('export type { Patient } from');
+			expect(indexDts).not.toContain("export type { Patient } from");
 			expect(indexDts).not.toContain("export { PatientSchema }");
 
 			const r4bBundleDts = readFileSync(
-				join(outDir, "src", "r4b", "Bundle.d.ts"),
+				join(outDir, "src", "r4b", "Bundle", "Bundle.d.ts"),
 				"utf8",
 			);
 			const r4bIndexDts = readFileSync(
@@ -121,11 +119,15 @@ describe("generated declarations", () => {
 				"utf8",
 			);
 			const r4bPatientDts = readFileSync(
-				join(outDir, "src", "r4b", "Patient.d.ts"),
+				join(outDir, "src", "r4b", "Patient", "Patient.d.ts"),
 				"utf8",
 			);
 			const r4bPatientContactDts = readFileSync(
-				join(outDir, "src", "r4b", "Patient_Contact.d.ts"),
+				join(outDir, "src", "r4b", "Patient", "Patient_Contact.d.ts"),
+				"utf8",
+			);
+			const r4bPatientIndexDts = readFileSync(
+				join(outDir, "src", "r4b", "Patient", "index.d.ts"),
 				"utf8",
 			);
 			const r4bQuantityDts = readFileSync(
@@ -155,15 +157,17 @@ describe("generated declarations", () => {
 			);
 			expect(r4bTimingDts).toContain("event?: Array<string | null>;");
 			expect(r4bTimingDts).toContain("_event?: Array<Element | null>;");
-			expect(r4bIndexDts).toContain(
+			expect(r4bPatientIndexDts).toContain(
 				'export type { Patient } from "./Patient";',
 			);
-			expect(r4bIndexDts).toContain(
+			expect(r4bPatientIndexDts).toContain(
 				'export { PatientSchema } from "./Patient";',
 			);
+			expect(r4bIndexDts).not.toContain("export type { Patient } from");
+			expect(r4bIndexDts).not.toContain("export { PatientSchema }");
 
 			const stu3BundleDts = readFileSync(
-				join(outDir, "src", "stu3", "Bundle.d.ts"),
+				join(outDir, "src", "stu3", "Bundle", "Bundle.d.ts"),
 				"utf8",
 			);
 			const stu3IndexDts = readFileSync(
@@ -171,11 +175,15 @@ describe("generated declarations", () => {
 				"utf8",
 			);
 			const stu3PatientDts = readFileSync(
-				join(outDir, "src", "stu3", "Patient.d.ts"),
+				join(outDir, "src", "stu3", "Patient", "Patient.d.ts"),
 				"utf8",
 			);
 			const stu3PatientContactDts = readFileSync(
-				join(outDir, "src", "stu3", "Patient_Contact.d.ts"),
+				join(outDir, "src", "stu3", "Patient", "Patient_Contact.d.ts"),
+				"utf8",
+			);
+			const stu3PatientIndexDts = readFileSync(
+				join(outDir, "src", "stu3", "Patient", "index.d.ts"),
 				"utf8",
 			);
 			const stu3QuantityDts = readFileSync(
@@ -199,12 +207,14 @@ describe("generated declarations", () => {
 			expect(stu3QuantityDts).toContain(
 				"export interface Quantity extends Element",
 			);
-			expect(stu3IndexDts).toContain(
+			expect(stu3PatientIndexDts).toContain(
 				'export type { Patient } from "./Patient";',
 			);
-			expect(stu3IndexDts).toContain(
+			expect(stu3PatientIndexDts).toContain(
 				'export { PatientSchema } from "./Patient";',
 			);
+			expect(stu3IndexDts).not.toContain("export type { Patient } from");
+			expect(stu3IndexDts).not.toContain("export { PatientSchema }");
 		},
 		DECLARATION_EMIT_TIMEOUT_MS,
 	);

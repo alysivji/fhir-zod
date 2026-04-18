@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EvidenceVariableSchemaInternal } from "./EvidenceVariable";
 
 _registerFhirResourceSchemas({
-  EvidenceVariable: EvidenceVariableSchemaInternal,
+	EvidenceVariable: EvidenceVariableSchemaInternal,
 });

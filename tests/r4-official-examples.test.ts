@@ -6,10 +6,7 @@ import { r4ExampleExpectedFailures } from "./r4-example-expected-failures.ts";
 const r4FolderModules = import.meta.glob("../src/r4/*/index.ts", {
 	eager: true,
 });
-const r4ResourceSchemas = Object.assign(
-	{},
-	...Object.values(r4FolderModules),
-);
+const r4ResourceSchemas = Object.assign({}, ...Object.values(r4FolderModules));
 
 describeOfficialExamplesSuite({
 	expectedFailures: r4ExampleExpectedFailures,

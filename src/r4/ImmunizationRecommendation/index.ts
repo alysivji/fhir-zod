@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ImmunizationRecommendationSchemaInternal } from "./ImmunizationRecommendation";
 
 _registerFhirResourceSchemas({
-  ImmunizationRecommendation: ImmunizationRecommendationSchemaInternal,
+	ImmunizationRecommendation: ImmunizationRecommendationSchemaInternal,
 });

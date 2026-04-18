@@ -12,27 +12,27 @@ import { ElementSchemaInternal } from "../Element";
 
 /** A link to the FHIR specification that this test is covering. */
 export interface TestScript_Metadata_Link extends BackboneElement {
-  /** Short description of the link. */
-  description?: string;
-  /** Extensions for description */
-  _description?: Element;
-  /** URL to a particular requirement or feature within the FHIR specification. */
-  url: string;
-  /** Extensions for url */
-  _url?: Element;
+	/** Short description of the link. */
+	description?: string;
+	/** Extensions for description */
+	_description?: Element;
+	/** URL to a particular requirement or feature within the FHIR specification. */
+	url: string;
+	/** Extensions for url */
+	_url?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const TestScript_Metadata_LinkSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    description: fhirString().optional(),
-    _description: z.lazy(getElementSchema).optional(),
-    url: fhirUri(),
-    _url: z.lazy(getElementSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		description: fhirString().optional(),
+		_description: z.lazy(getElementSchema).optional(),
+		url: fhirUri(),
+		_url: z.lazy(getElementSchema).optional(),
+	}).strict();
 
 export const TestScript_Metadata_LinkSchema =
-  TestScript_Metadata_LinkSchemaInternal as z.ZodType<TestScript_Metadata_Link>;
+	TestScript_Metadata_LinkSchemaInternal as z.ZodType<TestScript_Metadata_Link>;

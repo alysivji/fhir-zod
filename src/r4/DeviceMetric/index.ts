@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DeviceMetricSchemaInternal } from "./DeviceMetric";
 
 _registerFhirResourceSchemas({
-  DeviceMetric: DeviceMetricSchemaInternal,
+	DeviceMetric: DeviceMetricSchemaInternal,
 });

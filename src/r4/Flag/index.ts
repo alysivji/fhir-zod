@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { FlagSchemaInternal } from "./Flag";
 
 _registerFhirResourceSchemas({
-  Flag: FlagSchemaInternal,
+	Flag: FlagSchemaInternal,
 });

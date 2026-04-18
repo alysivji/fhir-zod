@@ -16,5 +16,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SubstanceReferenceInformationSchemaInternal } from "./SubstanceReferenceInformation";
 
 _registerFhirResourceSchemas({
-  SubstanceReferenceInformation: SubstanceReferenceInformationSchemaInternal,
+	SubstanceReferenceInformation: SubstanceReferenceInformationSchemaInternal,
 });

@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { NamingSystemSchemaInternal } from "./NamingSystem";
 
 _registerFhirResourceSchemas({
-  NamingSystem: NamingSystemSchemaInternal,
+	NamingSystem: NamingSystemSchemaInternal,
 });

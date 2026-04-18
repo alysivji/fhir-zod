@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ServiceRequestSchemaInternal } from "./ServiceRequest";
 
 _registerFhirResourceSchemas({
-  ServiceRequest: ServiceRequestSchemaInternal,
+	ServiceRequest: ServiceRequestSchemaInternal,
 });

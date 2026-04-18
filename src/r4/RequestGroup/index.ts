@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { RequestGroupSchemaInternal } from "./RequestGroup";
 
 _registerFhirResourceSchemas({
-  RequestGroup: RequestGroupSchemaInternal,
+	RequestGroup: RequestGroupSchemaInternal,
 });

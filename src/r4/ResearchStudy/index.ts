@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ResearchStudySchemaInternal } from "./ResearchStudy";
 
 _registerFhirResourceSchemas({
-  ResearchStudy: ResearchStudySchemaInternal,
+	ResearchStudy: ResearchStudySchemaInternal,
 });

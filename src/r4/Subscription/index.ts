@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SubscriptionSchemaInternal } from "./Subscription";
 
 _registerFhirResourceSchemas({
-  Subscription: SubscriptionSchemaInternal,
+	Subscription: SubscriptionSchemaInternal,
 });

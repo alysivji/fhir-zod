@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ChargeItemSchemaInternal } from "./ChargeItem";
 
 _registerFhirResourceSchemas({
-  ChargeItem: ChargeItemSchemaInternal,
+	ChargeItem: ChargeItemSchemaInternal,
 });

@@ -1,7 +1,7 @@
 import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { repoRoot } from "../src/generator/shared.ts";
-import { R4Release } from "../src/generator/versions.ts";
+import { fhirReleases } from "../src/generator/versions.ts";
 
 // Resource names listed at https://hl7.org/fhir/R4/resourcelist.html
 const HL7_R4_RESOURCES = new Set([
@@ -153,47 +153,60 @@ const HL7_R4_RESOURCES = new Set([
 	"VisionPrescription",
 ]);
 
-const r4Dir = resolve(repoRoot, "src", "r4");
-const specResources = new Set(new R4Release().listCoreResourceNames());
-const folderedResources = new Set(
-	readdirSync(r4Dir, { withFileTypes: true })
-		.filter((d) => d.isDirectory())
-		.map((d) => d.name),
-);
+let foldersMatchSpec = true;
+const r4SpecResources = new Set(fhirReleases.r4.listCoreResourceNames());
 
-// --- Folders vs spec ---
-console.log("=== Folders vs spec ===");
-console.log(`Spec core resources:  ${specResources.size}`);
-console.log(`Foldered directories: ${folderedResources.size}`);
+for (const release of Object.values(fhirReleases)) {
+	const versionDir = resolve(repoRoot, "src", release.id);
+	const specResources = new Set(release.listCoreResourceNames());
+	const folderedResources = new Set(
+		readdirSync(versionDir, { withFileTypes: true })
+			.filter((d) => d.isDirectory())
+			.map((d) => d.name),
+	);
 
-const inSpecNotFoldered = [...specResources].filter(
-	(n) => !folderedResources.has(n),
-);
-const folderedNotInSpec = [...folderedResources].filter(
-	(n) => !specResources.has(n),
-);
+	console.log(`=== ${release.label} folders vs spec ===`);
+	console.log(`Spec core resources:  ${specResources.size}`);
+	console.log(`Foldered directories: ${folderedResources.size}`);
 
-if (inSpecNotFoldered.length) {
-	console.error("\nIn spec but NOT foldered:");
-	for (const n of inSpecNotFoldered) console.error(`  - ${n}`);
-}
-if (folderedNotInSpec.length) {
-	console.error("\nFoldered but NOT in spec:");
-	for (const n of folderedNotInSpec) console.error(`  - ${n}`);
-}
+	const inSpecNotFoldered = [...specResources].filter(
+		(n) => !folderedResources.has(n),
+	);
+	const folderedNotInSpec = [...folderedResources].filter(
+		(n) => !specResources.has(n),
+	);
 
-const foldersMatchSpec = !inSpecNotFoldered.length && !folderedNotInSpec.length;
-if (foldersMatchSpec) {
-	console.log("✓ Folders match spec exactly.");
+	if (inSpecNotFoldered.length) {
+		console.error("\nIn spec but NOT foldered:");
+		for (const n of inSpecNotFoldered) console.error(`  - ${n}`);
+	}
+	if (folderedNotInSpec.length) {
+		console.error("\nFoldered but NOT in spec:");
+		for (const n of folderedNotInSpec) console.error(`  - ${n}`);
+	}
+
+	if (inSpecNotFoldered.length || folderedNotInSpec.length) {
+		foldersMatchSpec = false;
+	} else {
+		console.log("Folders match spec exactly.");
+	}
+
+	console.log("");
 }
 
 // --- Spec vs HL7 resource list ---
-console.log("\n=== Spec vs HL7 resource list (https://hl7.org/fhir/R4/resourcelist.html) ===");
+console.log(
+	"\n=== Spec vs HL7 resource list (https://hl7.org/fhir/R4/resourcelist.html) ===",
+);
 console.log(`HL7 resource list:    ${HL7_R4_RESOURCES.size}`);
-console.log(`Spec core resources:  ${specResources.size}`);
+console.log(`Spec core resources:  ${r4SpecResources.size}`);
 
-const inHL7NotSpec = [...HL7_R4_RESOURCES].filter((n) => !specResources.has(n));
-const inSpecNotHL7 = [...specResources].filter((n) => !HL7_R4_RESOURCES.has(n));
+const inHL7NotSpec = [...HL7_R4_RESOURCES].filter(
+	(n) => !r4SpecResources.has(n),
+);
+const inSpecNotHL7 = [...r4SpecResources].filter(
+	(n) => !HL7_R4_RESOURCES.has(n),
+);
 
 if (inHL7NotSpec.length) {
 	console.log("\nOn HL7 list but NOT in spec:");
@@ -204,7 +217,7 @@ if (inSpecNotHL7.length) {
 	for (const n of inSpecNotHL7) console.log(`  - ${n}`);
 }
 if (!inHL7NotSpec.length && !inSpecNotHL7.length) {
-	console.log("✓ Spec matches HL7 resource list exactly.");
+	console.log("Spec matches HL7 resource list exactly.");
 }
 
 // Exit 1 only if folder coverage is incomplete

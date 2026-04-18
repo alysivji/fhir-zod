@@ -34,5 +34,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CapabilityStatementSchemaInternal } from "./CapabilityStatement";
 
 _registerFhirResourceSchemas({
-  CapabilityStatement: CapabilityStatementSchemaInternal,
+	CapabilityStatement: CapabilityStatementSchemaInternal,
 });

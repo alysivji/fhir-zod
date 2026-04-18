@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { PractitionerRoleSchemaInternal } from "./PractitionerRole";
 
 _registerFhirResourceSchemas({
-  PractitionerRole: PractitionerRoleSchemaInternal,
+	PractitionerRole: PractitionerRoleSchemaInternal,
 });

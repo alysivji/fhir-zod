@@ -22,5 +22,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { PlanDefinitionSchemaInternal } from "./PlanDefinition";
 
 _registerFhirResourceSchemas({
-  PlanDefinition: PlanDefinitionSchemaInternal,
+	PlanDefinition: PlanDefinitionSchemaInternal,
 });

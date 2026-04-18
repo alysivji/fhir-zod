@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SearchParameterSchemaInternal } from "./SearchParameter";
 
 _registerFhirResourceSchemas({
-  SearchParameter: SearchParameterSchemaInternal,
+	SearchParameter: SearchParameterSchemaInternal,
 });

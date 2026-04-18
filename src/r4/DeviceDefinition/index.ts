@@ -20,5 +20,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { DeviceDefinitionSchemaInternal } from "./DeviceDefinition";
 
 _registerFhirResourceSchemas({
-  DeviceDefinition: DeviceDefinitionSchemaInternal,
+	DeviceDefinition: DeviceDefinitionSchemaInternal,
 });

@@ -26,11 +26,17 @@ configureFhirString({ allowEmpty: true });
 
 const { HumanNameSchema: R4HumanNameSchema } = await import("fhir-zod/r4");
 const { BundleSchema: R4BundleSchema } = await import("fhir-zod/r4/Bundle");
-const { ObservationSchema: R4ObservationSchema } = await import("fhir-zod/r4/Observation");
+const { ObservationSchema: R4ObservationSchema } = await import(
+	"fhir-zod/r4/Observation"
+);
 const { PatientSchema: R4PatientSchema } = await import("fhir-zod/r4/Patient");
-const { PatientSchema: R4BPatientSchema } = await import("fhir-zod/r4b");
-const { PatientSchema: R5PatientSchema } = await import("fhir-zod/r5");
-const { PatientSchema: STU3PatientSchema } = await import("fhir-zod/stu3");
+const { PatientSchema: R4BPatientSchema } = await import(
+	"fhir-zod/r4b/Patient"
+);
+const { PatientSchema: R5PatientSchema } = await import("fhir-zod/r5/Patient");
+const { PatientSchema: STU3PatientSchema } = await import(
+	"fhir-zod/stu3/Patient"
+);
 
 assertParseSuccess(
 	R4HumanNameSchema,

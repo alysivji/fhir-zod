@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ClinicalImpressionSchemaInternal } from "./ClinicalImpression";
 
 _registerFhirResourceSchemas({
-  ClinicalImpression: ClinicalImpressionSchemaInternal,
+	ClinicalImpression: ClinicalImpressionSchemaInternal,
 });

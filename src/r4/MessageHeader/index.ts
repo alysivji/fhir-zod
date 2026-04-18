@@ -14,5 +14,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MessageHeaderSchemaInternal } from "./MessageHeader";
 
 _registerFhirResourceSchemas({
-  MessageHeader: MessageHeaderSchemaInternal,
+	MessageHeader: MessageHeaderSchemaInternal,
 });

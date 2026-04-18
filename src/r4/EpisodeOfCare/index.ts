@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { EpisodeOfCareSchemaInternal } from "./EpisodeOfCare";
 
 _registerFhirResourceSchemas({
-  EpisodeOfCare: EpisodeOfCareSchemaInternal,
+	EpisodeOfCare: EpisodeOfCareSchemaInternal,
 });

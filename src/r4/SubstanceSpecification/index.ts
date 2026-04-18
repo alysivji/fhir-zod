@@ -28,5 +28,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { SubstanceSpecificationSchemaInternal } from "./SubstanceSpecification";
 
 _registerFhirResourceSchemas({
-  SubstanceSpecification: SubstanceSpecificationSchemaInternal,
+	SubstanceSpecification: SubstanceSpecificationSchemaInternal,
 });

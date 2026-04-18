@@ -8,9 +8,9 @@ export default defineConfig({
 		alias: [
 			{
 				find: /^fhir-zod\/r4\/(.+)$/,
-				replacement:
-					fileURLToPath(new URL("./src/r4/", import.meta.url)) +
-					"$1/index.ts",
+				replacement: `${fileURLToPath(
+					new URL("./src/r4/", import.meta.url),
+				)}$1/index.ts`,
 			},
 			{
 				find: "fhir-zod/r4",
@@ -19,16 +19,34 @@ export default defineConfig({
 				),
 			},
 			{
+				find: /^fhir-zod\/r4b\/(.+)$/,
+				replacement: `${fileURLToPath(
+					new URL("./src/r4b/", import.meta.url),
+				)}$1/index.ts`,
+			},
+			{
 				find: "fhir-zod/r4b",
 				replacement: fileURLToPath(
 					new URL("./src/r4b/index.ts", import.meta.url),
 				),
 			},
 			{
+				find: /^fhir-zod\/r5\/(.+)$/,
+				replacement: `${fileURLToPath(
+					new URL("./src/r5/", import.meta.url),
+				)}$1/index.ts`,
+			},
+			{
 				find: "fhir-zod/r5",
 				replacement: fileURLToPath(
 					new URL("./src/r5/index.ts", import.meta.url),
 				),
+			},
+			{
+				find: /^fhir-zod\/stu3\/(.+)$/,
+				replacement: `${fileURLToPath(
+					new URL("./src/stu3/", import.meta.url),
+				)}$1/index.ts`,
 			},
 			{
 				find: "fhir-zod/stu3",

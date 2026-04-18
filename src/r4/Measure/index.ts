@@ -18,5 +18,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MeasureSchemaInternal } from "./Measure";
 
 _registerFhirResourceSchemas({
-  Measure: MeasureSchemaInternal,
+	Measure: MeasureSchemaInternal,
 });

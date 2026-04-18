@@ -12,28 +12,28 @@ import { ElementSchemaInternal } from "../Element";
 
 /** Supported expansion parameter. */
 export interface TerminologyCapabilities_Expansion_Parameter
-  extends BackboneElement {
-  /** Description of support for parameter. */
-  documentation?: string;
-  /** Extensions for documentation */
-  _documentation?: Element;
-  /** Expansion Parameter name. */
-  name: string;
-  /** Extensions for name */
-  _name?: Element;
+	extends BackboneElement {
+	/** Description of support for parameter. */
+	documentation?: string;
+	/** Extensions for documentation */
+	_documentation?: Element;
+	/** Expansion Parameter name. */
+	name: string;
+	/** Extensions for name */
+	_name?: Element;
 }
 
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 
 /** @internal */
 export const TerminologyCapabilities_Expansion_ParameterSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    documentation: fhirString().optional(),
-    _documentation: z.lazy(getElementSchema).optional(),
-    name: fhirCode(),
-    _name: z.lazy(getElementSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		documentation: fhirString().optional(),
+		_documentation: z.lazy(getElementSchema).optional(),
+		name: fhirCode(),
+		_name: z.lazy(getElementSchema).optional(),
+	}).strict();
 
 export const TerminologyCapabilities_Expansion_ParameterSchema =
-  TerminologyCapabilities_Expansion_ParameterSchemaInternal as z.ZodType<TerminologyCapabilities_Expansion_Parameter>;
+	TerminologyCapabilities_Expansion_ParameterSchemaInternal as z.ZodType<TerminologyCapabilities_Expansion_Parameter>;

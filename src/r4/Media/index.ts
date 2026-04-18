@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MediaSchemaInternal } from "./Media";
 
 _registerFhirResourceSchemas({
-  Media: MediaSchemaInternal,
+	Media: MediaSchemaInternal,
 });

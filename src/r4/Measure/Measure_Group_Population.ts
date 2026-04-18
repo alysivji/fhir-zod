@@ -16,31 +16,31 @@ import { ExpressionSchemaInternal } from "../Expression";
 
 /** A population criteria for the measure. */
 export interface Measure_Group_Population extends BackboneElement {
-  /** The type of population criteria. */
-  code?: CodeableConcept;
-  /** An expression that specifies the criteria for the population, typically the name of an expression in a library. */
-  criteria: Expression;
-  /** The human readable description of this population criteria. */
-  description?: string;
-  /** Extensions for description */
-  _description?: Element;
+	/** The type of population criteria. */
+	code?: CodeableConcept;
+	/** An expression that specifies the criteria for the population, typically the name of an expression in a library. */
+	criteria: Expression;
+	/** The human readable description of this population criteria. */
+	description?: string;
+	/** Extensions for description */
+	_description?: Element;
 }
 
 const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
-  CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
 const getElementSchema = (): z.ZodType<Element> =>
-  ElementSchemaInternal as z.ZodType<Element>;
+	ElementSchemaInternal as z.ZodType<Element>;
 const getExpressionSchema = (): z.ZodType<Expression> =>
-  ExpressionSchemaInternal as z.ZodType<Expression>;
+	ExpressionSchemaInternal as z.ZodType<Expression>;
 
 /** @internal */
 export const Measure_Group_PopulationSchemaInternal =
-  BackboneElementSchemaInternal.extend({
-    code: z.lazy(getCodeableConceptSchema).optional(),
-    criteria: z.lazy(getExpressionSchema),
-    description: fhirString().optional(),
-    _description: z.lazy(getElementSchema).optional(),
-  }).strict();
+	BackboneElementSchemaInternal.extend({
+		code: z.lazy(getCodeableConceptSchema).optional(),
+		criteria: z.lazy(getExpressionSchema),
+		description: fhirString().optional(),
+		_description: z.lazy(getElementSchema).optional(),
+	}).strict();
 
 export const Measure_Group_PopulationSchema =
-  Measure_Group_PopulationSchemaInternal as z.ZodType<Measure_Group_Population>;
+	Measure_Group_PopulationSchemaInternal as z.ZodType<Measure_Group_Population>;

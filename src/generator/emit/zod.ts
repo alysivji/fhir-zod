@@ -378,7 +378,8 @@ function emitFhirResourceRegistrationLines(options: {
 	resources?: NormalizedDefinition[];
 }): string[] {
 	const resources =
-		options.resources ?? collectConcreteResourceDefinitions(options.definitions);
+		options.resources ??
+		collectConcreteResourceDefinitions(options.definitions);
 
 	return [
 		"",
@@ -681,7 +682,9 @@ function emitDefinitionFile(
 
 function sharedImportPath(fromFilePath: string, moduleName: string): string {
 	const target = resolve(repoRoot, "src", "shared", moduleName);
-	const importPath = relative(dirname(fromFilePath), target).split(sep).join("/");
+	const importPath = relative(dirname(fromFilePath), target)
+		.split(sep)
+		.join("/");
 	return importPath.startsWith(".") ? importPath : `./${importPath}`;
 }
 
@@ -1739,7 +1742,10 @@ function pruneGeneratedFiles(outputDir: string, nextFiles: string[]): void {
 	}
 }
 
-function collectGeneratedEntries(outputDir: string, directories: string[]): string[] {
+function collectGeneratedEntries(
+	outputDir: string,
+	directories: string[],
+): string[] {
 	const entries: string[] = [];
 
 	for (const entry of readdirSync(outputDir, { withFileTypes: true })) {

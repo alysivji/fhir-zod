@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { PersonSchemaInternal } from "./Person";
 
 _registerFhirResourceSchemas({
-  Person: PersonSchemaInternal,
+	Person: PersonSchemaInternal,
 });

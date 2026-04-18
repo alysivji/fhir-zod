@@ -16,5 +16,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CoverageEligibilityRequestSchemaInternal } from "./CoverageEligibilityRequest";
 
 _registerFhirResourceSchemas({
-  CoverageEligibilityRequest: CoverageEligibilityRequestSchemaInternal,
+	CoverageEligibilityRequest: CoverageEligibilityRequestSchemaInternal,
 });

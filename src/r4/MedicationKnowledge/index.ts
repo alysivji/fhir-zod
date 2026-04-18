@@ -40,5 +40,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { MedicationKnowledgeSchemaInternal } from "./MedicationKnowledge";
 
 _registerFhirResourceSchemas({
-  MedicationKnowledge: MedicationKnowledgeSchemaInternal,
+	MedicationKnowledge: MedicationKnowledgeSchemaInternal,
 });

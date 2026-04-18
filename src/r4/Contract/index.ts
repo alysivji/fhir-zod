@@ -38,5 +38,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ContractSchemaInternal } from "./Contract";
 
 _registerFhirResourceSchemas({
-  Contract: ContractSchemaInternal,
+	Contract: ContractSchemaInternal,
 });

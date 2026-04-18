@@ -101,7 +101,7 @@ describe("Zod emitter", () => {
 			"utf8",
 		);
 
-		expect(index).not.toContain('export type { Patient } from');
+		expect(index).not.toContain("export type { Patient } from");
 		expect(index).not.toContain("export { PatientSchema }");
 		expect(index).toContain(
 			'import type { FhirResource as FhirResourceType } from "./_fhirResourceSchema";',
@@ -112,7 +112,9 @@ describe("Zod emitter", () => {
 			'import { PatientSchemaInternal } from "./Patient/Patient";',
 		);
 		expect(patientIndex).toContain('export type { Patient } from "./Patient";');
-		expect(patientIndex).toContain('export { PatientSchema } from "./Patient";');
+		expect(patientIndex).toContain(
+			'export { PatientSchema } from "./Patient";',
+		);
 		expect(patientIndex).toContain(
 			'export type { Patient_Contact } from "./Patient_Contact";',
 		);

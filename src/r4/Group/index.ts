@@ -12,5 +12,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { GroupSchemaInternal } from "./Group";
 
 _registerFhirResourceSchemas({
-  Group: GroupSchemaInternal,
+	Group: GroupSchemaInternal,
 });

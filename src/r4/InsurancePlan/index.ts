@@ -26,5 +26,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { InsurancePlanSchemaInternal } from "./InsurancePlan";
 
 _registerFhirResourceSchemas({
-  InsurancePlan: InsurancePlanSchemaInternal,
+	InsurancePlan: InsurancePlanSchemaInternal,
 });

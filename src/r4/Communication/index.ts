@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { CommunicationSchemaInternal } from "./Communication";
 
 _registerFhirResourceSchemas({
-  Communication: CommunicationSchemaInternal,
+	Communication: CommunicationSchemaInternal,
 });

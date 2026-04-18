@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { GuidanceResponseSchemaInternal } from "./GuidanceResponse";
 
 _registerFhirResourceSchemas({
-  GuidanceResponse: GuidanceResponseSchemaInternal,
+	GuidanceResponse: GuidanceResponseSchemaInternal,
 });

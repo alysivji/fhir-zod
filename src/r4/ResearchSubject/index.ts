@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ResearchSubjectSchemaInternal } from "./ResearchSubject";
 
 _registerFhirResourceSchemas({
-  ResearchSubject: ResearchSubjectSchemaInternal,
+	ResearchSubject: ResearchSubjectSchemaInternal,
 });

@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { ListSchemaInternal } from "./List";
 
 _registerFhirResourceSchemas({
-  List: ListSchemaInternal,
+	List: ListSchemaInternal,
 });

@@ -10,5 +10,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { RiskAssessmentSchemaInternal } from "./RiskAssessment";
 
 _registerFhirResourceSchemas({
-  RiskAssessment: RiskAssessmentSchemaInternal,
+	RiskAssessment: RiskAssessmentSchemaInternal,
 });

@@ -8,5 +8,5 @@ import { _registerFhirResourceSchemas } from "../_fhirResourceSchema";
 import { AppointmentResponseSchemaInternal } from "./AppointmentResponse";
 
 _registerFhirResourceSchemas({
-  AppointmentResponse: AppointmentResponseSchemaInternal,
+	AppointmentResponse: AppointmentResponseSchemaInternal,
 });
