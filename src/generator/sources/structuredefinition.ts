@@ -501,8 +501,11 @@ function buildRootDefinition(
 		properties: sortProperties(properties),
 		resourceTypeLiteral,
 		sourceMetadata: {
-			profileUrl: definition.url ?? null,
 			releaseLabel: release.label,
+			sourceUrl: release.sourcePageUrl({
+				kind: definition.kind ?? "",
+				name,
+			}),
 			version: definition.version ?? definition.fhirVersion ?? null,
 		},
 	};
@@ -556,8 +559,13 @@ function buildSyntheticDefinition(
 		properties: sortProperties(properties),
 		resourceTypeLiteral: null,
 		sourceMetadata: {
-			profileUrl: definition.url ?? null,
 			releaseLabel: release.label,
+			sourceUrl: release.sourcePageUrl({
+				fhirPath,
+				kind: definition.kind ?? "",
+				name,
+				rootName,
+			}),
 			version: definition.version ?? definition.fhirVersion ?? null,
 		},
 	};

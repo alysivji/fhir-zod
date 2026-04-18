@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R5/types.html#BackboneType
 // Profile: http://hl7.org/fhir/StructureDefinition/BackboneType
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-18T17:27:36.849Z
 
 import * as z from "zod";
 import type { DataType } from "./DataType";

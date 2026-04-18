@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/STU3/elementdefinition-definitions.html#ElementDefinition.binding
 // Profile: http://hl7.org/fhir/StructureDefinition/ElementDefinition
 // Release: STU3
 // Version: 3.0.2
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-18T17:27:29.190Z
 
 import * as z from "zod";
 import { fhirString, fhirUri } from "../shared/fhir-primitives";

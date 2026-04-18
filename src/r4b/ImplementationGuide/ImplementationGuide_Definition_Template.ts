@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/implementationguide-definitions.html#ImplementationGuide.definition.template
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import * as z from "zod";
 import { fhirCode, fhirString } from "../../shared/fhir-primitives";

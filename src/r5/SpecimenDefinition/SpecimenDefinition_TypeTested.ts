@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R5/specimendefinition-definitions.html#SpecimenDefinition.typeTested
 // Profile: http://hl7.org/fhir/StructureDefinition/SpecimenDefinition
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-18T17:27:36.849Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";

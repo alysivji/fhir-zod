@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R5/implementationguide-definitions.html#ImplementationGuide.definition.resource
 // Profile: http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 // Release: R5
 // Version: 5.0.0
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-18T17:27:36.849Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation";

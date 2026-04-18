@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/consent-definitions.html#Consent.policy
 // Profile: http://hl7.org/fhir/StructureDefinition/Consent
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import * as z from "zod";
 import { fhirUri } from "../../shared/fhir-primitives";

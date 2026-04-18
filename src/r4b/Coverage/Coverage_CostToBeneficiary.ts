@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/coverage-definitions.html#Coverage.costToBeneficiary
 // Profile: http://hl7.org/fhir/StructureDefinition/Coverage
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import * as z from "zod";
 import type { BackboneElement } from "../BackboneElement";

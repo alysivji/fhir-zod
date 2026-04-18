@@ -88,8 +88,8 @@ const patientDefinition: NormalizedDefinition = {
 	properties: [resourceTypeProperty],
 	resourceTypeLiteral: "Patient",
 	sourceMetadata: {
-		profileUrl: "http://hl7.org/fhir/StructureDefinition/Patient",
 		releaseLabel: "R4",
+		sourceUrl: "https://hl7.org/fhir/R4/patient.html",
 		version: "4.0.1-test",
 	},
 };
@@ -161,6 +161,37 @@ describe("FHIR version registry", () => {
 		expect(new R4BRelease().exampleResourcePageUrl("Patient")).toBe(
 			"https://hl7.org/fhir/R4B/patient-examples.html",
 		);
+	});
+
+	it("builds official source page URLs for resources, datatypes, and nested elements", () => {
+		const release = new R4Release();
+
+		expect(
+			release.sourcePageUrl({
+				kind: "resource",
+				name: "Patient",
+			}),
+		).toBe("https://hl7.org/fhir/R4/patient.html");
+		expect(
+			release.sourcePageUrl({
+				kind: "complex-type",
+				name: "HumanName",
+			}),
+		).toBe("https://hl7.org/fhir/R4/datatypes.html#HumanName");
+		expect(
+			release.sourcePageUrl({
+				fhirPath: "Patient.contact",
+				kind: "resource",
+				name: "Patient_Contact",
+				rootName: "Patient",
+			}),
+		).toBe("https://hl7.org/fhir/R4/patient-definitions.html#Patient.contact");
+		expect(
+			new R5Release().sourcePageUrl({
+				kind: "complex-type",
+				name: "Base",
+			}),
+		).toBe("https://hl7.org/fhir/R5/types.html#Base");
 	});
 
 	it("summarizes synthetic target inventories", () => {

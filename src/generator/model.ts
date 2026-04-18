@@ -115,8 +115,8 @@ export type NormalizedDefinition = {
 	properties: NormalizedProperty[];
 	resourceTypeLiteral: string | null;
 	sourceMetadata: {
-		profileUrl: string | null;
 		releaseLabel: string | null;
+		sourceUrl: string | null;
 		version: string | null;
 	};
 };

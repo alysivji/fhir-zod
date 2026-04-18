@@ -1,7 +1,8 @@
+// Source: https://hl7.org/fhir/R4B/location-definitions.html#Location.hoursOfOperation
 // Profile: http://hl7.org/fhir/StructureDefinition/Location
 // Release: R4B
 // Version: 4.3.0
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-18T17:27:34.094Z
 
 import * as z from "zod";
 import { validatePrimitiveArrayPair } from "../../shared/fhir-primitive-array-validation";

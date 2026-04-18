@@ -558,8 +558,8 @@ function emitDefinitionFile(
 	const lines = [
 		...buildGeneratedHeader({
 			generatedAt,
-			profileUrl: definition.sourceMetadata.profileUrl,
 			releaseLabel: definition.sourceMetadata.releaseLabel,
+			sourceUrl: definition.sourceMetadata.sourceUrl,
 			version: definition.sourceMetadata.version,
 		}),
 		'import * as z from "zod";',
@@ -640,12 +640,12 @@ function sharedImportPath(fromFilePath: string, moduleName: string): string {
 
 function buildGeneratedHeader(options: {
 	generatedAt: string;
-	profileUrl?: string | null;
 	releaseLabel?: string | null;
+	sourceUrl?: string | null;
 	version?: string | null;
 }): string[] {
 	return [
-		...(options.profileUrl ? [`// Profile: ${options.profileUrl}`] : []),
+		...(options.sourceUrl ? [`// Source: ${options.sourceUrl}`] : []),
 		...(options.releaseLabel ? [`// Release: ${options.releaseLabel}`] : []),
 		...(options.version ? [`// Version: ${options.version}`] : []),
 		`// Last generated: ${options.generatedAt}`,
