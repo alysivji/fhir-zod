@@ -1,4 +1,4 @@
-import { PatientSchema } from "fhir-zod/r4";
+import { PatientSchema } from "fhir-zod/r4/Patient";
 import { describe, expect, it } from "vitest";
 
 describe("Patient", () => {
@@ -44,6 +44,28 @@ describe("Patient", () => {
 				},
 			],
 		});
+	});
+
+	it("registers Patient for contained-resource validation in the Patient module", () => {
+		expect(
+			PatientSchema.safeParse({
+				contained: [{ resourceType: "Patient" }],
+				resourceType: "Patient",
+			}).success,
+		).toBe(true);
+
+		expect(
+			PatientSchema.safeParse({
+				contained: [
+					{
+						code: { text: "Example observation" },
+						resourceType: "Observation",
+						status: "final",
+					},
+				],
+				resourceType: "Patient",
+			}).success,
+		).toBe(false);
 	});
 
 	it("rejects an invalid nested patient shape", () => {

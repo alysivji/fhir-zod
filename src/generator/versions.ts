@@ -1,7 +1,10 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { resolveRequiredSpecPackageRoot } from "../spec/spec-cache.ts";
-import { writeNormalizedZodDefinitions } from "./emit/zod.ts";
+import {
+	type GeneratedLayoutOptions,
+	writeNormalizedZodDefinitions,
+} from "./emit/zod.ts";
 import { repoRoot } from "./shared.ts";
 import {
 	buildStructureDefinitionsFromSpec,
@@ -143,6 +146,12 @@ export abstract class FhirRelease {
 		});
 	}
 
+	protected getGeneratedLayout(): GeneratedLayoutOptions {
+		return {
+			folderedResourceFamilies: this.listCoreResourceNames(),
+		};
+	}
+
 	generate(options: GenerateVersionOptions = {}): GenerationResult {
 		const structureDefinitionResult = this.buildDefinitions(
 			options.scopeNames ?? this.listGenerationTargetNames(),
@@ -152,6 +161,7 @@ export abstract class FhirRelease {
 		const files = writeNormalizedZodDefinitions({
 			definitions: structureDefinitionResult.definitions,
 			enableFhirResourceValidation: this.enableFhirResourceValidation,
+			...this.getGeneratedLayout(),
 			generatedAt,
 			outputDir,
 			prune: options.prune ?? true,

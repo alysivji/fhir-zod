@@ -1,25 +1,17 @@
-import {
-	BundleSchema as R4BundleSchema,
-	PatientSchema as R4PatientSchema,
-	type FhirResource as R4FhirResource,
-} from "fhir-zod/r4";
-import {
-	BundleSchema as R4BBundleSchema,
-	PatientSchema as R4BPatientSchema,
-	type FhirResource as R4BFhirResource,
-} from "fhir-zod/r4b";
-import {
-	BundleSchema as R5BundleSchema,
-	PatientSchema as R5PatientSchema,
-	type FhirResource as R5FhirResource,
-} from "fhir-zod/r5";
-import {
-	BundleSchema as STU3BundleSchema,
-	PatientSchema as STU3PatientSchema,
-	type FhirResource as STU3FhirResource,
-} from "fhir-zod/stu3";
-import type { z } from "zod";
+import type { FhirResource as R4FhirResource } from "fhir-zod/r4";
+import { BundleSchema as R4BundleSchema } from "fhir-zod/r4/Bundle";
+import { PatientSchema as R4PatientSchema } from "fhir-zod/r4/Patient";
+import type { FhirResource as R4BFhirResource } from "fhir-zod/r4b";
+import { BundleSchema as R4BBundleSchema } from "fhir-zod/r4b/Bundle";
+import { PatientSchema as R4BPatientSchema } from "fhir-zod/r4b/Patient";
+import type { FhirResource as R5FhirResource } from "fhir-zod/r5";
+import { BundleSchema as R5BundleSchema } from "fhir-zod/r5/Bundle";
+import { PatientSchema as R5PatientSchema } from "fhir-zod/r5/Patient";
+import type { FhirResource as STU3FhirResource } from "fhir-zod/stu3";
+import { BundleSchema as STU3BundleSchema } from "fhir-zod/stu3/Bundle";
+import { PatientSchema as STU3PatientSchema } from "fhir-zod/stu3/Patient";
 import { describe, expect, it } from "vitest";
+import type { z } from "zod";
 
 type VersionCase = {
 	BundleSchema: z.ZodTypeAny;
@@ -64,12 +56,9 @@ const versions: VersionCase[] = [
 
 describe("FHIR resource validation", () => {
 	it("exports FhirResource as a public resource union type", () => {
-		expect(fhirResourceTypeSmoke.map((resource) => resource.resourceType)).toEqual([
-			"Patient",
-			"Patient",
-			"Patient",
-			"Patient",
-		]);
+		expect(
+			fhirResourceTypeSmoke.map((resource) => resource.resourceType),
+		).toEqual(["Patient", "Patient", "Patient", "Patient"]);
 	});
 
 	for (const { BundleSchema, PatientSchema, label } of versions) {

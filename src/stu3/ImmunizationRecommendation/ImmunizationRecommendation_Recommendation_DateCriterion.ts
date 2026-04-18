@@ -1,0 +1,40 @@
+// Profile: http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+// Release: STU3
+// Version: 3.0.2
+// Last generated: 2026-04-18T03:47:44.174Z
+
+import * as z from "zod";
+import { fhirDateTime } from "../../shared/fhir-primitives";
+import type { BackboneElement } from "../BackboneElement";
+import { BackboneElementSchemaInternal } from "../BackboneElement";
+import type { CodeableConcept } from "../CodeableConcept";
+import { CodeableConceptSchemaInternal } from "../CodeableConcept";
+import type { Element } from "../Element";
+import { ElementSchemaInternal } from "../Element";
+
+/** Vaccine date recommendations.  For example, earliest date to administer, latest date to administer, etc. */
+export interface ImmunizationRecommendation_Recommendation_DateCriterion
+	extends BackboneElement {
+	/** Date classification of recommendation.  For example, earliest date to give, latest date to give, etc. */
+	code: CodeableConcept;
+	/** The date whose meaning is specified by dateCriterion.code. */
+	value: string;
+	/** Extensions for value */
+	_value?: Element;
+}
+
+const getCodeableConceptSchema = (): z.ZodType<CodeableConcept> =>
+	CodeableConceptSchemaInternal as z.ZodType<CodeableConcept>;
+const getElementSchema = (): z.ZodType<Element> =>
+	ElementSchemaInternal as z.ZodType<Element>;
+
+/** @internal */
+export const ImmunizationRecommendation_Recommendation_DateCriterionSchemaInternal =
+	BackboneElementSchemaInternal.extend({
+		code: z.lazy(getCodeableConceptSchema),
+		value: fhirDateTime(),
+		_value: z.lazy(getElementSchema).optional(),
+	}).strict();
+
+export const ImmunizationRecommendation_Recommendation_DateCriterionSchema =
+	ImmunizationRecommendation_Recommendation_DateCriterionSchemaInternal as z.ZodType<ImmunizationRecommendation_Recommendation_DateCriterion>;

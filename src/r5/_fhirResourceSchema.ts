@@ -162,210 +162,210 @@ import type { VerificationResult } from "./VerificationResult";
 import type { VisionPrescription } from "./VisionPrescription";
 
 export type FhirResource =
-  | Account
-  | ActivityDefinition
-  | ActorDefinition
-  | AdministrableProductDefinition
-  | AdverseEvent
-  | AllergyIntolerance
-  | Appointment
-  | AppointmentResponse
-  | ArtifactAssessment
-  | AuditEvent
-  | Basic
-  | Binary
-  | BiologicallyDerivedProduct
-  | BiologicallyDerivedProductDispense
-  | BodyStructure
-  | Bundle
-  | CapabilityStatement
-  | CarePlan
-  | CareTeam
-  | ChargeItem
-  | ChargeItemDefinition
-  | Citation
-  | Claim
-  | ClaimResponse
-  | ClinicalImpression
-  | ClinicalUseDefinition
-  | CodeSystem
-  | Communication
-  | CommunicationRequest
-  | CompartmentDefinition
-  | Composition
-  | ConceptMap
-  | Condition
-  | ConditionDefinition
-  | Consent
-  | Contract
-  | Coverage
-  | CoverageEligibilityRequest
-  | CoverageEligibilityResponse
-  | DetectedIssue
-  | Device
-  | DeviceAssociation
-  | DeviceDefinition
-  | DeviceDispense
-  | DeviceMetric
-  | DeviceRequest
-  | DeviceUsage
-  | DiagnosticReport
-  | DocumentReference
-  | Encounter
-  | EncounterHistory
-  | Endpoint
-  | EnrollmentRequest
-  | EnrollmentResponse
-  | EpisodeOfCare
-  | EventDefinition
-  | Evidence
-  | EvidenceReport
-  | EvidenceVariable
-  | ExampleScenario
-  | ExplanationOfBenefit
-  | FamilyMemberHistory
-  | Flag
-  | FormularyItem
-  | GenomicStudy
-  | Goal
-  | GraphDefinition
-  | Group
-  | GuidanceResponse
-  | HealthcareService
-  | ImagingSelection
-  | ImagingStudy
-  | Immunization
-  | ImmunizationEvaluation
-  | ImmunizationRecommendation
-  | ImplementationGuide
-  | Ingredient
-  | InsurancePlan
-  | InventoryItem
-  | InventoryReport
-  | Invoice
-  | Library
-  | Linkage
-  | List
-  | Location
-  | ManufacturedItemDefinition
-  | Measure
-  | MeasureReport
-  | Medication
-  | MedicationAdministration
-  | MedicationDispense
-  | MedicationKnowledge
-  | MedicationRequest
-  | MedicationStatement
-  | MedicinalProductDefinition
-  | MessageDefinition
-  | MessageHeader
-  | MolecularSequence
-  | NamingSystem
-  | NutritionIntake
-  | NutritionOrder
-  | NutritionProduct
-  | Observation
-  | ObservationDefinition
-  | OperationDefinition
-  | OperationOutcome
-  | Organization
-  | OrganizationAffiliation
-  | PackagedProductDefinition
-  | Parameters
-  | Patient
-  | PaymentNotice
-  | PaymentReconciliation
-  | Permission
-  | Person
-  | PlanDefinition
-  | Practitioner
-  | PractitionerRole
-  | Procedure
-  | Provenance
-  | Questionnaire
-  | QuestionnaireResponse
-  | RegulatedAuthorization
-  | RelatedPerson
-  | RequestOrchestration
-  | Requirements
-  | ResearchStudy
-  | ResearchSubject
-  | RiskAssessment
-  | Schedule
-  | SearchParameter
-  | ServiceRequest
-  | Slot
-  | Specimen
-  | SpecimenDefinition
-  | StructureDefinition
-  | StructureMap
-  | Subscription
-  | SubscriptionStatus
-  | SubscriptionTopic
-  | Substance
-  | SubstanceDefinition
-  | SubstanceNucleicAcid
-  | SubstancePolymer
-  | SubstanceProtein
-  | SubstanceReferenceInformation
-  | SubstanceSourceMaterial
-  | SupplyDelivery
-  | SupplyRequest
-  | Task
-  | TerminologyCapabilities
-  | TestPlan
-  | TestReport
-  | TestScript
-  | Transport
-  | ValueSet
-  | VerificationResult
-  | VisionPrescription;
+	| Account
+	| ActivityDefinition
+	| ActorDefinition
+	| AdministrableProductDefinition
+	| AdverseEvent
+	| AllergyIntolerance
+	| Appointment
+	| AppointmentResponse
+	| ArtifactAssessment
+	| AuditEvent
+	| Basic
+	| Binary
+	| BiologicallyDerivedProduct
+	| BiologicallyDerivedProductDispense
+	| BodyStructure
+	| Bundle
+	| CapabilityStatement
+	| CarePlan
+	| CareTeam
+	| ChargeItem
+	| ChargeItemDefinition
+	| Citation
+	| Claim
+	| ClaimResponse
+	| ClinicalImpression
+	| ClinicalUseDefinition
+	| CodeSystem
+	| Communication
+	| CommunicationRequest
+	| CompartmentDefinition
+	| Composition
+	| ConceptMap
+	| Condition
+	| ConditionDefinition
+	| Consent
+	| Contract
+	| Coverage
+	| CoverageEligibilityRequest
+	| CoverageEligibilityResponse
+	| DetectedIssue
+	| Device
+	| DeviceAssociation
+	| DeviceDefinition
+	| DeviceDispense
+	| DeviceMetric
+	| DeviceRequest
+	| DeviceUsage
+	| DiagnosticReport
+	| DocumentReference
+	| Encounter
+	| EncounterHistory
+	| Endpoint
+	| EnrollmentRequest
+	| EnrollmentResponse
+	| EpisodeOfCare
+	| EventDefinition
+	| Evidence
+	| EvidenceReport
+	| EvidenceVariable
+	| ExampleScenario
+	| ExplanationOfBenefit
+	| FamilyMemberHistory
+	| Flag
+	| FormularyItem
+	| GenomicStudy
+	| Goal
+	| GraphDefinition
+	| Group
+	| GuidanceResponse
+	| HealthcareService
+	| ImagingSelection
+	| ImagingStudy
+	| Immunization
+	| ImmunizationEvaluation
+	| ImmunizationRecommendation
+	| ImplementationGuide
+	| Ingredient
+	| InsurancePlan
+	| InventoryItem
+	| InventoryReport
+	| Invoice
+	| Library
+	| Linkage
+	| List
+	| Location
+	| ManufacturedItemDefinition
+	| Measure
+	| MeasureReport
+	| Medication
+	| MedicationAdministration
+	| MedicationDispense
+	| MedicationKnowledge
+	| MedicationRequest
+	| MedicationStatement
+	| MedicinalProductDefinition
+	| MessageDefinition
+	| MessageHeader
+	| MolecularSequence
+	| NamingSystem
+	| NutritionIntake
+	| NutritionOrder
+	| NutritionProduct
+	| Observation
+	| ObservationDefinition
+	| OperationDefinition
+	| OperationOutcome
+	| Organization
+	| OrganizationAffiliation
+	| PackagedProductDefinition
+	| Parameters
+	| Patient
+	| PaymentNotice
+	| PaymentReconciliation
+	| Permission
+	| Person
+	| PlanDefinition
+	| Practitioner
+	| PractitionerRole
+	| Procedure
+	| Provenance
+	| Questionnaire
+	| QuestionnaireResponse
+	| RegulatedAuthorization
+	| RelatedPerson
+	| RequestOrchestration
+	| Requirements
+	| ResearchStudy
+	| ResearchSubject
+	| RiskAssessment
+	| Schedule
+	| SearchParameter
+	| ServiceRequest
+	| Slot
+	| Specimen
+	| SpecimenDefinition
+	| StructureDefinition
+	| StructureMap
+	| Subscription
+	| SubscriptionStatus
+	| SubscriptionTopic
+	| Substance
+	| SubstanceDefinition
+	| SubstanceNucleicAcid
+	| SubstancePolymer
+	| SubstanceProtein
+	| SubstanceReferenceInformation
+	| SubstanceSourceMaterial
+	| SupplyDelivery
+	| SupplyRequest
+	| Task
+	| TerminologyCapabilities
+	| TestPlan
+	| TestReport
+	| TestScript
+	| Transport
+	| ValueSet
+	| VerificationResult
+	| VisionPrescription;
 
 const registry = new Map<string, z.ZodTypeAny>();
 
 /** @internal */
 export function _registerFhirResourceSchemas(
-  entries: Readonly<Record<string, z.ZodTypeAny>>,
+	entries: Readonly<Record<string, z.ZodTypeAny>>,
 ): void {
-  for (const [resourceType, schema] of Object.entries(entries)) {
-    registry.set(resourceType, schema);
-  }
+	for (const [resourceType, schema] of Object.entries(entries)) {
+		registry.set(resourceType, schema);
+	}
 }
 
 /** @internal */
 export const FhirResourceSchemaInternal = z.lazy(
-  (): z.ZodType<FhirResource> =>
-    z.any().superRefine((value, ctx) => {
-      if (typeof value !== "object" || value === null) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Expected a FHIR resource object",
-        });
-        return;
-      }
-      const resourceType = (value as { resourceType?: unknown }).resourceType;
-      if (typeof resourceType !== "string") {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Missing or non-string resourceType",
-          path: ["resourceType"],
-        });
-        return;
-      }
-      const schema = registry.get(resourceType);
-      if (!schema) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: `Unknown FHIR resourceType: ${resourceType}`,
-          path: ["resourceType"],
-        });
-        return;
-      }
-      const result = schema.safeParse(value);
-      if (!result.success) {
-        for (const issue of result.error.issues) {
-          ctx.addIssue(issue as never);
-        }
-      }
-    }) as unknown as z.ZodType<FhirResource>,
+	(): z.ZodType<FhirResource> =>
+		z.any().superRefine((value, ctx) => {
+			if (typeof value !== "object" || value === null) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: "Expected a FHIR resource object",
+				});
+				return;
+			}
+			const resourceType = (value as { resourceType?: unknown }).resourceType;
+			if (typeof resourceType !== "string") {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: "Missing or non-string resourceType",
+					path: ["resourceType"],
+				});
+				return;
+			}
+			const schema = registry.get(resourceType);
+			if (!schema) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: `Unknown FHIR resourceType: ${resourceType}`,
+					path: ["resourceType"],
+				});
+				return;
+			}
+			const result = schema.safeParse(value);
+			if (!result.success) {
+				for (const issue of result.error.issues) {
+					ctx.addIssue(issue as never);
+				}
+			}
+		}) as unknown as z.ZodType<FhirResource>,
 );

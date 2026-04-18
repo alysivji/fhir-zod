@@ -6,9 +6,13 @@
 	"type": "module",
 	"sideEffects": [
 		"./dist/r4/index.js",
+		"./dist/r4/*/index.js",
 		"./dist/r4b/index.js",
+		"./dist/r4b/*/index.js",
 		"./dist/r5/index.js",
-		"./dist/stu3/index.js"
+		"./dist/r5/*/index.js",
+		"./dist/stu3/index.js",
+		"./dist/stu3/*/index.js"
 	],
 	"repository": {
 		"type": "git",
@@ -41,17 +45,33 @@
 			"types": "./dist/r4/index.d.ts",
 			"import": "./dist/r4/index.js"
 		},
+		"./r4/*": {
+			"types": "./dist/r4/*/index.d.ts",
+			"import": "./dist/r4/*/index.js"
+		},
 		"./r4b": {
 			"types": "./dist/r4b/index.d.ts",
 			"import": "./dist/r4b/index.js"
+		},
+		"./r4b/*": {
+			"types": "./dist/r4b/*/index.d.ts",
+			"import": "./dist/r4b/*/index.js"
 		},
 		"./r5": {
 			"types": "./dist/r5/index.d.ts",
 			"import": "./dist/r5/index.js"
 		},
+		"./r5/*": {
+			"types": "./dist/r5/*/index.d.ts",
+			"import": "./dist/r5/*/index.js"
+		},
 		"./stu3": {
 			"types": "./dist/stu3/index.d.ts",
 			"import": "./dist/stu3/index.js"
+		},
+		"./stu3/*": {
+			"types": "./dist/stu3/*/index.d.ts",
+			"import": "./dist/stu3/*/index.js"
 		}
 	},
 	"files": [
@@ -64,6 +84,7 @@
 	"scripts": {
 		"build": "npm run typecheck && tsdown",
 		"check": "biome check . && npm run typecheck",
+		"check:resource-folders": "tsx scripts/check-resource-folders.ts",
 		"codecov:bundle": "bundle-analyzer ./dist --bundle-name=fhir-zod --ignore-patterns '**/*.map' --upload-token=$BUNDLE_ANALYZER_UPLOAD_TOKEN",
 		"coverage": "vitest run --coverage",
 		"cli": "tsx scripts/cli.ts",

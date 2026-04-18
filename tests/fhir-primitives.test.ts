@@ -1,5 +1,6 @@
 import { configureFhirString } from "fhir-zod";
 import * as r4Schemas from "fhir-zod/r4";
+import { PatientSchema as R4PatientSchema } from "fhir-zod/r4/Patient";
 import * as r4bSchemas from "fhir-zod/r4b";
 import { afterEach, describe, expect, it } from "vitest";
 import {
@@ -185,7 +186,7 @@ describe("FHIR primitives", () => {
 
 		it("still rejects invalid resource ids", () => {
 			expect(
-				r4Schemas.PatientSchema.safeParse({
+				R4PatientSchema.safeParse({
 					resourceType: "Patient",
 					id: "contains space",
 				}).success,

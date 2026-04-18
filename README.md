@@ -29,12 +29,12 @@ npm install fhir-zod zod
 
 Compatible with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
 
-Supports Node.js 20+ and modern bundlers. Import using ES modules and versioned entry points such as `fhir-zod/r4`, `fhir-zod/r5`, etc.
+Supports Node.js 20+ and modern bundlers. Import using ES modules and versioned entry points such as `fhir-zod/r4`, resource module entry points such as `fhir-zod/r4/Patient`, and other release entry points such as `fhir-zod/r5`.
 
 ## Quick start
 
 ```ts
-import { PatientSchema, type Patient } from "fhir-zod/r4"
+import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
 
 const patient: Patient = {
   resourceType: "Patient",
@@ -57,7 +57,7 @@ Use the TypeScript model when constructing or consuming known FHIR shapes, and u
 The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. `fhir-zod` works with Zod 3.25.x and 4.x.x through the same generated schema surface:
 
 ```ts
-import { PatientSchema } from "fhir-zod/r4"
+import { PatientSchema } from "fhir-zod/r4/Patient"
 ```
 
 ## Common use cases
@@ -65,7 +65,7 @@ import { PatientSchema } from "fhir-zod/r4"
 ### Validate data from an API
 
 ```ts
-import { PatientSchema } from "fhir-zod/r4"
+import { PatientSchema } from "fhir-zod/r4/Patient"
 
 const response = await fetch("/api/patient/john-doe")
 const payload: unknown = await response.json()
@@ -115,7 +115,8 @@ ObservationSchema.parse(bodyWeight)
 `BundleSchema` recursively validates known FHIR resources in `entry[].resource`.
 
 ```ts
-import { BundleSchema, type Bundle, type Patient } from "fhir-zod/r4"
+import { BundleSchema, type Bundle } from "fhir-zod/r4"
+import type { Patient } from "fhir-zod/r4/Patient"
 
 const patient: Patient = {
   resourceType: "Patient",
@@ -134,7 +135,7 @@ BundleSchema.parse(bundle)
 ### Keep FHIR versions explicit
 
 ```ts
-import type { Patient as R4Patient } from "fhir-zod/r4"
+import type { Patient as R4Patient } from "fhir-zod/r4/Patient"
 import type { Patient as R5Patient } from "fhir-zod/r5"
 
 function useR4Patient(patient: R4Patient) {
@@ -165,17 +166,17 @@ function useR5Patient(patient: R5Patient) {
 
 ## Supported FHIR versions
 
-| FHIR release | Import path |
-| --- | --- |
-| R5 | `fhir-zod/r5` |
-| R4B | `fhir-zod/r4b` |
-| R4 | `fhir-zod/r4` |
-| STU3 | `fhir-zod/stu3` |
+| FHIR release | Version entry point | Resource entry points |
+| --- | --- | --- |
+| R5 | `fhir-zod/r5` | `fhir-zod/r5/<Resource>` |
+| R4B | `fhir-zod/r4b` | `fhir-zod/r4b/<Resource>` |
+| R4 | `fhir-zod/r4` | `fhir-zod/r4/<Resource>` |
+| STU3 | `fhir-zod/stu3` | `fhir-zod/stu3/<Resource>` |
 
-Each version exports TypeScript interfaces and matching Zod schemas:
+Each release exposes two import styles. The version entry point exports all data type schemas and registers the full resource registry. Each resource also has its own entry point that exports only that resource family:
 
 ```ts
-import { PatientSchema, type Patient } from "fhir-zod/r4"
+import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
 ```
 
 ## Handling empty FHIR strings
@@ -199,6 +200,14 @@ import { ObservationSchema } from "fhir-zod/r4"
 ```
 
 Each FHIR version is exposed as a separate entry point. Bundlers will tree-shake unused FHIR versions. In frontend code, lazy-load runtime schema imports where validation runs.
+
+Every core resource also has its own entry point scoped to that resource family:
+
+```ts
+import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
+```
+
+Resource entry points register only that resource for contained-resource validation. Import the version entry point (`fhir-zod/r4`) when you need the full resource registry.
 
 ## Specification alignment
 
