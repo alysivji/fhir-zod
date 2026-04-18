@@ -71,7 +71,6 @@ export abstract class FhirRelease {
 	abstract readonly label: string;
 	abstract readonly abstractTargetNames: readonly string[];
 
-	readonly generatedLayout: GeneratedLayoutOptions = {};
 	readonly nestedBackboneTypeCodes: readonly string[] = [
 		"BackboneElement",
 		"Element",
@@ -148,7 +147,9 @@ export abstract class FhirRelease {
 	}
 
 	protected getGeneratedLayout(): GeneratedLayoutOptions {
-		return this.generatedLayout;
+		return {
+			folderedResourceFamilies: this.listCoreResourceNames(),
+		};
 	}
 
 	generate(options: GenerateVersionOptions = {}): GenerationResult {
@@ -218,24 +219,12 @@ export class STU3Release extends FhirRelease {
 	readonly id = "stu3";
 	readonly label = "STU3";
 	readonly abstractTargetNames = defaultAbstractTargetNames;
-
-	protected override getGeneratedLayout(): GeneratedLayoutOptions {
-		return {
-			folderedResourceFamilies: this.listCoreResourceNames(),
-		};
-	}
 }
 
 export class R4Release extends FhirRelease {
 	readonly id = "r4";
 	readonly label = "R4";
 	readonly abstractTargetNames = defaultAbstractTargetNames;
-
-	protected override getGeneratedLayout(): GeneratedLayoutOptions {
-		return {
-			folderedResourceFamilies: this.listCoreResourceNames(),
-		};
-	}
 }
 
 export class R4BRelease extends FhirRelease {
@@ -248,12 +237,6 @@ export class R4BRelease extends FhirRelease {
 		"Element",
 		"Resource",
 	] as const;
-
-	protected override getGeneratedLayout(): GeneratedLayoutOptions {
-		return {
-			folderedResourceFamilies: this.listCoreResourceNames(),
-		};
-	}
 }
 
 export class R5Release extends FhirRelease {
@@ -273,12 +256,6 @@ export class R5Release extends FhirRelease {
 		"BackboneType",
 		"Element",
 	] as const;
-
-	protected override getGeneratedLayout(): GeneratedLayoutOptions {
-		return {
-			folderedResourceFamilies: this.listCoreResourceNames(),
-		};
-	}
 }
 
 export const supportedFhirVersions = ["stu3", "r4", "r4b", "r5"] as const;

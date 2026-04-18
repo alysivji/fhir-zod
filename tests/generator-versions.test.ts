@@ -114,6 +114,10 @@ class SyntheticGenerationRelease extends FhirRelease {
 			primitivePatterns: new Map(),
 		};
 	}
+
+	exposeGeneratedLayout() {
+		return this.getGeneratedLayout();
+	}
 }
 
 describe("FHIR version registry", () => {
@@ -144,8 +148,10 @@ describe("FHIR version registry", () => {
 		);
 	});
 
-	it("leaves R4B with no foldered resource families", () => {
-		expect(new R4BRelease().generatedLayout).toEqual({});
+	it("uses core resources as the default foldered resource families", () => {
+		expect(new SyntheticGenerationRelease().exposeGeneratedLayout()).toEqual({
+			folderedResourceFamilies: ["Patient"],
+		});
 	});
 
 	it("builds official example page URLs from release id and resource name", () => {
@@ -197,13 +203,14 @@ describe("FHIR version registry", () => {
 			"Patient.ts",
 			"_fhirResourceSchema.ts",
 			"index.ts",
+			"index.ts",
 		]);
 		expect(readFileSync(join(outputDir, "index.ts"), "utf8")).toContain(
 			"export type FhirResource",
 		);
-		expect(readFileSync(join(outputDir, "Patient.ts"), "utf8")).toContain(
-			"export const PatientSchema",
-		);
+		expect(
+			readFileSync(join(outputDir, "Patient", "index.ts"), "utf8"),
+		).toContain('export { PatientSchema } from "./Patient"');
 	});
 
 	it("passes explicit generation scopes to definition building", () => {

@@ -84,7 +84,7 @@
 	"scripts": {
 		"build": "npm run typecheck && tsdown",
 		"check": "biome check . && npm run typecheck",
-		"check:r4-folders": "tsx scripts/check-r4-folders.ts",
+		"check:resource-folders": "tsx scripts/check-resource-folders.ts",
 		"codecov:bundle": "bundle-analyzer ./dist --bundle-name=fhir-zod --ignore-patterns '**/*.map' --upload-token=$BUNDLE_ANALYZER_UPLOAD_TOKEN",
 		"coverage": "vitest run --coverage",
 		"cli": "tsx scripts/cli.ts",

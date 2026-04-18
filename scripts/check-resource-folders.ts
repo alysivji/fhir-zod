@@ -194,7 +194,7 @@ for (const release of Object.values(fhirReleases)) {
 	console.log("");
 }
 
-// --- Spec vs HL7 resource list ---
+// R4-only sanity check against the published HL7 R4 resource list.
 console.log(
 	"\n=== Spec vs HL7 resource list (https://hl7.org/fhir/R4/resourcelist.html) ===",
 );
