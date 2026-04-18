@@ -74,7 +74,7 @@ describe("package tree shaking", () => {
 		try {
 			expect(rootPackageJson.sideEffects).toEqual([
 				"./dist/r4/index.js",
-				"./dist/r4/Patient/index.js",
+				"./dist/r4/*/index.js",
 				"./dist/r4b/index.js",
 				"./dist/r5/index.js",
 				"./dist/stu3/index.js",
@@ -82,7 +82,7 @@ describe("package tree shaking", () => {
 
 			const r4Index = join(distDir, "r4/index.js");
 			const r4Patient = join(distDir, "r4/Patient/Patient.js");
-			const r4Observation = join(distDir, "r4/Observation.js");
+			const r4Observation = join(distDir, "r4/Observation/Observation.js");
 			expect(existsSync(r4Index)).toBe(true);
 			expect(existsSync(r4Patient)).toBe(true);
 			expect(readFileSync(r4Observation, "utf8")).toContain(
@@ -124,7 +124,7 @@ describe("package tree shaking", () => {
 		}
 	}, 120_000);
 
-	it("pulls every R4 resource into the bundle when importing a resource schema from the version entry point", async () => {
+	it("pulls every R4 resource into the bundle when importing from the version entry point", async () => {
 		const { packageRoot } = await buildPackageFixture();
 		try {
 			const result = await build({
@@ -134,8 +134,8 @@ describe("package tree shaking", () => {
 				platform: "neutral",
 				stdin: {
 					contents: [
-						'import { ObservationSchema } from "fhir-zod/r4";',
-						"console.log(ObservationSchema);",
+						'import { CodingSchema } from "fhir-zod/r4";',
+						"console.log(CodingSchema);",
 					].join("\n"),
 					loader: "js",
 					resolveDir: packageRoot,

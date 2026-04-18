@@ -34,15 +34,19 @@ describe("generated declarations", () => {
 			);
 
 			const accountDts = readFileSync(
-				join(outDir, "src", "r4", "Account.d.ts"),
+				join(outDir, "src", "r4", "Account", "Account.d.ts"),
+				"utf8",
+			);
+			const accountIndexDts = readFileSync(
+				join(outDir, "src", "r4", "Account", "index.d.ts"),
 				"utf8",
 			);
 			const bundleDts = readFileSync(
-				join(outDir, "src", "r4", "Bundle.d.ts"),
+				join(outDir, "src", "r4", "Bundle", "Bundle.d.ts"),
 				"utf8",
 			);
 			const encounterDts = readFileSync(
-				join(outDir, "src", "r4", "Encounter.d.ts"),
+				join(outDir, "src", "r4", "Encounter", "Encounter.d.ts"),
 				"utf8",
 			);
 			const indexDts = readFileSync(
@@ -50,7 +54,7 @@ describe("generated declarations", () => {
 				"utf8",
 			);
 			const observationDts = readFileSync(
-				join(outDir, "src", "r4", "Observation.d.ts"),
+				join(outDir, "src", "r4", "Observation", "Observation.d.ts"),
 				"utf8",
 			);
 			const patientContactDts = readFileSync(
@@ -68,6 +72,12 @@ describe("generated declarations", () => {
 
 			expect(accountDts).toContain(
 				"export interface Account extends DomainResource",
+			);
+			expect(accountIndexDts).toContain(
+				'export type { Account } from "./Account";',
+			);
+			expect(accountIndexDts).toContain(
+				'export { AccountSchema } from "./Account";',
 			);
 			expect(bundleDts).toContain("export interface Bundle extends Resource");
 			expect(bundleDts).toContain(
@@ -92,18 +102,13 @@ describe("generated declarations", () => {
 			expect(quantityDts).toContain(
 				"export interface Quantity extends Element",
 			);
-			expect(indexDts).toContain('export type { Account } from "./Account";');
-			expect(indexDts).toContain('export { AccountSchema } from "./Account";');
 			expect(indexDts).toContain(
-				'export type { Observation } from "./Observation";',
+				'export type { Quantity } from "./Quantity";',
 			);
-			expect(indexDts).toContain(
-				'export { ObservationSchema } from "./Observation";',
-			);
-			expect(indexDts).toContain('export type { ValueSet } from "./ValueSet";');
-			expect(indexDts).toContain(
-				'export { ValueSetSchema } from "./ValueSet";',
-			);
+			expect(indexDts).not.toContain('export type { Account }');
+			expect(indexDts).not.toContain("export { AccountSchema }");
+			expect(indexDts).not.toContain('export type { Observation }');
+			expect(indexDts).not.toContain("export { ObservationSchema }");
 			expect(indexDts).not.toContain('export type { Patient } from');
 			expect(indexDts).not.toContain("export { PatientSchema }");
 

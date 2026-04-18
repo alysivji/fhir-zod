@@ -1,21 +1,16 @@
-import type {
-	Account,
-	Bundle,
-	Encounter,
-	FhirResource,
-	HumanName,
-	Observation,
-	Practitioner,
-	ValueSet,
-} from "fhir-zod/r4";
-import {
-	AccountSchema,
-	BundleSchema,
-	EncounterSchema,
-	ObservationSchema,
-	PractitionerSchema,
-	ValueSetSchema,
-} from "fhir-zod/r4";
+import type { FhirResource, HumanName } from "fhir-zod/r4";
+import type { Account } from "fhir-zod/r4/Account";
+import { AccountSchema } from "fhir-zod/r4/Account";
+import type { Bundle } from "fhir-zod/r4/Bundle";
+import { BundleSchema } from "fhir-zod/r4/Bundle";
+import type { Encounter } from "fhir-zod/r4/Encounter";
+import { EncounterSchema } from "fhir-zod/r4/Encounter";
+import type { Observation } from "fhir-zod/r4/Observation";
+import { ObservationSchema } from "fhir-zod/r4/Observation";
+import type { Practitioner } from "fhir-zod/r4/Practitioner";
+import { PractitionerSchema } from "fhir-zod/r4/Practitioner";
+import type { ValueSet } from "fhir-zod/r4/ValueSet";
+import { ValueSetSchema } from "fhir-zod/r4/ValueSet";
 import type { Patient } from "fhir-zod/r4/Patient";
 import { PatientSchema } from "fhir-zod/r4/Patient";
 import type {

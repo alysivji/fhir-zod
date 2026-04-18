@@ -1,10 +1,23 @@
 import { readdirSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { join, relative, resolve } from "node:path";
-import * as r4Schemas from "fhir-zod/r4";
-import * as r4PatientSchemas from "fhir-zod/r4/Patient";
+import * as r4DataTypeSchemas from "fhir-zod/r4";
 import * as r4bSchemas from "fhir-zod/r4b";
 import * as r5Schemas from "fhir-zod/r5";
 import * as stu3Schemas from "fhir-zod/stu3";
+
+const distR4Dir = fileURLToPath(new URL("../dist/r4/", import.meta.url));
+const r4FolderNames = readdirSync(distR4Dir, { withFileTypes: true })
+	.filter((d) => d.isDirectory())
+	.map((d) => d.name);
+const r4FolderModules = await Promise.all(
+	r4FolderNames.map((name) => import(`../dist/r4/${name}/index.js`)),
+);
+const r4Schemas = Object.assign(
+	{},
+	r4DataTypeSchemas,
+	...r4FolderModules,
+);
 
 const expectedFailureGroups = {
 	stu3: new Map(),
@@ -87,7 +100,7 @@ const suites = [
 		fixturesRoot: resolve(process.cwd(), "tests", "fixtures", "r4"),
 		label: "R4",
 		expectedFailures: expectedFailureGroups.r4,
-		schemas: { ...r4Schemas, ...r4PatientSchemas },
+		schemas: r4Schemas,
 	},
 	{
 		fixturesRoot: resolve(process.cwd(), "tests", "fixtures", "r4b"),

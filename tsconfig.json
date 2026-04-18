@@ -14,13 +14,13 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
-		"types": ["node"],
+		"types": ["node", "vite/client"],
 		"verbatimModuleSyntax": true,
 		"baseUrl": ".",
 		"paths": {
 			"fhir-zod": ["./src/index.ts"],
 			"fhir-zod/r4": ["./src/r4/index.ts"],
-			"fhir-zod/r4/Patient": ["./src/r4/Patient/index.ts"],
+			"fhir-zod/r4/*": ["./src/r4/*/index.ts"],
 			"fhir-zod/r4b": ["./src/r4b/index.ts"],
 			"fhir-zod/r5": ["./src/r5/index.ts"],
 			"fhir-zod/stu3": ["./src/stu3/index.ts"]

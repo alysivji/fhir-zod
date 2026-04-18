@@ -144,10 +144,7 @@ describe("FHIR version registry", () => {
 		);
 	});
 
-	it("configures the R4 Patient family as the foldered resource pilot", () => {
-		expect(new R4Release().generatedLayout).toEqual({
-			folderedResourceFamilies: ["Patient"],
-		});
+	it("leaves R4B with no foldered resource families", () => {
 		expect(new R4BRelease().generatedLayout).toEqual({});
 	});
 

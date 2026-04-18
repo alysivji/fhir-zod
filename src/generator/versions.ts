@@ -147,6 +147,10 @@ export abstract class FhirRelease {
 		});
 	}
 
+	protected getGeneratedLayout(): GeneratedLayoutOptions {
+		return this.generatedLayout;
+	}
+
 	generate(options: GenerateVersionOptions = {}): GenerationResult {
 		const structureDefinitionResult = this.buildDefinitions(
 			options.scopeNames ?? this.listGenerationTargetNames(),
@@ -156,7 +160,7 @@ export abstract class FhirRelease {
 		const files = writeNormalizedZodDefinitions({
 			definitions: structureDefinitionResult.definitions,
 			enableFhirResourceValidation: this.enableFhirResourceValidation,
-			...this.generatedLayout,
+			...this.getGeneratedLayout(),
 			generatedAt,
 			outputDir,
 			prune: options.prune ?? true,
@@ -220,9 +224,12 @@ export class R4Release extends FhirRelease {
 	readonly id = "r4";
 	readonly label = "R4";
 	readonly abstractTargetNames = defaultAbstractTargetNames;
-	readonly generatedLayout = {
-		folderedResourceFamilies: ["Patient"],
-	} as const;
+
+	protected override getGeneratedLayout(): GeneratedLayoutOptions {
+		return {
+			folderedResourceFamilies: this.listCoreResourceNames(),
+		};
+	}
 }
 
 export class R4BRelease extends FhirRelease {

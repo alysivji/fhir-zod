@@ -1,12 +1,12 @@
+import { AccountSchema } from "fhir-zod/r4/Account";
+import { BundleSchema } from "fhir-zod/r4/Bundle";
+import { EncounterSchema } from "fhir-zod/r4/Encounter";
+import { ObservationSchema } from "fhir-zod/r4/Observation";
+import { Parameters_ParameterSchema } from "fhir-zod/r4/Parameters";
 import {
-	AccountSchema,
-	BundleSchema,
 	ElementDefinitionSchema,
-	EncounterSchema,
 	ExtensionSchema,
 	MetaSchema,
-	ObservationSchema,
-	Parameters_ParameterSchema,
 	QuantitySchema,
 } from "fhir-zod/r4";
 import { runVersionSchemaContracts } from "./helpers/version-contract-suites.ts";

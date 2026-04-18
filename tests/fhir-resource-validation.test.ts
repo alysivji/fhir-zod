@@ -1,7 +1,5 @@
-import {
-	BundleSchema as R4BundleSchema,
-	type FhirResource as R4FhirResource,
-} from "fhir-zod/r4";
+import { BundleSchema as R4BundleSchema } from "fhir-zod/r4/Bundle";
+import { type FhirResource as R4FhirResource } from "fhir-zod/r4";
 import { PatientSchema as R4PatientSchema } from "fhir-zod/r4/Patient";
 import {
 	BundleSchema as R4BBundleSchema,

@@ -24,11 +24,9 @@ assert(
 
 configureFhirString({ allowEmpty: true });
 
-const {
-	BundleSchema: R4BundleSchema,
-	HumanNameSchema: R4HumanNameSchema,
-	ObservationSchema: R4ObservationSchema,
-} = await import("fhir-zod/r4");
+const { HumanNameSchema: R4HumanNameSchema } = await import("fhir-zod/r4");
+const { BundleSchema: R4BundleSchema } = await import("fhir-zod/r4/Bundle");
+const { ObservationSchema: R4ObservationSchema } = await import("fhir-zod/r4/Observation");
 const { PatientSchema: R4PatientSchema } = await import("fhir-zod/r4/Patient");
 const { PatientSchema: R4BPatientSchema } = await import("fhir-zod/r4b");
 const { PatientSchema: R5PatientSchema } = await import("fhir-zod/r5");
