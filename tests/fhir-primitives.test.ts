@@ -152,13 +152,35 @@ describe("FHIR primitives", () => {
 			expect(fhirString().safeParse("").success).toBe(false);
 		});
 
-		it("allows empty strings for newly constructed fhirString schemas after configuration", () => {
+		it("allows empty strings for fhirString schemas after configuration", () => {
 			const strictSchema = fhirString();
 
 			configureFhirString({ allowEmpty: true });
 
-			expect(strictSchema.safeParse("").success).toBe(false);
+			expect(strictSchema.safeParse("").success).toBe(true);
 			expect(fhirString().safeParse("").success).toBe(true);
+		});
+
+		it("allows empty strings when configured after generated schemas are imported", () => {
+			configureFhirString({ allowEmpty: true });
+
+			expect(r4Schemas.HumanNameSchema.safeParse({ family: "" }).success).toBe(
+				true,
+			);
+		});
+
+		it("applies the current global configuration at parse time", () => {
+			const schema = fhirString();
+
+			expect(schema.safeParse("").success).toBe(false);
+
+			configureFhirString({ allowEmpty: true });
+
+			expect(schema.safeParse("").success).toBe(true);
+
+			configureFhirString({ allowEmpty: false });
+
+			expect(schema.safeParse("").success).toBe(false);
 		});
 
 		it("does not allow empty strings for other primitives", () => {

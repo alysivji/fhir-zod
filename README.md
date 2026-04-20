@@ -181,7 +181,7 @@ import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
 
 ## Handling empty FHIR strings
 
-FHIR `string` values reject empty strings by default. To accept real-world payloads that use empty strings for the FHIR `string` primitive, configure the root package before constructing or importing schemas that use `fhirString()`:
+FHIR `string` values reject empty strings by default. To accept real-world payloads that use empty strings for the FHIR `string` primitive, configure the root package before parsing:
 
 ```ts
 import { configureFhirString } from "fhir-zod"
@@ -189,7 +189,15 @@ import { configureFhirString } from "fhir-zod"
 configureFhirString({ allowEmpty: true })
 ```
 
-This affects all generated schemas. It only changes the FHIR `string` primitive. Other primitives such as `date`, `dateTime`, `base64Binary`, `code`, `id`, and `uri` keep their default validation behavior.
+This setting is process-global and is read when schemas parse input, so it can be applied before or after generated schema modules are imported. It affects all generated schemas that validate FHIR `string` values. It only changes the FHIR `string` primitive. Other primitives such as `date`, `dateTime`, `base64Binary`, `code`, `id`, and `uri` keep their default validation behavior.
+
+Test suites that change this setting should reset it in `afterEach`:
+
+```ts
+afterEach(() => {
+  configureFhirString({ allowEmpty: false })
+})
+```
 
 ## Bundle size and imports
 

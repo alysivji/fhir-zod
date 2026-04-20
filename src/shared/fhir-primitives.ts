@@ -77,8 +77,15 @@ export function fhirOid(): z.ZodString {
 	return withPattern(fhirOidPattern);
 }
 
-export function fhirString(): z.ZodString {
-	return withPattern(fhirStringPatternForConfiguration());
+export function fhirString() {
+	return z.string().superRefine((value, context) => {
+		if (!fhirStringPatternForConfiguration().test(value)) {
+			context.addIssue({
+				code: z.ZodIssueCode.custom,
+				message: "Invalid FHIR string",
+			});
+		}
+	});
 }
 
 export function fhirTime(): z.ZodString {
