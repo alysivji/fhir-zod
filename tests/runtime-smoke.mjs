@@ -22,8 +22,6 @@ assert(
 	"root package should export configureFhirString",
 );
 
-configureFhirString({ allowEmpty: true });
-
 const { HumanNameSchema: R4HumanNameSchema } = await import("fhir-zod/r4");
 const { BundleSchema: R4BundleSchema } = await import("fhir-zod/r4/Bundle");
 const { ObservationSchema: R4ObservationSchema } = await import(
@@ -37,10 +35,12 @@ const { PatientSchema: STU3PatientSchema } = await import(
 	"fhir-zod/stu3/Patient"
 );
 
+configureFhirString({ allowEmpty: true });
+
 assertParseSuccess(
 	R4HumanNameSchema,
 	{ family: "" },
-	"R4 HumanName should allow an empty string after configuration",
+	"R4 HumanName should allow an empty string when configured after import",
 );
 
 assertParseSuccess(
