@@ -31,6 +31,14 @@ Compatible with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
 
 Supports Node.js 20+ and modern bundlers. Import concrete resources from resource module entry points such as `fhir-zod/r4/Patient`. Versioned entry points such as `fhir-zod/r4` expose shared datatypes and supporting generated definitions.
 
+## Documentation
+
+The VitePress docs source for deeper package usage guidance lives in [`docs/`](./docs/). Preview it locally with:
+
+```bash
+npm run docs:dev
+```
+
 ## Quick start
 
 ```ts

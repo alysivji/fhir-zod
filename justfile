@@ -14,6 +14,14 @@ install:
 build:
     npm run build
 
+# Build the docs site
+build-docs:
+    npm run docs:build
+
+# Run the docs site locally
+docs-dev:
+    npm run docs:dev
+
 # Run the test suite
 test:
     npm test
