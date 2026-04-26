@@ -32,7 +32,7 @@ import {
 	runFetchSpecCli,
 	type SpecManifest,
 } from "../scripts/fetch-spec.ts";
-import { writeSupportedResourcesDoc } from "../scripts/generate-supported-resources-doc.ts";
+import { writeSupportedResourcesDocs } from "../scripts/generate-supported-resources-doc.ts";
 import { runGenerateCli } from "../scripts/generate.ts";
 import { runInspectChoiceGroupsCli } from "../scripts/inspect-choice-groups.ts";
 import { runListTargetsCli } from "../scripts/list-targets.ts";
@@ -443,7 +443,7 @@ describe("generate script", () => {
 describe("generate-supported-resources-doc script", () => {
 	it("writes release-aware resource docs and falls back to committed generated output", () => {
 		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-docs-"));
-		const docsDir = join(repoRoot, "docs");
+		const docsDir = join(repoRoot, "docs", "supported-resources");
 		const r4PatientDir = join(repoRoot, "src", "r4", "Patient");
 		const r4ObservationDir = join(repoRoot, "src", "r4", "Observation");
 		mkdirSync(docsDir, { recursive: true });
@@ -452,7 +452,7 @@ describe("generate-supported-resources-doc script", () => {
 		writeFileSync(join(r4PatientDir, "index.ts"), "", "utf8");
 		writeFileSync(join(r4ObservationDir, "index.ts"), "", "utf8");
 
-		const outputPath = writeSupportedResourcesDoc({
+		const outputPaths = writeSupportedResourcesDocs({
 			getRelease: (version) => {
 				if (version !== "r4") {
 					return null;
@@ -483,17 +483,25 @@ describe("generate-supported-resources-doc script", () => {
 					}),
 				} as unknown as FhirRelease;
 			},
-			outputPath: join(docsDir, "supported-resources.md"),
+			outputDir: docsDir,
 			repoRoot,
 			versions: ["r4"],
 		});
 
-		const content = readFileSync(outputPath, "utf8");
-		expect(content).toContain("# Supported Resources");
-		expect(content).toContain("Inventory source for this build: committed generated output fallback");
-		expect(content).toContain("| Patient | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |");
-		expect(content).toContain("| Observation | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |");
-		expect(content).not.toContain("Generated core resources on this branch");
+		expect(outputPaths).toEqual([
+			join(docsDir, "index.md"),
+			join(docsDir, "r4.md"),
+		]);
+
+		const landingContent = readFileSync(join(docsDir, "index.md"), "utf8");
+		const releaseContent = readFileSync(join(docsDir, "r4.md"), "utf8");
+		expect(landingContent).toContain("# Supported Resources");
+		expect(landingContent).toContain("- [R4](/supported-resources/r4)");
+		expect(releaseContent).toContain("# R4 Supported Resources");
+		expect(releaseContent).toContain("Inventory source for this build: committed generated output fallback");
+		expect(releaseContent).toContain("| Patient | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |");
+		expect(releaseContent).toContain("| Observation | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |");
+		expect(releaseContent).not.toContain("Generated core resources on this branch");
 	});
 });
 

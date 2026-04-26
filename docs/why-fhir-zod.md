@@ -12,7 +12,7 @@ description: What the library is for, what it deliberately does not do, and why 
 - A generated package built from pinned HL7 artifacts.
 - A type-first model layer for application code.
 - A runtime validation layer for data crossing trust boundaries.
-- A version-explicit package surface for `stu3`, `r4`, `r4b`, and `r5`.
+- A version-explicit package surface for `r5`, `r4b`, `r4`, and `stu3`.
 
 ## Why that split is useful
 

@@ -11,7 +11,7 @@ This docs site is package orientation, not a replacement for the HL7 FHIR specif
 
 - `scripts/` and `src/generator/` define generation behavior.
 - `src/spec/*/manifest.json` pins upstream package metadata.
-- Generated output under `src/stu3/`, `src/r4/`, `src/r4b/`, and `src/r5/` shows the current emitted surface.
+- Generated output under `src/r5/`, `src/r4b/`, `src/r4/`, and `src/stu3/` shows the current emitted surface.
 - HL7 remains the semantic source of truth for FHIR behavior and documentation.
 
 ## Docs boundaries

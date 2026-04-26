@@ -11,14 +11,14 @@ hero:
       link: /getting-started
     - theme: alt
       text: Supported Resources
-      link: /supported-resources
+      link: /supported-resources/
 features:
   - title: Type-first package surface
     details: Use named TypeScript models such as `Patient` in application code, then reach for matching runtime schemas such as `PatientSchema` at trust boundaries.
   - title: Runtime validation where it matters
     details: Validate structural FHIR payloads, primitive formatting, choice-type exclusivity, and selected reference-target constraints.
   - title: Explicit FHIR release paths
-    details: Keep `stu3`, `r4`, `r4b`, and `r5` imports separate so version drift stays visible in code review.
+    details: Keep `r5`, `r4b`, `r4`, and `stu3` imports separate so version drift stays visible in code review.
 ---
 
 `fhir-zod` gives you spec-aligned TypeScript models and runtime validators for HL7 FHIR, without pretending to be a FHIR server, client, or full semantic validator.
@@ -61,7 +61,7 @@ if (!result.success) {
 
 - Generated TypeScript models such as `Patient`
 - Generated Zod schemas such as `PatientSchema`
-- Explicit versioned imports for STU3, R4, R4B, and R5
+- Explicit versioned imports for R5, R4B, R4, and STU3
 - Spec-aligned output from pinned HL7 artifacts
 
 ## What validation covers
@@ -84,5 +84,5 @@ if (!result.success) {
 - Start with [Getting Started](/getting-started) for install and validation examples.
 - Read [Why `fhir-zod`](/why-fhir-zod) for package boundaries and intended use.
 - Use [FHIR Versions](/versions) to keep imports release-specific.
-- Use [Supported Resources](/supported-resources) to browse generated core resources by release.
+- Use [Supported Resources](/supported-resources/) to browse generated core resources by release.
 - Read [Validation Scope](/validation-scope) before relying on the schemas for non-structural checks.
