@@ -3,6 +3,13 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "fhir-zod",
 	description: "Spec-aligned TypeScript models and runtime validators for HL7 FHIR.",
+	head: [
+		[
+			"script",
+			{ id: "default-light-appearance" },
+			`if (!localStorage.getItem('vitepress-theme-appearance')) localStorage.setItem('vitepress-theme-appearance', 'light')`,
+		],
+	],
 	themeConfig: {
 		search: {
 			provider: "local",
