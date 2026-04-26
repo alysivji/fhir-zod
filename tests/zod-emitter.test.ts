@@ -103,16 +103,17 @@ describe("Zod emitter", () => {
 
 		expect(index).not.toContain("export type { Patient } from");
 		expect(index).not.toContain("export { PatientSchema }");
-		expect(index).toContain('export type { Observation } from "./Observation";');
+		expect(index).toContain(
+			'export { type Observation, ObservationSchema } from "./Observation";',
+		);
 		expect(index).not.toContain("FhirResourceType");
 		expect(index).not.toContain("_registerFhirResourceSchemas");
 		expect(index).not.toContain("PatientSchemaInternal");
-		expect(patientIndex).toContain('export type { Patient } from "./Patient";');
 		expect(patientIndex).toContain(
-			'export { PatientSchema } from "./Patient";',
+			'export { type Patient, PatientSchema } from "./Patient";',
 		);
 		expect(patientIndex).toContain(
-			'export type { Patient_Contact } from "./Patient_Contact";',
+			'export { type Patient_Contact, Patient_ContactSchema } from "./Patient_Contact";',
 		);
 		expect(patientIndex).not.toContain("_registerFhirResourceSchemas");
 		expect(patientIndex).not.toContain("PatientSchemaInternal");

@@ -1,51 +1,96 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { Citation } from "./Citation";
-export { CitationSchema } from "./Citation";
-export type { Citation_CitedArtifact } from "./Citation_CitedArtifact";
-export { Citation_CitedArtifactSchema } from "./Citation_CitedArtifact";
-export type { Citation_CitedArtifact_Abstract } from "./Citation_CitedArtifact_Abstract";
-export { Citation_CitedArtifact_AbstractSchema } from "./Citation_CitedArtifact_Abstract";
-export type { Citation_CitedArtifact_Classification } from "./Citation_CitedArtifact_Classification";
-export { Citation_CitedArtifact_ClassificationSchema } from "./Citation_CitedArtifact_Classification";
-export type { Citation_CitedArtifact_Classification_WhoClassified } from "./Citation_CitedArtifact_Classification_WhoClassified";
-export { Citation_CitedArtifact_Classification_WhoClassifiedSchema } from "./Citation_CitedArtifact_Classification_WhoClassified";
-export type { Citation_CitedArtifact_Contributorship } from "./Citation_CitedArtifact_Contributorship";
-export { Citation_CitedArtifact_ContributorshipSchema } from "./Citation_CitedArtifact_Contributorship";
-export type { Citation_CitedArtifact_Contributorship_Entry } from "./Citation_CitedArtifact_Contributorship_Entry";
-export { Citation_CitedArtifact_Contributorship_EntrySchema } from "./Citation_CitedArtifact_Contributorship_Entry";
-export type { Citation_CitedArtifact_Contributorship_Entry_AffiliationInfo } from "./Citation_CitedArtifact_Contributorship_Entry_AffiliationInfo";
-export { Citation_CitedArtifact_Contributorship_Entry_AffiliationInfoSchema } from "./Citation_CitedArtifact_Contributorship_Entry_AffiliationInfo";
-export type { Citation_CitedArtifact_Contributorship_Entry_ContributionInstance } from "./Citation_CitedArtifact_Contributorship_Entry_ContributionInstance";
-export { Citation_CitedArtifact_Contributorship_Entry_ContributionInstanceSchema } from "./Citation_CitedArtifact_Contributorship_Entry_ContributionInstance";
-export type { Citation_CitedArtifact_Contributorship_Summary } from "./Citation_CitedArtifact_Contributorship_Summary";
-export { Citation_CitedArtifact_Contributorship_SummarySchema } from "./Citation_CitedArtifact_Contributorship_Summary";
-export type { Citation_CitedArtifact_Part } from "./Citation_CitedArtifact_Part";
-export { Citation_CitedArtifact_PartSchema } from "./Citation_CitedArtifact_Part";
-export type { Citation_CitedArtifact_PublicationForm } from "./Citation_CitedArtifact_PublicationForm";
-export { Citation_CitedArtifact_PublicationFormSchema } from "./Citation_CitedArtifact_PublicationForm";
-export type { Citation_CitedArtifact_PublicationForm_PeriodicRelease } from "./Citation_CitedArtifact_PublicationForm_PeriodicRelease";
-export { Citation_CitedArtifact_PublicationForm_PeriodicReleaseSchema } from "./Citation_CitedArtifact_PublicationForm_PeriodicRelease";
-export type { Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublication } from "./Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublication";
-export { Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublicationSchema } from "./Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublication";
-export type { Citation_CitedArtifact_PublicationForm_PublishedIn } from "./Citation_CitedArtifact_PublicationForm_PublishedIn";
-export { Citation_CitedArtifact_PublicationForm_PublishedInSchema } from "./Citation_CitedArtifact_PublicationForm_PublishedIn";
-export type { Citation_CitedArtifact_RelatesTo } from "./Citation_CitedArtifact_RelatesTo";
-export { Citation_CitedArtifact_RelatesToSchema } from "./Citation_CitedArtifact_RelatesTo";
-export type { Citation_CitedArtifact_StatusDate } from "./Citation_CitedArtifact_StatusDate";
-export { Citation_CitedArtifact_StatusDateSchema } from "./Citation_CitedArtifact_StatusDate";
-export type { Citation_CitedArtifact_Title } from "./Citation_CitedArtifact_Title";
-export { Citation_CitedArtifact_TitleSchema } from "./Citation_CitedArtifact_Title";
-export type { Citation_CitedArtifact_Version } from "./Citation_CitedArtifact_Version";
-export { Citation_CitedArtifact_VersionSchema } from "./Citation_CitedArtifact_Version";
-export type { Citation_CitedArtifact_WebLocation } from "./Citation_CitedArtifact_WebLocation";
-export { Citation_CitedArtifact_WebLocationSchema } from "./Citation_CitedArtifact_WebLocation";
-export type { Citation_Classification } from "./Citation_Classification";
-export { Citation_ClassificationSchema } from "./Citation_Classification";
-export type { Citation_RelatesTo } from "./Citation_RelatesTo";
-export { Citation_RelatesToSchema } from "./Citation_RelatesTo";
-export type { Citation_StatusDate } from "./Citation_StatusDate";
-export { Citation_StatusDateSchema } from "./Citation_StatusDate";
-export type { Citation_Summary } from "./Citation_Summary";
-export { Citation_SummarySchema } from "./Citation_Summary";
+export { type Citation, CitationSchema } from "./Citation";
+export {
+  type Citation_CitedArtifact,
+  Citation_CitedArtifactSchema,
+} from "./Citation_CitedArtifact";
+export {
+  type Citation_CitedArtifact_Abstract,
+  Citation_CitedArtifact_AbstractSchema,
+} from "./Citation_CitedArtifact_Abstract";
+export {
+  type Citation_CitedArtifact_Classification,
+  Citation_CitedArtifact_ClassificationSchema,
+} from "./Citation_CitedArtifact_Classification";
+export {
+  type Citation_CitedArtifact_Classification_WhoClassified,
+  Citation_CitedArtifact_Classification_WhoClassifiedSchema,
+} from "./Citation_CitedArtifact_Classification_WhoClassified";
+export {
+  type Citation_CitedArtifact_Contributorship,
+  Citation_CitedArtifact_ContributorshipSchema,
+} from "./Citation_CitedArtifact_Contributorship";
+export {
+  type Citation_CitedArtifact_Contributorship_Entry,
+  Citation_CitedArtifact_Contributorship_EntrySchema,
+} from "./Citation_CitedArtifact_Contributorship_Entry";
+export {
+  type Citation_CitedArtifact_Contributorship_Entry_AffiliationInfo,
+  Citation_CitedArtifact_Contributorship_Entry_AffiliationInfoSchema,
+} from "./Citation_CitedArtifact_Contributorship_Entry_AffiliationInfo";
+export {
+  type Citation_CitedArtifact_Contributorship_Entry_ContributionInstance,
+  Citation_CitedArtifact_Contributorship_Entry_ContributionInstanceSchema,
+} from "./Citation_CitedArtifact_Contributorship_Entry_ContributionInstance";
+export {
+  type Citation_CitedArtifact_Contributorship_Summary,
+  Citation_CitedArtifact_Contributorship_SummarySchema,
+} from "./Citation_CitedArtifact_Contributorship_Summary";
+export {
+  type Citation_CitedArtifact_Part,
+  Citation_CitedArtifact_PartSchema,
+} from "./Citation_CitedArtifact_Part";
+export {
+  type Citation_CitedArtifact_PublicationForm,
+  Citation_CitedArtifact_PublicationFormSchema,
+} from "./Citation_CitedArtifact_PublicationForm";
+export {
+  type Citation_CitedArtifact_PublicationForm_PeriodicRelease,
+  Citation_CitedArtifact_PublicationForm_PeriodicReleaseSchema,
+} from "./Citation_CitedArtifact_PublicationForm_PeriodicRelease";
+export {
+  type Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublication,
+  Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublicationSchema,
+} from "./Citation_CitedArtifact_PublicationForm_PeriodicRelease_DateOfPublication";
+export {
+  type Citation_CitedArtifact_PublicationForm_PublishedIn,
+  Citation_CitedArtifact_PublicationForm_PublishedInSchema,
+} from "./Citation_CitedArtifact_PublicationForm_PublishedIn";
+export {
+  type Citation_CitedArtifact_RelatesTo,
+  Citation_CitedArtifact_RelatesToSchema,
+} from "./Citation_CitedArtifact_RelatesTo";
+export {
+  type Citation_CitedArtifact_StatusDate,
+  Citation_CitedArtifact_StatusDateSchema,
+} from "./Citation_CitedArtifact_StatusDate";
+export {
+  type Citation_CitedArtifact_Title,
+  Citation_CitedArtifact_TitleSchema,
+} from "./Citation_CitedArtifact_Title";
+export {
+  type Citation_CitedArtifact_Version,
+  Citation_CitedArtifact_VersionSchema,
+} from "./Citation_CitedArtifact_Version";
+export {
+  type Citation_CitedArtifact_WebLocation,
+  Citation_CitedArtifact_WebLocationSchema,
+} from "./Citation_CitedArtifact_WebLocation";
+export {
+  type Citation_Classification,
+  Citation_ClassificationSchema,
+} from "./Citation_Classification";
+export {
+  type Citation_RelatesTo,
+  Citation_RelatesToSchema,
+} from "./Citation_RelatesTo";
+export {
+  type Citation_StatusDate,
+  Citation_StatusDateSchema,
+} from "./Citation_StatusDate";
+export {
+  type Citation_Summary,
+  Citation_SummarySchema,
+} from "./Citation_Summary";

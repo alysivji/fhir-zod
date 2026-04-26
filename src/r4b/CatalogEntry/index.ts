@@ -1,7 +1,8 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { CatalogEntry } from "./CatalogEntry";
-export { CatalogEntrySchema } from "./CatalogEntry";
-export type { CatalogEntry_RelatedEntry } from "./CatalogEntry_RelatedEntry";
-export { CatalogEntry_RelatedEntrySchema } from "./CatalogEntry_RelatedEntry";
+export { type CatalogEntry, CatalogEntrySchema } from "./CatalogEntry";
+export {
+  type CatalogEntry_RelatedEntry,
+  CatalogEntry_RelatedEntrySchema,
+} from "./CatalogEntry_RelatedEntry";

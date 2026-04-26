@@ -1,7 +1,8 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { NamingSystem } from "./NamingSystem";
-export { NamingSystemSchema } from "./NamingSystem";
-export type { NamingSystem_UniqueId } from "./NamingSystem_UniqueId";
-export { NamingSystem_UniqueIdSchema } from "./NamingSystem_UniqueId";
+export { type NamingSystem, NamingSystemSchema } from "./NamingSystem";
+export {
+  type NamingSystem_UniqueId,
+  NamingSystem_UniqueIdSchema,
+} from "./NamingSystem_UniqueId";

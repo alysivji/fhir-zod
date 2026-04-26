@@ -1,5 +1,4 @@
 // Release: STU3
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-26T21:18:33.606Z
 
-export type { PaymentNotice } from "./PaymentNotice";
-export { PaymentNoticeSchema } from "./PaymentNotice";
+export { type PaymentNotice, PaymentNoticeSchema } from "./PaymentNotice";

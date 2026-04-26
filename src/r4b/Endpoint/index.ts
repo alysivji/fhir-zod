@@ -1,5 +1,4 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { Endpoint } from "./Endpoint";
-export { EndpointSchema } from "./Endpoint";
+export { type Endpoint, EndpointSchema } from "./Endpoint";

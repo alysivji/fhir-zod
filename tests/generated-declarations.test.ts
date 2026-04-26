@@ -74,10 +74,7 @@ describe("generated declarations", () => {
 				"export interface Account extends DomainResource",
 			);
 			expect(accountIndexDts).toContain(
-				'export type { Account } from "./Account";',
-			);
-			expect(accountIndexDts).toContain(
-				'export { AccountSchema } from "./Account";',
+				'export { type Account, AccountSchema } from "./Account";',
 			);
 			expect(bundleDts).toContain("export interface Bundle extends Resource");
 			expect(bundleDts).toContain(
@@ -94,15 +91,14 @@ describe("generated declarations", () => {
 				"export interface Patient_Contact extends BackboneElement",
 			);
 			expect(patientIndexDts).toContain(
-				'export type { Patient } from "./Patient";',
-			);
-			expect(patientIndexDts).toContain(
-				'export { PatientSchema } from "./Patient";',
+				'export { type Patient, PatientSchema } from "./Patient";',
 			);
 			expect(quantityDts).toContain(
 				"export interface Quantity extends Element",
 			);
-			expect(indexDts).toContain('export type { Quantity } from "./Quantity";');
+			expect(indexDts).toContain(
+				'export { type Quantity, QuantitySchema } from "./Quantity";',
+			);
 			expect(indexDts).not.toContain("export type { Account }");
 			expect(indexDts).not.toContain("export { AccountSchema }");
 			expect(indexDts).not.toContain("export type { Observation }");
@@ -158,10 +154,7 @@ describe("generated declarations", () => {
 			expect(r4bTimingDts).toContain("event?: Array<string | null>;");
 			expect(r4bTimingDts).toContain("_event?: Array<Element | null>;");
 			expect(r4bPatientIndexDts).toContain(
-				'export type { Patient } from "./Patient";',
-			);
-			expect(r4bPatientIndexDts).toContain(
-				'export { PatientSchema } from "./Patient";',
+				'export { type Patient, PatientSchema } from "./Patient";',
 			);
 			expect(r4bIndexDts).not.toContain("export type { Patient } from");
 			expect(r4bIndexDts).not.toContain("export { PatientSchema }");
@@ -208,10 +201,7 @@ describe("generated declarations", () => {
 				"export interface Quantity extends Element",
 			);
 			expect(stu3PatientIndexDts).toContain(
-				'export type { Patient } from "./Patient";',
-			);
-			expect(stu3PatientIndexDts).toContain(
-				'export { PatientSchema } from "./Patient";',
+				'export { type Patient, PatientSchema } from "./Patient";',
 			);
 			expect(stu3IndexDts).not.toContain("export type { Patient } from");
 			expect(stu3IndexDts).not.toContain("export { PatientSchema }");

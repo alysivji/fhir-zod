@@ -1,5 +1,4 @@
 // Release: R4
-// Last generated: 2026-04-18T17:00:42.795Z
+// Last generated: 2026-04-26T21:17:13.127Z
 
-export type { Slot } from "./Slot";
-export { SlotSchema } from "./Slot";
+export { type Slot, SlotSchema } from "./Slot";

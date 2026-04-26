@@ -1,5 +1,7 @@
 // Release: R4
-// Last generated: 2026-04-18T17:00:42.795Z
+// Last generated: 2026-04-26T21:17:13.127Z
 
-export type { GuidanceResponse } from "./GuidanceResponse";
-export { GuidanceResponseSchema } from "./GuidanceResponse";
+export {
+  type GuidanceResponse,
+  GuidanceResponseSchema,
+} from "./GuidanceResponse";

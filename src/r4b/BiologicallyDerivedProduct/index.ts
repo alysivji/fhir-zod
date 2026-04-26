@@ -1,13 +1,23 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { BiologicallyDerivedProduct } from "./BiologicallyDerivedProduct";
-export { BiologicallyDerivedProductSchema } from "./BiologicallyDerivedProduct";
-export type { BiologicallyDerivedProduct_Collection } from "./BiologicallyDerivedProduct_Collection";
-export { BiologicallyDerivedProduct_CollectionSchema } from "./BiologicallyDerivedProduct_Collection";
-export type { BiologicallyDerivedProduct_Manipulation } from "./BiologicallyDerivedProduct_Manipulation";
-export { BiologicallyDerivedProduct_ManipulationSchema } from "./BiologicallyDerivedProduct_Manipulation";
-export type { BiologicallyDerivedProduct_Processing } from "./BiologicallyDerivedProduct_Processing";
-export { BiologicallyDerivedProduct_ProcessingSchema } from "./BiologicallyDerivedProduct_Processing";
-export type { BiologicallyDerivedProduct_Storage } from "./BiologicallyDerivedProduct_Storage";
-export { BiologicallyDerivedProduct_StorageSchema } from "./BiologicallyDerivedProduct_Storage";
+export {
+  type BiologicallyDerivedProduct,
+  BiologicallyDerivedProductSchema,
+} from "./BiologicallyDerivedProduct";
+export {
+  type BiologicallyDerivedProduct_Collection,
+  BiologicallyDerivedProduct_CollectionSchema,
+} from "./BiologicallyDerivedProduct_Collection";
+export {
+  type BiologicallyDerivedProduct_Manipulation,
+  BiologicallyDerivedProduct_ManipulationSchema,
+} from "./BiologicallyDerivedProduct_Manipulation";
+export {
+  type BiologicallyDerivedProduct_Processing,
+  BiologicallyDerivedProduct_ProcessingSchema,
+} from "./BiologicallyDerivedProduct_Processing";
+export {
+  type BiologicallyDerivedProduct_Storage,
+  BiologicallyDerivedProduct_StorageSchema,
+} from "./BiologicallyDerivedProduct_Storage";

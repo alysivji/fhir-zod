@@ -1,7 +1,8 @@
 // Release: R5
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-26T21:18:41.102Z
 
-export type { Substance } from "./Substance";
-export { SubstanceSchema } from "./Substance";
-export type { Substance_Ingredient } from "./Substance_Ingredient";
-export { Substance_IngredientSchema } from "./Substance_Ingredient";
+export { type Substance, SubstanceSchema } from "./Substance";
+export {
+  type Substance_Ingredient,
+  Substance_IngredientSchema,
+} from "./Substance_Ingredient";

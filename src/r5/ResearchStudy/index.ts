@@ -1,19 +1,32 @@
 // Release: R5
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-26T21:18:41.102Z
 
-export type { ResearchStudy } from "./ResearchStudy";
-export { ResearchStudySchema } from "./ResearchStudy";
-export type { ResearchStudy_AssociatedParty } from "./ResearchStudy_AssociatedParty";
-export { ResearchStudy_AssociatedPartySchema } from "./ResearchStudy_AssociatedParty";
-export type { ResearchStudy_ComparisonGroup } from "./ResearchStudy_ComparisonGroup";
-export { ResearchStudy_ComparisonGroupSchema } from "./ResearchStudy_ComparisonGroup";
-export type { ResearchStudy_Label } from "./ResearchStudy_Label";
-export { ResearchStudy_LabelSchema } from "./ResearchStudy_Label";
-export type { ResearchStudy_Objective } from "./ResearchStudy_Objective";
-export { ResearchStudy_ObjectiveSchema } from "./ResearchStudy_Objective";
-export type { ResearchStudy_OutcomeMeasure } from "./ResearchStudy_OutcomeMeasure";
-export { ResearchStudy_OutcomeMeasureSchema } from "./ResearchStudy_OutcomeMeasure";
-export type { ResearchStudy_ProgressStatus } from "./ResearchStudy_ProgressStatus";
-export { ResearchStudy_ProgressStatusSchema } from "./ResearchStudy_ProgressStatus";
-export type { ResearchStudy_Recruitment } from "./ResearchStudy_Recruitment";
-export { ResearchStudy_RecruitmentSchema } from "./ResearchStudy_Recruitment";
+export { type ResearchStudy, ResearchStudySchema } from "./ResearchStudy";
+export {
+  type ResearchStudy_AssociatedParty,
+  ResearchStudy_AssociatedPartySchema,
+} from "./ResearchStudy_AssociatedParty";
+export {
+  type ResearchStudy_ComparisonGroup,
+  ResearchStudy_ComparisonGroupSchema,
+} from "./ResearchStudy_ComparisonGroup";
+export {
+  type ResearchStudy_Label,
+  ResearchStudy_LabelSchema,
+} from "./ResearchStudy_Label";
+export {
+  type ResearchStudy_Objective,
+  ResearchStudy_ObjectiveSchema,
+} from "./ResearchStudy_Objective";
+export {
+  type ResearchStudy_OutcomeMeasure,
+  ResearchStudy_OutcomeMeasureSchema,
+} from "./ResearchStudy_OutcomeMeasure";
+export {
+  type ResearchStudy_ProgressStatus,
+  ResearchStudy_ProgressStatusSchema,
+} from "./ResearchStudy_ProgressStatus";
+export {
+  type ResearchStudy_Recruitment,
+  ResearchStudy_RecruitmentSchema,
+} from "./ResearchStudy_Recruitment";
