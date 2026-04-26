@@ -120,16 +120,14 @@ export function renderSupportedResourcesReleaseDoc(
 		"",
 		`Inventory source for this build: ${section.source === "spec-cache" ? "extracted pinned spec inputs" : "committed generated output fallback"}`,
 		"",
-		"| Resource | Description | Import path | HL7 docs |",
-		"| --- | --- | --- | --- |",
+		"| Resource | Import path | HL7 docs |",
+		"| --- | --- | --- |",
 	];
 
 	for (const resource of section.resources) {
-		const description = resource.description
-			? escapeTableCell(resource.description)
-			: "Description unavailable in generated-output fallback.";
+		const resourceLabel = renderResourceLabel(resource);
 		lines.push(
-			`| ${resource.name} | ${description} | \`${resource.importPath}\` | [HL7](${resource.resourceUrl}) |`,
+			`| ${resourceLabel} | \`${resource.importPath}\` | [HL7](${resource.resourceUrl}) |`,
 		);
 	}
 
@@ -258,12 +256,38 @@ function normalizeDescription(description: string | null | undefined): string | 
 		return null;
 	}
 
-	const normalized = description.replace(/\s+/g, " ").trim();
+	const normalized = sanitizeDescriptionMarkdown(description)
+		.replace(/\s+/g, " ")
+		.trim();
 	return normalized.length > 0 ? normalized : null;
+}
+
+function sanitizeDescriptionMarkdown(value: string): string {
+	return value
+		.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+		.replace(/\[\[\[([^\]]+)\]\]\]/g, "$1");
 }
 
 function escapeTableCell(value: string): string {
 	return value.replace(/\|/g, "\\|");
+}
+
+function renderResourceLabel(resource: SupportedResourcesDocEntry): string {
+	if (!resource.description) {
+		return escapeTableCell(resource.name);
+	}
+
+	const name = escapeHtmlAttribute(resource.name);
+	const description = escapeHtmlAttribute(resource.description);
+	return `<span class="resource-name-tooltip" tabindex="0">${name}<span class="resource-name-tooltip__bubble">${description}</span></span>`;
+}
+
+function escapeHtmlAttribute(value: string): string {
+	return escapeTableCell(value)
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
 }
 
 if (

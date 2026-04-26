@@ -513,10 +513,70 @@ describe("generate-supported-resources-doc script", () => {
 		expect(landingContent).toContain("- [R4](/supported-resources/r4)");
 		expect(releaseContent).toContain("# R4 Supported Resources");
 		expect(releaseContent).toContain("Inventory source for this build: committed generated output fallback");
-		expect(releaseContent).toContain("| Resource | Description | Import path | HL7 docs |");
-		expect(releaseContent).toContain("| Patient | Demographics and other administrative information about an individual. | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |");
-		expect(releaseContent).toContain("| Observation | Measurements and simple assertions. | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |");
+		expect(releaseContent).toContain("| Resource | Import path | HL7 docs |");
+		expect(releaseContent).toContain(
+			'| <span class="resource-name-tooltip" tabindex="0">Patient<span class="resource-name-tooltip__bubble">Demographics and other administrative information about an individual.</span></span> | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |',
+		);
+		expect(releaseContent).toContain(
+			'| <span class="resource-name-tooltip" tabindex="0">Observation<span class="resource-name-tooltip__bubble">Measurements and simple assertions.</span></span> | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |',
+		);
 		expect(releaseContent).not.toContain("Generated core resources on this branch");
+	});
+
+	it("strips inline markdown links from resource descriptions", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-docs-"));
+		const docsDir = join(repoRoot, "docs", "supported-resources");
+		mkdirSync(docsDir, { recursive: true });
+
+		writeSupportedResourcesDocs({
+			getRelease: (version) => {
+				if (version !== "r4") {
+					return null;
+				}
+
+				return {
+					abstractTargetNames: ["Element"],
+					exampleResourcePageUrl: () => "https://example.test/r4/valueset-examples.html",
+					generate: () => ({ files: [] }),
+					id: "r4",
+					label: "R4",
+					loadTargetEntries: () => [
+						{
+							abstract: false,
+							baseDefinition: null,
+							category: "core-resource",
+							description:
+								"A ValueSet links [[[CodeSystem]]] usage in [coded elements](terminologies.html).",
+							kind: "resource",
+							name: "ValueSet",
+							shouldGenerate: true,
+							type: "ValueSet",
+							url: null,
+						},
+					],
+					nestedBackboneTypeCodes: ["Element"],
+					resourcePageUrl: (resourceName: string) =>
+						`https://example.test/r4/${resourceName.toLowerCase()}.html`,
+					specHomeUrl: () => "https://example.test/r4",
+					summarizeTargets: () => ({
+						abstractGenerationWhitelist: ["Element"],
+						concreteResourceCount: 1,
+						coreResourceCount: 1,
+						generationTargetCount: 1,
+						profileResourceCount: 0,
+					}),
+				} as unknown as FhirRelease;
+			},
+			outputDir: docsDir,
+			repoRoot,
+			versions: ["r4"],
+		});
+
+		const releaseContent = readFileSync(join(docsDir, "r4.md"), "utf8");
+		expect(releaseContent).toContain(
+			'| <span class="resource-name-tooltip" tabindex="0">ValueSet<span class="resource-name-tooltip__bubble">A ValueSet links CodeSystem usage in coded elements.</span></span> | `fhir-zod/r4/ValueSet` | [HL7](https://example.test/r4/valueset.html) |',
+		);
+		expect(releaseContent).not.toContain("terminologies.html");
 	});
 });
 
