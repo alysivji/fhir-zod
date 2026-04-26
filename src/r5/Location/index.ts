@@ -1,7 +1,8 @@
 // Release: R5
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-26T21:18:41.102Z
 
-export type { Location } from "./Location";
-export { LocationSchema } from "./Location";
-export type { Location_Position } from "./Location_Position";
-export { Location_PositionSchema } from "./Location_Position";
+export { type Location, LocationSchema } from "./Location";
+export {
+  type Location_Position,
+  Location_PositionSchema,
+} from "./Location_Position";

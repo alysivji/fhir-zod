@@ -1,11 +1,16 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { Specimen } from "./Specimen";
-export { SpecimenSchema } from "./Specimen";
-export type { Specimen_Collection } from "./Specimen_Collection";
-export { Specimen_CollectionSchema } from "./Specimen_Collection";
-export type { Specimen_Container } from "./Specimen_Container";
-export { Specimen_ContainerSchema } from "./Specimen_Container";
-export type { Specimen_Processing } from "./Specimen_Processing";
-export { Specimen_ProcessingSchema } from "./Specimen_Processing";
+export { type Specimen, SpecimenSchema } from "./Specimen";
+export {
+  type Specimen_Collection,
+  Specimen_CollectionSchema,
+} from "./Specimen_Collection";
+export {
+  type Specimen_Container,
+  Specimen_ContainerSchema,
+} from "./Specimen_Container";
+export {
+  type Specimen_Processing,
+  Specimen_ProcessingSchema,
+} from "./Specimen_Processing";

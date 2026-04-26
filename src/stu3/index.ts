@@ -1,99 +1,90 @@
 // Release: STU3
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-26T21:18:33.606Z
 
-export type { Address } from "./Address";
-export { AddressSchema } from "./Address";
-export type { Age } from "./Age";
-export { AgeSchema } from "./Age";
-export type { Annotation } from "./Annotation";
-export { AnnotationSchema } from "./Annotation";
-export type { Attachment } from "./Attachment";
-export { AttachmentSchema } from "./Attachment";
-export type { BackboneElement } from "./BackboneElement";
-export { BackboneElementSchema } from "./BackboneElement";
-export type { CodeableConcept } from "./CodeableConcept";
-export { CodeableConceptSchema } from "./CodeableConcept";
-export type { Coding } from "./Coding";
-export { CodingSchema } from "./Coding";
-export type { ContactDetail } from "./ContactDetail";
-export { ContactDetailSchema } from "./ContactDetail";
-export type { ContactPoint } from "./ContactPoint";
-export { ContactPointSchema } from "./ContactPoint";
-export type { Contributor } from "./Contributor";
-export { ContributorSchema } from "./Contributor";
-export type { Count } from "./Count";
-export { CountSchema } from "./Count";
-export type { DataRequirement } from "./DataRequirement";
-export { DataRequirementSchema } from "./DataRequirement";
-export type { DataRequirement_CodeFilter } from "./DataRequirement_CodeFilter";
-export { DataRequirement_CodeFilterSchema } from "./DataRequirement_CodeFilter";
-export type { DataRequirement_DateFilter } from "./DataRequirement_DateFilter";
-export { DataRequirement_DateFilterSchema } from "./DataRequirement_DateFilter";
-export type { Distance } from "./Distance";
-export { DistanceSchema } from "./Distance";
-export type { DomainResource } from "./DomainResource";
-export { DomainResourceSchema } from "./DomainResource";
-export type { Dosage } from "./Dosage";
-export { DosageSchema } from "./Dosage";
-export type { Duration } from "./Duration";
-export { DurationSchema } from "./Duration";
-export type { Element } from "./Element";
-export { ElementSchema } from "./Element";
-export type { ElementDefinition } from "./ElementDefinition";
-export { ElementDefinitionSchema } from "./ElementDefinition";
-export type { ElementDefinition_Base } from "./ElementDefinition_Base";
-export { ElementDefinition_BaseSchema } from "./ElementDefinition_Base";
-export type { ElementDefinition_Binding } from "./ElementDefinition_Binding";
-export { ElementDefinition_BindingSchema } from "./ElementDefinition_Binding";
-export type { ElementDefinition_Constraint } from "./ElementDefinition_Constraint";
-export { ElementDefinition_ConstraintSchema } from "./ElementDefinition_Constraint";
-export type { ElementDefinition_Example } from "./ElementDefinition_Example";
-export { ElementDefinition_ExampleSchema } from "./ElementDefinition_Example";
-export type { ElementDefinition_Mapping } from "./ElementDefinition_Mapping";
-export { ElementDefinition_MappingSchema } from "./ElementDefinition_Mapping";
-export type { ElementDefinition_Slicing } from "./ElementDefinition_Slicing";
-export { ElementDefinition_SlicingSchema } from "./ElementDefinition_Slicing";
-export type { ElementDefinition_Slicing_Discriminator } from "./ElementDefinition_Slicing_Discriminator";
-export { ElementDefinition_Slicing_DiscriminatorSchema } from "./ElementDefinition_Slicing_Discriminator";
-export type { ElementDefinition_Type } from "./ElementDefinition_Type";
-export { ElementDefinition_TypeSchema } from "./ElementDefinition_Type";
-export type { Extension } from "./Extension";
-export { ExtensionSchema } from "./Extension";
-export type { HumanName } from "./HumanName";
-export { HumanNameSchema } from "./HumanName";
-export type { Identifier } from "./Identifier";
-export { IdentifierSchema } from "./Identifier";
-export type { Meta } from "./Meta";
-export { MetaSchema } from "./Meta";
-export type { Money } from "./Money";
-export { MoneySchema } from "./Money";
-export type { Narrative } from "./Narrative";
-export { NarrativeSchema } from "./Narrative";
-export type { ParameterDefinition } from "./ParameterDefinition";
-export { ParameterDefinitionSchema } from "./ParameterDefinition";
-export type { Period } from "./Period";
-export { PeriodSchema } from "./Period";
-export type { Quantity } from "./Quantity";
-export { QuantitySchema } from "./Quantity";
-export type { Range } from "./Range";
-export { RangeSchema } from "./Range";
-export type { Ratio } from "./Ratio";
-export { RatioSchema } from "./Ratio";
-export type { Reference } from "./Reference";
-export { ReferenceSchema } from "./Reference";
-export type { RelatedArtifact } from "./RelatedArtifact";
-export { RelatedArtifactSchema } from "./RelatedArtifact";
-export type { Resource } from "./Resource";
-export { ResourceSchema } from "./Resource";
-export type { SampledData } from "./SampledData";
-export { SampledDataSchema } from "./SampledData";
-export type { Signature } from "./Signature";
-export { SignatureSchema } from "./Signature";
-export type { Timing } from "./Timing";
-export { TimingSchema } from "./Timing";
-export type { Timing_Repeat } from "./Timing_Repeat";
-export { Timing_RepeatSchema } from "./Timing_Repeat";
-export type { TriggerDefinition } from "./TriggerDefinition";
-export { TriggerDefinitionSchema } from "./TriggerDefinition";
-export type { UsageContext } from "./UsageContext";
-export { UsageContextSchema } from "./UsageContext";
+export { type Address, AddressSchema } from "./Address";
+export { type Age, AgeSchema } from "./Age";
+export { type Annotation, AnnotationSchema } from "./Annotation";
+export { type Attachment, AttachmentSchema } from "./Attachment";
+export { type BackboneElement, BackboneElementSchema } from "./BackboneElement";
+export { type CodeableConcept, CodeableConceptSchema } from "./CodeableConcept";
+export { type Coding, CodingSchema } from "./Coding";
+export { type ContactDetail, ContactDetailSchema } from "./ContactDetail";
+export { type ContactPoint, ContactPointSchema } from "./ContactPoint";
+export { type Contributor, ContributorSchema } from "./Contributor";
+export { type Count, CountSchema } from "./Count";
+export { type DataRequirement, DataRequirementSchema } from "./DataRequirement";
+export {
+  type DataRequirement_CodeFilter,
+  DataRequirement_CodeFilterSchema,
+} from "./DataRequirement_CodeFilter";
+export {
+  type DataRequirement_DateFilter,
+  DataRequirement_DateFilterSchema,
+} from "./DataRequirement_DateFilter";
+export { type Distance, DistanceSchema } from "./Distance";
+export { type DomainResource, DomainResourceSchema } from "./DomainResource";
+export { type Dosage, DosageSchema } from "./Dosage";
+export { type Duration, DurationSchema } from "./Duration";
+export { type Element, ElementSchema } from "./Element";
+export {
+  type ElementDefinition,
+  ElementDefinitionSchema,
+} from "./ElementDefinition";
+export {
+  type ElementDefinition_Base,
+  ElementDefinition_BaseSchema,
+} from "./ElementDefinition_Base";
+export {
+  type ElementDefinition_Binding,
+  ElementDefinition_BindingSchema,
+} from "./ElementDefinition_Binding";
+export {
+  type ElementDefinition_Constraint,
+  ElementDefinition_ConstraintSchema,
+} from "./ElementDefinition_Constraint";
+export {
+  type ElementDefinition_Example,
+  ElementDefinition_ExampleSchema,
+} from "./ElementDefinition_Example";
+export {
+  type ElementDefinition_Mapping,
+  ElementDefinition_MappingSchema,
+} from "./ElementDefinition_Mapping";
+export {
+  type ElementDefinition_Slicing,
+  ElementDefinition_SlicingSchema,
+} from "./ElementDefinition_Slicing";
+export {
+  type ElementDefinition_Slicing_Discriminator,
+  ElementDefinition_Slicing_DiscriminatorSchema,
+} from "./ElementDefinition_Slicing_Discriminator";
+export {
+  type ElementDefinition_Type,
+  ElementDefinition_TypeSchema,
+} from "./ElementDefinition_Type";
+export { type Extension, ExtensionSchema } from "./Extension";
+export { type HumanName, HumanNameSchema } from "./HumanName";
+export { type Identifier, IdentifierSchema } from "./Identifier";
+export { type Meta, MetaSchema } from "./Meta";
+export { type Money, MoneySchema } from "./Money";
+export { type Narrative, NarrativeSchema } from "./Narrative";
+export {
+  type ParameterDefinition,
+  ParameterDefinitionSchema,
+} from "./ParameterDefinition";
+export { type Period, PeriodSchema } from "./Period";
+export { type Quantity, QuantitySchema } from "./Quantity";
+export { type Range, RangeSchema } from "./Range";
+export { type Ratio, RatioSchema } from "./Ratio";
+export { type Reference, ReferenceSchema } from "./Reference";
+export { type RelatedArtifact, RelatedArtifactSchema } from "./RelatedArtifact";
+export { type Resource, ResourceSchema } from "./Resource";
+export { type SampledData, SampledDataSchema } from "./SampledData";
+export { type Signature, SignatureSchema } from "./Signature";
+export { type Timing, TimingSchema } from "./Timing";
+export { type Timing_Repeat, Timing_RepeatSchema } from "./Timing_Repeat";
+export {
+  type TriggerDefinition,
+  TriggerDefinitionSchema,
+} from "./TriggerDefinition";
+export { type UsageContext, UsageContextSchema } from "./UsageContext";

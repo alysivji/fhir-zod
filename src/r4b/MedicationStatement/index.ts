@@ -1,5 +1,7 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { MedicationStatement } from "./MedicationStatement";
-export { MedicationStatementSchema } from "./MedicationStatement";
+export {
+  type MedicationStatement,
+  MedicationStatementSchema,
+} from "./MedicationStatement";

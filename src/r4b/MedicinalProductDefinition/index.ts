@@ -1,19 +1,35 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { MedicinalProductDefinition } from "./MedicinalProductDefinition";
-export { MedicinalProductDefinitionSchema } from "./MedicinalProductDefinition";
-export type { MedicinalProductDefinition_Characteristic } from "./MedicinalProductDefinition_Characteristic";
-export { MedicinalProductDefinition_CharacteristicSchema } from "./MedicinalProductDefinition_Characteristic";
-export type { MedicinalProductDefinition_Contact } from "./MedicinalProductDefinition_Contact";
-export { MedicinalProductDefinition_ContactSchema } from "./MedicinalProductDefinition_Contact";
-export type { MedicinalProductDefinition_CrossReference } from "./MedicinalProductDefinition_CrossReference";
-export { MedicinalProductDefinition_CrossReferenceSchema } from "./MedicinalProductDefinition_CrossReference";
-export type { MedicinalProductDefinition_Name } from "./MedicinalProductDefinition_Name";
-export { MedicinalProductDefinition_NameSchema } from "./MedicinalProductDefinition_Name";
-export type { MedicinalProductDefinition_Name_CountryLanguage } from "./MedicinalProductDefinition_Name_CountryLanguage";
-export { MedicinalProductDefinition_Name_CountryLanguageSchema } from "./MedicinalProductDefinition_Name_CountryLanguage";
-export type { MedicinalProductDefinition_Name_NamePart } from "./MedicinalProductDefinition_Name_NamePart";
-export { MedicinalProductDefinition_Name_NamePartSchema } from "./MedicinalProductDefinition_Name_NamePart";
-export type { MedicinalProductDefinition_Operation } from "./MedicinalProductDefinition_Operation";
-export { MedicinalProductDefinition_OperationSchema } from "./MedicinalProductDefinition_Operation";
+export {
+  type MedicinalProductDefinition,
+  MedicinalProductDefinitionSchema,
+} from "./MedicinalProductDefinition";
+export {
+  type MedicinalProductDefinition_Characteristic,
+  MedicinalProductDefinition_CharacteristicSchema,
+} from "./MedicinalProductDefinition_Characteristic";
+export {
+  type MedicinalProductDefinition_Contact,
+  MedicinalProductDefinition_ContactSchema,
+} from "./MedicinalProductDefinition_Contact";
+export {
+  type MedicinalProductDefinition_CrossReference,
+  MedicinalProductDefinition_CrossReferenceSchema,
+} from "./MedicinalProductDefinition_CrossReference";
+export {
+  type MedicinalProductDefinition_Name,
+  MedicinalProductDefinition_NameSchema,
+} from "./MedicinalProductDefinition_Name";
+export {
+  type MedicinalProductDefinition_Name_CountryLanguage,
+  MedicinalProductDefinition_Name_CountryLanguageSchema,
+} from "./MedicinalProductDefinition_Name_CountryLanguage";
+export {
+  type MedicinalProductDefinition_Name_NamePart,
+  MedicinalProductDefinition_Name_NamePartSchema,
+} from "./MedicinalProductDefinition_Name_NamePart";
+export {
+  type MedicinalProductDefinition_Operation,
+  MedicinalProductDefinition_OperationSchema,
+} from "./MedicinalProductDefinition_Operation";

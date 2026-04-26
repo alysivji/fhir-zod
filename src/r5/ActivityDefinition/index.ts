@@ -1,9 +1,15 @@
 // Release: R5
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-26T21:18:41.102Z
 
-export type { ActivityDefinition } from "./ActivityDefinition";
-export { ActivityDefinitionSchema } from "./ActivityDefinition";
-export type { ActivityDefinition_DynamicValue } from "./ActivityDefinition_DynamicValue";
-export { ActivityDefinition_DynamicValueSchema } from "./ActivityDefinition_DynamicValue";
-export type { ActivityDefinition_Participant } from "./ActivityDefinition_Participant";
-export { ActivityDefinition_ParticipantSchema } from "./ActivityDefinition_Participant";
+export {
+  type ActivityDefinition,
+  ActivityDefinitionSchema,
+} from "./ActivityDefinition";
+export {
+  type ActivityDefinition_DynamicValue,
+  ActivityDefinition_DynamicValueSchema,
+} from "./ActivityDefinition_DynamicValue";
+export {
+  type ActivityDefinition_Participant,
+  ActivityDefinition_ParticipantSchema,
+} from "./ActivityDefinition_Participant";

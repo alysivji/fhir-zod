@@ -225,10 +225,10 @@ function buildNormalizedZodFiles(options: {
 				generatedAt: options.generatedAt,
 				releaseLabel,
 			}),
-			...publicRootDefinitions.flatMap((definition) => [
-				`export type { ${definition.name} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
-				`export { ${schemaExportName(definition.name)} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
-			]),
+			...publicRootDefinitions.map(
+				(definition) =>
+					`export { type ${definition.name}, ${schemaExportName(definition.name)} } from ${JSON.stringify(layout.definitionImportPath(join(options.outputDir, "index.ts"), definition.name))};`,
+			),
 			"",
 		].join("\n"),
 		path: join(options.outputDir, "index.ts"),
@@ -370,10 +370,10 @@ function emitFolderIndexFile(options: {
 			generatedAt: options.generatedAt,
 			releaseLabel: options.releaseLabel,
 		}),
-		...options.definitions.flatMap((definition) => [
-			`export type { ${definition.name} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
-			`export { ${schemaExportName(definition.name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
-		]),
+		...options.definitions.map(
+			(definition) =>
+				`export { type ${definition.name}, ${schemaExportName(definition.name)} } from ${JSON.stringify(options.layout.definitionInternalImportPath(filePath, definition.name))};`,
+		),
 		"",
 	].join("\n");
 }

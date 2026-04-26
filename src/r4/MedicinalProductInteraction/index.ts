@@ -1,7 +1,11 @@
 // Release: R4
-// Last generated: 2026-04-18T17:00:42.795Z
+// Last generated: 2026-04-26T21:17:13.127Z
 
-export type { MedicinalProductInteraction } from "./MedicinalProductInteraction";
-export { MedicinalProductInteractionSchema } from "./MedicinalProductInteraction";
-export type { MedicinalProductInteraction_Interactant } from "./MedicinalProductInteraction_Interactant";
-export { MedicinalProductInteraction_InteractantSchema } from "./MedicinalProductInteraction_Interactant";
+export {
+  type MedicinalProductInteraction,
+  MedicinalProductInteractionSchema,
+} from "./MedicinalProductInteraction";
+export {
+  type MedicinalProductInteraction_Interactant,
+  MedicinalProductInteraction_InteractantSchema,
+} from "./MedicinalProductInteraction_Interactant";

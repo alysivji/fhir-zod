@@ -1,7 +1,8 @@
 // Release: STU3
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-26T21:18:33.606Z
 
-export type { Practitioner } from "./Practitioner";
-export { PractitionerSchema } from "./Practitioner";
-export type { Practitioner_Qualification } from "./Practitioner_Qualification";
-export { Practitioner_QualificationSchema } from "./Practitioner_Qualification";
+export { type Practitioner, PractitionerSchema } from "./Practitioner";
+export {
+  type Practitioner_Qualification,
+  Practitioner_QualificationSchema,
+} from "./Practitioner_Qualification";

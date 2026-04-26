@@ -1,5 +1,4 @@
 // Release: R5
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-26T21:18:41.102Z
 
-export type { EventDefinition } from "./EventDefinition";
-export { EventDefinitionSchema } from "./EventDefinition";
+export { type EventDefinition, EventDefinitionSchema } from "./EventDefinition";

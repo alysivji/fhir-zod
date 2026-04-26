@@ -1,5 +1,7 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { ResearchDefinition } from "./ResearchDefinition";
-export { ResearchDefinitionSchema } from "./ResearchDefinition";
+export {
+  type ResearchDefinition,
+  ResearchDefinitionSchema,
+} from "./ResearchDefinition";

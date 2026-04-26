@@ -1,13 +1,20 @@
 // Release: R5
-// Last generated: 2026-04-18T17:01:01.100Z
+// Last generated: 2026-04-26T21:18:41.102Z
 
-export type { Immunization } from "./Immunization";
-export { ImmunizationSchema } from "./Immunization";
-export type { Immunization_Performer } from "./Immunization_Performer";
-export { Immunization_PerformerSchema } from "./Immunization_Performer";
-export type { Immunization_ProgramEligibility } from "./Immunization_ProgramEligibility";
-export { Immunization_ProgramEligibilitySchema } from "./Immunization_ProgramEligibility";
-export type { Immunization_ProtocolApplied } from "./Immunization_ProtocolApplied";
-export { Immunization_ProtocolAppliedSchema } from "./Immunization_ProtocolApplied";
-export type { Immunization_Reaction } from "./Immunization_Reaction";
-export { Immunization_ReactionSchema } from "./Immunization_Reaction";
+export { type Immunization, ImmunizationSchema } from "./Immunization";
+export {
+  type Immunization_Performer,
+  Immunization_PerformerSchema,
+} from "./Immunization_Performer";
+export {
+  type Immunization_ProgramEligibility,
+  Immunization_ProgramEligibilitySchema,
+} from "./Immunization_ProgramEligibility";
+export {
+  type Immunization_ProtocolApplied,
+  Immunization_ProtocolAppliedSchema,
+} from "./Immunization_ProtocolApplied";
+export {
+  type Immunization_Reaction,
+  Immunization_ReactionSchema,
+} from "./Immunization_Reaction";

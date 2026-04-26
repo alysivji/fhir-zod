@@ -230,11 +230,11 @@ describe("FHIR version registry", () => {
 		});
 
 		expect(release.capturedScopes).toEqual([["Element", "Patient"]]);
-		expect(result.files.map((file) => file.split("/").at(-1)).sort()).toEqual([
-			"Patient.ts",
-			"_fhirResourceSchema.ts",
-			"index.ts",
-			"index.ts",
+		expect(result.files.sort()).toEqual([
+			join(outputDir, "Patient", "Patient.ts"),
+			join(outputDir, "Patient", "index.ts"),
+			join(outputDir, "_fhirResourceSchema.ts"),
+			join(outputDir, "index.ts"),
 		]);
 		expect(readFileSync(join(outputDir, "index.ts"), "utf8")).not.toContain(
 			"FhirResource",
@@ -244,7 +244,7 @@ describe("FHIR version registry", () => {
 		).toContain("export type FhirResource");
 		expect(
 			readFileSync(join(outputDir, "Patient", "index.ts"), "utf8"),
-		).toContain('export { PatientSchema } from "./Patient"');
+		).toContain('export { type Patient, PatientSchema } from "./Patient";');
 	});
 
 	it("passes explicit generation scopes to definition building", () => {

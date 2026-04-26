@@ -1,11 +1,19 @@
 // Release: R4
-// Last generated: 2026-04-18T17:00:42.795Z
+// Last generated: 2026-04-26T21:17:13.127Z
 
-export type { MedicationRequest } from "./MedicationRequest";
-export { MedicationRequestSchema } from "./MedicationRequest";
-export type { MedicationRequest_DispenseRequest } from "./MedicationRequest_DispenseRequest";
-export { MedicationRequest_DispenseRequestSchema } from "./MedicationRequest_DispenseRequest";
-export type { MedicationRequest_DispenseRequest_InitialFill } from "./MedicationRequest_DispenseRequest_InitialFill";
-export { MedicationRequest_DispenseRequest_InitialFillSchema } from "./MedicationRequest_DispenseRequest_InitialFill";
-export type { MedicationRequest_Substitution } from "./MedicationRequest_Substitution";
-export { MedicationRequest_SubstitutionSchema } from "./MedicationRequest_Substitution";
+export {
+  type MedicationRequest,
+  MedicationRequestSchema,
+} from "./MedicationRequest";
+export {
+  type MedicationRequest_DispenseRequest,
+  MedicationRequest_DispenseRequestSchema,
+} from "./MedicationRequest_DispenseRequest";
+export {
+  type MedicationRequest_DispenseRequest_InitialFill,
+  MedicationRequest_DispenseRequest_InitialFillSchema,
+} from "./MedicationRequest_DispenseRequest_InitialFill";
+export {
+  type MedicationRequest_Substitution,
+  MedicationRequest_SubstitutionSchema,
+} from "./MedicationRequest_Substitution";

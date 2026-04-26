@@ -1,13 +1,20 @@
 // Release: R4B
-// Last generated: 2026-04-18T17:00:58.420Z
+// Last generated: 2026-04-26T21:18:38.292Z
 
-export type { Questionnaire } from "./Questionnaire";
-export { QuestionnaireSchema } from "./Questionnaire";
-export type { Questionnaire_Item } from "./Questionnaire_Item";
-export { Questionnaire_ItemSchema } from "./Questionnaire_Item";
-export type { Questionnaire_Item_AnswerOption } from "./Questionnaire_Item_AnswerOption";
-export { Questionnaire_Item_AnswerOptionSchema } from "./Questionnaire_Item_AnswerOption";
-export type { Questionnaire_Item_EnableWhen } from "./Questionnaire_Item_EnableWhen";
-export { Questionnaire_Item_EnableWhenSchema } from "./Questionnaire_Item_EnableWhen";
-export type { Questionnaire_Item_Initial } from "./Questionnaire_Item_Initial";
-export { Questionnaire_Item_InitialSchema } from "./Questionnaire_Item_Initial";
+export { type Questionnaire, QuestionnaireSchema } from "./Questionnaire";
+export {
+  type Questionnaire_Item,
+  Questionnaire_ItemSchema,
+} from "./Questionnaire_Item";
+export {
+  type Questionnaire_Item_AnswerOption,
+  Questionnaire_Item_AnswerOptionSchema,
+} from "./Questionnaire_Item_AnswerOption";
+export {
+  type Questionnaire_Item_EnableWhen,
+  Questionnaire_Item_EnableWhenSchema,
+} from "./Questionnaire_Item_EnableWhen";
+export {
+  type Questionnaire_Item_Initial,
+  Questionnaire_Item_InitialSchema,
+} from "./Questionnaire_Item_Initial";

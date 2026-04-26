@@ -1,9 +1,15 @@
 // Release: STU3
-// Last generated: 2026-04-18T17:00:56.233Z
+// Last generated: 2026-04-26T21:18:33.606Z
 
-export type { MedicationDispense } from "./MedicationDispense";
-export { MedicationDispenseSchema } from "./MedicationDispense";
-export type { MedicationDispense_Performer } from "./MedicationDispense_Performer";
-export { MedicationDispense_PerformerSchema } from "./MedicationDispense_Performer";
-export type { MedicationDispense_Substitution } from "./MedicationDispense_Substitution";
-export { MedicationDispense_SubstitutionSchema } from "./MedicationDispense_Substitution";
+export {
+  type MedicationDispense,
+  MedicationDispenseSchema,
+} from "./MedicationDispense";
+export {
+  type MedicationDispense_Performer,
+  MedicationDispense_PerformerSchema,
+} from "./MedicationDispense_Performer";
+export {
+  type MedicationDispense_Substitution,
+  MedicationDispense_SubstitutionSchema,
+} from "./MedicationDispense_Substitution";
