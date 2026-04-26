@@ -80,6 +80,8 @@ This setting is process-global and only changes validation for the FHIR `string`
 
 ## Next steps
 
+- Use [Why `fhir-zod`](/why-fhir-zod) to understand the package boundary before layering on other FHIR tooling.
 - Use [FHIR Versions](/versions) to keep imports release-specific.
+- Use [Supported Resources](/supported-resources/) to confirm resource coverage and find canonical HL7 links.
 - Use [API Conventions](/api-conventions) to understand `Patient` versus `PatientSchema`.
 - Use [Validation Scope](/validation-scope) to understand the structural checks the schemas enforce.

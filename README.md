@@ -33,7 +33,7 @@ Supports Node.js 20+ and modern bundlers. Import concrete resources from resourc
 
 ## Documentation
 
-The VitePress docs source for deeper package usage guidance lives in [`docs/`](./docs/). Preview it locally with:
+The docs site for package usage and validation boundaries is published from this repo's VitePress app. The source lives in [`docs/`](./docs/). Preview it locally with:
 
 ```bash
 npm run docs:dev

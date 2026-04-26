@@ -32,10 +32,12 @@ import {
 	runFetchSpecCli,
 	type SpecManifest,
 } from "../scripts/fetch-spec.ts";
+import { writeSupportedResourcesDocs } from "../scripts/generate-supported-resources-doc.ts";
 import { runGenerateCli } from "../scripts/generate.ts";
 import { runInspectChoiceGroupsCli } from "../scripts/inspect-choice-groups.ts";
 import { runListTargetsCli } from "../scripts/list-targets.ts";
 import type { FhirRelease, TargetEntry } from "../src/generator/versions.ts";
+import { MissingSpecPackageError } from "../src/spec/spec-cache.ts";
 import { getR4SpecAvailability } from "./helpers/require-r4-spec.ts";
 
 describe("developer CLI", () => {
@@ -77,6 +79,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: true,
 			baseDefinition: null,
 			category: "abstract-whitelist",
+			description: null,
 			kind: "complex-type",
 			name: "Element",
 			shouldGenerate: true,
@@ -87,6 +90,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: false,
 			baseDefinition: null,
 			category: "core-resource",
+			description: "Demographics and other administrative information about an individual.",
 			kind: "resource",
 			name: "Patient",
 			shouldGenerate: true,
@@ -97,6 +101,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: false,
 			baseDefinition: null,
 			category: "profile-resource",
+			description: null,
 			kind: "resource",
 			name: "ExampleProfile",
 			shouldGenerate: false,
@@ -107,6 +112,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: false,
 			baseDefinition: null,
 			category: "other",
+			description: null,
 			kind: "complex-type",
 			name: "Address",
 			shouldGenerate: false,
@@ -125,6 +131,9 @@ function fakeRelease(id = "r4"): FhirRelease {
 		listCoreResourceNames: () => ["Patient", "Observation"],
 		loadTargetEntries: () => entries,
 		nestedBackboneTypeCodes: ["Element"],
+		resourcePageUrl: (resourceName: string) =>
+			`https://example.test/${id}/${resourceName.toLowerCase()}.html`,
+		specHomeUrl: () => `https://example.test/${id}`,
 		summarizeTargets: () => ({
 			abstractGenerationWhitelist: ["Element"],
 			concreteResourceCount: 2,
@@ -432,6 +441,142 @@ describe("generate script", () => {
 		expect(() => runGenerateCli(["r6"], { getRelease })).toThrow(
 			'Unknown generation target "r6"',
 		);
+	});
+});
+
+describe("generate-supported-resources-doc script", () => {
+	it("writes release-aware resource docs and falls back to committed generated output", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-docs-"));
+		const docsDir = join(repoRoot, "docs", "supported-resources");
+		const r4PatientDir = join(repoRoot, "src", "r4", "Patient");
+		const r4ObservationDir = join(repoRoot, "src", "r4", "Observation");
+		mkdirSync(docsDir, { recursive: true });
+		mkdirSync(r4PatientDir, { recursive: true });
+		mkdirSync(r4ObservationDir, { recursive: true });
+		writeFileSync(join(r4PatientDir, "index.ts"), "", "utf8");
+		writeFileSync(join(r4ObservationDir, "index.ts"), "", "utf8");
+		writeFileSync(
+			join(r4PatientDir, "Patient.ts"),
+			'/** Demographics and other administrative information about an individual. */\nexport interface Patient {}\n',
+			"utf8",
+		);
+		writeFileSync(
+			join(r4ObservationDir, "Observation.ts"),
+			'/** Measurements and simple assertions. */\nexport interface Observation {}\n',
+			"utf8",
+		);
+
+		const outputPaths = writeSupportedResourcesDocs({
+			getRelease: (version) => {
+				if (version !== "r4") {
+					return null;
+				}
+
+				return {
+					abstractTargetNames: ["Element"],
+					exampleResourcePageUrl: () => "https://example.test/r4/patient-examples.html",
+					generate: () => ({ files: [] }),
+					id: "r4",
+					label: "R4",
+					loadTargetEntries: () => {
+						throw new MissingSpecPackageError({
+							packageRoot: join(repoRoot, ".local", "spec-cache", "r4", "package"),
+							version: "r4",
+						});
+					},
+					nestedBackboneTypeCodes: ["Element"],
+					resourcePageUrl: (resourceName: string) =>
+						`https://example.test/r4/${resourceName.toLowerCase()}.html`,
+					specHomeUrl: () => "https://example.test/r4",
+					summarizeTargets: () => ({
+						abstractGenerationWhitelist: ["Element"],
+						concreteResourceCount: 2,
+						coreResourceCount: 2,
+						generationTargetCount: 2,
+						profileResourceCount: 0,
+					}),
+				} as unknown as FhirRelease;
+			},
+			outputDir: docsDir,
+			repoRoot,
+			versions: ["r4"],
+		});
+
+		expect(outputPaths).toEqual([
+			join(docsDir, "index.md"),
+			join(docsDir, "r4.md"),
+		]);
+
+		const landingContent = readFileSync(join(docsDir, "index.md"), "utf8");
+		const releaseContent = readFileSync(join(docsDir, "r4.md"), "utf8");
+		expect(landingContent).toContain("# Supported Resources");
+		expect(landingContent).toContain("- [R4](/supported-resources/r4)");
+		expect(releaseContent).toContain("# R4 Supported Resources");
+		expect(releaseContent).toContain("Inventory source for this build: committed generated output fallback");
+		expect(releaseContent).toContain("| Resource | Import path | HL7 docs |");
+		expect(releaseContent).toContain(
+			'| <span class="resource-name-tooltip" tabindex="0">Patient<span class="resource-name-tooltip__bubble">Demographics and other administrative information about an individual.</span></span> | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |',
+		);
+		expect(releaseContent).toContain(
+			'| <span class="resource-name-tooltip" tabindex="0">Observation<span class="resource-name-tooltip__bubble">Measurements and simple assertions.</span></span> | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |',
+		);
+		expect(releaseContent).not.toContain("Generated core resources on this branch");
+	});
+
+	it("strips inline markdown links from resource descriptions", () => {
+		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-docs-"));
+		const docsDir = join(repoRoot, "docs", "supported-resources");
+		mkdirSync(docsDir, { recursive: true });
+
+		writeSupportedResourcesDocs({
+			getRelease: (version) => {
+				if (version !== "r4") {
+					return null;
+				}
+
+				return {
+					abstractTargetNames: ["Element"],
+					exampleResourcePageUrl: () => "https://example.test/r4/valueset-examples.html",
+					generate: () => ({ files: [] }),
+					id: "r4",
+					label: "R4",
+					loadTargetEntries: () => [
+						{
+							abstract: false,
+							baseDefinition: null,
+							category: "core-resource",
+							description:
+								"A ValueSet links [[[CodeSystem]]] usage in [coded elements](terminologies.html).",
+							kind: "resource",
+							name: "ValueSet",
+							shouldGenerate: true,
+							type: "ValueSet",
+							url: null,
+						},
+					],
+					nestedBackboneTypeCodes: ["Element"],
+					resourcePageUrl: (resourceName: string) =>
+						`https://example.test/r4/${resourceName.toLowerCase()}.html`,
+					specHomeUrl: () => "https://example.test/r4",
+					summarizeTargets: () => ({
+						abstractGenerationWhitelist: ["Element"],
+						concreteResourceCount: 1,
+						coreResourceCount: 1,
+						generationTargetCount: 1,
+						profileResourceCount: 0,
+					}),
+				} as unknown as FhirRelease;
+			},
+			outputDir: docsDir,
+			repoRoot,
+			versions: ["r4"],
+		});
+
+		const releaseContent = readFileSync(join(docsDir, "r4.md"), "utf8");
+		expect(releaseContent).toContain(
+			'| <span class="resource-name-tooltip" tabindex="0">ValueSet<span class="resource-name-tooltip__bubble">A ValueSet links CodeSystem usage in coded elements.</span></span> | `fhir-zod/r4/ValueSet` | [HL7](https://example.test/r4/valueset.html) |',
+		);
+		expect(releaseContent).not.toContain("terminologies.html");
 	});
 });
 

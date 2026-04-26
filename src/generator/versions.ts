@@ -23,6 +23,7 @@ export type TargetEntry = {
 	abstract: boolean;
 	baseDefinition: string | null;
 	category: TargetCategory;
+	description: string | null;
 	kind: string | null;
 	name: string;
 	shouldGenerate: boolean;
@@ -52,6 +53,7 @@ export type GenerateVersionOptions = {
 type StructureDefinition = {
 	abstract?: boolean;
 	baseDefinition?: string;
+	description?: string;
 	kind?: string;
 	name: string;
 	resourceType: "StructureDefinition";
@@ -185,6 +187,14 @@ export abstract class FhirRelease {
 		};
 	}
 
+	specHomeUrl(): string {
+		return this.specBaseUrl();
+	}
+
+	resourcePageUrl(resourceName: string): string {
+		return `${this.specBaseUrl()}/${resourceName.toLowerCase()}.html`;
+	}
+
 	exampleResourcePageUrl(resourceName: string): string {
 		return `${this.specBaseUrl()}/${resourceName.toLowerCase()}-examples.html`;
 	}
@@ -202,7 +212,7 @@ export abstract class FhirRelease {
 		}
 
 		if (options.kind === "resource") {
-			return `${this.specBaseUrl()}/${options.name.toLowerCase()}.html`;
+			return this.resourcePageUrl(options.name);
 		}
 
 		if (this.id === "r5" && this.typeSystemPageNames.has(options.name)) {
@@ -249,6 +259,7 @@ export abstract class FhirRelease {
 			abstract: definition.abstract === true,
 			baseDefinition: definition.baseDefinition ?? null,
 			category,
+			description: definition.description ?? null,
 			kind: definition.kind ?? null,
 			name: definition.name,
 			shouldGenerate: isCoreResource || isWhitelistedAbstract,
