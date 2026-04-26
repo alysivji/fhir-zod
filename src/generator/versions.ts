@@ -23,6 +23,7 @@ export type TargetEntry = {
 	abstract: boolean;
 	baseDefinition: string | null;
 	category: TargetCategory;
+	description: string | null;
 	kind: string | null;
 	name: string;
 	shouldGenerate: boolean;
@@ -52,6 +53,7 @@ export type GenerateVersionOptions = {
 type StructureDefinition = {
 	abstract?: boolean;
 	baseDefinition?: string;
+	description?: string;
 	kind?: string;
 	name: string;
 	resourceType: "StructureDefinition";
@@ -257,6 +259,7 @@ export abstract class FhirRelease {
 			abstract: definition.abstract === true,
 			baseDefinition: definition.baseDefinition ?? null,
 			category,
+			description: definition.description ?? null,
 			kind: definition.kind ?? null,
 			name: definition.name,
 			shouldGenerate: isCoreResource || isWhitelistedAbstract,

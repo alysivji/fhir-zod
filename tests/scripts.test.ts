@@ -79,6 +79,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: true,
 			baseDefinition: null,
 			category: "abstract-whitelist",
+			description: null,
 			kind: "complex-type",
 			name: "Element",
 			shouldGenerate: true,
@@ -89,6 +90,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: false,
 			baseDefinition: null,
 			category: "core-resource",
+			description: "Demographics and other administrative information about an individual.",
 			kind: "resource",
 			name: "Patient",
 			shouldGenerate: true,
@@ -99,6 +101,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: false,
 			baseDefinition: null,
 			category: "profile-resource",
+			description: null,
 			kind: "resource",
 			name: "ExampleProfile",
 			shouldGenerate: false,
@@ -109,6 +112,7 @@ function fakeRelease(id = "r4"): FhirRelease {
 			abstract: false,
 			baseDefinition: null,
 			category: "other",
+			description: null,
 			kind: "complex-type",
 			name: "Address",
 			shouldGenerate: false,
@@ -451,6 +455,16 @@ describe("generate-supported-resources-doc script", () => {
 		mkdirSync(r4ObservationDir, { recursive: true });
 		writeFileSync(join(r4PatientDir, "index.ts"), "", "utf8");
 		writeFileSync(join(r4ObservationDir, "index.ts"), "", "utf8");
+		writeFileSync(
+			join(r4PatientDir, "Patient.ts"),
+			'/** Demographics and other administrative information about an individual. */\nexport interface Patient {}\n',
+			"utf8",
+		);
+		writeFileSync(
+			join(r4ObservationDir, "Observation.ts"),
+			'/** Measurements and simple assertions. */\nexport interface Observation {}\n',
+			"utf8",
+		);
 
 		const outputPaths = writeSupportedResourcesDocs({
 			getRelease: (version) => {
@@ -499,8 +513,9 @@ describe("generate-supported-resources-doc script", () => {
 		expect(landingContent).toContain("- [R4](/supported-resources/r4)");
 		expect(releaseContent).toContain("# R4 Supported Resources");
 		expect(releaseContent).toContain("Inventory source for this build: committed generated output fallback");
-		expect(releaseContent).toContain("| Patient | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |");
-		expect(releaseContent).toContain("| Observation | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |");
+		expect(releaseContent).toContain("| Resource | Description | Import path | HL7 docs |");
+		expect(releaseContent).toContain("| Patient | Demographics and other administrative information about an individual. | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |");
+		expect(releaseContent).toContain("| Observation | Measurements and simple assertions. | `fhir-zod/r4/Observation` | [HL7](https://example.test/r4/observation.html) |");
 		expect(releaseContent).not.toContain("Generated core resources on this branch");
 	});
 });

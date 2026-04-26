@@ -1,4 +1,10 @@
-import { mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import {
+	mkdirSync,
+	readFileSync,
+	readdirSync,
+	rmSync,
+	writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -12,6 +18,7 @@ import { MissingSpecPackageError } from "../src/spec/spec-cache.ts";
 const docsVersionOrder = [...supportedFhirVersions].reverse();
 
 export type SupportedResourcesDocEntry = {
+	description: string | null;
 	importPath: string;
 	name: string;
 	resourceUrl: string;
@@ -43,12 +50,7 @@ export function collectSupportedResourcesSections(
 			throw new Error(`Unknown FHIR release "${version}" for docs generation.`);
 		}
 
-		const { names, source } = loadCoreResourceNames(release, repoRoot);
-		const resources = names.map((name) => ({
-			importPath: `fhir-zod/${release.id}/${name}`,
-			name,
-			resourceUrl: release.resourcePageUrl(name),
-		}));
+		const { resources, source } = loadCoreResources(release, repoRoot);
 
 		return {
 			label: release.label,
@@ -118,13 +120,16 @@ export function renderSupportedResourcesReleaseDoc(
 		"",
 		`Inventory source for this build: ${section.source === "spec-cache" ? "extracted pinned spec inputs" : "committed generated output fallback"}`,
 		"",
-		"| Resource | Import path | HL7 docs |",
-		"| --- | --- | --- |",
+		"| Resource | Description | Import path | HL7 docs |",
+		"| --- | --- | --- | --- |",
 	];
 
 	for (const resource of section.resources) {
+		const description = resource.description
+			? escapeTableCell(resource.description)
+			: "Description unavailable in generated-output fallback.";
 		lines.push(
-			`| ${resource.name} | \`${resource.importPath}\` | [HL7](${resource.resourceUrl}) |`,
+			`| ${resource.name} | ${description} | \`${resource.importPath}\` | [HL7](${resource.resourceUrl}) |`,
 		);
 	}
 
@@ -171,19 +176,24 @@ export function writeSupportedResourcesDocs(
 	return outputPaths;
 }
 
-function loadCoreResourceNames(
+function loadCoreResources(
 	release: FhirRelease,
 	repoRoot: string,
 ): {
-	names: string[];
+	resources: SupportedResourcesDocEntry[];
 	source: "generated-output" | "spec-cache";
 } {
 	try {
 		return {
-			names: release
+			resources: release
 				.loadTargetEntries()
 				.filter((entry) => entry.category === "core-resource")
-				.map((entry) => entry.name),
+				.map((entry) => ({
+					description: normalizeDescription(entry.description),
+					importPath: `fhir-zod/${release.id}/${entry.name}`,
+					name: entry.name,
+					resourceUrl: release.resourcePageUrl(entry.name),
+				})),
 			source: "spec-cache",
 		};
 	} catch (error) {
@@ -192,22 +202,68 @@ function loadCoreResourceNames(
 		}
 
 		return {
-			names: loadCoreResourceNamesFromGeneratedOutput(release, repoRoot),
+			resources: loadCoreResourcesFromGeneratedOutput(release, repoRoot),
 			source: "generated-output",
 		};
 	}
 }
 
-function loadCoreResourceNamesFromGeneratedOutput(
+function loadCoreResourcesFromGeneratedOutput(
 	release: FhirRelease,
 	repoRoot: string,
-): string[] {
+): SupportedResourcesDocEntry[] {
 	return readdirSync(join(repoRoot, "src", release.id), {
 		withFileTypes: true,
 	})
 		.filter((entry) => entry.isDirectory())
 		.map((entry) => entry.name)
-		.sort((left, right) => left.localeCompare(right));
+		.sort((left, right) => left.localeCompare(right))
+		.map((name) => ({
+			description: loadGeneratedResourceDescription(release.id, name, repoRoot),
+			importPath: `fhir-zod/${release.id}/${name}`,
+			name,
+			resourceUrl: release.resourcePageUrl(name),
+		}));
+}
+
+function loadGeneratedResourceDescription(
+	version: string,
+	resourceName: string,
+	repoRoot: string,
+): string | null {
+	const resourcePath = join(
+		repoRoot,
+		"src",
+		version,
+		resourceName,
+		`${resourceName}.ts`,
+	);
+	const source = readFileSync(resourcePath, "utf8");
+	const match = source.match(/\/\*\*\s*([\s\S]*?)\s*\*\/\s*export interface\b/);
+
+	if (!match) {
+		return null;
+	}
+
+	return normalizeDescription(
+		match[1]
+			.split("\n")
+			.map((line) => line.replace(/^\s*\*\s?/, "").trim())
+			.join(" "),
+	);
+}
+
+function normalizeDescription(description: string | null | undefined): string | null {
+	if (!description) {
+		return null;
+	}
+
+	const normalized = description.replace(/\s+/g, " ").trim();
+	return normalized.length > 0 ? normalized : null;
+}
+
+function escapeTableCell(value: string): string {
+	return value.replace(/\|/g, "\\|");
 }
 
 if (
