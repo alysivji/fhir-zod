@@ -77,6 +77,10 @@
 		"check": "biome check . && npm run typecheck",
 		"check:resource-folders": "tsx scripts/check-resource-folders.ts",
 		"codecov:bundle": "bundle-analyzer ./dist --bundle-name=fhir-zod --ignore-patterns '**/*.map' --upload-token=$BUNDLE_ANALYZER_UPLOAD_TOKEN",
+		"docs:build": "vitepress build docs",
+		"docs:dev": "vitepress dev docs",
+		"docs:preview": "npm run docs:build && vitepress preview docs",
+		"docs:validate": "npm run docs:build",
 		"coverage": "vitest run --coverage",
 		"cli": "tsx scripts/cli.ts",
 		"fetch-examples": "tsx scripts/cli.ts fetch-examples",
@@ -111,6 +115,7 @@
 		"tsdown": "^0.15.5",
 		"tsx": "^4.21.0",
 		"typescript": "^5.8.2",
+		"vitepress": "^1.6.4",
 		"vitest": "^3.1.1",
 		"zod": "^3.25.1 || ^4.0.0"
 	}
