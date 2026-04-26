@@ -14,10 +14,13 @@ hero:
       link: /supported-resources/
 features:
   - title: Type-first package surface
+    icon: "🔥"
     details: Use named TypeScript models such as `Patient` in application code, then reach for matching runtime schemas such as `PatientSchema` at trust boundaries.
   - title: Runtime validation where it matters
+    icon: "🩺"
     details: Validate structural FHIR payloads, primitive formatting, choice-type exclusivity, and selected reference-target constraints.
   - title: Explicit FHIR release paths
+    icon: "🧭"
     details: Keep `r5`, `r4b`, `r4`, and `stu3` imports separate so version drift stays visible in code review.
 ---
 
