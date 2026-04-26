@@ -18,6 +18,10 @@ build:
 build-docs:
     npm run docs:build
 
+# Regenerate docs-derived resource inventory
+prepare-docs:
+    npm run docs:prepare
+
 # Run the docs site locally
 docs-dev:
     npm run docs:dev

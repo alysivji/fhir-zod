@@ -26,3 +26,7 @@ description: Supported FHIR releases, versioned import paths, and links back to 
 - STU3, R4, R4B, and R5 generation are implemented and checked in on this branch.
 - The package is still pre-release, so package shape and generated output may change between releases.
 - Package orientation lives here; full semantic meaning still belongs to the official HL7 FHIR specification for each release.
+
+## Resource discovery
+
+Use [Supported Resources](/supported-resources) for the generated core-resource inventory on this branch. That page links each resource back to the canonical HL7 docs instead of duplicating FHIR reference content here.

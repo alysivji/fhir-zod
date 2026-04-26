@@ -185,6 +185,14 @@ export abstract class FhirRelease {
 		};
 	}
 
+	specHomeUrl(): string {
+		return this.specBaseUrl();
+	}
+
+	resourcePageUrl(resourceName: string): string {
+		return `${this.specBaseUrl()}/${resourceName.toLowerCase()}.html`;
+	}
+
 	exampleResourcePageUrl(resourceName: string): string {
 		return `${this.specBaseUrl()}/${resourceName.toLowerCase()}-examples.html`;
 	}
@@ -202,7 +210,7 @@ export abstract class FhirRelease {
 		}
 
 		if (options.kind === "resource") {
-			return `${this.specBaseUrl()}/${options.name.toLowerCase()}.html`;
+			return this.resourcePageUrl(options.name);
 		}
 
 		if (this.id === "r5" && this.typeSystemPageNames.has(options.name)) {
