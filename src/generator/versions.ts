@@ -189,10 +189,6 @@ export abstract class FhirRelease {
 		return `${this.specBaseUrl()}/${resourceName.toLowerCase()}-examples.html`;
 	}
 
-	specHomeUrl(): string {
-		return this.specBaseUrl();
-	}
-
 	sourcePageUrl(options: {
 		fhirPath?: string;
 		kind: string;
