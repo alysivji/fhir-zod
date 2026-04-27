@@ -5,20 +5,21 @@ description: What the library is for, what it deliberately does not do, and why 
 
 # Why `fhir-zod`
 
-`fhir-zod` gives you spec-aligned TypeScript models and runtime validators for HL7 FHIR, without pretending to be a FHIR server, client, or full semantic validator.
+`fhir-zod` is a single-purpose library for developers who want spec-aligned FHIR shapes in TypeScript and matching Zod schemas at runtime, without pulling in a larger FHIR platform.
 
 ## What it is
 
-- A generated package built from pinned HL7 artifacts.
-- A type-first model layer for application code.
-- A runtime validation layer for data crossing trust boundaries.
+- A small-scope package built from pinned official FHIR definitions.
+- A TypeScript model layer that mirrors base FHIR shapes closely.
+- A matching runtime validation layer built from the same definitions.
+- An opinionated schema surface for Zod `^3.25.1` and `^4.0.0`.
 - A version-explicit package surface for `r5`, `r4b`, `r4`, and `stu3`.
 
 ## Why that split is useful
 
 Use the generated TypeScript model when you want a named FHIR shape in your codebase. Use the matching Zod schema when data enters or leaves your system.
 
-That keeps editor ergonomics clean while still giving you runtime protection where JSON is untrusted, external, or version-sensitive.
+That keeps editor ergonomics clean while still giving you runtime protection where JSON is untrusted, external, or version-sensitive. It also means teams already using Zod do not need a separate FHIR-specific validation stack.
 
 ## What it is not
 

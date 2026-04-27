@@ -1,6 +1,6 @@
 # FHIR Zod 🩺
 
-Type-safe FHIR models and runtime validation with Zod.
+Single-purpose FHIR types and Zod schemas generated from official FHIR definitions.
 
 ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
@@ -8,10 +8,10 @@ Type-safe FHIR models and runtime validation with Zod.
 
 ## Why use it?
 
-- 🧩 **Type-first models**: TypeScript interfaces for FHIR resources and datatypes.
-- ✅ **Runtime validation**: Zod schemas for parsing data at boundaries.
-- 🗂️ **Versioned imports**: separate entry points for R5, R4B, R4, and STU3.
-- 📘 **Spec-aligned generation**: generated from pinned official HL7 artifacts.
+- 🎯 **Single-purpose library**: one job only, spec-aligned FHIR shapes plus runtime validation.
+- 🧩 **Official-definition based**: generated TypeScript models and Zod schemas from pinned HL7/FHIR source artifacts.
+- ✅ **Opinionated Zod support**: built around Zod `^3.25.1` and `^4.0.0` so it fits existing validation workflows.
+- 🗂️ **Multiple FHIR versions**: separate entry points for R5, R4B, R4, and STU3.
 - 🧪 **Example-backed tests**: checked against official FHIR example fixtures.
 - 🌳 **Tree-shakeable shape**: import the versioned schemas you need.
 
@@ -27,7 +27,7 @@ Published versions are intended for testing and feedback rather than production 
 npm install fhir-zod zod
 ```
 
-Compatible with [Zod](https://zod.dev/) 3.25.x and 4.x.x.
+Compatible with [Zod](https://zod.dev/) `^3.25.1` and `^4.0.0`.
 
 Supports Node.js 20+ and modern bundlers. Import concrete resources from resource module entry points such as `fhir-zod/r4/Patient`. Versioned entry points such as `fhir-zod/r4` expose shared datatypes and supporting generated definitions.
 
@@ -62,9 +62,9 @@ if (!result.success) {
 }
 ```
 
-Use the TypeScript model when constructing or consuming known FHIR shapes, and use the schema when data crosses a trust boundary.
+Use the TypeScript model when you want the FHIR shape in code, and use the schema when data crosses a trust boundary.
 
-The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. `fhir-zod` works with Zod 3.25.x and 4.x.x through the same generated schema surface:
+The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. `fhir-zod` works with the same generated schema surface across Zod `^3.25.1` and `^4.0.0`:
 
 ```ts
 import { PatientSchema } from "fhir-zod/r4/Patient"
@@ -159,7 +159,7 @@ function useR5Patient(patient: R5Patient) {
 
 ## Validation scope
 
-`fhir-zod` validates the structure of FHIR data.
+`fhir-zod` validates the structural shape of FHIR data while keeping the emitted types close to the base specification.
 
 **Covers:**
 - required fields and cardinality
@@ -227,7 +227,7 @@ Schemas with polymorphic `Resource` fields, such as `Bundle.entry[].resource` an
 
 ## Specification alignment
 
-Schemas and TypeScript models are generated from pinned official HL7 FHIR definitions, not handwritten schemas or converted TypeScript typedefs. Validation is tested against official FHIR example data from the specification across supported versions.
+Schemas and TypeScript models are generated from pinned official HL7 FHIR definitions, not handwritten schemas or converted TypeScript typedefs. That keeps the public shapes close to the base specification while still fitting into existing Zod-based validation flows. Validation is tested against official FHIR example data from the specification across supported versions.
 
 ## Contributing
 

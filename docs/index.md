@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: fhir-zod
-  text: Spec-aligned FHIR types and validators
-  tagline: Generated TypeScript models and runtime validators for HL7 FHIR, with explicit release separation and clear validation boundaries.
+  text: Small-scope FHIR types and Zod schemas
+  tagline: A single-purpose library for spec-aligned FHIR shapes, opinionated Zod 3/4 support, and explicit multi-version imports.
   actions:
     - theme: brand
       text: Getting Started
@@ -13,25 +13,25 @@ hero:
       text: Supported Resources
       link: /supported-resources/
 features:
-  - title: Type-first package surface
+  - title: FHIR Types and Runtime Validation
     icon: "🔥"
-    details: Use named TypeScript models such as `Patient` in application code, then reach for matching runtime schemas such as `PatientSchema` at trust boundaries.
-  - title: Runtime validation where it matters
+    details: "This library does one thing: generate FHIR types and matching Zod schemas from official FHIR definitions."
+  - title: Built with Zod
     icon: "🩺"
-    details: Validate structural FHIR payloads, primitive formatting, choice-type exclusivity, and selected reference-target constraints.
-  - title: Explicit FHIR release paths
+    details: "Fits into standard Zod-based workflows with support for Zod ^3.25.1 and ^4.0.0."
+  - title: Supports All Major FHIR Versions
     icon: "🧭"
-    details: Keep `r5`, `r4b`, `r4`, and `stu3` imports separate so version drift stays visible in code review.
+    details: "Supports R5, R4B, R4, and STU3 through explicit release-specific entry points generated from the official definitions for each version."
 ---
 
-`fhir-zod` gives you spec-aligned TypeScript models and runtime validators for HL7 FHIR, without pretending to be a FHIR server, client, or full semantic validator.
+`fhir-zod` is a small-scope developer library: it gives you FHIR shapes that stay close to official definitions in both TypeScript and runtime validation, without trying to be a FHIR server, client, or full semantic validator.
 
 ## Why teams use it
 
-- Generate from pinned HL7 artifacts instead of hand-maintaining model shapes.
-- Keep TypeScript models and runtime schemas separate but aligned.
-- Validate data when it crosses trust boundaries without mixing FHIR releases accidentally.
-- Stay close to the base spec while keeping package ergonomics practical.
+- Keep your TypeScript models and runtime validators aligned to the same official FHIR source.
+- Drop FHIR validation into existing Zod-based code without swapping validation stacks.
+- Validate data at trust boundaries without mixing FHIR releases accidentally.
+- Use one library with explicit support for R5, R4B, R4, and STU3.
 
 ## Install
 
@@ -64,8 +64,9 @@ if (!result.success) {
 
 - Generated TypeScript models such as `Patient`
 - Generated Zod schemas such as `PatientSchema`
+- One opinionated schema surface for Zod `^3.25.1` and `^4.0.0`
 - Explicit versioned imports for R5, R4B, R4, and STU3
-- Spec-aligned output from pinned HL7 artifacts
+- Output generated from pinned official FHIR definitions
 
 ## What validation covers
 
