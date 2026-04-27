@@ -5,7 +5,7 @@ description: Generated core-resource inventory for STU3.
 
 # STU3 Supported Resources
 
-[Back to FHIR Versions](/supported-resources/)
+[Back to FHIR Versions](/versions/)
 
 Canonical HL7 docs: [STU3](https://hl7.org/fhir/STU3)
 

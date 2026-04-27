@@ -22,7 +22,7 @@ export default defineConfig({
 		nav: [
 			{ text: "Introduction", link: "/" },
 			{ text: "Getting Started", link: "/getting-started" },
-			{ text: "FHIR Versions", link: "/supported-resources/" },
+			{ text: "FHIR Versions", link: "/versions/" },
 		],
 		sidebar: [
 			{
@@ -33,12 +33,12 @@ export default defineConfig({
 					{ text: "Why fhir-zod", link: "/why-fhir-zod" },
 					{
 						text: "FHIR Versions",
-						link: "/supported-resources/",
+						link: "/versions/",
 						items: [
-							{ text: "R5", link: "/supported-resources/r5" },
-							{ text: "R4B", link: "/supported-resources/r4b" },
-							{ text: "R4", link: "/supported-resources/r4" },
-							{ text: "STU3", link: "/supported-resources/stu3" },
+							{ text: "R5", link: "/versions/r5" },
+							{ text: "R4B", link: "/versions/r4b" },
+							{ text: "R4", link: "/versions/r4" },
+							{ text: "STU3", link: "/versions/stu3" },
 						],
 					},
 					{ text: "API Conventions", link: "/api-conventions" },

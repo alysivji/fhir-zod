@@ -5,7 +5,7 @@ description: Generated core-resource inventory for R4B.
 
 # R4B Supported Resources
 
-[Back to FHIR Versions](/supported-resources/)
+[Back to FHIR Versions](/versions/)
 
 Canonical HL7 docs: [R4B](https://hl7.org/fhir/R4B)
 

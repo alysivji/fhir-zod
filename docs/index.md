@@ -11,7 +11,7 @@ hero:
       link: /getting-started
     - theme: alt
       text: Supported Resources
-      link: /supported-resources/
+      link: /versions/
 features:
   - title: Works out of the box
     icon: "📦"
@@ -71,5 +71,5 @@ if (!result.success) {
 
 - [Getting Started](/getting-started) — install and validate your first payload
 - [Why fhir-zod](/why-fhir-zod) — package boundaries and intended use
-- [FHIR Versions](/supported-resources/) — supported releases and import paths
+- [FHIR Versions](/versions/) — supported releases and import paths
 - [Validation Scope](/validation-scope) — what the schemas check and what they don't

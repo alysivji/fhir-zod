@@ -447,7 +447,7 @@ describe("generate script", () => {
 describe("generate-supported-resources-doc script", () => {
 	it("writes release-aware resource docs and falls back to committed generated output", () => {
 		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-docs-"));
-		const docsDir = join(repoRoot, "docs", "supported-resources");
+		const docsDir = join(repoRoot, "docs", "versions");
 		const r4PatientDir = join(repoRoot, "src", "r4", "Patient");
 		const r4ObservationDir = join(repoRoot, "src", "r4", "Observation");
 		mkdirSync(docsDir, { recursive: true });
@@ -509,8 +509,8 @@ describe("generate-supported-resources-doc script", () => {
 
 		const landingContent = readFileSync(join(docsDir, "index.md"), "utf8");
 		const releaseContent = readFileSync(join(docsDir, "r4.md"), "utf8");
-		expect(landingContent).toContain("# Supported Resources");
-		expect(landingContent).toContain("- [R4](/supported-resources/r4)");
+		expect(landingContent).toContain("# FHIR Versions & Resources");
+		expect(landingContent).toContain("- [R4](/versions/r4)");
 		expect(releaseContent).toContain("# R4 Supported Resources");
 		expect(releaseContent).toContain("Inventory source for this build: committed generated output fallback");
 		expect(releaseContent).toContain("| Resource | Import path | HL7 docs |");
@@ -525,7 +525,7 @@ describe("generate-supported-resources-doc script", () => {
 
 	it("strips inline markdown links from resource descriptions", () => {
 		const repoRoot = mkdtempSync(join(tmpdir(), "fhir-zod-docs-"));
-		const docsDir = join(repoRoot, "docs", "supported-resources");
+		const docsDir = join(repoRoot, "docs", "versions");
 		mkdirSync(docsDir, { recursive: true });
 
 		writeSupportedResourcesDocs({

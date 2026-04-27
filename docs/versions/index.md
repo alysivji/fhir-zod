@@ -39,10 +39,10 @@ import type { Patient as R5Patient } from "fhir-zod/r5/Patient";
 
 Browse generated core resources by release. Each resource links back to the canonical HL7 docs for semantics beyond the package shape.
 
-- [R5](/supported-resources/r5)
-- [R4B](/supported-resources/r4b)
-- [R4](/supported-resources/r4)
-- [STU3](/supported-resources/stu3)
+- [R5](/versions/r5)
+- [R4B](/versions/r4b)
+- [R4](/versions/r4)
+- [STU3](/versions/stu3)
 
 ## Support status
 

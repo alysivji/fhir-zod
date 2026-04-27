@@ -115,7 +115,7 @@ export function renderSupportedResourcesDoc(
 	);
 
 	for (const section of sections) {
-		lines.push(`- [${section.label}](/supported-resources/${section.version})`);
+		lines.push(`- [${section.label}](/versions/${section.version})`);
 	}
 
 	lines.push(
@@ -140,7 +140,7 @@ export function renderSupportedResourcesReleaseDoc(
 		"",
 		`# ${section.label} Supported Resources`,
 		"",
-		"[Back to FHIR Versions](/supported-resources/)",
+		"[Back to FHIR Versions](/versions/)",
 		"",
 		`Canonical HL7 docs: [${section.label}](${section.specHomeUrl})`,
 		"",
@@ -172,7 +172,7 @@ export function writeSupportedResourcesDocs(
 ): string[] {
 	const repoRoot = options.repoRoot ?? defaultRepoRoot;
 	const outputDir =
-		options.outputDir ?? join(repoRoot, "docs", "supported-resources");
+		options.outputDir ?? join(repoRoot, "docs", "versions");
 	const sections = collectSupportedResourcesSections({
 		getRelease: options.getRelease,
 		repoRoot,
