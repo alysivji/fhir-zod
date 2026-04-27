@@ -11,6 +11,8 @@ Install `fhir-zod` alongside `zod`:
 npm install fhir-zod zod
 ```
 
+`fhir-zod` supports Zod `^3.25.1` and `^4.0.0`, so the generated schemas can plug into existing Zod-based validation flows.
+
 ## Parse a concrete resource
 
 Use the generated TypeScript model for the data shape and the matching schema for runtime validation.

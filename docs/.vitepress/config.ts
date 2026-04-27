@@ -2,7 +2,8 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
 	title: "fhir-zod",
-	description: "Spec-aligned TypeScript models and runtime validators for HL7 FHIR.",
+	description:
+		"Single-purpose FHIR types and Zod schemas generated from official FHIR definitions.",
 	cleanUrls: true,
 	head: [
 		[
@@ -12,6 +13,9 @@ export default defineConfig({
 		],
 	],
 	themeConfig: {
+		footer: {
+			message: 'Built with <a href="https://vitepress.dev/">VitePress</a>.',
+		},
 		search: {
 			provider: "local",
 		},
