@@ -11,11 +11,11 @@ Install `fhir-zod` alongside `zod`:
 npm install fhir-zod zod
 ```
 
-`fhir-zod` supports Zod `^3.25.1` and `^4.0.0`, so the generated schemas can plug into existing Zod-based validation flows.
+`fhir-zod` works with Zod 3 and 4, so it fits into existing Zod-based validation flows without any changes to your setup.
 
 ## Parse a concrete resource
 
-Use the generated TypeScript model for the data shape and the matching schema for runtime validation.
+The TypeScript model gives you the type; the Zod schema validates at runtime.
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient";
@@ -82,8 +82,8 @@ This setting is process-global and only changes validation for the FHIR `string`
 
 ## Next steps
 
-- Use [Why `fhir-zod`](/why-fhir-zod) to understand the package boundary before layering on other FHIR tooling.
-- Use [FHIR Versions](/versions) to keep imports release-specific.
-- Use [Supported Resources](/supported-resources/) to confirm resource coverage and find canonical HL7 links.
-- Use [API Conventions](/api-conventions) to understand `Patient` versus `PatientSchema`.
-- Use [Validation Scope](/validation-scope) to understand the structural checks the schemas enforce.
+- [Why fhir-zod](/why-fhir-zod) — understand the package boundary before layering on other FHIR tooling
+- [FHIR Versions](/supported-resources/) — supported releases and import paths
+- [Supported Resources](/supported-resources/) — confirm resource coverage and find canonical HL7 links
+- [API Conventions](/api-conventions) — understand `Patient` versus `PatientSchema`
+- [Validation Scope](/validation-scope) — what the schemas check and what they don't

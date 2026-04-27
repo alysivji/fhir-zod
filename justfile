@@ -15,11 +15,11 @@ build:
     npm run build
 
 # Build the docs site
-build-docs:
+docs-build:
     npm run docs:build
 
 # Regenerate docs-derived resource inventory
-prepare-docs:
+docs-prepare:
     npm run docs:prepare
 
 # Run the docs site locally

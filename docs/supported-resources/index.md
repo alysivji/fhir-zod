@@ -1,28 +1,49 @@
 ---
-title: Supported Resources
-description: Generated release-specific resource inventory for the current branch.
+title: FHIR Versions
+description: Supported FHIR releases, versioned import paths, and the generated resource inventory for each version.
 ---
 
-# Supported Resources
+# FHIR Versions & Resources
 
-This page is derived from the same release registry that drives `fhir-zod` generation.
+`fhir-zod` supports all four major FHIR releases through explicit versioned entry points. Each release is independent — pick one for a given model flow and keep your types and schemas on that path.
 
-`fhir-zod` documents package usage here and points back to HL7 for full resource semantics.
+## Import paths
 
-## What this page is for
+| FHIR release | Version entry point | Resource entry points | HL7 spec |
+| --- | --- | --- | --- |
+| R5 | `fhir-zod/r5` | `fhir-zod/r5/<Resource>` | [HL7 R5](https://hl7.org/fhir/R5) |
+| R4B | `fhir-zod/r4b` | `fhir-zod/r4b/<Resource>` | [HL7 R4B](https://hl7.org/fhir/R4B) |
+| R4 | `fhir-zod/r4` | `fhir-zod/r4/<Resource>` | [HL7 R4](https://hl7.org/fhir/R4) |
+| STU3 | `fhir-zod/stu3` | `fhir-zod/stu3/<Resource>` | [HL7 STU3](https://hl7.org/fhir/STU3) |
 
-- Check whether a core resource is generated on this branch.
-- Copy the release-specific import path for that resource.
-- Jump to the canonical HL7 resource page when you need semantics beyond package shape.
+Import concrete resources from their resource entry point:
 
-## What this page is not
+```ts
+import { PatientSchema, type Patient } from "fhir-zod/r4/Patient";
+```
 
-- It is not a handcrafted encyclopedia of FHIR resources.
-- It does not restate HL7 semantics, invariants, or implementation guidance.
-- It does not cover profile resources that are currently excluded from generation.
+Import shared datatypes from the version entry point when needed:
 
-## Browse by release
+```ts
+import { HumanNameSchema, type HumanName } from "fhir-zod/r4";
+```
+
+Don't mix releases in a single flow unless you're explicitly translating between them:
+
+```ts
+import type { Patient as R4Patient } from "fhir-zod/r4/Patient";
+import type { Patient as R5Patient } from "fhir-zod/r5/Patient";
+```
+
+## Resource inventory
+
+Browse generated core resources by release. Each resource links back to the canonical HL7 docs for semantics beyond the package shape.
+
 - [R5](/supported-resources/r5)
 - [R4B](/supported-resources/r4b)
 - [R4](/supported-resources/r4)
 - [STU3](/supported-resources/stu3)
+
+## Support status
+
+R5, R4B, R4, and STU3 are fully supported. The package is pre-release, so package shape and generated output may change between versions. For the full semantic meaning of any resource, refer to the official HL7 FHIR specification for that release.

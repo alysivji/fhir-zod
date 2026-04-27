@@ -5,11 +5,11 @@ description: Generated core-resource inventory for STU3.
 
 # STU3 Supported Resources
 
-[Back to Supported Resources](/supported-resources/)
+[Back to FHIR Versions](/supported-resources/)
 
 Canonical HL7 docs: [STU3](https://hl7.org/fhir/STU3)
 
-Inventory source for this build: committed generated output fallback
+Inventory source for this build: extracted pinned spec inputs
 
 | Resource | Import path | HL7 docs |
 | --- | --- | --- |

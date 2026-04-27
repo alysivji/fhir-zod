@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "fhir-zod",
 	description:
-		"Single-purpose FHIR types and Zod schemas generated from official FHIR definitions.",
+		"FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.",
 	cleanUrls: true,
 	head: [
 		[
@@ -22,7 +22,7 @@ export default defineConfig({
 		nav: [
 			{ text: "Introduction", link: "/" },
 			{ text: "Getting Started", link: "/getting-started" },
-			{ text: "Supported Resources", link: "/supported-resources/" },
+			{ text: "FHIR Versions", link: "/supported-resources/" },
 		],
 		sidebar: [
 			{
@@ -31,9 +31,8 @@ export default defineConfig({
 					{ text: "Overview", link: "/" },
 					{ text: "Getting Started", link: "/getting-started" },
 					{ text: "Why fhir-zod", link: "/why-fhir-zod" },
-					{ text: "FHIR Versions", link: "/versions" },
 					{
-						text: "Supported Resources",
+						text: "FHIR Versions",
 						link: "/supported-resources/",
 						items: [
 							{ text: "R5", link: "/supported-resources/r5" },

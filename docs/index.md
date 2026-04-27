@@ -71,5 +71,5 @@ if (!result.success) {
 
 - [Getting Started](/getting-started) — install and validate your first payload
 - [Why fhir-zod](/why-fhir-zod) — package boundaries and intended use
-- [FHIR Versions](/versions) — keep imports release-specific
+- [FHIR Versions](/supported-resources/) — supported releases and import paths
 - [Validation Scope](/validation-scope) — what the schemas check and what they don't
