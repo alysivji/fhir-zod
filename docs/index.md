@@ -1,5 +1,7 @@
 ---
 layout: home
+title: fhir-zod — FHIR Types and Zod Validation for TypeScript
+titleTemplate: ':title'
 
 hero:
   name: fhir-zod
