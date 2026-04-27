@@ -15,7 +15,7 @@ Sending FHIR payloads to an external validation server adds latency, introduces 
 
 ## Why Zod
 
-Zod is already how most TypeScript projects handle runtime validation. `fhir-zod` fits into that existing stack — same `parse` and `safeParse` API, same error shape, same composability. Teams working with FHIR don't need a separate validation library or a different mental model.
+[Zod](https://zod.dev/) is already how most TypeScript projects handle runtime validation. `fhir-zod` fits into that existing stack — same `parse` and `safeParse` API, same error shape, same composability. Teams working with FHIR don't need a separate validation library or a different mental model.
 
 ## Types and schemas together
 

@@ -40,16 +40,14 @@ export default defineConfig({
 			provider: "local",
 		},
 		nav: [
-			{ text: "Introduction", link: "/" },
 			{ text: "Getting Started", link: "/getting-started" },
 			{ text: "FHIR Versions", link: "/versions/" },
 			{ text: "GitHub", link: "https://github.com/alysivji/fhir-zod" },
 		],
 		sidebar: [
 			{
-				text: "Introduction",
 				items: [
-					{ text: "Overview", link: "/" },
+					{ text: "Introduction", link: "/" },
 					{ text: "Getting Started", link: "/getting-started" },
 					{ text: "Why fhir-zod", link: "/why-fhir-zod" },
 					{
