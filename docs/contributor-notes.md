@@ -26,6 +26,18 @@ This docs site is package orientation, not a replacement for the HL7 FHIR specif
 - `npm run docs:build` prepares and builds the VitePress site.
 - `npm run docs:dev` prepares the generated page before starting the local docs server.
 
+## Analytics
+
+The docs site uses Google Analytics 4 in production builds only — it does not fire during local development (`npm run docs:dev`).
+
+If you review the live site at `fhir-zod.vercel.app` and don't want your visits counted, run this once in your browser console:
+
+```js
+localStorage.setItem('ga-exclude', 'true')
+```
+
+This persists across sessions. GA will silently skip tracking in any browser where the flag is set.
+
 ## Fresh-checkout behavior
 
 The versions page prefers extracted spec inputs when they are available. If `.local/spec-cache/*/package` is absent, docs generation falls back to committed generated output so the docs site still builds on a fresh checkout.
