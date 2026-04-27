@@ -1,13 +1,13 @@
 ---
-title: Why fhir-zod
-description: Why fhir-zod exists, what problem it solves for TypeScript developers working with FHIR APIs, and where its boundaries are.
+title: Why fhir-zod for FHIR TypeScript
+description: "Why TypeScript developers use fhir-zod for FHIR validation: no generators, no servers, just install and import."
 ---
 
 # Why `fhir-zod`
 
-TypeScript developers working with FHIR APIs — Epic, Cerner, SMART on FHIR — have had limited options for validation. Send payloads to a validation server, or wire up your own schema generators against the HL7 spec definitions and maintain the output yourself. Neither is a great default.
+There's no standard answer for runtime FHIR validation in TypeScript. Every team working with Epic, Cerner, or GCP Healthcare API reinvents it.
 
-`fhir-zod` is a third option: pre-generated TypeScript models and Zod schemas for all core FHIR resources, published as a versioned npm package. Install it, import what you need, validate in-process. No server. No generators. No HL7 toolchain to set up.
+`fhir-zod` is meant to be that default: pre-generated TypeScript models and Zod schemas for all core FHIR resources, published as a versioned npm package. Install it, import what you need, validate in-process. No server. No generators. No HL7 toolchain to set up.
 
 ## Why in-process validation matters
 
@@ -21,7 +21,7 @@ Zod is already how most TypeScript projects handle runtime validation. `fhir-zod
 
 Each resource ships with both a TypeScript type and a matching Zod schema generated from the same FHIR definition. The type gives you editor ergonomics and compile-time safety. The schema gives you runtime protection where JSON is untrusted, external, or version-sensitive. They stay in sync because they come from the same source.
 
-The package is tree-shakeable at the version level — using only R4 means only R4 ends up in your bundle, not every FHIR version the package ships. See the README for a full explanation of how bundling works in practice.
+The package is tree-shakeable at the version level — using only R4 means only R4 ends up in your bundle, not every FHIR version the package ships. See the [README](https://github.com/alysivji/fhir-zod#readme) for a full explanation of how bundling works in practice.
 
 ## Validated against official FHIR examples
 

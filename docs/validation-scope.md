@@ -1,6 +1,6 @@
 ---
-title: Validation Scope
-description: What the generated schemas validate, and what remains outside the scope of this library.
+title: FHIR Validation Scope
+description: What fhir-zod's Zod schemas validate for FHIR TypeScript projects — structural checks, primitives, choice types, and known limits.
 ---
 
 # Validation Scope

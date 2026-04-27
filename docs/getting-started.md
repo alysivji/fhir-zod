@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-description: Install the package, import generated models and schemas, and validate FHIR payloads.
+title: Getting Started with FHIR TypeScript Validation
+description: Install fhir-zod and validate FHIR resources in TypeScript using Zod schemas — no generators, no servers, no HL7 toolchain.
 ---
 
 # Getting Started
