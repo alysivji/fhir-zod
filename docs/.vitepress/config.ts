@@ -15,6 +15,20 @@ export default defineConfig({
 			`if (!localStorage.getItem('vitepress-theme-appearance')) localStorage.setItem('vitepress-theme-appearance', 'light')`,
 		],
 		[
+			"script",
+			{ async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-739MGZ48PY" },
+		],
+		[
+			"script",
+			{ id: "ga4-init" },
+			`if (!localStorage.getItem('ga-exclude')) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-739MGZ48PY');
+}`,
+		],
+		[
 			"meta",
 			{
 				property: "og:title",
