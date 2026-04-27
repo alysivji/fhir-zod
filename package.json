@@ -1,6 +1,6 @@
 {
 	"name": "fhir-zod",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "TypeScript interfaces and Zod schemas for HL7 FHIR.",
 	"license": "MIT",
 	"type": "module",
