@@ -113,10 +113,6 @@ async function readPatient(response: Response) {
 }
 ```
 
-Avoid making `z.output<typeof PatientSchema>` the main application model type.
-The intended public model surface is the generated TypeScript export such as
-`Patient`.
-
 ## Choice fields
 
 FHIR choice fields such as `value[x]` are emitted as concrete fields:

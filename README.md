@@ -1,6 +1,6 @@
-# FHIR Zod 🩺
+# fhir-zod
 
-Single-purpose FHIR types and Zod schemas generated from official FHIR definitions.
+FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.
 
 ![FHIR R5](https://img.shields.io/badge/FHIR-R5-purple) ![FHIR R4B](https://img.shields.io/badge/FHIR-R4B-blue) ![FHIR R4](https://img.shields.io/badge/FHIR-R4-green) ![FHIR STU3](https://img.shields.io/badge/FHIR-STU3-lightgrey)
 
@@ -8,12 +8,12 @@ Single-purpose FHIR types and Zod schemas generated from official FHIR definitio
 
 ## Why use it?
 
-- 🎯 **Single-purpose library**: one job only, spec-aligned FHIR shapes plus runtime validation.
-- 🧩 **Official-definition based**: generated TypeScript models and Zod schemas from pinned HL7/FHIR source artifacts.
-- ✅ **Opinionated Zod support**: built around Zod `^3.25.1` and `^4.0.0` so it fits existing validation workflows.
-- 🗂️ **Multiple FHIR versions**: separate entry points for R5, R4B, R4, and STU3.
-- 🧪 **Example-backed tests**: checked against official FHIR example fixtures.
-- 🌳 **Tree-shakeable shape**: import the versioned schemas you need.
+- 📦 **Works out of the box**: pre-generated TypeScript models and Zod schemas from pinned HL7 definitions. No spec files to download, no generators to run.
+- ⚡ **Validate without a server**: in-process Zod validation — no validation server, no network round-trips, no infrastructure.
+- 🗂️ **One library, every major FHIR version**: R5, R4B, R4, and STU3 with explicit versioned entry points.
+- 🌳 **Tree-shakeable**: unused FHIR versions are excluded from your bundle. See [Bundle size and imports](#bundle-size-and-imports) for how polymorphic fields affect bundling.
+- 🧪 **Validated against official examples**: schemas are tested against HL7's own example fixtures for each supported version.
+- ✅ **Zod 3 and 4**: fits into existing Zod-based validation workflows without swapping validation stacks.
 
 ## Project status
 
@@ -236,6 +236,10 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and dev
 ## AI and tooling notes
 
 For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt).
+
+## Acknowledgements
+
+`fhir-zod` was inspired by [fhir.resources](https://github.com/nazrulworld/fhir.resources), the Python library for working with FHIR resources.
 
 ## Trademark notice
 

@@ -1,6 +1,6 @@
 ---
-title: API Conventions
-description: Public naming rules and import conventions for generated FHIR models and Zod schemas.
+title: FHIR TypeScript API Conventions
+description: Naming rules and import conventions for fhir-zod's TypeScript FHIR models and Zod schemas — types, schemas, and versioned paths.
 ---
 
 # API Conventions
@@ -36,7 +36,6 @@ import { configureFhirString } from "fhir-zod";
 - Use the exported TypeScript model as the main application-facing type.
 - Use the exported Zod schema at runtime boundaries.
 - Prefer resource entry points for concrete resources to keep imports obvious.
-- Treat `z.output<typeof SomeSchema>` as an implementation detail, not the primary public model strategy.
 
 ## Imports to avoid
 

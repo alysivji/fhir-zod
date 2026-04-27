@@ -67,38 +67,64 @@ export function renderSupportedResourcesDoc(
 ): string {
 	const lines = [
 		"---",
-		"title: Supported Resources",
-		"description: Generated release-specific resource inventory for the current branch.",
+		"title: FHIR Versions",
+		"description: Supported FHIR releases, versioned import paths, and the generated resource inventory for each version.",
 		"---",
 		"",
-		"# Supported Resources",
+		"# FHIR Versions & Resources",
 		"",
-		"This page is derived from the same release registry that drives `fhir-zod` generation.",
+		"`fhir-zod` supports all four major FHIR releases through explicit versioned entry points. Each release is independent — pick one for a given model flow and keep your types and schemas on that path.",
 		"",
-		"`fhir-zod` documents package usage here and points back to HL7 for full resource semantics.",
+		"## Import paths",
 		"",
-		"## What this page is for",
-		"",
-		"- Check whether a core resource is generated on this branch.",
-		"- Copy the release-specific import path for that resource.",
-		"- Jump to the canonical HL7 resource page when you need semantics beyond package shape.",
-		"",
-		"## What this page is not",
-		"",
-		"- It is not a handcrafted encyclopedia of FHIR resources.",
-		"- It does not restate HL7 semantics, invariants, or implementation guidance.",
-		"- It does not cover profile resources that are currently excluded from generation.",
-		"",
-		"## Browse by release",
+		"| FHIR release | Version entry point | Resource entry points | HL7 spec |",
+		"| --- | --- | --- | --- |",
 	];
 
 	for (const section of sections) {
 		lines.push(
-			`- [${section.label}](/supported-resources/${section.version})`,
+			`| ${section.label} | \`fhir-zod/${section.version}\` | \`fhir-zod/${section.version}/<Resource>\` | [HL7 ${section.label}](${section.specHomeUrl}) |`,
 		);
 	}
 
-	lines.push("");
+	lines.push(
+		"",
+		"Import concrete resources from their resource entry point:",
+		"",
+		"```ts",
+		'import { PatientSchema, type Patient } from "fhir-zod/r4/Patient";',
+		"```",
+		"",
+		"Import shared datatypes from the version entry point when needed:",
+		"",
+		"```ts",
+		'import { HumanNameSchema, type HumanName } from "fhir-zod/r4";',
+		"```",
+		"",
+		"Don't mix releases in a single flow unless you're explicitly translating between them:",
+		"",
+		"```ts",
+		'import type { Patient as R4Patient } from "fhir-zod/r4/Patient";',
+		'import type { Patient as R5Patient } from "fhir-zod/r5/Patient";',
+		"```",
+		"",
+		"## Resource inventory",
+		"",
+		"Browse generated core resources by release. Each resource links back to the canonical HL7 docs for semantics beyond the package shape.",
+		"",
+	);
+
+	for (const section of sections) {
+		lines.push(`- [${section.label}](/versions/${section.version})`);
+	}
+
+	lines.push(
+		"",
+		"## Support status",
+		"",
+		"R5, R4B, R4, and STU3 are fully supported. The package is pre-release, so package shape and generated output may change between versions. For the full semantic meaning of any resource, refer to the official HL7 FHIR specification for that release.",
+		"",
+	);
 
 	return `${lines.join("\n")}`;
 }
@@ -114,7 +140,7 @@ export function renderSupportedResourcesReleaseDoc(
 		"",
 		`# ${section.label} Supported Resources`,
 		"",
-		"[Back to Supported Resources](/supported-resources/)",
+		"[Back to FHIR Versions](/versions/)",
 		"",
 		`Canonical HL7 docs: [${section.label}](${section.specHomeUrl})`,
 		"",
@@ -146,7 +172,7 @@ export function writeSupportedResourcesDocs(
 ): string[] {
 	const repoRoot = options.repoRoot ?? defaultRepoRoot;
 	const outputDir =
-		options.outputDir ?? join(repoRoot, "docs", "supported-resources");
+		options.outputDir ?? join(repoRoot, "docs", "versions");
 	const sections = collectSupportedResourcesSections({
 		getRelease: options.getRelease,
 		repoRoot,

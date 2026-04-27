@@ -22,12 +22,12 @@ This docs site is package orientation, not a replacement for the HL7 FHIR specif
 
 ## Build flow
 
-- `npm run docs:prepare` regenerates the supported-resources page from the release registry.
+- `npm run docs:prepare` regenerates the versions page from the release registry.
 - `npm run docs:build` prepares and builds the VitePress site.
 - `npm run docs:dev` prepares the generated page before starting the local docs server.
 
 ## Fresh-checkout behavior
 
-The supported-resources page prefers extracted spec inputs when they are available. If `.local/spec-cache/*/package` is absent, docs generation falls back to committed generated output so the docs site still builds on a fresh checkout.
+The versions page prefers extracted spec inputs when they are available. If `.local/spec-cache/*/package` is absent, docs generation falls back to committed generated output so the docs site still builds on a fresh checkout.
 
 That fallback is only for package-surface discovery. It does not change the rule that HL7 and the pinned manifests remain the upstream source of truth.

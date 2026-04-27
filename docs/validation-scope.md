@@ -1,6 +1,6 @@
 ---
-title: Validation Scope
-description: What the generated schemas validate, and what remains outside the scope of this library.
+title: FHIR Validation Scope
+description: What fhir-zod's Zod schemas validate for FHIR TypeScript projects — structural checks, primitives, choice types, and known limits.
 ---
 
 # Validation Scope
@@ -28,4 +28,4 @@ description: What the generated schemas validate, and what remains outside the s
 
 Use `fhir-zod` to validate the structural shape of data entering or leaving your system. If a workflow depends on terminology services, profile-aware validation, or server semantics, combine `fhir-zod` with other FHIR-specific tooling instead of stretching this package past its design target.
 
-If you need the clinical or interoperability meaning of a resource, follow the version-specific HL7 links from [FHIR Versions](/versions) or [Supported Resources](/supported-resources/).
+If you need the clinical or interoperability meaning of a resource, follow the version-specific HL7 links from [FHIR Versions](/versions/).

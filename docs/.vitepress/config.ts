@@ -3,14 +3,34 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "fhir-zod",
 	description:
-		"Single-purpose FHIR types and Zod schemas generated from official FHIR definitions.",
+		"FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.",
 	cleanUrls: true,
+	sitemap: {
+		hostname: "https://fhir-zod.vercel.app",
+	},
 	head: [
 		[
 			"script",
 			{ id: "default-light-appearance" },
 			`if (!localStorage.getItem('vitepress-theme-appearance')) localStorage.setItem('vitepress-theme-appearance', 'light')`,
 		],
+		[
+			"meta",
+			{
+				property: "og:title",
+				content: "fhir-zod — FHIR types and Zod validation for TypeScript",
+			},
+		],
+		[
+			"meta",
+			{
+				property: "og:description",
+				content:
+					"FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.",
+			},
+		],
+		["meta", { property: "og:url", content: "https://fhir-zod.vercel.app" }],
+		["meta", { property: "og:type", content: "website" }],
 	],
 	themeConfig: {
 		footer: {
@@ -20,31 +40,28 @@ export default defineConfig({
 			provider: "local",
 		},
 		nav: [
-			{ text: "Introduction", link: "/" },
 			{ text: "Getting Started", link: "/getting-started" },
-			{ text: "Supported Resources", link: "/supported-resources/" },
+			{ text: "FHIR Versions", link: "/versions/" },
+			{ text: "GitHub", link: "https://github.com/alysivji/fhir-zod" },
 		],
 		sidebar: [
 			{
-				text: "Introduction",
 				items: [
-					{ text: "Overview", link: "/" },
+					{ text: "Introduction", link: "/" },
 					{ text: "Getting Started", link: "/getting-started" },
 					{ text: "Why fhir-zod", link: "/why-fhir-zod" },
-					{ text: "FHIR Versions", link: "/versions" },
 					{
-						text: "Supported Resources",
-						link: "/supported-resources/",
+						text: "FHIR Versions",
+						link: "/versions/",
 						items: [
-							{ text: "R5", link: "/supported-resources/r5" },
-							{ text: "R4B", link: "/supported-resources/r4b" },
-							{ text: "R4", link: "/supported-resources/r4" },
-							{ text: "STU3", link: "/supported-resources/stu3" },
+							{ text: "R5", link: "/versions/r5" },
+							{ text: "R4B", link: "/versions/r4b" },
+							{ text: "R4", link: "/versions/r4" },
+							{ text: "STU3", link: "/versions/stu3" },
 						],
 					},
 					{ text: "API Conventions", link: "/api-conventions" },
 					{ text: "Validation Scope", link: "/validation-scope" },
-					{ text: "Contributor Notes", link: "/contributor-notes" },
 				],
 			},
 		],

@@ -1,45 +1,38 @@
 ---
 layout: home
+title: fhir-zod — FHIR Types and Zod Validation for TypeScript
+titleTemplate: ':title'
 
 hero:
   name: fhir-zod
-  text: Small-scope FHIR types and Zod schemas
-  tagline: A single-purpose library for spec-aligned FHIR shapes, opinionated Zod 3/4 support, and explicit multi-version imports.
+  text: FHIR types and Zod validation for TypeScript
+  tagline: Install, import, validate. No generators, no servers, no HL7 toolchain required.
   actions:
     - theme: brand
       text: Getting Started
       link: /getting-started
     - theme: alt
       text: Supported Resources
-      link: /supported-resources/
+      link: /versions/
 features:
-  - title: FHIR Types and Runtime Validation
-    icon: "🔥"
-    details: "This library does one thing: generate FHIR types and matching Zod schemas from official FHIR definitions."
-  - title: Built with Zod
-    icon: "🩺"
-    details: "Fits into standard Zod-based workflows with support for Zod ^3.25.1 and ^4.0.0."
-  - title: Supports All Major FHIR Versions
-    icon: "🧭"
-    details: "Supports R5, R4B, R4, and STU3 through explicit release-specific entry points generated from the official definitions for each version."
+  - title: Works out of the box
+    icon: "📦"
+    details: "Pre-generated TypeScript models and Zod schemas for every major FHIR version. npm install and import — no spec files or generators to run."
+  - title: Validate without a server
+    icon: "⚡"
+    details: "Validate FHIR payloads in-process using Zod. No validation server, no network round-trips, no infrastructure required."
+  - title: Every major FHIR version
+    icon: "🗂️"
+    details: "One library with full support for R5, R4B, R4, and STU3. No need to install separate packages per version."
 ---
 
-`fhir-zod` is a small-scope developer library: it gives you FHIR shapes that stay close to official definitions in both TypeScript and runtime validation, without trying to be a FHIR server, client, or full semantic validator.
+`fhir-zod` gives TypeScript developers FHIR types and runtime validation without the setup. Other approaches hand you a generator and expect you to run it. This one ships the output.
 
-## Why teams use it
-
-- Keep your TypeScript models and runtime validators aligned to the same official FHIR source.
-- Drop FHIR validation into existing Zod-based code without swapping validation stacks.
-- Validate data at trust boundaries without mixing FHIR releases accidentally.
-- Use one library with explicit support for R5, R4B, R4, and STU3.
-
-## Install
+## Get started
 
 ```bash
 npm install fhir-zod zod
 ```
-
-## Basic usage
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient";
@@ -62,18 +55,11 @@ if (!result.success) {
 
 ## What you get
 
-- Generated TypeScript models such as `Patient`
-- Generated Zod schemas such as `PatientSchema`
-- One opinionated schema surface for Zod `^3.25.1` and `^4.0.0`
-- Explicit versioned imports for R5, R4B, R4, and STU3
-- Output generated from pinned official FHIR definitions
-
-## What validation covers
-
-- Structural field presence and cardinality
-- Primitive formatting
-- Choice-type exclusivity such as `value[x]`
-- Selected constrained reference targets
+- TypeScript models and Zod schemas for all core FHIR resources
+- Versioned imports for R5, R4B, R4, and STU3
+- Structural validation, primitive formatting, and choice-type checks
+- Tree-shakeable — you only bundle the FHIR version(s) your project uses
+- Works with Zod 3 and 4
 
 ## What this library is not
 
@@ -85,8 +71,7 @@ if (!result.success) {
 
 ## Next steps
 
-- Start with [Getting Started](/getting-started) for install and validation examples.
-- Read [Why `fhir-zod`](/why-fhir-zod) for package boundaries and intended use.
-- Use [FHIR Versions](/versions) to keep imports release-specific.
-- Use [Supported Resources](/supported-resources/) to browse generated core resources by release.
-- Read [Validation Scope](/validation-scope) before relying on the schemas for non-structural checks.
+- [Getting Started](/getting-started) — install and validate your first payload
+- [Why fhir-zod](/why-fhir-zod) — package boundaries and intended use
+- [FHIR Versions](/versions/) — supported releases and import paths
+- [Validation Scope](/validation-scope) — what the schemas check and what they don't

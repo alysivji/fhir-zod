@@ -1,41 +1,36 @@
 ---
-title: Why fhir-zod
-description: What the library is for, what it deliberately does not do, and why that boundary matters.
+title: Why fhir-zod for FHIR TypeScript
+description: "Why TypeScript developers use fhir-zod for FHIR validation: no generators, no servers, just install and import."
 ---
 
 # Why `fhir-zod`
 
-`fhir-zod` is a single-purpose library for developers who want spec-aligned FHIR shapes in TypeScript and matching Zod schemas at runtime, without pulling in a larger FHIR platform.
+There's no standard answer for runtime FHIR validation in TypeScript. Every team working with Epic, Cerner, or GCP Healthcare API reinvents it.
 
-## What it is
+`fhir-zod` is meant to be that default: pre-generated TypeScript models and Zod schemas for all core FHIR resources, published as a versioned npm package. Install it, import what you need, validate in-process. No server. No generators. No HL7 toolchain to set up.
 
-- A small-scope package built from pinned official FHIR definitions.
-- A TypeScript model layer that mirrors base FHIR shapes closely.
-- A matching runtime validation layer built from the same definitions.
-- An opinionated schema surface for Zod `^3.25.1` and `^4.0.0`.
-- A version-explicit package surface for `r5`, `r4b`, `r4`, and `stu3`.
+## Why in-process validation matters
 
-## Why that split is useful
+Sending FHIR payloads to an external validation server adds latency, introduces an infrastructure dependency, and means patient data leaves your process. In-process Zod validation eliminates all three. You get the same structural checks at the point where data enters or leaves your system, with no round-trip.
 
-Use the generated TypeScript model when you want a named FHIR shape in your codebase. Use the matching Zod schema when data enters or leaves your system.
+## Why Zod
 
-That keeps editor ergonomics clean while still giving you runtime protection where JSON is untrusted, external, or version-sensitive. It also means teams already using Zod do not need a separate FHIR-specific validation stack.
+[Zod](https://zod.dev/) is already how most TypeScript projects handle runtime validation. `fhir-zod` fits into that existing stack — same `parse` and `safeParse` API, same error shape, same composability. Teams working with FHIR don't need a separate validation library or a different mental model.
 
-## What it is not
+## Types and schemas together
 
-- Not a FHIR server.
-- Not a FHIR client.
-- Not a terminology validation engine.
-- Not a FHIRPath engine.
-- Not a profile-resolution or slicing-aware validator.
+Each resource ships with both a TypeScript type and a matching Zod schema generated from the same FHIR definition. The type gives you editor ergonomics and compile-time safety. The schema gives you runtime protection where JSON is untrusted, external, or version-sensitive. They stay in sync because they come from the same source.
 
-## What you should rely on it for
+The package is tree-shakeable at the version level — using only R4 means only R4 ends up in your bundle, not every FHIR version the package ships. See the [README](https://github.com/alysivji/fhir-zod#readme) for a full explanation of how bundling works in practice.
 
-- Structural validation of FHIR payloads.
-- Primitive formatting checks.
-- Choice-type exclusivity such as `value[x]`.
-- Selected reference-target checks emitted from the base spec.
+## Validated against official FHIR examples
 
-## Where HL7 still owns the semantics
+The generated schemas are tested against the official example resources published by HL7 for each FHIR version. If a schema rejects a valid example from the spec, that's a bug. This gives you confidence that the validation reflects what HL7 actually intends, not just a best-effort interpretation of the definitions.
 
-This docs site explains how to use the package. The official HL7 specification remains the source of truth for resource meaning, workflow semantics, terminology, profiles, and interoperability guidance.
+## Multi-version by design
+
+FHIR has four actively used versions — R5, R4B, R4, and STU3. `fhir-zod` supports all of them through explicit versioned entry points (`fhir-zod/r4/Patient`, `fhir-zod/r5/Patient`, etc.) so imports are unambiguous and releases never mix.
+
+## What this library is not
+
+`fhir-zod` handles structural validation — field presence, cardinality, primitive formatting, choice-type exclusivity. It does not resolve terminology, evaluate FHIRPath, handle profiles or slicing, or implement any FHIR server or client behavior. The official HL7 specification remains the source of truth for resource semantics, workflow guidance, and interoperability requirements.
