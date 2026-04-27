@@ -12,6 +12,11 @@ on:
           - minor
           - major
 
+# GH_PAT must be a repo-scoped classic PAT, or a fine-grained PAT with
+# "Contents: Read and write" and "Pull requests: Read and write" permissions,
+# stored as a repository secret named GH_PAT.  Using a PAT (rather than the
+# default GITHUB_TOKEN) ensures that the pull_request event fires on the
+# created PR so that CI and Pre-commit workflows are triggered automatically.
 permissions:
   contents: write
   pull-requests: write
@@ -47,6 +52,7 @@ jobs:
       - name: Open pull request
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.GH_PAT }}
           branch: version-bump-v${{ steps.version.outputs.value }}
           commit-message: "chore: bump version to v${{ steps.version.outputs.value }}"
           title: "chore: bump version to v${{ steps.version.outputs.value }}"
