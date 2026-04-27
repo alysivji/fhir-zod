@@ -33,7 +33,9 @@ Supports Node.js 20+ and modern bundlers. Import concrete resources from resourc
 
 ## Documentation
 
-The docs site for package usage and validation boundaries is published from this repo's VitePress app. The source lives in [`docs/`](./docs/). Preview it locally with:
+Browse the package docs at <https://fhir-zod.vercel.app/>.
+
+The VitePress source for package usage and validation boundaries lives in [`docs/`](./docs/). Preview it locally with:
 
 ```bash
 npm run docs:dev

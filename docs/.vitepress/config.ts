@@ -3,6 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "fhir-zod",
 	description: "Spec-aligned TypeScript models and runtime validators for HL7 FHIR.",
+	cleanUrls: true,
 	head: [
 		[
 			"script",
