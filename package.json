@@ -12,7 +12,7 @@
 	"bugs": {
 		"url": "https://github.com/alysivji/fhir-zod/issues"
 	},
-	"homepage": "https://github.com/alysivji/fhir-zod#readme",
+	"homepage": "https://fhir-zod.vercel.app/",
 	"keywords": [
 		"fhir",
 		"hl7",
