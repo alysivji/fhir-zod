@@ -14,7 +14,7 @@ export default defineConfig({
 			{ id: "default-light-appearance" },
 			`if (!localStorage.getItem('vitepress-theme-appearance')) localStorage.setItem('vitepress-theme-appearance', 'light')`,
 		],
-		...(process.env.NODE_ENV === "production"
+		...(process.env.VERCEL_ENV === "production"
 			? ([
 					[
 						"script",
