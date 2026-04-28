@@ -1,12 +1,61 @@
+import path from "node:path";
 import { defineConfig } from "vitepress";
+import { generateOgImage } from "./og-image";
+
+// Collect page metadata during transformPageData so buildEnd can generate images
+const ogPages = new Map<string, { title: string; description: string; slug: string }>();
+
+const SITE_URL = "https://fhir-zod.vercel.app";
+const DEFAULT_DESCRIPTION =
+	"FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.";
+
+function pageSlug(relativePath: string): string {
+	return relativePath.replace(/\.md$/, "").replace(/\//g, "-") || "index";
+}
 
 export default defineConfig({
 	title: "fhir-zod",
-	description:
-		"FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.",
+	description: DEFAULT_DESCRIPTION,
 	cleanUrls: true,
 	sitemap: {
-		hostname: "https://fhir-zod.vercel.app",
+		hostname: SITE_URL,
+	},
+	transformPageData(pageData) {
+		const slug = pageSlug(pageData.relativePath);
+		const isHome = pageData.relativePath === "index.md";
+		ogPages.set(pageData.relativePath, {
+			title: isHome ? "fhir-zod" : pageData.title || "fhir-zod",
+			description: isHome
+				? DEFAULT_DESCRIPTION
+				: String(pageData.description || pageData.frontmatter?.description || DEFAULT_DESCRIPTION),
+			slug,
+		});
+	},
+	transformHead(context) {
+		const { title, description, slug } = ogPages.get(context.pageData.relativePath) ?? {
+			title: context.pageData.title || "fhir-zod",
+			description: DEFAULT_DESCRIPTION,
+			slug: pageSlug(context.pageData.relativePath),
+		};
+		const ogImage = `${SITE_URL}/og/${slug}.png`;
+		const pageUrl = context.pageData.relativePath === "index.md" ? SITE_URL : `${SITE_URL}/${slug}`;
+		return [
+			["meta", { property: "og:title", content: title }],
+			["meta", { property: "og:description", content: description }],
+			["meta", { property: "og:url", content: pageUrl }],
+			["meta", { property: "og:type", content: "website" }],
+			["meta", { property: "og:image", content: ogImage }],
+			["meta", { name: "twitter:card", content: "summary_large_image" }],
+			["meta", { name: "twitter:image", content: ogImage }],
+		];
+	},
+	async buildEnd(siteConfig) {
+		const ogDir = path.join(siteConfig.outDir, "og");
+		await Promise.all(
+			Array.from(ogPages.values()).map(({ title, description, slug }) =>
+				generateOgImage(title, description, path.join(ogDir, `${slug}.png`)),
+			),
+		);
 	},
 	head: [
 		[
@@ -32,23 +81,6 @@ export default defineConfig({
 					],
 				] as any)
 			: []),
-		[
-			"meta",
-			{
-				property: "og:title",
-				content: "fhir-zod — FHIR types and Zod validation for TypeScript",
-			},
-		],
-		[
-			"meta",
-			{
-				property: "og:description",
-				content:
-					"FHIR types and Zod validation for TypeScript — install, import, validate. No generators, no servers, no HL7 toolchain required.",
-			},
-		],
-		["meta", { property: "og:url", content: "https://fhir-zod.vercel.app" }],
-		["meta", { property: "og:type", content: "website" }],
 	],
 	themeConfig: {
 		footer: {
