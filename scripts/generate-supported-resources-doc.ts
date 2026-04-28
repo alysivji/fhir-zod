@@ -89,6 +89,8 @@ export function renderSupportedResourcesDoc(
 
 	lines.push(
 		"",
+		"Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.",
+		"",
 		"Import concrete resources from their resource entry point:",
 		"",
 		"```ts",

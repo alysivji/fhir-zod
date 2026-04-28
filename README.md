@@ -31,6 +31,8 @@ Compatible with [Zod](https://zod.dev/) `^3.25.1` and `^4.0.0`.
 
 Supports Node.js 20+ and modern bundlers. Import concrete resources from resource module entry points such as `fhir-zod/r4/Patient`. Versioned entry points such as `fhir-zod/r4` expose shared datatypes and supporting generated definitions.
 
+Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.
+
 ## Documentation
 
 Browse the package docs at <https://fhir-zod.vercel.app/>.
@@ -40,6 +42,8 @@ The VitePress source for package usage and validation boundaries lives in [`docs
 ```bash
 npm run docs:dev
 ```
+
+Using an agent? Start with the task-oriented [For Agents](https://fhir-zod.vercel.app/for-agents) page.
 
 ## Quick start
 
@@ -183,7 +187,9 @@ function useR5Patient(patient: R5Patient) {
 | R4 | `fhir-zod/r4` | `fhir-zod/r4/<Resource>` |
 | STU3 | `fhir-zod/stu3` | `fhir-zod/stu3/<Resource>` |
 
-Each release exposes two import styles. The version entry point exports shared datatype schemas and supporting generated definitions. Concrete resources are exported from resource entry points:
+Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.
+
+The version entry point exports shared datatype schemas and supporting generated definitions. Concrete resources are exported from resource entry points:
 
 ```ts
 import { PatientSchema, type Patient } from "fhir-zod/r4/Patient"
@@ -235,7 +241,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and dev
 
 ## AI and tooling notes
 
-For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt).
+For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For task-oriented package usage, start with [For Agents](https://fhir-zod.vercel.app/for-agents). For a compact repository/package guide, see [llms.txt](./llms.txt).
 
 ## Acknowledgements
 

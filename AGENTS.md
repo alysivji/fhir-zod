@@ -182,6 +182,10 @@ When making changes, prefer:
 - updating docs when project reality changes
 - adding future FHIR versions through a small `FhirRelease` subclass plus thin compatibility wrappers, instead of copying version-specific generator logic
 
+Docs-specific rule:
+
+- treat `docs/` as the source for shipped public documentation only; do not add scratch design notes or temporary planning documents there, and prefer GitHub issues for deferred design work
+
 If you change the pipeline, also consider updating:
 
 - `README.md`

@@ -19,6 +19,8 @@ This docs site is package orientation, not a replacement for the HL7 FHIR specif
 - Docs should explain package usage, import conventions, supported releases, and validation scope.
 - Docs should link outward for canonical semantics instead of restating large parts of FHIR.
 - Resource-level discovery should come from generated or release-derived inventories, not handwritten lists.
+- Treat `docs/` as public site content, not a workspace for internal design notes or temporary planning documents.
+- When design work needs to be preserved for later, prefer GitHub issues over adding standalone design pages under `docs/`.
 
 ## Build flow
 

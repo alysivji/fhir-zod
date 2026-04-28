@@ -9,12 +9,14 @@ to use `fhir-zod` correctly from repository or package context.
 
 - [README](./README.md): Package overview, installation, quick start, common
   use cases, supported FHIR versions, and development commands.
+- [For Agents](./docs/for-agents.md): Task-oriented guidance for release
+  selection, unknown JSON validation, Bundle handling, and failure handling.
 
 ## Core rules
 
 - Pick exactly one FHIR release for a given model flow.
-- Import from a versioned subpath: `fhir-zod/stu3`, `fhir-zod/r4`,
-  `fhir-zod/r4b`, or `fhir-zod/r5`.
+- Use `fhir-zod/<release>/<Resource>` for concrete resources; use
+  `fhir-zod/<release>` for shared datatypes and release-level exports.
 - Use exported TypeScript models such as `Patient` for app-level data shapes.
 - Use exported Zod schemas such as `PatientSchema` for runtime validation.
 - Prefer `safeParse` for untrusted input and `parse` when invalid input should
@@ -28,7 +30,7 @@ to use `fhir-zod` correctly from repository or package context.
 ## Canonical import pattern
 
 ```ts
-import { PatientSchema, type Patient } from "fhir-zod/r4";
+import { PatientSchema, type Patient } from "fhir-zod/r4/Patient";
 
 const patient: Patient = {
   resourceType: "Patient",
@@ -46,9 +48,12 @@ if (!result.success) {
 Schema exports use the model name plus `Schema`.
 
 ```ts
-import { ObservationSchema, type Observation } from "fhir-zod/r4";
-import { BundleSchema, type Bundle } from "fhir-zod/r4";
-import { MedicationRequestSchema, type MedicationRequest } from "fhir-zod/r5";
+import { ObservationSchema, type Observation } from "fhir-zod/r4/Observation";
+import { BundleSchema, type Bundle } from "fhir-zod/r4/Bundle";
+import {
+  MedicationRequestSchema,
+  type MedicationRequest,
+} from "fhir-zod/r5/MedicationRequest";
 ```
 
 ## Package entry points
@@ -95,7 +100,7 @@ use another FHIR-specific validation service in addition to `fhir-zod`.
 Use the exported TypeScript model as the public data type:
 
 ```ts
-import type { Patient } from "fhir-zod/r4";
+import type { Patient } from "fhir-zod/r4/Patient";
 
 function getDisplayName(patient: Patient): string | undefined {
   return patient.name?.[0]?.text ?? patient.name?.[0]?.family;
@@ -105,7 +110,7 @@ function getDisplayName(patient: Patient): string | undefined {
 Use the exported Zod schema at runtime boundaries:
 
 ```ts
-import { PatientSchema } from "fhir-zod/r4";
+import { PatientSchema } from "fhir-zod/r4/Patient";
 
 async function readPatient(response: Response) {
   const payload: unknown = await response.json();
@@ -125,7 +130,7 @@ FHIR choice fields such as `value[x]` are emitted as concrete fields:
 Set only one member of a choice group.
 
 ```ts
-import { ObservationSchema, type Observation } from "fhir-zod/r4";
+import { ObservationSchema, type Observation } from "fhir-zod/r4/Observation";
 
 const observation: Observation = {
   resourceType: "Observation",
@@ -161,7 +166,8 @@ resources. When a workflow needs full validation for known entry resource types,
 validate those resources with their own schemas.
 
 ```ts
-import { BundleSchema, PatientSchema, type Bundle } from "fhir-zod/r4";
+import { BundleSchema, type Bundle } from "fhir-zod/r4/Bundle";
+import { PatientSchema } from "fhir-zod/r4/Patient";
 
 const bundle: Bundle = {
   resourceType: "Bundle",
@@ -188,15 +194,15 @@ for (const entry of parsedBundle.entry ?? []) {
 ## Empty FHIR strings
 
 FHIR `string` values reject empty strings by default. If an application must
-accept real-world payloads with empty strings, configure the root package during
-startup before versioned schemas are imported or constructed.
+accept real-world payloads with empty strings, configure the root package
+before parsing. Generated schemas read the current setting at parse time.
 
 ```ts
 import { configureFhirString } from "fhir-zod";
 
 configureFhirString({ allowEmpty: true });
 
-const { PatientSchema } = await import("fhir-zod/r4");
+const { PatientSchema } = await import("fhir-zod/r4/Patient");
 ```
 
 This only affects the FHIR `string` primitive.
