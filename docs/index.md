@@ -74,7 +74,7 @@ if (!result.success) {
 ## Next steps
 
 - [Getting Started](/getting-started) — install and validate your first payload
-- [For AI Agents](/for-agents) — task-oriented guidance for coding assistants and automated tooling
 - [Why fhir-zod](/why-fhir-zod) — package boundaries and intended use
 - [FHIR Versions](/versions/) — supported releases and import paths
 - [Validation Scope](/validation-scope) — what the schemas check and what they don't
+- [For AI Agents](/for-agents) — task-oriented guidance for coding assistants and automated tooling
