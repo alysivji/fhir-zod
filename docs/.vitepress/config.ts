@@ -80,6 +80,7 @@ export default defineConfig({
 					},
 					{ text: "API Conventions", link: "/api-conventions" },
 					{ text: "Validation Scope", link: "/validation-scope" },
+					{ text: "For AI Agents", link: "/for-agents" },
 				],
 			},
 		],

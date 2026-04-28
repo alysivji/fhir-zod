@@ -86,3 +86,4 @@ This setting is process-global and only changes validation for the FHIR `string`
 - [FHIR Versions](/versions/) — supported releases, import paths, and resource inventory
 - [API Conventions](/api-conventions) — understand `Patient` versus `PatientSchema`
 - [Validation Scope](/validation-scope) — what the schemas check and what they don't
+- [For AI Agents](/for-agents) — task-oriented guidance for coding assistants and automated tooling

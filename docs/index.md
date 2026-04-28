@@ -12,7 +12,7 @@ hero:
       text: Getting Started
       link: /getting-started
     - theme: alt
-      text: Supported Resources
+      text: FHIR Versions
       link: /versions/
 features:
   - title: Works out of the box
@@ -75,3 +75,4 @@ if (!result.success) {
 - [Why fhir-zod](/why-fhir-zod) — package boundaries and intended use
 - [FHIR Versions](/versions/) — supported releases and import paths
 - [Validation Scope](/validation-scope) — what the schemas check and what they don't
+- [For AI Agents](/for-agents) — task-oriented guidance for coding assistants and automated tooling
