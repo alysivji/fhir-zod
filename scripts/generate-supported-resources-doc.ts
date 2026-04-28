@@ -146,7 +146,7 @@ export function renderSupportedResourcesReleaseDoc(
 		"",
 		`Canonical HL7 docs: [${section.label}](${section.specHomeUrl})`,
 		"",
-		`Inventory source for this build: ${section.source === "spec-cache" ? "extracted pinned spec inputs" : "committed generated output fallback"}`,
+		"Inventory source for this build: extracted pinned spec inputs when available; otherwise committed generated output fallback.",
 		"",
 		"| Resource | Import path | HL7 docs |",
 		"| --- | --- | --- |",
