@@ -39,7 +39,7 @@ if (!result.success) {
 }
 ```
 
-## Handle Bundle carefully
+## Validate Bundle resources
 
 `BundleSchema` validates the Bundle envelope and recursively validates known entry resources through the release-specific `resourceType` dispatcher.
 
