@@ -28,8 +28,6 @@ features:
 
 `fhir-zod` gives TypeScript developers FHIR types and runtime validation without the setup. Other approaches hand you a generator and expect you to run it. This one ships the output.
 
-Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.
-
 ## Get started
 
 ```bash

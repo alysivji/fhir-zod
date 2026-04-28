@@ -13,8 +13,6 @@ npm install fhir-zod zod
 
 `fhir-zod` works with Zod 3 and 4, so it fits into existing Zod-based validation flows without any changes to your setup.
 
-Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.
-
 ## Parse a concrete resource
 
 The TypeScript model gives you the type; the Zod schema validates at runtime.
@@ -85,7 +83,7 @@ This setting is process-global and only changes validation for the FHIR `string`
 ## Next steps
 
 - [Why fhir-zod](/why-fhir-zod) — understand the package boundary before layering on other FHIR tooling
-- [For AI Agents](/for-agents) — task-oriented guidance for coding assistants and automated tooling
 - [FHIR Versions](/versions/) — supported releases, import paths, and resource inventory
 - [API Conventions](/api-conventions) — understand `Patient` versus `PatientSchema`
 - [Validation Scope](/validation-scope) — what the schemas check and what they don't
+- [For AI Agents](/for-agents) — task-oriented guidance for coding assistants and automated tooling

@@ -12,8 +12,6 @@ The intended public shape is type-first:
 
 ## Preferred import patterns
 
-Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.
-
 Import concrete resources from resource entry points:
 
 ```ts
@@ -37,8 +35,7 @@ import { configureFhirString } from "fhir-zod";
 - Keep the FHIR release explicit in every import path.
 - Use the exported TypeScript model as the main application-facing type.
 - Use the exported Zod schema at runtime boundaries.
-- Use resource entry points for concrete resources and version entry points for shared datatypes.
-- Treat `z.output<typeof SomeSchema>` as an implementation detail, not the primary public model strategy.
+- Prefer resource entry points for concrete resources to keep imports obvious.
 
 ## Imports to avoid
 

@@ -9,7 +9,7 @@ description: Generated core-resource inventory for R4B.
 
 Canonical HL7 docs: [R4B](https://hl7.org/fhir/R4B)
 
-Inventory source for this build: extracted pinned spec inputs when available; otherwise committed generated output fallback.
+Inventory source for this build: extracted pinned spec inputs
 
 | Resource | Import path | HL7 docs |
 | --- | --- | --- |

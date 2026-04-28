@@ -16,8 +16,6 @@ description: Supported FHIR releases, versioned import paths, and the generated 
 | R4 | `fhir-zod/r4` | `fhir-zod/r4/<Resource>` | [HL7 R4](https://hl7.org/fhir/R4) |
 | STU3 | `fhir-zod/stu3` | `fhir-zod/stu3/<Resource>` | [HL7 STU3](https://hl7.org/fhir/STU3) |
 
-Use `fhir-zod/<release>/<Resource>` for concrete resources; use `fhir-zod/<release>` for shared datatypes and release-level exports.
-
 Import concrete resources from their resource entry point:
 
 ```ts

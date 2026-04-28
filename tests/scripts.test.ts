@@ -512,9 +512,7 @@ describe("generate-supported-resources-doc script", () => {
 		expect(landingContent).toContain("# FHIR Versions & Resources");
 		expect(landingContent).toContain("- [R4](/versions/r4)");
 		expect(releaseContent).toContain("# R4 Supported Resources");
-		expect(releaseContent).toContain(
-			"Inventory source for this build: extracted pinned spec inputs when available; otherwise committed generated output fallback.",
-		);
+		expect(releaseContent).toContain("Inventory source for this build: committed generated output fallback");
 		expect(releaseContent).toContain("| Resource | Import path | HL7 docs |");
 		expect(releaseContent).toContain(
 			'| <span class="resource-name-tooltip" tabindex="0">Patient<span class="resource-name-tooltip__bubble">Demographics and other administrative information about an individual.</span></span> | `fhir-zod/r4/Patient` | [HL7](https://example.test/r4/patient.html) |',
