@@ -12,7 +12,7 @@ hero:
       text: Getting Started
       link: /getting-started
     - theme: alt
-      text: Supported Resources
+      text: FHIR Versions
       link: /versions/
 features:
   - title: Works out of the box
