@@ -54,6 +54,12 @@ npm run fetch-examples -- r4 Patient --limit=1
 The default generation and fetch commands target R4 unless a version is passed.
 Supported versions are `stu3`, `r4`, `r4b`, and `r5`.
 
+## Benchmarking
+
+The repo includes an internal benchmark harness under [`scripts/benchmarking/`](./scripts/benchmarking/README.md).
+
+Benchmark inputs and result JSON are generated under `.local/` and are not committed. Synthea-backed scenarios are optional and use the repo-local `.local/bin/synthea` wrapper when it exists.
+
 ## Generated Output
 
 Generated files live under:

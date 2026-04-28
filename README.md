@@ -233,6 +233,10 @@ Schemas and TypeScript models are generated from pinned official HL7 FHIR defini
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and developer CLI workflow.
 
+## Developer benchmarking
+
+The internal validation benchmark harness, including Synthea setup instructions, lives in [`scripts/benchmarking/README.md`](./scripts/benchmarking/README.md). Generated benchmark payloads and result JSON stay under `.local/` and are not committed.
+
 ## AI and tooling notes
 
 For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For AI coding assistants and other tools using this package, see [llms.txt](./llms.txt).

@@ -73,6 +73,9 @@
 		"README.md"
 	],
 	"scripts": {
+		"bench:generate": "tsx scripts/benchmarking/generate.ts",
+		"bench:run": "tsx scripts/benchmarking/run.ts",
+		"bench:validation": "tsx scripts/benchmark-validation.ts",
 		"build": "npm run typecheck && tsdown",
 		"check": "biome check . && npm run typecheck",
 		"check:resource-folders": "tsx scripts/check-resource-folders.ts",
