@@ -1,9 +1,9 @@
 ---
-title: For Agents
+title: For AI Agents
 description: Task-oriented guidance for AI coding assistants and other automated tools using fhir-zod.
 ---
 
-# For Agents
+# For AI Agents
 
 Use this page when the consumer is an AI coding assistant or another automated tool that needs operational guidance instead of conceptual package docs.
 
@@ -41,11 +41,10 @@ if (!result.success) {
 
 ## Handle Bundle carefully
 
-`BundleSchema` validates the Bundle envelope and the basic shape of known entry resources. When the workflow depends on a specific entry resource type, validate that resource again with its own schema.
+`BundleSchema` validates the Bundle envelope and recursively validates known entry resources through the release-specific `resourceType` dispatcher.
 
 ```ts
 import { BundleSchema, type Bundle } from "fhir-zod/r4/Bundle";
-import { PatientSchema } from "fhir-zod/r4/Patient";
 
 const bundle: Bundle = {
   resourceType: "Bundle",
@@ -60,13 +59,7 @@ const bundle: Bundle = {
   ],
 };
 
-const parsedBundle = BundleSchema.parse(bundle);
-
-for (const entry of parsedBundle.entry ?? []) {
-  if (entry.resource?.resourceType === "Patient") {
-    PatientSchema.parse(entry.resource);
-  }
-}
+BundleSchema.parse(bundle);
 ```
 
 ## Do not assume

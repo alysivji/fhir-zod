@@ -43,7 +43,7 @@ The VitePress source for package usage and validation boundaries lives in [`docs
 npm run docs:dev
 ```
 
-Using an agent? Start with the task-oriented [For Agents](https://fhir-zod.vercel.app/for-agents) page.
+Using an agent? Start with the task-oriented [For AI Agents](https://fhir-zod.vercel.app/for-agents) page.
 
 ## Quick start
 
@@ -241,7 +241,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, generation, testing, and dev
 
 ## AI and tooling notes
 
-For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For task-oriented package usage, start with [For Agents](https://fhir-zod.vercel.app/for-agents). For a compact repository/package guide, see [llms.txt](./llms.txt).
+For development process notes, including AI-assisted workflow details, see [CONTRIBUTING.md](./CONTRIBUTING.md). For task-oriented package usage, start with [For AI Agents](https://fhir-zod.vercel.app/for-agents). For a compact repository/package guide, see [llms.txt](./llms.txt).
 
 ## Acknowledgements
 

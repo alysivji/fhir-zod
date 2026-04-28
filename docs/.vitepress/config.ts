@@ -59,7 +59,6 @@ export default defineConfig({
 		},
 		nav: [
 			{ text: "Getting Started", link: "/getting-started" },
-			{ text: "For Agents", link: "/for-agents" },
 			{ text: "FHIR Versions", link: "/versions/" },
 			{ text: "GitHub", link: "https://github.com/alysivji/fhir-zod" },
 		],
@@ -68,7 +67,6 @@ export default defineConfig({
 				items: [
 					{ text: "Introduction", link: "/" },
 					{ text: "Getting Started", link: "/getting-started" },
-					{ text: "For Agents", link: "/for-agents" },
 					{ text: "Why fhir-zod", link: "/why-fhir-zod" },
 					{
 						text: "FHIR Versions",
@@ -82,6 +80,7 @@ export default defineConfig({
 					},
 					{ text: "API Conventions", link: "/api-conventions" },
 					{ text: "Validation Scope", link: "/validation-scope" },
+					{ text: "For AI Agents", link: "/for-agents" },
 				],
 			},
 		],
