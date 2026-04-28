@@ -121,7 +121,7 @@ The main CI workflow runs the Node/Zod matrix on pushes and pull requests.
 Bun and Deno are covered by the Runtime Compatibility workflow on a weekly
 schedule and through manual `workflow_dispatch` runs. Those jobs install the
 packed package in a fresh consumer project and run the same runtime tests with
-Zod 3.25.0 and Zod 4.
+Zod 3.25.1 and Zod 4.
 
 Generator-side tests that need extracted spec packages skip cleanly on a fresh
 checkout. That is expected for contributors who have not populated `.local`.

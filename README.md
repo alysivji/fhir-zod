@@ -27,7 +27,7 @@ Published versions are intended for testing and feedback rather than production 
 npm install fhir-zod zod
 ```
 
-Compatible with [Zod](https://zod.dev/) `^3.25.0` and `^4.0.0`.
+Compatible with [Zod](https://zod.dev/) `^3.25.1` and `^4.0.0`.
 
 Supports Node.js 20+ and modern bundlers. Import concrete resources from resource module entry points such as `fhir-zod/r4/Patient`. Versioned entry points such as `fhir-zod/r4` expose shared datatypes and supporting generated definitions.
 
@@ -64,7 +64,7 @@ if (!result.success) {
 
 Use the TypeScript model when you want the FHIR shape in code, and use the schema when data crosses a trust boundary.
 
-The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. `fhir-zod` works with the same generated schema surface across Zod `^3.25.0` and `^4.0.0`:
+The versioned entrypoints import from bare `zod`, so their schema instances follow the installed Zod package. `fhir-zod` works with the same generated schema surface across Zod `^3.25.1` and `^4.0.0`:
 
 ```ts
 import { PatientSchema } from "fhir-zod/r4/Patient"
