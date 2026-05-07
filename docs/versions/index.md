@@ -46,4 +46,4 @@ Browse generated core resources by release. Each resource links back to the cano
 
 ## Support status
 
-R5, R4B, R4, and STU3 are fully supported. The package is pre-release, so package shape and generated output may change between versions. For the full semantic meaning of any resource, refer to the official HL7 FHIR specification for that release.
+R5, R4B, R4, and STU3 are fully supported. The public API follows semantic versioning — import paths and exported types are stable. For the full semantic meaning of any resource, refer to the official HL7 FHIR specification for that release.
