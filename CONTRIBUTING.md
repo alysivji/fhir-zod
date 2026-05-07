@@ -155,9 +155,7 @@ Prefer changes that are:
 - covered by focused tests
 - clear about FHIR version differences
 
-This project is pre-release. Breaking changes are acceptable when they make the
-generator, emitted schemas, public package shape, or contributor workflow more
-correct and easier to maintain.
+The public package API follows semantic versioning. Breaking changes to the public API require a major version bump. Internal generator changes, emitted schema corrections, and contributor workflow improvements do not require a major version if the public import paths and exported types are unaffected.
 
 ## AI-Assisted Development
 

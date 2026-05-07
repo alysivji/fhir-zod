@@ -15,12 +15,6 @@ FHIR types and Zod validation for TypeScript — install, import, validate. No g
 - 🧪 **Validated against official examples**: schemas are tested against HL7's own example fixtures for each supported version.
 - ✅ **Zod 3 and 4**: fits into existing Zod-based validation workflows without swapping validation stacks.
 
-## Project status
-
-`fhir-zod` is pre-release. Early versions may include breaking changes while the package shape stabilizes.
-
-Published versions are intended for testing and feedback rather than production use.
-
 ## Installation
 
 ```bash

@@ -16,14 +16,14 @@ The goal is a thin, spec-aligned TypeScript library:
 
 This project is pre-release.
 
-There are no customers and no compatibility promises yet. Agents should optimize for:
+The public API is stable and follows semantic versioning. Agents should optimize for:
 
-- correctness over compatibility
-- clarity over preserving accidental APIs
-- simplifying the architecture when the current path looks wrong
+- correctness and spec-faithfulness
+- clarity in generated output
+- simplifying the architecture when the current path is wrong
 - documenting tradeoffs and open questions as they are discovered
 
-Breaking changes are acceptable if they improve the generator, emitted schemas, or package shape.
+Breaking changes to public import paths or exported types require a major version bump. Internal generator changes and emitted schema corrections that do not affect the public API shape do not.
 
 ## Current Reality
 
