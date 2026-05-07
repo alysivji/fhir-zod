@@ -100,3 +100,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create "${{ steps.version.outputs.tag }}" --title "${{ steps.version.outputs.tag }}" --generate-notes
+
+      - name: Deploy docs
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
