@@ -48,9 +48,7 @@ npm run fetch-spec -- stu3
 npm run fetch-spec -- r4b r5
 ```
 
-On a clean checkout without extracted spec inputs, runtime/generated-output tests still
-pass, while spec-dependent generator suites skip with a message telling you to run
-`npm run fetch-spec`.
+On a clean checkout without extracted spec inputs, runtime/generated-output tests still pass, while spec-dependent generator suites skip with a message telling you to run `npm run fetch-spec`.
 
 Fetch every pinned version before running the full spec-dependent generator suite:
 
@@ -59,9 +57,7 @@ npm run fetch-spec
 npm run fetch-spec -- stu3 r4b r5
 ```
 
-Once the relevant version has been fetched into `.local/spec-cache/<version>/package`,
-that version's generator-side inventory, provenance, and example-refresh tooling can
-read the pinned package inputs.
+Once the relevant version has been fetched into `.local/spec-cache/<version>/package`, that version's generator-side inventory, provenance, and example-refresh tooling can read the pinned package inputs.
 
 After refreshing:
 

@@ -188,6 +188,10 @@ If you change the pipeline, also consider updating:
 - this file
 - any scripts or tests that encode generator assumptions
 
+## Documentation Style
+
+Write markdown prose as long lines — do not hard-wrap at 80 characters. Renderers (GitHub, VitePress) handle wrapping. Hard line breaks add noise to diffs and make paragraphs harder to edit.
+
 ## Open Edges Worth Remembering
 
 These are active areas, not settled design:
