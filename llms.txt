@@ -3,14 +3,9 @@
 Generated TypeScript models and Zod schemas for HL7 FHIR.
 
 This file is a compact guide for AI coding assistants and other tools that need
-to use `fhir-zod` correctly from repository or package context.
+to use `fhir-zod` correctly. Full documentation: https://fhir-zod.vercel.app/
 
-## Docs
-
-- [README](./README.md): Package overview, installation, quick start, common
-  use cases, supported FHIR versions, and development commands.
-- [For AI Agents](./docs/for-agents.md): Task-oriented guidance for release
-  selection, unknown JSON validation, Bundle handling, and failure handling.
+> Repository contributors: see AGENTS.md for generator and development guidance.
 
 ## Core rules
 
@@ -43,6 +38,15 @@ const result = PatientSchema.safeParse(patient);
 if (!result.success) {
   console.error(result.error.issues);
 }
+```
+
+The same pattern applies to shared datatypes:
+
+```ts
+import { HumanNameSchema, type HumanName } from "fhir-zod/r4/HumanName";
+
+const name: HumanName = { family: "Smith", given: ["John"] };
+const result = HumanNameSchema.safeParse(name);
 ```
 
 Schema exports use the model name plus `Schema`.
@@ -210,53 +214,3 @@ This only affects the FHIR `string` primitive.
 - Do not assume `Reference.reference` proves the referenced resource exists.
 - Do not assume structural validation is complete clinical or regulatory
   validation.
-- Do not edit generated files in `src/stu3`, `src/r4`, `src/r4b`, or `src/r5`
-  by hand when changing library behavior.
-
-## Repository development guidance
-
-Handwritten code lives in:
-
-- `src/generator/`
-- `src/shared/`
-- `scripts/`
-- `tests/`
-- `src/spec/`
-
-Generated output lives in:
-
-- `src/stu3/`
-- `src/r4/`
-- `src/r4b/`
-- `src/r5/`
-
-When generated output is wrong, fix the generator or source normalization,
-regenerate, and review the emitted diff.
-
-Useful commands:
-
-```bash
-npm test
-npm run typecheck
-npm run fetch-spec
-npm run generate
-```
-
-The default spec fetch currently downloads R4. Fetch other releases explicitly
-when generator tests or regeneration need them:
-
-```bash
-npm run fetch-spec -- stu3 r4b r5
-```
-
-## Suggested assistant prompt
-
-When asking an AI coding assistant to use this package, include:
-
-```md
-Use fhir-zod with versioned imports. Import TypeScript models as types and
-runtime validators as `*Schema` values. Prefer `safeParse` for untrusted data.
-Do not import internal generated schemas. Treat fhir-zod as structural FHIR
-validation only; do not claim it validates terminology, profiles, slicing, or
-FHIRPath invariants.
-```
